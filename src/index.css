@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Brand Colors */
+  --primary: #8B2323;
+  --primary-rgb: 139, 35, 35;
+  --primary-hover: #A52A2A;
+  --primary-soft: rgba(var(--primary-rgb), 0.1);
+  
+  /* UI Colors */
+  --bg-white: #ffffff;
+  --bg-light: #f9fafb;
+  --text-dark: #1f2937;
+  --text-gray: #4b5563;
+  --text-muted: #9ca3af;
+  
+  /* Structural */
+  --header-height: 80px;
+  --container-max: 1200px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 24px;
+  
+  /* Transitions */
+  --transition-fast: 200ms ease;
+  --transition-normal: 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-white);
+  color: var(--text-dark);
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition-fast);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Glassmorphism Utility */
+.glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Base Container Class */
+.container-custom {
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade {
+  animation: fadeIn var(--transition-normal) forwards;
+}
