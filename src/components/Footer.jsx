@@ -115,7 +115,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-12 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-gray-500 text-sm">
-            © {new Date().getFullYear()} Fachärzte für Radiologie OG. Alle Rechte vorbehalten.
+            © Röntgen am Kai - Alle Rechte vorbehalten.
           </p>
           <div className="flex gap-8 text-gray-500 text-sm">
             <a href="/impressum" className="hover:text-white">Impressum</a>
