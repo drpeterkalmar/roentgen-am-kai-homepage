@@ -10,6 +10,8 @@ import KnochendichtePage from './pages/KnochendichtePage'
 import DVTPage from './pages/DVTPage'
 import PhlebographiePage from './pages/PhlebographiePage'
 import KoerperfettPage from './pages/KoerperfettPage'
+import ImpressumPage from './pages/ImpressumPage'
+import DatenschutzPage from './pages/DatenschutzPage'
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -35,6 +37,8 @@ function App() {
             <Route path="/unser-angebot/dvt" element={<DVTPage />} />
             <Route path="/unser-angebot/phlebographie" element={<PhlebographiePage />} />
             <Route path="/unser-angebot/koerperfettmessung" element={<KoerperfettPage />} />
+            <Route path="/impressum" element={<ImpressumPage />} />
+            <Route path="/datenschutz" element={<DatenschutzPage />} />
           </Routes>
         </main>
         <Footer />

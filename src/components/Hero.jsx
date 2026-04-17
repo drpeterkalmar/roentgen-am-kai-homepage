@@ -55,12 +55,6 @@ const Hero = () => {
             </a>
           </div>
           
-          <div className="flex items-center gap-6 text-gray-500">
-            <div className="flex items-center gap-2">
-              <MapPin size={18} className="text-[#8B2323]" />
-              <span className="text-sm font-medium">Körösistraße 9, 8010 Graz</span>
-            </div>
-          </div>
         </motion.div>
 
         {/* Visual Element */}
@@ -73,7 +67,7 @@ const Hero = () => {
           <div className="relative z-10 rounded-[40px] overflow-hidden shadow-2xl">
             <img 
               src="/assets/images/hero-clinic.jpg" 
-              alt="Röntgen am Kai Interior" 
+              alt="Röntgen am Kai Gebäude" 
               className="w-full h-[600px] object-cover"
             />
             {/* Overlay Gradient */}

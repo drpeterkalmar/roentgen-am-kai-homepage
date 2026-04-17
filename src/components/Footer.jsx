@@ -27,12 +27,7 @@ const Footer = () => {
               Ihre Experten für moderne Radiologie in Graz. Fachärzte für Radiologie – alle Kassen und privat.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#8B2323] transition-colors">
-                <Instagram size={20} />
-              </a>
-              <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#8B2323] transition-colors">
-                <Facebook size={20} />
-              </a>
+              {/* Social icons removed per user request (There are none) */}
             </div>
           </div>
 
@@ -107,8 +102,8 @@ const Footer = () => {
             © {new Date().getFullYear()} Fachärzte für Radiologie OG. Alle Rechte vorbehalten.
           </p>
           <div className="flex gap-8 text-gray-500 text-sm">
-            <a href="#" className="hover:text-white">Impressum</a>
-            <a href="#" className="hover:text-white">Datenschutz</a>
+            <a href="/impressum" className="hover:text-white">Impressum</a>
+            <a href="/datenschutz" className="hover:text-white">Datenschutz</a>
           </div>
           <button 
             onClick={scrollToTop}

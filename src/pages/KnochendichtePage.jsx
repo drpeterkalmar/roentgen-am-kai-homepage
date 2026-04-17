@@ -18,7 +18,7 @@ const KnochendichtePage = () => {
         'Aktuelle e-Card',
         'Eventuelle Voraufnahmen zum Vergleich'
       ]}
-      imageUrl="/assets/images/knochendichte.jpg"
+      imageUrl="/assets/images/knochendichte.webp"
     >
       <section className="space-y-6 mb-12">
         <h2 className="text-2xl font-bold mb-4 font-[Outfit]">DEXA – der Goldstandard</h2>

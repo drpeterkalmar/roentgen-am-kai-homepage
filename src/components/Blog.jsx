@@ -2,35 +2,7 @@ import React, { useState } from 'react';
 import { BookOpen, Sparkles, CheckCircle, Clock } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-const samplePosts = [
-  {
-    id: 1,
-    title: 'Die Bedeutung der Knochendichtemessung ab 50',
-    date: '13. April 2026',
-    category: 'Vorsorge',
-    excerpt: 'Warum die DEXA-Messung der Goldstandard in der Osteoporose-Früherkennung ist...',
-    status: 'published',
-    image: '/assets/images/service_densitometry.jpg'
-  },
-  {
-    id: 2,
-    title: 'KI in der Radiologie: Unterstützung für präzisere Diagnosen',
-    date: '10. März 2026',
-    category: 'Technologie',
-    excerpt: 'Wie künstliche Intelligenz uns hilft, selbst kleinste Veränderungen noch früher zu erkennen.',
-    status: 'published',
-    image: '/assets/images/hero_building.jpg'
-  },
-  {
-    id: 3,
-    title: 'Mammographie-Screening: Was Sie wissen sollten',
-    date: 'Entwurf für Mai',
-    category: 'Frauengesundheit',
-    excerpt: 'Ein Leitfaden für Patientinnen zur optimalen Vorbereitung und dem Ablauf der Untersuchung.',
-    status: 'draft',
-    image: '/assets/images/hero_interior.jpg'
-  }
-];
+import { blogPosts as samplePosts } from '../data/blogPosts';
 
 const Blog = () => {
   const [view, setView] = useState('published');
