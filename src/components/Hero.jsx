@@ -10,13 +10,23 @@ const images = [
   '/assets/images/hero-slide-4.jpg'
 ];
 
+const animationPresets = [
+  { initial: { scale: 1.3, x: 20, y: 10 }, animate: { scale: 1, x: 0, y: 0 } }, // Zoom Out + Top Right
+  { initial: { scale: 1, x: 0, y: 0 }, animate: { scale: 1.3, x: -20, y: -10 } }, // Zoom In + Bottom Left
+  { initial: { scale: 1.2, x: -30, y: 0 }, animate: { scale: 1.2, x: 30, y: 0 } }, // Slow Pan Right
+  { initial: { scale: 1.2, x: 0, y: -30 }, animate: { scale: 1.2, x: 0, y: 30 } }, // Slow Pan Down
+  { initial: { scale: 1.4, x: 10, y: 10 }, animate: { scale: 1.2, x: -10, y: -10 } }, // High Zoom Out
+];
+
 const Hero = () => {
   const [currentImage, setCurrentImage] = useState(0);
+  const [preset, setPreset] = useState(animationPresets[0]);
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % images.length);
-    }, 8000); // 8 seconds per slide for more drama
+      setPreset(animationPresets[Math.floor(Math.random() * animationPresets.length)]);
+    }, 8000); // 8 seconds per slide
     return () => clearInterval(timer);
   }, []);
 
@@ -38,17 +48,11 @@ const Hero = () => {
               <ShieldCheck size={18} />
               <span>Kassenverträge für alle Kassen & Privat</span>
             </div>
-            <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-sm font-bold">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-              </span>
-              <span>Fully Air Conditioned</span>
-            </div>
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-extrabold text-[#1f2937] leading-[1.1] mb-6">
-            Moderne <span className="text-[#8B2323]">Radiologie</span> am Kai.
+          <h1 className="text-5xl md:text-7xl font-extrabold text-[#1f2937] leading-[1.1] mb-6 font-[Outfit]">
+            Moderne <br />
+            <span className="text-[#8B2323]">Radiologie</span> am Kai.
           </h1>
           
           <p className="text-xl text-gray-600 mb-10 max-w-lg leading-relaxed">
@@ -57,18 +61,20 @@ const Hero = () => {
           
           <div className="flex flex-col sm:flex-row gap-4 mb-12">
             <a 
-              href="#booking"
+              href="#services"
               className="bg-[#8B2323] text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-[#A52A2A] shadow-lg shadow-red-200 transition-all flex items-center justify-center gap-2"
             >
-              Termin Online buchen
+              Unsere Leistungen
               <ChevronRight size={20} />
             </a>
             <a 
-              href="tel:+433168409050"
+              href="https://Termin.herold.at/p/L6pXG/roentgen-am-kai-facharzte-fur-radiologie-og/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-white text-gray-800 border-2 border-gray-200 px-8 py-4 rounded-full text-lg font-bold hover:bg-gray-50 transition-all flex items-center justify-center gap-2"
             >
               <Clock size={20} />
-              0316 840 90 50
+              Termin buchen
             </a>
           </div>
           
@@ -82,15 +88,14 @@ const Hero = () => {
           className="relative"
         >
           <div className="relative z-10 rounded-[40px] overflow-hidden shadow-2xl h-[400px] md:h-[600px] bg-black">
-            <AnimatePresence>
+            <AnimatePresence initial={false}>
               <motion.div
                 key={currentImage}
-                initial={{ opacity: 0, scale: 1.3, x: 20 }}
+                initial={{ ...preset.initial, opacity: 0 }}
                 animate={{ 
-                  opacity: 1, 
-                  scale: 1,
-                  x: 0,
-                  transition: { duration: 4, ease: "easeOut" }
+                  ...preset.animate,
+                  opacity: 1,
+                  transition: { duration: 5, ease: "linear" }
                 }}
                 exit={{ 
                   opacity: 0,
