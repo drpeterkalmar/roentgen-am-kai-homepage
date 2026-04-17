@@ -21,7 +21,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-[#151616]">
+    <section id="home" className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-white">
       {/* Background Decorative Elements */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-[#fdf2f2] -z-10 rounded-l-[100px] hidden lg:block" />
       
