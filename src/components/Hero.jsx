@@ -16,12 +16,12 @@ const Hero = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % images.length);
-    }, 7000);
+    }, 8000); // 8 seconds per slide for more drama
     return () => clearInterval(timer);
   }, []);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-white">
+    <section id="home" className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-[#151616]">
       {/* Background Decorative Elements */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-[#fdf2f2] -z-10 rounded-l-[100px] hidden lg:block" />
       
@@ -81,19 +81,20 @@ const Hero = () => {
           transition={{ duration: 1, delay: 0.2 }}
           className="relative"
         >
-          <div className="relative z-10 rounded-[40px] overflow-hidden shadow-2xl h-[400px] md:h-[600px]">
-            <AnimatePresence mode="wait">
+          <div className="relative z-10 rounded-[40px] overflow-hidden shadow-2xl h-[400px] md:h-[600px] bg-black">
+            <AnimatePresence>
               <motion.div
                 key={currentImage}
-                initial={{ opacity: 0, scale: 1.2 }}
+                initial={{ opacity: 0, scale: 1.3, x: 20 }}
                 animate={{ 
                   opacity: 1, 
                   scale: 1,
-                  transition: { duration: 3, ease: "easeOut" }
+                  x: 0,
+                  transition: { duration: 4, ease: "easeOut" }
                 }}
                 exit={{ 
                   opacity: 0,
-                  transition: { duration: 1.5 }
+                  transition: { duration: 2 }
                 }}
                 className="absolute inset-0"
               >
