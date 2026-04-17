@@ -66,7 +66,7 @@ const Hero = () => {
         >
           <div className="relative z-10 rounded-[40px] overflow-hidden shadow-2xl">
             <img 
-              src="/assets/images/hero-clinic.jpg" 
+              src="/assets/images/hero-home-2025.jpg" 
               alt="Röntgen am Kai Gebäude" 
               className="w-full h-[600px] object-cover"
             />

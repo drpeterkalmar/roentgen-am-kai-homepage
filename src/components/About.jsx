@@ -5,12 +5,12 @@ const doctors = [
   {
     name: 'Priv. Doz. Dr. Peter Kalmar',
     role: 'Facharzt für Radiologie',
-    image: '/assets/images/about-team.jpg'
+    image: '/assets/images/team-2025.jpg'
   },
   {
     name: 'Priv. Doz. Dr. Georg Riegler',
     role: 'Facharzt für Radiologie',
-    image: '/assets/images/about-team.jpg'
+    image: '/assets/images/team-2025.jpg'
   }
 ];
 
