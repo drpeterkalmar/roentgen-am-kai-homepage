@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronRight, ShieldCheck, Clock, MapPin } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const images = [
+  '/assets/images/hero-home-2025.jpg',
+  '/assets/images/hero-slide-1.jpg',
+  '/assets/images/hero-slide-2.jpg',
+  '/assets/images/hero-slide-3.jpg',
+  '/assets/images/hero-slide-4.jpg'
+];
 
 const Hero = () => {
+  const [currentImage, setCurrentImage] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % images.length);
+    }, 7000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section id="home" className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-white">
       {/* Background Decorative Elements */}
@@ -64,14 +81,31 @@ const Hero = () => {
           transition={{ duration: 1, delay: 0.2 }}
           className="relative"
         >
-          <div className="relative z-10 rounded-[40px] overflow-hidden shadow-2xl">
-            <img 
-              src="/assets/images/hero-home-2025.jpg" 
-              alt="Röntgen am Kai Gebäude" 
-              className="w-full h-[600px] object-cover"
-            />
+          <div className="relative z-10 rounded-[40px] overflow-hidden shadow-2xl h-[400px] md:h-[600px]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentImage}
+                initial={{ opacity: 0, scale: 1.2 }}
+                animate={{ 
+                  opacity: 1, 
+                  scale: 1,
+                  transition: { duration: 3, ease: "easeOut" }
+                }}
+                exit={{ 
+                  opacity: 0,
+                  transition: { duration: 1.5 }
+                }}
+                className="absolute inset-0"
+              >
+                <img 
+                  src={images[currentImage]} 
+                  alt="Röntgen am Kai Impressionen" 
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
+            </AnimatePresence>
             {/* Overlay Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10" />
           </div>
           
           {/* Floating Card */}

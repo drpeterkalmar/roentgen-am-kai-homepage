@@ -46,18 +46,39 @@ const Footer = () => {
           {/* Contact Info */}
           <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-10">
             <div>
-              <h4 className="text-xl font-bold mb-8 font-[Outfit]">Kontakt</h4>
+              <h4 className="text-xl font-bold mb-8 font-[Outfit]">Kontakt & Anfahrt</h4>
               <ul className="space-y-6">
                 <li className="flex items-start gap-4 text-gray-400">
                   <MapPin className="text-[#8B2323] shrink-0" size={24} />
                   <div>
-                    <p className="text-white font-bold">Anreise</p>
-                    <p className="mb-2">Körösistraße 9<br />8010 Graz, Österreich</p>
-                    <div className="text-xs space-y-1">
-                      <p><strong className="text-gray-300">Öffentlich:</strong> Straßenbahn 3 & 5, Bus 58 & 63 (Haltestelle Keplerbrücke)</p>
-                      <p><strong className="text-gray-300">Parken:</strong> Kostenlose Tiefgarage im Haus (Einfahrt via Körösistraße)</p>
-                      <p><strong className="text-gray-300">Zugang:</strong> Barrierefrei mit Lift in den 1. Stock</p>
+                    <p className="text-white font-bold">Zentrale Lage</p>
+                    <p className="mb-4">Körösistraße 9<br />8010 Graz, Österreich</p>
+                    
+                    {/* Stylized Map View */}
+                    <div className="relative group rounded-3xl overflow-hidden mb-4 shadow-xl border border-gray-700">
+                      <img 
+                        src="/assets/images/footer-map.png" 
+                        alt="Karte Röntgen am Kai" 
+                        className="w-full h-[150px] object-cover"
+                      />
+                      <a 
+                        href="https://www.google.com/maps/dir/?api=1&destination=Körösistraße+9+8010+Graz" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                      >
+                        <span className="bg-white text-gray-900 px-4 py-2 rounded-full text-xs font-bold">Route öffnen</span>
+                      </a>
                     </div>
+
+                    <a 
+                      href="https://www.google.com/maps/dir/?api=1&destination=Körösistraße+9+8010+Graz" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-[#8B2323] hover:text-[#A52A2A] font-bold text-sm transition-colors border-b-2 border-[#8B2323]/30 pb-0.5"
+                    >
+                      Anreise planen
+                    </a>
                   </div>
                 </li>
                 <li className="flex items-start gap-4 text-gray-400">
@@ -67,19 +88,12 @@ const Footer = () => {
                     <a href="tel:+433168409050" className="hover:text-white transition-colors">0316 840 90 50</a>
                   </div>
                 </li>
-                <li className="flex items-start gap-4 text-gray-400">
-                  <Mail className="text-[#8B2323] shrink-0" size={24} />
-                  <div>
-                    <p className="text-white font-bold">E-Mail</p>
-                    <a href="mailto:office@roentgen-am-kai.at" className="hover:text-white transition-colors">office@roentgen-am-kai.at</a>
-                  </div>
-                </li>
               </ul>
             </div>
 
             <div>
               <h4 className="text-xl font-bold mb-8 font-[Outfit]">Öffnungszeiten</h4>
-              <ul className="space-y-3 text-gray-400">
+              <ul className="space-y-3 text-gray-400 mb-8">
                 <li className="flex justify-between">
                   <span>Mo - Do</span>
                   <span className="text-white font-medium">08:00 - 17:00</span>
@@ -88,10 +102,12 @@ const Footer = () => {
                   <span>Freitag</span>
                   <span className="text-white font-medium">08:00 - 13:00</span>
                 </li>
-                <li className="pt-4 text-sm italic">
-                  Termine nur nach telefonischer oder Online-Vereinbarung.
-                </li>
               </ul>
+              <div className="bg-gray-800/50 p-6 rounded-3xl border border-gray-700">
+                <p className="text-xs text-gray-400 leading-relaxed italic">
+                  <strong>Hinweis:</strong> Termine nur nach telefonischer oder Online-Vereinbarung. Wir befinden uns im 1. Stock (barrierefrei erreichbar).
+                </p>
+              </div>
             </div>
           </div>
         </div>
