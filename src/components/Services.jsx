@@ -94,7 +94,7 @@ const services = [
 
 const Services = () => {
   return (
-    <section id="services" className="py-24 bg-white selection:bg-red-50">
+    <section id="services" className="py-24 bg-transparent selection:bg-red-50">
       <div className="max-w-[1400px] mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
           <div className="max-w-2xl">

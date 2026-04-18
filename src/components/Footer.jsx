@@ -7,11 +7,11 @@ const Footer = () => {
   };
 
   return (
-    <footer id="contact" className="bg-[#1f2937] text-white pt-24 pb-12 overflow-hidden relative">
+    <footer id="contact" className="bg-transparent text-white pt-24 pb-12 overflow-hidden relative">
       {/* Background decoration */}
       <div className="absolute -top-24 -left-24 w-64 h-64 bg-[#8B2323] rounded-full blur-[120px] opacity-20" />
       
-      <div className="max-w-[1200px] mx-auto px-6">
+      <div className="max-w-[1200px] mx-auto px-6 relative z-10 glass p-12 md:p-16 rounded-[48px] border-white/10 shadow-2xl">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-16 mb-20">
           {/* Brand Info */}
           <div className="lg:col-span-1">

@@ -24,7 +24,7 @@ const Appointment = () => {
   ];
 
   return (
-    <section id="booking" className="py-24 bg-gray-50 overflow-hidden">
+    <section id="booking" className="py-24 bg-transparent overflow-hidden">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-center">
           
@@ -53,7 +53,7 @@ const Appointment = () => {
               ))}
             </ul>
 
-            <div className="mt-12 p-6 bg-white rounded-3xl border border-red-50 flex items-center gap-4">
+            <div className="mt-12 p-6 glass rounded-3xl flex items-center gap-4">
               <div className="w-12 h-12 bg-red-50 text-[#8B2323] rounded-2xl flex items-center justify-center shrink-0">
                 <Shield size={24} />
               </div>
@@ -66,7 +66,7 @@ const Appointment = () => {
 
           {/* Right Side: Interactive Form */}
           <div className="lg:col-span-3">
-            <div className="bg-white rounded-[40px] shadow-2xl p-8 md:p-12 relative overflow-hidden">
+            <div className="glass rounded-[40px] shadow-2xl p-8 md:p-12 relative overflow-hidden">
               {/* Progress Bar */}
               <div className="flex justify-between mb-12 relative">
                 <div className="absolute top-1/2 left-0 w-full h-0.5 bg-gray-100 -translate-y-1/2 -z-10" />

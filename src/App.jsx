@@ -38,7 +38,7 @@ function App() {
     <Router>
       <ScrollToTop />
       <SchemaMarkup />
-      <div className="min-h-screen bg-white selection:bg-red-100 selection:text-[#8B2323]">
+      <div className="min-h-screen bg-transparent selection:bg-red-100 selection:text-[#8B2323]">
         <Navbar highContrast={highContrast} setHighContrast={setHighContrast} />
         <main>
           <Routes>
