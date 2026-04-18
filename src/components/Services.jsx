@@ -106,8 +106,8 @@ const Services = () => {
               Unsere <span className="text-[#8B2323]">Leistungen</span>
             </h2>
           </div>
-          <p className="text-lg text-gray-500 max-w-sm leading-relaxed">
-            Radiologie auf Dashboard-Niveau. Ein aufgeräumtes System für Ihre Gesundheit.
+          <p className="text-lg text-gray-500 max-w-sm leading-relaxed font-medium">
+            Ihre Gesundheit im Fokus. Digital. Präzise. Persönlich.
           </p>
         </div>
 
