@@ -105,7 +105,7 @@ const Footer = () => {
               </ul>
               <div className="bg-gray-800/50 p-6 rounded-3xl border border-gray-700">
                 <p className="text-xs text-gray-400 leading-relaxed italic">
-                  <strong>Anreise:</strong> Kostenlose Tiefgaragenplätze für Patienten & hervorragende Straßenbahnanbindung direkt vor der Tür. Termine nur nach Vereinbarung. 2. Stock (barrierefrei).
+                  <strong>Anreise:</strong> Kostenlose Tiefgaragenplätze für Patienten & gute öffentliche Anbindung mit den Straßenbahnlinien 3 und 5 und den Buslinien 58 und 63. Termine nur nach Vereinbarung.
                 </p>
               </div>
             </div>

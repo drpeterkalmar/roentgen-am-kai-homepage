@@ -40,7 +40,7 @@ const services = [
   {
     type: 'info',
     title: 'Parken & Anfahrt',
-    description: 'Kostenlose Tiefgaragenplätze für die Aufenthaltsdauer in unserer Praxis. Zudem profitieren Sie von einer hervorragenden Straßenbahnanbindung direkt vor der Tür.',
+    description: 'Kostenlose Tiefgaragenplätze für die Aufenthaltsdauer in unserer Praxis. Zudem gute öffentliche Anbindung mit den Straßenbahnlinien 3 und 5 und den Buslinien 58 und 63.',
     icon: <Droplets size={24} />, // Reusing icon as visual placeholder
     color: 'bg-green-50 text-green-600',
     gridClass: 'md:col-span-4 aspect-square',
