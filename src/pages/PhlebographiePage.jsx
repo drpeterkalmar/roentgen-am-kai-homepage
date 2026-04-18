@@ -19,7 +19,7 @@ const PhlebographiePage = () => {
         'Aktuelle e-Card',
         'Eventuelle Voraufnahmen zum Vergleich'
       ]}
-      imageUrl="/assets/images/phlebographie.webp"
+      imageUrl="/assets/images/phlebographie_v3.webp"
     >
       <section className="bg-red-50 rounded-[32px] p-6 border border-red-200 mb-12 flex items-start gap-4">
         <AlertTriangle className="text-red-600 shrink-0 mt-1" size={24} />

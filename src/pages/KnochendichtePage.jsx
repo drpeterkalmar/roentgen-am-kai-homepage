@@ -1,8 +1,28 @@
 import React from 'react';
 import { Maximize, CreditCard } from 'lucide-react';
 import ServiceLayout from '../components/ServiceLayout';
+import FAQ from '../components/FAQ';
 
 const KnochendichtePage = () => {
+  const faqItems = [
+    {
+      question: "Was ist eine DEXA-Knochendichtemessung?",
+      answer: "Die DEXA-Methode (Dual-Energy X-ray Absorptiometry) ist der weltweite Goldstandard zur Diagnose von Osteoporose. Sie misst präzise den Mineralgehalt der Knochen bei minimaler Strahlenbelastung."
+    },
+    {
+      question: "Übernimmt die Krankenkasse die Kosten für die Knochendichtemessung?",
+      answer: "Wir haben Direktverrechnungsverträge mit der BVAEB, SVS und KFA-Graz. Für ÖGK-Versicherte fungieren wir als Wahlarzt; Sie bezahlen die Untersuchung vorab und können den Anteil bei der ÖGK zur Rückerstattung einreichen."
+    },
+    {
+      question: "Muss ich für die DEXA-Untersuchung nüchtern sein?",
+      answer: "Nein, für eine Knochendichtemessung oder Körperfettanalyse ist keine spezielle Vorbereitung erforderlich. Sie müssen nicht nüchtern erscheinen."
+    },
+    {
+      question: "Wie oft sollte die Knochendichte gemessen werden?",
+      answer: "In der Regel ist eine Kontrolle alle 1-2 Jahre sinnvoll, um den Erfolg einer Therapie zu überwachen oder den Verlauf einer Osteopenie/Osteoporose zu dokumentieren."
+    }
+  ];
+
   return (
     <ServiceLayout
       title="Knochendichtemessung"
@@ -18,7 +38,7 @@ const KnochendichtePage = () => {
         'Aktuelle e-Card',
         'Eventuelle Voraufnahmen zum Vergleich'
       ]}
-      imageUrl="/assets/images/knochendichte.webp"
+      imageUrl="/assets/images/knochendichte_v3.webp"
     >
       <section className="space-y-6 mb-12">
         <h2 className="text-2xl font-bold mb-4 font-[Outfit]">DEXA – der Goldstandard</h2>
@@ -100,10 +120,12 @@ const KnochendichtePage = () => {
         <p>
           Anhand dieser Daten können ernährungs- oder trainingsbedingte Veränderungen zwischen Körperfett und Muskelmasse gezielt dargestellt und Diät- bzw. Trainingspläne entsprechend optimiert werden.
         </p>
-        <p className="text-sm text-gray-500 italic">
+        <p className="text-sm text-gray-500 italic mb-12">
           Die Körperfettanalyse ist eine reine Privatleistung und wird von der Krankenkasse nicht bezahlt. Knochendichtemessung und Körperfettmessung können beim selben Termin durchgeführt werden.
         </p>
       </section>
+
+      <FAQ items={faqItems} title="Häufige Fragen zur Knochendichtemessung" />
     </ServiceLayout>
   );
 };

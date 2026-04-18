@@ -18,7 +18,7 @@ const RoentgenPage = () => {
         'Aktuelle e-Card',
         'Eventuelle Voraufnahmen zum Vergleich'
       ]}
-      imageUrl="/assets/images/roentgen.jpg"
+      imageUrl="/assets/images/roentgen_v3.webp"
     >
       <section className="space-y-6 mb-12">
         <h2 className="text-2xl font-bold mb-4 font-[Outfit]">Geringe Strahlenbelastung, maximale Auflösung</h2>

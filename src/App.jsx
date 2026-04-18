@@ -12,6 +12,7 @@ import PhlebographiePage from './pages/PhlebographiePage'
 import KoerperfettPage from './pages/KoerperfettPage'
 import ImpressumPage from './pages/ImpressumPage'
 import DatenschutzPage from './pages/DatenschutzPage'
+import SchemaMarkup from './components/SchemaMarkup'
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -25,6 +26,7 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
+      <SchemaMarkup />
       <div className="min-h-screen bg-white selection:bg-red-100 selection:text-[#8B2323]">
         <Navbar />
         <main>

@@ -34,7 +34,7 @@ export const blogPosts = [
       <h3>Ihre Vorteile als Patient</h3>
       <p>Durch die computergestützte Analyse erreichen wir eine noch höhere diagnostische Sicherheit. Kleinste Veränderungen, die in frühen Stadien schwer erkennbar sind, werden markiert und vom Radiologen detailliert geprüft. Dies führt zu einer schnelleren und präziseren Diagnose – die Basis für jede erfolgreiche Behandlung.</p>
     `,
-    image: '/assets/images/roentgen.jpg',
+    image: '/assets/images/roentgen.webp',
     status: 'published'
   },
   {

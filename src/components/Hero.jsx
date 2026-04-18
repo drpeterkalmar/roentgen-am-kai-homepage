@@ -3,11 +3,11 @@ import { ChevronRight, ShieldCheck, Clock, MapPin } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const images = [
-  '/assets/images/hero-home-2025.jpg',
-  '/assets/images/hero-slide-1.jpg',
-  '/assets/images/hero-slide-2.jpg',
-  '/assets/images/hero-slide-3.jpg',
-  '/assets/images/hero-slide-4.jpg'
+  '/assets/images/hero-home-2025.webp',
+  '/assets/images/hero-slide-1.webp',
+  '/assets/images/hero-slide-2.webp',
+  '/assets/images/hero-slide-3.webp',
+  '/assets/images/hero-slide-4.webp'
 ];
 
 const animationPresets = [
@@ -16,6 +16,14 @@ const animationPresets = [
   { initial: { scale: 1.2, x: -30, y: 0 }, animate: { scale: 1.2, x: 30, y: 0 } }, // Slow Pan Right
   { initial: { scale: 1.2, x: 0, y: -30 }, animate: { scale: 1.2, x: 0, y: 30 } }, // Slow Pan Down
   { initial: { scale: 1.4, x: 10, y: 10 }, animate: { scale: 1.2, x: -10, y: -10 } }, // High Zoom Out
+];
+
+const imageAlts = [
+  'Modernste radiologische Praxis Röntgen am Kai in Graz',
+  'Digitale Röntgendiagnostik auf höchstem Niveau',
+  'Patientenempfang und Komfort im Zentrum von Graz',
+  'Interdisziplinäres Team für Ihre Gesundheit',
+  'Präzise Bildgebung mit modernster Medizintechnik'
 ];
 
 const Hero = () => {
@@ -105,7 +113,7 @@ const Hero = () => {
               >
                 <img 
                   src={images[currentImage]} 
-                  alt="Röntgen am Kai Impressionen" 
+                  alt={imageAlts[currentImage]} 
                   className="w-full h-full object-cover"
                 />
               </motion.div>

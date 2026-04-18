@@ -23,8 +23,8 @@ const About = () => {
           >
             <div className="relative mb-8 rounded-[40px] overflow-hidden shadow-2xl aspect-video lg:aspect-[21/9]">
               <img 
-                src="/assets/images/team-2025.jpg" 
-                alt="Dr. Riegler & Dr. Kalmar" 
+                src="/assets/images/team-2025.webp" 
+                alt="Priv. Doz. Dr. Georg Riegler und Priv. Doz. Dr. Peter Kalmar - Spezialisten für Radiologie in Graz" 
                 className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1f2937]/40 via-transparent to-transparent opacity-60 transition-opacity" />
