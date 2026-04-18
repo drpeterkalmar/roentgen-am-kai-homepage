@@ -17,7 +17,7 @@ const services = [
     href: '/unser-angebot/mammographie',
     icon: <Heart size={28} />,
     color: 'bg-red-50 text-[#8B2323]',
-    gridClass: 'md:col-span-8 aspect-[2/1]',
+    gridClass: 'md:col-span-4 aspect-square', // Standardized
     image: '/assets/images/mammographie_v2.webp'
   },
   {
@@ -35,13 +35,13 @@ const services = [
     href: '/unser-angebot/knochendichte',
     icon: <Maximize size={28} />,
     color: 'bg-purple-50 text-purple-600',
-    gridClass: 'md:col-span-8 aspect-[2/1]',
+    gridClass: 'md:col-span-4 aspect-square', // Standardized
   },
   {
     type: 'info',
     title: 'Parken & Anfahrt',
     description: 'Kostenlose Tiefgaragenplätze für die Aufenthaltsdauer in unserer Praxis. Zudem gute öffentliche Anbindung mit den Straßenbahnlinien 3 und 5 und den Buslinien 58 und 63.',
-    icon: <Droplets size={24} />, // Reusing icon as visual placeholder
+    icon: <Droplets size={24} />, 
     color: 'bg-green-50 text-green-600',
     gridClass: 'md:col-span-4 aspect-square',
   },
@@ -52,7 +52,7 @@ const services = [
     href: '/unser-angebot/roentgen',
     icon: <Camera size={24} />,
     color: 'bg-blue-50 text-blue-600',
-    gridClass: 'md:col-span-6 aspect-[3/2]',
+    gridClass: 'md:col-span-4 aspect-square', // Standardized
   },
   {
     title: 'Ultraschall',
@@ -61,7 +61,7 @@ const services = [
     href: '/unser-angebot/ultraschall',
     icon: <Activity size={24} />,
     color: 'bg-green-50 text-green-600',
-    gridClass: 'md:col-span-6 aspect-[3/2]',
+    gridClass: 'md:col-span-4 aspect-square', // Standardized
   },
   {
     title: 'DVT 3D',
@@ -118,8 +118,8 @@ const Services = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              whileHover={{ y: -5 }}
-              className={`glass group rounded-[40px] p-10 flex flex-col transition-all duration-500 hover:border-[#8B2323]/30 hover:shadow-[0_40px_80px_rgba(139,35,35,0.1)] relative overflow-hidden ${service.gridClass} ${
+              whileHover={{ y: -5, borderColor: 'rgba(139, 35, 35, 0.2)' }}
+              className={`glass group rounded-[40px] p-8 flex flex-col relative overflow-hidden ${service.gridClass} ${
                 service.type === 'info' ? 'order-last' : 
                 (service.title.includes('Mammo') || service.title.includes('Ultra') ? 'order-first' : 'order-none')
               }`}
@@ -127,7 +127,7 @@ const Services = () => {
               {service.href && <Link to={service.href} className="absolute inset-0 z-20" />}
               
               <div className="relative z-10 flex flex-col h-full">
-                <div className="flex justify-between items-start mb-8">
+                <div className="flex justify-between items-start mb-6">
                   <div className={`${service.color} w-16 h-16 rounded-2xl flex items-center justify-center shadow-inner`}>
                     {service.icon}
                   </div>
@@ -140,22 +140,22 @@ const Services = () => {
                   )}
                 </div>
 
-                <div className="mb-6">
-                  <h3 className="text-2xl md:text-3xl font-black text-gray-900 mb-3 font-[Outfit] leading-tight group-hover:text-[#8B2323] transition-colors">
+                <div className="mb-4">
+                  <h3 className="text-2xl font-black text-gray-900 mb-2 font-[Outfit] leading-tight group-hover:text-[#8B2323] transition-colors">
                     {service.title}
                   </h3>
-                  <p className="text-gray-500 leading-relaxed font-medium">
+                  <p className="text-sm text-gray-500 leading-relaxed font-medium line-clamp-3">
                     {service.description}
                   </p>
                 </div>
 
                 {service.type !== 'info' ? (
-                  <div className="mt-auto pt-6 flex items-center gap-2 text-[#8B2323] font-black text-[10px] uppercase tracking-[0.2em] opacity-80 group-hover:opacity-100 transition-all">
+                  <div className="mt-auto pt-4 flex items-center gap-2 text-[#8B2323] font-black text-[10px] uppercase tracking-[0.2em] opacity-80 group-hover:opacity-100 transition-all">
                     <span>Details ansehen</span>
                     <ChevronRight size={14} />
                   </div>
                 ) : (
-                  <div className="mt-auto pt-6 text-[10px] font-black uppercase text-gray-400 tracking-[0.2em]">
+                  <div className="mt-auto pt-4 text-[10px] font-black uppercase text-gray-400 tracking-[0.2em]">
                     Information
                   </div>
                 )}
