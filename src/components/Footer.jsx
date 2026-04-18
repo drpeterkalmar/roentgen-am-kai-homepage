@@ -105,7 +105,7 @@ const Footer = () => {
               </ul>
               <div className="bg-gray-800/50 p-6 rounded-3xl border border-gray-700">
                 <p className="text-xs text-gray-400 leading-relaxed italic">
-                  <strong>Hinweis:</strong> Termine nur nach telefonischer oder Online-Vereinbarung. Wir befinden uns im 2. Stock (barrierefrei erreichbar).
+                  <strong>Anreise:</strong> Kostenlose Tiefgaragenplätze für Patienten & hervorragende Straßenbahnanbindung direkt vor der Tür. Termine nur nach Vereinbarung. 2. Stock (barrierefrei).
                 </p>
               </div>
             </div>

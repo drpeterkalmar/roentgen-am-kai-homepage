@@ -40,8 +40,8 @@ const services = [
   {
     type: 'info',
     title: 'Parken & Anfahrt',
-    description: 'Kurzparkzone direkt vor der Praxis am Marburger Kai. Barrierefreier Zugang möglich.',
-    icon: <Droplets size={24} />, // Reusing icon for visual placeholder
+    description: 'Kostenlose Tiefgaragenplätze für die Aufenthaltsdauer in unserer Praxis. Zudem profitieren Sie von einer hervorragenden Straßenbahnanbindung direkt vor der Tür.',
+    icon: <Droplets size={24} />, // Reusing icon as visual placeholder
     color: 'bg-green-50 text-green-600',
     gridClass: 'md:col-span-4 aspect-square',
   },
