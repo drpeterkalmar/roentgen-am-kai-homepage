@@ -119,7 +119,10 @@ const Services = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               whileHover={{ y: -5 }}
-              className={`glass group rounded-[40px] p-10 flex flex-col transition-all duration-500 hover:border-[#8B2323]/30 hover:shadow-[0_40px_80px_rgba(139,35,35,0.1)] relative overflow-hidden ${service.gridClass}`}
+              className={`glass group rounded-[40px] p-10 flex flex-col transition-all duration-500 hover:border-[#8B2323]/30 hover:shadow-[0_40px_80px_rgba(139,35,35,0.1)] relative overflow-hidden ${service.gridClass} ${
+                service.type === 'info' ? 'order-last' : 
+                (service.title.includes('Mammo') || service.title.includes('Ultra') ? 'order-first' : 'order-none')
+              }`}
             >
               {service.href && <Link to={service.href} className="absolute inset-0 z-20" />}
               

@@ -152,6 +152,7 @@ button {
 @media (max-width: 640px) {
   .bento-grid {
     grid-template-columns: 1fr;
+    gap: 2.5rem;
   }
   .bento-grid > * {
     grid-column: span 1 !important;
