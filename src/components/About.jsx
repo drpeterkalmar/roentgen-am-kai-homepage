@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const About = () => {
   return (
-    <section id="about" className="py-24 bg-white overflow-hidden text-center">
+    <section id="about" className="py-24 bg-transparent overflow-hidden text-center relative">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="max-w-3xl mx-auto mb-16 text-center">
           <h2 className="text-4xl md:text-5xl font-extrabold text-[#1f2937] mb-6 font-[Outfit]">

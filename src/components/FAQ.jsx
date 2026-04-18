@@ -39,7 +39,7 @@ const FAQItem = ({ question, answer }) => {
 
 const FAQ = ({ items, title = "Häufig gestellte Fragen" }) => {
   return (
-    <section className="py-20 bg-white">
+    <section id="faq" className="py-24 bg-transparent relative">
       <div className="max-w-4xl mx-auto px-6">
         <div className="flex items-center gap-3 mb-12">
           <div className="w-12 h-12 bg-red-50 rounded-2xl flex items-center justify-center text-[#8B2323]">
@@ -50,7 +50,7 @@ const FAQ = ({ items, title = "Häufig gestellte Fragen" }) => {
           </h2>
         </div>
         
-        <div className="bg-white rounded-[40px] p-8 md:p-12 shadow-2xl shadow-gray-200/50 border border-gray-50">
+        <div className="glass rounded-[40px] p-8 md:p-12">
           <div className="divide-y divide-gray-100">
             {items.map((item, index) => (
               <FAQItem key={index} question={item.question} answer={item.answer} />

@@ -80,7 +80,7 @@ const Blog = () => {
   const filteredPosts = samplePosts.filter(post => post.status === view);
 
   return (
-    <section id="blog" className="py-24 bg-white">
+    <section id="blog" className="py-24 bg-transparent relative">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
           <div className="max-w-2xl">
