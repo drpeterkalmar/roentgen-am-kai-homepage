@@ -130,18 +130,7 @@ const Hero = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-20" />
           </div>
           
-          {/* Floating Card */}
-          <div className="absolute -bottom-6 -left-6 glass p-6 rounded-2xl shadow-xl z-20 max-w-[240px] hidden md:block border border-red-50">
-            <div className="flex items-center gap-4 mb-2">
-              <div className="w-10 h-10 bg-[#8B2323] rounded-full flex items-center justify-center text-white">
-                <Clock size={20} />
-              </div>
-              <span className="font-bold text-gray-900 leading-tight">Schnelle Termine</span>
-            </div>
-            <p className="text-sm text-gray-500">
-              In der Regel innerhalb weniger Tage verfügbar.
-            </p>
-          </div>
+
 
           {/* Background element */}
           <div className="absolute -top-10 -right-10 w-64 h-64 bg-red-100 rounded-full blur-3xl -z-10 opacity-60" />
