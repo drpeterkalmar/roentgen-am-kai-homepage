@@ -22,61 +22,63 @@ async function optimizeImages() {
     const files = fs.readdirSync(IMAGES_DIR);
     console.log(`Scanning ${files.length} files in ${IMAGES_DIR}...`);
 
-  for (const file of files) {
-    const ext = path.extname(file).toLowerCase();
-    
-    if (SUPPORTED_FORMATS.includes(ext) && !file.includes('-mobile')) {
+    for (const file of files) {
+      const ext = path.extname(file).toLowerCase();
+      
+      // Skip already processed variants to avoid infinite loops
+      if (!SUPPORTED_FORMATS.includes(ext) || file.includes('-mobile') || file.includes('-tablet')) {
+        continue;
+      }
+
       try {
         const inputPath = path.join(IMAGES_DIR, file);
-        const mobileOutputName = path.basename(file, ext) + '-mobile.avif';
-        const mobileOutputPath = path.join(IMAGES_DIR, mobileOutputName);
-        const desktopOutputName = path.basename(file, ext) + '.avif';
-        const desktopOutputPath = path.join(IMAGES_DIR, desktopOutputName);
+        const baseName = path.basename(file, ext);
+        
+        const desktopOutputPath = path.join(IMAGES_DIR, baseName + '.avif');
+        const tabletOutputPath = path.join(IMAGES_DIR, baseName + '-tablet.avif');
+        const mobileOutputPath = path.join(IMAGES_DIR, baseName + '-mobile.avif');
 
         console.log(`Processing ${file}...`);
         
-        const transform = sharp(inputPath);
-        const metadata = await transform.metadata();
+        // Read into buffer to avoid "same file" errors during processing
+        const inputBuffer = fs.readFileSync(inputPath);
+        const image = sharp(inputBuffer);
+        const metadata = await image.metadata();
 
-        // 1. Generate Desktop Version (only if not already AVIF or if we want to re-process)
-        if (ext !== '.avif' || inputPath !== desktopOutputPath) {
-          console.log(`  - Generating desktop AVIF...`);
-          let desktopTransform = sharp(inputPath);
-          if (metadata.width > 1920) {
-            desktopTransform = desktopTransform.resize(1920);
-          }
-          await desktopTransform
-            .avif({ quality: 70 })
-            .toFile(desktopOutputPath + '.tmp'); // Use tmp to avoid same-file error
-          
-          if (fs.existsSync(desktopOutputPath)) fs.unlinkSync(desktopOutputPath);
-          fs.renameSync(desktopOutputPath + '.tmp', desktopOutputPath);
-        }
+        // 1. Desktop Tier (1920px)
+        await sharp(inputBuffer)
+          .resize(1920, null, { withoutEnlargement: true })
+          .avif({ quality: 50 })
+          .toFile(desktopOutputPath + '.tmp');
+        
+        if (fs.existsSync(desktopOutputPath)) fs.unlinkSync(desktopOutputPath);
+        fs.renameSync(desktopOutputPath + '.tmp', desktopOutputPath);
 
-        // 2. Generate Mobile Version (max 800px)
-        if (!fs.existsSync(mobileOutputPath)) {
-          console.log(`  - Generating mobile AVIF...`);
-          let mobileTransform = sharp(inputPath);
-          if (metadata.width > 800) {
-            mobileTransform = mobileTransform.resize(800);
-          }
-          await mobileTransform
-            .avif({ quality: 60 })
-            .toFile(mobileOutputPath);
-        }
+        // 2. Tablet Tier (1200px)
+        await sharp(inputBuffer)
+          .resize(1200, null, { withoutEnlargement: true })
+          .avif({ quality: 45 })
+          .toFile(tabletOutputPath);
 
-        // 3. Delete original if it was not an AVIF
+        // 3. Mobile Tier (800px)
+        await sharp(inputBuffer)
+          .resize(800, null, { withoutEnlargement: true })
+          .avif({ quality: 40 })
+          .toFile(mobileOutputPath);
+
+        // 4. Cleanup original if it was not an AVIF
         if (ext !== '.avif') {
           fs.unlinkSync(inputPath);
-          console.log(`  - Original ${file} deleted.`);
+          console.log(`  - Original ${file} replaced by AVIF tiers.`);
+        } else {
+          console.log(`  - AVIF tiers generated/updated for ${file}.`);
         }
+
       } catch (err) {
         console.error(`Error processing ${file}:`, err.message);
       }
     }
-    }
   }
-
   console.log('Overall optimization complete!');
 }
 

@@ -170,7 +170,13 @@ const Services = () => {
 
               {service.image && (
                 <div className="absolute top-0 right-0 w-1/2 h-full opacity-[0.03] group-hover:opacity-[0.08] transition-opacity pointer-events-none">
-                   <img src={service.image} alt="" className="w-full h-full object-cover grayscale" />
+                   <img 
+                    src={service.image} 
+                    srcSet={`${service.image.replace('.avif', '-mobile.avif')} 800w, ${service.image.replace('.avif', '-tablet.avif')} 1200w, ${service.image} 1920w`}
+                    sizes="(max-width: 768px) 50vw, 50vw"
+                    alt="" 
+                    className="w-full h-full object-cover grayscale" 
+                  />
                 </div>
               )}
             </motion.div>

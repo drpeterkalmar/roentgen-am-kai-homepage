@@ -89,7 +89,18 @@ const Hero = () => {
           transition={{ duration: 1, delay: 0.2 }}
           className="relative"
         >
-          <div className="relative z-10 rounded-[40px] overflow-hidden shadow-2xl h-[400px] md:h-[600px] bg-black">
+          <div className="relative z-10 rounded-[40px] overflow-hidden shadow-2xl h-[400px] md:h-[600px] bg-gray-100">
+            {/* LCP Static Landing Frame: Renders immediately outside animation loop */}
+            <img 
+              src={images[0]} 
+              srcSet={`${images[0].replace('.avif', '-mobile.avif')} 800w, ${images[0].replace('.avif', '-tablet.avif')} 1200w, ${images[0]} 1920w`}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1920px"
+              alt={imageAlts[0]} 
+              className="absolute inset-0 w-full h-full object-cover z-0"
+              fetchPriority="high"
+              loading="eager"
+            />
+            
             <AnimatePresence initial={false}>
               <motion.div
                 key={currentImage}
@@ -103,21 +114,20 @@ const Hero = () => {
                   opacity: 0,
                   transition: { duration: 2 }
                 }}
-                className="absolute inset-0"
+                className="absolute inset-0 z-10"
               >
                 <img 
                   src={images[currentImage]} 
-                  srcSet={`${images[currentImage].replace('.avif', '-mobile.avif')} 800w, ${images[currentImage]} 1920w`}
-                  sizes="(max-width: 800px) 800px, 1920px"
+                  srcSet={`${images[currentImage].replace('.avif', '-mobile.avif')} 800w, ${images[currentImage].replace('.avif', '-tablet.avif')} 1200w, ${images[currentImage]} 1920w`}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1920px"
                   alt={imageAlts[currentImage]} 
                   className="w-full h-full object-cover"
-                  fetchpriority={currentImage === 0 ? "high" : "auto"}
                   loading={currentImage === 0 ? "eager" : "lazy"}
                 />
               </motion.div>
             </AnimatePresence>
             {/* Overlay Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-20" />
           </div>
           
           {/* Floating Card */}
