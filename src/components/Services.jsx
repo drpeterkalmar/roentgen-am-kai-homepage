@@ -13,7 +13,7 @@ const services = [
   {
     title: 'Mammographie',
     description: 'Zertifizierter Screeningstandort mit Siemens Mammomat Inspiration für höchste Diagnosesicherheit.',
-    microInfo: 'Schmerzarm & Präzise',
+    microInfo: 'Brustkrebs-Früherkennung',
     href: '/unser-angebot/mammographie',
     icon: <HeartPulse size={28} />,
     color: 'bg-red-50 text-[#8B2323]',
