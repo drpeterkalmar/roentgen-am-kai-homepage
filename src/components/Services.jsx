@@ -1,5 +1,5 @@
 import React from 'react';
-import { Camera, Activity, Heart, Maximize, ScanSearch, Droplets, Scale, Info } from 'lucide-react';
+import { Scan, HeartPulse, Bone, Box, MapPin, Scale, Info, CreditCard, Network, Waves } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
@@ -15,7 +15,7 @@ const services = [
     description: 'Zertifizierter Screeningstandort mit Siemens Mammomat Inspiration für höchste Diagnosesicherheit.',
     microInfo: 'Schmerzarm & Präzise',
     href: '/unser-angebot/mammographie',
-    icon: <Heart size={28} />,
+    icon: <HeartPulse size={28} />,
     color: 'bg-red-50 text-[#8B2323]',
     gridClass: 'md:col-span-4 aspect-square', // Standardized
     image: '/assets/images/mammographie_v2.avif'
@@ -24,7 +24,7 @@ const services = [
     type: 'info',
     title: 'Alle Kassen',
     description: 'Wir sind Vertragspartner aller Kassen. Bitte bringen Sie Ihre e-Card zu jedem Termin mit.',
-    icon: <Info size={24} />,
+    icon: <CreditCard size={24} />,
     color: 'bg-blue-50 text-blue-600',
     gridClass: 'md:col-span-4 aspect-square',
   },
@@ -33,7 +33,7 @@ const services = [
     description: 'Goldstandard zur Osteoporose-Früherkennung und Verlaufskontrolle.',
     microInfo: 'Präzise Messung',
     href: '/unser-angebot/knochendichte',
-    icon: <Maximize size={28} />,
+    icon: <Bone size={28} />,
     color: 'bg-purple-50 text-purple-600',
     gridClass: 'md:col-span-4 aspect-square', // Standardized
     image: '/assets/images/knochendichte_v3.avif'
@@ -42,7 +42,7 @@ const services = [
     type: 'info',
     title: 'Parken & Anfahrt',
     description: 'Kostenlose Tiefgaragenplätze für die Aufenthaltsdauer in unserer Praxis. Zudem gute öffentliche Anbindung mit den Straßenbahnlinien 3 und 5 und den Buslinien 58 und 63.',
-    icon: <Droplets size={24} />, 
+    icon: <MapPin size={24} />, 
     color: 'bg-green-50 text-green-600',
     gridClass: 'md:col-span-4 aspect-square',
   },
@@ -51,7 +51,7 @@ const services = [
     description: 'Skelett- und Lungenaufnahmen mit minimaler Strahlenbelastung.',
     microInfo: 'Sofort verfügbar',
     href: '/unser-angebot/roentgen',
-    icon: <Camera size={24} />,
+    icon: <Scan size={24} />,
     color: 'bg-blue-50 text-blue-600',
     gridClass: 'md:col-span-4 aspect-square', // Standardized
     image: '/assets/images/roentgen_v3.avif'
@@ -62,7 +62,7 @@ const services = [
     description: 'Präzise 3D-Kieferdiagnostik für die Implantatplanung.',
     microInfo: 'Modernste Technik',
     href: '/unser-angebot/dvt',
-    icon: <ScanSearch size={24} />,
+    icon: <Box size={24} />,
     color: 'bg-orange-50 text-orange-600',
     gridClass: 'md:col-span-4 aspect-square',
     image: '/assets/images/hero_interior.avif'
@@ -82,7 +82,7 @@ const services = [
     description: 'Spezialuntersuchung der tiefen Beinvenen.',
     microInfo: 'Thrombose-Check',
     href: '/unser-angebot/phlebographie',
-    icon: <Droplets size={24} />,
+    icon: <Network size={24} />,
     color: 'bg-rose-50 text-rose-600',
     gridClass: 'md:col-span-4 aspect-square',
     image: '/assets/images/phlebographie_v3.avif'
@@ -92,7 +92,7 @@ const services = [
     description: 'Gewebeschonende Diagnostik von Organen, Gelenken und Gefäßen.',
     microInfo: 'Ohne Strahlen',
     href: '/unser-angebot/ultraschall',
-    icon: <Activity size={24} />,
+    icon: <Waves size={24} />,
     color: 'bg-green-50 text-green-600',
     gridClass: 'md:col-span-4 aspect-square',
     image: '/assets/images/ultraschall.avif'
