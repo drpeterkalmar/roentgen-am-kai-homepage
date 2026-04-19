@@ -114,13 +114,13 @@ const Navbar = ({ highContrast, setHighContrast }) => {
             >
               <Sparkles size={20} />
             </button>
-            <Link
-              to="/#booking"
-              className="bg-[#8B2323] text-white px-8 py-3.5 rounded-2xl text-sm font-black uppercase tracking-widest hover:bg-[#A52A2A] hover:shadow-[0_10px_30px_rgba(139,35,35,0.3)] transition-all flex items-center gap-2 active:scale-95"
+            <a
+              href="tel:+433168409050"
+              className="bg-[#8B2323] text-white px-6 py-3.5 rounded-2xl text-sm font-black tracking-widest hover:bg-[#A52A2A] hover:shadow-[0_10px_30px_rgba(139,35,35,0.3)] transition-all flex items-center gap-2 active:scale-95"
             >
-              <Calendar size={16} />
-              Termin
-            </Link>
+              <Phone size={16} />
+              0316 840 90 50
+            </a>
           </div>
         </div>
 
@@ -174,13 +174,14 @@ const Navbar = ({ highContrast, setHighContrast }) => {
                 )}
               </div>
             ))}
-            <Link
-              to="/#booking"
-              className="bg-[#8B2323] text-white py-4 rounded-xl text-center font-bold text-lg mt-2"
+            <a
+              href="tel:+433168409050"
+              className="bg-[#8B2323] text-white py-4 rounded-xl text-center font-bold text-lg mt-2 flex items-center justify-center gap-2"
               onClick={() => setIsMenuOpen(false)}
             >
-              Termin buchen
-            </Link>
+              <Phone size={20} />
+              0316 840 90 50
+            </a>
           </div>
         </div>
       )}
