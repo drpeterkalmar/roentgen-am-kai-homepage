@@ -94,7 +94,7 @@ const Hero = () => {
             <img 
               src={images[0]} 
               srcSet={`${images[0].replace('.avif', '-mobile.avif')} 800w, ${images[0].replace('.avif', '-tablet.avif')} 1200w, ${images[0]} 1920w`}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1920px"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
               alt={imageAlts[0]} 
               className="absolute inset-0 w-full h-full object-cover z-0"
               fetchPriority="high"
@@ -119,7 +119,7 @@ const Hero = () => {
                 <img 
                   src={images[currentImage]} 
                   srcSet={`${images[currentImage].replace('.avif', '-mobile.avif')} 800w, ${images[currentImage].replace('.avif', '-tablet.avif')} 1200w, ${images[currentImage]} 1920w`}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1920px"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
                   alt={imageAlts[currentImage]} 
                   className="w-full h-full object-cover"
                   loading={currentImage === 0 ? "eager" : "lazy"}

@@ -173,7 +173,7 @@ const Services = () => {
                    <img 
                     src={service.image} 
                     srcSet={`${service.image.replace('.avif', '-mobile.avif')} 800w, ${service.image.replace('.avif', '-tablet.avif')} 1200w, ${service.image} 1920w`}
-                    sizes="(max-width: 768px) 50vw, 50vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
                     alt="" 
                     className="w-full h-full object-cover grayscale" 
                   />
