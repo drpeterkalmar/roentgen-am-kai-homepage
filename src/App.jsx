@@ -14,6 +14,7 @@ import ImpressumPage from './pages/ImpressumPage'
 import DatenschutzPage from './pages/DatenschutzPage'
 import SchemaMarkup from './components/SchemaMarkup'
 import MobileActions from './components/MobileActions'
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -56,6 +57,7 @@ function App() {
         </main>
         <Footer />
         <MobileActions />
+        <SpeedInsights />
       </div>
     </Router>
   )
