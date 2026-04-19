@@ -108,11 +108,15 @@ const Hero = () => {
                 animate={{ 
                   ...preset.animate,
                   opacity: 1,
-                  transition: { duration: 5, ease: "linear" }
+                  transition: { 
+                    duration: 15, 
+                    ease: "linear",
+                    opacity: { duration: 0.8, ease: "easeInOut" }
+                  }
                 }}
                 exit={{ 
                   opacity: 0,
-                  transition: { duration: 2 }
+                  transition: { duration: 0.8, ease: "easeInOut" }
                 }}
                 className="absolute inset-0 z-10"
               >
