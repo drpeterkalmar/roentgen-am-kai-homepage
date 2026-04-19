@@ -31,7 +31,7 @@ const services = [
   {
     title: 'Knochendichte (DEXA)',
     description: 'Goldstandard zur Osteoporose-Früherkennung und Verlaufskontrolle.',
-    microInfo: 'Präzise Messung',
+    microInfo: 'Goldstandard',
     href: '/unser-angebot/knochendichte',
     icon: <Bone size={28} />,
     color: 'bg-purple-50 text-purple-600',
