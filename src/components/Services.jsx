@@ -12,7 +12,7 @@ const ChevronRight = ({ size }) => (
 const services = [
   {
     title: 'Mammographie',
-    description: 'Zertifizierter Screeningstandort mit Siemens Mammomat Inspiration für höchste Diagnosesicherheit.',
+    description: 'Zertifizierter Screeningstandort für höchste Diagnosesicherheit.',
     microInfo: 'Brustkrebs-Früherkennung',
     href: '/unser-angebot/mammographie',
     icon: <HeartPulse size={28} />,
