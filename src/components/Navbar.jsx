@@ -26,6 +26,7 @@ const Navbar = ({ highContrast, setHighContrast }) => {
       { name: 'Körperfettmessung', href: '/unser-angebot/koerperfettmessung' },
       { name: 'Phlebographie', href: '/unser-angebot/phlebographie' },
     ]},
+    { name: 'Unsere Ärzte', href: '/#about' },
     { name: 'Blog', href: '/#blog' },
     { name: 'Kontakt', href: '/#contact' },
   ];

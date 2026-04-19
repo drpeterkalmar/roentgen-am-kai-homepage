@@ -37,7 +37,7 @@ const Footer = () => {
             <ul className="space-y-4 text-gray-800">
               <li><a href="/#home" className="hover:text-[#8B2323] transition-colors">Startseite</a></li>
               <li><a href="/#services" className="hover:text-[#8B2323] transition-colors">Leistungen</a></li>
-              <li><a href="/#team" className="hover:text-[#8B2323] transition-colors">Unser Team</a></li>
+              <li><a href="/#about" className="hover:text-[#8B2323] transition-colors">Unsere Ärzte</a></li>
               <li><a href="/#blog" className="hover:text-[#8B2323] transition-colors">Gesundheits-Blog</a></li>
               <li><a href="/#booking" className="hover:text-[#8B2323] transition-colors">Terminbuchung</a></li>
             </ul>
