@@ -15,7 +15,7 @@ const MammographiePage = () => {
     },
     {
       question: "Benötige ich für das Mammographie-Screening eine Überweisung?",
-      answer: "Wenn Sie in die Altersgruppe der 45- bis 74-Jährigen fallen, benötigen Sie keine Überweisung. Ihre e-Card ist für das Früherkennungsprogramm alle 2 Jahre automatisch freigeschaltet."
+      answer: "Wenn Sie in die Altersgruppe der 45- bis 74-Jährigen fallen oder freiwillig am erweiterten Screening teilnehmen (40-44 Jahre, älter als 74 Jahre), benötigen Sie keine Überweisung. Ihre e-Card ist für das Früherkennungsprogramm alle 2 Jahre automatisch freigeschaltet."
     },
     {
       question: "Was ist der Vorteil einer Doppelbefundung?",
