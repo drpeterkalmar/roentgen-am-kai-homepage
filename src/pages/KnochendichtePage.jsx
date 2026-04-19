@@ -67,6 +67,29 @@ const KnochendichtePage = () => {
       </section>
 
       <section className="space-y-6 mb-12">
+        <h2 className="text-2xl font-bold mb-4 font-[Outfit]">Umfassende Risikoanalyse: FRAX & Manitoba</h2>
+        <p>
+          Für eine optimale und individuell angepasste Therapieplanung reicht die alleinige Messung der Knochendichte oft nicht aus. Deshalb berechnen wir standardmäßig zwei weitere essenzielle Diagnose-Parameter für Sie mit:
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+          <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden group">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-red-50 rounded-full blur-3xl -mr-10 -mt-10 opacity-50 group-hover:opacity-80 transition-opacity" />
+            <h3 className="text-lg font-bold text-[#8B2323] mb-3 relative z-10">FRAX-Score</h3>
+            <p className="text-sm text-gray-700 leading-relaxed relative z-10">
+              Der <strong>FRAX-Algorithmus</strong> (Fracture Risk Assessment Tool) berechnet Ihr individuelles, prozentuales Risiko, innerhalb der nächsten 10 Jahre einen durch Osteoporose bedingten Knochenbruch zu erleiden. Hierbei fließen neben der reinen Knochendichte auch persönliche klinische Risikofaktoren (wie Alter, Gewicht, Vorerkrankungen und familiäre Vorbelastung) direkt in die Auswertung mit ein.
+            </p>
+          </div>
+          <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden group">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-full blur-3xl -mr-10 -mt-10 opacity-50 group-hover:opacity-80 transition-opacity" />
+            <h3 className="text-lg font-bold text-[#8B2323] mb-3 relative z-10">Risikoklasse nach Manitoba</h3>
+            <p className="text-sm text-gray-700 leading-relaxed relative z-10">
+              Basierend auf den Erkenntnissen der groß angelegten kanadischen <strong>Manitoba-Studie</strong> ordnen wir Ihr tatsächliches Frakturrisiko noch genauer ein. Dieses System kombiniert Ihren Knochendichte-Wert systematisch mit weiteren Alters- und Risikofaktoren und stuft Sie in eine niedrige, mittlere oder hohe Risikoklasse ein. Dies bildet die perfekte Grundlage für eine ärztliche Therapieentscheidung.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="space-y-6 mb-12">
         <h2 className="text-2xl font-bold mb-4 font-[Outfit]">Wann ist eine Knochendichtemessung sinnvoll?</h2>
         <p>
           Die Knochendichtemessung ist die Standardmethode zur Früherkennung einer Osteoporose bzw. für die Verlaufskontrolle während einer Osteoporose-Behandlung.
