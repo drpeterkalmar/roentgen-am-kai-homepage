@@ -104,14 +104,9 @@ const Footer = () => {
                   <span className="text-gray-950 font-medium">08:00 - 13:00</span>
                 </li>
               </ul>
-              <div className="bg-gray-100/50 p-6 rounded-3xl border border-gray-200">
-                <p className="text-sm text-gray-800 leading-relaxed italic">
-                  <strong>Anreise:</strong> Kostenlose Tiefgaragenplätze für Patienten & gute öffentliche Anbindung mit den Straßenbahnlinien 3 und 5 und den Buslinien 58 und 63. Termine nur nach Vereinbarung.
-                </p>
-              </div>
               <div className="bg-red-50/50 p-6 rounded-3xl border border-red-100 mt-4">
                 <p className="text-sm text-gray-800 leading-relaxed">
-                  <strong>Wichtiger Hinweis:</strong> Wir bieten <strong>kein CT</strong> (Computertomographie) und <strong>kein MRT</strong> (Magnetresonanztomographie) an. Wir empfehlen hierfür z.B. das nahegelegene <a href="https://www.kreuzschwestern-graz.at/" target="_blank" rel="noopener noreferrer" className="text-[#8B2323] underline font-bold hover:text-red-900 transition-colors">Institut der Kreuzschwestern Graz</a>.
+                  <strong>Wichtiger Hinweis:</strong> Wir bieten <strong>kein CT</strong> (Computertomographie) und <strong>kein MRT</strong> (Magnetresonanztomographie) an. Wir empfehlen hierfür z.B. das nahegelegene <a href="https://kreuzschwestern-graz.at/ct-mr-zentrum/" target="_blank" rel="noopener noreferrer" className="text-[#8B2323] underline font-bold hover:text-red-900 transition-colors">Institut der Kreuzschwestern Graz</a>.
                 </p>
               </div>
             </div>

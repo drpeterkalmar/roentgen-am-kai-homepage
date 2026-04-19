@@ -40,8 +40,8 @@ const services = [
   },
   {
     type: 'info',
-    title: 'Parken & Anfahrt',
-    description: 'Kostenlose Tiefgaragenplätze für die Aufenthaltsdauer in unserer Praxis. Zudem gute öffentliche Anbindung mit den Straßenbahnlinien 3 und 5 und den Buslinien 58 und 63.',
+    title: 'Anreise',
+    description: 'Kostenlose Tiefgaragenplätze für Patienten & gute öffentliche Anbindung mit den Straßenbahnlinien 3 und 5 und den Buslinien 58 und 63. Termine nur nach Vereinbarung.',
     icon: <MapPin size={24} />, 
     color: 'bg-green-50 text-green-600',
     gridClass: 'md:col-span-4 aspect-square',
