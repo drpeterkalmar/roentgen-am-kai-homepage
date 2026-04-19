@@ -18,7 +18,7 @@ const services = [
     icon: <Heart size={28} />,
     color: 'bg-red-50 text-[#8B2323]',
     gridClass: 'md:col-span-4 aspect-square', // Standardized
-    image: '/assets/images/mammographie_v2.webp'
+    image: '/assets/images/mammographie_v2.avif'
   },
   {
     type: 'info',

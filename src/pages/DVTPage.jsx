@@ -17,7 +17,7 @@ const DVTPage = () => {
         'Aktuelle e-Card',
         'Eventuelle Voraufnahmen zum Vergleich'
       ]}
-      imageUrl="/assets/images/dvt_v3.webp"
+      imageUrl="/assets/images/dvt_v3.avif"
     >
       <section className="bg-amber-50 rounded-[32px] p-6 border border-amber-200 mb-12 flex items-start gap-4">
         <AlertCircle className="text-amber-600 shrink-0 mt-1" size={24} />

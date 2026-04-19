@@ -37,7 +37,7 @@ const MammographiePage = () => {
         'Aktuelle e-Card',
         'Eventuelle Voraufnahmen zum Vergleich'
       ]}
-      imageUrl="/assets/images/mammographie_v2.webp"
+      imageUrl="/assets/images/mammographie_v2.avif"
     >
       <section className="space-y-6 mb-12">
         <p>

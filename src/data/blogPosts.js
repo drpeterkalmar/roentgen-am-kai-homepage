@@ -16,7 +16,7 @@ export const blogPosts = [
       
       <p>Früherkennung ermöglicht eine gezielte Therapie, oft bevor der erste Knochenbruch passiert. Sprechen Sie mit Ihrem überweisenden Arzt über die Notwendigkeit einer DEXA-Untersuchung.</p>
     `,
-    image: '/assets/images/knochendichte.webp',
+    image: '/assets/images/knochendichte.avif',
     status: 'published'
   },
   {
@@ -34,7 +34,7 @@ export const blogPosts = [
       <h3>Ihre Vorteile als Patient</h3>
       <p>Durch die computergestützte Analyse erreichen wir eine noch höhere diagnostische Sicherheit. Kleinste Veränderungen, die in frühen Stadien schwer erkennbar sind, werden markiert und vom Radiologen detailliert geprüft. Dies führt zu einer schnelleren und präziseren Diagnose – die Basis für jede erfolgreiche Behandlung.</p>
     `,
-    image: '/assets/images/roentgen.webp',
+    image: '/assets/images/roentgen.avif',
     status: 'published'
   },
   {
@@ -54,7 +54,7 @@ export const blogPosts = [
       
       <p>Vorbereitung: Verwenden Sie am Tag der Untersuchung bitte kein Puder, Deo oder Lotion im Brustbereich, da dies das Bild stören könnte. Bringen Sie bitte unbedingt Voraufnahmen zum Vergleich mit!</p>
     `,
-    image: '/assets/images/mammographie_v2.webp',
+    image: '/assets/images/mammographie_v2.avif',
     status: 'published'
   }
 ];

@@ -49,7 +49,7 @@ html {
 
 body {
   font-family: 'Inter', sans-serif;
-  background: linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url('./assets/images/glass-bg.png');
+  background: linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url('./assets/images/glass-bg.avif');
   background-attachment: fixed;
   background-size: cover;
   background-position: center;

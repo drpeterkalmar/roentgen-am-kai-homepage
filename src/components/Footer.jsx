@@ -57,7 +57,7 @@ const Footer = () => {
                     {/* Stylized Map View */}
                     <div className="relative group rounded-3xl overflow-hidden mb-4 shadow-xl border border-gray-700">
                       <img 
-                        src="/assets/images/footer-map.webp" 
+                        src="/assets/images/footer-map.avif" 
                         alt="Anfahrtsskizze Röntgen am Kai - Körösistraße 9, 8010 Graz" 
                         className="w-full h-[150px] object-cover"
                       />

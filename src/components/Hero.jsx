@@ -4,10 +4,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const images = [
   '/assets/images/hero-slide-1.avif',
-  '/assets/images/hero-home-2025.webp',
-  '/assets/images/hero-slide-2.webp',
-  '/assets/images/hero-slide-3.webp',
-  '/assets/images/hero-slide-4.webp'
+  '/assets/images/hero-home-2025.avif',
+  '/assets/images/hero-slide-2.avif',
+  '/assets/images/hero-slide-3.avif',
+  '/assets/images/hero-slide-4.avif'
 ];
 
 const animationPresets = [

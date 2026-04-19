@@ -19,7 +19,7 @@ const UltraschallPage = () => {
         'Aktuelle e-Card',
         'Eventuelle Voraufnahmen zum Vergleich'
       ]}
-      imageUrl="/assets/images/ultraschall.webp"
+      imageUrl="/assets/images/ultraschall.avif"
     >
       <section className="space-y-6 mb-12">
         <p>

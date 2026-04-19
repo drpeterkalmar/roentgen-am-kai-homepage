@@ -10,7 +10,7 @@ const SchemaMarkup = () => {
       "@context": "https://schema.org",
       "@type": "MedicalBusiness",
       "name": "Röntgen am Kai",
-      "image": "https://roentgen-am-kai.at/assets/images/hero-home-2025.webp",
+      "image": "https://roentgen-am-kai.at/assets/images/hero-home-2025.avif",
       "@id": "https://roentgen-am-kai.at",
       "url": "https://roentgen-am-kai.at",
       "telephone": "+433168409050",
