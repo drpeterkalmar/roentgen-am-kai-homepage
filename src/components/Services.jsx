@@ -80,7 +80,7 @@ const services = [
   {
     title: 'Phlebographie',
     description: 'Venenröntgen mit Kontrastmittel.',
-    microInfo: 'Thrombose-Check',
+    microInfo: 'Präoperative Planung',
     href: '/unser-angebot/phlebographie',
     icon: <Syringe size={24} />,
     color: 'bg-rose-50 text-rose-600',
