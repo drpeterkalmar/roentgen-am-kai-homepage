@@ -39,14 +39,14 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-24 overflow-hidden">
-      <div className="max-w-[1400px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+    <section id="home" className="relative min-h-screen flex lg:items-center pt-24 pb-12 lg:pb-0 overflow-hidden">
+      <div className="max-w-[1400px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center lg:items-stretch relative z-10">
         {/* Text Content in Glass Card */}
         <motion.div 
           initial={{ opacity: 1, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="z-20 glass p-10 md:p-16 rounded-[48px] shadow-2xl relative"
+          className="z-20 glass p-10 md:p-16 rounded-[48px] shadow-2xl relative flex flex-col justify-center h-full"
         >
           <div className="flex flex-wrap gap-2 mb-8">
             <div className="inline-flex items-center gap-2 bg-[#8B2323]/5 text-[#8B2323] px-4 py-2 rounded-full text-xs font-black uppercase tracking-[0.2em] border border-[#8B2323]/10">
@@ -87,9 +87,9 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.2 }}
-          className="relative"
+          className="relative lg:h-full h-[400px]"
         >
-          <div className="relative z-10 rounded-[40px] overflow-hidden shadow-2xl h-[400px] md:h-[600px] bg-gray-100">
+          <div className="relative z-10 rounded-[40px] overflow-hidden shadow-2xl h-full bg-gray-100">
             {/* LCP Static Landing Frame: Renders immediately outside animation loop */}
             <img 
               src={images[0]} 
