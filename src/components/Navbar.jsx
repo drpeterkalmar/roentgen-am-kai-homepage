@@ -116,10 +116,10 @@ const Navbar = ({ highContrast, setHighContrast }) => {
             </button>
             <a
               href="tel:+433168409050"
-              className="bg-[#8B2323] text-white px-6 py-3.5 rounded-2xl text-sm font-black tracking-widest hover:bg-[#A52A2A] hover:shadow-[0_10px_30px_rgba(139,35,35,0.3)] transition-all flex items-center gap-2 active:scale-95"
+              className="bg-[#8B2323] text-white px-8 py-3.5 rounded-2xl text-sm font-black uppercase tracking-widest hover:bg-[#A52A2A] hover:shadow-[0_10px_30px_rgba(139,35,35,0.3)] transition-all flex items-center gap-2 active:scale-95"
             >
               <Phone size={16} />
-              0316 840 90 50
+              Termin
             </a>
           </div>
         </div>
@@ -180,7 +180,7 @@ const Navbar = ({ highContrast, setHighContrast }) => {
               onClick={() => setIsMenuOpen(false)}
             >
               <Phone size={20} />
-              0316 840 90 50
+              Termin
             </a>
           </div>
         </div>
