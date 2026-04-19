@@ -52,7 +52,7 @@ const BlogModal = ({ post, onClose }) => {
               <span className="bg-[#8B2323] text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
                 {post.category}
               </span>
-              <div className="flex items-center gap-2 text-sm text-gray-500">
+              <div className="flex items-center gap-2 text-sm text-gray-700">
                 <Clock size={16} />
                 <span>{post.date}</span>
               </div>
@@ -63,7 +63,7 @@ const BlogModal = ({ post, onClose }) => {
             </h2>
 
             <div 
-              className="prose prose-lg max-w-none text-gray-600 leading-relaxed space-y-6"
+              className="prose prose-lg max-w-none text-gray-800 leading-relaxed space-y-6"
               dangerouslySetInnerHTML={{ __html: post.content }}
             />
           </div>
@@ -141,7 +141,7 @@ const Blog = () => {
                 </div>
               </div>
               
-              <div className="flex items-center gap-3 text-sm text-gray-500 mb-3">
+              <div className="flex items-center gap-3 text-sm text-gray-700 mb-3">
                 <Clock size={16} />
                 <span>{post.date}</span>
                 {post.status === 'draft' && (
@@ -156,7 +156,7 @@ const Blog = () => {
                 {post.title}
               </h3>
               
-              <p className="text-gray-800 line-clamp-2 mb-4">
+              <p className="text-gray-950 line-clamp-2 mb-4">
                 {post.excerpt}
               </p>
               

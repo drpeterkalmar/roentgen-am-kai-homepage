@@ -33,7 +33,7 @@ const Appointment = () => {
             <h2 className="text-4xl md:text-5xl font-extrabold text-[#1f2937] mb-8 font-[Outfit]">
               Termin <span className="text-[#8B2323]">Online</span> vereinbaren
             </h2>
-            <p className="text-lg text-gray-600 mb-10 leading-relaxed">
+            <p className="text-lg text-gray-800 mb-10 leading-relaxed font-medium">
               Sparen Sie Zeit und buchen Sie Ihren Untersuchungstermin bequem von zu Hause oder unterwegs. Unser System ist direkt mit unserem Praxismanagement (CAS) verbunden.
             </p>
             
@@ -44,7 +44,7 @@ const Appointment = () => {
                 'Automatisierte Terminerinnerung',
                 'Sichere Datenübertragung'
               ].map((item, i) => (
-                <li key={i} className="flex items-center gap-4 text-gray-700 font-medium">
+                <li key={i} className="flex items-center gap-4 text-gray-950 font-semibold">
                   <div className="w-6 h-6 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
                     <CheckCircle2 size={16} />
                   </div>
@@ -58,8 +58,8 @@ const Appointment = () => {
                 <Shield size={24} />
               </div>
               <div>
-                <p className="font-bold text-gray-900">DSGVO Konform</p>
-                <p className="text-sm text-gray-500">Ihre Daten werden verschlüsselt an unser CAS-System übertragen.</p>
+                <p className="font-bold text-gray-950">DSGVO Konform</p>
+                <p className="text-sm text-gray-700">Ihre Daten werden verschlüsselt an unser CAS-System übertragen.</p>
               </div>
             </div>
           </div>
@@ -175,8 +175,8 @@ const Appointment = () => {
                     <div className="w-24 h-24 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-8 animate-bounce">
                       <CheckCircle2 size={48} />
                     </div>
-                    <h3 className="text-3xl font-extrabold text-gray-900 mb-4">Vielen Dank!</h3>
-                    <p className="text-gray-800 mb-8 max-w-sm mx-auto">
+                    <h3 className="text-3xl font-extrabold text-gray-950 mb-4">Vielen Dank!</h3>
+                    <p className="text-gray-900 mb-8 max-w-sm mx-auto font-medium">
                       Ihre Terminanfrage wurde an unser Team sowie das CAS-System übermittelt. Wir senden Ihnen in Kürze eine Bestätigung.
                     </p>
                     <button 

@@ -19,11 +19,11 @@ const Footer = () => {
               <span className="text-3xl font-extrabold tracking-tight text-[#8B2323] font-[Outfit]">
                 RÖNTGEN AM KAI
               </span>
-              <span className="text-sm tracking-widest uppercase font-semibold text-gray-400">
+              <span className="text-sm tracking-widest uppercase font-semibold text-gray-500">
                 Radiologie Graz
               </span>
             </div>
-            <p className="text-gray-300 leading-relaxed mb-8">
+            <p className="text-gray-800 leading-relaxed mb-8">
               Ihre Experten für moderne Radiologie in Graz. Fachärzte für Radiologie – alle Kassen und privat.
             </p>
             <div className="flex gap-4">
@@ -34,12 +34,12 @@ const Footer = () => {
           {/* Quick Links */}
           <div>
             <h4 className="text-xl font-bold mb-8 font-[Outfit]">Navigation</h4>
-            <ul className="space-y-4 text-gray-300">
-              <li><a href="#home" className="hover:text-white transition-colors">Startseite</a></li>
-              <li><a href="#services" className="hover:text-white transition-colors">Leistungen</a></li>
-              <li><a href="#team" className="hover:text-white transition-colors">Unser Team</a></li>
-              <li><a href="#blog" className="hover:text-white transition-colors">Gesundheits-Blog</a></li>
-              <li><a href="#booking" className="hover:text-white transition-colors">Terminbuchung</a></li>
+            <ul className="space-y-4 text-gray-800">
+              <li><a href="#home" className="hover:text-[#8B2323] transition-colors">Startseite</a></li>
+              <li><a href="#services" className="hover:text-[#8B2323] transition-colors">Leistungen</a></li>
+              <li><a href="#team" className="hover:text-[#8B2323] transition-colors">Unser Team</a></li>
+              <li><a href="#blog" className="hover:text-[#8B2323] transition-colors">Gesundheits-Blog</a></li>
+              <li><a href="#booking" className="hover:text-[#8B2323] transition-colors">Terminbuchung</a></li>
             </ul>
           </div>
 
@@ -48,10 +48,10 @@ const Footer = () => {
             <div>
               <h4 className="text-xl font-bold mb-8 font-[Outfit]">Kontakt & Anfahrt</h4>
               <ul className="space-y-6">
-                <li className="flex items-start gap-4 text-gray-300">
+                <li className="flex items-start gap-4 text-gray-800">
                   <MapPin className="text-[#8B2323] shrink-0" size={24} />
                   <div>
-                    <p className="text-white font-bold">Zentrale Lage</p>
+                    <p className="text-gray-950 font-bold">Zentrale Lage</p>
                     <p className="mb-4">Körösistraße 9<br />8010 Graz, Österreich</p>
                     
                     {/* Stylized Map View */}
@@ -103,8 +103,8 @@ const Footer = () => {
                   <span className="text-white font-medium">08:00 - 13:00</span>
                 </li>
               </ul>
-              <div className="bg-gray-800/50 p-6 rounded-3xl border border-gray-700">
-                <p className="text-sm text-gray-300 leading-relaxed italic">
+              <div className="bg-gray-100/50 p-6 rounded-3xl border border-gray-200">
+                <p className="text-sm text-gray-800 leading-relaxed italic">
                   <strong>Anreise:</strong> Kostenlose Tiefgaragenplätze für Patienten & gute öffentliche Anbindung mit den Straßenbahnlinien 3 und 5 und den Buslinien 58 und 63. Termine nur nach Vereinbarung.
                 </p>
               </div>

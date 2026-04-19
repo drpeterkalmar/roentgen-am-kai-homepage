@@ -60,7 +60,7 @@ const Hero = () => {
             <span className="text-[#8B2323]">Radiologie</span> am Kai.
           </h1>
           
-          <p className="text-xl text-gray-800 mb-12 max-w-lg leading-relaxed font-semibold">
+          <p className="text-xl text-gray-900 mb-12 max-w-lg leading-relaxed font-semibold">
             Spitzenmedizin in Graz. Wir bieten Ihnen präzise Diagnostik mit modernster Technik und menschlicher Fürsorge.
           </p>
           

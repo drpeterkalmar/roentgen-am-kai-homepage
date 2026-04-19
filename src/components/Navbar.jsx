@@ -43,9 +43,9 @@ const Navbar = ({ highContrast, setHighContrast }) => {
           </span>
           <div className="flex flex-col">
             <span className={`text-xs tracking-widest uppercase font-bold transition-opacity ${
-              isScrolled ? 'text-gray-500' : 'text-gray-600'
+              isScrolled ? 'text-gray-600' : 'text-gray-800'
             }`}>
-              Radiologie Graz precision
+              Fachärzte für Radiologie
             </span>
           </div>
         </Link>
@@ -59,7 +59,7 @@ const Navbar = ({ highContrast, setHighContrast }) => {
                   <a
                     href={link.href}
                     className={`text-sm font-black tracking-[0.1em] uppercase hover:text-[#8B2323] transition-colors flex items-center gap-1.5 ${
-                      isScrolled ? 'text-gray-700' : 'text-gray-900'
+                      isScrolled ? 'text-gray-800' : 'text-gray-950'
                     }`}
                   >
                     {link.name}
@@ -69,7 +69,7 @@ const Navbar = ({ highContrast, setHighContrast }) => {
                   <Link
                     to={link.href}
                     className={`text-sm font-black tracking-[0.1em] uppercase hover:text-[#8B2323] transition-colors flex items-center gap-1.5 ${
-                      isScrolled ? 'text-gray-700' : 'text-gray-900'
+                      isScrolled ? 'text-gray-800' : 'text-gray-950'
                     } ${location.pathname === link.href ? 'text-[#8B2323]' : ''}`}
                   >
                     {link.name}
@@ -106,7 +106,7 @@ const Navbar = ({ highContrast, setHighContrast }) => {
             <button 
               onClick={() => setHighContrast(!highContrast)}
               className={`p-3 rounded-2xl transition-all duration-300 ${
-                highContrast ? 'bg-black text-white' : 'bg-gray-100 text-gray-400 hover:bg-gray-200 hover:text-[#8B2323]'
+                highContrast ? 'bg-black text-white' : 'bg-gray-100/80 text-gray-600 hover:bg-gray-200 hover:text-[#8B2323]'
               }`}
               title="Magic Toggle (Barrierefreiheit)"
             >

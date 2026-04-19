@@ -54,15 +54,7 @@ const services = [
     color: 'bg-blue-50 text-blue-600',
     gridClass: 'md:col-span-4 aspect-square', // Standardized
   },
-  {
-    title: 'Ultraschall',
-    description: 'Gewebeschonende Diagnostik von Organen, Gelenken und Gefäßen.',
-    microInfo: 'Ohne Strahlen',
-    href: '/unser-angebot/ultraschall',
-    icon: <Activity size={24} />,
-    color: 'bg-green-50 text-green-600',
-    gridClass: 'md:col-span-4 aspect-square', // Standardized
-  },
+
   {
     title: 'DVT 3D',
     description: 'Präzise 3D-Kieferdiagnostik für die Implantatplanung.',
@@ -90,6 +82,15 @@ const services = [
     color: 'bg-rose-50 text-rose-600',
     gridClass: 'md:col-span-4 aspect-square',
   },
+  {
+    title: 'Sonografie',
+    description: 'Gewebeschonende Diagnostik von Organen, Gelenken und Gefäßen.',
+    microInfo: 'Ohne Strahlen',
+    href: '/unser-angebot/ultraschall',
+    icon: <Activity size={24} />,
+    color: 'bg-green-50 text-green-600',
+    gridClass: 'md:col-span-4 aspect-square',
+  },
 ];
 
 const Services = () => {
@@ -106,7 +107,7 @@ const Services = () => {
               Unsere <span className="text-[#8B2323]">Leistungen</span>
             </h2>
           </div>
-          <p className="text-xl text-gray-500 max-w-sm leading-relaxed font-semibold">
+          <p className="text-xl text-gray-800 max-w-sm leading-relaxed font-semibold">
             Ihre Gesundheit im Fokus. Digital. Präzise. Persönlich.
           </p>
         </div>
@@ -121,7 +122,7 @@ const Services = () => {
               whileHover={{ y: -5, borderColor: 'rgba(139, 35, 35, 0.2)' }}
               className={`glass group rounded-[40px] p-8 flex flex-col relative overflow-hidden ${service.gridClass} ${
                 service.type === 'info' ? 'order-last' : 
-                (service.title.includes('Mammo') || service.title.includes('Ultra') ? 'order-first' : 'order-none')
+                (service.title.includes('Mammo') ? 'order-first' : 'order-none')
               }`}
             >
               {service.href && <Link to={service.href} className="absolute inset-0 z-20" />}
@@ -144,7 +145,7 @@ const Services = () => {
                   <h3 className="text-2xl font-black text-gray-900 mb-2 font-[Outfit] leading-tight group-hover:text-[#8B2323] transition-colors">
                     {service.title}
                   </h3>
-                  <p className="text-base text-gray-600 leading-relaxed font-medium line-clamp-3">
+                  <p className="text-base text-gray-800 leading-relaxed font-medium line-clamp-3">
                     {service.description}
                   </p>
                 </div>
