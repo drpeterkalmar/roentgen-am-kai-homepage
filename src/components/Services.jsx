@@ -77,7 +77,7 @@ const services = [
   {
     title: 'Körperfett',
     description: 'DEXA-Analyse der Körperzusammensetzung.',
-    microInfo: 'Fitness & Diät',
+    microInfo: 'Fitness und Longevity',
     href: '/unser-angebot/koerperfettmessung',
     icon: <Scale size={24} />,
     color: 'bg-teal-50 text-teal-600',
