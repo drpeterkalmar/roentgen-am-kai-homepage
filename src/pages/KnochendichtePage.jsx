@@ -2,6 +2,7 @@ import React from 'react';
 import { Maximize, CreditCard } from 'lucide-react';
 import ServiceLayout from '../components/ServiceLayout';
 import FAQ from '../components/FAQ';
+import SEO from '../components/SEO';
 
 const KnochendichtePage = () => {
   const faqItems = [
@@ -24,8 +25,14 @@ const KnochendichtePage = () => {
   ];
 
   return (
-    <ServiceLayout
-      title="Knochendichtemessung"
+    <>
+      <SEO 
+        title="DEXA Knochendichtemessung" 
+        description="DEXA-Knochendichtemessung und Osteoporose-Vorsorge in Graz. Goldstandard-Messung inklusive FRAX-Score und Manitoba Risikoklasse. Kurze Wartezeiten."
+        keywords="Knochendichtemessung Graz, DEXA Messung Graz, Osteoporose Graz, Knochendichte messen, FRAX Score, Manitoba Studie, Radiologie Graz"
+      />
+      <ServiceLayout
+        title="Knochendichtemessung"
       subtitle="Wir bieten Ihnen ein einfaches und schonendes Verfahren zur Diagnose Ihrer Knochendichte bzw. Ihrer Körperfettanalyse im Zentrum von Graz."
       icon={<Maximize size={32} />}
       preparation={[
@@ -150,6 +157,7 @@ const KnochendichtePage = () => {
 
       <FAQ items={faqItems} title="Häufige Fragen zur Knochendichtemessung" />
     </ServiceLayout>
+    </>
   );
 };
 

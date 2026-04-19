@@ -1,11 +1,18 @@
 import React from 'react';
 import { Scale, AlertCircle } from 'lucide-react';
 import ServiceLayout from '../components/ServiceLayout';
+import SEO from '../components/SEO';
 
 const KoerperfettPage = () => {
   return (
-    <ServiceLayout
-      title="Körperfettmessung"
+    <>
+      <SEO 
+        title="Körperfettmessung (DEXA)" 
+        description="Exakte DEXA-Körperfettmessung in Graz. Goldstandard für Körperzusammensetzung, Muskelmasse und Fettverteilung zur Trainings- oder Diätoptimierung."
+        keywords="Körperfettmessung Graz, DEXA Körperfettanalyse, Muskelmasse messen Graz, Fettmessung Radiologie, Body-Mass-Index messen"
+      />
+      <ServiceLayout
+        title="Körperfettmessung"
       subtitle="Die DEXA-Methode gilt als Goldstandard bei der Bestimmung von Fett- und Muskelmasse. Mit einer Ganzkörperfettanalyse erhalten Sie exakte Informationen über Ihre Körperzusammensetzung."
       icon={<Scale size={32} />}
       preparation={[
@@ -66,6 +73,7 @@ const KoerperfettPage = () => {
         </p>
       </section>
     </ServiceLayout>
+    </>
   );
 };
 
