@@ -62,7 +62,7 @@ const MammographiePage = () => {
           ))}
         </div>
         <p>
-          Für uns ist bei der Mammographie die Doppelbefundung – d.h. Beurteilung jeder Mammographie durch zwei fachkundige Radiologen – selbstverständlich. Die leitenden Ärzte weisen eine jahrzehntelange Erfahrung in Brustdiagnostik mit mehr als 100.000 selbst befundeten Mammographien auf.
+          Für uns ist bei der Mammographie die Doppelbefundung – d.h. Beurteilung jeder Mammographie durch zwei fachkundige Radiologen – selbstverständlich. Die leitenden Ärzte weisen eine jahrzehntelange Erfahrung in Brustdiagnostik mit laufenden Weiterbildungen auf.
         </p>
       </section>
 
