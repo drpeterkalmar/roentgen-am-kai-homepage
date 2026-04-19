@@ -50,7 +50,7 @@ export const blogPosts = [
       <p>Als zertifizierter Standort erfüllen wir strengste Qualitätsrichtlinien. Jede Mammographie wird bei uns grundsätzlich von zwei spezialisierten Radiologen unabhängig voneinander beurteilt (Doppelbefundung). Das garantiert ein Höchstmaß an Sicherheit.</p>
       
       <h3>Wer kann teilnehmen?</h3>
-      <p>Frauen zwischen 45 und 74 Jahren werden alle zwei Jahre automatisch eingeladen. Mit der e-Card ist die Untersuchung kostenlos und ohne Überweisung möglich. Frauen ab 40 können sich aktiv zum Programm anmelden.</p>
+      <p>Frauen zwischen 45 und 74 Jahren werden alle zwei Jahre automatisch eingeladen. Mit der e-Card ist die Untersuchung kostenlos und ohne Überweisung möglich. Frauen ab 40 sowie ab 75 können sich aktiv zum Programm anmelden.</p>
       
       <p>Vorbereitung: Verwenden Sie am Tag der Untersuchung bitte kein Puder, Deo oder Lotion im Brustbereich, da dies das Bild stören könnte. Bringen Sie bitte unbedingt Voraufnahmen zum Vergleich mit!</p>
     `,
