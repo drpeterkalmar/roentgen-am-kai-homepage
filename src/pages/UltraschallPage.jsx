@@ -26,7 +26,7 @@ const UltraschallPage = () => {
           Der Ultraschall wird zu diagnostischen Zwecken bzw. als Vorsorgeuntersuchung eingesetzt, auch der Verlauf einer Therapie kann damit kontrolliert werden.
         </p>
         <p>
-          Wir arbeiten mit zwei modernsten Ultraschallgeräten der Firma General Electrics (Logiq 9 und Logiq S8).
+          Wir arbeiten mit modernsten Ultraschallgeräten der Firma GE.
         </p>
       </section>
 
