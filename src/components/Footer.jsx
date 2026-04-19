@@ -35,11 +35,11 @@ const Footer = () => {
           <div>
             <h4 className="text-xl font-bold mb-8 font-[Outfit]">Navigation</h4>
             <ul className="space-y-4 text-gray-800">
-              <li><a href="#home" className="hover:text-[#8B2323] transition-colors">Startseite</a></li>
-              <li><a href="#services" className="hover:text-[#8B2323] transition-colors">Leistungen</a></li>
-              <li><a href="#team" className="hover:text-[#8B2323] transition-colors">Unser Team</a></li>
-              <li><a href="#blog" className="hover:text-[#8B2323] transition-colors">Gesundheits-Blog</a></li>
-              <li><a href="#booking" className="hover:text-[#8B2323] transition-colors">Terminbuchung</a></li>
+              <li><a href="/#home" className="hover:text-[#8B2323] transition-colors">Startseite</a></li>
+              <li><a href="/#services" className="hover:text-[#8B2323] transition-colors">Leistungen</a></li>
+              <li><a href="/#team" className="hover:text-[#8B2323] transition-colors">Unser Team</a></li>
+              <li><a href="/#blog" className="hover:text-[#8B2323] transition-colors">Gesundheits-Blog</a></li>
+              <li><a href="/#booking" className="hover:text-[#8B2323] transition-colors">Terminbuchung</a></li>
             </ul>
           </div>
 
@@ -81,11 +81,11 @@ const Footer = () => {
                     </a>
                   </div>
                 </li>
-                <li className="flex items-start gap-4 text-gray-400">
+                <li className="flex items-start gap-4 text-gray-800">
                   <Phone className="text-[#8B2323] shrink-0" size={24} />
                   <div>
-                    <p className="text-white font-bold">Telefon</p>
-                    <a href="tel:+433168409050" className="hover:text-white transition-colors">0316 840 90 50</a>
+                    <p className="text-gray-950 font-bold">Telefon</p>
+                    <a href="tel:+433168409050" className="hover:text-[#8B2323] transition-colors">0316 840 90 50</a>
                   </div>
                 </li>
               </ul>
@@ -93,14 +93,14 @@ const Footer = () => {
 
             <div>
               <h4 className="text-xl font-bold mb-8 font-[Outfit]">Öffnungszeiten</h4>
-              <ul className="space-y-3 text-gray-400 mb-8">
+              <ul className="space-y-3 text-gray-800 mb-8">
                 <li className="flex justify-between">
                   <span>Mo - Do</span>
-                  <span className="text-white font-medium">08:00 - 17:00</span>
+                  <span className="text-gray-950 font-medium">08:00 - 17:00</span>
                 </li>
                 <li className="flex justify-between">
                   <span>Freitag</span>
-                  <span className="text-white font-medium">08:00 - 13:00</span>
+                  <span className="text-gray-950 font-medium">08:00 - 13:00</span>
                 </li>
               </ul>
               <div className="bg-gray-100/50 p-6 rounded-3xl border border-gray-200">
@@ -117,9 +117,9 @@ const Footer = () => {
           <p className="text-gray-500 text-sm">
             © Röntgen am Kai - Alle Rechte vorbehalten.
           </p>
-          <div className="flex gap-8 text-gray-500 text-sm">
-            <a href="/impressum" className="hover:text-white">Impressum</a>
-            <a href="/datenschutz" className="hover:text-white">Datenschutz</a>
+          <div className="flex gap-8 text-gray-600 text-sm">
+            <a href="/impressum" className="hover:text-[#8B2323]">Impressum</a>
+            <a href="/datenschutz" className="hover:text-[#8B2323]">Datenschutz</a>
           </div>
           <button 
             onClick={scrollToTop}
