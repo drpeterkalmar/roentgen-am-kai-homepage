@@ -126,12 +126,17 @@ const Blog = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               onClick={() => setSelectedPost(post)}
-              className="group cursor-pointer"
+              onKeyDown={(e) => e.key === 'Enter' && setSelectedPost(post)}
+              className="group cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#8B2323] rounded-[32px]"
+              role="button"
+              tabIndex={0}
+              aria-label={`Artikel lesen: ${post.title}`}
             >
               <div className="relative rounded-[32px] overflow-hidden mb-6 aspect-[4/3]">
                 <img 
                   src={post.image} 
-                  alt={post.title} 
+                  alt="" 
+                  aria-hidden="true"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute top-4 left-4">
@@ -162,7 +167,7 @@ const Blog = () => {
               
               <div className="flex items-center gap-2 text-[#8B2323] font-bold">
                 <span className="text-base uppercase tracking-wider">Weiterlesen</span>
-                <BookOpen size={18} />
+                <BookOpen size={18} aria-hidden="true" />
               </div>
             </motion.div>
           ))}

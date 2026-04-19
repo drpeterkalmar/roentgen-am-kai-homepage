@@ -109,6 +109,7 @@ const Navbar = ({ highContrast, setHighContrast }) => {
                 highContrast ? 'bg-black text-white' : 'bg-gray-100/80 text-gray-600 hover:bg-gray-200 hover:text-[#8B2323]'
               }`}
               title="Magic Toggle (Barrierefreiheit)"
+              aria-label="Barrierefreiheit-Optionen umschalten"
             >
               <Sparkles size={20} />
             </button>
@@ -126,6 +127,8 @@ const Navbar = ({ highContrast, setHighContrast }) => {
         <button 
           className={`md:hidden p-2 ${isScrolled ? 'text-gray-900' : 'text-gray-900'}`}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label={isMenuOpen ? "Menü schließen" : "Hauptmenü öffnen"}
+          aria-expanded={isMenuOpen}
         >
           {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>

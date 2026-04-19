@@ -99,13 +99,14 @@ const Appointment = () => {
                         <button 
                           key={svc}
                           onClick={() => setFormData({...formData, service: svc})}
+                          aria-pressed={formData.service === svc}
                           className={`p-6 rounded-2xl border-2 text-left transition-all ${
                             formData.service === svc 
                             ? 'border-[#8B2323] bg-red-50 shadow-md' 
                             : 'border-gray-100 hover:border-red-200'
                           }`}
                         >
-                          <span className={`font-bold ${formData.service === svc ? 'text-[#8B2323]' : 'text-gray-700'}`}>
+                          <span className={`font-bold ${formData.service === svc ? 'text-[#8B2323]' : 'text-gray-900'}`}>
                             {svc}
                           </span>
                         </button>
@@ -132,30 +133,48 @@ const Appointment = () => {
                   >
                     <h3 className="text-2xl font-bold mb-6">Persönliche Daten & Termin</h3>
                     <div className="grid grid-cols-1 gap-4">
-                      <input 
-                        type="text" 
-                        placeholder="Vollständiger Name" 
-                        className="p-4 rounded-xl border border-gray-200 focus:border-[#8B2323] outline-none"
-                      />
-                      <input 
-                        type="email" 
-                        placeholder="E-Mail Adresse" 
-                        className="p-4 rounded-xl border border-gray-200 focus:border-[#8B2323] outline-none"
-                      />
-                      <input 
-                        type="tel" 
-                        placeholder="Telefonnummer" 
-                        className="p-4 rounded-xl border border-gray-200 focus:border-[#8B2323] outline-none"
-                      />
+                      <div>
+                        <label htmlFor="name" className="sr-only">Vollständiger Name</label>
+                        <input 
+                          id="name"
+                          type="text" 
+                          placeholder="Vollständiger Name" 
+                          className="w-full p-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="email" className="sr-only">E-Mail Adresse</label>
+                        <input 
+                          id="email"
+                          type="email" 
+                          placeholder="E-Mail Adresse" 
+                          className="w-full p-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="phone" className="sr-only">Telefonnummer</label>
+                        <input 
+                          id="phone"
+                          type="tel" 
+                          placeholder="Telefonnummer" 
+                          className="w-full p-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
+                        />
+                      </div>
                       <div className="grid grid-cols-2 gap-4">
-                        <select className="p-4 rounded-xl border border-gray-200 focus:border-[#8B2323] outline-none bg-white">
-                          <option>Kasse wählen</option>
-                          <option>ÖGK</option>
-                          <option>SVS</option>
-                          <option>BVAEB</option>
-                          <option>Privat</option>
-                        </select>
-                        <input type="date" className="p-4 rounded-xl border border-gray-200 focus:border-[#8B2323] outline-none" />
+                        <div>
+                          <label htmlFor="insurance" className="sr-only">Kasse wählen</label>
+                          <select id="insurance" className="w-full p-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none bg-white text-gray-950">
+                            <option>Kasse wählen</option>
+                            <option>ÖGK</option>
+                            <option>SVS</option>
+                            <option>BVAEB</option>
+                            <option>Privat</option>
+                          </select>
+                        </div>
+                        <div>
+                          <label htmlFor="date" className="sr-only">Wunschtermin</label>
+                          <input id="date" type="date" className="w-full p-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none text-gray-950" />
+                        </div>
                       </div>
                     </div>
                     <div className="flex gap-4">

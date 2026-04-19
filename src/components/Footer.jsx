@@ -65,7 +65,8 @@ const Footer = () => {
                         href="https://www.google.com/maps/dir/?api=1&destination=Körösistraße+9+8010+Graz" 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                        className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity focus:opacity-100 outline-none"
+                        aria-label="Anfahrt bei Google Maps öffnen"
                       >
                         <span className="bg-white text-gray-900 px-4 py-2 rounded-full text-xs font-bold">Route öffnen</span>
                       </a>
@@ -114,16 +115,17 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="pt-12 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-gray-500 text-sm">
+          <p className="text-gray-700 text-sm">
             © Röntgen am Kai - Alle Rechte vorbehalten.
           </p>
-          <div className="flex gap-8 text-gray-600 text-sm">
-            <a href="/impressum" className="hover:text-[#8B2323]">Impressum</a>
-            <a href="/datenschutz" className="hover:text-[#8B2323]">Datenschutz</a>
+          <div className="flex gap-8 text-gray-800 text-sm">
+            <a href="/impressum" className="hover:text-[#8B2323] transition-colors focus:text-[#8B2323] outline-none font-bold">Impressum</a>
+            <a href="/datenschutz" className="hover:text-[#8B2323] transition-colors focus:text-[#8B2323] outline-none font-bold">Datenschutz</a>
           </div>
           <button 
             onClick={scrollToTop}
-            className="w-12 h-12 bg-[#8B2323] rounded-full flex items-center justify-center hover:bg-[#A52A2A] transition-all group"
+            className="w-12 h-12 bg-[#8B2323] rounded-full flex items-center justify-center hover:bg-[#A52A2A] transition-all group focus:ring-4 focus:ring-red-200 outline-none"
+            aria-label="Nach oben scrollen"
           >
             <ArrowUp className="group-hover:-translate-y-1 transition-transform" size={24} />
           </button>

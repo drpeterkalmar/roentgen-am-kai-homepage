@@ -125,7 +125,13 @@ const Services = () => {
                 (service.title.includes('Mammo') ? 'order-first' : 'order-none')
               }`}
             >
-              {service.href && <Link to={service.href} className="absolute inset-0 z-20" />}
+              {service.href && (
+                <Link 
+                  to={service.href} 
+                  className="absolute inset-0 z-20" 
+                  aria-label={`Mehr Informationen zu ${service.title}`}
+                />
+              )}
               
               <div className="relative z-10 flex flex-col h-full">
                 <div className="flex justify-between items-start mb-6">
@@ -142,10 +148,10 @@ const Services = () => {
                 </div>
 
                 <div className="mb-4">
-                  <h3 className="text-2xl font-black text-gray-900 mb-2 font-[Outfit] leading-tight group-hover:text-[#8B2323] transition-colors">
+                  <h3 className="text-2xl font-black text-gray-950 mb-2 font-[Outfit] leading-tight group-hover:text-[#8B2323] transition-colors">
                     {service.title}
                   </h3>
-                  <p className="text-base text-gray-800 leading-relaxed font-medium line-clamp-3">
+                  <p className="text-base text-gray-950 leading-relaxed font-semibold line-clamp-3">
                     {service.description}
                   </p>
                 </div>

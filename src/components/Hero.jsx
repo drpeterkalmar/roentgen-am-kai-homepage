@@ -73,10 +73,8 @@ const Hero = () => {
               <ChevronRight size={18} />
             </a>
             <a 
-              href="https://Termin.herold.at/p/L6pXG/roentgen-am-kai-facharzte-fur-radiologie-og/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-white/50 backdrop-blur text-gray-800 border-2 border-white/50 px-10 py-5 rounded-2xl text-sm font-black uppercase tracking-[0.2em] hover:bg-white transition-all flex items-center justify-center gap-3 active:scale-95 shadow-lg"
+              href="/#booking"
+              className="bg-white/60 backdrop-blur-md text-gray-950 border-2 border-white/50 px-10 py-5 rounded-2xl text-sm font-black uppercase tracking-[0.2em] hover:bg-white transition-all flex items-center justify-center gap-3 active:scale-95 shadow-lg"
             >
               <Clock size={18} />
               Termin buchen
@@ -109,6 +107,8 @@ const Hero = () => {
               >
                 <img 
                   src={images[currentImage]} 
+                  srcSet={`${images[currentImage].replace('.avif', '-mobile.avif')} 800w, ${images[currentImage]} 1920w`}
+                  sizes="(max-width: 800px) 800px, 1920px"
                   alt={imageAlts[currentImage]} 
                   className="w-full h-full object-cover"
                   fetchpriority={currentImage === 0 ? "high" : "auto"}
