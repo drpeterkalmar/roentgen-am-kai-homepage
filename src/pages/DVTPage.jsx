@@ -1,5 +1,6 @@
 import React from 'react';
-import { ScanSearch, AlertCircle } from 'lucide-react';
+import { AlertCircle } from 'lucide-react';
+import { ToothIcon } from '../components/CustomIcons';
 import ServiceLayout from '../components/ServiceLayout';
 
 const DVTPage = () => {
@@ -7,7 +8,7 @@ const DVTPage = () => {
     <ServiceLayout
       title="Digitale Volumentomographie (DVT)"
       subtitle="Ein speziell für den Bereich des Gesichtsschädels entwickeltes 3D-Röntgenschichtaufnahmenverfahren. Ähnlich wie bei der Computertomographie wird das komplette Volumen dreidimensional erfasst."
-      icon={<ScanSearch size={32} />}
+      icon={<ToothIcon size={32} />}
       preparation={[
         'Keine spezielle Vorbereitung erforderlich.',
         'Schmuck und Piercings im Gesichtsbereich bitte ablegen.'

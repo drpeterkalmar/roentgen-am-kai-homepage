@@ -1,5 +1,5 @@
 import React from 'react';
-import { Maximize, CreditCard } from 'lucide-react';
+import { Bone, CreditCard } from 'lucide-react';
 import ServiceLayout from '../components/ServiceLayout';
 import FAQ from '../components/FAQ';
 import SEO from '../components/SEO';
@@ -34,7 +34,7 @@ const KnochendichtePage = () => {
       <ServiceLayout
         title="Knochendichtemessung"
       subtitle="Wir bieten Ihnen ein einfaches und schonendes Verfahren zur Diagnose Ihrer Knochendichte bzw. Ihrer Körperfettanalyse im Zentrum von Graz."
-      icon={<Maximize size={32} />}
+      icon={<Bone size={32} />}
       preparation={[
         'Keine spezielle Vorbereitung erforderlich.',
         'Sie müssen nicht nüchtern sein.',

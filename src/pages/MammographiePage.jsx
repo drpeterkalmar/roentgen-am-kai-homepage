@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heart, Phone, Info, ExternalLink } from 'lucide-react';
+import { HeartPulse, Phone, Info, ExternalLink } from 'lucide-react';
 import ServiceLayout from '../components/ServiceLayout';
 import FAQ from '../components/FAQ';
 import SEO from '../components/SEO';
@@ -34,7 +34,7 @@ const MammographiePage = () => {
       <ServiceLayout
         title="Mammographie"
       subtitle="Die Mammographie ist das am meisten etablierte Verfahren in der Brustdiagnostik. Die Brustdiagnostik bildet einen Schwerpunkt in unserer Praxis."
-      icon={<Heart size={32} />}
+      icon={<HeartPulse size={32} />}
       preparation={[
         'Am Tag der Untersuchung bitte kein Puder, Deo oder Körperlotion im Brustbereich verwenden.',
         'Bitte bringen Sie Voraufnahmen und Befunde von anderen Instituten mit – das ist sehr wichtig für den Vergleich!'

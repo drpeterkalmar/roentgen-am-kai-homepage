@@ -1,5 +1,5 @@
 import React from 'react';
-import { Activity } from 'lucide-react';
+import { Waves } from 'lucide-react';
 import ServiceLayout from '../components/ServiceLayout';
 
 const UltraschallPage = () => {
@@ -7,7 +7,7 @@ const UltraschallPage = () => {
     <ServiceLayout
       title="Ultraschall"
       subtitle="Der Ultraschall ist das am häufigsten verwendete bildgebende Verfahren in der Medizin. Er ermöglicht eine schonende und schmerzfreie Untersuchung ohne Strahlenbelastung."
-      icon={<Activity size={32} />}
+      icon={<Waves size={32} />}
       preparation={[
         'Oberbauch-Ultraschall: Bitte kommen Sie nüchtern – mindestens 6 Stunden vorher nicht essen, nicht rauchen, kein Kaffee. Stilles Wasser ist erlaubt.',
         'Unterbauch-Ultraschall: Bitte mit gefüllter Blase zur Untersuchung erscheinen.',

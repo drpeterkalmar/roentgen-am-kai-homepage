@@ -1,5 +1,5 @@
 import React from 'react';
-import { Camera } from 'lucide-react';
+import { Scan } from 'lucide-react';
 import ServiceLayout from '../components/ServiceLayout';
 
 const RoentgenPage = () => {
@@ -7,7 +7,7 @@ const RoentgenPage = () => {
     <ServiceLayout
       title="Digitales Röntgen"
       subtitle="Bei uns werden ausschließlich digitale Röntgenaufnahmen durchgeführt. Das digitale Detektorfeld liefert hochaufgelöste Bilder bei deutlich geringerer Strahlenbelastung."
-      icon={<Camera size={32} />}
+      icon={<Scan size={32} />}
       preparation={[
         'Schmuck und Metallgegenstände im Untersuchungsbereich bitte ablegen.',
         'Eine Schwangerschaft sollte ausgeschlossen sein!',

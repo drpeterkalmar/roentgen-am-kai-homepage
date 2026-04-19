@@ -1,5 +1,5 @@
 import React from 'react';
-import { Droplets, AlertTriangle } from 'lucide-react';
+import { Syringe, AlertTriangle } from 'lucide-react';
 import ServiceLayout from '../components/ServiceLayout';
 
 const PhlebographiePage = () => {
@@ -7,7 +7,7 @@ const PhlebographiePage = () => {
     <ServiceLayout
       title="Phlebographie"
       subtitle="Die Phlebographie ist eine Venenuntersuchung, bei der ein Kontrastmittel in eine Vene der zu untersuchenden Region gespritzt wird, um deren Beschaffenheit und Lage zu beurteilen."
-      icon={<Droplets size={32} />}
+      icon={<Syringe size={32} />}
       preparation={[
         'Bei bekannten Nierenerkrankungen benötigen wir Ihren aktuellen Kreatinin- (bzw. GFR-)Wert.',
         'Bei einer Schilddrüsenerkrankung müssen wir Ihren TSH-Wert wissen.',
