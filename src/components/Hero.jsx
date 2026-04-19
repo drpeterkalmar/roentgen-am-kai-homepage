@@ -43,7 +43,7 @@ const Hero = () => {
       <div className="max-w-[1400px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
         {/* Text Content in Glass Card */}
         <motion.div 
-          initial={{ opacity: 0, x: -50 }}
+          initial={{ opacity: 1, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="z-20 glass p-10 md:p-16 rounded-[48px] shadow-2xl relative"

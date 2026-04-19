@@ -1,19 +1,21 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, lazy, Suspense } from 'react'
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import Footer from './components/Footer'
-import RoentgenPage from './pages/RoentgenPage'
-import UltraschallPage from './pages/UltraschallPage'
-import MammographiePage from './pages/MammographiePage'
-import KnochendichtePage from './pages/KnochendichtePage'
-import DVTPage from './pages/DVTPage'
-import PhlebographiePage from './pages/PhlebographiePage'
-import KoerperfettPage from './pages/KoerperfettPage'
-import ImpressumPage from './pages/ImpressumPage'
-import DatenschutzPage from './pages/DatenschutzPage'
 import SchemaMarkup from './components/SchemaMarkup'
 import MobileActions from './components/MobileActions'
+
+// Lazy loaded pages
+const RoentgenPage = lazy(() => import('./pages/RoentgenPage'))
+const UltraschallPage = lazy(() => import('./pages/UltraschallPage'))
+const MammographiePage = lazy(() => import('./pages/MammographiePage'))
+const KnochendichtePage = lazy(() => import('./pages/KnochendichtePage'))
+const DVTPage = lazy(() => import('./pages/DVTPage'))
+const PhlebographiePage = lazy(() => import('./pages/PhlebographiePage'))
+const KoerperfettPage = lazy(() => import('./pages/KoerperfettPage'))
+const ImpressumPage = lazy(() => import('./pages/ImpressumPage'))
+const DatenschutzPage = lazy(() => import('./pages/DatenschutzPage'))
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -41,18 +43,20 @@ function App() {
       <div className="min-h-screen bg-transparent selection:bg-red-100 selection:text-[#8B2323]">
         <Navbar highContrast={highContrast} setHighContrast={setHighContrast} />
         <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/unser-angebot/roentgen" element={<RoentgenPage />} />
-            <Route path="/unser-angebot/ultraschall" element={<UltraschallPage />} />
-            <Route path="/unser-angebot/mammographie" element={<MammographiePage />} />
-            <Route path="/unser-angebot/knochendichte" element={<KnochendichtePage />} />
-            <Route path="/unser-angebot/dvt" element={<DVTPage />} />
-            <Route path="/unser-angebot/phlebographie" element={<PhlebographiePage />} />
-            <Route path="/unser-angebot/koerperfettmessung" element={<KoerperfettPage />} />
-            <Route path="/impressum" element={<ImpressumPage />} />
-            <Route path="/datenschutz" element={<DatenschutzPage />} />
-          </Routes>
+          <Suspense fallback={<div className="min-h-screen bg-transparent" />}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/unser-angebot/roentgen" element={<RoentgenPage />} />
+              <Route path="/unser-angebot/ultraschall" element={<UltraschallPage />} />
+              <Route path="/unser-angebot/mammographie" element={<MammographiePage />} />
+              <Route path="/unser-angebot/knochendichte" element={<KnochendichtePage />} />
+              <Route path="/unser-angebot/dvt" element={<DVTPage />} />
+              <Route path="/unser-angebot/phlebographie" element={<PhlebographiePage />} />
+              <Route path="/unser-angebot/koerperfettmessung" element={<KoerperfettPage />} />
+              <Route path="/impressum" element={<ImpressumPage />} />
+              <Route path="/datenschutz" element={<DatenschutzPage />} />
+            </Routes>
+          </Suspense>
         </main>
         <Footer />
         <MobileActions />

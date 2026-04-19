@@ -36,6 +36,7 @@ const services = [
     icon: <Maximize size={28} />,
     color: 'bg-purple-50 text-purple-600',
     gridClass: 'md:col-span-4 aspect-square', // Standardized
+    image: '/assets/images/knochendichte_v3.avif'
   },
   {
     type: 'info',
@@ -53,6 +54,7 @@ const services = [
     icon: <Camera size={24} />,
     color: 'bg-blue-50 text-blue-600',
     gridClass: 'md:col-span-4 aspect-square', // Standardized
+    image: '/assets/images/roentgen_v3.avif'
   },
 
   {
@@ -63,6 +65,7 @@ const services = [
     icon: <ScanSearch size={24} />,
     color: 'bg-orange-50 text-orange-600',
     gridClass: 'md:col-span-4 aspect-square',
+    image: '/assets/images/hero_interior.avif'
   },
   {
     title: 'Körperfett',
@@ -72,6 +75,7 @@ const services = [
     icon: <Scale size={24} />,
     color: 'bg-teal-50 text-teal-600',
     gridClass: 'md:col-span-4 aspect-square',
+    image: '/assets/images/koerperfett.avif'
   },
   {
     title: 'Phlebographie',
@@ -81,6 +85,7 @@ const services = [
     icon: <Droplets size={24} />,
     color: 'bg-rose-50 text-rose-600',
     gridClass: 'md:col-span-4 aspect-square',
+    image: '/assets/images/phlebographie_v3.avif'
   },
   {
     title: 'Sonografie',
@@ -90,6 +95,7 @@ const services = [
     icon: <Activity size={24} />,
     color: 'bg-green-50 text-green-600',
     gridClass: 'md:col-span-4 aspect-square',
+    image: '/assets/images/ultraschall.avif'
   },
 ];
 
