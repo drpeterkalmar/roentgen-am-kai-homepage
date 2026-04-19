@@ -111,6 +111,8 @@ const Hero = () => {
                   src={images[currentImage]} 
                   alt={imageAlts[currentImage]} 
                   className="w-full h-full object-cover"
+                  fetchpriority={currentImage === 0 ? "high" : "auto"}
+                  loading={currentImage === 0 ? "eager" : "lazy"}
                 />
               </motion.div>
             </AnimatePresence>
