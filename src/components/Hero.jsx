@@ -49,9 +49,9 @@ const Hero = () => {
           className="z-20 glass p-10 md:p-16 rounded-[48px] shadow-2xl relative"
         >
           <div className="flex flex-wrap gap-2 mb-8">
-            <div className="inline-flex items-center gap-2 bg-[#8B2323]/5 text-[#8B2323] px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] border border-[#8B2323]/10">
+            <div className="inline-flex items-center gap-2 bg-[#8B2323]/5 text-[#8B2323] px-4 py-2 rounded-full text-xs font-black uppercase tracking-[0.2em] border border-[#8B2323]/10">
               <ShieldCheck size={14} />
-              <span>Kassenverträge & Privat</span>
+              <span>Alle Kassen & Privat</span>
             </div>
           </div>
           
@@ -60,14 +60,14 @@ const Hero = () => {
             <span className="text-[#8B2323]">Radiologie</span> am Kai.
           </h1>
           
-          <p className="text-xl text-gray-600 mb-12 max-w-lg leading-relaxed font-medium">
+          <p className="text-xl text-gray-800 mb-12 max-w-lg leading-relaxed font-semibold">
             Spitzenmedizin in Graz. Wir bieten Ihnen präzise Diagnostik mit modernster Technik und menschlicher Fürsorge.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4">
             <a 
               href="#services"
-              className="bg-[#8B2323] text-white px-10 py-5 rounded-2xl text-xs font-black uppercase tracking-[0.2em] hover:bg-[#A52A2A] shadow-xl shadow-red-900/10 transition-all flex items-center justify-center gap-3 active:scale-95"
+              className="bg-[#8B2323] text-white px-10 py-5 rounded-2xl text-sm font-black uppercase tracking-[0.2em] hover:bg-[#A52A2A] shadow-xl shadow-red-900/10 transition-all flex items-center justify-center gap-3 active:scale-95"
             >
               Unsere Leistungen
               <ChevronRight size={18} />
@@ -76,7 +76,7 @@ const Hero = () => {
               href="https://Termin.herold.at/p/L6pXG/roentgen-am-kai-facharzte-fur-radiologie-og/"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-white/50 backdrop-blur text-gray-800 border-2 border-white/50 px-10 py-5 rounded-2xl text-xs font-black uppercase tracking-[0.2em] hover:bg-white transition-all flex items-center justify-center gap-3 active:scale-95 shadow-lg"
+              className="bg-white/50 backdrop-blur text-gray-800 border-2 border-white/50 px-10 py-5 rounded-2xl text-sm font-black uppercase tracking-[0.2em] hover:bg-white transition-all flex items-center justify-center gap-3 active:scale-95 shadow-lg"
             >
               <Clock size={18} />
               Termin buchen
@@ -126,7 +126,7 @@ const Hero = () => {
               </div>
               <span className="font-bold text-gray-900 leading-tight">Schnelle Termine</span>
             </div>
-            <p className="text-xs text-gray-500">
+            <p className="text-sm text-gray-500">
               In der Regel innerhalb weniger Tage verfügbar.
             </p>
           </div>

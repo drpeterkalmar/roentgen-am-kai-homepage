@@ -77,7 +77,7 @@ const Appointment = () => {
                     }`}>
                       {s.icon}
                     </div>
-                    <span className={`text-[10px] font-bold uppercase tracking-wider ${
+                    <span className={`text-xs font-bold uppercase tracking-wider ${
                       step >= i + 1 ? 'text-[#8B2323]' : 'text-gray-400'
                     }`}>{s.title}</span>
                   </div>
@@ -176,7 +176,7 @@ const Appointment = () => {
                       <CheckCircle2 size={48} />
                     </div>
                     <h3 className="text-3xl font-extrabold text-gray-900 mb-4">Vielen Dank!</h3>
-                    <p className="text-gray-600 mb-8 max-w-sm mx-auto">
+                    <p className="text-gray-800 mb-8 max-w-sm mx-auto">
                       Ihre Terminanfrage wurde an unser Team sowie das CAS-System übermittelt. Wir senden Ihnen in Kürze eine Bestätigung.
                     </p>
                     <button 

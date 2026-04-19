@@ -9,7 +9,7 @@ const About = () => {
           <h2 className="text-4xl md:text-5xl font-extrabold text-[#1f2937] mb-6 font-[Outfit]">
             Unsere <span className="text-[#8B2323]">Ärzte</span>
           </h2>
-          <p className="text-xl text-gray-600 leading-relaxed font-light">
+          <p className="text-xl text-gray-800 leading-relaxed font-normal">
             Erfahrene Spezialisten für Ihre Gesundheit. Dr. Kalmar und Dr. Riegler stehen für höchste fachliche Kompetenz und modernste Diagnostik.
           </p>
         </div>
@@ -42,7 +42,7 @@ const About = () => {
                     {doc.name}
                   </h3>
                   <div className="h-0.5 w-12 bg-[#8B2323] mx-auto mb-4 opacity-30" />
-                  <p className="text-[#8B2323] font-black uppercase tracking-[0.2em] text-[10px]">
+                  <p className="text-[#8B2323] font-black uppercase tracking-[0.2em] text-xs">
                     {doc.role}
                   </p>
                 </div>

@@ -96,9 +96,9 @@ const Services = () => {
   return (
     <section id="services" className="py-24 bg-transparent selection:bg-red-50">
       <div className="max-w-[1400px] mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+        <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-16 gap-8 text-center md:text-left">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 bg-red-50 text-[#8B2323] px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] mb-4">
+            <div className="inline-flex items-center gap-2 bg-red-50 text-[#8B2323] px-4 py-2 rounded-full text-xs font-black uppercase tracking-[0.2em] mb-4">
               <Info size={14} />
               Diagnostische Präzision
             </div>
@@ -106,7 +106,7 @@ const Services = () => {
               Unsere <span className="text-[#8B2323]">Leistungen</span>
             </h2>
           </div>
-          <p className="text-lg text-gray-500 max-w-sm leading-relaxed font-medium">
+          <p className="text-xl text-gray-500 max-w-sm leading-relaxed font-semibold">
             Ihre Gesundheit im Fokus. Digital. Präzise. Persönlich.
           </p>
         </div>
@@ -133,7 +133,7 @@ const Services = () => {
                   </div>
                   {service.microInfo && (
                     <div className="bg-white/80 backdrop-blur px-4 py-2 rounded-xl shadow-sm border border-gray-100">
-                      <span className="text-[#8B2323] text-[10px] font-black uppercase tracking-widest whitespace-nowrap">
+                      <span className="text-[#8B2323] text-xs font-black uppercase tracking-widest whitespace-nowrap">
                         {service.microInfo}
                       </span>
                     </div>
@@ -144,18 +144,18 @@ const Services = () => {
                   <h3 className="text-2xl font-black text-gray-900 mb-2 font-[Outfit] leading-tight group-hover:text-[#8B2323] transition-colors">
                     {service.title}
                   </h3>
-                  <p className="text-sm text-gray-500 leading-relaxed font-medium line-clamp-3">
+                  <p className="text-base text-gray-600 leading-relaxed font-medium line-clamp-3">
                     {service.description}
                   </p>
                 </div>
 
                 {service.type !== 'info' ? (
-                  <div className="mt-auto pt-4 flex items-center gap-2 text-[#8B2323] font-black text-[10px] uppercase tracking-[0.2em] opacity-80 group-hover:opacity-100 transition-all">
+                  <div className="mt-auto pt-4 flex items-center gap-2 text-[#8B2323] font-black text-xs uppercase tracking-[0.2em] opacity-80 group-hover:opacity-100 transition-all">
                     <span>Details ansehen</span>
                     <ChevronRight size={14} />
                   </div>
                 ) : (
-                  <div className="mt-auto pt-4 text-[10px] font-black uppercase text-gray-400 tracking-[0.2em]">
+                  <div className="mt-auto pt-4 text-xs font-black uppercase text-gray-400 tracking-[0.2em]">
                     Information
                   </div>
                 )}

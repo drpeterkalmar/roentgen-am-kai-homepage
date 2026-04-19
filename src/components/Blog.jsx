@@ -82,7 +82,7 @@ const Blog = () => {
   return (
     <section id="blog" className="py-24 bg-transparent relative">
       <div className="max-w-[1200px] mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+        <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-16 gap-8 text-center md:text-left">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 bg-[#8B2323]/5 text-[#8B2323] px-4 py-2 rounded-full text-sm font-bold mb-4">
               <Sparkles size={18} />
@@ -156,12 +156,12 @@ const Blog = () => {
                 {post.title}
               </h3>
               
-              <p className="text-gray-600 line-clamp-2 mb-4">
+              <p className="text-gray-800 line-clamp-2 mb-4">
                 {post.excerpt}
               </p>
               
               <div className="flex items-center gap-2 text-[#8B2323] font-bold">
-                <span className="text-sm uppercase tracking-wider">Weiterlesen</span>
+                <span className="text-base uppercase tracking-wider">Weiterlesen</span>
                 <BookOpen size={18} />
               </div>
             </motion.div>

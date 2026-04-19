@@ -42,7 +42,7 @@ const Navbar = ({ highContrast, setHighContrast }) => {
             RÖNTGEN <span className="text-[#8B2323]">AM KAI</span>
           </span>
           <div className="flex flex-col">
-            <span className={`text-[10px] tracking-widest uppercase font-bold transition-opacity ${
+            <span className={`text-xs tracking-widest uppercase font-bold transition-opacity ${
               isScrolled ? 'text-gray-500' : 'text-gray-600'
             }`}>
               Radiologie Graz precision
@@ -58,7 +58,7 @@ const Navbar = ({ highContrast, setHighContrast }) => {
                 {link.href.startsWith('/#') ? (
                   <a
                     href={link.href}
-                    className={`text-xs font-black tracking-[0.1em] uppercase hover:text-[#8B2323] transition-colors flex items-center gap-1.5 ${
+                    className={`text-sm font-black tracking-[0.1em] uppercase hover:text-[#8B2323] transition-colors flex items-center gap-1.5 ${
                       isScrolled ? 'text-gray-700' : 'text-gray-900'
                     }`}
                   >
@@ -68,7 +68,7 @@ const Navbar = ({ highContrast, setHighContrast }) => {
                 ) : (
                   <Link
                     to={link.href}
-                    className={`text-xs font-black tracking-[0.1em] uppercase hover:text-[#8B2323] transition-colors flex items-center gap-1.5 ${
+                    className={`text-sm font-black tracking-[0.1em] uppercase hover:text-[#8B2323] transition-colors flex items-center gap-1.5 ${
                       isScrolled ? 'text-gray-700' : 'text-gray-900'
                     } ${location.pathname === link.href ? 'text-[#8B2323]' : ''}`}
                   >
@@ -84,7 +84,7 @@ const Navbar = ({ highContrast, setHighContrast }) => {
                         <Link 
                           key={sub.name}
                           to={sub.href}
-                          className={`text-xs font-bold p-4 rounded-2xl transition-all ${
+                          className={`text-sm font-bold p-4 rounded-2xl transition-all ${
                             location.pathname === sub.href 
                               ? 'text-[#8B2323] bg-red-50' 
                               : 'text-gray-700 hover:text-[#8B2323] hover:bg-red-50'
@@ -114,7 +114,7 @@ const Navbar = ({ highContrast, setHighContrast }) => {
             </button>
             <Link
               to="/#booking"
-              className="bg-[#8B2323] text-white px-8 py-3.5 rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-[#A52A2A] hover:shadow-[0_10px_30px_rgba(139,35,35,0.3)] transition-all flex items-center gap-2 active:scale-95"
+              className="bg-[#8B2323] text-white px-8 py-3.5 rounded-2xl text-sm font-black uppercase tracking-widest hover:bg-[#A52A2A] hover:shadow-[0_10px_30px_rgba(139,35,35,0.3)] transition-all flex items-center gap-2 active:scale-95"
             >
               <Calendar size={16} />
               Termin
