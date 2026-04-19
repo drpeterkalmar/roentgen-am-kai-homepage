@@ -54,7 +54,7 @@ export const blogPosts = [
       
       <p>Vorbereitung: Verwenden Sie am Tag der Untersuchung bitte kein Puder, Deo oder Lotion im Brustbereich, da dies das Bild stören könnte. Bringen Sie bitte unbedingt Voraufnahmen zum Vergleich mit!</p>
     `,
-    image: '/assets/images/mammographie.webp',
+    image: '/assets/images/mammographie_v2.webp',
     status: 'published'
   }
 ];

@@ -33,7 +33,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-xl font-bold mb-8 font-[Outfit]">Navigation</h4>
+            <h4 className="text-xl font-bold mb-8 font-[Outfit] text-gray-950">Navigation</h4>
             <ul className="space-y-4 text-gray-800">
               <li><a href="/#home" className="hover:text-[#8B2323] transition-colors">Startseite</a></li>
               <li><a href="/#services" className="hover:text-[#8B2323] transition-colors">Leistungen</a></li>
@@ -46,7 +46,7 @@ const Footer = () => {
           {/* Contact Info */}
           <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-10">
             <div>
-              <h4 className="text-xl font-bold mb-8 font-[Outfit]">Kontakt & Anfahrt</h4>
+              <h4 className="text-xl font-bold mb-8 font-[Outfit] text-gray-950">Kontakt & Anfahrt</h4>
               <ul className="space-y-6">
                 <li className="flex items-start gap-4 text-gray-800">
                   <MapPin className="text-[#8B2323] shrink-0" size={24} />
@@ -92,7 +92,7 @@ const Footer = () => {
             </div>
 
             <div>
-              <h4 className="text-xl font-bold mb-8 font-[Outfit]">Öffnungszeiten</h4>
+              <h4 className="text-xl font-bold mb-8 font-[Outfit] text-gray-950">Öffnungszeiten</h4>
               <ul className="space-y-3 text-gray-800 mb-8">
                 <li className="flex justify-between">
                   <span>Mo - Do</span>
