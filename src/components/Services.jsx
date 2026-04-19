@@ -1,5 +1,5 @@
 import React from 'react';
-import { Scan, HeartPulse, Bone, Box, MapPin, Scale, Info, CreditCard, Network, Waves } from 'lucide-react';
+import { Scan, HeartPulse, Bone, Box, MapPin, Scale, Info, CreditCard, Syringe, Waves } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
@@ -79,10 +79,10 @@ const services = [
   },
   {
     title: 'Phlebographie',
-    description: 'Spezialuntersuchung der tiefen Beinvenen.',
+    description: 'Venenröntgen mit Kontrastmittel.',
     microInfo: 'Thrombose-Check',
     href: '/unser-angebot/phlebographie',
-    icon: <Network size={24} />,
+    icon: <Syringe size={24} />,
     color: 'bg-rose-50 text-rose-600',
     gridClass: 'md:col-span-4 aspect-square',
     image: '/assets/images/phlebographie_v3.avif'
