@@ -72,7 +72,7 @@ const MammographiePage = () => {
           Der Ultraschall der Brust wird als Einzeluntersuchung oder bei Bedarf in Ergänzung zur Mammographie durchgeführt. Er wird insbesondere bei jungen Frauen und Frauen mit einem dichten Brustgewebe angewendet.
         </p>
         <p>
-          Der Ultraschall wird in der Brustkrebsvorsorge als Zusatzuntersuchung zur Mammographie eingesetzt, er ersetzt jedoch nicht die Mammographie bei der Brustkrebsfrüherkennung, da gewisse Veränderungen wie z.B. Mikroverkalkungen mit dieser Methode nicht beurteilt werden können.
+          Der Ultraschall wird in der Brustkrebsvorsorge als Zusatzuntersuchung zur Mammographie eingesetzt, er ersetzt jedoch nicht die Mammographie bei der Brustkrebsfrüherkennung, da gewisse Veränderungen weniger gut beurteilt werden können.
         </p>
       </section>
 
