@@ -3,8 +3,8 @@ import { ChevronRight, ShieldCheck, Clock, MapPin } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const images = [
+  '/assets/images/hero-slide-1.avif',
   '/assets/images/hero-home-2025.webp',
-  '/assets/images/hero-slide-1.webp',
   '/assets/images/hero-slide-2.webp',
   '/assets/images/hero-slide-3.webp',
   '/assets/images/hero-slide-4.webp'
@@ -19,8 +19,8 @@ const animationPresets = [
 ];
 
 const imageAlts = [
-  'Modernste radiologische Praxis Röntgen am Kai in Graz',
   'Digitale Röntgendiagnostik auf höchstem Niveau',
+  'Modernste radiologische Praxis Röntgen am Kai in Graz',
   'Patientenempfang und Komfort im Zentrum von Graz',
   'Interdisziplinäres Team für Ihre Gesundheit',
   'Präzise Bildgebung mit modernster Medizintechnik'
