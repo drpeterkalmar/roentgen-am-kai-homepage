@@ -6,17 +6,21 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const IMAGES_DIR = path.join(__dirname, '../public/assets/images');
+const DIRS_TO_OPTIMIZE = [
+  path.join(__dirname, '../public/assets/images'),
+  path.join(__dirname, '../src/assets/images')
+];
 const SUPPORTED_FORMATS = ['.jpg', '.jpeg', '.png', '.webp'];
 
 async function optimizeImages() {
-  if (!fs.existsSync(IMAGES_DIR)) {
-    console.warn(`Directory not found: ${IMAGES_DIR}`);
-    return;
-  }
+  for (const IMAGES_DIR of DIRS_TO_OPTIMIZE) {
+    if (!fs.existsSync(IMAGES_DIR)) {
+      console.warn(`Directory not found: ${IMAGES_DIR}`);
+      continue;
+    }
 
-  const files = fs.readdirSync(IMAGES_DIR);
-  console.log(`Scanning ${files.length} files in ${IMAGES_DIR}...`);
+    const files = fs.readdirSync(IMAGES_DIR);
+    console.log(`Scanning ${files.length} files in ${IMAGES_DIR}...`);
 
   for (const file of files) {
     const ext = path.extname(file).toLowerCase();
@@ -50,9 +54,10 @@ async function optimizeImages() {
         console.error(`Error processing ${file}:`, err.message);
       }
     }
+    }
   }
 
-  console.log('Optimization complete!');
+  console.log('Overall optimization complete!');
 }
 
 optimizeImages();
