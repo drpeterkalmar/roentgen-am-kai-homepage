@@ -32,6 +32,11 @@ const Appointment = () => {
       return;
     }
 
+    if (formData.email && (!formData.email.includes('@') || !formData.email.includes('.'))) {
+      setSubmitError("Bitte geben Sie eine gültige E-Mail-Adresse an.");
+      return;
+    }
+
     const selectedDate = new Date(formData.date);
     const today = new Date();
     today.setHours(0, 0, 0, 0);
