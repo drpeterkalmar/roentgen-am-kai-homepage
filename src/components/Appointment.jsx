@@ -23,39 +23,10 @@ const Appointment = () => {
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
 
-    const handleSubmit = async (e) => {
-    e.preventDefault();
+    const handleSubmit = (e) => {
+    // We remove e.preventDefault() to allow standard form submission for the first time
+    // This ensures FormSubmit.co sends the activation email and avoids CORS blocks
     setIsSubmitting(true);
-    setSubmitError(null);
-
-    // FormSubmit.co Integration (Free Alternative)
-    const RECIPIENT_EMAIL = "ordination@roentgen-am-kai.at";
-    
-    try {
-      const response = await fetch(`https://formsubmit.co/ajax/${RECIPIENT_EMAIL}`, {
-        method: 'POST',
-        headers: { 
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          ...formData,
-          _subject: `Neue Terminanfrage: ${formData.name}`,
-          _captcha: "false",
-          _honey: "" // Spam protection
-        })
-      });
-
-      if (response.ok) {
-        nextStep();
-      } else {
-        setSubmitError("Entschuldigung, die Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es später erneut.");
-      }
-    } catch (error) {
-      setSubmitError(`Übertragungsfehler: ${error.message}. Bitte prüfen Sie, ob ein Ad-Blocker die Anfrage verhindert.`);
-    } finally {
-      setIsSubmitting(false);
-    }
   };
 
   const steps = [
@@ -172,7 +143,20 @@ const Appointment = () => {
                     className="space-y-6"
                   >
                     <h3 className="text-2xl font-bold mb-6">Persönliche Daten & Termin</h3>
-                    <form onSubmit={handleSubmit} className="space-y-6">
+                    <form 
+                      action="https://formsubmit.co/ordination@roentgen-am-kai.at" 
+                      method="POST"
+                      onSubmit={handleSubmit} 
+                      className="space-y-6"
+                    >
+                      {/* Hidden Fields for FormSubmit */}
+                      <input type="hidden" name="_subject" value={`Neue Terminanfrage: ${formData.name}`} />
+                      <input type="hidden" name="_captcha" value="false" />
+                      <input type="hidden" name="_next" value={window.location.href} />
+                      
+                      {/* Pass all current state as hidden fields to ensure standard POST works */}
+                      <input type="hidden" name="Gewünschte_Untersuchung" value={formData.service} />
+                      
                       <div className="grid grid-cols-1 gap-4">
                         <div>
                           <label htmlFor="name" className="sr-only">Vollständiger Name*</label>
@@ -253,11 +237,13 @@ const Appointment = () => {
                             </select>
                           </div>
                           <div className="relative">
-                            <label htmlFor="date" className="sr-only">Wunschtermin</label>
+                            <label htmlFor="date" className="sr-only">Wunschdatum</label>
                             <input 
                               id="date" 
                               name="date"
                               type="date" 
+                              required
+                              min={new Date().toISOString().split('T')[0]}
                               value={formData.date}
                               onChange={(e) => setFormData({...formData, date: e.target.value})}
                               className={`w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none transition-all ${!formData.date ? 'text-transparent' : 'text-gray-950'}`} 
