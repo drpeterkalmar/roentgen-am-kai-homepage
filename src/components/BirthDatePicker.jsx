@@ -35,7 +35,7 @@ const BirthDatePicker = ({ value, onChange, label = "Geburtsdatum*" }) => {
 
   const getYearsInInterval = (start, end) => {
     const years = [];
-    for (let y = end; y >= start; y--) {
+    for (let y = start; y <= end; y++) {
       if (y <= currentYear) {
         years.push(y);
       }
