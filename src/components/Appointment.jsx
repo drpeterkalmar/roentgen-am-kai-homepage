@@ -10,7 +10,8 @@ const Appointment = () => {
     insurance: '',
     date: '',
     time: '',
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     phone: '',
     svnr: '',
@@ -42,13 +43,19 @@ const Appointment = () => {
     // Google Apps Script Integration (Unlimited & Free)
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzY4qWzPryMExyCh-KsbxeGgEKwbuleWKrdFNH98rWXZCk39VTTS3GYVGjkq_PlD4SAYA/exec";
     
+    // Metadata fields for Google Sheet/Email notification
+    const fullName = `${formData.firstName} ${formData.lastName}`;
+    
     try {
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
         headers: { 
           'Content-Type': 'text/plain' // Keep text/plain for CORS bypass
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          ...formData,
+          name: fullName // Keep 'name' as a combined field for a cleaner sheet if needed, or split below
+        })
       });
 
       // Google Scripts sometimes return opaque responses due to redirects
@@ -185,21 +192,35 @@ const Appointment = () => {
                       className="space-y-6"
                     >
                       
-                      <div className="grid grid-cols-1 gap-4">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                          <label htmlFor="name" className="sr-only">Vollständiger Name*</label>
+                          <label htmlFor="firstName" className="sr-only">Vorname*</label>
                           <input 
-                            id="name"
-                            name="name"
+                            id="firstName"
+                            name="firstName"
                             type="text" 
-                            placeholder="Vollständiger Name*" 
+                            placeholder="Vorname*" 
                             required
-                            value={formData.name}
-                            onChange={(e) => setFormData({...formData, name: e.target.value})}
+                            value={formData.firstName}
+                            onChange={(e) => setFormData({...formData, firstName: e.target.value})}
                             className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
                           />
                         </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-start">
+                        <div>
+                          <label htmlFor="lastName" className="sr-only">Nachname*</label>
+                          <input 
+                            id="lastName"
+                            name="lastName"
+                            type="text" 
+                            placeholder="Nachname*" 
+                            required
+                            value={formData.lastName}
+                            onChange={(e) => setFormData({...formData, lastName: e.target.value})}
+                            className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
+                          />
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-start">
                           <BirthDatePicker 
                             value={formData.birthDate} 
                             onChange={(val) => setFormData({...formData, birthDate: val})} 
