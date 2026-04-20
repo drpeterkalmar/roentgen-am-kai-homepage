@@ -11,7 +11,8 @@ const Appointment = () => {
     time: '',
     name: '',
     email: '',
-    phone: ''
+    phone: '',
+    svnr: ''
   });
 
   const nextStep = () => setStep(step + 1);
@@ -34,7 +35,7 @@ const Appointment = () => {
               Termin <span className="text-[#8B2323]">Online</span> vereinbaren
             </h2>
             <p className="text-lg text-gray-800 mb-10 leading-relaxed font-medium">
-              Sparen Sie Zeit und buchen Sie Ihren Untersuchungstermin bequem von zu Hause oder unterwegs. Unser System ist direkt mit unserem Praxismanagement (CAS) verbunden.
+              Sparen Sie Zeit und senden Sie uns Ihre Terminanfrage bequem von zu Hause oder unterwegs. Wir rufen Sie umgehend zur Terminbestätigung zurück.
             </p>
             
             <ul className="space-y-6">
@@ -59,7 +60,7 @@ const Appointment = () => {
               </div>
               <div>
                 <p className="font-bold text-gray-950">DSGVO Konform</p>
-                <p className="text-sm text-gray-700">Ihre Daten werden verschlüsselt an unser CAS-System übertragen.</p>
+                <p className="text-sm text-gray-700">Ihre Daten werden verschlüsselt übertragen.</p>
               </div>
             </div>
           </div>
@@ -134,13 +135,42 @@ const Appointment = () => {
                     <h3 className="text-2xl font-bold mb-6">Persönliche Daten & Termin</h3>
                     <div className="grid grid-cols-1 gap-4">
                       <div>
-                        <label htmlFor="name" className="sr-only">Vollständiger Name</label>
+                        <label htmlFor="name" className="sr-only">Vollständiger Name*</label>
                         <input 
                           id="name"
                           type="text" 
-                          placeholder="Vollständiger Name" 
+                          placeholder="Vollständiger Name*" 
+                          required
+                          value={formData.name}
+                          onChange={(e) => setFormData({...formData, name: e.target.value})}
                           className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
                         />
+                      </div>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                          <label htmlFor="svnr" className="sr-only">SVNr.*</label>
+                          <input 
+                            id="svnr"
+                            type="text" 
+                            placeholder="SVNr.*" 
+                            required
+                            value={formData.svnr}
+                            onChange={(e) => setFormData({...formData, svnr: e.target.value})}
+                            className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
+                          />
+                        </div>
+                        <div>
+                          <label htmlFor="phone" className="sr-only">Telefonnummer*</label>
+                          <input 
+                            id="phone"
+                            type="tel" 
+                            placeholder="Telefonnummer*" 
+                            required
+                            value={formData.phone}
+                            onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                            className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
+                          />
+                        </div>
                       </div>
                       <div>
                         <label htmlFor="email" className="sr-only">E-Mail Adresse</label>
@@ -148,15 +178,8 @@ const Appointment = () => {
                           id="email"
                           type="email" 
                           placeholder="E-Mail Adresse" 
-                          className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="phone" className="sr-only">Telefonnummer</label>
-                        <input 
-                          id="phone"
-                          type="tel" 
-                          placeholder="Telefonnummer" 
+                          value={formData.email}
+                          onChange={(e) => setFormData({...formData, email: e.target.value})}
                           className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
                         />
                       </div>
@@ -165,9 +188,12 @@ const Appointment = () => {
                           <label htmlFor="insurance" className="sr-only">Kasse wählen</label>
                           <select 
                             id="insurance" 
+                            required
+                            value={formData.insurance}
+                            onChange={(e) => setFormData({...formData, insurance: e.target.value})}
                             className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none bg-white text-gray-950"
                           >
-                            <option value="">Kasse wählen</option>
+                            <option value="">Kasse wählen*</option>
                             <option>ÖGK</option>
                             <option>SVS</option>
                             <option>BVAEB</option>
@@ -179,11 +205,10 @@ const Appointment = () => {
                           <label htmlFor="date" className="sr-only">Wunschtermin</label>
                           <input 
                             id="date" 
-                            type="text" 
-                            placeholder="Wunschdatum"
-                            onFocus={(e) => (e.target.type = "date")}
-                            onBlur={(e) => { if(!e.target.value) e.target.type = "text" }}
-                            className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950" 
+                            type="date" 
+                            value={formData.date}
+                            onChange={(e) => setFormData({...formData, date: e.target.value})}
+                            className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none text-gray-950" 
                           />
                         </div>
                       </div>
@@ -213,7 +238,7 @@ const Appointment = () => {
                       onClick={() => setStep(1)}
                       className="text-[#8B2323] font-bold underline"
                     >
-                      Weiteren Termin buchen
+                      Weitere Terminanfrage
                     </button>
                   </motion.div>
                 )}

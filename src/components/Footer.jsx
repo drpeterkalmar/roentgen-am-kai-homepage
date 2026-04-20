@@ -39,7 +39,7 @@ const Footer = () => {
               <li><a href="/#services" className="hover:text-[#8B2323] transition-colors">Leistungen</a></li>
               <li><a href="/#about" className="hover:text-[#8B2323] transition-colors">Unsere Ärzte</a></li>
               <li><a href="/#blog" className="hover:text-[#8B2323] transition-colors">Gesundheits-Blog</a></li>
-              <li><a href="/#booking" className="hover:text-[#8B2323] transition-colors">Terminbuchung</a></li>
+              <li><a href="/#booking" className="hover:text-[#8B2323] transition-colors">Terminanfrage</a></li>
             </ul>
           </div>
 
