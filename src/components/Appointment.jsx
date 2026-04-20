@@ -191,7 +191,6 @@ const Appointment = () => {
                       onSubmit={handleSubmit} 
                       className="space-y-6"
                     >
-                      
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                           <label htmlFor="firstName" className="sr-only">Vorname*</label>
@@ -220,109 +219,112 @@ const Appointment = () => {
                           />
                         </div>
                       </div>
+
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-start">
-                          <BirthDatePicker 
-                            value={formData.birthDate} 
-                            onChange={(val) => setFormData({...formData, birthDate: val})} 
+                        <BirthDatePicker 
+                          value={formData.birthDate} 
+                          onChange={(val) => setFormData({...formData, birthDate: val})} 
+                        />
+                        <div>
+                          <label htmlFor="svnr" className="sr-only">SVNr. (erste 4 Ziffern)*</label>
+                          <input 
+                            id="svnr"
+                            name="svnr"
+                            type="text" 
+                            inputMode="numeric"
+                            pattern="[0-9]*"
+                            maxLength="4"
+                            placeholder="SVNr. (erste 4 Ziffern)*" 
+                            required
+                            value={formData.svnr}
+                            onChange={(e) => {
+                              const val = e.target.value.replace(/\D/g, '');
+                              if (val.length <= 4) {
+                                setFormData({...formData, svnr: val});
+                              }
+                            }}
+                            className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
                           />
-                          <div>
-                            <label htmlFor="svnr" className="sr-only">SVNr. (erste 4 Ziffern)*</label>
-                            <input 
-                              id="svnr"
-                              name="svnr"
-                              type="text" 
-                              inputMode="numeric"
-                              pattern="[0-9]*"
-                              maxLength="4"
-                              placeholder="SVNr. (erste 4 Ziffern)*" 
-                              required
-                              value={formData.svnr}
-                              onChange={(e) => {
-                                const val = e.target.value.replace(/\D/g, '');
-                                if (val.length <= 4) {
-                                  setFormData({...formData, svnr: val});
-                                }
-                              }}
-                              className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
-                            />
-                          </div>
                         </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-start">
-                          <div>
-                            <label htmlFor="phone" className="sr-only">Telefonnummer*</label>
-                            <input 
-                              id="phone"
-                              name="phone"
-                              type="tel" 
-                              placeholder="Telefonnummer*" 
-                              required
-                              value={formData.phone}
-                              onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                              className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
-                            />
-                          </div>
-                          <div>
-                            <label htmlFor="email" className="sr-only">E-Mail Adresse</label>
-                            <input 
-                              id="email"
-                              name="email"
-                              type="email" 
-                              placeholder="E-Mail Adresse" 
-                              value={formData.email}
-                              onChange={(e) => setFormData({...formData, email: e.target.value})}
-                              className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
-                            />
-                          </div>
-                        </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-start">
-                          <div>
-                            <label htmlFor="insurance" className="sr-only">Kasse wählen*</label>
-                            <select 
-                              id="insurance" 
-                              name="insurance"
-                              required
-                              value={formData.insurance}
-                              onChange={(e) => setFormData({...formData, insurance: e.target.value})}
-                              className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none bg-white text-gray-950"
-                            >
-                              <option value="">Kasse wählen*</option>
-                              <option>ÖGK</option>
-                              <option>SVS</option>
-                              <option>BVAEB</option>
-                              <option>KFA</option>
-                              <option>Privat</option>
-                            </select>
-                          </div>
-                          <div className="relative">
-                            <label htmlFor="date" className="sr-only">Wunschdatum</label>
-                            <input 
-                              id="date" 
-                              name="date"
-                              type="date" 
-                              required
-                              min={new Date().toISOString().split('T')[0]}
-                              value={formData.date}
-                              onChange={(e) => setFormData({...formData, date: e.target.value})}
-                              className={`w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none transition-all ${!formData.date ? 'text-transparent' : 'text-gray-950'}`} 
-                            />
-                            {!formData.date && (
-                              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none">
-                                Wunschdatum
-                              </span>
-                            )}
-                          </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-start">
+                        <div>
+                          <label htmlFor="phone" className="sr-only">Telefonnummer*</label>
+                          <input 
+                            id="phone"
+                            name="phone"
+                            type="tel" 
+                            placeholder="Telefonnummer*" 
+                            required
+                            value={formData.phone}
+                            onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                            className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
+                          />
                         </div>
                         <div>
-                          <label htmlFor="comments" className="sr-only">Infos oder Kommentare</label>
-                          <textarea 
-                            id="comments"
-                            name="comments"
-                            placeholder="Infos oder Kommentare (z.B. bevorzugte Tageszeit, Beschwerden)" 
-                            value={formData.comments}
-                            onChange={(e) => setFormData({...formData, comments: e.target.value})}
-                            className="w-full h-32 p-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950 resize-none"
+                          <label htmlFor="email" className="sr-only">E-Mail Adresse</label>
+                          <input 
+                            id="email"
+                            name="email"
+                            type="email" 
+                            placeholder="E-Mail Adresse" 
+                            value={formData.email}
+                            onChange={(e) => setFormData({...formData, email: e.target.value})}
+                            className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
                           />
                         </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-start">
+                        <div>
+                          <label htmlFor="insurance" className="sr-only">Kasse wählen*</label>
+                          <select 
+                            id="insurance" 
+                            name="insurance"
+                            required
+                            value={formData.insurance}
+                            onChange={(e) => setFormData({...formData, insurance: e.target.value})}
+                            className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none bg-white text-gray-950"
+                          >
+                            <option value="">Kasse wählen*</option>
+                            <option>ÖGK</option>
+                            <option>SVS</option>
+                            <option>BVAEB</option>
+                            <option>KFA</option>
+                            <option>Privat</option>
+                          </select>
+                        </div>
+                        <div className="relative">
+                          <label htmlFor="date" className="sr-only">Wunschdatum</label>
+                          <input 
+                            id="date" 
+                            name="date"
+                            type="date" 
+                            required
+                            min={new Date().toISOString().split('T')[0]}
+                            value={formData.date}
+                            onChange={(e) => setFormData({...formData, date: e.target.value})}
+                            className={`w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none transition-all ${!formData.date ? 'text-transparent' : 'text-gray-950'}`} 
+                          />
+                          {!formData.date && (
+                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none">
+                              Wunschdatum
+                            </span>
+                          )}
+                        </div>
+                      </div>
+
+                      <div>
+                        <label htmlFor="comments" className="sr-only">Infos oder Kommentare</label>
+                        <textarea 
+                          id="comments"
+                          name="comments"
+                          placeholder="Infos oder Kommentare (z.B. bevorzugte Tageszeit, Beschwerden)" 
+                          value={formData.comments}
+                          onChange={(e) => setFormData({...formData, comments: e.target.value})}
+                          className="w-full h-32 p-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950 resize-none"
+                        />
                       </div>
 
                       {submitError && (
