@@ -262,16 +262,16 @@ const Appointment = () => {
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-start">
                         <div>
                           <label htmlFor="phone" className="sr-only">Telefonnummer*</label>
-                          <input 
-                            id="phone"
-                            name="phone"
-                            type="tel" 
-                            placeholder="Telefonnummer*" 
-                            required
-                            value={formData.phone}
-                            onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                            className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
-                          />
+                            <input 
+                              id="phone"
+                              name="phone"
+                              type="tel" 
+                              placeholder="Telefonnummer*" 
+                              required
+                              value={formData.phone}
+                              onChange={(e) => setFormData({...formData, phone: e.target.value.replace(/[^0-9+]/g, '')})}
+                              className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
+                            />
                         </div>
                         <div>
                           <label htmlFor="email" className="sr-only">E-Mail Adresse</label>
