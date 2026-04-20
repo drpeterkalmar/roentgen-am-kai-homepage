@@ -28,36 +28,32 @@ const Appointment = () => {
     setIsSubmitting(true);
     setSubmitError(null);
 
-    // FormSubmit.co Integration (Using robust FormData approach)
-    const RECIPIENT_EMAIL = "ordination@roentgen-am-kai.at";
-    const URL = `https://formsubmit.co/ajax/${RECIPIENT_EMAIL}`;
+    // Google Apps Script Integration (Unlimited & Free)
+    // REPLACE THIS URL with your Deployment URL from Google Sheets
+    const GOOGLE_SCRIPT_URL = "PASTE_YOUR_GOOGLE_SCRIPT_URL_HERE";
     
     try {
-      const submissionData = new FormData();
-      Object.entries(formData).forEach(([key, value]) => {
-        submissionData.append(key, value);
-      });
-      
-      // Metadata fields for FormSubmit
-      submissionData.append("_subject", `Neue Terminanfrage: ${formData.name}`);
-      submissionData.append("_captcha", "false");
-      submissionData.append("_honey", ""); // Honeypot spam protection
-
-      const response = await fetch(URL, {
+      // We use 'text/plain' to bypass the CORS preflight OPTIONS request
+      // which Google Apps Script doesn't support well for JSON.
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
+        mode: 'cors',
         headers: { 
-          'Accept': 'application/json'
+          'Content-Type': 'text/plain'
         },
-        body: submissionData
+        body: JSON.stringify(formData),
+        redirect: 'follow'
       });
 
-      if (response.ok) {
+      const result = await response.json();
+
+      if (result.result === 'success') {
         nextStep();
       } else {
-        setSubmitError("Entschuldigung, die Anfrage konnte nicht gesendet werden. Bitte verifizieren Sie Ihre E-Mail bei FormSubmit.");
+        setSubmitError("Entschuldigung, die Anfrage konnte nicht gespeichert werden: " + (result.error || "Unbekannter Fehler"));
       }
     } catch (error) {
-      setSubmitError(`Übertragungsfehler: ${error.message}. Das liegt oft an einem DNS-Ausfall von FormSubmit oder einem Ad-Blocker.`);
+      setSubmitError(`Übertragungsfehler: ${error.message}. Sobald die Google-URL eingetragen ist, wird dieser Fehler verschwinden.`);
     } finally {
       setIsSubmitting(false);
     }
