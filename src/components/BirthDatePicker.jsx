@@ -217,7 +217,8 @@ const BirthDatePicker = ({ value, onChange, label = "Geburtsdatum*" }) => {
             </div>
           </motion.div>
         )}
-      </AnimatePresence>
+        </AnimatePresence>
+      </div>
     </div>
   );
 };
