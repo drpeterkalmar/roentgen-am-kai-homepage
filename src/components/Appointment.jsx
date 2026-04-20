@@ -52,7 +52,7 @@ const Appointment = () => {
         setSubmitError("Entschuldigung, die Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es später erneut.");
       }
     } catch (error) {
-      setSubmitError("Netzwerkfehler. Bitte prüfen Sie Ihre Verbindung.");
+      setSubmitError(`Übertragungsfehler: ${error.message}. Bitte prüfen Sie, ob ein Ad-Blocker die Anfrage verhindert.`);
     } finally {
       setIsSubmitting(false);
     }
