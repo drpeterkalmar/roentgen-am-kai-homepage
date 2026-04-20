@@ -40,7 +40,7 @@ const Appointment = () => {
     setSubmitError(null);
 
     // Google Apps Script Integration (Unlimited & Free)
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzjCIV4CoPHMLlUDPMBKe7suk8q79RVkgsx4doCsLM52hToHyWZzWlUaY-V-HEBEap-Dg/exec";
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzY4qWzPryMExyCh-KsbxeGgEKwbuleWKrdFNH98rWXZCk39VTTS3GYVGjkq_PlD4SAYA/exec";
     
     try {
       const response = await fetch(GOOGLE_SCRIPT_URL, {
