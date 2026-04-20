@@ -19,17 +19,23 @@ const BirthDatePicker = ({ value, onChange, label = "Geburtsdatum*" }) => {
     "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"
   ];
 
-  const decades = [];
   const currentYear = new Date().getFullYear();
-  const startDecade = Math.floor(currentYear / 10) * 10;
-  for (let d = startDecade; d >= 1920; d -= 10) {
-    decades.push(d);
-  }
+  const ranges = [
+    { label: "vor 1930", start: 1900, end: 1930 },
+    { label: "1931 - 1940", start: 1931, end: 1940 },
+    { label: "1941 - 1950", start: 1941, end: 1950 },
+    { label: "1951 - 1960", start: 1951, end: 1960 },
+    { label: "1961 - 1970", start: 1961, end: 1970 },
+    { label: "1971 - 1980", start: 1971, end: 1980 },
+    { label: "1981 - 1990", start: 1981, end: 1990 },
+    { label: "1991 - 2000", start: 1991, end: 2000 },
+    { label: "2001 - 2010", start: 2001, end: 2010 },
+    { label: "nach 2010", start: 2011, end: currentYear }
+  ].reverse();
 
-  const getYearsInDecade = (dec) => {
+  const getYearsInInterval = (start, end) => {
     const years = [];
-    for (let y = dec + 9; y >= dec; y--) {
-      // Don't show future years
+    for (let y = end; y >= start; y--) {
       if (y <= currentYear) {
         years.push(y);
       }
@@ -146,17 +152,17 @@ const BirthDatePicker = ({ value, onChange, label = "Geburtsdatum*" }) => {
             <div className="min-h-[220px] max-h-[300px] overflow-y-auto custom-scrollbar pr-1">
               {step === 'decade' && (
                 <div className="grid grid-cols-2 gap-2">
-                  {decades.map(d => (
+                  {ranges.map(range => (
                     <button
-                      key={d}
+                      key={range.label}
                       type="button"
                       onClick={() => {
-                        setTempDate({ ...tempDate, decade: d });
+                        setTempDate({ ...tempDate, startYear: range.start, endYear: range.end });
                         setStep('year');
                       }}
                       className="p-3 text-sm font-bold rounded-xl hover:bg-[#8B2323] hover:text-white border border-gray-50 bg-white/50 shadow-sm transition-all text-gray-700"
                     >
-                      {d}er
+                      {range.label}
                     </button>
                   ))}
                 </div>
@@ -164,7 +170,7 @@ const BirthDatePicker = ({ value, onChange, label = "Geburtsdatum*" }) => {
 
               {step === 'year' && (
                 <div className="grid grid-cols-3 gap-2">
-                  {getYearsInDecade(tempDate.decade).map(y => (
+                  {getYearsInInterval(tempDate.startYear, tempDate.endYear).map(y => (
                     <button
                       key={y}
                       type="button"
