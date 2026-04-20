@@ -27,6 +27,11 @@ const Appointment = () => {
     const handleSubmit = async (e) => {
     e.preventDefault();
     
+    if (!formData.firstName.trim() || !formData.lastName.trim()) {
+      setSubmitError("Bitte geben Sie sowohl Ihren Vor- als auch Ihren Nachnamen an.");
+      return;
+    }
+
     // Manual date validation for mobile reliability
     const selectedDate = new Date(formData.date);
     const today = new Date();
