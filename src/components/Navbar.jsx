@@ -59,7 +59,7 @@ const Navbar = ({ highContrast, setHighContrast }) => {
                 {link.href.startsWith('/#') ? (
                   <a
                     href={link.href}
-                    className={`text-sm font-black tracking-[0.1em] uppercase hover:text-[#8B2323] transition-colors flex items-center gap-1.5 ${
+                    className={`text-sm font-semibold tracking-[0.1em] uppercase hover:text-[#8B2323] transition-colors flex items-center gap-1.5 ${
                       isScrolled ? 'text-gray-800' : 'text-gray-950'
                     }`}
                   >
@@ -69,7 +69,7 @@ const Navbar = ({ highContrast, setHighContrast }) => {
                 ) : (
                   <Link
                     to={link.href}
-                    className={`text-sm font-black tracking-[0.1em] uppercase hover:text-[#8B2323] transition-colors flex items-center gap-1.5 ${
+                    className={`text-sm font-semibold tracking-[0.1em] uppercase hover:text-[#8B2323] transition-colors flex items-center gap-1.5 ${
                       isScrolled ? 'text-gray-800' : 'text-gray-950'
                     } ${location.pathname === link.href ? 'text-[#8B2323]' : ''}`}
                   >
@@ -144,7 +144,7 @@ const Navbar = ({ highContrast, setHighContrast }) => {
                 {link.href.startsWith('/#') ? (
                   <a
                     href={link.href}
-                    className="text-lg font-bold text-gray-800 py-2"
+                    className="text-lg font-semibold text-gray-800 py-2"
                     onClick={() => !link.dropdown && setIsMenuOpen(false)}
                   >
                     {link.name}
@@ -152,7 +152,7 @@ const Navbar = ({ highContrast, setHighContrast }) => {
                 ) : (
                   <Link
                     to={link.href}
-                    className="text-lg font-bold text-gray-800 py-2"
+                    className="text-lg font-semibold text-gray-800 py-2"
                     onClick={() => !link.dropdown && setIsMenuOpen(false)}
                   >
                     {link.name}
