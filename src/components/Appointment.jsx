@@ -29,8 +29,7 @@ const Appointment = () => {
     setSubmitError(null);
 
     // Google Apps Script Integration (Unlimited & Free)
-    // REPLACE THIS URL with your Deployment URL from Google Sheets
-    const GOOGLE_SCRIPT_URL = "PASTE_YOUR_GOOGLE_SCRIPT_URL_HERE";
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzjCIV4CoPHMLlUDPMBKe7suk8q79RVkgsx4doCsLM52hToHyWZzWlUaY-V-HEBEap-Dg/exec";
     
     try {
       // We use 'text/plain' to bypass the CORS preflight OPTIONS request
