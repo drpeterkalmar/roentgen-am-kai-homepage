@@ -209,10 +209,16 @@ const Appointment = () => {
                               type="text" 
                               inputMode="numeric"
                               pattern="[0-9]*"
+                              maxLength="4"
                               placeholder="SVNr. (erste 4 Ziffern)*" 
                               required
                               value={formData.svnr}
-                              onChange={(e) => setFormData({...formData, svnr: e.target.value.replace(/\D/g, '')})}
+                              onChange={(e) => {
+                                const val = e.target.value.replace(/\D/g, '');
+                                if (val.length <= 4) {
+                                  setFormData({...formData, svnr: val});
+                                }
+                              }}
                               className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
                             />
                           </div>
