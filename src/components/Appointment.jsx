@@ -32,10 +32,16 @@ const Appointment = () => {
       return;
     }
 
-    // Manual date validation for mobile reliability
     const selectedDate = new Date(formData.date);
     const today = new Date();
     today.setHours(0, 0, 0, 0);
+    
+    // Check if it's a weekend (0 = Sunday, 6 = Saturday)
+    const dayOfWeek = selectedDate.getDay();
+    if (dayOfWeek === 0 || dayOfWeek === 6) {
+      setSubmitError("Wochenend-Termine sind leider nicht möglich. Bitte wählen Sie einen Werktag (Mo-Fr).");
+      return;
+    }
     
     if (selectedDate < today) {
       setSubmitError("Bitte wählen Sie ein Datum in der Gegenwart oder Zukunft.");
@@ -309,7 +315,19 @@ const Appointment = () => {
                             required
                             min={new Date().toISOString().split('T')[0]}
                             value={formData.date}
-                            onChange={(e) => setFormData({...formData, date: e.target.value})}
+                            onChange={(e) => {
+                              const dateVal = e.target.value;
+                              if (dateVal) {
+                                const day = new Date(dateVal).getDay();
+                                if (day === 0 || day === 6) {
+                                  setSubmitError("Bitte wählen Sie einen Werktag (Mo-Fr). Samstage und Sonntage sind nicht möglich.");
+                                  setFormData({...formData, date: ''});
+                                  return;
+                                }
+                              }
+                              setSubmitError(null);
+                              setFormData({...formData, date: dateVal});
+                            }}
                             className={`w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none transition-all ${!formData.date ? 'text-transparent' : 'text-gray-950'}`} 
                           />
                           {!formData.date && (
