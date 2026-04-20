@@ -61,11 +61,6 @@ function doPost(e) {
     
     sheet.getRange(2, 1, 1, rowData.length).setValues([rowData]);
     
-    // Email Notification
-    const fullName = (data.firstName || '') + " " + (data.lastName || '');
-    MailApp.sendEmail(NOTIFICATION_EMAIL, "⚠️ Neu: Terminanfrage " + fullName, 
-      "Details:\n" + JSON.stringify(data, null, 2) + "\n\nLink: " + ss.getUrl());
-
     return ContentService.createTextOutput(JSON.stringify({ result: 'success' })).setMimeType(ContentService.MimeType.JSON);
   } catch (error) {
     return ContentService.createTextOutput(JSON.stringify({ result: 'error', error: error.toString() })).setMimeType(ContentService.MimeType.JSON);
