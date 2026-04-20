@@ -26,23 +26,25 @@ function doPost(e) {
     
     // Header setup if empty
     if (sheet.getLastRow() === 0) {
-      const headers = ['Zeitstempel', 'Vorname', 'Nachname', 'Telefon', 'Email', 'SVNr', 'Geburtsdatum', 'Kasse', 'Untersuchung', 'Wunschdatum', 'Kommentare', 'Status'];
+      const headers = ['Zeitstempel', 'Vorname', 'Nachname', 'Telefon', 'Email', 'SVNr', 'Geburtsdatum', 'Kasse', 'Untersuchung', 'Kommentare', 'Wunschdatum', 'Status'];
       sheet.appendRow(headers);
     }
 
     const data = JSON.parse(e.postData.contents);
+    console.log("Raw Payload:", e.postData.contents);
+    console.log("Parsed Data:", data);
     const rowData = [
       new Date(), 
-      data.firstName || '', 
-      data.lastName || '', 
-      data.phone || '', 
-      data.email || '', 
-      data.svnr || '', 
-      data.birthDate || '', 
-      data.insurance || '', 
-      data.service || '', 
-      data.date || '', 
-      data.comments || '', 
+      String(data.firstName || ''), 
+      String(data.lastName || ''), 
+      String(data.phone || ''), 
+      String(data.email || ''), 
+      String(data.svnr || ''), 
+      String(data.birthDate || ''), 
+      String(data.insurance || ''), 
+      String(data.service || ''), 
+      String(data.comments || ''), 
+      String(data.date || ''), 
       "Neu"
     ];
     
