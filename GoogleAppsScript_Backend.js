@@ -110,6 +110,9 @@ function applyProfessionalLayout() {
   const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
   const sheet = ss.getSheetByName(SHEET_NAME);
   
+  // Bereinigt alte Validierungen (Dropdowns) aus verschobenen Spalten
+  sheet.getRange("A2:L1000").clearDataValidations();
+  
   sheet.setFrozenRows(1);
   const headerRange = sheet.getRange("A1:L1");
   headerRange.setBackground("#8B2323").setFontColor("#FFFFFF").setFontWeight("bold").setHorizontalAlignment("center");
