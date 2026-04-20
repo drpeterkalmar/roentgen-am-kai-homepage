@@ -53,7 +53,6 @@ const RoentgenPage = () => {
             'Videokinematographie des Schluckaktes (Videoschluckakt)',
             'Magenröntgen',
             'Magen-/Dünndarmpassage',
-            'Dickdarmröntgen im Doppelkontrast (Irrigoskopie)',
             'Darstellung der Eileiter bzw. -durchgängigkeit (Hysterosalpingographie)'
           ].map((item, i) => (
             <div key={i} className="flex items-center gap-3 p-4 bg-gray-50 rounded-2xl border border-gray-100">

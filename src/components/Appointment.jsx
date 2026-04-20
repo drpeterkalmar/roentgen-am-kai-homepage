@@ -95,7 +95,7 @@ const Appointment = () => {
                   >
                     <h3 className="text-2xl font-bold mb-6">Wählen Sie die gewünschte Untersuchung</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      {['Röntgen', 'Ultraschall', 'Mammographie', 'DVT', 'Knochendichte', 'Körperfettmessung', 'Phlebographie'].map((svc) => (
+                      {['Röntgen', 'Ultraschall', 'Mammographie', 'DVT', 'Knochendichte', 'Körperfettmessung'].map((svc) => (
                         <button 
                           key={svc}
                           onClick={() => setFormData({...formData, service: svc})}
@@ -168,6 +168,7 @@ const Appointment = () => {
                             <option>ÖGK</option>
                             <option>SVS</option>
                             <option>BVAEB</option>
+                            <option>KFA</option>
                             <option>Privat</option>
                           </select>
                         </div>
