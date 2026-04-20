@@ -26,7 +26,7 @@ function doPost(e) {
     
     // Header setup if empty
     if (sheet.getLastRow() === 0) {
-      const headers = ['Zeitstempel', 'Vorname', 'Nachname', 'Telefon', 'SVNr', 'Geburtsdatum', 'Untersuchung', 'Wunschdatum', 'Kommentare', 'Status'];
+      const headers = ['Zeitstempel', 'Vorname', 'Nachname', 'Telefon', 'Email', 'SVNr', 'Geburtsdatum', 'Kasse', 'Untersuchung', 'Wunschdatum', 'Kommentare', 'Status'];
       sheet.appendRow(headers);
     }
 
@@ -36,8 +36,10 @@ function doPost(e) {
       data.firstName || '', 
       data.lastName || '', 
       data.phone || '', 
+      data.email || '', 
       data.svnr || '', 
       data.birthDate || '', 
+      data.insurance || '', 
       data.service || '', 
       data.date || '', 
       data.comments || '', 
@@ -76,7 +78,7 @@ function markSelectedAsDone() {
   
   if (activeRow < 2) return;
   
-  sheet.getRange(activeRow, 10).setValue('Erledigt');
+  sheet.getRange(activeRow, 12).setValue('Erledigt');
   applyProfessionalLayout();
 }
 
@@ -100,7 +102,7 @@ function cleanupDoneRows() {
   const sheet = ss.getSheetByName(SHEET_NAME);
   const data = sheet.getDataRange().getValues();
   for (let i = data.length - 1; i >= 1; i--) {
-    if (data[i][9] && data[i][9].toString().toLowerCase() === 'erledigt') {
+    if (data[i][11] && data[i][11].toString().toLowerCase() === 'erledigt') {
       sheet.deleteRow(i + 1);
     }
   }
@@ -115,12 +117,12 @@ function applyProfessionalLayout() {
   
   // Style Headers
   sheet.setFrozenRows(1);
-  const headerRange = sheet.getRange("A1:J1");
+  const headerRange = sheet.getRange("A1:L1");
   headerRange.setBackground("#8B2323").setFontColor("#FFFFFF").setFontWeight("bold").setHorizontalAlignment("center");
-  sheet.autoResizeColumns(1, 10);
+  sheet.autoResizeColumns(1, 12);
   
   // Status Dropdown range
-  const statusRange = sheet.getRange("J2:J1000");
+  const statusRange = sheet.getRange("L2:L1000");
   
   // Apply Dropdown
   const rule = SpreadsheetApp.newDataValidation()
