@@ -7,10 +7,10 @@ const SHEET_NAME = 'Terminanfragen';
 function onOpen() {
   const ui = SpreadsheetApp.getUi();
   ui.createMenu('Kai-Management')
-      .addItem('📅 Nach Datum sortieren (Neueste oben)', 'sortSheetByDate')
-      .addItem('🗑️ Alle erledigten (grünen) Zeilen löschen', 'cleanupDoneRows')
+      .addItem('✅ Markierte Zeile als erledigt setzen', 'markSelectedAsDone')
+      .addItem('📅 Alles korrigieren (Layout & Sortierung)', 'fullMaintenance')
       .addSeparator()
-      .addItem('🎨 Layout & Dropdowns auffrischen', 'applyProfessionalLayout')
+      .addItem('🗑️ Alle erledigten (grünen) Zeilen löschen', 'cleanupDoneRows')
       .addToUi();
 }
 
@@ -24,33 +24,20 @@ function doPost(e) {
     const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
     let sheet = ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
     
-    if (!e.postData || !e.postData.contents) {
-      throw new Error("No data received");
+    // Header check
+    if (sheet.getLastRow() === 0) {
+      const headers = ['Zeitstempel', 'Vorname', 'Nachname', 'Telefon', 'SVNr', 'Geburtsdatum', 'Untersuchung', 'Wunschdatum', 'Kommentare', 'Status'];
+      sheet.appendRow(headers);
     }
-    
+
     const data = JSON.parse(e.postData.contents);
+    const rowData = [new Date(), data.firstName || '', data.lastName || '', data.phone || '', data.svnr || '', data.birthDate || '', data.service || '', data.date || '', data.comments || '', "Neu"];
     
-    // Data mapping
-    const rowData = [
-      new Date(), 
-      data.firstName || '', 
-      data.lastName || '', 
-      data.phone || '', 
-      data.svnr || '', 
-      data.birthDate || '', 
-      data.service || '', 
-      data.date || '', 
-      data.comments || '', 
-      "Neu"
-    ];
+    // THE DIRECT INSERT METHOD (Always Row 2)
+    sheet.insertRowBefore(2);
+    sheet.getRange(2, 1, 1, rowData.length).setValues([rowData]);
     
-    // 1. Append at the end (safest for bulk handling)
-    sheet.appendRow(rowData);
-    
-    // 2. IMMEDIATELY AUTOSORT (Newest at Row 2)
-    sortSheetByDate();
-    
-    // 3. Ensure formatting and dropdowns are applied
+    // Apply Formatting & Dropdowns immediately
     applyProfessionalLayout();
 
     return ContentService.createTextOutput(JSON.stringify({ result: 'success' })).setMimeType(ContentService.MimeType.JSON);
@@ -60,25 +47,44 @@ function doPost(e) {
 }
 
 /**
- * Sorts the entire sheet by the first column (Timestamp) descending
+ * Combined maintenance: Sorts and reapplies layout
  */
+function fullMaintenance() {
+  sortSheetByDate();
+  applyProfessionalLayout();
+  SpreadsheetApp.getUi().alert('Fertig! Die Tabelle ist nun sortiert und das Layout wurde aufgefrischt.');
+}
+
+/**
+ * Markiert die aktuell ausgewählte Zeile als Erledigt
+ */
+function markSelectedAsDone() {
+  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+  const sheet = ss.getSheetByName(SHEET_NAME);
+  const activeRow = ss.getActiveRange().getRow();
+  
+  if (activeRow < 2) {
+    SpreadsheetApp.getUi().alert('Bitte wähle eine Zeile unter dem Header aus.');
+    return;
+  }
+  
+  sheet.getRange(activeRow, 10).setValue('Erledigt');
+  applyProfessionalLayout();
+}
+
 function sortSheetByDate() {
   const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
   const sheet = ss.getSheetByName(SHEET_NAME);
   if (sheet.getLastRow() > 1) {
     const range = sheet.getRange(2, 1, sheet.getLastRow() - 1, sheet.getLastColumn());
-    range.sort({column: 1, ascending: false}); // Column 1 (Timestamp), Descending = Newest first
+    range.sort({column: 1, ascending: false});
   }
 }
 
-/**
- * Deletes all rows where the "Status" column is set to "Erledigt"
- */
 function cleanupDoneRows() {
   const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
   const sheet = ss.getSheetByName(SHEET_NAME);
   const data = sheet.getDataRange().getValues();
-  // Iterate backwards to safely delete
   for (let i = data.length - 1; i >= 1; i--) {
     if (data[i][9] && data[i][9].toString().toLowerCase() === 'erledigt') {
       sheet.deleteRow(i + 1);
@@ -86,24 +92,16 @@ function cleanupDoneRows() {
   }
 }
 
-/**
- * Applies headers, frozen rows, auto-resize, and status dropdowns
- */
 function applyProfessionalLayout() {
   const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
   const sheet = ss.getSheetByName(SHEET_NAME);
   
-  // Frozen Row
   sheet.setFrozenRows(1);
-  
-  // Header Style
   const headerRange = sheet.getRange("A1:J1");
   headerRange.setBackground("#8B2323").setFontColor("#FFFFFF").setFontWeight("bold").setHorizontalAlignment("center");
-  
-  // Auto Resize Column
   sheet.autoResizeColumns(1, 10);
   
-  // 1. SETUP DROPDOWN FOR STATUS (Column J)
+  // Status Dropdowns (Column J)
   const statusRange = sheet.getRange("J2:J1000");
   const rule = SpreadsheetApp.newDataValidation()
     .requireValueInList(['Neu', 'In Bearbeitung', 'Erledigt'], true)
@@ -111,19 +109,9 @@ function applyProfessionalLayout() {
     .build();
   statusRange.setDataValidation(rule);
   
-  // 2. SETUP CONDITIONAL FORMATTING
+  // Color Formatting
   const rules = [];
-  // Green for Erledigt
-  rules.push(SpreadsheetApp.newConditionalFormatRule()
-    .whenTextEqualTo("Erledigt")
-    .setBackground("#D9EAD3")
-    .build());
-    
-  // Yellow for In Bearbeitung
-  rules.push(SpreadsheetApp.newConditionalFormatRule()
-    .whenTextEqualTo("In Bearbeitung")
-    .setBackground("#FFF2CC")
-    .build());
-    
+  rules.push(SpreadsheetApp.newConditionalFormatRule().whenTextEqualTo("Erledigt").setBackground("#D9EAD3").build());
+  rules.push(SpreadsheetApp.newConditionalFormatRule().whenTextEqualTo("In Bearbeitung").setBackground("#FFF2CC").build());
   sheet.setConditionalFormatRules(rules);
 }
