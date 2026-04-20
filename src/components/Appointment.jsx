@@ -139,7 +139,7 @@ const Appointment = () => {
                           id="name"
                           type="text" 
                           placeholder="Vollständiger Name" 
-                          className="w-full p-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
+                          className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
                         />
                       </div>
                       <div>
@@ -148,7 +148,7 @@ const Appointment = () => {
                           id="email"
                           type="email" 
                           placeholder="E-Mail Adresse" 
-                          className="w-full p-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
+                          className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
                         />
                       </div>
                       <div>
@@ -157,14 +157,17 @@ const Appointment = () => {
                           id="phone"
                           type="tel" 
                           placeholder="Telefonnummer" 
-                          className="w-full p-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
+                          className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
                         />
                       </div>
-                      <div className="grid grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                           <label htmlFor="insurance" className="sr-only">Kasse wählen</label>
-                          <select id="insurance" className="w-full p-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none bg-white text-gray-950">
-                            <option>Kasse wählen</option>
+                          <select 
+                            id="insurance" 
+                            className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none bg-white text-gray-950"
+                          >
+                            <option value="">Kasse wählen</option>
                             <option>ÖGK</option>
                             <option>SVS</option>
                             <option>BVAEB</option>
@@ -174,7 +177,14 @@ const Appointment = () => {
                         </div>
                         <div>
                           <label htmlFor="date" className="sr-only">Wunschtermin</label>
-                          <input id="date" type="date" className="w-full p-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none text-gray-950" />
+                          <input 
+                            id="date" 
+                            type="text" 
+                            placeholder="Wunschdatum"
+                            onFocus={(e) => (e.target.type = "date")}
+                            onBlur={(e) => { if(!e.target.value) e.target.type = "text" }}
+                            className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950" 
+                          />
                         </div>
                       </div>
                     </div>
