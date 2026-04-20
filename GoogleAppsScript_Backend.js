@@ -2,7 +2,7 @@ const SPREADSHEET_ID = '1ZyCnSzdndq4Z2iKzz8M0gq1K35byKMHGrF7vEobQWmw';
 const SHEET_NAME = 'Terminanfragen';
 
 /**
- * Adds a custom menu to the Google Sheet when opened
+ * Erstellt das Menü in Google Sheets
  */
 function onOpen() {
   const ui = SpreadsheetApp.getUi();
@@ -15,7 +15,7 @@ function onOpen() {
 }
 
 /**
- * Handles the form submission from the website
+ * Verarbeitet die Daten von der Webseite
  */
 function doPost(e) {
   const lock = LockService.getScriptLock();
@@ -24,69 +24,68 @@ function doPost(e) {
     const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
     let sheet = ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
     
-    // Header setup if empty
+    // Header initialisieren, falls Tabelle leer
     if (sheet.getLastRow() === 0) {
       const headers = ['Zeitstempel', 'Vorname', 'Nachname', 'Telefon', 'Email', 'SVNr', 'Geburtsdatum', 'Kasse', 'Untersuchung', 'Kommentare', 'Wunschdatum', 'Status'];
       sheet.appendRow(headers);
     }
 
     const data = JSON.parse(e.postData.contents);
-    console.log("Raw Payload:", e.postData.contents);
-    console.log("Parsed Data:", data);
+    
+    // EXTREM ROBUSTE DATENZUORDNUNG
     const rowData = [
-      new Date(), 
-      String(data.firstName || ''), 
-      String(data.lastName || ''), 
-      String(data.phone || ''), 
-      String(data.email || ''), 
-      String(data.svnr || ''), 
-      String(data.birthDate || ''), 
-      String(data.insurance || ''), 
-      String(data.service || ''), 
-      String(data.comments || ''), 
-      String(data.date || ''), 
-      "Neu"
+      new Date(),                                   // A (1) Zeitstempel
+      String(data.firstName || ""),                 // B (2) Vorname
+      String(data.lastName || ""),                  // C (3) Nachname
+      String(data.phone || ""),                     // D (4) Telefon
+      String(data.email || ""),                     // E (5) Email
+      String(data.svnr || ""),                      // F (6) SVNr
+      String(data.birthDate || ""),                 // G (7) Geburtsdatum
+      String(data.insurance || ""),                 // H (8) Kasse
+      String(data.service || ""),                   // I (9) Untersuchung
+      String(data.comments || "").substring(0,500), // J (10) Kommentare
+      String(data.date || ""),                      // K (11) Wunschdatum
+      "Neu"                                         // L (12) Status
     ];
     
-    // INSERT AT TOP (Direct Method)
+    // Neue Zeile oben einfügen
     sheet.insertRowBefore(2);
     sheet.getRange(2, 1, 1, rowData.length).setValues([rowData]);
     
-    // Refresh Layout
+    // Layout aktualisieren
     applyProfessionalLayout();
 
     return ContentService.createTextOutput(JSON.stringify({ result: 'success' })).setMimeType(ContentService.MimeType.JSON);
+    
   } catch (error) {
+    // FEHLER DIREKT IN DIE TABELLE SCHREIBEN (Falls etwas schiefgeht)
+    try {
+      const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+      const sheet = ss.getSheetByName(SHEET_NAME);
+      sheet.insertRowBefore(2);
+      sheet.getRange(2, 1).setValue("FEHLER: " + error.toString());
+    } catch (e) {}
+    
     return ContentService.createTextOutput(JSON.stringify({ result: 'error', error: error.toString() })).setMimeType(ContentService.MimeType.JSON);
   } finally { lock.releaseLock(); }
 }
 
-/**
- * Combined maintenance: Re-applies layout and sorting
- */
 function fullMaintenance() {
   sortSheetByDate();
   applyProfessionalLayout();
   SpreadsheetApp.getUi().alert('Tabelle wurde erfolgreich aktualisiert.');
 }
 
-/**
- * Marks currently selected row as "Erledigt"
- */
 function markSelectedAsDone() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const sheet = ss.getSheetByName(SHEET_NAME);
   const activeRow = ss.getActiveRange().getRow();
-  
   if (activeRow < 2) return;
   
   sheet.getRange(activeRow, 12).setValue('Erledigt');
   applyProfessionalLayout();
 }
 
-/**
- * Sorts sheet by timestamp descending
- */
 function sortSheetByDate() {
   const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
   const sheet = ss.getSheetByName(SHEET_NAME);
@@ -96,9 +95,6 @@ function sortSheetByDate() {
   }
 }
 
-/**
- * Deletes all rows marked as "Erledigt"
- */
 function cleanupDoneRows() {
   const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
   const sheet = ss.getSheetByName(SHEET_NAME);
@@ -110,38 +106,28 @@ function cleanupDoneRows() {
   }
 }
 
-/**
- * Applies headers, dropdowns, and conditional formatting
- */
 function applyProfessionalLayout() {
   const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
   const sheet = ss.getSheetByName(SHEET_NAME);
   
-  // Style Headers
   sheet.setFrozenRows(1);
   const headerRange = sheet.getRange("A1:L1");
   headerRange.setBackground("#8B2323").setFontColor("#FFFFFF").setFontWeight("bold").setHorizontalAlignment("center");
   sheet.autoResizeColumns(1, 12);
   
-  // Status Dropdown range
   const statusRange = sheet.getRange("L2:L1000");
-  
-  // Apply Dropdown
   const rule = SpreadsheetApp.newDataValidation()
     .requireValueInList(['Neu', 'In Bearbeitung', 'Erledigt'], true)
     .setAllowInvalid(false)
     .build();
   statusRange.setDataValidation(rule);
   
-  // Apply Conditional Formatting
   const rules = [];
-  
   rules.push(SpreadsheetApp.newConditionalFormatRule()
     .whenTextEqualTo("Erledigt")
     .setBackground("#D9EAD3")
     .setRanges([statusRange])
     .build());
-    
   rules.push(SpreadsheetApp.newConditionalFormatRule()
     .whenTextEqualTo("In Bearbeitung")
     .setBackground("#FFF2CC")
