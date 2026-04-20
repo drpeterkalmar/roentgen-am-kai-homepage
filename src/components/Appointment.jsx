@@ -23,10 +23,35 @@ const Appointment = () => {
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
 
-    const handleSubmit = (e) => {
-    // We remove e.preventDefault() to allow standard form submission for the first time
-    // This ensures FormSubmit.co sends the activation email and avoids CORS blocks
+    const handleSubmit = async (e) => {
+    e.preventDefault();
     setIsSubmitting(true);
+    setSubmitError(null);
+
+    // Getform.io (Forminit) Integration - Stable Alternative
+    // REPLACE THIS URL with the one from the user
+    const GETFORM_URL = "https://getform.io/f/YOUR_ENDPOINT_HERE";
+    
+    try {
+      const response = await fetch(GETFORM_URL, {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        nextStep();
+      } else {
+        setSubmitError("Entschuldigung, die Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es später erneut.");
+      }
+    } catch (error) {
+      setSubmitError(`Übertragungsfehler: ${error.message}.`);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const steps = [
@@ -144,18 +169,9 @@ const Appointment = () => {
                   >
                     <h3 className="text-2xl font-bold mb-6">Persönliche Daten & Termin</h3>
                     <form 
-                      action="https://formsubmit.co/ordination@roentgen-am-kai.at" 
-                      method="POST"
                       onSubmit={handleSubmit} 
                       className="space-y-6"
                     >
-                      {/* Hidden Fields for FormSubmit */}
-                      <input type="hidden" name="_subject" value={`Neue Terminanfrage: ${formData.name}`} />
-                      <input type="hidden" name="_captcha" value="false" />
-                      <input type="hidden" name="_next" value={window.location.href} />
-                      
-                      {/* Pass all current state as hidden fields to ensure standard POST works */}
-                      <input type="hidden" name="Gewünschte_Untersuchung" value={formData.service} />
                       
                       <div className="grid grid-cols-1 gap-4">
                         <div>
