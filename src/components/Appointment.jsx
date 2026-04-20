@@ -23,23 +23,27 @@ const Appointment = () => {
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
 
-  const handleSubmit = async (e) => {
+    const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitError(null);
 
-    // Formspree Integration
-    // Replace 'FORM_ID' with your actual Formspree Form ID
-    const FORM_ID = "ordination@roentgen-am-kai.at"; // Or the hash ID if provided
+    // FormSubmit.co Integration (Free Alternative)
+    const RECIPIENT_EMAIL = "ordination@roentgen-am-kai.at";
     
     try {
-      const response = await fetch(`https://formspree.io/f/${FORM_ID}`, {
+      const response = await fetch(`https://formsubmit.co/ajax/${RECIPIENT_EMAIL}`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          ...formData,
+          _subject: `Neue Terminanfrage: ${formData.name}`,
+          _captcha: "false",
+          _honey: "" // Spam protection
+        })
       });
 
       if (response.ok) {
