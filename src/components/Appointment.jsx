@@ -57,7 +57,7 @@ const Appointment = () => {
     setSubmitError(null);
 
     // Google Apps Script Integration (Unlimited & Free)
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby_TfxIfeqfdmbz8SxbiN0bRrdNUyCtPdidUMlisbUSkjwgz-dMoVOQIyLDWQswCGPGzw/exec";
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz5Livxiqmdr-5IlwXsS_D75j13XSW7OhtIroBYbQowpTg3v4TijakfeWw2jfmv_Msa6A/exec";
     
     // Metadata fields for Google Sheet/Email notification
     const fullName = `${formData.firstName} ${formData.lastName}`;
