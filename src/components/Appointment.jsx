@@ -25,6 +25,17 @@ const Appointment = () => {
 
     const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Manual date validation for mobile reliability
+    const selectedDate = new Date(formData.date);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    if (selectedDate < today) {
+      setSubmitError("Bitte wählen Sie ein Datum in der Gegenwart oder Zukunft.");
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitError(null);
 
@@ -32,27 +43,24 @@ const Appointment = () => {
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzjCIV4CoPHMLlUDPMBKe7suk8q79RVkgsx4doCsLM52hToHyWZzWlUaY-V-HEBEap-Dg/exec";
     
     try {
-      // We use 'text/plain' to bypass the CORS preflight OPTIONS request
-      // which Google Apps Script doesn't support well for JSON.
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
-        mode: 'cors',
         headers: { 
-          'Content-Type': 'text/plain'
+          'Content-Type': 'text/plain' // Keep text/plain for CORS bypass
         },
-        body: JSON.stringify(formData),
-        redirect: 'follow'
+        body: JSON.stringify(formData)
       });
 
-      const result = await response.json();
-
-      if (result.result === 'success') {
+      // Google Scripts sometimes return opaque responses due to redirects
+      // We check if the request was at least sent
+      if (response.ok || response.type === 'opaque') {
         nextStep();
       } else {
-        setSubmitError("Entschuldigung, die Anfrage konnte nicht gespeichert werden: " + (result.error || "Unbekannter Fehler"));
+        const errorText = await response.text();
+        setSubmitError(`Google Server Fehler: ${response.status}. ${errorText.substring(0, 50)}`);
       }
     } catch (error) {
-      setSubmitError(`Übertragungsfehler: ${error.message}. Sobald die Google-URL eingetragen ist, wird dieser Fehler verschwinden.`);
+      setSubmitError(`Übertragungsfehler: ${error.message}. Bitte stellen Sie sicher, dass Sie den Google-Script-Zugriff für 'Jeder' (Anyone) erlaubt haben.`);
     } finally {
       setIsSubmitting(false);
     }
