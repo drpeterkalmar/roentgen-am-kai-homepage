@@ -85,7 +85,7 @@ const BirthDatePicker = ({ value, onChange, label = "Geburtsdatum*" }) => {
   }, []);
 
   return (
-    <div className="relative" ref={containerRef}>
+    <div className="w-full" ref={containerRef}>
       {/* Hidden input for HTML5 validation */}
       <input 
         type="text" 
@@ -96,26 +96,27 @@ const BirthDatePicker = ({ value, onChange, label = "Geburtsdatum*" }) => {
         readOnly 
       />
       
-      <button
-        type="button"
-        onClick={() => setIsOpen(!isOpen)}
-        className={`w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none text-left transition-all bg-white flex items-center justify-between shadow-sm hover:border-gray-400 ${!value ? 'text-gray-500' : 'text-gray-950'}`}
-      >
-        <span className="font-medium tracking-tight">
-          {value ? formatDate(value) : label}
-        </span>
-        <CalendarIcon size={18} className="text-gray-400" />
-      </button>
+      <div className="relative">
+        <button
+          type="button"
+          onClick={() => setIsOpen(!isOpen)}
+          className={`w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none text-left transition-all bg-white flex items-center justify-between shadow-sm hover:border-gray-400 ${!value ? 'text-gray-500' : 'text-gray-950'}`}
+        >
+          <span className="font-medium tracking-tight">
+            {value ? formatDate(value) : label}
+          </span>
+          <CalendarIcon size={18} className="text-gray-400" />
+        </button>
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -10, scale: 0.95 }}
-            style={{ originY: 0 }}
-            className="absolute z-[100] top-full left-0 w-full sm:w-80 mt-2 glass p-4 rounded-3xl shadow-2xl border border-white/50 overflow-hidden"
-          >
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -10, scale: 0.95 }}
+              style={{ originY: 0 }}
+              className="absolute z-[100] top-[calc(100%+8px)] left-0 w-full sm:w-80 glass p-4 rounded-3xl shadow-2xl border border-white/50 overflow-hidden"
+            >
             {/* Header */}
             <div className="flex justify-between items-center mb-4 pb-2 border-b border-gray-100/50">
               <div className="flex items-center gap-2">

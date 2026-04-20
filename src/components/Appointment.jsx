@@ -182,7 +182,7 @@ const Appointment = () => {
                             className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
                           />
                         </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-start">
                           <BirthDatePicker 
                             value={formData.birthDate} 
                             onChange={(val) => setFormData({...formData, birthDate: val})} 
@@ -201,7 +201,7 @@ const Appointment = () => {
                             />
                           </div>
                         </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-start">
                           <div>
                             <label htmlFor="phone" className="sr-only">Telefonnummer*</label>
                             <input 
@@ -228,7 +228,7 @@ const Appointment = () => {
                             />
                           </div>
                         </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-start">
                           <div>
                             <label htmlFor="insurance" className="sr-only">Kasse wählen*</label>
                             <select 
