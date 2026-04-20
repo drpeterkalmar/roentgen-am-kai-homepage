@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Phone, Calendar, ChevronDown, Sparkles } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = ({ highContrast, setHighContrast }) => {
   const [isScrolled, setIsScrolled] = useState(false);
