@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Calendar, User, ClipboardList, CheckCircle2, ArrowRight, Shield } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import BirthDatePicker from './BirthDatePicker';
 
 const Appointment = () => {
   const [step, setStep] = useState(1);
@@ -182,23 +183,10 @@ const Appointment = () => {
                           />
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                          <div className="relative">
-                            <label htmlFor="birthDate" className="sr-only">Geburtsdatum*</label>
-                            <input 
-                              id="birthDate" 
-                              name="birthDate"
-                              type="date" 
-                              required
-                              value={formData.birthDate}
-                              onChange={(e) => setFormData({...formData, birthDate: e.target.value})}
-                              className={`w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none transition-all ${!formData.birthDate ? 'text-transparent' : 'text-gray-950'}`} 
-                            />
-                            {!formData.birthDate && (
-                              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none">
-                                Geburtsdatum*
-                              </span>
-                            )}
-                          </div>
+                          <BirthDatePicker 
+                            value={formData.birthDate} 
+                            onChange={(val) => setFormData({...formData, birthDate: val})} 
+                          />
                           <div>
                             <label htmlFor="svnr" className="sr-only">SVNr.*</label>
                             <input 
