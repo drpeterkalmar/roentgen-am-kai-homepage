@@ -31,7 +31,7 @@ const BirthDatePicker = ({ value, onChange, label = "Geburtsdatum*" }) => {
     { label: "1991 - 2000", start: 1991, end: 2000 },
     { label: "2001 - 2010", start: 2001, end: 2010 },
     { label: "nach 2010", start: 2011, end: currentYear }
-  ].reverse();
+  ];
 
   const getYearsInInterval = (start, end) => {
     const years = [];
