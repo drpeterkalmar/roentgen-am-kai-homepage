@@ -28,27 +28,36 @@ const Appointment = () => {
     setIsSubmitting(true);
     setSubmitError(null);
 
-    // Getform.io (Forminit) Integration - Stable Alternative
-    // REPLACE THIS URL with the one from the user
-    const GETFORM_URL = "https://getform.io/f/YOUR_ENDPOINT_HERE";
+    // FormSubmit.co Integration (Using robust FormData approach)
+    const RECIPIENT_EMAIL = "ordination@roentgen-am-kai.at";
+    const URL = `https://formsubmit.co/ajax/${RECIPIENT_EMAIL}`;
     
     try {
-      const response = await fetch(GETFORM_URL, {
+      const submissionData = new FormData();
+      Object.entries(formData).forEach(([key, value]) => {
+        submissionData.append(key, value);
+      });
+      
+      // Metadata fields for FormSubmit
+      submissionData.append("_subject", `Neue Terminanfrage: ${formData.name}`);
+      submissionData.append("_captcha", "false");
+      submissionData.append("_honey", ""); // Honeypot spam protection
+
+      const response = await fetch(URL, {
         method: 'POST',
         headers: { 
-          'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        body: JSON.stringify(formData)
+        body: submissionData
       });
 
       if (response.ok) {
         nextStep();
       } else {
-        setSubmitError("Entschuldigung, die Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es später erneut.");
+        setSubmitError("Entschuldigung, die Anfrage konnte nicht gesendet werden. Bitte verifizieren Sie Ihre E-Mail bei FormSubmit.");
       }
     } catch (error) {
-      setSubmitError(`Übertragungsfehler: ${error.message}.`);
+      setSubmitError(`Übertragungsfehler: ${error.message}. Das liegt oft an einem DNS-Ausfall von FormSubmit oder einem Ad-Blocker.`);
     } finally {
       setIsSubmitting(false);
     }
