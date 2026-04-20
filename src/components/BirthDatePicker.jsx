@@ -110,10 +110,11 @@ const BirthDatePicker = ({ value, onChange, label = "Geburtsdatum*" }) => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+            initial={{ opacity: 0, y: -10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 10, scale: 0.95 }}
-            className="absolute z-[100] bottom-full sm:top-full left-0 w-full sm:w-80 mb-2 sm:mb-0 sm:mt-2 glass p-4 rounded-3xl shadow-2xl border border-white/50 overflow-hidden"
+            exit={{ opacity: 0, y: -10, scale: 0.95 }}
+            style={{ originY: 0 }}
+            className="absolute z-[100] top-full left-0 w-full sm:w-80 mt-2 glass p-4 rounded-3xl shadow-2xl border border-white/50 overflow-hidden"
           >
             {/* Header */}
             <div className="flex justify-between items-center mb-4 pb-2 border-b border-gray-100/50">
