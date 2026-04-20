@@ -177,15 +177,17 @@ const Appointment = () => {
                             onChange={(val) => setFormData({...formData, birthDate: val})} 
                           />
                           <div>
-                            <label htmlFor="svnr" className="sr-only">SVNr.*</label>
+                            <label htmlFor="svnr" className="sr-only">SVNr. (erste 4 Ziffern)*</label>
                             <input 
                               id="svnr"
                               name="svnr"
                               type="text" 
-                              placeholder="SVNr.*" 
+                              inputMode="numeric"
+                              pattern="[0-9]*"
+                              placeholder="SVNr. (erste 4 Ziffern)*" 
                               required
                               value={formData.svnr}
-                              onChange={(e) => setFormData({...formData, svnr: e.target.value})}
+                              onChange={(e) => setFormData({...formData, svnr: e.target.value.replace(/\D/g, '')})}
                               className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
                             />
                           </div>
