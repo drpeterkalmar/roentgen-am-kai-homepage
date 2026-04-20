@@ -54,51 +54,74 @@ const Navbar = ({ highContrast, setHighContrast }) => {
         {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-10">
           <div className="flex items-center gap-8">
-            {navLinks.map((link) => (
-              <div key={link.name} className="relative group">
-                {link.href.startsWith('/#') ? (
-                  <a
-                    href={link.href}
-                    className={`text-sm font-semibold tracking-[0.1em] uppercase hover:text-[#8B2323] transition-colors flex items-center gap-1.5 ${
-                      isScrolled ? 'text-gray-800' : 'text-gray-950'
-                    }`}
-                  >
-                    {link.name}
-                    {link.dropdown && <ChevronDown size={14} className="group-hover:rotate-180 transition-transform duration-300" />}
-                  </a>
-                ) : (
-                  <Link
-                    to={link.href}
-                    className={`text-sm font-semibold tracking-[0.1em] uppercase hover:text-[#8B2323] transition-colors flex items-center gap-1.5 ${
-                      isScrolled ? 'text-gray-800' : 'text-gray-950'
-                    } ${location.pathname === link.href ? 'text-[#8B2323]' : ''}`}
-                  >
-                    {link.name}
-                    {link.dropdown && <ChevronDown size={14} className="group-hover:rotate-180 transition-transform duration-300" />}
-                  </Link>
-                )}
-                
-                {link.dropdown && (
-                  <div className="absolute top-full -left-4 pt-6 hidden group-hover:block transition-all duration-300">
-                    <div className="bg-white/95 backdrop-blur-xl border border-gray-100/50 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] p-4 w-72 grid gap-1.5 animate-fade glass-glow">
-                      {link.dropdown.map((sub) => (
-                        <Link 
-                          key={sub.name}
-                          to={sub.href}
-                          className={`text-sm font-bold p-4 rounded-2xl transition-all ${
-                            location.pathname === sub.href 
-                              ? 'text-[#8B2323] bg-red-50' 
-                              : 'text-gray-700 hover:text-[#8B2323] hover:bg-red-50'
-                          }`}
-                        >
-                          {sub.name}
-                        </Link>
-                      ))}
+            {navLinks.map((link) => {
+              const isActive = location.pathname === link.href || (link.href.startsWith('/#') && location.hash === link.href.substring(1));
+              
+              return (
+                <div key={link.name} className="relative group/nav">
+                  {link.href.startsWith('/#') ? (
+                    <a
+                      href={link.href}
+                      className={`text-sm font-semibold tracking-[0.1em] uppercase hover:text-[#8B2323] transition-colors flex items-center gap-1.5 relative py-2 ${
+                        isScrolled ? 'text-gray-800' : 'text-gray-950'
+                      } ${isActive ? 'text-[#8B2323]' : ''}`}
+                    >
+                      {link.name}
+                      {link.dropdown && <ChevronDown size={14} className="group-hover/nav:rotate-180 transition-transform duration-300" />}
+                      
+                      {/* Hover/Active Underline */}
+                      <span className={`absolute bottom-0 left-0 h-0.5 bg-[#8B2323] transition-all duration-300 ${
+                        isActive ? 'w-full' : 'w-0 group-hover/nav:w-full'
+                      }`} />
+                    </a>
+                  ) : (
+                    <Link
+                      to={link.href}
+                      className={`text-sm font-semibold tracking-[0.1em] uppercase hover:text-[#8B2323] transition-colors flex items-center gap-1.5 relative py-2 ${
+                        isScrolled ? 'text-gray-800' : 'text-gray-950'
+                      } ${location.pathname === link.href ? 'text-[#8B2323]' : ''}`}
+                    >
+                      {link.name}
+                      {link.dropdown && <ChevronDown size={14} className="group-hover/nav:rotate-180 transition-transform duration-300" />}
+                      
+                      {/* Hover/Active Underline */}
+                      <span className={`absolute bottom-0 left-0 h-0.5 bg-[#8B2323] transition-all duration-300 ${
+                        location.pathname === link.href ? 'w-full' : 'w-0 group-hover/nav:w-full'
+                      }`} />
+                    </Link>
+                  )}
+                  
+                  {link.dropdown && (
+                    <div className="absolute top-full -left-4 pt-6 invisible opacity-0 group-hover/nav:visible group-hover/nav:opacity-100 transition-all duration-300 translate-y-2 group-hover/nav:translate-y-0 z-50">
+                      <div className="bg-white/95 backdrop-blur-xl border border-gray-100/50 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] p-4 w-72 grid gap-1.5 glass-glow">
+                        {link.dropdown.map((sub, idx) => (
+                          <motion.div
+                            key={sub.name}
+                            initial={{ opacity: 0, x: -10 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ delay: idx * 0.05 }}
+                          >
+                            <Link 
+                              to={sub.href}
+                              className={`text-sm font-bold p-4 rounded-2xl transition-all flex items-center justify-between group/item ${
+                                location.pathname === sub.href 
+                                  ? 'text-[#8B2323] bg-red-50' 
+                                  : 'text-gray-700 hover:text-[#8B2323] hover:bg-red-50'
+                              }`}
+                            >
+                              {sub.name}
+                              <div className={`w-1.5 h-1.5 rounded-full bg-[#8B2323] transition-all duration-300 ${
+                                location.pathname === sub.href ? 'opacity-100 scale-100' : 'opacity-0 scale-0 group-hover/item:opacity-100 group-hover/item:scale-100'
+                              }`} />
+                            </Link>
+                          </motion.div>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                )}
-              </div>
-            ))}
+                  )}
+                </div>
+              );
+            })}
           </div>
 
           <div className="h-4 w-px bg-gray-200" />
