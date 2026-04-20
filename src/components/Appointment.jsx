@@ -12,11 +12,42 @@ const Appointment = () => {
     name: '',
     email: '',
     phone: '',
-    svnr: ''
+    svnr: '',
+    comments: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
 
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    // Formspree Integration
+    // Replace 'FORM_ID' with your actual Formspree Form ID
+    const FORM_ID = "ordination@roentgen-am-kai.at"; // Or the hash ID if provided
+    
+    try {
+      const response = await fetch(`https://formspree.io/f/${FORM_ID}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        nextStep();
+      } else {
+        setSubmitError("Entschuldigung, die Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es später erneut.");
+      }
+    } catch (error) {
+      setSubmitError("Netzwerkfehler. Bitte prüfen Sie Ihre Verbindung.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const steps = [
     { title: 'Leistung wählen', icon: <ClipboardList size={20} /> },
@@ -96,9 +127,10 @@ const Appointment = () => {
                   >
                     <h3 className="text-2xl font-bold mb-6">Wählen Sie die gewünschte Untersuchung</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      {['Röntgen', 'Ultraschall', 'Mammographie', 'DVT', 'Knochendichte', 'Körperfettmessung'].map((svc) => (
+                      {['Röntgen', 'Ultraschall', 'Mammographie', 'DVT / Zahnröntgen', 'Knochendichte & Fettmessung', 'Sonstige'].map((svc) => (
                         <button 
                           key={svc}
+                          type="button"
                           onClick={() => setFormData({...formData, service: svc})}
                           aria-pressed={formData.service === svc}
                           className={`p-6 rounded-2xl border-2 text-left transition-all ${
@@ -133,90 +165,122 @@ const Appointment = () => {
                     className="space-y-6"
                   >
                     <h3 className="text-2xl font-bold mb-6">Persönliche Daten & Termin</h3>
-                    <div className="grid grid-cols-1 gap-4">
-                      <div>
-                        <label htmlFor="name" className="sr-only">Vollständiger Name*</label>
-                        <input 
-                          id="name"
-                          type="text" 
-                          placeholder="Vollständiger Name*" 
-                          required
-                          value={formData.name}
-                          onChange={(e) => setFormData({...formData, name: e.target.value})}
-                          className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
-                        />
-                      </div>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                      <div className="grid grid-cols-1 gap-4">
                         <div>
-                          <label htmlFor="svnr" className="sr-only">SVNr.*</label>
+                          <label htmlFor="name" className="sr-only">Vollständiger Name*</label>
                           <input 
-                            id="svnr"
+                            id="name"
+                            name="name"
                             type="text" 
-                            placeholder="SVNr.*" 
+                            placeholder="Vollständiger Name*" 
                             required
-                            value={formData.svnr}
-                            onChange={(e) => setFormData({...formData, svnr: e.target.value})}
+                            value={formData.name}
+                            onChange={(e) => setFormData({...formData, name: e.target.value})}
                             className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
                           />
                         </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div>
+                            <label htmlFor="svnr" className="sr-only">SVNr.*</label>
+                            <input 
+                              id="svnr"
+                              name="svnr"
+                              type="text" 
+                              placeholder="SVNr.*" 
+                              required
+                              value={formData.svnr}
+                              onChange={(e) => setFormData({...formData, svnr: e.target.value})}
+                              className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
+                            />
+                          </div>
+                          <div>
+                            <label htmlFor="phone" className="sr-only">Telefonnummer*</label>
+                            <input 
+                              id="phone"
+                              name="phone"
+                              type="tel" 
+                              placeholder="Telefonnummer*" 
+                              required
+                              value={formData.phone}
+                              onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                              className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
+                            />
+                          </div>
+                        </div>
                         <div>
-                          <label htmlFor="phone" className="sr-only">Telefonnummer*</label>
+                          <label htmlFor="email" className="sr-only">E-Mail Adresse</label>
                           <input 
-                            id="phone"
-                            type="tel" 
-                            placeholder="Telefonnummer*" 
-                            required
-                            value={formData.phone}
-                            onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                            id="email"
+                            name="email"
+                            type="email" 
+                            placeholder="E-Mail Adresse" 
+                            value={formData.email}
+                            onChange={(e) => setFormData({...formData, email: e.target.value})}
                             className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
                           />
                         </div>
-                      </div>
-                      <div>
-                        <label htmlFor="email" className="sr-only">E-Mail Adresse</label>
-                        <input 
-                          id="email"
-                          type="email" 
-                          placeholder="E-Mail Adresse" 
-                          value={formData.email}
-                          onChange={(e) => setFormData({...formData, email: e.target.value})}
-                          className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
-                        />
-                      </div>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                          <label htmlFor="insurance" className="sr-only">Kasse wählen</label>
-                          <select 
-                            id="insurance" 
-                            required
-                            value={formData.insurance}
-                            onChange={(e) => setFormData({...formData, insurance: e.target.value})}
-                            className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none bg-white text-gray-950"
-                          >
-                            <option value="">Kasse wählen*</option>
-                            <option>ÖGK</option>
-                            <option>SVS</option>
-                            <option>BVAEB</option>
-                            <option>KFA</option>
-                            <option>Privat</option>
-                          </select>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div>
+                            <label htmlFor="insurance" className="sr-only">Kasse wählen*</label>
+                            <select 
+                              id="insurance" 
+                              name="insurance"
+                              required
+                              value={formData.insurance}
+                              onChange={(e) => setFormData({...formData, insurance: e.target.value})}
+                              className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none bg-white text-gray-950"
+                            >
+                              <option value="">Kasse wählen*</option>
+                              <option>ÖGK</option>
+                              <option>SVS</option>
+                              <option>BVAEB</option>
+                              <option>KFA</option>
+                              <option>Privat</option>
+                            </select>
+                          </div>
+                          <div>
+                            <label htmlFor="date" className="sr-only">Wunschtermin</label>
+                            <input 
+                              id="date" 
+                              name="date"
+                              type="date" 
+                              value={formData.date}
+                              onChange={(e) => setFormData({...formData, date: e.target.value})}
+                              className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none text-gray-950" 
+                            />
+                          </div>
                         </div>
                         <div>
-                          <label htmlFor="date" className="sr-only">Wunschtermin</label>
-                          <input 
-                            id="date" 
-                            type="date" 
-                            value={formData.date}
-                            onChange={(e) => setFormData({...formData, date: e.target.value})}
-                            className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none text-gray-950" 
+                          <label htmlFor="comments" className="sr-only">Infos oder Kommentare</label>
+                          <textarea 
+                            id="comments"
+                            name="comments"
+                            placeholder="Infos oder Kommentare (z.B. bevorzugte Tageszeit, Beschwerden)" 
+                            value={formData.comments}
+                            onChange={(e) => setFormData({...formData, comments: e.target.value})}
+                            className="w-full h-32 p-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950 resize-none"
                           />
                         </div>
                       </div>
-                    </div>
-                    <div className="flex gap-4">
-                      <button onClick={prevStep} className="flex-1 py-4 border-2 border-gray-200 rounded-2xl font-bold">Zurück</button>
-                      <button onClick={nextStep} className="flex-[2] bg-[#8B2323] text-white py-4 rounded-2xl font-bold">Anfrage senden</button>
-                    </div>
+
+                      {submitError && (
+                        <p className="text-red-600 text-sm font-bold bg-red-50 p-3 rounded-lg border border-red-100 italic">
+                          {submitError}
+                        </p>
+                      )}
+
+                      <div className="flex gap-4">
+                        <button type="button" onClick={prevStep} className="flex-1 py-4 border-2 border-gray-200 rounded-2xl font-bold">Zurück</button>
+                        <button 
+                          type="submit" 
+                          disabled={isSubmitting}
+                          className="flex-[2] bg-[#8B2323] text-white py-4 rounded-2xl font-bold disabled:bg-gray-400 transition-all flex items-center justify-center gap-2"
+                        >
+                          {isSubmitting ? 'Sende Anfrage...' : 'Anfrage senden'}
+                        </button>
+                      </div>
+                    </form>
                   </motion.div>
                 )}
 
@@ -232,7 +296,7 @@ const Appointment = () => {
                     </div>
                     <h3 className="text-3xl font-extrabold text-gray-950 mb-4">Vielen Dank!</h3>
                     <p className="text-gray-900 mb-8 max-w-sm mx-auto font-medium">
-                      Ihre Terminanfrage wurde an unser Team sowie das CAS-System übermittelt. Wir senden Ihnen in Kürze eine Bestätigung.
+                      Ihre Terminanfrage wurde erfolgreich übermittelt. Wir rufen Sie umgehend zur Terminbestätigung unter der angegebenen Nummer zurück.
                     </p>
                     <button 
                       onClick={() => setStep(1)}
