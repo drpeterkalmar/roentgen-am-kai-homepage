@@ -56,7 +56,10 @@ const Navbar = ({ highContrast, setHighContrast }) => {
         <div className="hidden md:flex items-center gap-10">
           <div className="flex items-center gap-8">
             {navLinks.map((link) => {
-              const isActive = location.pathname === link.href || (link.href.startsWith('/#') && location.hash === link.href.substring(1));
+              const isHomeRoot = link.href === '/' && location.pathname === '/' && !location.hash;
+              const isHashMatch = link.href.startsWith('/#') && location.hash === link.href.substring(1);
+              const isServicePage = link.dropdown && location.pathname.startsWith('/unser-angebot');
+              const isActive = isHomeRoot || isHashMatch || isServicePage;
               
               return (
                 <div key={link.name} className="relative group/nav">
@@ -80,14 +83,14 @@ const Navbar = ({ highContrast, setHighContrast }) => {
                       to={link.href}
                       className={`text-sm font-semibold tracking-[0.1em] uppercase hover:text-[#8B2323] transition-colors flex items-center gap-1.5 relative py-2 ${
                         isScrolled ? 'text-gray-800' : 'text-gray-950'
-                      } ${location.pathname === link.href ? 'text-[#8B2323]' : ''}`}
+                      } ${isActive ? 'text-[#8B2323]' : ''}`}
                     >
                       {link.name}
                       {link.dropdown && <ChevronDown size={14} className="group-hover/nav:rotate-180 transition-transform duration-300" />}
                       
                       {/* Hover/Active Underline */}
                       <span className={`absolute bottom-0 left-0 h-0.5 bg-[#8B2323] transition-all duration-300 ${
-                        location.pathname === link.href ? 'w-full' : 'w-0 group-hover/nav:w-full'
+                        isActive ? 'w-full' : 'w-0 group-hover/nav:w-full'
                       }`} />
                     </Link>
                   )}
