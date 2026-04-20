@@ -81,8 +81,6 @@ const Appointment = () => {
             <ul className="space-y-6">
               {[
                 'Alle Kassen & Privatleistungen',
-                'Echtzeit-Terminverfügbarkeit',
-                'Automatisierte Terminerinnerung',
                 'Sichere Datenübertragung'
               ].map((item, i) => (
                 <li key={i} className="flex items-center gap-4 text-gray-950 font-semibold">
