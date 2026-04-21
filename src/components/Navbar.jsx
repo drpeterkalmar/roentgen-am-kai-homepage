@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Phone, Calendar, ChevronDown, Sparkles } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import logo from '../assets/images/rak-logo.png';
 
 const Navbar = ({ highContrast, setHighContrast }) => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -38,19 +37,14 @@ const Navbar = ({ highContrast, setHighContrast }) => {
       isScrolled ? 'glass py-4 shadow-xl' : 'py-8 bg-transparent'
     }`}>
       <div className="max-w-[1200px] mx-auto px-6 flex justify-between items-center">
-        <Link to="/" className="flex items-center gap-4 group">
-          <img 
-            src={logo} 
-            alt="Röntgen am Kai Logo" 
-            className={`h-12 w-auto object-contain transition-all duration-300 ${isScrolled ? 'scale-90' : 'scale-100'}`}
-          />
+        <Link to="/" className="flex flex-col group">
+          <span className={`text-2xl font-extrabold tracking-tight transition-colors ${
+            isScrolled ? 'text-[#8B2323]' : 'text-gray-900'
+          } font-[Outfit]`}>
+            RÖNTGEN <span className="text-[#8B2323]">AM KAI</span>
+          </span>
           <div className="flex flex-col">
-            <span className={`text-2xl font-extrabold tracking-tight transition-colors ${
-              isScrolled ? 'text-[#8B2323]' : 'text-gray-900'
-            } font-[Outfit] leading-none`}>
-              RÖNTGEN <span className="text-[#8B2323]">AM KAI</span>
-            </span>
-            <span className={`text-xs tracking-widest uppercase font-bold transition-opacity mt-1 ${
+            <span className={`text-xs tracking-widest uppercase font-bold transition-opacity ${
               isScrolled ? 'text-gray-600' : 'text-gray-800'
             }`}>
               Fachärzte für Radiologie
