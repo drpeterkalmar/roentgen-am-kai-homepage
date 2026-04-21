@@ -27,8 +27,8 @@ async function optimizeImages() {
     const imagePromises = files.map(async (file) => {
       const ext = path.extname(file).toLowerCase();
       
-      // Skip already processed variants to avoid infinite loops
-      if (!SUPPORTED_FORMATS.includes(ext) || file.includes('-mobile') || file.includes('-tablet')) {
+      // Skip already processed variants, logos, or specific icons to avoid build issues
+      if (!SUPPORTED_FORMATS.includes(ext) || file.includes('-mobile') || file.includes('-tablet') || file.includes('logo')) {
         return;
       }
 
