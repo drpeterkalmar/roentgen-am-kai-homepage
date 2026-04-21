@@ -49,7 +49,7 @@ const Appointment = () => {
     }
     
     const minDate = new Date();
-    minDate.setDate(minDate.getDate() + 7);
+    minDate.setDate(minDate.getDate() + 8);
     minDate.setHours(0, 0, 0, 0);
     
     if (selectedDate < minDate) {
@@ -324,7 +324,7 @@ const Appointment = () => {
                             required
                             min={(() => {
                               const d = new Date();
-                              d.setDate(d.getDate() + 7);
+                              d.setDate(d.getDate() + 8);
                               return d.toISOString().split('T')[0];
                             })()}
                             value={formData.date}
@@ -340,10 +340,10 @@ const Appointment = () => {
                                 }
                                 
                                 const minD = new Date();
-                                minD.setDate(minD.getDate() + 7);
+                                minD.setDate(minD.getDate() + 8);
                                 minD.setHours(0, 0, 0, 0);
                                 if (selected < minD) {
-                                  setSubmitError("Der Termin muss mindestens eine Woche im Voraus liegen.");
+                                  setSubmitError("Der Termin muss mehr als eine Woche im Voraus liegen.");
                                   setFormData({...formData, date: ''});
                                   return;
                                 }
