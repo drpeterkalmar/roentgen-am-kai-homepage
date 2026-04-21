@@ -47,11 +47,10 @@ const Navbar = ({ highContrast, setHighContrast }) => {
           <div className="flex flex-col">
             <span className={`text-2xl font-extrabold tracking-tight transition-colors ${
               isScrolled ? 'text-[#8B2323]' : 'text-gray-900'
-            } font-[Outfit]`}>
+            } font-[Outfit] leading-none`}>
               RÖNTGEN <span className="text-[#8B2323]">AM KAI</span>
             </span>
-          <div className="flex flex-col">
-            <span className={`text-xs tracking-widest uppercase font-bold transition-opacity ${
+            <span className={`text-xs tracking-widest uppercase font-bold transition-opacity mt-1 ${
               isScrolled ? 'text-gray-600' : 'text-gray-800'
             }`}>
               Fachärzte für Radiologie
