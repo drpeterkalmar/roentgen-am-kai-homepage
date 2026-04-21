@@ -41,13 +41,14 @@ const KalmarPage = () => {
   ];
 
   const publications = [
+    "Tschauner S, Kalmar P, et al. (2015). European Guidelines for AP/PA chest X-rays: routinely satisfiable in a paediatric radiology division? Eur. Radiol",
     "Hatzl, S; Kalmar, P; et al. (2021). Prognostic Value of Baseline and Interim PET Markers in DLBCL. Hemasphere.",
     "Mahmud, E; Kalmar, P; et al. (2020). Robotic Peripheral Vascular Intervention. J Invasive Cardiol.",
-    "Belyavskaya, T.; Kalmar, P.; et al. (2019). Aortic Stenting in Symptomatic Infrarenal Aortic Stenosis. Vasc Endovasc Surg.",
-    "Weir, P.; Kalmar, P.; et al. (2018). Go-Smart: Open-Ended, Web-Based Modelling of Minimally Invasive Cancer Treatments. Plos One.",
-    "Kalmar, P. I.; et al. (2016). Gadolinium-free MR in coarctation. Clinical Imaging.",
-    "Kalmar, P. I.; et al. (2015). Is Embolization an Effective Treatment for Recurrent Hemorrhage After Arthroplasty? CORR.",
-    "Kalmar, P. I.; et al. (2014). Placement of hemoparin-coated stents in the iliac arteries. Eur J Radiol."
+    "Belyavskaya, T; Kalmar, P; et al. (2019). Aortic Stenting in Symptomatic Infrarenal Aortic Stenosis. Vasc Endovasc Surg.",
+    "Weir, P; Kalmar, P; et al. (2018). Go-Smart: Open-Ended, Web-Based Modelling of Minimally Invasive Cancer Treatments. Plos One.",
+    "Kalmar, P; et al. (2016). Gadolinium-free MR in coarctation. Clinical Imaging.",
+    "Kalmar, P; et al. (2015). Is Embolization an Effective Treatment for Recurrent Hemorrhage After Arthroplasty? CORR.",
+    "Kalmar, P; et al. (2014). Placement of hemoparin-coated stents in the iliac arteries. Eur J Radiol."
   ];
 
   const diplomas = [
