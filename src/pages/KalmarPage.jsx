@@ -167,7 +167,7 @@ const KalmarPage = () => {
               <div className="w-12 h-12 bg-red-50 rounded-2xl flex items-center justify-center">
                 <Award className="text-[#8B2323]" size={24} />
               </div>
-              <h3 className="text-xl font-bold font-[Outfit]">Fortbildungsdiplome</h3>
+              <h3 className="text-xl font-bold font-[Outfit]">Fortbildungsdiplome und Zertifikate</h3>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {diplomas.map((diploma, i) => (
