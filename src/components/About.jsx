@@ -37,7 +37,7 @@ const About = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[
-                { name: 'Priv. Doz. Dr. Georg Riegler', role: 'Facharzt für Radiologie' },
+                { name: 'Priv. Doz. Dr. Georg Riegler', role: 'Facharzt für Radiologie', link: '/unser-team/dr-georg-riegler' },
                 { name: 'Priv. Doz. Dr. Peter Kalmar', role: 'Facharzt für Radiologie', link: '/unser-team/dr-peter-kalmar' }
               ].map((doc, i) => (
                 <div key={i} className="glass p-8 rounded-[32px] text-center border-white/60">

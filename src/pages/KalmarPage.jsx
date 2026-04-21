@@ -67,7 +67,7 @@ const KalmarPage = () => {
           >
             <div className="glass p-2 rounded-[48px] shadow-2xl relative aspect-[4/5] overflow-hidden">
                <img 
-                src="/assets/images/2025-07-07_18-19-46_Nik_DXO.avif" 
+                src="/assets/images/hero-slide-2.avif" 
                 alt="Prim. a. D. Priv. Doz. Dr. Peter Kalmar" 
                 className="w-full h-full object-cover rounded-[40px] grayscale hover:grayscale-0 transition-all duration-700"
               />

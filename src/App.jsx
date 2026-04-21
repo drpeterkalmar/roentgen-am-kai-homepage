@@ -17,6 +17,7 @@ const KoerperfettPage = lazy(() => import('./pages/KoerperfettPage'))
 const ImpressumPage = lazy(() => import('./pages/ImpressumPage'))
 const DatenschutzPage = lazy(() => import('./pages/DatenschutzPage'))
 const KalmarPage = lazy(() => import('./pages/KalmarPage'))
+const RieglerPage = lazy(() => import('./pages/RieglerPage'))
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -57,6 +58,7 @@ function App() {
               <Route path="/impressum" element={<ImpressumPage />} />
               <Route path="/datenschutz" element={<DatenschutzPage />} />
               <Route path="/unser-team/dr-peter-kalmar" element={<KalmarPage />} />
+              <Route path="/unser-team/dr-georg-riegler" element={<RieglerPage />} />
             </Routes>
           </Suspense>
         </main>
