@@ -45,7 +45,8 @@ const RieglerPage = () => {
             rotate: [0, -10, 0]
           }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-red-100/30 rounded-full blur-[100px]"
+          className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-red-100/30 rounded-full blur-[60px]"
+          style={{ willChange: 'transform' }}
         />
         <motion.div 
           animate={{ 
@@ -53,7 +54,8 @@ const RieglerPage = () => {
             y: [0, -50, 0]
           }}
           transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-1/4 -left-20 w-[450px] h-[450px] bg-blue-50/20 rounded-full blur-[100px]"
+          className="absolute bottom-1/4 -left-20 w-[450px] h-[450px] bg-blue-50/20 rounded-full blur-[60px]"
+          style={{ willChange: 'transform' }}
         />
       </div>
 

@@ -71,7 +71,8 @@ const KalmarPage = () => {
             rotate: [0, 10, 0]
           }}
           transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-          className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-red-100/30 rounded-full blur-[100px]"
+          className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-red-100/30 rounded-full blur-[60px]"
+          style={{ willChange: 'transform' }}
         />
         <motion.div 
           animate={{ 
@@ -79,7 +80,8 @@ const KalmarPage = () => {
             y: [0, 40, 0]
           }}
           transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-          className="absolute top-1/2 -left-20 w-[400px] h-[400px] bg-blue-50/20 rounded-full blur-[100px]"
+          className="absolute top-1/2 -left-20 w-[400px] h-[400px] bg-blue-50/20 rounded-full blur-[60px]"
+          style={{ willChange: 'transform' }}
         />
       </div>
 

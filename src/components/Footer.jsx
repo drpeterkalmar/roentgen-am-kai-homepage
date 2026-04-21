@@ -15,6 +15,13 @@ const Footer = () => {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-16 mb-20">
           {/* Brand Info */}
           <div className="lg:col-span-1">
+            <div className="mb-4">
+              <img 
+                src="/assets/images/rak-logo.png" 
+                alt="Röntgen am Kai Logo" 
+                className="h-16 w-auto object-contain"
+              />
+            </div>
             <div className="flex flex-col mb-8">
               <span className="text-3xl font-extrabold tracking-tight text-[#8B2323] font-[Outfit]">
                 RÖNTGEN AM KAI

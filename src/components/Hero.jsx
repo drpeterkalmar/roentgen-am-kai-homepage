@@ -99,6 +99,7 @@ const Hero = () => {
               className="absolute inset-0 w-full h-full object-cover z-0"
               fetchPriority="high"
               loading="eager"
+              style={{ willChange: 'transform' }}
             />
             
             <AnimatePresence initial={false}>
@@ -127,6 +128,7 @@ const Hero = () => {
                   alt={imageAlts[currentImage]} 
                   className="w-full h-full object-cover"
                   loading={currentImage === 0 ? "eager" : "lazy"}
+                  style={{ willChange: 'transform' }}
                 />
               </motion.div>
             </AnimatePresence>

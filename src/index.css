@@ -101,8 +101,8 @@ button {
 /* Glassmorphism 2.0 - Refined for 2026 */
 .glass {
   background: rgba(255, 255, 255, 0.45);
-  backdrop-filter: blur(40px) saturate(210%);
-  -webkit-backdrop-filter: blur(40px) saturate(210%);
+  backdrop-filter: blur(16px) saturate(210%);
+  -webkit-backdrop-filter: blur(16px) saturate(210%);
   border: 1px solid rgba(255, 255, 255, 0.5);
   box-shadow: 
     0 8px 32px 0 rgba(0, 0, 0, 0.04),
@@ -110,6 +110,7 @@ button {
   position: relative;
   overflow: hidden;
   transition: all var(--transition-normal);
+  will-change: transform;
 }
 
 .glass::before {
@@ -117,7 +118,7 @@ button {
   position: absolute;
   inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  opacity: 0.03;
+  opacity: 0.02;
   pointer-events: none;
 }
 
@@ -171,4 +172,5 @@ button {
 
 .animate-fade {
   animation: fadeIn var(--transition-normal) forwards;
+  will-change: transform, opacity;
 }

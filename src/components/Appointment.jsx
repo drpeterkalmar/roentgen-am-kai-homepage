@@ -107,7 +107,7 @@ const Appointment = () => {
           {/* Left Side: Info */}
           <div className="lg:col-span-2">
             <h2 className="text-4xl md:text-5xl font-extrabold text-[#1f2937] mb-8 font-[Outfit]">
-              Nicht dringende Termine <span className="text-[#8B2323]">Online</span> vereinbaren
+              Nicht dringende Termine <span className="text-[#8B2323]">online</span> vereinbaren
             </h2>
             <p className="text-lg text-gray-800 mb-10 leading-relaxed font-medium">
               Sparen Sie Zeit und senden Sie uns Ihre Terminanfrage für einen nicht dringenden Termin bequem von zu Hause oder unterwegs. Wir rufen Sie binnen einer Woche zur Terminbestätigung zurück. Für dringende Termine ersuchen wir Sie um telefonische Kontaktaufnahme
