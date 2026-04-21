@@ -23,6 +23,7 @@ const KalmarPage = () => {
         { date: "seit 2023", text: "Gesellschafter der Röntgen am Kai OG (Nachfolger von Dr. Günter Porsch)" },
         { date: "2022-2023", text: "Primararzt der Institute für Radiologie im Krankenhaus der Elisabethinen Graz und Marienkrankenhaus Vorau" },
         { date: "2021-2022", text: "Primararzt des Instituts für Radiologie im Marienkrankenhaus Vorau" },
+        { date: "2019-2020", text: "Weiterbildung im Fach Nuklearmedizin an der Univ.-Klinik für Radiologie Graz" },
         { date: "2015-2021", text: "Wahlarztordination für Radiologie mit Spezialisierung auf Gefäßtherapie" },
         { date: "2014-2019", text: "Oberarzt an der Univ.-Klinik für Radiologie Graz, Abt. für Vaskuläre und Interventionelle Radiologie" }
       ]
