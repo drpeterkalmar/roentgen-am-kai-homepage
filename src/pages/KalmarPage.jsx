@@ -35,7 +35,8 @@ const KalmarPage = () => {
     "Therapie venöser Malformationen",
     "Computertomographie & Interventionelle CT",
     "Magnetresonanztomographie (Neuro, Cardio, Ortho)",
-    "Farbcodierte Duplexsonographie der Gefäße"
+    "Farbcodierte Duplexsonographie der Gefäße",
+    "Minimal Invasive perkutane aortale, arterielle und venöse Therapie"
   ];
 
   const publications = [
