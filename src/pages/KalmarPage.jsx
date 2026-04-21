@@ -65,7 +65,7 @@ const KalmarPage = () => {
         <nav className="flex items-center gap-2 text-sm font-medium text-gray-500 mb-12">
           <Link to="/" className="hover:text-[#8B2323] transition-colors">Startseite</Link>
           <span className="text-gray-400">/</span>
-          <span className="text-[#8B2323] font-bold">Priv. Doz. Dr. Peter Kalmar</span>
+          <span className="text-[#8B2323] font-bold">Peter Kalmar</span>
         </nav>
 
         {/* Hero Section */}
