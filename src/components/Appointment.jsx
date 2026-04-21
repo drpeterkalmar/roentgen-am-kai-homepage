@@ -48,8 +48,12 @@ const Appointment = () => {
       return;
     }
     
-    if (selectedDate < today) {
-      setSubmitError("Bitte wählen Sie ein Datum in der Gegenwart oder Zukunft.");
+    const minDate = new Date();
+    minDate.setDate(minDate.getDate() + 7);
+    minDate.setHours(0, 0, 0, 0);
+    
+    if (selectedDate < minDate) {
+      setSubmitError("Bitte wählen Sie ein Datum, das mindestens eine Woche in der Zukunft liegt.");
       return;
     }
 
@@ -103,10 +107,10 @@ const Appointment = () => {
           {/* Left Side: Info */}
           <div className="lg:col-span-2">
             <h2 className="text-4xl md:text-5xl font-extrabold text-[#1f2937] mb-8 font-[Outfit]">
-              Termin <span className="text-[#8B2323]">Online</span> vereinbaren
+              Nicht dringende Termine <span className="text-[#8B2323]">Online</span> vereinbaren
             </h2>
             <p className="text-lg text-gray-800 mb-10 leading-relaxed font-medium">
-              Sparen Sie Zeit und senden Sie uns Ihre Terminanfrage bequem von zu Hause oder unterwegs. Wir rufen Sie umgehend zur Terminbestätigung zurück.
+              Sparen Sie Zeit und senden Sie uns Ihre Terminanfrage für einen nicht dringenden Termin bequem von zu Hause oder unterwegs. Wir rufen Sie binnen einer Woche zur Terminbestätigung zurück. Für dringende Termine ersuchen wir Sie um telefonische Kontaktaufnahme
             </p>
             
             <ul className="space-y-6">
@@ -318,14 +322,28 @@ const Appointment = () => {
                             name="date"
                             type="date" 
                             required
-                            min={new Date().toISOString().split('T')[0]}
+                            min={(() => {
+                              const d = new Date();
+                              d.setDate(d.getDate() + 7);
+                              return d.toISOString().split('T')[0];
+                            })()}
                             value={formData.date}
                             onChange={(e) => {
                               const dateVal = e.target.value;
                               if (dateVal) {
-                                const day = new Date(dateVal).getDay();
+                                const selected = new Date(dateVal);
+                                const day = selected.getDay();
                                 if (day === 0 || day === 6) {
                                   setSubmitError("Bitte wählen Sie einen Werktag (Mo-Fr). Samstage und Sonntage sind nicht möglich.");
+                                  setFormData({...formData, date: ''});
+                                  return;
+                                }
+                                
+                                const minD = new Date();
+                                minD.setDate(minD.getDate() + 7);
+                                minD.setHours(0, 0, 0, 0);
+                                if (selected < minD) {
+                                  setSubmitError("Der Termin muss mindestens eine Woche im Voraus liegen.");
                                   setFormData({...formData, date: ''});
                                   return;
                                 }
@@ -344,11 +362,12 @@ const Appointment = () => {
                       </div>
 
                       <div>
-                        <label htmlFor="comments" className="sr-only">Infos oder Kommentare</label>
+                        <label htmlFor="comments" className="sr-only">Zuweisungstext, Infos oder Kommentare</label>
                         <textarea 
                           id="comments"
                           name="comments"
-                          placeholder="Infos oder Kommentare (z.B. bevorzugte Tageszeit, Beschwerden)" 
+                          placeholder="Zuweisungstext, Infos oder Kommentare (z.B. bevorzugte Tageszeit, Beschwerden)" 
+                          required
                           value={formData.comments}
                           onChange={(e) => setFormData({...formData, comments: e.target.value})}
                           className="w-full h-32 p-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950 resize-none"
@@ -387,7 +406,7 @@ const Appointment = () => {
                     </div>
                     <h3 className="text-3xl font-extrabold text-gray-950 mb-4">Vielen Dank!</h3>
                     <p className="text-gray-900 mb-8 max-w-sm mx-auto font-medium">
-                      Ihre Terminanfrage wurde erfolgreich übermittelt. Wir rufen Sie umgehend zur Terminbestätigung unter der angegebenen Nummer zurück.
+                      Ihre Terminanfrage wurde erfolgreich übermittelt. Wir rufen Sie binnen einer Woche zur Terminbestätigung unter der angegebenen Nummer zurück.
                     </p>
                     <button 
                       onClick={() => setStep(1)}
