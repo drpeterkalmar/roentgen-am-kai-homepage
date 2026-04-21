@@ -19,11 +19,11 @@ const KalmarPage = () => {
       title: "Berufliche Laufbahn",
       icon: <Briefcase className="text-[#8B2323]" size={24} />,
       items: [
-        { date: "seit 10/2023", text: "Gesellschafter der Röntgen am Kai OG" },
-        { date: "seit 10/2022", text: "Primararzt der Institute für Radiologie im Krankenhaus der Elisabethinen Graz und Marienkrankenhaus Vorau" },
+        { date: "seit 2023", text: "Gesellschafter der Röntgen am Kai OG" },
+        { date: "2022-2023", text: "Primararzt der Institute für Radiologie im Krankenhaus der Elisabethinen Graz und Marienkrankenhaus Vorau" },
         { date: "2021-2022", text: "Primararzt des Instituts für Radiologie im Marienkrankenhaus Vorau" },
         { date: "2014-2019", text: "Oberarzt an der Univ.-Klinik für Radiologie Graz, Abt. für Vaskuläre und Interventionelle Radiologie" },
-        { date: "seit 07/2015", text: "Wahlarztordination für Radiologie mit Spezialisierung auf Gefäßerkrankungen" }
+        { date: "2015-2021", text: "Wahlarztordination für Radiologie mit Spezialisierung auf Gefäßerkrankungen" }
       ]
     }
   ];
@@ -67,8 +67,8 @@ const KalmarPage = () => {
           >
             <div className="glass p-2 rounded-[48px] shadow-2xl relative aspect-[4/5] overflow-hidden">
                <img 
-                src="/assets/images/dr-kalmar.avif" 
-                alt="Priv. Doz. Dr. Peter Kalmar" 
+                src="/assets/images/2025-07-07_18-19-46_Nik_DXO.avif" 
+                alt="Prim. a. D. Priv. Doz. Dr. Peter Kalmar" 
                 className="w-full h-full object-cover rounded-[40px] grayscale hover:grayscale-0 transition-all duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1f2937]/40 to-transparent pointer-events-none" />
@@ -81,26 +81,15 @@ const KalmarPage = () => {
             className="lg:col-span-8 flex flex-col justify-center"
           >
             <div className="inline-block px-4 py-1.5 bg-red-50 text-[#8B2323] rounded-full text-sm font-bold mb-6 tracking-wide uppercase">
-              Gesellschafter seit 10/2023
+              Gesellschafter
             </div>
             <h1 className="text-5xl md:text-6xl font-black text-gray-900 mb-4 font-[Outfit] leading-tight">
-              Priv. Doz. Dr. med. univ. <br/>
+              Prim. a. D. Priv. Doz. Dr. med. univ. <br/>
               Peter <span className="text-[#8B2323]">Kalmar</span>, MHBA
             </h1>
-            <p className="text-2xl text-gray-700 mb-8 font-light italic">
+            <p className="text-2xl text-gray-700 mb-2 font-light italic">
               Gesellschafter der Röntgen am Kai OG
             </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="flex items-center gap-3 text-gray-600">
-                <MapPin size={20} className="text-[#8B2323]" />
-                <span>Graz, Österreich</span>
-              </div>
-              <div className="flex items-center gap-3 text-gray-600">
-                <Mail size={20} className="text-[#8B2323]" />
-                <span>dr.peter.kalmar@gmail.com</span>
-              </div>
-            </div>
           </motion.div>
         </div>
 
@@ -138,19 +127,19 @@ const KalmarPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="glass p-8 rounded-[40px] bg-[#1f2937] text-white"
+            className="glass p-8 rounded-[40px] flex flex-col"
           >
             <div className="flex items-center gap-3 mb-8">
-              <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center">
-                <Award className="text-white" size={24} />
+              <div className="w-12 h-12 bg-red-50 rounded-2xl flex items-center justify-center">
+                <Award className="text-[#8B2323]" size={24} />
               </div>
-              <h3 className="text-xl font-bold font-[Outfit]">Fachliche Schwerpunkte</h3>
+              <h3 className="text-xl font-bold font-[Outfit]">Akademische Schwerpunkte</h3>
             </div>
             <div className="space-y-3">
               {expertises.map((exp, i) => (
-                <div key={i} className="flex items-start gap-3 group">
+                <div key={i} className="flex items-start gap-3">
                   <CheckCircle2 size={16} className="text-[#8B2323] mt-1 shrink-0" />
-                  <span className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">{exp}</span>
+                  <span className="text-sm font-medium text-gray-800 leading-relaxed">{exp}</span>
                 </div>
               ))}
             </div>
@@ -180,7 +169,7 @@ const KalmarPage = () => {
             ))}
           </div>
           <div className="mt-10 text-center">
-            <p className="text-gray-500 text-sm italic">Über 22 klinische Publikationen in internationalen Fachzeitschriften.</p>
+            <p className="text-gray-500 text-sm italic">Zahlreiche Publikationen in internationalen Fachzeitschriften und internationale Kongressbeiträge.</p>
           </div>
         </motion.div>
 
