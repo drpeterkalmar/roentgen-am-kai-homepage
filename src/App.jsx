@@ -16,6 +16,7 @@ const PhlebographiePage = lazy(() => import('./pages/PhlebographiePage'))
 const KoerperfettPage = lazy(() => import('./pages/KoerperfettPage'))
 const ImpressumPage = lazy(() => import('./pages/ImpressumPage'))
 const DatenschutzPage = lazy(() => import('./pages/DatenschutzPage'))
+const KalmarPage = lazy(() => import('./pages/KalmarPage'))
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -55,6 +56,7 @@ function App() {
               <Route path="/unser-angebot/koerperfettmessung" element={<KoerperfettPage />} />
               <Route path="/impressum" element={<ImpressumPage />} />
               <Route path="/datenschutz" element={<DatenschutzPage />} />
+              <Route path="/unser-team/dr-peter-kalmar" element={<KalmarPage />} />
             </Routes>
           </Suspense>
         </main>

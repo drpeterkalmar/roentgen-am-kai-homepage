@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const About = () => {
   return (
@@ -37,11 +38,17 @@ const About = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[
                 { name: 'Priv. Doz. Dr. Georg Riegler', role: 'Facharzt für Radiologie' },
-                { name: 'Priv. Doz. Dr. Peter Kalmar', role: 'Facharzt für Radiologie' }
+                { name: 'Priv. Doz. Dr. Peter Kalmar', role: 'Facharzt für Radiologie', link: '/unser-team/dr-peter-kalmar' }
               ].map((doc, i) => (
                 <div key={i} className="glass p-8 rounded-[32px] text-center border-white/60">
-                  <h3 className="text-2xl font-black text-gray-900 mb-2 font-[Outfit] leading-tight">
-                    {doc.name}
+                  <h3 className="text-2xl font-black text-gray-900 mb-2 font-[Outfit] leading-tight transition-colors">
+                    {doc.link ? (
+                      <Link to={doc.link} className="hover:text-[#8B2323] transition-colors cursor-pointer">
+                        {doc.name}
+                      </Link>
+                    ) : (
+                      doc.name
+                    )}
                   </h3>
                   <div className="h-0.5 w-12 bg-[#8B2323] mx-auto mb-4 opacity-30" />
                   <p className="text-[#8B2323] font-black uppercase tracking-[0.2em] text-xs">
