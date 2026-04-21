@@ -23,7 +23,7 @@ const About = () => {
             className="group relative"
           >
             <div className="relative mb-12 rounded-[48px] overflow-hidden shadow-[0_32px_80px_rgba(0,0,0,0.15)] aspect-[16/9] md:aspect-[21/9] glass p-1">
-              <div className="w-full h-full rounded-[44px] overflow-hidden">
+              <div className="w-full h-full rounded-[44px] overflow-hidden relative group">
                 <img 
                   src="/assets/images/team-2025.avif" 
                   srcSet="/assets/images/team-2025-mobile.avif 800w, /assets/images/team-2025-tablet.avif 1200w, /assets/images/team-2025.avif 1920w"
@@ -31,6 +31,28 @@ const About = () => {
                   alt="Priv. Doz. Dr. Georg Riegler und Priv. Doz. Dr. Peter Kalmar - Spezialisten für Radiologie in Graz" 
                   className="w-full h-full object-cover grayscale brightness-110 group-hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100"
                 />
+                
+                {/* Clickable Area: Dr. Riegler (Left) */}
+                <Link 
+                  to="/unser-team/dr-georg-riegler" 
+                  className="absolute inset-y-0 left-0 w-1/2 z-30 group/riegler cursor-pointer"
+                  title="Zu Dr. Georg Riegler"
+                >
+                  <div className="absolute bottom-6 left-6 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 opacity-0 group-hover/riegler:opacity-100 transition-opacity hidden md:block">
+                    <span className="text-white text-xs font-bold uppercase tracking-wider">Dr. Riegler Profil</span>
+                  </div>
+                </Link>
+
+                {/* Clickable Area: Dr. Kalmar (Right) */}
+                <Link 
+                  to="/unser-team/dr-peter-kalmar" 
+                  className="absolute inset-y-0 right-0 w-1/2 z-30 group/kalmar cursor-pointer"
+                  title="Zu Dr. Peter Kalmar"
+                >
+                  <div className="absolute bottom-6 right-6 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 opacity-0 group-hover/kalmar:opacity-100 transition-opacity hidden md:block">
+                    <span className="text-white text-xs font-bold uppercase tracking-wider">Dr. Kalmar Profil</span>
+                  </div>
+                </Link>
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent pointer-events-none" />
             </div>
