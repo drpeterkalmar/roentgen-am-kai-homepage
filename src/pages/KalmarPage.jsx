@@ -10,6 +10,7 @@ const KalmarPage = () => {
       icon: <GraduationCap className="text-[#8B2323]" size={24} />,
       items: [
         { date: "2016", text: "Venia docendi im Fach Radiologie, Medizinische Universität Graz" },
+        { date: "2014", text: "Facharztdiplom für Radiologie, Medizinische Universität Graz" },
         { date: "2011", text: "Master of Health Business Administration (MHBA), Nürnberg" },
         { date: "2007", text: "Dr. med. univ., Medizinische Universität Graz" },
         { date: "2000-2007", text: "Studium der Humanmedizin, MedUni Graz" }
