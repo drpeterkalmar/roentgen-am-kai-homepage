@@ -1,5 +1,6 @@
 import React from 'react';
 import { Mail, Phone, MapPin, Instagram, Facebook, ArrowUp } from 'lucide-react';
+import logo from '../assets/images/rak-logo.png';
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -17,7 +18,7 @@ const Footer = () => {
           <div className="lg:col-span-1">
             <div className="mb-4">
               <img 
-                src="/assets/images/rak-logo.png" 
+                src={logo} 
                 alt="Röntgen am Kai Logo" 
                 className="h-16 w-auto object-contain"
               />

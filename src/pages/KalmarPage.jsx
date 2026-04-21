@@ -12,8 +12,8 @@ const KalmarPage = () => {
         { date: "2016", text: "Venia docendi im Fach Radiologie, Medizinische Universität Graz" },
         { date: "2014", text: "Facharztdiplom für Radiologie, Medizinische Universität Graz" },
         { date: "2011", text: "Master of Health Business Administration (MHBA), Friedrich-Alexander-Universität, Nürnberg" },
-        { date: "2007", text: "Promotion Dr. med. univ., Medizinische Universität Graz. Dissertation: \"Das kindliche Schädel-Hirn-Trauma unter besonderer Berücksichtigung des Screenings mit S-100B\"" },
-        { date: "2000-2007", text: "Studium der Humanmedizin, Medizinische Universität Graz" }
+        { date: "2000-2007", text: "Studium der Humanmedizin, Medizinische Universität Graz. Promotion mit Dissertation: \"Das kindliche Schädel-Hirn-Trauma unter besonderer Berücksichtigung des Screenings mit S-100B\"" },
+        { date: "2000", text: "Matura, Kollegium Aloisianum Linz" }
       ]
     },
     {
