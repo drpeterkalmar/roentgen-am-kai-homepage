@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import Footer from './components/Footer'
 import SchemaMarkup from './components/SchemaMarkup'
 import MobileActions from './components/MobileActions'
+import ParticleBackground from './components/ParticleBackground'
 
 // Lazy loaded pages
 const RoentgenPage = lazy(() => import('./pages/RoentgenPage'))
@@ -43,6 +44,7 @@ function App() {
       <ScrollToTop />
       <SchemaMarkup />
       <div className="min-h-screen bg-transparent selection:bg-red-100 selection:text-[#8B2323]">
+        <ParticleBackground />
         <Navbar highContrast={highContrast} setHighContrast={setHighContrast} />
         <main>
           <Suspense fallback={<div className="min-h-screen bg-transparent" />}>
