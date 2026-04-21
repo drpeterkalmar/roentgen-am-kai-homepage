@@ -98,7 +98,7 @@ const KalmarPage = () => {
               Peter <span className="text-[#8B2323]">Kalmar</span>, MHBA
             </h1>
             <p className="text-2xl text-gray-700 mb-8 font-light italic">
-              Facharzt für Radiologie
+              Gesellschafter der Röntgen am Kai OG
             </p>
           </motion.div>
         </div>
@@ -112,7 +112,7 @@ const KalmarPage = () => {
         >
           <h2 className="text-2xl font-black text-gray-900 mb-6 font-[Outfit]">Medizinische Philosophie</h2>
           <p className="text-lg text-gray-700 leading-relaxed font-medium italic">
-            "Geht's doch olle scheißen."
+            "Verdammt bin ich müde."
           </p>
         </motion.div>
 
