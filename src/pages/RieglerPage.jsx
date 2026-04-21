@@ -74,32 +74,6 @@ const RieglerPage = () => {
               Georg <span className="text-[#8B2323]">Riegler</span>
             </h1>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-              <div className="glass p-6 rounded-3xl border-white/60">
-                <div className="flex items-center gap-3 mb-4 text-[#8B2323]">
-                  <Clock size={20} />
-                  <span className="font-bold uppercase tracking-wider text-xs">Ordinationszeiten</span>
-                </div>
-                <p className="text-gray-700 text-sm leading-relaxed">
-                  Nach telefonischer Vereinbarung<br/>
-                  <span className="font-bold">Mo – Do:</span> 9:30 – 16:00 Uhr
-                </p>
-              </div>
-              
-              <div className="glass p-6 rounded-3xl border-white/60">
-                <div className="flex items-center gap-3 mb-4 text-[#8B2323]">
-                  <Phone size={20} />
-                  <span className="font-bold uppercase tracking-wider text-xs">Kontakt</span>
-                </div>
-                <p className="text-gray-700 text-sm leading-relaxed">
-                  Tel.: <a href="tel:+4331623152313" className="hover:text-[#8B2323] transition-colors">+43 316 2315 2313</a><br/>
-                  <span className="flex gap-2 mt-1">
-                    <Globe size={14} className="mt-1 shrink-0" />
-                    <a href="https://pucmed.at" target="_blank" rel="noopener noreferrer" className="hover:text-[#8B2323] transition-colors">www.pucmed.at</a>
-                  </span>
-                </p>
-              </div>
-            </div>
           </motion.div>
         </div>
 
@@ -165,11 +139,6 @@ const RieglerPage = () => {
                   <span className="text-sm font-medium text-gray-800 leading-relaxed">{exp}</span>
                 </div>
               ))}
-            </div>
-            <div className="mt-8 pt-6 border-t border-red-50">
-              <p className="text-xs text-gray-500 italic">
-                Weitere Informationen unter <a href="https://pucmed.at" target="_blank" rel="noopener noreferrer" className="text-[#8B2323] hover:underline">pucmed.at</a>
-              </p>
             </div>
           </motion.div>
         </div>
