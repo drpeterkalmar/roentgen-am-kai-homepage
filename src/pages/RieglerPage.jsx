@@ -151,7 +151,7 @@ const RieglerPage = () => {
           className="glass p-12 rounded-[48px] mb-16"
         >
           <div className="prose prose-red max-w-none text-gray-700">
-            <h2 className="text-3xl font-black font-[Outfit] text-gray-900 mb-8">Spezialisierung auf Ultraschall</h2>
+            <h2 className="text-3xl font-black font-[Outfit] text-gray-900 mb-8">Hochauflösender Nervenultraschall</h2>
             <div className="space-y-6 text-base md:text-lg leading-relaxed">
               <p>
                 Der hochauflösende Ultraschall ist für mich die perfekte Methode, um die oft komplexen Fragestellungen bei Erkrankungen des Bewegungsapparates und peripherer Nerven beantworten zu können. Er ist auch das optimale Mittel, um Therapien minimalinvasiv und somit schonend ultraschallgezielt durchführen zu können.
