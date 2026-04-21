@@ -42,7 +42,7 @@ const KalmarPage = () => {
 
   const publications = [
     "Hatzl, S; Kalmar, P; et al. (2021). Prognostic Value of Baseline and Interim PET Markers in DLBCL. Hemasphere.",
-    "Mahmud, E; Schmid, F; Kalmar, P; et al. (2020). Robotic Peripheral Vascular Intervention. J Invasive Cardiol.",
+    "Mahmud, E; Kalmar, P; et al. (2020). Robotic Peripheral Vascular Intervention. J Invasive Cardiol.",
     "Belyavskaya, T.; Kalmar, P.; et al. (2019). Aortic Stenting in Symptomatic Infrarenal Aortic Stenosis. Vasc Endovasc Surg.",
     "Weir, P.; Kalmar, P.; et al. (2018). Go-Smart: Open-Ended, Web-Based Modelling of Minimally Invasive Cancer Treatments. Plos One.",
     "Kalmar, P. I.; et al. (2016). Gadolinium-free MR in coarctation. Clinical Imaging.",
@@ -61,8 +61,29 @@ const KalmarPage = () => {
   ];
 
   return (
-    <div className="pt-32 pb-24 bg-transparent min-h-screen">
-      <div className="max-w-[1200px] mx-auto px-6">
+    <div className="pt-32 pb-24 bg-transparent min-h-screen relative overflow-hidden">
+      {/* Background Animated Blobs */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden -z-10">
+        <motion.div 
+          animate={{ 
+            x: [0, 40, 0],
+            y: [0, -30, 0],
+            rotate: [0, 10, 0]
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+          className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-red-100/30 rounded-full blur-[100px]"
+        />
+        <motion.div 
+          animate={{ 
+            x: [0, -30, 0],
+            y: [0, 40, 0]
+          }}
+          transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+          className="absolute top-1/2 -left-20 w-[400px] h-[400px] bg-blue-50/20 rounded-full blur-[100px]"
+        />
+      </div>
+
+      <div className="max-w-[1200px] mx-auto px-6 relative z-10">
         {/* Breadcrumbs */}
         <nav className="flex items-center gap-2 text-sm font-medium text-gray-500 mb-12">
           <Link to="/" className="hover:text-[#8B2323] transition-colors">Startseite</Link>
@@ -126,8 +147,9 @@ const KalmarPage = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              whileHover={{ y: -8, transition: { duration: 0.3 } }}
               transition={{ delay: idx * 0.1 }}
-              className="glass p-8 rounded-[40px] flex flex-col"
+              className="glass p-8 rounded-[40px] flex flex-col cursor-default"
             >
               <div className="flex items-center gap-3 mb-8">
                 <div className="w-12 h-12 bg-red-50 rounded-2xl flex items-center justify-center">
@@ -151,8 +173,9 @@ const KalmarPage = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            whileHover={{ y: -8, transition: { duration: 0.3 } }}
             transition={{ delay: 0.2 }}
-            className="glass p-8 rounded-[40px] flex flex-col"
+            className="glass p-8 rounded-[40px] flex flex-col cursor-default"
           >
             <div className="flex items-center gap-3 mb-8">
               <div className="w-12 h-12 bg-red-50 rounded-2xl flex items-center justify-center">
@@ -175,8 +198,9 @@ const KalmarPage = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            whileHover={{ y: -8, transition: { duration: 0.3 } }}
             transition={{ delay: 0.3 }}
-            className="md:col-span-2 lg:col-span-3 glass p-8 rounded-[40px] flex flex-col"
+            className="md:col-span-2 lg:col-span-3 glass p-8 rounded-[40px] flex flex-col cursor-default"
           >
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 bg-red-50 rounded-2xl flex items-center justify-center">

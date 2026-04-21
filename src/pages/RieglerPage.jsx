@@ -35,8 +35,29 @@ const RieglerPage = () => {
   ];
 
   return (
-    <div className="pt-32 pb-24 bg-transparent min-h-screen">
-      <div className="max-w-[1200px] mx-auto px-6">
+    <div className="pt-32 pb-24 bg-transparent min-h-screen relative overflow-hidden">
+      {/* Background Animated Blobs */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden -z-10">
+        <motion.div 
+          animate={{ 
+            x: [0, 50, 0],
+            y: [0, 30, 0],
+            rotate: [0, -10, 0]
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-red-100/30 rounded-full blur-[100px]"
+        />
+        <motion.div 
+          animate={{ 
+            x: [0, 30, 0],
+            y: [0, -50, 0]
+          }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          className="absolute bottom-1/4 -left-20 w-[450px] h-[450px] bg-blue-50/20 rounded-full blur-[100px]"
+        />
+      </div>
+
+      <div className="max-w-[1200px] mx-auto px-6 relative z-10">
         {/* Breadcrumbs */}
         <nav className="flex items-center gap-2 text-sm font-medium text-gray-500 mb-12">
           <Link to="/" className="hover:text-[#8B2323] transition-colors">Startseite</Link>
@@ -101,8 +122,9 @@ const RieglerPage = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              whileHover={{ y: -8, transition: { duration: 0.3 } }}
               transition={{ delay: idx * 0.1 }}
-              className="glass p-8 rounded-[40px] flex flex-col"
+              className="glass p-8 rounded-[40px] flex flex-col cursor-default"
             >
               <div className="flex items-center gap-3 mb-8">
                 <div className="w-12 h-12 bg-red-50 rounded-2xl flex items-center justify-center">
@@ -126,8 +148,9 @@ const RieglerPage = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            whileHover={{ y: -8, transition: { duration: 0.3 } }}
             transition={{ delay: 0.2 }}
-            className="glass p-8 rounded-[40px] flex flex-col"
+            className="glass p-8 rounded-[40px] flex flex-col cursor-default"
           >
             <div className="flex items-center gap-3 mb-8">
               <div className="w-12 h-12 bg-red-50 rounded-2xl flex items-center justify-center">
