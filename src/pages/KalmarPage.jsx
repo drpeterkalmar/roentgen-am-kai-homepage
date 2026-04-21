@@ -46,6 +46,7 @@ const KalmarPage = () => {
     "Mahmud, E; Kalmar, P; et al. (2020). Robotic Peripheral Vascular Intervention. J Invasive Cardiol.",
     "Belyavskaya, T; Kalmar, P; et al. (2019). Aortic Stenting in Symptomatic Infrarenal Aortic Stenosis. Vasc Endovasc Surg.",
     "Weir, P; Kalmar, P; et al. (2018). Go-Smart: Open-Ended, Web-Based Modelling of Minimally Invasive Cancer Treatments. Plos One.",
+    "Mahmud, E; Kalmar, P; et al. (2016). Feasibility and Safety of Robotic Peripheral Vascular Interventions: Results of the RAPID Trial. JACC. Cardiovasc. Interv.",
     "Kalmar, P; et al. (2016). Gadolinium-free MR in coarctation. Clinical Imaging.",
     "Kalmar, P; et al. (2015). Is Embolization an Effective Treatment for Recurrent Hemorrhage After Arthroplasty? CORR.",
     "Kalmar, P; et al. (2014). Placement of hemoparin-coated stents in the iliac arteries. Eur J Radiol."
