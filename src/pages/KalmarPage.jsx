@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const KalmarPage = () => {
   const sections = [
     {
-      title: "Ausbildung",
+      title: "Abschlüsse",
       icon: <GraduationCap className="text-[#8B2323]" size={24} />,
       items: [
         { date: "2016", text: "Venia docendi im Fach Radiologie, Medizinische Universität Graz" },
