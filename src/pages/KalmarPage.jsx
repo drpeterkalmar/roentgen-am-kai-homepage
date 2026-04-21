@@ -49,8 +49,13 @@ const KalmarPage = () => {
   ];
 
   const diplomas = [
-    "Gültiges DFP Diplom 2020-2025",
-    "DFP Diplom 2015-2020"
+    "Gültiges DFP Diplom",
+    "ÖÄK Zertifikat Mammadiagnostik",
+    "ÖÄK Zertifikat Angiologische Basisdiagnostik",
+    "ÖÄK Zertifikat Sonographie Arterien",
+    "ÖÄK Zertifikat Sonographie Venen",
+    "ÖÄK Zertifikat Sonographie Hirnversorgende Arterien",
+    "ÖÄK Zertifikat Sonographie SmallParts"
   ];
 
   return (
@@ -162,7 +167,7 @@ const KalmarPage = () => {
               <div className="w-12 h-12 bg-red-50 rounded-2xl flex items-center justify-center">
                 <Award className="text-[#8B2323]" size={24} />
               </div>
-              <h3 className="text-xl font-bold font-[Outfit]">Gültiges DFP Diplom</h3>
+              <h3 className="text-xl font-bold font-[Outfit]">Fortbildungsdiplome</h3>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {diplomas.map((diploma, i) => (
