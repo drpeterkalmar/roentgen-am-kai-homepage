@@ -244,7 +244,7 @@ const KalmarPage = () => {
             ))}
           </div>
           <div className="mt-10 text-center">
-            <p className="text-gray-500 text-sm italic">Zahlreiche Publikationen in internationalen Fachzeitschriften und internationale Kongressbeiträge.</p>
+            <p className="text-gray-500 text-sm italic">Zahlreiche internationale Kongressbeiträge und Publikationen in internationalen Fachzeitschriften.</p>
           </div>
         </motion.div>
 
