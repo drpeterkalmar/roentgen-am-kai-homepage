@@ -70,6 +70,7 @@ const RieglerPage = () => {
               Facharzt für Radiologie
             </div>
             <h1 className="text-5xl md:text-6xl font-black text-gray-900 mb-4 font-[Outfit] leading-tight">
+              Priv. Doz. Dr. med. univ. <br/>
               Georg <span className="text-[#8B2323]">Riegler</span>
             </h1>
             <p className="text-2xl text-gray-700 mb-8 font-light italic">
