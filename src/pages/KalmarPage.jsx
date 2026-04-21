@@ -103,6 +103,19 @@ const KalmarPage = () => {
           </motion.div>
         </div>
 
+        {/* Philosophy Section */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="glass p-10 rounded-[48px] mb-16 border-white/60"
+        >
+          <h2 className="text-2xl font-black text-gray-900 mb-6 font-[Outfit]">Medizinische Philosophie</h2>
+          <p className="text-lg text-gray-700 leading-relaxed font-medium italic">
+            "Geht's doch olle scheißen."
+          </p>
+        </motion.div>
+
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {sections.map((section, idx) => (
