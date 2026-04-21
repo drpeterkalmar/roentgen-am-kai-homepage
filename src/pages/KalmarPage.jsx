@@ -48,6 +48,11 @@ const KalmarPage = () => {
     "Kalmar, P. I.; et al. (2014). Placement of hemoparin-coated stents in the iliac arteries. Eur J Radiol."
   ];
 
+  const diplomas = [
+    "Gültiges DFP Diplom 2020-2025",
+    "DFP Diplom 2015-2020"
+  ];
+
   return (
     <div className="pt-32 pb-24 bg-transparent min-h-screen">
       <div className="max-w-[1200px] mx-auto px-6">
@@ -140,6 +145,30 @@ const KalmarPage = () => {
                 <div key={i} className="flex items-start gap-3">
                   <CheckCircle2 size={16} className="text-[#8B2323] mt-1 shrink-0" />
                   <span className="text-sm font-medium text-gray-800 leading-relaxed">{exp}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* DFP Diplomas Section */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            className="md:col-span-2 lg:col-span-3 glass p-8 rounded-[40px] flex flex-col"
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 bg-red-50 rounded-2xl flex items-center justify-center">
+                <Award className="text-[#8B2323]" size={24} />
+              </div>
+              <h3 className="text-xl font-bold font-[Outfit]">Gültiges DFP Diplom</h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {diplomas.map((diploma, i) => (
+                <div key={i} className="flex items-center gap-3 p-4 rounded-2xl bg-white/40 border border-white/60">
+                  <CheckCircle2 size={18} className="text-[#8B2323] shrink-0" />
+                  <span className="text-sm font-bold text-gray-800">{diploma}</span>
                 </div>
               ))}
             </div>
