@@ -82,16 +82,17 @@ const ParticleBackground = () => {
     let particlesArray = [];
     const init = () => {
       particlesArray = [];
-      let numberOfParticles = (canvas.height * canvas.width) / 15000; // Density
-      if (numberOfParticles > 150) numberOfParticles = 150; // Cap for performance
+      let densityDivider = window.innerWidth < 768 ? 25000 : 15000;
+      let numberOfParticles = (canvas.height * canvas.width) / densityDivider;
+      if (numberOfParticles > 150) numberOfParticles = 150; 
 
       for (let i = 0; i < numberOfParticles; i++) {
-        let size = Math.random() * 2 + 1;
+        let size = Math.random() * (window.innerWidth < 768 ? 1.5 : 2) + 1;
         let x = Math.random() * (window.innerWidth - size * 2) + size;
         let y = Math.random() * (window.innerHeight - size * 2) + size;
-        let directionX = (Math.random() * 0.5) - 0.25;
-        let directionY = (Math.random() * 0.5) - 0.25;
-        let color = 'rgba(139, 35, 35, 0.15)'; // #8B2323 with opacity
+        let directionX = (Math.random() * 0.4) - 0.2;
+        let directionY = (Math.random() * 0.4) - 0.2;
+        let color = 'rgba(139, 35, 35, 0.12)'; // Slightly lower opacity
 
         particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
       }
@@ -141,8 +142,8 @@ const ParticleBackground = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-0"
-      style={{ background: 'transparent' }}
+      className="fixed inset-0 pointer-events-none -z-10"
+      style={{ background: 'transparent', willChange: 'transform' }}
     />
   );
 };
