@@ -67,12 +67,15 @@ const RieglerPage = () => {
             className="lg:col-span-8 flex flex-col justify-center"
           >
             <div className="inline-block px-4 py-1.5 bg-red-50 text-[#8B2323] rounded-full text-sm font-bold mb-6 tracking-wide uppercase">
-              Facharzt für Radiologie
+              Gesellschafter
             </div>
             <h1 className="text-5xl md:text-6xl font-black text-gray-900 mb-4 font-[Outfit] leading-tight">
               Priv. Doz. Dr. <br/>
               Georg <span className="text-[#8B2323]">Riegler</span>
             </h1>
+            <p className="text-2xl text-gray-700 mb-8 font-light italic">
+              Gesellschafter der Röntgen am Kai OG
+            </p>
             
           </motion.div>
         </div>

@@ -91,14 +91,14 @@ const KalmarPage = () => {
             className="lg:col-span-8 flex flex-col justify-center"
           >
             <div className="inline-block px-4 py-1.5 bg-red-50 text-[#8B2323] rounded-full text-sm font-bold mb-6 tracking-wide uppercase">
-              Gesellschafter
+              Facharzt für Radiologie
             </div>
             <h1 className="text-5xl md:text-6xl font-black text-gray-900 mb-4 font-[Outfit] leading-tight">
               Prim. a. D. Priv. Doz. Dr. med. univ. <br/>
               Peter <span className="text-[#8B2323]">Kalmar</span>, MHBA
             </h1>
-            <p className="text-2xl text-gray-700 mb-2 font-light italic">
-              Gesellschafter der Röntgen am Kai OG
+            <p className="text-2xl text-gray-700 mb-8 font-light italic">
+              Facharzt für Radiologie
             </p>
           </motion.div>
         </div>
