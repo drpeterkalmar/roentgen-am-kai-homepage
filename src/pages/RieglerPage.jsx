@@ -35,7 +35,7 @@ const RieglerPage = () => {
   ];
 
   return (
-    <div className="pt-32 pb-24 bg-transparent min-h-screen relative overflow-hidden">
+    <div className="pt-40 lg:pt-48 pb-24 bg-transparent min-h-screen relative overflow-hidden">
       {/* Background Animated Blobs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden -z-10">
         <motion.div 

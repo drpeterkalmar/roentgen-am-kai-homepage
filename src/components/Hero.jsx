@@ -33,7 +33,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="home" className="relative min-h-screen flex lg:items-center pt-24 pb-12 lg:pb-0 overflow-hidden">
+    <section id="home" className="relative min-h-screen flex lg:items-center pt-36 lg:pt-48 pb-12 lg:pb-0 overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center lg:items-stretch relative z-10">
         {/* Text Content in Glass Card */}
         <motion.div 
