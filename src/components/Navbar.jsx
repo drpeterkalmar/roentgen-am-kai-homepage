@@ -53,8 +53,8 @@ const Navbar = ({ highContrast, setHighContrast }) => {
         </Link>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-10">
-          <div className="flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-4 lg:gap-10">
+          <div className="flex items-center gap-4 lg:gap-8">
             {navLinks.map((link) => {
               const isHomeRoot = link.href === '/' && location.pathname === '/' && !location.hash;
               const isHashMatch = link.href.startsWith('/#') && location.hash === link.href.substring(1);
@@ -130,7 +130,7 @@ const Navbar = ({ highContrast, setHighContrast }) => {
 
           <div className="h-4 w-px bg-gray-200" />
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 lg:gap-4">
             <button 
               onClick={() => setHighContrast(!highContrast)}
               className={`p-3 rounded-2xl transition-all duration-300 ${
@@ -143,7 +143,7 @@ const Navbar = ({ highContrast, setHighContrast }) => {
             </button>
             <a
               href="tel:+433168409050"
-              className="bg-[#8B2323] text-white px-8 py-3.5 rounded-2xl text-sm font-black uppercase tracking-widest hover:bg-[#A52A2A] hover:shadow-[0_10px_30px_rgba(139,35,35,0.3)] transition-all flex items-center gap-2 active:scale-95"
+              className="bg-[#8B2323] text-white px-4 lg:px-8 py-3.5 rounded-2xl text-sm font-black uppercase tracking-widest hover:bg-[#A52A2A] hover:shadow-[0_10px_30px_rgba(139,35,35,0.3)] transition-all flex items-center gap-2 active:scale-95"
             >
               <Phone size={16} />
               Termin
