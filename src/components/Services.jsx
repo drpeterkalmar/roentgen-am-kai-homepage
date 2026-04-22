@@ -133,7 +133,6 @@ const Services = () => {
               className={`glass group rounded-[40px] p-8 flex flex-col relative overflow-hidden ${service.gridClass} ${
                 service.type === 'info' ? 'order-last' : 'order-none'
               }`}
-            >    }`}
             >
               {service.href && (
                 <Link 
