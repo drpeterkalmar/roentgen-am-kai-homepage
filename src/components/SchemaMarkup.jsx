@@ -173,14 +173,7 @@ const SchemaMarkup = () => {
               "text": "Ja, neben der 3D-DVT bieten wir auch digitales 2D-Zahnröntgen wie Panoramaaufnahmen (OPTG), Einzelzahnaufnahmen sowie Fernröntgen-Aufnahmen (Ceph) für kieferorthopädische Planungen an."
             }
           },
-          {
-            "@type": "Question",
-            "name": "Ist die DVT eine Kassenleistung?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Die DVT und spezielle Zahnröntgen-Aufnahmen sind in der Regel Privatleistungen. Wir informieren Sie gerne vorab über die anfallenden Kosten."
-            }
-          }
+
         ]
       };
     }

@@ -20,12 +20,7 @@ const DVTPage = () => {
       ]}
       imageUrl="/assets/images/dvt_v3.avif"
     >
-      <section className="bg-amber-50 rounded-[32px] p-6 border border-amber-200 mb-12 flex items-start gap-4">
-        <AlertCircle className="text-amber-600 shrink-0 mt-1" size={24} />
-        <p className="text-sm font-medium text-amber-800">
-          <strong>Hinweis:</strong> Die DVT und spezielles Zahnröntgen sind Privatleistungen und werden oft nicht direkt mit der Kasse verrechnet.
-        </p>
-      </section>
+
 
       <section className="space-y-6 mb-12">
         <h2 className="text-2xl font-bold mb-4 font-[Outfit]">Digitales Zahnröntgen</h2>
