@@ -16,22 +16,24 @@ const ChevronRight = ({ size }) => (
 
 const services = [
   {
+    title: 'Digitales Röntgen',
+    description: 'Skelett- und Lungenaufnahmen mit minimaler Strahlenbelastung.',
+    microInfo: 'Sofort verfügbar',
+    href: '/unser-angebot/roentgen',
+    icon: <Scan size={24} />,
+    color: 'bg-blue-50 text-blue-600',
+    gridClass: 'md:col-span-4 aspect-square',
+    image: '/assets/images/roentgen_v3.avif'
+  },
+  {
     title: 'Mammographie',
     description: 'Zertifizierter Screeningstandort für höchste Diagnosesicherheit.',
     microInfo: 'Brustkrebs-Früherkennung',
     href: '/unser-angebot/mammographie',
     icon: <HeartPulse size={28} />,
     color: 'bg-red-50 text-[#8B2323]',
-    gridClass: 'md:col-span-4 aspect-square', // Standardized
-    image: '/assets/images/mammographie_v2.avif'
-  },
-  {
-    type: 'info',
-    title: 'Alle Kassen',
-    description: 'Wir sind Vertragspartner aller Kassen. Bitte bringen Sie Ihre e-Card zu jedem Termin mit.',
-    icon: <CreditCard size={24} />,
-    color: 'bg-blue-50 text-blue-600',
     gridClass: 'md:col-span-4 aspect-square',
+    image: '/assets/images/mammographie_v2.avif'
   },
   {
     title: 'Knochendichte (DEXA)',
@@ -40,37 +42,8 @@ const services = [
     href: '/unser-angebot/knochendichte',
     icon: <Bone size={28} />,
     color: 'bg-purple-50 text-purple-600',
-    gridClass: 'md:col-span-4 aspect-square', // Standardized
+    gridClass: 'md:col-span-4 aspect-square',
     image: '/assets/images/knochendichte_v3.avif'
-  },
-  {
-    type: 'info',
-    title: 'Anreise',
-    description: 'Kostenlose Tiefgaragenplätze für Patienten & gute öffentliche Anbindung mit den Straßenbahnlinien 3 und 5 und den Buslinien 58 und 63. Termine nur nach Vereinbarung.',
-    icon: <MapPin size={24} />, 
-    color: 'bg-green-50 text-green-600',
-    gridClass: 'md:col-span-4 aspect-square',
-  },
-  {
-    title: 'Digitales Röntgen',
-    description: 'Skelett- und Lungenaufnahmen mit minimaler Strahlenbelastung.',
-    microInfo: 'Sofort verfügbar',
-    href: '/unser-angebot/roentgen',
-    icon: <Scan size={24} />,
-    color: 'bg-blue-50 text-blue-600',
-    gridClass: 'md:col-span-4 aspect-square', // Standardized
-    image: '/assets/images/roentgen_v3.avif'
-  },
-
-  {
-    title: 'DVT 3D',
-    description: 'Präzise 3D-Kieferdiagnostik für die Implantatplanung.',
-    microInfo: 'Modernste Technik',
-    href: '/unser-angebot/dvt',
-    icon: <ToothIcon size={24} />,
-    color: 'bg-orange-50 text-orange-600',
-    gridClass: 'md:col-span-4 aspect-square',
-    image: '/assets/images/hero_interior.avif'
   },
   {
     title: 'Körperfett',
@@ -81,6 +54,16 @@ const services = [
     color: 'bg-teal-50 text-teal-600',
     gridClass: 'md:col-span-4 aspect-square',
     image: '/assets/images/koerperfett.avif'
+  },
+  {
+    title: 'DVT / Zahnröntgen',
+    description: 'Präzise 3D-Kieferdiagnostik für die Implantatplanung und Zahnheilkunde.',
+    microInfo: 'Modernste Technik',
+    href: '/unser-angebot/dvt',
+    icon: <ToothIcon size={24} />,
+    color: 'bg-orange-50 text-orange-600',
+    gridClass: 'md:col-span-4 aspect-square',
+    image: '/assets/images/hero_interior.avif'
   },
   {
     title: 'Phlebographie',
@@ -101,6 +84,22 @@ const services = [
     color: 'bg-green-50 text-green-600',
     gridClass: 'md:col-span-4 aspect-square',
     image: '/assets/images/ultraschall.avif'
+  },
+  {
+    type: 'info',
+    title: 'Alle Kassen',
+    description: 'Wir sind Vertragspartner aller Kassen. Bitte bringen Sie Ihre e-Card zu jedem Termin mit.',
+    icon: <CreditCard size={24} />,
+    color: 'bg-blue-50 text-blue-600',
+    gridClass: 'md:col-span-4 aspect-square',
+  },
+  {
+    type: 'info',
+    title: 'Anreise',
+    description: 'Kostenlose Tiefgaragenplätze für Patienten & gute öffentliche Anbindung.',
+    icon: <MapPin size={24} />, 
+    color: 'bg-green-50 text-green-600',
+    gridClass: 'md:col-span-4 aspect-square',
   },
 ];
 
@@ -132,9 +131,9 @@ const Services = () => {
               viewport={{ once: true }}
               whileHover={{ y: -5, borderColor: 'rgba(139, 35, 35, 0.2)' }}
               className={`glass group rounded-[40px] p-8 flex flex-col relative overflow-hidden ${service.gridClass} ${
-                service.type === 'info' ? 'order-last' : 
-                (service.title.includes('Mammo') ? 'order-first' : 'order-none')
+                service.type === 'info' ? 'order-last' : 'order-none'
               }`}
+            >    }`}
             >
               {service.href && (
                 <Link 

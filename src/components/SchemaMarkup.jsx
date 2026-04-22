@@ -51,7 +51,7 @@ const SchemaMarkup = () => {
         { "@type": "Organization", "name": "ÖGIR" },
         { "@type": "Organization", "name": "ÖRG" }
       ],
-      "knowsAbout": ["Mammographie", "Knochendichtemessung", "Ultraschall", "DEXA", "Röntgendiagnostik"],
+      "knowsAbout": ["Mammographie", "Knochendichtemessung", "Ultraschall", "DEXA", "Röntgendiagnostik", "DVT", "Zahnröntgen"],
       "isAcceptingNewPatients": true,
       "healthcareReportingData": "Alle Kassen: BVAEB, SVS, KFA | Wahlarzt für ÖGK"
     };
@@ -148,6 +148,37 @@ const SchemaMarkup = () => {
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "Nein, eine spezielle Vorbereitung ist nicht nötig. Sie können die Untersuchung jederzeit ohne Fasten durchführen lassen."
+            }
+          }
+        ]
+      };
+    } else if (location.pathname === '/unser-angebot/dvt') {
+      faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Was ist eine DVT (Digitale Volumentomographie)?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Die DVT ist ein hochpräzises 3D-Röntgenverfahren speziell für den Kopf- und Kieferbereich. Sie ermöglicht eine räumliche Darstellung von Knochen, Zähnen und Nervenkanälen bei deutlich geringerer Strahlenbelastung als bei einem herkömmlichen CT."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Bieten Sie auch klassisches Zahnröntgen an?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ja, neben der 3D-DVT bieten wir auch digitales 2D-Zahnröntgen wie Panoramaaufnahmen (OPTG) und Einzelzahnaufnahmen an."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Ist die DVT eine Kassenleistung?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Die DVT und spezielle Zahnröntgen-Aufnahmen sind in der Regel Privatleistungen. Wir informieren Sie gerne vorab über die anfallenden Kosten."
             }
           }
         ]
