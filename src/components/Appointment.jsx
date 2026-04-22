@@ -363,7 +363,8 @@ const Appointment = () => {
                               setSubmitError(null);
                               setFormData({...formData, date: dateVal});
                             }}
-                            className={`w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none transition-all ${!formData.date ? 'text-transparent' : 'text-gray-950'}`} 
+                            onClick={(e) => e.target.showPicker?.()}
+                            className={`w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none transition-all cursor-pointer ${!formData.date ? 'text-transparent' : 'text-gray-950'}`} 
                           />
                           {!formData.date && (
                             <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none">
