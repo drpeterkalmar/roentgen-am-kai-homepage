@@ -30,7 +30,7 @@ const DVTPage = () => {
       <section className="space-y-6 mb-12">
         <h2 className="text-2xl font-bold mb-4 font-[Outfit]">Digitales Zahnröntgen</h2>
         <p>
-          Zusätzlich zur hochpräzisen 3D-DVT bieten wir umfassendes digitales Zahnröntgen an. Dies umfasst sowohl Panoramaaufnahmen (OPTG) als auch gezielte Einzelaufnahmen. Dank modernster Sensortechnologie profitieren Sie von einer minimalen Strahlenbelastung bei gleichzeitig höchster Bildschärfe.
+          Zusätzlich zur hochpräzisen 3D-DVT bieten wir umfassendes digitales Zahnröntgen an. Dies umfasst sowohl Panoramaaufnahmen (OPTG) als auch gezielte Einzelaufnahmen. Dank modernster Sensortechnologie profitieren Sie von einer minimalen Strahlenbelastung bei gleichzeitig höchster Bildschärfe. Für kieferorthopädische Behandlungen führen wir zudem spezialisierte Fernröntgen-Aufnahmen (Ceph) durch, die eine präzise Vermessung der Schädelstruktur ermöglichen.
         </p>
         <p>
           Diese Aufnahmen dienen als unverzichtbare Grundlage für Ihre zahnmedizinische Behandlung, die Implantatplanung oder die Abklärung von Kiefergelenksbeschwerden.

@@ -170,7 +170,7 @@ const SchemaMarkup = () => {
             "name": "Bieten Sie auch klassisches Zahnröntgen an?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Ja, neben der 3D-DVT bieten wir auch digitales 2D-Zahnröntgen wie Panoramaaufnahmen (OPTG) und Einzelzahnaufnahmen an."
+              "text": "Ja, neben der 3D-DVT bieten wir auch digitales 2D-Zahnröntgen wie Panoramaaufnahmen (OPTG), Einzelzahnaufnahmen sowie Fernröntgen-Aufnahmen (Ceph) für kieferorthopädische Planungen an."
             }
           },
           {
