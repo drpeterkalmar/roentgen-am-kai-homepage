@@ -18,7 +18,7 @@ const MobileActions = () => {
             className="flex-1 flex items-center justify-center gap-3 bg-[#8B2323] text-white py-4 rounded-full text-xs font-black uppercase tracking-widest active:scale-95 transition-transform"
           >
             <Phone size={18} />
-            Terminanruf
+            Anrufen
           </a>
           
           <div className="w-px h-8 bg-gray-200/50 mx-2" />
