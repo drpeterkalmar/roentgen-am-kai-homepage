@@ -24,7 +24,20 @@ const Appointment = () => {
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
 
-    const handleSubmit = async (e) => {
+    const getMinDate = (service) => {
+    const d = new Date();
+    if (service === 'Ultraschall' || service === 'Sonstige Anfrage') {
+      d.setMonth(d.getMonth() + 2);
+    } else if (service === 'Mammographie') {
+      d.setMonth(d.getMonth() + 1);
+    } else {
+      // Default to 1 week for Röntgen, DVT / Zahnröntgen, Knochendichte / Fettmessung
+      d.setDate(d.getDate() + 7);
+    }
+    return d;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     if (!formData.firstName.trim() || !formData.lastName.trim()) {
@@ -48,12 +61,12 @@ const Appointment = () => {
       return;
     }
     
-    const minDate = new Date();
-    minDate.setDate(minDate.getDate() + 8);
+    const minDate = getMinDate(formData.service);
     minDate.setHours(0, 0, 0, 0);
     
     if (selectedDate < minDate) {
-      setSubmitError("Bitte wählen Sie ein Datum, das mindestens eine Woche in der Zukunft liegt.");
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      setSubmitError(`Für diese Untersuchung ist der frühestmögliche Termin der ${minDate.toLocaleDateString('de-DE', options)}.`);
       return;
     }
 
@@ -323,8 +336,7 @@ const Appointment = () => {
                             type="date" 
                             required
                             min={(() => {
-                              const d = new Date();
-                              d.setDate(d.getDate() + 8);
+                              const d = getMinDate(formData.service);
                               return d.toISOString().split('T')[0];
                             })()}
                             value={formData.date}
@@ -339,11 +351,11 @@ const Appointment = () => {
                                   return;
                                 }
                                 
-                                const minD = new Date();
-                                minD.setDate(minD.getDate() + 8);
+                                const minD = getMinDate(formData.service);
                                 minD.setHours(0, 0, 0, 0);
                                 if (selected < minD) {
-                                  setSubmitError("Der Termin muss mehr als eine Woche im Voraus liegen.");
+                                  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                                  setSubmitError(`Der Termin muss nach dem ${minD.toLocaleDateString('de-DE', options)} liegen.`);
                                   setFormData({...formData, date: ''});
                                   return;
                                 }
