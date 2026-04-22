@@ -22,7 +22,22 @@ const ParticleBackground = () => {
       mouse.current.y = event.y;
     };
 
+    const handleTouch = (event) => {
+      if (event.touches.length > 0) {
+        mouse.current.x = event.touches[0].clientX;
+        mouse.current.y = event.touches[0].clientY;
+      }
+    };
+
+    const handleTouchEnd = () => {
+      mouse.current.x = null;
+      mouse.current.y = null;
+    };
+
     window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('touchstart', handleTouch);
+    window.addEventListener('touchmove', handleTouch);
+    window.addEventListener('touchend', handleTouchEnd);
 
     // Particle Class
     class Particle {
@@ -70,20 +85,22 @@ const ParticleBackground = () => {
         if (this.y < -margin) this.y = canvas.height + margin;
 
         // Smooth Mouse interaction (Swinging effect)
-        let dx = mouse.current.x - this.x;
-        let dy = mouse.current.y - this.y;
-        let distance = Math.sqrt(dx * dx + dy * dy);
+        if (mouse.current.x !== null && mouse.current.y !== null) {
+          let dx = mouse.current.x - this.x;
+          let dy = mouse.current.y - this.y;
+          let distance = Math.sqrt(dx * dx + dy * dy);
 
-        if (distance < mouse.current.radius) {
-          const force = (mouse.current.radius - distance) / mouse.current.radius;
-          const angle = Math.atan2(dy, dx);
-          
-          // Slowly fly towards mouse pointer (Attraction instead of Repulsion)
-          const pullX = Math.cos(angle) * force * 0.6;
-          const pullY = Math.sin(angle) * force * 0.6;
-          
-          this.x += pullX;
-          this.y += pullY;
+          if (distance < mouse.current.radius) {
+            const force = (mouse.current.radius - distance) / mouse.current.radius;
+            const angle = Math.atan2(dy, dx);
+            
+            // Slowly fly towards mouse/finger (Attraction instead of Repulsion)
+            const pullX = Math.cos(angle) * force * 0.6;
+            const pullY = Math.sin(angle) * force * 0.6;
+            
+            this.x += pullX;
+            this.y += pullY;
+          }
         }
 
         this.draw();
@@ -154,6 +171,9 @@ const ParticleBackground = () => {
     return () => {
       window.removeEventListener('resize', resizeCanvas);
       window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('touchstart', handleTouch);
+      window.removeEventListener('touchmove', handleTouch);
+      window.removeEventListener('touchend', handleTouchEnd);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
