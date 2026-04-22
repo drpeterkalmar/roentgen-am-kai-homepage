@@ -4,9 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const images = [
   '/assets/images/hero-slide-1.avif',
-  '/assets/images/hero-home-2025.avif',
-  '/assets/images/hero-home-2025-tablet.avif',
-  '/assets/images/phlebographie.avif'
+  '/assets/images/hero-home-2025.avif'
 ];
 
 const animationPresets = [
@@ -19,9 +17,7 @@ const animationPresets = [
 
 const imageAlts = [
   'Digitale Röntgendiagnostik auf höchstem Niveau',
-  'Modernste radiologische Praxis Röntgen am Kai in Graz',
-  'Moderne Ausstattung der Radiologie am Kai',
-  'Spezialisierte Phlebographie-Untersuchung'
+  'Modernste radiologische Praxis Röntgen am Kai in Graz'
 ];
 
 const Hero = () => {

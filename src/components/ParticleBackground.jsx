@@ -40,8 +40,8 @@ const ParticleBackground = () => {
       }
 
       draw() {
-        // Pulse opacity - significantly reduced for better readability
-        const opacity = 0.04 + Math.abs(Math.sin(this.pulse)) * 0.08;
+        // Pulse opacity - slightly more visible as requested
+        const opacity = 0.08 + Math.abs(Math.sin(this.pulse)) * 0.12;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
         
@@ -77,11 +77,13 @@ const ParticleBackground = () => {
         if (distance < mouse.current.radius) {
           const force = (mouse.current.radius - distance) / mouse.current.radius;
           const angle = Math.atan2(dy, dx);
-          const pushX = Math.cos(angle) * force * 1.5;
-          const pushY = Math.sin(angle) * force * 1.5;
           
-          this.x -= pushX;
-          this.y -= pushY;
+          // Slowly fly towards mouse pointer (Attraction instead of Repulsion)
+          const pullX = Math.cos(angle) * force * 0.6;
+          const pullY = Math.sin(angle) * force * 0.6;
+          
+          this.x += pullX;
+          this.y += pullY;
         }
 
         this.draw();
@@ -116,7 +118,7 @@ const ParticleBackground = () => {
 
           if (distance < 180) {
             let opacity = 1 - (distance / 180);
-            ctx.strokeStyle = `rgba(139, 35, 35, ${opacity * 0.05})`;
+            ctx.strokeStyle = `rgba(139, 35, 35, ${opacity * 0.08})`;
             ctx.lineWidth = 1.8;
             ctx.beginPath();
             
@@ -160,7 +162,7 @@ const ParticleBackground = () => {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none -z-10"
-      style={{ background: 'transparent', opacity: 0.5 }}
+      style={{ background: 'transparent', opacity: 0.7 }}
     />
   );
 };
