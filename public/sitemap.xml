@@ -1,9 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Hauptseite -->
   <url>
     <loc>https://roentgen-am-kai-homepage.vercel.app/</loc>
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-04-22</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+
+  <!-- Leistungen -->
+  <url>
+    <loc>https://roentgen-am-kai-homepage.vercel.app/unser-angebot/roentgen</loc>
+    <lastmod>2026-04-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://roentgen-am-kai-homepage.vercel.app/unser-angebot/ultraschall</loc>
+    <lastmod>2026-04-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://roentgen-am-kai-homepage.vercel.app/unser-angebot/mammographie</loc>
+    <lastmod>2026-04-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://roentgen-am-kai-homepage.vercel.app/unser-angebot/knochendichte</loc>
+    <lastmod>2026-04-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://roentgen-am-kai-homepage.vercel.app/unser-angebot/dvt</loc>
+    <lastmod>2026-04-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://roentgen-am-kai-homepage.vercel.app/unser-angebot/phlebographie</loc>
+    <lastmod>2026-04-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://roentgen-am-kai-homepage.vercel.app/unser-angebot/koerperfettmessung</loc>
+    <lastmod>2026-04-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Team -->
+  <url>
+    <loc>https://roentgen-am-kai-homepage.vercel.app/unser-team/dr-peter-kalmar</loc>
+    <lastmod>2026-04-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://roentgen-am-kai-homepage.vercel.app/unser-team/dr-georg-riegler</loc>
+    <lastmod>2026-04-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Rechtliches -->
+  <url>
+    <loc>https://roentgen-am-kai-homepage.vercel.app/impressum</loc>
+    <lastmod>2026-04-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://roentgen-am-kai-homepage.vercel.app/datenschutz</loc>
+    <lastmod>2026-04-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset>
