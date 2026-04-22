@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, MapPin } from 'lucide-react';
+import { Phone, MapPin } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const MobileActions = () => {
@@ -14,11 +14,11 @@ const MobileActions = () => {
       >
         <div className="glass px-2 py-2 rounded-full shadow-[0_20px_50px_rgba(139,35,35,0.2)] flex items-center justify-between border border-white/40">
           <a 
-            href="/#booking" 
+            href="tel:+433168409050" 
             className="flex-1 flex items-center justify-center gap-3 bg-[#8B2323] text-white py-4 rounded-full text-xs font-black uppercase tracking-widest active:scale-95 transition-transform"
           >
-            <Calendar size={18} />
-            Termin
+            <Phone size={18} />
+            Terminanruf
           </a>
           
           <div className="w-px h-8 bg-gray-200/50 mx-2" />
