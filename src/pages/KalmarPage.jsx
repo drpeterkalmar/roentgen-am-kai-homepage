@@ -38,7 +38,7 @@ const KalmarPage = () => {
     "Computertomographie & Interventionelle CT",
     "Magnetresonanztomographie (Neuro, Cardio, Ortho)",
     "Farbcodierte Duplexsonographie der Gefäße",
-    "Minimal Invasive perkutane aortale, arterielle und venöse Therapie"
+    "Minimal invasive perkutane aortale, arterielle und venöse Therapie"
   ];
 
   const publications = [
