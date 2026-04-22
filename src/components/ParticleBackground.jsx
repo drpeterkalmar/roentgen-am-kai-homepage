@@ -40,8 +40,8 @@ const ParticleBackground = () => {
       }
 
       draw() {
-        // Pulse opacity
-        const opacity = 0.1 + Math.abs(Math.sin(this.pulse)) * 0.15;
+        // Pulse opacity - significantly reduced for better readability
+        const opacity = 0.04 + Math.abs(Math.sin(this.pulse)) * 0.08;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
         
@@ -51,7 +51,7 @@ const ParticleBackground = () => {
         ctx.stroke();
         
         // Very subtle core
-        ctx.fillStyle = `rgba(139, 35, 35, ${opacity * 0.3})`;
+        ctx.fillStyle = `rgba(139, 35, 35, ${opacity * 0.2})`;
         ctx.fill();
       }
 
@@ -116,7 +116,7 @@ const ParticleBackground = () => {
 
           if (distance < 180) {
             let opacity = 1 - (distance / 180);
-            ctx.strokeStyle = `rgba(139, 35, 35, ${opacity * 0.12})`;
+            ctx.strokeStyle = `rgba(139, 35, 35, ${opacity * 0.05})`;
             ctx.lineWidth = 1.8;
             ctx.beginPath();
             
@@ -160,7 +160,7 @@ const ParticleBackground = () => {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none -z-10"
-      style={{ background: 'transparent', opacity: 0.8 }}
+      style={{ background: 'transparent', opacity: 0.5 }}
     />
   );
 };
