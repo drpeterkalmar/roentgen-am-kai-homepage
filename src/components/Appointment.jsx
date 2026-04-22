@@ -28,7 +28,7 @@ const Appointment = () => {
     const d = new Date();
     if (service === 'Ultraschall' || service === 'Sonstige Anfrage') {
       d.setMonth(d.getMonth() + 2);
-    } else if (service === 'Mammographie') {
+    } else if (service === 'Mammographie-Screening') {
       d.setMonth(d.getMonth() + 1);
     } else {
       // Default to 1 week for Röntgen, DVT / Zahnröntgen, Knochendichte / Fettmessung
@@ -182,7 +182,7 @@ const Appointment = () => {
                   >
                     <h3 className="text-2xl font-bold mb-6">Wählen Sie die gewünschte Untersuchung</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      {['Röntgen', 'Ultraschall', 'Mammographie', 'DVT / Zahnröntgen', 'Knochendichte / Fettmessung', 'Sonstige Anfrage'].map((svc) => (
+                      {['Röntgen', 'Ultraschall', 'Mammographie-Screening', 'DVT / Zahnröntgen', 'Knochendichte / Fettmessung', 'Sonstige Anfrage'].map((svc) => (
                         <button 
                           key={svc}
                           type="button"
