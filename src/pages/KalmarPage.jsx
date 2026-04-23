@@ -31,7 +31,7 @@ const KalmarPage = () => {
   ];
 
   const expertises = [
-    "Interventionelle Radiologie (lokale Tumortherapie: RF, SIRT, TACE)",
+    "Minimal-invasive Tumortherapie: RFA, SIRT, TACE",
     "Endovaskuläre Aortenprothesenimplantation (EVAR/TEVAR)",
     "Becken-Bein-Angiographie & Rekanalisation",
     "Therapie venöser Malformationen",
