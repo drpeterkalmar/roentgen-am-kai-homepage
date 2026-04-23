@@ -29,7 +29,7 @@ const About = () => {
                   srcSet="/assets/images/team-2025-mobile.avif 800w, /assets/images/team-2025-tablet.avif 1200w, /assets/images/team-2025.avif 1920w"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                   alt="Priv. Doz. Dr. Georg Riegler und Priv. Doz. Dr. Peter Kalmar - Spezialisten für Radiologie in Graz" 
-                  className="w-full h-full object-cover grayscale brightness-110 group-hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100"
+                  className="w-full h-full object-cover grayscale-[0.3] brightness-110 group-hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100"
                 />
                 
                 {/* Clickable Area: Dr. Riegler (Left) */}

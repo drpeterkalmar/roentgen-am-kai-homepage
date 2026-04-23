@@ -78,7 +78,7 @@ const RieglerPage = () => {
                <img 
                 src="/assets/images/knochendichte.avif" 
                 alt="Priv. Doz. Dr. Georg Riegler" 
-                className="w-full h-full object-cover rounded-[40px] grayscale hover:grayscale-0 transition-all duration-700"
+                className="w-full h-full object-cover rounded-[40px] grayscale-[0.3] hover:grayscale-0 transition-all duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1f2937]/40 to-transparent pointer-events-none" />
             </div>
