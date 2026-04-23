@@ -31,14 +31,14 @@ const KalmarPage = () => {
   ];
 
   const expertises = [
+    "Minimal-invasive perkutane aortale/arterielle und venöse Therapie",
     "Minimal-invasive Tumortherapie: RFA, SIRT, TACE",
     "Endovaskuläre Aortenprothesenimplantation (EVAR/TEVAR)",
     "Becken-Bein-Angiographie & Rekanalisation",
     "Therapie venöser Malformationen",
     "Computertomographie & Interventionelle CT",
     "Magnetresonanztomographie (Neuro, Cardio, Ortho)",
-    "Farbcodierte Duplexsonographie der Gefäße",
-    "Minimal invasive perkutane aortale, arterielle und venöse Therapie"
+    "Farbcodierte Duplexsonographie der Gefäße"
   ];
 
   const publications = [
