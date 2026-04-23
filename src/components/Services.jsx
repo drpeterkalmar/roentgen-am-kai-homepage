@@ -96,7 +96,7 @@ const services = [
   {
     type: 'info',
     title: 'Anreise',
-    description: 'Kostenlose Tiefgaragenplätze für Patienten & gute öffentliche Anbindung.',
+    description: 'Kostenlose Tiefgaragenplätze für Patienten & gute öffentliche Anbindung (Straßenbahn 3 & 5, Bus 58 & 63, Haltestelle Keplerbrücke).',
     icon: <MapPin size={24} />, 
     color: 'bg-green-50 text-green-600',
     gridClass: 'md:col-span-4 aspect-square',

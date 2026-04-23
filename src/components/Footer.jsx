@@ -60,7 +60,11 @@ const Footer = () => {
                   <MapPin className="text-[#8B2323] shrink-0" size={24} />
                   <div>
                     <p className="text-gray-950 font-bold">Zentrale Lage</p>
-                    <p className="mb-4">Körösistraße 9<br />8010 Graz, Österreich</p>
+                    <p className="mb-2">Körösistraße 9<br />8010 Graz, Österreich</p>
+                    <div className="text-xs space-y-1 mb-4 opacity-80">
+                      <p><strong>Öffentlich:</strong> Straßenbahn 3 & 5, Bus 58 & 63 (Haltestelle Keplerbrücke)</p>
+                      <p><strong>Parken:</strong> Kostenlose Tiefgarage im Haus (Einfahrt via Körösistraße)</p>
+                    </div>
                     
                     {/* Stylized Map View */}
                     <div className="relative group rounded-3xl overflow-hidden mb-4 shadow-xl border border-gray-700">
