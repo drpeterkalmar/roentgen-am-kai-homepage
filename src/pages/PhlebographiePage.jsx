@@ -4,7 +4,7 @@ import ServiceLayout from '../components/ServiceLayout';
 
 const PhlebographiePage = () => {
   const LegComposite = (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+    <div className="grid grid-cols-3 gap-2 md:gap-6 mb-16">
       {[
         { id: 1, label: "Phlebografie Oberschenkel", img: "/assets/images/phlebo-leg-1.avif", mobile: "/assets/images/phlebo-leg-1-mobile.avif", tablet: "/assets/images/phlebo-leg-1-tablet.avif" },
         { id: 2, label: "Phlebografie Knie", img: "/assets/images/phlebo-leg-2.avif", mobile: "/assets/images/phlebo-leg-2-mobile.avif", tablet: "/assets/images/phlebo-leg-2-tablet.avif" },
