@@ -10,15 +10,15 @@ const PhlebographiePage = () => {
         { id: 2, label: "Phlebografie Knie", img: "/assets/images/phlebo-leg-2.avif", mobile: "/assets/images/phlebo-leg-2-mobile.avif", tablet: "/assets/images/phlebo-leg-2-tablet.avif" },
         { id: 3, label: "Phlebografie Unterschenkel", img: "/assets/images/phlebo-leg-3.avif", mobile: "/assets/images/phlebo-leg-3-mobile.avif", tablet: "/assets/images/phlebo-leg-3-tablet.avif" }
       ].map((segment) => (
-        <div key={segment.id} className="group relative rounded-[32px] overflow-hidden shadow-xl bg-gray-100 aspect-[3/4] md:aspect-[2/3]">
+        <div key={segment.id} className="group relative rounded-[32px] overflow-hidden shadow-xl bg-black flex items-center justify-center">
           <img 
             src={segment.img} 
             srcSet={`${segment.mobile} 800w, ${segment.tablet} 1200w, ${segment.img} 1920w`}
             sizes="(max-width: 768px) 100vw, 33vw"
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+            className="w-full h-auto block transition-transform duration-700 group-hover:scale-105" 
             alt={segment.label} 
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
         </div>
       ))}
     </div>
