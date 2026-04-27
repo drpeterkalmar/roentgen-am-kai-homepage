@@ -19,11 +19,6 @@ const PhlebographiePage = () => {
             alt={segment.label} 
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-          
-          {/* Tech Detail Overlay */}
-          <div className="absolute top-4 right-4 w-8 h-8 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
-             <div className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse" />
-          </div>
         </div>
       ))}
     </div>
