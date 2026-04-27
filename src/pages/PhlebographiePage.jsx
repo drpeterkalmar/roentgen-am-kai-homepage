@@ -6,9 +6,9 @@ const PhlebographiePage = () => {
   const LegComposite = (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
       {[
-        { id: 1, label: "Becken / Oberschenkel", img: "/assets/images/phlebo-leg-1.avif", mobile: "/assets/images/phlebo-leg-1-mobile.avif", tablet: "/assets/images/phlebo-leg-1-tablet.avif" },
-        { id: 2, label: "Knie / Oberschenkel", img: "/assets/images/phlebo-leg-2.avif", mobile: "/assets/images/phlebo-leg-2-mobile.avif", tablet: "/assets/images/phlebo-leg-2-tablet.avif" },
-        { id: 3, label: "Unterschenkel / Fuß", img: "/assets/images/phlebo-leg-3.avif", mobile: "/assets/images/phlebo-leg-3-mobile.avif", tablet: "/assets/images/phlebo-leg-3-tablet.avif" }
+        { id: 1, label: "Phlebografie Oberschenkel", img: "/assets/images/phlebo-leg-1.avif", mobile: "/assets/images/phlebo-leg-1-mobile.avif", tablet: "/assets/images/phlebo-leg-1-tablet.avif" },
+        { id: 2, label: "Phlebografie Knie", img: "/assets/images/phlebo-leg-2.avif", mobile: "/assets/images/phlebo-leg-2-mobile.avif", tablet: "/assets/images/phlebo-leg-2-tablet.avif" },
+        { id: 3, label: "Phlebografie Unterschenkel", img: "/assets/images/phlebo-leg-3.avif", mobile: "/assets/images/phlebo-leg-3-mobile.avif", tablet: "/assets/images/phlebo-leg-3-tablet.avif" }
       ].map((segment) => (
         <div key={segment.id} className="group relative rounded-[32px] overflow-hidden shadow-xl bg-gray-100 aspect-[3/4] md:aspect-[2/3]">
           <img 
@@ -16,13 +16,9 @@ const PhlebographiePage = () => {
             srcSet={`${segment.mobile} 800w, ${segment.tablet} 1200w, ${segment.img} 1920w`}
             sizes="(max-width: 768px) 100vw, 33vw"
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
-            alt={`Phlebographie Segment ${segment.id}`} 
+            alt={segment.label} 
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-          <div className="absolute bottom-4 left-4 right-4">
-            <div className="text-[10px] font-black text-white/60 uppercase tracking-[0.2em] mb-1">Segment 0{segment.id}</div>
-            <div className="text-xs font-bold text-white uppercase tracking-wider">{segment.label}</div>
-          </div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
           
           {/* Tech Detail Overlay */}
           <div className="absolute top-4 right-4 w-8 h-8 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
