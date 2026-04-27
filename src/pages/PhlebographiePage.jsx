@@ -4,53 +4,32 @@ import ServiceLayout from '../components/ServiceLayout';
 
 const PhlebographiePage = () => {
   const LegComposite = (
-    <div className="mb-12 rounded-[40px] overflow-hidden shadow-2xl relative h-[600px] flex flex-col group border border-gray-100">
-      <div className="flex-1 overflow-hidden relative border-b border-white/20">
-        <img 
-          src="/assets/images/phlebo-leg-1.avif" 
-          srcSet="/assets/images/phlebo-leg-1-mobile.avif 800w, /assets/images/phlebo-leg-1-tablet.avif 1200w, /assets/images/phlebo-leg-1.avif 1920w"
-          sizes="(max-width: 1024px) 100vw, 800px"
-          className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
-          alt="Phlebographie Becken & Oberschenkel" 
-        />
-        <div className="absolute top-4 left-6 px-3 py-1 bg-black/40 backdrop-blur-md rounded-full text-[10px] font-bold text-white uppercase tracking-widest border border-white/20">
-          Segment 01: Becken / Prox. Oberschenkel
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+      {[
+        { id: 1, label: "Becken / Oberschenkel", img: "/assets/images/phlebo-leg-1.avif", mobile: "/assets/images/phlebo-leg-1-mobile.avif", tablet: "/assets/images/phlebo-leg-1-tablet.avif" },
+        { id: 2, label: "Knie / Oberschenkel", img: "/assets/images/phlebo-leg-2.avif", mobile: "/assets/images/phlebo-leg-2-mobile.avif", tablet: "/assets/images/phlebo-leg-2-tablet.avif" },
+        { id: 3, label: "Unterschenkel / Fuß", img: "/assets/images/phlebo-leg-3.avif", mobile: "/assets/images/phlebo-leg-3-mobile.avif", tablet: "/assets/images/phlebo-leg-3-tablet.avif" }
+      ].map((segment) => (
+        <div key={segment.id} className="group relative rounded-[32px] overflow-hidden shadow-xl bg-gray-100 aspect-[3/4] md:aspect-[2/3]">
+          <img 
+            src={segment.img} 
+            srcSet={`${segment.mobile} 800w, ${segment.tablet} 1200w, ${segment.img} 1920w`}
+            sizes="(max-width: 768px) 100vw, 33vw"
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+            alt={`Phlebographie Segment ${segment.id}`} 
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+          <div className="absolute bottom-4 left-4 right-4">
+            <div className="text-[10px] font-black text-white/60 uppercase tracking-[0.2em] mb-1">Segment 0{segment.id}</div>
+            <div className="text-xs font-bold text-white uppercase tracking-wider">{segment.label}</div>
+          </div>
+          
+          {/* Tech Detail Overlay */}
+          <div className="absolute top-4 right-4 w-8 h-8 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
+             <div className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse" />
+          </div>
         </div>
-      </div>
-      <div className="flex-1 overflow-hidden relative border-b border-white/20">
-        <img 
-          src="/assets/images/phlebo-leg-2.avif" 
-          srcSet="/assets/images/phlebo-leg-2-mobile.avif 800w, /assets/images/phlebo-leg-2-tablet.avif 1200w, /assets/images/phlebo-leg-2.avif 1920w"
-          sizes="(max-width: 1024px) 100vw, 800px"
-          className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
-          alt="Phlebographie Knie & Unterschenkel" 
-        />
-        <div className="absolute top-4 left-6 px-3 py-1 bg-black/40 backdrop-blur-md rounded-full text-[10px] font-bold text-white uppercase tracking-widest border border-white/20">
-          Segment 02: Knie / Dist. Oberschenkel
-        </div>
-      </div>
-      <div className="flex-1 overflow-hidden relative">
-        <img 
-          src="/assets/images/phlebo-leg-3.avif" 
-          srcSet="/assets/images/phlebo-leg-3-mobile.avif 800w, /assets/images/phlebo-leg-3-tablet.avif 1200w, /assets/images/phlebo-leg-3.avif 1920w"
-          sizes="(max-width: 1024px) 100vw, 800px"
-          className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
-          alt="Phlebographie Unterschenkel & Fuß" 
-        />
-        <div className="absolute top-4 left-6 px-3 py-1 bg-black/40 backdrop-blur-md rounded-full text-[10px] font-bold text-white uppercase tracking-widest border border-white/20">
-          Segment 03: Unterschenkel / Fuß
-        </div>
-      </div>
-      
-      {/* Decorative Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none" />
-      <div className="absolute inset-y-0 left-0 w-1 bg-[#8B2323]/50" />
-      
-      {/* Tech Indicator */}
-      <div className="absolute bottom-6 right-6 flex items-center gap-2 bg-white/10 backdrop-blur-xl px-4 py-2 rounded-2xl border border-white/20">
-        <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-        <span className="text-white text-[10px] font-black uppercase tracking-widest">Composite Scan: Full Limb</span>
-      </div>
+      ))}
     </div>
   );
 
