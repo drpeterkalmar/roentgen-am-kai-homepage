@@ -10,15 +10,15 @@ const PhlebographiePage = () => {
         { id: 2, label: "Phlebografie Knie", img: "/assets/images/phlebo-leg-2.avif", mobile: "/assets/images/phlebo-leg-2-mobile.avif", tablet: "/assets/images/phlebo-leg-2-tablet.avif" },
         { id: 3, label: "Phlebografie Unterschenkel", img: "/assets/images/phlebo-leg-3.avif", mobile: "/assets/images/phlebo-leg-3-mobile.avif", tablet: "/assets/images/phlebo-leg-3-tablet.avif" }
       ].map((segment) => (
-        <div key={segment.id} className="group relative rounded-[32px] overflow-hidden shadow-xl bg-black flex items-center justify-center">
+        <div key={segment.id} className="group relative bg-[#000] border border-gray-800 flex items-center justify-center overflow-visible">
           <img 
             src={segment.img} 
             srcSet={`${segment.mobile} 800w, ${segment.tablet} 1200w, ${segment.img} 1920w`}
             sizes="(max-width: 768px) 100vw, 33vw"
-            className="w-full h-auto block transition-transform duration-700 group-hover:scale-105" 
+            className="max-w-full max-h-[70vh] w-auto h-auto block transition-transform duration-700 group-hover:scale-105 shadow-2xl" 
             alt={segment.label} 
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+          <div className="absolute inset-0 border-2 border-[#8B2323]/0 group-hover:border-[#8B2323]/20 transition-all pointer-events-none" />
         </div>
       ))}
     </div>
