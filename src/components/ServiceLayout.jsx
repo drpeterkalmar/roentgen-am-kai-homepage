@@ -3,7 +3,7 @@ import { ChevronRight, Calendar, ArrowLeft, ShieldCheck, MapPin, Phone } from 'l
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
-const ServiceLayout = ({ title, subtitle, children, icon, preparation, requirements, imageUrl }) => {
+const ServiceLayout = ({ title, subtitle, children, icon, preparation, requirements, imageUrl, customImage }) => {
   return (
     <div className="pt-40 lg:pt-48 pb-24 bg-white min-h-screen">
       <div className="max-w-[1200px] mx-auto px-6">
@@ -23,7 +23,9 @@ const ServiceLayout = ({ title, subtitle, children, icon, preparation, requireme
             animate={{ opacity: 1, y: 0 }}
             className="lg:col-span-2"
           >
-            {imageUrl && (
+            {customImage ? (
+              customImage
+            ) : imageUrl ? (
               <div className="mb-12 rounded-[40px] overflow-hidden shadow-2xl relative h-[400px]">
                 <img 
                   src={imageUrl} 
@@ -32,7 +34,7 @@ const ServiceLayout = ({ title, subtitle, children, icon, preparation, requireme
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
               </div>
-            )}
+            ) : null}
 
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-12 bg-red-50 text-[#8B2323] rounded-2xl flex items-center justify-center">
