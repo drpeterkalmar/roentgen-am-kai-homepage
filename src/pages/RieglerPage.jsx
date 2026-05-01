@@ -34,8 +34,26 @@ const RieglerPage = () => {
     "Funktionelle Nervendiagnostik"
   ];
 
+  const personSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Priv. Doz. Dr. Georg Riegler",
+    "jobTitle": "Facharzt für Radiologie",
+    "worksFor": {
+      "@type": "MedicalBusiness",
+      "name": "Röntgen am Kai"
+    },
+    "url": "https://roentgen-am-kai.at/unser-team/dr-georg-riegler",
+    "image": "https://roentgen-am-kai.at/assets/images/knochendichte.avif",
+    "alumniOf": "Medizinische Universität Wien",
+    "description": "Facharzt für Radiologie mit Spezialisierung auf hochauflösenden Ultraschall und neuromuskuläre Diagnostik."
+  };
+
   return (
     <div className="pt-40 lg:pt-48 pb-24 bg-transparent min-h-screen relative overflow-hidden">
+      <script type="application/ld+json">
+        {JSON.stringify(personSchema)}
+      </script>
       {/* Background Animated Blobs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden -z-10">
         <motion.div 
@@ -92,11 +110,11 @@ const RieglerPage = () => {
             <div className="inline-block px-4 py-1.5 bg-red-50 text-[#8B2323] rounded-full text-sm font-bold mb-6 tracking-wide uppercase">
               Facharzt für Radiologie
             </div>
-            <h1 className="text-5xl md:text-6xl font-black text-gray-900 mb-4 font-[Outfit] leading-tight">
+            <h1 className="text-5xl md:text-6xl font-black text-gray-900 dark:text-white mb-4 font-[Outfit] leading-tight">
               Priv. Doz. Dr. med. univ. <br/>
               Georg <span className="text-[#8B2323]">Riegler</span>
             </h1>
-            <p className="text-2xl text-gray-700 mb-8 font-light italic">
+            <p className="text-2xl text-gray-700 dark:text-gray-300 mb-8 font-light italic">
               Gesellschafter der Röntgen am Kai OG
             </p>
             
@@ -110,8 +128,8 @@ const RieglerPage = () => {
           viewport={{ once: true }}
           className="glass p-10 rounded-[48px] mb-16 border-white/60"
         >
-          <h2 className="text-2xl font-black text-gray-900 mb-6 font-[Outfit]">Medizinische Philosophie</h2>
-          <p className="text-lg text-gray-700 leading-relaxed font-medium italic">
+          <h2 className="text-2xl font-black text-gray-900 dark:text-white mb-6 font-[Outfit]">Medizinische Philosophie</h2>
+          <p className="text-lg text-gray-700 dark:text-gray-200 leading-relaxed font-medium italic">
             "Bestmögliche Beschwerdefreiheit meiner Patientinnen und Patienten. Ein hohes Ziel, das von Anfang an meine medizinische Laufbahn und mein Handeln prägte."
           </p>
         </motion.div>
@@ -132,7 +150,7 @@ const RieglerPage = () => {
                 <div className="w-12 h-12 bg-red-50 rounded-2xl flex items-center justify-center">
                   {section.icon}
                 </div>
-                <h3 className="text-xl font-bold font-[Outfit]">{section.title}</h3>
+                <h3 className="text-xl font-bold font-[Outfit] dark:text-white">{section.title}</h3>
               </div>
               <div className="space-y-6 flex-grow">
                 {section.items.map((item, i) => (

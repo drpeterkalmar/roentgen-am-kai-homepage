@@ -30,6 +30,24 @@ const ScrollToTop = () => {
 
 function App() {
   const [highContrast, setHighContrast] = React.useState(false);
+  const [isDark, setIsDark] = React.useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('theme');
+      if (saved) return saved === 'dark';
+      return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  }, [isDark]);
 
   useEffect(() => {
     if (highContrast) {
@@ -43,9 +61,14 @@ function App() {
     <Router>
       <ScrollToTop />
       <SchemaMarkup />
-      <div className="min-h-screen bg-transparent selection:bg-red-100 selection:text-[#8B2323]">
+      <div className="min-h-screen bg-transparent selection:bg-red-100 selection:text-[#8B2323] transition-colors duration-300">
         <ParticleBackground />
-        <Navbar highContrast={highContrast} setHighContrast={setHighContrast} />
+        <Navbar 
+          highContrast={highContrast} 
+          setHighContrast={setHighContrast} 
+          isDark={isDark} 
+          setIsDark={setIsDark} 
+        />
         <main>
           <Suspense fallback={<div className="min-h-screen bg-transparent" />}>
             <Routes>

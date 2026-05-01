@@ -109,10 +109,20 @@ const ParticleBackground = () => {
 
     let particlesArray = [];
     const init = () => {
+      // Check for reduced motion preference
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReducedMotion) {
+        particlesArray = [];
+        return;
+      }
+
       particlesArray = [];
-      let densityDivider = window.innerWidth < 768 ? 30000 : 20000;
+      let densityDivider = window.innerWidth < 768 ? 40000 : 20000;
       let numberOfParticles = (canvas.height * canvas.width) / densityDivider;
-      if (numberOfParticles > 120) numberOfParticles = 120; 
+      
+      // Strict cap for mobile performance
+      const maxParticles = window.innerWidth < 768 ? 40 : 120;
+      if (numberOfParticles > maxParticles) numberOfParticles = maxParticles; 
 
       for (let i = 0; i < numberOfParticles; i++) {
         let size = Math.random() * 3 + 2.5;
@@ -127,6 +137,8 @@ const ParticleBackground = () => {
     };
 
     const connect = () => {
+      // Skip connections on mobile for major performance boost
+      if (window.innerWidth < 768) return;
       for (let a = 0; a < particlesArray.length; a++) {
         for (let b = a; b < particlesArray.length; b++) {
           let dx = particlesArray[a].x - particlesArray[b].x;
@@ -156,6 +168,7 @@ const ParticleBackground = () => {
     };
 
     const animate = () => {
+      if (particlesArray.length === 0) return;
       animationFrameId = requestAnimationFrame(animate);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 

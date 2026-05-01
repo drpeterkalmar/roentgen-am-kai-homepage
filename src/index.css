@@ -31,6 +31,16 @@
   --transition-slow: 700ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.dark {
+  --primary: #c53030;
+  --primary-rgb: 197, 48, 48;
+  --bg-white: #0f172a;
+  --bg-light: #1e293b;
+  --text-dark: #f8fafc;
+  --text-gray: #e2e8f0;
+  --text-muted: #94a3b8;
+}
+
 /* 8px Grid Helpers */
 .gap-8 { gap: 2rem; }
 .p-8 { padding: 2rem; }
@@ -173,4 +183,24 @@ button {
 .animate-fade {
   animation: fadeIn var(--transition-normal) forwards;
   will-change: transform, opacity;
+}
+
+/* Skeleton Pulse Animation */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-skeleton {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Staggered Entrance Utility */
+.stagger-in > * {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.stagger-in > *.visible {
+  animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

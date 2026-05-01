@@ -50,6 +50,17 @@ const Appointment = () => {
       return;
     }
 
+    const phoneRegex = /^(\+|00)[0-9\s-]{6,20}$/;
+    if (!phoneRegex.test(formData.phone)) {
+      setSubmitError("Bitte geben Sie eine gültige Telefonnummer im Format +43... an.");
+      return;
+    }
+
+    if (formData.svnr.length !== 4) {
+      setSubmitError("Bitte geben Sie genau die ersten 4 Ziffern Ihrer SVNr. an.");
+      return;
+    }
+
     const selectedDate = new Date(formData.date);
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -235,7 +246,7 @@ const Appointment = () => {
                             required
                             value={formData.firstName}
                             onChange={(e) => setFormData({...formData, firstName: e.target.value})}
-                            className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
+                            className="w-full h-[58px] px-4 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950 dark:text-white"
                           />
                         </div>
                         <div>
@@ -248,7 +259,7 @@ const Appointment = () => {
                             required
                             value={formData.lastName}
                             onChange={(e) => setFormData({...formData, lastName: e.target.value})}
-                            className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
+                            className="w-full h-[58px] px-4 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950 dark:text-white"
                           />
                         </div>
                       </div>
@@ -276,7 +287,7 @@ const Appointment = () => {
                                 setFormData({...formData, svnr: val});
                               }
                             }}
-                            className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
+                            className="w-full h-[58px] px-4 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950 dark:text-white"
                           />
                         </div>
                       </div>
@@ -292,7 +303,7 @@ const Appointment = () => {
                               required
                               value={formData.phone}
                               onChange={(e) => setFormData({...formData, phone: e.target.value.replace(/[^0-9+]/g, '')})}
-                              className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
+                              className="w-full h-[58px] px-4 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950 dark:text-white"
                             />
                         </div>
                         <div>
@@ -304,7 +315,7 @@ const Appointment = () => {
                             placeholder="E-Mail Adresse" 
                             value={formData.email}
                             onChange={(e) => setFormData({...formData, email: e.target.value})}
-                            className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950"
+                            className="w-full h-[58px] px-4 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950 dark:text-white"
                           />
                         </div>
                       </div>
@@ -318,7 +329,7 @@ const Appointment = () => {
                             required
                             value={formData.insurance}
                             onChange={(e) => setFormData({...formData, insurance: e.target.value})}
-                            className="w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none bg-white text-gray-950"
+                            className="w-full h-[58px] px-4 rounded-xl border border-gray-300 dark:border-gray-700 focus:border-[#8B2323] outline-none bg-white dark:bg-gray-800 text-gray-950 dark:text-white"
                           >
                             <option value="">Kasse wählen*</option>
                             <option>ÖGK</option>
@@ -364,7 +375,7 @@ const Appointment = () => {
                               setFormData({...formData, date: dateVal});
                             }}
                             onClick={(e) => e.target.showPicker?.()}
-                            className={`w-full h-[58px] px-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none transition-all cursor-pointer ${!formData.date ? 'text-transparent' : 'text-gray-950'}`} 
+                            className={`w-full h-[58px] px-4 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:border-[#8B2323] outline-none transition-all cursor-pointer ${!formData.date ? 'text-transparent' : 'text-gray-950 dark:text-white'}`} 
                           />
                           {!formData.date && (
                             <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none">
@@ -383,7 +394,7 @@ const Appointment = () => {
                           required
                           value={formData.comments}
                           onChange={(e) => setFormData({...formData, comments: e.target.value})}
-                          className="w-full h-32 p-4 rounded-xl border border-gray-300 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950 resize-none"
+                          className="w-full h-32 p-4 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:border-[#8B2323] outline-none placeholder:text-gray-500 text-gray-950 dark:text-white resize-none"
                         />
                       </div>
 

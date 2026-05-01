@@ -1,7 +1,7 @@
 import React from 'react';
-import { Scan, HeartPulse, Bone, Box, MapPin, Scale, Info, CreditCard, Syringe, Waves } from 'lucide-react';
+import { Scan, HeartPulse, Bone, Box, MapPin, Scale, Info, CreditCard, Syringe, Waves, Search, X } from 'lucide-react';
 import { ToothIcon } from './CustomIcons';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 const ChevronRight = ({ size }) => (
@@ -104,36 +104,72 @@ const services = [
 ];
 
 const Services = () => {
+  const [searchQuery, setSearchQuery] = React.useState('');
+
+  const filteredServices = services.filter(service => 
+    service.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    service.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    (service.microInfo && service.microInfo.toLowerCase().includes(searchQuery.toLowerCase()))
+  );
+
   return (
-    <section id="services" className="py-24 bg-transparent selection:bg-red-50">
+    <section id="services" className="py-24 bg-transparent selection:bg-red-50 dark:selection:bg-red-900/30">
       <div className="max-w-[1400px] mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-16 gap-8 text-center md:text-left">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 bg-red-50 text-[#8B2323] px-4 py-2 rounded-full text-xs font-black uppercase tracking-[0.2em] mb-4">
+            <div className="inline-flex items-center gap-2 bg-red-50 dark:bg-red-900/20 text-[#8B2323] dark:text-red-400 px-4 py-2 rounded-full text-xs font-black uppercase tracking-[0.2em] mb-4">
               <Info size={14} />
               Diagnostische Präzision
             </div>
-            <h2 className="text-4xl md:text-6xl font-black text-gray-900 leading-[0.95] font-[Outfit]">
+            <h2 className="text-4xl md:text-6xl font-black text-gray-900 dark:text-white leading-[0.95] font-[Outfit]">
               Unsere <span className="text-[#8B2323]">Leistungen</span>
             </h2>
           </div>
-          <p className="text-xl text-gray-800 max-w-sm leading-relaxed font-semibold">
-            Ihre Gesundheit im Fokus. Digital. Präzise. Persönlich.
-          </p>
+          <div className="flex flex-col gap-4 items-center md:items-end w-full md:w-auto">
+            <p className="text-xl text-gray-800 dark:text-gray-200 max-w-sm leading-relaxed font-semibold">
+              Ihre Gesundheit im Fokus. Digital. Präzise. Persönlich.
+            </p>
+            {/* Search Bar */}
+            <div className="relative w-full max-w-md group">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#8B2323] transition-colors" size={20} />
+              <input 
+                type="text"
+                placeholder="Leistung suchen..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-12 pr-12 py-4 bg-white/50 dark:bg-gray-800/50 backdrop-blur-md border-2 border-gray-100 dark:border-gray-700 rounded-2xl outline-none focus:border-[#8B2323] dark:focus:border-[#8B2323] text-gray-900 dark:text-white font-bold transition-all shadow-sm"
+              />
+              {searchQuery && (
+                <button 
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+                >
+                  <X size={20} />
+                </button>
+              )}
+            </div>
+          </div>
         </div>
 
-        <div className="bento-grid">
-          {services.map((service, index) => (
-            <motion.div
-              key={service.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -5, borderColor: 'rgba(139, 35, 35, 0.2)' }}
-              className={`glass group rounded-[40px] p-8 flex flex-col relative overflow-hidden ${service.gridClass} ${
-                service.type === 'info' ? 'order-last' : 'order-none'
-              }`}
-            >
+        <motion.div 
+          layout
+          className="bento-grid"
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredServices.map((service, index) => (
+              <motion.div
+                key={service.title}
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -10, borderColor: 'rgba(139, 35, 35, 0.4)' }}
+                className={`glass group rounded-[40px] p-8 flex flex-col relative overflow-hidden ${service.gridClass} ${
+                  service.type === 'info' ? 'order-last' : 'order-none'
+                }`}
+              >
               {service.href && (
                 <Link 
                   to={service.href} 
@@ -157,10 +193,10 @@ const Services = () => {
                 </div>
 
                 <div className="mb-4">
-                  <h3 className="text-2xl font-black text-gray-950 mb-2 font-[Outfit] leading-tight group-hover:text-[#8B2323] transition-colors">
+                  <h3 className="text-2xl font-black text-gray-950 dark:text-white mb-2 font-[Outfit] leading-tight group-hover:text-[#8B2323] transition-colors">
                     {service.title}
                   </h3>
-                  <p className={`text-base text-gray-950 leading-relaxed font-semibold ${service.type === 'info' ? 'line-clamp-none' : 'line-clamp-3'}`}>
+                  <p className={`text-base text-gray-950 dark:text-gray-200 leading-relaxed font-semibold ${service.type === 'info' ? 'line-clamp-none' : 'line-clamp-3'}`}>
                     {service.description}
                   </p>
                 </div>
@@ -189,8 +225,14 @@ const Services = () => {
                 </div>
               )}
             </motion.div>
-          ))}
-        </div>
+            ))}
+          </AnimatePresence>
+          {filteredServices.length === 0 && (
+            <div className="col-span-full py-20 text-center">
+              <p className="text-2xl font-bold text-gray-500">Keine Leistungen für "{searchQuery}" gefunden.</p>
+            </div>
+          )}
+        </motion.div>
       </div>
     </section>
   );

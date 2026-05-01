@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone, Calendar, ChevronDown, Sparkles } from 'lucide-react';
+import { Menu, X, Phone, Calendar, ChevronDown, Sparkles, Sun, Moon } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const Navbar = ({ highContrast, setHighContrast }) => {
+const Navbar = ({ highContrast, setHighContrast, isDark, setIsDark }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
@@ -39,13 +39,13 @@ const Navbar = ({ highContrast, setHighContrast }) => {
       <div className="max-w-[1200px] mx-auto px-6 flex justify-between items-center">
         <Link to="/" className="flex flex-col group">
           <span className={`text-2xl font-extrabold tracking-tight transition-colors ${
-            isScrolled ? 'text-[#8B2323]' : 'text-gray-900'
+            isScrolled ? 'text-[#8B2323]' : 'text-gray-900 dark:text-white'
           } font-[Outfit]`}>
             RÖNTGEN <span className="text-[#8B2323]">AM KAI</span>
           </span>
           <div className="flex flex-col">
             <span className={`text-xs tracking-widest uppercase font-bold transition-opacity ${
-              isScrolled ? 'text-gray-600' : 'text-gray-800'
+              isScrolled ? 'text-gray-600 dark:text-gray-400' : 'text-gray-800 dark:text-gray-300'
             }`}>
               Fachärzte für Radiologie
             </span>
@@ -67,7 +67,7 @@ const Navbar = ({ highContrast, setHighContrast }) => {
                     <a
                       href={link.href}
                       className={`text-sm font-semibold tracking-[0.1em] uppercase hover:text-[#8B2323] transition-colors flex items-center gap-1.5 relative py-2 ${
-                        isScrolled ? 'text-gray-800' : 'text-gray-950'
+                        isScrolled ? 'text-gray-800 dark:text-gray-200' : 'text-gray-950 dark:text-white'
                       } ${isActive ? 'text-[#8B2323]' : ''}`}
                     >
                       {link.name}
@@ -82,7 +82,7 @@ const Navbar = ({ highContrast, setHighContrast }) => {
                     <Link
                       to={link.href}
                       className={`text-sm font-semibold tracking-[0.1em] uppercase hover:text-[#8B2323] transition-colors flex items-center gap-1.5 relative py-2 ${
-                        isScrolled ? 'text-gray-800' : 'text-gray-950'
+                        isScrolled ? 'text-gray-800 dark:text-gray-200' : 'text-gray-950 dark:text-white'
                       } ${isActive ? 'text-[#8B2323]' : ''}`}
                     >
                       {link.name}
@@ -132,11 +132,21 @@ const Navbar = ({ highContrast, setHighContrast }) => {
 
           <div className="flex items-center gap-2 lg:gap-4">
             <button 
+              onClick={() => setIsDark(!isDark)}
+              className={`p-3 rounded-2xl transition-all duration-300 ${
+                isDark ? 'bg-gray-800 text-yellow-400' : 'bg-gray-100 text-gray-600 hover:text-[#8B2323]'
+              }`}
+              title="Theme umschalten"
+              aria-label="Dunkelmodus umschalten"
+            >
+              {isDark ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+            <button 
               onClick={() => setHighContrast(!highContrast)}
               className={`p-3 rounded-2xl transition-all duration-300 ${
                 highContrast ? 'bg-black text-white' : 'bg-gray-100/80 text-gray-600 hover:bg-gray-200 hover:text-[#8B2323]'
               }`}
-              title="Magic Toggle (Barrierefreiheit)"
+              title="Hoher Kontrast"
               aria-label="Barrierefreiheit-Optionen umschalten"
             >
               <Sparkles size={20} />
