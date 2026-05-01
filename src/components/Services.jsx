@@ -214,7 +214,7 @@ const Services = () => {
               </div>
 
               {service.image && (
-                <div className="absolute top-0 right-0 w-1/2 h-full opacity-[0.03] group-hover:opacity-[0.08] transition-opacity pointer-events-none">
+                <div className="absolute top-0 right-0 w-1/2 h-full opacity-[0.08] dark:opacity-[0.04] group-hover:opacity-[0.16] dark:group-hover:opacity-[0.1] transition-opacity pointer-events-none">
                    <img 
                     src={`${import.meta.env.BASE_URL}${service.image}`} 
                     srcSet={`${import.meta.env.BASE_URL}${service.image.replace('.avif', '-mobile.avif')} 800w, ${import.meta.env.BASE_URL}${service.image.replace('.avif', '-tablet.avif')} 1200w, ${import.meta.env.BASE_URL}${service.image} 1920w`}
