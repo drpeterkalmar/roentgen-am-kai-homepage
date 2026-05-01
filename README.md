@@ -2,6 +2,8 @@
 
 Moderne, responsive Homepage für die Radiologie-Ordination "Röntgen am Kai" in Graz.
 
+⚠️ **Urheberrechtshinweis**: Alle Bilder, Logos und klinischen Assets in diesem Repository sind urheberrechtlich geschützt und Eigentum von "Röntgen am Kai". Sie dürfen ohne ausdrückliche Genehmigung nicht verwendet, kopiert oder verbreitet werden. Der Quellcode steht unter der MIT-Lizenz.
+
 ## Tech Stack
 - **Framework**: React 18 (Vite)
 - **Styling**: Tailwind CSS
