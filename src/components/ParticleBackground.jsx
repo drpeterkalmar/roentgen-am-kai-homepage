@@ -6,7 +6,7 @@ const createParticle = (canvas, isDark) => ({
   size: Math.random() * 80 + 40,
   speedX: (Math.random() * 0.4) - 0.2,
   speedY: (Math.random() * 0.4) - 0.2,
-  opacity: Math.random() * 0.2 + 0.1,
+  opacity: isDark ? (Math.random() * 0.2 + 0.1) : (Math.random() * 0.4 + 0.3),
   color: isDark ? '255, 255, 255' : '139, 35, 35',
   update() {
     this.x += this.speedX;
@@ -70,7 +70,7 @@ const ParticleBackground = ({ isDark }) => {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none -z-10"
-      style={{ opacity: isDark ? 0.4 : 0.6 }}
+      style={{ opacity: isDark ? 0.4 : 0.8 }}
     />
   );
 };
