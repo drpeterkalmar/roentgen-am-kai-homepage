@@ -77,27 +77,24 @@ const Hero = () => {
         </motion.div>
 
         {/* Visual Element */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="relative lg:h-full h-[400px]"
-        >
-          <div className="relative z-10 rounded-[40px] overflow-hidden shadow-2xl h-full bg-gray-100">
-            {/* Initial High-Priority Static Image (LCP Element) */}
-            {currentImage === 0 && (
-              <img 
-                src={images[0]} 
-                srcSet={`${images[0].replace('.avif', '-mobile.avif')} 800w, ${images[0].replace('.avif', '-tablet.avif')} 1200w, ${images[0]} 1920w`}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
-                alt={imageAlts[0]} 
-                className="absolute inset-0 w-full h-full object-cover z-0"
-                fetchPriority="high"
-                loading="eager"
-                decoding="sync"
-                style={{ willChange: 'transform' }}
-              />
-            )}
+        <div className="relative lg:h-full h-[400px]">
+          <div className="relative z-10 rounded-[40px] overflow-hidden shadow-2xl h-full bg-gray-200">
+            {/* 
+              LCP Optimization: 
+              We always render the first image as a static base. 
+              This avoids any "missing" image state during hydration or component mount.
+            */}
+            <img 
+              src={images[0]} 
+              srcSet={`${images[0].replace('.avif', '-mobile.avif')} 800w, ${images[0].replace('.avif', '-tablet.avif')} 1200w, ${images[0]} 1920w`}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
+              alt={imageAlts[0]} 
+              className="absolute inset-0 w-full h-full object-cover z-0"
+              fetchPriority="high"
+              loading="eager"
+              decoding="sync"
+              style={{ willChange: 'transform' }}
+            />
             
             <AnimatePresence initial={false}>
               {currentImage !== 0 && (
@@ -125,7 +122,7 @@ const Hero = () => {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
                     alt={imageAlts[currentImage]} 
                     className="w-full h-full object-cover"
-                    loading="lazy"
+                    loading="eager"
                     style={{ willChange: 'transform' }}
                   />
                 </motion.div>
