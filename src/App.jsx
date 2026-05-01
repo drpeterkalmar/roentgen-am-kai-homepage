@@ -59,7 +59,7 @@ function App() {
       <div 
         className="min-h-screen selection:bg-red-100 selection:text-[#8B2323] transition-colors duration-300"
         style={{
-          backgroundImage: `linear-gradient(var(--bg-overlay), var(--bg-overlay)), url('${import.meta.env.BASE_URL.replace(/\/$/, '')}/assets/images/glass-bg.avif')`,
+          backgroundImage: `linear-gradient(var(--bg-overlay), var(--bg-overlay)), url('${import.meta.env.BASE_URL}assets/images/glass-bg.avif')`,
           backgroundAttachment: 'fixed',
           backgroundSize: 'cover',
           backgroundPosition: 'center'

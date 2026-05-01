@@ -15,8 +15,8 @@ const ScrollToHash = () => {
         }, 100);
         return () => clearTimeout(timer);
       }
-    } else if (!hash && pathname === '/') {
-       // Only scroll to top on home page navigation if no hash
+    } else if (!hash) {
+       // Scroll to top on navigation if no hash
        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [pathname, hash]);
