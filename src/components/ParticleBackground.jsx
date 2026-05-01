@@ -7,7 +7,7 @@ const createParticle = (canvas, isDark) => ({
   speedX: (Math.random() * 0.4) - 0.2,
   speedY: (Math.random() * 0.4) - 0.2,
   opacity: isDark ? (Math.random() * 0.2 + 0.1) : (Math.random() * 0.4 + 0.3),
-  color: isDark ? '255, 255, 255' : '139, 35, 35',
+  color: isDark ? '255, 255, 255' : '160, 160, 160',
   update() {
     this.x += this.speedX;
     this.y += this.speedY;
