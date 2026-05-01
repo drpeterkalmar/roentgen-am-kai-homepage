@@ -7,10 +7,10 @@ const About = () => {
     <section id="about" className="py-24 bg-transparent overflow-hidden text-center relative">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="max-w-3xl mx-auto mb-16 text-center">
-          <h2 className="text-4xl md:text-5xl font-extrabold text-[#1f2937] mb-6 font-[Outfit]">
-            Unsere <span className="text-[#8B2323]">Ärzte</span>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-[#1f2937] dark:text-white mb-6 font-[Outfit]">
+            Unsere <span className="text-[#8B2323] dark:text-[#f87171]">Ärzte</span>
           </h2>
-          <p className="text-xl text-gray-950 leading-relaxed font-normal">
+          <p className="text-xl text-gray-950 dark:text-gray-100 leading-relaxed font-normal">
             Erfahrene Spezialisten für Ihre Gesundheit. Dr. Kalmar und Dr. Riegler stehen für höchste fachliche Kompetenz und modernste Diagnostik.
           </p>
         </div>
@@ -63,7 +63,7 @@ const About = () => {
                 { name: 'Priv. Doz. Dr. Peter Kalmar', role: 'Facharzt für Radiologie', link: '/unser-team/dr-peter-kalmar' }
               ].map((doc, i) => (
                 <div key={i} className="glass p-8 rounded-[32px] text-center border-white/60">
-                  <h3 className="text-2xl font-black text-gray-900 mb-2 font-[Outfit] leading-tight transition-colors">
+                  <h3 className="text-2xl font-black text-gray-900 dark:text-white mb-2 font-[Outfit] leading-tight transition-colors">
                     {doc.link ? (
                       <Link to={doc.link} className="hover:text-[#8B2323] transition-colors cursor-pointer">
                         {doc.name}

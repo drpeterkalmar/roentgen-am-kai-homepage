@@ -32,13 +32,13 @@
 }
 
 .dark {
-  --primary: #c53030;
-  --primary-rgb: 197, 48, 48;
+  --primary: #f87171;
+  --primary-rgb: 248, 113, 113;
   --bg-white: #0f172a;
   --bg-light: #1e293b;
-  --text-dark: #f8fafc;
-  --text-gray: #e2e8f0;
-  --text-muted: #94a3b8;
+  --text-dark: #ffffff;
+  --text-gray: #f1f5f9;
+  --text-muted: #cbd5e1;
 }
 
 /* 8px Grid Helpers */
@@ -67,14 +67,34 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* High Contrast Mode */
+/* High Contrast Mode - Aggressive contrast for accessibility */
 body.high-contrast {
-  --primary: #ff0000;
-  --text-dark: #000000;
-  --text-gray: #000000;
-  --bg-light: #ffffff;
-  --bg-white: #ffffff;
-  font-size: 110%;
+  --primary: #ffff00; /* Bright Yellow */
+  --text-dark: #ffff00;
+  --text-gray: #ffffff;
+  --bg-light: #000000;
+  --bg-white: #000000;
+  background: #000000 !important;
+  font-size: 115%;
+}
+
+body.high-contrast * {
+  border-color: #ffff00 !important;
+  color: inherit !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+body.high-contrast .glass {
+  background: #000 !important;
+  border: 2px solid #ff0 !important;
+}
+
+body.high-contrast .text-[#8B2323], 
+body.high-contrast .text-gray-900,
+body.high-contrast .text-gray-800 {
+  color: #ffff00 !important;
 }
 
 body.high-contrast * {

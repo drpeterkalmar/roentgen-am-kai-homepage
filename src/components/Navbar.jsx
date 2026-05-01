@@ -97,7 +97,7 @@ const Navbar = ({ highContrast, setHighContrast, isDark, setIsDark }) => {
                   
                   {link.dropdown && (
                     <div className="absolute top-full -left-4 pt-6 invisible opacity-0 group-hover/nav:visible group-hover/nav:opacity-100 transition-all duration-300 translate-y-2 group-hover/nav:translate-y-0 z-50">
-                      <div className="bg-white/95 backdrop-blur-xl border border-gray-100/50 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] p-4 w-72 grid gap-1.5 glass-glow">
+                      <div className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border border-gray-100/50 dark:border-gray-800 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] p-4 w-72 grid gap-1.5 glass-glow">
                         {link.dropdown.map((sub, idx) => (
                           <motion.div
                             key={sub.name}
@@ -109,8 +109,8 @@ const Navbar = ({ highContrast, setHighContrast, isDark, setIsDark }) => {
                               to={sub.href}
                               className={`text-sm font-bold p-4 rounded-2xl transition-all flex items-center justify-between group/item ${
                                 location.pathname === sub.href 
-                                  ? 'text-[#8B2323] bg-red-50' 
-                                  : 'text-gray-700 hover:text-[#8B2323] hover:bg-red-50'
+                                  ? 'text-[#8B2323] bg-red-50 dark:bg-red-900/20' 
+                                  : 'text-gray-700 dark:text-gray-300 hover:text-[#8B2323] hover:bg-red-50 dark:hover:bg-red-900/20'
                               }`}
                             >
                               {sub.name}
@@ -201,7 +201,7 @@ const Navbar = ({ highContrast, setHighContrast, isDark, setIsDark }) => {
                       <Link 
                         key={sub.name}
                         to={sub.href}
-                        className="text-gray-600 font-medium text-sm py-1"
+                        className="text-gray-600 dark:text-gray-400 font-medium text-sm py-1"
                         onClick={() => setIsMenuOpen(false)}
                       >
                         {sub.name}

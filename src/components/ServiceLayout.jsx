@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 const ServiceLayout = ({ title, subtitle, children, icon, preparation, requirements, imageUrl, customImage }) => {
   return (
-    <div className="pt-40 lg:pt-48 pb-24 bg-white min-h-screen">
+    <div className="pt-40 lg:pt-48 pb-24 bg-transparent min-h-screen">
       <div className="max-w-[1200px] mx-auto px-6">
         {/* Breadcrumbs */}
         <nav className="flex items-center gap-2 text-sm font-medium text-gray-500 mb-8 overflow-x-auto whitespace-nowrap">

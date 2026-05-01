@@ -157,7 +157,7 @@ const RieglerPage = () => {
                   <div key={i} className="relative pl-6 border-l-2 border-red-100 last:border-0 pb-1">
                     <div className="absolute -left-[5px] top-1 w-2 h-2 rounded-full bg-[#8B2323]" />
                     <p className="text-xs font-bold text-[#8B2323] uppercase tracking-wider mb-1">{item.date}</p>
-                    <p className="text-sm text-gray-800 font-medium leading-relaxed">{item.text}</p>
+                    <p className="text-sm text-gray-800 dark:text-gray-200 font-medium leading-relaxed">{item.text}</p>
                   </div>
                 ))}
               </div>
@@ -182,7 +182,7 @@ const RieglerPage = () => {
               {expertises.map((exp, i) => (
                 <div key={i} className="flex items-start gap-3">
                   <CheckCircle2 size={16} className="text-[#8B2323] mt-1 shrink-0" />
-                  <span className="text-sm font-medium text-gray-800 leading-relaxed">{exp}</span>
+                  <span className="text-sm font-medium text-gray-800 dark:text-gray-200 leading-relaxed">{exp}</span>
                 </div>
               ))}
             </div>
@@ -196,8 +196,8 @@ const RieglerPage = () => {
           viewport={{ once: true }}
           className="glass p-12 rounded-[48px] mb-16"
         >
-          <div className="prose prose-red max-w-none text-gray-700">
-            <h2 className="text-3xl font-black font-[Outfit] text-gray-900 mb-8">Hochauflösender Nervenultraschall</h2>
+          <div className="prose prose-red dark:prose-invert max-w-none text-gray-700 dark:text-gray-200">
+            <h2 className="text-3xl font-black font-[Outfit] text-gray-900 dark:text-white mb-8">Hochauflösender Nervenultraschall</h2>
             <div className="space-y-6 text-base md:text-lg leading-relaxed">
               <p>
                 Der hochauflösende Ultraschall ist für mich die perfekte Methode, um die oft komplexen Fragestellungen bei Erkrankungen des Bewegungsapparates und peripherer Nerven beantworten zu können. Er ist auch das optimale Mittel, um Therapien minimalinvasiv und somit schonend ultraschallgezielt durchführen zu können.

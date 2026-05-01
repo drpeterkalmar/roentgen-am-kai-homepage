@@ -196,7 +196,7 @@ const Services = () => {
                   <h3 className="text-2xl font-black text-gray-950 dark:text-white mb-2 font-[Outfit] leading-tight group-hover:text-[#8B2323] transition-colors">
                     {service.title}
                   </h3>
-                  <p className={`text-base text-gray-950 dark:text-gray-200 leading-relaxed font-semibold ${service.type === 'info' ? 'line-clamp-none' : 'line-clamp-3'}`}>
+                  <p className={`text-base text-gray-950 dark:text-gray-100 leading-relaxed font-semibold ${service.type === 'info' ? 'line-clamp-none' : 'line-clamp-3'}`}>
                     {service.description}
                   </p>
                 </div>

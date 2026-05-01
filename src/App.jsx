@@ -70,7 +70,7 @@ function App() {
           backgroundPosition: 'center'
         }}
       >
-        <ParticleBackground />
+        <ParticleBackground isDark={isDark} />
         <Navbar 
           highContrast={highContrast} 
           setHighContrast={setHighContrast} 

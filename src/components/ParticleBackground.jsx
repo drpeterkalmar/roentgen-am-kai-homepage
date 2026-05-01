@@ -1,202 +1,97 @@
 import React, { useEffect, useRef } from 'react';
 
-const ParticleBackground = () => {
+const ParticleBackground = ({ isDark }) => {
   const canvasRef = useRef(null);
-  const mouse = useRef({ x: null, y: null, radius: 180 });
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     let animationFrameId;
+    let particlesArray = [];
 
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
+      init(); // Re-init on resize to adjust density
     };
 
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
-    const handleMouseMove = (event) => {
-      mouse.current.x = event.x;
-      mouse.current.y = event.y;
-    };
-
-    const handleTouch = (event) => {
-      if (event.touches.length > 0) {
-        mouse.current.x = event.touches[0].clientX;
-        mouse.current.y = event.touches[0].clientY;
-      }
-    };
-
-    const handleTouchEnd = () => {
-      mouse.current.x = null;
-      mouse.current.y = null;
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('touchstart', handleTouch);
-    window.addEventListener('touchmove', handleTouch);
-    window.addEventListener('touchend', handleTouchEnd);
-
-    // Particle Class
     class Particle {
-      constructor(x, y, directionX, directionY, size, color) {
-        this.x = x;
-        this.y = y;
-        this.baseX = x;
-        this.baseY = y;
-        this.directionX = directionX;
-        this.directionY = directionY;
-        this.size = size;
-        this.color = color;
-        this.pulse = Math.random() * Math.PI * 2;
-        this.pulseSpeed = 0.02 + Math.random() * 0.03;
+      constructor(canvas) {
+        this.canvas = canvas;
+        this.reset();
       }
 
-      draw() {
-        // Pulse opacity - slightly more visible as requested
-        const opacity = 0.08 + Math.abs(Math.sin(this.pulse)) * 0.12;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-        
-        // Outlined circles (Kreise statt Punkte)
-        ctx.strokeStyle = `rgba(139, 35, 35, ${opacity})`;
-        ctx.lineWidth = 1.5;
-        ctx.stroke();
-        
-        // Very subtle core
-        ctx.fillStyle = `rgba(139, 35, 35, ${opacity * 0.2})`;
-        ctx.fill();
+      reset() {
+        this.x = Math.random() * this.canvas.width;
+        this.y = Math.random() * this.canvas.height;
+        this.size = Math.random() * 80 + 40; // Larger, softer blobs
+        this.speedX = (Math.random() * 0.4) - 0.2;
+        this.speedY = (Math.random() * 0.4) - 0.2;
+        this.opacity = Math.random() * 0.15 + 0.05;
+        this.color = isDark ? '255, 255, 255' : '139, 35, 35';
       }
 
       update() {
-        this.pulse += this.pulseSpeed;
+        this.x += this.speedX;
+        this.y += this.speedY;
 
-        // Move particle
-        this.x += this.directionX;
-        this.y += this.directionY;
+        if (this.x < -this.size) this.x = this.canvas.width + this.size;
+        if (this.x > this.canvas.width + this.size) this.x = -this.size;
+        if (this.y < -this.size) this.y = this.canvas.height + this.size;
+        if (this.y > this.canvas.height + this.size) this.y = -this.size;
+      }
 
-        // Bounce off edges with margin
-        const margin = 50;
-        if (this.x > canvas.width + margin) this.x = -margin;
-        if (this.x < -margin) this.x = canvas.width + margin;
-        if (this.y > canvas.height + margin) this.y = -margin;
-        if (this.y < -margin) this.y = canvas.height + margin;
+      draw() {
+        const gradient = ctx.createRadialGradient(
+          this.x, this.y, 0,
+          this.x, this.y, this.size
+        );
+        
+        gradient.addColorStop(0, `rgba(${this.color}, ${this.opacity})`);
+        gradient.addColorStop(1, `rgba(${this.color}, 0)`);
 
-        // Smooth Mouse interaction (Swinging effect)
-        if (mouse.current.x !== null && mouse.current.y !== null) {
-          let dx = mouse.current.x - this.x;
-          let dy = mouse.current.y - this.y;
-          let distance = Math.sqrt(dx * dx + dy * dy);
-
-          if (distance < mouse.current.radius) {
-            const force = (mouse.current.radius - distance) / mouse.current.radius;
-            const angle = Math.atan2(dy, dx);
-            
-            // Slowly fly towards mouse/finger (Attraction instead of Repulsion)
-            const pullX = Math.cos(angle) * force * 0.6;
-            const pullY = Math.sin(angle) * force * 0.6;
-            
-            this.x += pullX;
-            this.y += pullY;
-          }
-        }
-
-        this.draw();
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
       }
     }
 
-    let particlesArray = [];
-    const init = () => {
-      // Check for reduced motion preference
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (prefersReducedMotion) {
-        particlesArray = [];
-        return;
-      }
-
+    function init() {
       particlesArray = [];
-      let densityDivider = window.innerWidth < 768 ? 40000 : 20000;
-      let numberOfParticles = (canvas.height * canvas.width) / densityDivider;
-      
-      // Strict cap for mobile performance
-      const maxParticles = window.innerWidth < 768 ? 40 : 120;
-      if (numberOfParticles > maxParticles) numberOfParticles = maxParticles; 
-
+      const numberOfParticles = window.innerWidth < 768 ? 12 : 25;
       for (let i = 0; i < numberOfParticles; i++) {
-        let size = Math.random() * 3 + 2.5;
-        let x = Math.random() * canvas.width;
-        let y = Math.random() * canvas.height;
-        let directionX = (Math.random() * 0.3) - 0.15;
-        let directionY = (Math.random() * 0.3) - 0.15;
-        let color = 'rgba(139, 35, 35, 0.12)';
-
-        particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+        particlesArray.push(new Particle(canvas));
       }
-    };
-
-    const connect = () => {
-      // Skip connections on mobile for major performance boost
-      if (window.innerWidth < 768) return;
-      for (let a = 0; a < particlesArray.length; a++) {
-        for (let b = a; b < particlesArray.length; b++) {
-          let dx = particlesArray[a].x - particlesArray[b].x;
-          let dy = particlesArray[a].y - particlesArray[b].y;
-          let distance = Math.sqrt(dx * dx + dy * dy);
-
-          if (distance < 180) {
-            let opacity = 1 - (distance / 180);
-            ctx.strokeStyle = `rgba(139, 35, 35, ${opacity * 0.08})`;
-            ctx.lineWidth = 1.8;
-            ctx.beginPath();
-            
-            // Draw Quadratic Curves instead of straight lines
-            const midX = (particlesArray[a].x + particlesArray[b].x) / 2;
-            const midY = (particlesArray[a].y + particlesArray[b].y) / 2;
-            
-            // Control point based on a subtle offset to create the curve
-            const ctrlX = midX + (Math.cos(particlesArray[a].pulse) * 15);
-            const ctrlY = midY + (Math.sin(particlesArray[b].pulse) * 15);
-            
-            ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
-            ctx.quadraticCurveTo(ctrlX, ctrlY, particlesArray[b].x, particlesArray[b].y);
-            ctx.stroke();
-          }
-        }
-      }
-    };
+    }
 
     const animate = () => {
-      if (particlesArray.length === 0) return;
-      animationFrameId = requestAnimationFrame(animate);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      for (let i = 0; i < particlesArray.length; i++) {
-        particlesArray[i].update();
-      }
-      connect();
+      particlesArray.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      animationFrameId = requestAnimationFrame(animate);
     };
 
-    init();
     animate();
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('touchstart', handleTouch);
-      window.removeEventListener('touchmove', handleTouch);
-      window.removeEventListener('touchend', handleTouchEnd);
       cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [isDark]); // Re-init when theme changes
 
   return (
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none -z-10"
-      style={{ background: 'transparent', opacity: 0.7 }}
+      style={{ opacity: 0.4 }}
     />
   );
 };
+
 export default ParticleBackground;
