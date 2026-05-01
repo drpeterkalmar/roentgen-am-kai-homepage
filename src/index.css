@@ -70,8 +70,8 @@ body {
 
 /* High Contrast Mode - Aggressive contrast for accessibility */
 body.high-contrast {
-  --primary: #ffff00; /* Bright Yellow */
-  --text-dark: #ffff00;
+  --primary: #ff4d4d; /* High contrast Red */
+  --text-dark: #ffffff;
   --text-gray: #ffffff;
   --bg-light: #000000;
   --bg-white: #000000;
@@ -95,7 +95,7 @@ body.high-contrast .glass {
 body.high-contrast .text-[#8B2323], 
 body.high-contrast .text-gray-900,
 body.high-contrast .text-gray-800 {
-  color: #ffff00 !important;
+  color: #ffffff !important;
 }
 
 body.high-contrast * {

@@ -1,4 +1,4 @@
-import React, { useEffect, lazy, Suspense } from 'react'
+import React, { useEffect, lazy, Suspense, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
@@ -29,8 +29,8 @@ const ScrollToTop = () => {
 }
 
 function App() {
-  const [highContrast, setHighContrast] = React.useState(false);
-  const [isDark, setIsDark] = React.useState(() => {
+  const [highContrast, setHighContrast] = useState(false);
+  const [isDark, setIsDark] = useState(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('theme');
       if (saved) return saved === 'dark';
