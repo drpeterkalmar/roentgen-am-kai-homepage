@@ -6,11 +6,12 @@ const PhlebographiePage = () => {
   const LegComposite = (
     <div className="grid grid-cols-3 gap-2 md:gap-6 mb-16 px-2 md:px-0">
       {[
-        { id: 1, label: "Phlebografie Oberschenkel", img: "assets/images/phlebo-leg-1.avif" },
-        { id: 2, label: "Phlebografie Knie", img: "assets/images/phlebo-leg-2.avif" },
-        { id: 3, label: "Phlebografie Unterschenkel", img: "assets/images/phlebo-leg-3.avif" }
+        { id: 1, label: "Phlebografie Oberschenkel", img: "phlebo-leg-1.avif" },
+        { id: 2, label: "Phlebografie Knie", img: "phlebo-leg-2.avif" },
+        { id: 3, label: "Phlebografie Unterschenkel", img: "phlebo-leg-3.avif" }
       ].map((segment) => {
-        const fullImg = `${import.meta.env.BASE_URL}${segment.img}`;
+        const base = import.meta.env.BASE_URL;
+        const fullImg = `${base}assets/images/${segment.img}`;
         const mobileImg = fullImg.replace('.avif', '-mobile.avif');
         const tabletImg = fullImg.replace('.avif', '-tablet.avif');
         
