@@ -163,7 +163,7 @@ const Navbar = ({ highContrast, setHighContrast, isDark, setIsDark }) => {
 
         {/* Mobile Toggle */}
         <button 
-          className={`md:hidden p-2 ${isScrolled ? 'text-gray-900' : 'text-gray-900'}`}
+          className={`md:hidden p-2 text-gray-900 dark:text-white`}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label={isMenuOpen ? "Menü schließen" : "Hauptmenü öffnen"}
           aria-expanded={isMenuOpen}

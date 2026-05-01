@@ -30,7 +30,7 @@ const ParticleBackground = ({ isDark }) => {
         this.size = Math.random() * 80 + 40; // Larger, softer blobs
         this.speedX = (Math.random() * 0.4) - 0.2;
         this.speedY = (Math.random() * 0.4) - 0.2;
-        this.opacity = Math.random() * 0.15 + 0.05;
+        this.opacity = Math.random() * 0.2 + 0.1;
         this.color = isDark ? '255, 255, 255' : '139, 35, 35';
       }
 
