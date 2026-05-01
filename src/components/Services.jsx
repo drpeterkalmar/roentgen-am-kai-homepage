@@ -227,6 +227,25 @@ const Services = () => {
             </motion.div>
             ))}
           </AnimatePresence>
+          {(searchQuery.toLowerCase().includes('ct') || searchQuery.toLowerCase().includes('mrt')) && (
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="col-span-full mb-12"
+            >
+              <div className="bg-red-50 dark:bg-red-900/20 p-8 rounded-[32px] border-2 border-red-100 dark:border-red-900/30 text-center shadow-xl glass-glow">
+                <div className="flex items-center justify-center gap-3 text-[#8B2323] mb-4">
+                  <Info size={28} />
+                  <h3 className="text-2xl font-black font-[Outfit]">Wichtiger Hinweis</h3>
+                </div>
+                <p className="text-lg text-gray-900 dark:text-gray-100 leading-relaxed font-semibold max-w-3xl mx-auto">
+                  Wir bieten <strong>kein CT</strong> (Computertomographie) und <strong>kein MRT</strong> (Magnetresonanztomographie) an. 
+                  Wir empfehlen hierfür z.B. das nahegelegene <a href="https://kreuzschwestern-graz.at/ct-mr-zentrum/" target="_blank" rel="noopener noreferrer" className="text-[#8B2323] underline font-bold hover:text-red-900 transition-colors">Institut der Kreuzschwestern Graz</a>.
+                </p>
+              </div>
+            </motion.div>
+          )}
+
           {filteredServices.length === 0 && (
             <div className="col-span-full py-20 text-center">
               <p className="text-2xl font-bold text-gray-500">Keine Leistungen für "{searchQuery}" gefunden.</p>
