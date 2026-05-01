@@ -136,7 +136,7 @@ const Hero = () => {
 
           {/* Background element */}
           <div className="absolute -top-10 -right-10 w-64 h-64 bg-red-100 rounded-full blur-3xl -z-10 opacity-60" />
-        </motion.div>
+        </div>
       </div>
     </section>
   );
