@@ -1,5 +1,6 @@
 import React from 'react';
 import { Mail, Phone, MapPin, Instagram, Facebook, ArrowUp } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import logo from '../assets/images/rak-logo.png';
 
 const Footer = () => {
@@ -43,11 +44,11 @@ const Footer = () => {
           <div>
             <h4 className="text-xl font-bold mb-8 font-[Outfit] text-gray-950 dark:text-white">Navigation</h4>
             <ul className="space-y-4 text-gray-800 dark:text-gray-200">
-              <li><a href="#home" className="hover:text-[#8B2323] transition-colors">Startseite</a></li>
-              <li><a href="#services" className="hover:text-[#8B2323] transition-colors">Leistungen</a></li>
-              <li><a href="#about" className="hover:text-[#8B2323] transition-colors">Unsere Ärzte</a></li>
-              <li><a href="#blog" className="hover:text-[#8B2323] transition-colors">Gesundheits-Blog</a></li>
-              <li><a href="#booking" className="hover:text-[#8B2323] transition-colors">Terminanfrage</a></li>
+              <li><Link to="/" className="hover:text-[#8B2323] transition-colors">Startseite</Link></li>
+              <li><Link to="/#services" className="hover:text-[#8B2323] transition-colors">Leistungen</Link></li>
+              <li><Link to="/#about" className="hover:text-[#8B2323] transition-colors">Unsere Ärzte</Link></li>
+              <li><Link to="/#blog" className="hover:text-[#8B2323] transition-colors">Gesundheits-Blog</Link></li>
+              <li><Link to="/#booking" className="hover:text-[#8B2323] transition-colors">Terminanfrage</Link></li>
             </ul>
           </div>
 
@@ -131,8 +132,8 @@ const Footer = () => {
             © Röntgen am Kai - Alle Rechte vorbehalten.
           </p>
           <div className="flex gap-8 text-gray-800 dark:text-gray-200 text-sm">
-            <a href="impressum" className="hover:text-[#8B2323] transition-colors focus:text-[#8B2323] outline-none font-bold">Impressum</a>
-            <a href="datenschutz" className="hover:text-[#8B2323] transition-colors focus:text-[#8B2323] outline-none font-bold">Datenschutz</a>
+            <Link to="/impressum" className="hover:text-[#8B2323] transition-colors focus:text-[#8B2323] outline-none font-bold">Impressum</Link>
+            <Link to="/datenschutz" className="hover:text-[#8B2323] transition-colors focus:text-[#8B2323] outline-none font-bold">Datenschutz</Link>
           </div>
           <button 
             onClick={scrollToTop}

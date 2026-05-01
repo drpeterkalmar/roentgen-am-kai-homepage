@@ -53,7 +53,7 @@ function App() {
   }, [highContrast]);
 
   return (
-    <Router basename="/roentgen-am-kai-homepage">
+    <Router basename={import.meta.env.BASE_URL}>
       <ScrollToHash />
       <SchemaMarkup />
       <div 

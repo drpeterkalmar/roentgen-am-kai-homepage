@@ -51,7 +51,7 @@ const Hero = () => {
           
           <h1 className="text-5xl md:text-8xl font-black text-gray-900 dark:text-white leading-[0.9] mb-8 font-[Outfit] tracking-tight">
             Moderne <br />
-            <span className="text-[#8B2323] dark:text-[#f87171]">Radiologie</span> am Kai.
+            <span className="text-[#8B2323] dark:text-[#8B2323]">Radiologie</span> am Kai.
           </h1>
           
           <p className="text-xl text-gray-900 dark:text-gray-100 mb-12 max-w-lg leading-relaxed font-semibold">

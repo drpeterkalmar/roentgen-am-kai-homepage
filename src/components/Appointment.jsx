@@ -131,7 +131,7 @@ const Appointment = () => {
           {/* Left Side: Info */}
           <div className="lg:col-span-2">
             <h2 className="text-4xl md:text-5xl font-extrabold text-[#1f2937] dark:text-white mb-8 font-[Outfit]">
-              Nicht dringende Termine <span className="text-[#8B2323] dark:text-[#f87171]">online</span> vereinbaren
+              Nicht dringende Termine <span className="text-[#8B2323] dark:text-[#8B2323]">online</span> vereinbaren
             </h2>
             <p className="text-lg text-gray-800 dark:text-gray-200 mb-10 leading-relaxed font-medium">
               Sparen Sie Zeit und senden Sie uns Ihre Terminanfrage für einen nicht dringenden Termin bequem von zu Hause oder unterwegs. Wir rufen Sie binnen einer Woche zur Terminbestätigung zurück. Für dringende Termine ersuchen wir Sie um telefonische Kontaktaufnahme
@@ -205,7 +205,7 @@ const Appointment = () => {
                             : 'border-gray-100 hover:border-red-200'
                           }`}
                         >
-                          <span className={`font-bold ${formData.service === svc ? 'text-[#8B2323] dark:text-[#f87171]' : 'text-gray-900 dark:text-gray-100'}`}>
+                          <span className={`font-bold ${formData.service === svc ? 'text-[#8B2323] dark:text-[#8B2323]' : 'text-gray-900 dark:text-gray-100'}`}>
                             {svc}
                           </span>
                         </button>

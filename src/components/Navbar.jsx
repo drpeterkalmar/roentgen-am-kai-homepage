@@ -63,35 +63,20 @@ const Navbar = ({ highContrast, setHighContrast, isDark, setIsDark }) => {
               
               return (
                 <div key={link.name} className="relative group/nav">
-                  {link.href.startsWith('/#') ? (
-                    <a
-                      href={link.href}
-                      className={`text-sm font-semibold tracking-[0.1em] uppercase hover:text-[#8B2323] transition-colors flex items-center gap-1.5 relative py-2 ${
-                        isScrolled ? 'text-gray-800 dark:text-gray-200' : 'text-gray-950 dark:text-white'
-                      } ${isActive ? 'text-[#8B2323]' : ''}`}
-                    >
-                      {link.name}
-                      {link.dropdown && <ChevronDown size={14} className="group-hover/nav:rotate-180 transition-transform duration-300" />}
-                      
-                      {/* Hover/Active Underline */}
-                      <span className={`absolute bottom-0 left-0 h-0.5 bg-[#8B2323] transition-all duration-300 ${
-                        isActive ? 'w-full' : 'w-0 group-hover/nav:w-full'
-                      }`} />
-                    </a>
-                  ) : (
-                    <Link
-                      to={link.href}
-                      className={`text-sm font-semibold tracking-[0.1em] uppercase hover:text-[#8B2323] transition-colors flex items-center gap-1.5 relative py-2 ${
-                        isScrolled ? 'text-gray-800 dark:text-gray-200' : 'text-gray-950 dark:text-white'
-                      } ${isActive ? 'text-[#8B2323]' : ''}`}
-                    >
-                      {link.name}
-                      {link.dropdown && <ChevronDown size={14} className="group-hover/nav:rotate-180 transition-transform duration-300" />}
-                      <span className={`absolute bottom-0 left-0 h-0.5 bg-[#8B2323] transition-all duration-300 ${
-                        isActive ? 'w-full' : 'w-0 group-hover/nav:w-full'
-                      }`} />
-                    </Link>
-                  )}
+                  <Link
+                    to={link.href}
+                    className={`text-sm font-semibold tracking-[0.1em] uppercase hover:text-[#8B2323] transition-colors flex items-center gap-1.5 relative py-2 ${
+                      isScrolled ? 'text-gray-800 dark:text-gray-200' : 'text-gray-950 dark:text-white'
+                    } ${isActive ? 'text-[#8B2323]' : ''}`}
+                  >
+                    {link.name}
+                    {link.dropdown && <ChevronDown size={14} className="group-hover/nav:rotate-180 transition-transform duration-300" />}
+                    
+                    {/* Hover/Active Underline */}
+                    <span className={`absolute bottom-0 left-0 h-0.5 bg-[#8B2323] transition-all duration-300 ${
+                      isActive ? 'w-full' : 'w-0 group-hover/nav:w-full'
+                    }`} />
+                  </Link>
                   
                   {link.dropdown && (
                     <div className="absolute top-full -left-4 pt-6 invisible opacity-0 group-hover/nav:visible group-hover/nav:opacity-100 transition-all duration-300 translate-y-2 group-hover/nav:translate-y-0 z-50">

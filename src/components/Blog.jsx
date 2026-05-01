@@ -89,7 +89,7 @@ const Blog = () => {
               <span>Diagnostik am Puls der Zeit</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-extrabold text-[#1f2937] dark:text-white font-[Outfit]">
-              Wissen für Ihre <span className="text-[#8B2323] dark:text-[#f87171]">Gesundheit</span>
+              Wissen für Ihre <span className="text-[#8B2323] dark:text-[#8B2323]">Gesundheit</span>
             </h2>
           </div>
           

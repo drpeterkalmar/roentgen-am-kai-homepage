@@ -33,8 +33,8 @@
 }
 
 .dark {
-  --primary: #f87171;
-  --primary-rgb: 248, 113, 113;
+  --primary: #8B2323;
+  --primary-rgb: 139, 35, 35;
   --bg-white: #0f172a;
   --bg-light: #1e293b;
   --text-dark: #ffffff;
