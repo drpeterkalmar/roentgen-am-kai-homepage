@@ -47,8 +47,8 @@ const services = [
   },
   {
     title: 'Körperfett',
-    description: 'DEXA-Analyse der Körperzusammensetzung.',
-    microInfo: 'Fitness und Longevity',
+    description: 'DEXA-Analyse der Körperzusammensetzung zur Optimierung von Muskelaufbau und sportlicher Leistung.',
+    microInfo: 'Fitness, Sport und Longevity',
     href: 'unser-angebot/koerperfettmessung',
     icon: <Scale size={24} />,
     color: 'bg-teal-50 text-teal-600',
