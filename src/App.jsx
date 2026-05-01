@@ -6,6 +6,7 @@ import Footer from './components/Footer'
 import SchemaMarkup from './components/SchemaMarkup'
 import MobileActions from './components/MobileActions'
 import ParticleBackground from './components/ParticleBackground'
+import ScrollToHash from './components/ScrollToHash'
 
 // Lazy loaded pages
 const RoentgenPage = lazy(() => import('./pages/RoentgenPage'))
@@ -20,13 +21,7 @@ const DatenschutzPage = lazy(() => import('./pages/DatenschutzPage'))
 const KalmarPage = lazy(() => import('./pages/KalmarPage'))
 const RieglerPage = lazy(() => import('./pages/RieglerPage'))
 
-const ScrollToTop = () => {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-  return null;
-}
+// ScrollToTop removed in favor of ScrollToHash
 
 function App() {
   const [highContrast, setHighContrast] = useState(false);
@@ -59,12 +54,12 @@ function App() {
 
   return (
     <Router basename="/roentgen-am-kai-homepage">
-      <ScrollToTop />
+      <ScrollToHash />
       <SchemaMarkup />
       <div 
         className="min-h-screen selection:bg-red-100 selection:text-[#8B2323] transition-colors duration-300"
         style={{
-          backgroundImage: `linear-gradient(var(--bg-overlay), var(--bg-overlay)), url('${import.meta.env.BASE_URL}assets/images/glass-bg.avif')`,
+          backgroundImage: `linear-gradient(var(--bg-overlay), var(--bg-overlay)), url('${import.meta.env.BASE_URL.replace(/\/$/, '')}/assets/images/glass-bg.avif')`,
           backgroundAttachment: 'fixed',
           backgroundSize: 'cover',
           backgroundPosition: 'center'

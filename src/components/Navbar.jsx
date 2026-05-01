@@ -79,33 +79,18 @@ const Navbar = ({ highContrast, setHighContrast, isDark, setIsDark }) => {
                       }`} />
                     </a>
                   ) : (
-                    {link.href.includes('#') ? (
-                      <a
-                        href={link.href.startsWith('/') ? `${import.meta.env.BASE_URL.replace(/\/$/, '')}${link.href}` : link.href}
-                        className={`text-sm font-semibold tracking-[0.1em] uppercase hover:text-[#8B2323] transition-colors flex items-center gap-1.5 relative py-2 ${
-                          isScrolled ? 'text-gray-800 dark:text-gray-200' : 'text-gray-950 dark:text-white'
-                        } ${isActive ? 'text-[#8B2323]' : ''}`}
-                      >
-                        {link.name}
-                        {link.dropdown && <ChevronDown size={14} className="group-hover/nav:rotate-180 transition-transform duration-300" />}
-                        <span className={`absolute bottom-0 left-0 h-0.5 bg-[#8B2323] transition-all duration-300 ${
-                          isActive ? 'w-full' : 'w-0 group-hover/nav:w-full'
-                        }`} />
-                      </a>
-                    ) : (
-                      <Link
-                        to={link.href}
-                        className={`text-sm font-semibold tracking-[0.1em] uppercase hover:text-[#8B2323] transition-colors flex items-center gap-1.5 relative py-2 ${
-                          isScrolled ? 'text-gray-800 dark:text-gray-200' : 'text-gray-950 dark:text-white'
-                        } ${isActive ? 'text-[#8B2323]' : ''}`}
-                      >
-                        {link.name}
-                        {link.dropdown && <ChevronDown size={14} className="group-hover/nav:rotate-180 transition-transform duration-300" />}
-                        <span className={`absolute bottom-0 left-0 h-0.5 bg-[#8B2323] transition-all duration-300 ${
-                          isActive ? 'w-full' : 'w-0 group-hover/nav:w-full'
-                        }`} />
-                      </Link>
-                    )}
+                    <Link
+                      to={link.href}
+                      className={`text-sm font-semibold tracking-[0.1em] uppercase hover:text-[#8B2323] transition-colors flex items-center gap-1.5 relative py-2 ${
+                        isScrolled ? 'text-gray-800 dark:text-gray-200' : 'text-gray-950 dark:text-white'
+                      } ${isActive ? 'text-[#8B2323]' : ''}`}
+                    >
+                      {link.name}
+                      {link.dropdown && <ChevronDown size={14} className="group-hover/nav:rotate-180 transition-transform duration-300" />}
+                      <span className={`absolute bottom-0 left-0 h-0.5 bg-[#8B2323] transition-all duration-300 ${
+                        isActive ? 'w-full' : 'w-0 group-hover/nav:w-full'
+                      }`} />
+                    </Link>
                   )}
                   
                   {link.dropdown && (
@@ -191,15 +176,6 @@ const Navbar = ({ highContrast, setHighContrast, isDark, setIsDark }) => {
           <div className="flex flex-col gap-3">
             {navLinks.map((link) => (
               <div key={link.name} className="flex flex-col gap-2">
-                {link.href.includes('#') ? (
-                  <a
-                    href={link.href.startsWith('/') ? `${import.meta.env.BASE_URL.replace(/\/$/, '')}${link.href}` : link.href}
-                    className="text-lg font-semibold text-gray-800 dark:text-gray-200 py-2"
-                    onClick={() => !link.dropdown && setIsMenuOpen(false)}
-                  >
-                    {link.name}
-                  </a>
-                ) : (
                   <Link
                     to={link.href}
                     className="text-lg font-semibold text-gray-800 dark:text-gray-200 py-2"
@@ -207,7 +183,6 @@ const Navbar = ({ highContrast, setHighContrast, isDark, setIsDark }) => {
                   >
                     {link.name}
                   </Link>
-                )}
                 {link.dropdown && (
                   <div className="pl-4 grid gap-2 border-l-2 border-red-100 mb-3">
                     {link.dropdown.map((sub) => (
