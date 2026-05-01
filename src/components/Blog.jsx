@@ -161,7 +161,7 @@ const Blog = () => {
                 {post.title}
               </h3>
               
-              <p className="text-gray-950 dark:text-gray-100 line-clamp-2 mb-4">
+              <p className="text-gray-600 dark:text-white font-medium line-clamp-2 mb-4">
                 {post.excerpt}
               </p>
               

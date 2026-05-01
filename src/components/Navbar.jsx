@@ -79,20 +79,33 @@ const Navbar = ({ highContrast, setHighContrast, isDark, setIsDark }) => {
                       }`} />
                     </a>
                   ) : (
-                    <Link
-                      to={link.href}
-                      className={`text-sm font-semibold tracking-[0.1em] uppercase hover:text-[#8B2323] transition-colors flex items-center gap-1.5 relative py-2 ${
-                        isScrolled ? 'text-gray-800 dark:text-gray-200' : 'text-gray-950 dark:text-white'
-                      } ${isActive ? 'text-[#8B2323]' : ''}`}
-                    >
-                      {link.name}
-                      {link.dropdown && <ChevronDown size={14} className="group-hover/nav:rotate-180 transition-transform duration-300" />}
-                      
-                      {/* Hover/Active Underline */}
-                      <span className={`absolute bottom-0 left-0 h-0.5 bg-[#8B2323] transition-all duration-300 ${
-                        isActive ? 'w-full' : 'w-0 group-hover/nav:w-full'
-                      }`} />
-                    </Link>
+                    {link.href.includes('#') ? (
+                      <a
+                        href={link.href.startsWith('/') ? `${import.meta.env.BASE_URL.replace(/\/$/, '')}${link.href}` : link.href}
+                        className={`text-sm font-semibold tracking-[0.1em] uppercase hover:text-[#8B2323] transition-colors flex items-center gap-1.5 relative py-2 ${
+                          isScrolled ? 'text-gray-800 dark:text-gray-200' : 'text-gray-950 dark:text-white'
+                        } ${isActive ? 'text-[#8B2323]' : ''}`}
+                      >
+                        {link.name}
+                        {link.dropdown && <ChevronDown size={14} className="group-hover/nav:rotate-180 transition-transform duration-300" />}
+                        <span className={`absolute bottom-0 left-0 h-0.5 bg-[#8B2323] transition-all duration-300 ${
+                          isActive ? 'w-full' : 'w-0 group-hover/nav:w-full'
+                        }`} />
+                      </a>
+                    ) : (
+                      <Link
+                        to={link.href}
+                        className={`text-sm font-semibold tracking-[0.1em] uppercase hover:text-[#8B2323] transition-colors flex items-center gap-1.5 relative py-2 ${
+                          isScrolled ? 'text-gray-800 dark:text-gray-200' : 'text-gray-950 dark:text-white'
+                        } ${isActive ? 'text-[#8B2323]' : ''}`}
+                      >
+                        {link.name}
+                        {link.dropdown && <ChevronDown size={14} className="group-hover/nav:rotate-180 transition-transform duration-300" />}
+                        <span className={`absolute bottom-0 left-0 h-0.5 bg-[#8B2323] transition-all duration-300 ${
+                          isActive ? 'w-full' : 'w-0 group-hover/nav:w-full'
+                        }`} />
+                      </Link>
+                    )}
                   )}
                   
                   {link.dropdown && (
@@ -178,9 +191,9 @@ const Navbar = ({ highContrast, setHighContrast, isDark, setIsDark }) => {
           <div className="flex flex-col gap-3">
             {navLinks.map((link) => (
               <div key={link.name} className="flex flex-col gap-2">
-                {link.href.startsWith('/#') ? (
+                {link.href.includes('#') ? (
                   <a
-                    href={link.href}
+                    href={link.href.startsWith('/') ? `${import.meta.env.BASE_URL.replace(/\/$/, '')}${link.href}` : link.href}
                     className="text-lg font-semibold text-gray-800 dark:text-gray-200 py-2"
                     onClick={() => !link.dropdown && setIsMenuOpen(false)}
                   >
@@ -201,7 +214,7 @@ const Navbar = ({ highContrast, setHighContrast, isDark, setIsDark }) => {
                       <Link 
                         key={sub.name}
                         to={sub.href}
-                        className="text-gray-600 dark:text-gray-400 font-medium text-sm py-1"
+                        className="text-gray-600 dark:text-white font-medium text-sm py-1"
                         onClick={() => setIsMenuOpen(false)}
                       >
                         {sub.name}
