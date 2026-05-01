@@ -27,11 +27,11 @@ const Footer = () => {
               <span className="text-3xl font-extrabold tracking-tight text-[#8B2323] font-[Outfit]">
                 RÖNTGEN AM KAI
               </span>
-              <span className="text-sm tracking-widest uppercase font-semibold text-gray-500">
+              <span className="text-sm tracking-widest uppercase font-semibold text-gray-500 dark:text-gray-400">
                 Radiologie Graz
               </span>
             </div>
-            <p className="text-gray-800 leading-relaxed mb-8">
+            <p className="text-gray-800 dark:text-gray-200 leading-relaxed mb-8">
               Ihre Experten für moderne Radiologie in Graz. Fachärzte für Radiologie – alle Kassen und privat.
             </p>
             <div className="flex gap-4">
@@ -41,8 +41,8 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-xl font-bold mb-8 font-[Outfit] text-gray-950">Navigation</h4>
-            <ul className="space-y-4 text-gray-800">
+            <h4 className="text-xl font-bold mb-8 font-[Outfit] text-gray-950 dark:text-white">Navigation</h4>
+            <ul className="space-y-4 text-gray-800 dark:text-gray-200">
               <li><a href="#home" className="hover:text-[#8B2323] transition-colors">Startseite</a></li>
               <li><a href="#services" className="hover:text-[#8B2323] transition-colors">Leistungen</a></li>
               <li><a href="#about" className="hover:text-[#8B2323] transition-colors">Unsere Ärzte</a></li>
@@ -54,12 +54,12 @@ const Footer = () => {
           {/* Contact Info */}
           <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-10">
             <div>
-              <h4 className="text-xl font-bold mb-8 font-[Outfit] text-gray-950">Kontakt & Anfahrt</h4>
+              <h4 className="text-xl font-bold mb-8 font-[Outfit] text-gray-950 dark:text-white">Kontakt & Anfahrt</h4>
               <ul className="space-y-6">
-                <li className="flex items-start gap-4 text-gray-800">
+                <li className="flex items-start gap-4 text-gray-800 dark:text-gray-200">
                   <MapPin className="text-[#8B2323] shrink-0" size={24} />
                   <div>
-                    <p className="text-gray-950 font-bold">Zentrale Lage</p>
+                    <p className="text-gray-950 dark:text-white font-bold">Zentrale Lage</p>
                     <p className="mb-2">Körösistraße 9<br />8010 Graz, Österreich</p>
                     <div className="text-xs space-y-1 mb-4 opacity-80">
                       <p><strong>Öffentlich:</strong> Straßenbahn 3 & 5, Bus 58 & 63 (Haltestelle Keplerbrücke)</p>
@@ -94,10 +94,10 @@ const Footer = () => {
                     </a>
                   </div>
                 </li>
-                <li className="flex items-start gap-4 text-gray-800">
+                <li className="flex items-start gap-4 text-gray-800 dark:text-gray-200">
                   <Phone className="text-[#8B2323] shrink-0" size={24} />
                   <div>
-                    <p className="text-gray-950 font-bold">Telefon</p>
+                    <p className="text-gray-950 dark:text-white font-bold">Telefon</p>
                     <a href="tel:+433168409050" className="hover:text-[#8B2323] transition-colors">0316 840 90 50</a>
                   </div>
                 </li>
@@ -105,11 +105,11 @@ const Footer = () => {
             </div>
 
             <div>
-              <h4 className="text-xl font-bold mb-8 font-[Outfit] text-gray-950">Öffnungszeiten</h4>
-              <ul className="space-y-3 text-gray-800 mb-8">
+              <h4 className="text-xl font-bold mb-8 font-[Outfit] text-gray-950 dark:text-white">Öffnungszeiten</h4>
+              <ul className="space-y-3 text-gray-800 dark:text-gray-200 mb-8">
                 <li className="flex justify-between">
                   <span>Mo - Do</span>
-                  <span className="text-gray-950 font-medium">08:00 - 17:00</span>
+                  <span className="text-gray-950 dark:text-white font-medium">08:00 - 17:00</span>
                 </li>
                 <li className="flex justify-between">
                   <span>Freitag</span>
@@ -117,7 +117,7 @@ const Footer = () => {
                 </li>
               </ul>
               <div className="bg-red-50/50 p-6 rounded-3xl border border-red-100 mt-4">
-                <p className="text-sm text-gray-800 leading-relaxed">
+                <p className="text-sm text-gray-800 dark:text-gray-200 leading-relaxed">
                   <strong>Wichtiger Hinweis:</strong> Wir bieten <strong>kein CT</strong> (Computertomographie) und <strong>kein MRT</strong> (Magnetresonanztomographie) an. Wir empfehlen hierfür z.B. das nahegelegene <a href="https://kreuzschwestern-graz.at/ct-mr-zentrum/" target="_blank" rel="noopener noreferrer" className="text-[#8B2323] underline font-bold hover:text-red-900 transition-colors">Institut der Kreuzschwestern Graz</a>.
                 </p>
               </div>
@@ -127,10 +127,10 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="pt-12 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-gray-700 text-sm">
+          <p className="text-gray-700 dark:text-gray-300 text-sm">
             © Röntgen am Kai - Alle Rechte vorbehalten.
           </p>
-          <div className="flex gap-8 text-gray-800 text-sm">
+          <div className="flex gap-8 text-gray-800 dark:text-gray-200 text-sm">
             <a href="impressum" className="hover:text-[#8B2323] transition-colors focus:text-[#8B2323] outline-none font-bold">Impressum</a>
             <a href="datenschutz" className="hover:text-[#8B2323] transition-colors focus:text-[#8B2323] outline-none font-bold">Datenschutz</a>
           </div>

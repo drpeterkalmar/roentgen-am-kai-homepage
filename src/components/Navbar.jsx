@@ -18,7 +18,7 @@ const Navbar = ({ highContrast, setHighContrast, isDark, setIsDark }) => {
 
   const navLinks = [
     { name: 'Home', href: '/' },
-    { name: 'Unser Angebot', href: '#services', dropdown: [
+    { name: 'Unser Angebot', href: '/#services', dropdown: [
       { name: 'Digitales Röntgen', href: '/unser-angebot/roentgen' },
       { name: 'Mammographie', href: '/unser-angebot/mammographie' },
       { name: 'Knochendichte', href: '/unser-angebot/knochendichte' },
@@ -27,9 +27,9 @@ const Navbar = ({ highContrast, setHighContrast, isDark, setIsDark }) => {
       { name: 'Phlebographie', href: '/unser-angebot/phlebographie' },
       { name: 'Ultraschall', href: '/unser-angebot/ultraschall' },
     ]},
-    { name: 'Unsere Ärzte', href: '#about' },
-    { name: 'Blog', href: '#blog' },
-    { name: 'Kontakt', href: '#contact' },
+    { name: 'Unsere Ärzte', href: '/#about' },
+    { name: 'Blog', href: '/#blog' },
+    { name: 'Kontakt', href: '/#contact' },
   ];
 
   return (
@@ -181,7 +181,7 @@ const Navbar = ({ highContrast, setHighContrast, isDark, setIsDark }) => {
                 {link.href.startsWith('/#') ? (
                   <a
                     href={link.href}
-                    className="text-lg font-semibold text-gray-800 py-2"
+                    className="text-lg font-semibold text-gray-800 dark:text-gray-200 py-2"
                     onClick={() => !link.dropdown && setIsMenuOpen(false)}
                   >
                     {link.name}
@@ -189,7 +189,7 @@ const Navbar = ({ highContrast, setHighContrast, isDark, setIsDark }) => {
                 ) : (
                   <Link
                     to={link.href}
-                    className="text-lg font-semibold text-gray-800 py-2"
+                    className="text-lg font-semibold text-gray-800 dark:text-gray-200 py-2"
                     onClick={() => !link.dropdown && setIsMenuOpen(false)}
                   >
                     {link.name}

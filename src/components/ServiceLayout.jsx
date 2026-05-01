@@ -13,7 +13,7 @@ const ServiceLayout = ({ title, subtitle, children, icon, preparation, requireme
           <ChevronRight size={14} />
           <span className="text-[#8B2323]">Unser Angebot</span>
           <ChevronRight size={14} />
-          <span className="text-gray-900 font-bold">{title}</span>
+          <span className="text-gray-900 dark:text-white font-bold">{title}</span>
         </nav>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
@@ -40,31 +40,31 @@ const ServiceLayout = ({ title, subtitle, children, icon, preparation, requireme
               <div className="w-12 h-12 bg-red-50 text-[#8B2323] rounded-2xl flex items-center justify-center">
                 {icon}
               </div>
-              <h1 className="text-4xl md:text-5xl font-extrabold text-[#1f2937] font-[Outfit] tracking-tight">
+              <h1 className="text-4xl md:text-5xl font-extrabold text-[#1f2937] dark:text-white font-[Outfit] tracking-tight">
                 {title}
               </h1>
             </div>
             
-            <p className="text-xl text-gray-600 mb-10 leading-relaxed font-light">
+            <p className="text-xl text-gray-600 dark:text-gray-300 mb-10 leading-relaxed font-light">
               {subtitle}
             </p>
 
-            <div className="prose prose-lg prose-red max-w-none text-gray-700 leading-relaxed mb-12">
+            <div className="prose prose-lg dark:prose-invert prose-red max-w-none text-gray-700 dark:text-gray-200 leading-relaxed mb-12">
               {children}
             </div>
 
             {/* Preparation/Requirements Box */}
             {(preparation || requirements) && (
-              <div className="bg-gray-50 rounded-[32px] p-8 border border-gray-100 mb-12">
-                <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3 font-[Outfit]">
-                  <ShieldCheck className="text-[#8B2323]" />
+              <div className="bg-gray-50 dark:bg-gray-800/50 rounded-[32px] p-8 border border-gray-100 dark:border-gray-700 mb-12">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3 font-[Outfit]">
+                  <ShieldCheck className="text-[#8B2323] dark:text-[#f87171]" />
                   Wichtige Informationen
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {preparation && (
                     <div className="space-y-3">
                       <p className="font-bold text-[#8B2323] text-sm uppercase tracking-wider">Vorbereitung</p>
-                      <ul className="space-y-2 text-sm text-gray-600">
+                      <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
                         {preparation.map((item, i) => (
                           <li key={i} className="flex gap-2">
                             <span className="text-[#8B2323] font-bold">•</span>
@@ -77,7 +77,7 @@ const ServiceLayout = ({ title, subtitle, children, icon, preparation, requireme
                   {requirements && (
                     <div className="space-y-3">
                       <p className="font-bold text-[#8B2323] text-sm uppercase tracking-wider">Mitzubringen</p>
-                      <ul className="space-y-2 text-sm text-gray-600">
+                      <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
                         {requirements.map((item, i) => (
                           <li key={i} className="flex gap-2">
                             <span className="text-[#8B2323] font-bold">•</span>
@@ -122,16 +122,16 @@ const ServiceLayout = ({ title, subtitle, children, icon, preparation, requireme
                 </a>
               </div>
 
-              <div className="bg-gray-50 p-8 rounded-[40px] border border-gray-100">
-                <h4 className="font-bold text-gray-900 mb-4 font-[Outfit]">Informationen</h4>
-                <div className="space-y-4 text-sm text-gray-600">
+              <div className="bg-gray-50 dark:bg-gray-800/50 p-8 rounded-[40px] border border-gray-100 dark:border-gray-700">
+                <h4 className="font-bold text-gray-900 dark:text-white mb-4 font-[Outfit]">Informationen</h4>
+                <div className="space-y-4 text-sm text-gray-600 dark:text-gray-300">
                   <div className="flex items-start gap-3">
                     <MapPin className="text-[#8B2323] shrink-0" size={18} />
                     <span>Körösistraße 9, 8010 Graz</span>
                   </div>
-                  <div className="pt-4 border-t border-gray-100">
-                    <p className="font-bold text-gray-900 mb-1">Alle Kassen & Privat</p>
-                    <p>ÖGK, SVS, BVAEB, KFA</p>
+                  <div className="pt-4 border-t border-gray-100 dark:border-gray-700">
+                    <p className="font-bold text-gray-900 dark:text-white mb-1">Alle Kassen & Privat</p>
+                    <p className="dark:text-gray-300">ÖGK, SVS, BVAEB, KFA</p>
                   </div>
                 </div>
               </div>

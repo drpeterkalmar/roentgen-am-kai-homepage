@@ -108,9 +108,9 @@ const KalmarPage = () => {
 
       <div className="max-w-[1200px] mx-auto px-6 relative z-10">
         {/* Breadcrumbs */}
-        <nav className="flex items-center gap-2 text-sm font-medium text-gray-500 mb-12">
+        <nav className="flex items-center gap-2 text-sm font-medium text-gray-500 dark:text-gray-400 mb-12">
           <Link to="/" className="hover:text-[#8B2323] transition-colors">Startseite</Link>
-          <span className="text-gray-400">/</span>
+          <span className="text-gray-400 dark:text-gray-600">/</span>
           <span className="text-[#8B2323] font-bold">Peter Kalmar</span>
         </nav>
 
@@ -204,7 +204,7 @@ const KalmarPage = () => {
               <div className="w-12 h-12 bg-red-50 rounded-2xl flex items-center justify-center">
                 <Award className="text-[#8B2323]" size={24} />
               </div>
-              <h3 className="text-xl font-bold font-[Outfit]">Akademische Schwerpunkte</h3>
+              <h3 className="text-xl font-bold font-[Outfit] dark:text-white">Akademische Schwerpunkte</h3>
             </div>
             <div className="space-y-3">
               {expertises.map((exp, i) => (
@@ -229,11 +229,11 @@ const KalmarPage = () => {
               <div className="w-12 h-12 bg-red-50 rounded-2xl flex items-center justify-center">
                 <Award className="text-[#8B2323]" size={24} />
               </div>
-              <h3 className="text-xl font-bold font-[Outfit]">Fortbildungsdiplome und Zertifikate</h3>
+              <h3 className="text-xl font-bold font-[Outfit] dark:text-white">Fortbildungsdiplome und Zertifikate</h3>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {diplomas.map((diploma, i) => (
-                <div key={i} className="flex items-center gap-3 p-4 rounded-2xl bg-white/40 border border-white/60">
+                <div key={i} className="flex items-center gap-3 p-4 rounded-2xl bg-white/40 dark:bg-gray-800/40 border border-white/60 dark:border-gray-700">
                   <CheckCircle2 size={18} className="text-[#8B2323] shrink-0" />
                   <span className="text-sm font-bold text-gray-800 dark:text-gray-200">{diploma}</span>
                 </div>
@@ -253,11 +253,11 @@ const KalmarPage = () => {
             <div className="w-14 h-14 bg-red-50 rounded-2xl flex items-center justify-center">
               <BookOpen className="text-[#8B2323]" size={28} />
             </div>
-            <h2 className="text-3xl font-black font-[Outfit]">Ausgewählte Publikationen</h2>
+            <h2 className="text-3xl font-black font-[Outfit] dark:text-white">Ausgewählte Publikationen</h2>
           </div>
           <div className="grid grid-cols-1 gap-6">
             {publications.map((pub, i) => (
-              <div key={i} className="p-6 rounded-3xl bg-white/50 border border-white/60 hover:bg-white/80 transition-all group">
+              <div key={i} className="p-6 rounded-3xl bg-white/50 dark:bg-gray-800/50 border border-white/60 dark:border-gray-700 hover:bg-white/80 dark:hover:bg-gray-700/80 transition-all group">
                 <p className="text-gray-800 dark:text-gray-200 leading-relaxed font-medium">
                   {pub}
                 </p>

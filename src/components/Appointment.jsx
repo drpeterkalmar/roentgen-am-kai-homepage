@@ -130,10 +130,10 @@ const Appointment = () => {
           
           {/* Left Side: Info */}
           <div className="lg:col-span-2">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-[#1f2937] mb-8 font-[Outfit]">
-              Nicht dringende Termine <span className="text-[#8B2323]">online</span> vereinbaren
+            <h2 className="text-4xl md:text-5xl font-extrabold text-[#1f2937] dark:text-white mb-8 font-[Outfit]">
+              Nicht dringende Termine <span className="text-[#8B2323] dark:text-[#f87171]">online</span> vereinbaren
             </h2>
-            <p className="text-lg text-gray-800 mb-10 leading-relaxed font-medium">
+            <p className="text-lg text-gray-800 dark:text-gray-200 mb-10 leading-relaxed font-medium">
               Sparen Sie Zeit und senden Sie uns Ihre Terminanfrage für einen nicht dringenden Termin bequem von zu Hause oder unterwegs. Wir rufen Sie binnen einer Woche zur Terminbestätigung zurück. Für dringende Termine ersuchen wir Sie um telefonische Kontaktaufnahme
             </p>
             
@@ -142,7 +142,7 @@ const Appointment = () => {
                 'Alle Kassen & Privatleistungen',
                 'Sichere Datenübertragung'
               ].map((item, i) => (
-                <li key={i} className="flex items-center gap-4 text-gray-950 font-semibold">
+                <li key={i} className="flex items-center gap-4 text-gray-950 dark:text-white font-semibold">
                   <div className="w-6 h-6 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
                     <CheckCircle2 size={16} />
                   </div>
@@ -156,8 +156,8 @@ const Appointment = () => {
                 <Shield size={24} />
               </div>
               <div>
-                <p className="font-bold text-gray-950">DSGVO Konform</p>
-                <p className="text-sm text-gray-700">Ihre Daten werden verschlüsselt übertragen.</p>
+                <p className="font-bold text-gray-950 dark:text-white">DSGVO Konform</p>
+                <p className="text-sm text-gray-700 dark:text-gray-300">Ihre Daten werden verschlüsselt übertragen.</p>
               </div>
             </div>
           </div>
@@ -191,7 +191,7 @@ const Appointment = () => {
                     exit={{ opacity: 0, x: -20 }}
                     className="space-y-6"
                   >
-                    <h3 className="text-2xl font-bold mb-6">Wählen Sie die gewünschte Untersuchung</h3>
+                    <h3 className="text-2xl font-bold mb-6 dark:text-white">Wählen Sie die gewünschte Untersuchung</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {['Röntgen', 'Ultraschall', 'Mammographie-Screening', 'DVT / Zahnröntgen', 'Knochendichte / Fettmessung', 'Sonstige Anfrage'].map((svc) => (
                         <button 
@@ -205,7 +205,7 @@ const Appointment = () => {
                             : 'border-gray-100 hover:border-red-200'
                           }`}
                         >
-                          <span className={`font-bold ${formData.service === svc ? 'text-[#8B2323]' : 'text-gray-900'}`}>
+                          <span className={`font-bold ${formData.service === svc ? 'text-[#8B2323] dark:text-[#f87171]' : 'text-gray-900 dark:text-gray-100'}`}>
                             {svc}
                           </span>
                         </button>
@@ -230,7 +230,7 @@ const Appointment = () => {
                     exit={{ opacity: 0, x: -20 }}
                     className="space-y-6"
                   >
-                    <h3 className="text-2xl font-bold mb-6">Persönliche Daten & Termin</h3>
+                    <h3 className="text-2xl font-bold mb-6 dark:text-white">Persönliche Daten & Termin</h3>
                     <form 
                       onSubmit={handleSubmit} 
                       className="space-y-6"

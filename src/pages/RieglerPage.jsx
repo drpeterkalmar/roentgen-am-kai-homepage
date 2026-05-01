@@ -79,9 +79,9 @@ const RieglerPage = () => {
 
       <div className="max-w-[1200px] mx-auto px-6 relative z-10">
         {/* Breadcrumbs */}
-        <nav className="flex items-center gap-2 text-sm font-medium text-gray-500 mb-12">
+        <nav className="flex items-center gap-2 text-sm font-medium text-gray-500 dark:text-gray-400 mb-12">
           <Link to="/" className="hover:text-[#8B2323] transition-colors">Startseite</Link>
-          <span className="text-gray-400">/</span>
+          <span className="text-gray-400 dark:text-gray-600">/</span>
           <span className="text-[#8B2323] font-bold">Georg Riegler</span>
         </nav>
 
@@ -176,7 +176,7 @@ const RieglerPage = () => {
               <div className="w-12 h-12 bg-red-50 rounded-2xl flex items-center justify-center">
                 <Award className="text-[#8B2323]" size={24} />
               </div>
-              <h3 className="text-xl font-bold font-[Outfit]">Leistungen & Expertise</h3>
+              <h3 className="text-xl font-bold font-[Outfit] dark:text-white">Leistungen & Expertise</h3>
             </div>
             <div className="space-y-3">
               {expertises.map((exp, i) => (

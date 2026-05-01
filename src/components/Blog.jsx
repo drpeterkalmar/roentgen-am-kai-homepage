@@ -28,7 +28,7 @@ const BlogModal = ({ post, onClose }) => {
         animate={{ scale: 1, y: 0, opacity: 1 }}
         exit={{ scale: 0.9, y: 20, opacity: 0 }}
         onClick={(e) => e.stopPropagation()}
-        className="bg-white w-full max-w-4xl max-h-[90vh] rounded-[40px] overflow-hidden shadow-2xl flex flex-col relative"
+        className="bg-white dark:bg-gray-900 w-full max-w-4xl max-h-[90vh] rounded-[40px] overflow-hidden shadow-2xl flex flex-col relative"
       >
         <button
           onClick={onClose}
@@ -52,18 +52,18 @@ const BlogModal = ({ post, onClose }) => {
               <span className="bg-[#8B2323] text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
                 {post.category}
               </span>
-              <div className="flex items-center gap-2 text-sm text-gray-700">
+              <div className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
                 <Clock size={16} />
                 <span>{post.date}</span>
               </div>
             </div>
 
-            <h2 className="text-3xl md:text-5xl font-extrabold text-[#1f2937] mb-8 font-[Outfit] leading-tight">
+            <h2 className="text-3xl md:text-5xl font-extrabold text-[#1f2937] dark:text-white mb-8 font-[Outfit] leading-tight">
               {post.title}
             </h2>
 
             <div 
-              className="prose prose-lg max-w-none text-gray-800 leading-relaxed space-y-6"
+              className="prose prose-lg dark:prose-invert max-w-none text-gray-800 dark:text-gray-200 leading-relaxed space-y-6"
               dangerouslySetInnerHTML={{ __html: post.content }}
             />
           </div>
@@ -88,8 +88,8 @@ const Blog = () => {
               <Sparkles size={18} />
               <span>Diagnostik am Puls der Zeit</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-[#1f2937] font-[Outfit]">
-              Wissen für Ihre <span className="text-[#8B2323]">Gesundheit</span>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-[#1f2937] dark:text-white font-[Outfit]">
+              Wissen für Ihre <span className="text-[#8B2323] dark:text-[#f87171]">Gesundheit</span>
             </h2>
           </div>
           
@@ -146,7 +146,7 @@ const Blog = () => {
                 </div>
               </div>
               
-              <div className="flex items-center gap-3 text-sm text-gray-700 mb-3">
+              <div className="flex items-center gap-3 text-sm text-gray-700 dark:text-gray-300 mb-3">
                 <Clock size={16} />
                 <span>{post.date}</span>
                 {post.status === 'draft' && (
@@ -157,11 +157,11 @@ const Blog = () => {
                 )}
               </div>
               
-              <h3 className="text-2xl font-bold text-gray-900 mb-3 leading-tight group-hover:text-[#8B2323] transition-colors font-[Outfit]">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 leading-tight group-hover:text-[#8B2323] transition-colors font-[Outfit]">
                 {post.title}
               </h3>
               
-              <p className="text-gray-950 line-clamp-2 mb-4">
+              <p className="text-gray-950 dark:text-gray-100 line-clamp-2 mb-4">
                 {post.excerpt}
               </p>
               
