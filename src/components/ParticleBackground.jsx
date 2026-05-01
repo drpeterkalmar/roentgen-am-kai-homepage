@@ -69,7 +69,7 @@ const ParticleBackground = ({ isDark }) => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none -z-10"
+      className="fixed inset-0 pointer-events-none -z-[10]"
       style={{ opacity: isDark ? 0.4 : 0.8 }}
     />
   );

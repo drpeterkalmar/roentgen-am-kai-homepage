@@ -117,7 +117,7 @@ const Services = () => {
       <div className="max-w-[1400px] mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-16 gap-8 text-center md:text-left">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 bg-red-50 dark:bg-red-900/20 text-[#8B2323] dark:text-red-400 px-4 py-2 rounded-full text-xs font-black uppercase tracking-[0.2em] mb-4">
+            <div className="inline-flex items-center gap-2 bg-red-50 dark:bg-red-900/20 text-[#8B2323] dark:text-[#8B2323] px-4 py-2 rounded-full text-xs font-black uppercase tracking-[0.2em] mb-4">
               <Info size={14} />
               Diagnostische Präzision
             </div>
