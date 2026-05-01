@@ -21,7 +21,7 @@ npm run dev
 ```
 
 ## Deployment
-Automatisiert via Netlify.
+Automatisiert via GitHub Pages (GitHub Actions).
 ```bash
 npm run build
 ```
