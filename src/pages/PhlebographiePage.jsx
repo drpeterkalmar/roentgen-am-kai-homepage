@@ -4,23 +4,30 @@ import ServiceLayout from '../components/ServiceLayout';
 
 const PhlebographiePage = () => {
   const LegComposite = (
-    <div className="grid grid-cols-3 gap-2 md:gap-6 mb-16">
+    <div className="grid grid-cols-3 gap-2 md:gap-6 mb-16 px-2 md:px-0">
       {[
-        { id: 1, label: "Phlebografie Oberschenkel", img: "/assets/images/phlebo-leg-1.avif", mobile: "/assets/images/phlebo-leg-1-mobile.avif", tablet: "/assets/images/phlebo-leg-1-tablet.avif" },
-        { id: 2, label: "Phlebografie Knie", img: "/assets/images/phlebo-leg-2.avif", mobile: "/assets/images/phlebo-leg-2-mobile.avif", tablet: "/assets/images/phlebo-leg-2-tablet.avif" },
-        { id: 3, label: "Phlebografie Unterschenkel", img: "/assets/images/phlebo-leg-3.avif", mobile: "/assets/images/phlebo-leg-3-mobile.avif", tablet: "/assets/images/phlebo-leg-3-tablet.avif" }
-      ].map((segment) => (
-        <div key={segment.id} className="group relative bg-[#000] border border-gray-800 flex items-center justify-center overflow-visible">
-          <img 
-            src={segment.img} 
-            srcSet={`${segment.mobile} 800w, ${segment.tablet} 1200w, ${segment.img} 1920w`}
-            sizes="(max-width: 768px) 100vw, 33vw"
-            className="max-w-full max-h-[70vh] w-auto h-auto block transition-transform duration-700 group-hover:scale-105 shadow-2xl" 
-            alt={segment.label} 
-          />
-          <div className="absolute inset-0 border-2 border-[#8B2323]/0 group-hover:border-[#8B2323]/20 transition-all pointer-events-none" />
-        </div>
-      ))}
+        { id: 1, label: "Phlebografie Oberschenkel", img: "assets/images/phlebo-leg-1.avif" },
+        { id: 2, label: "Phlebografie Knie", img: "assets/images/phlebo-leg-2.avif" },
+        { id: 3, label: "Phlebografie Unterschenkel", img: "assets/images/phlebo-leg-3.avif" }
+      ].map((segment) => {
+        const fullImg = `${import.meta.env.BASE_URL}${segment.img}`;
+        const mobileImg = fullImg.replace('.avif', '-mobile.avif');
+        const tabletImg = fullImg.replace('.avif', '-tablet.avif');
+        
+        return (
+          <div key={segment.id} className="group relative bg-[#000] border border-gray-800 flex items-center justify-center overflow-visible">
+            <img 
+              src={fullImg} 
+              srcSet={`${mobileImg} 800w, ${tabletImg} 1200w, ${fullImg} 1920w`}
+              sizes="(max-width: 768px) 33vw, 33vw"
+              className="max-w-full max-h-[70vh] w-auto h-auto block transition-transform duration-700 group-hover:scale-105 shadow-2xl" 
+              alt={segment.label} 
+              loading="eager"
+            />
+            <div className="absolute inset-0 border-2 border-[#8B2323]/0 group-hover:border-[#8B2323]/20 transition-all pointer-events-none" />
+          </div>
+        );
+      })}
     </div>
   );
 
