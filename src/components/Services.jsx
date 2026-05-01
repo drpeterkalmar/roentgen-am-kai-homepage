@@ -227,7 +227,12 @@ const Services = () => {
             </motion.div>
             ))}
           </AnimatePresence>
-          {(searchQuery.toLowerCase().includes('ct') || searchQuery.toLowerCase().includes('mrt')) && (
+          {(searchQuery.toLowerCase().includes('ct') || 
+            searchQuery.toLowerCase().includes('mrt') || 
+            searchQuery.toLowerCase().includes('mr') || 
+            searchQuery.toLowerCase().includes('magn') || 
+            searchQuery.toLowerCase().includes('kernsp') || 
+            searchQuery.toLowerCase().includes('compu')) && (
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
