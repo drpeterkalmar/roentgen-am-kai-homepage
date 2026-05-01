@@ -3,8 +3,8 @@ import { ChevronRight, ShieldCheck, Clock, MapPin } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const images = [
-  '/assets/images/hero-slide-1.avif',
-  '/assets/images/hero-home-2025.avif'
+  `${import.meta.env.BASE_URL}assets/images/hero-slide-1.avif`,
+  `${import.meta.env.BASE_URL}assets/images/hero-home-2025.avif`
 ];
 
 const animationPresets = [

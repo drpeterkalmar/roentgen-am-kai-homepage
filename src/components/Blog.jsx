@@ -40,7 +40,7 @@ const BlogModal = ({ post, onClose }) => {
         <div className="overflow-y-auto">
           <div className="relative h-[300px] md:h-[450px]">
             <img 
-              src={post.image} 
+              src={`${import.meta.env.BASE_URL}${post.image}`} 
               alt={post.title} 
               className="w-full h-full object-cover"
             />
@@ -134,7 +134,7 @@ const Blog = () => {
             >
               <div className="relative rounded-[32px] overflow-hidden mb-6 aspect-[4/3]">
                 <img 
-                  src={post.image} 
+                  src={`${import.meta.env.BASE_URL}${post.image}`} 
                   alt="" 
                   aria-hidden="true"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"

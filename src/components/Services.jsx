@@ -19,71 +19,71 @@ const services = [
     title: 'Digitales Röntgen',
     description: 'Skelett- und Lungenaufnahmen mit minimaler Strahlenbelastung.',
     microInfo: 'Sofort verfügbar',
-    href: '/unser-angebot/roentgen',
+    href: 'unser-angebot/roentgen',
     icon: <Scan size={24} />,
     color: 'bg-blue-50 text-blue-600',
     gridClass: 'md:col-span-4 aspect-square',
-    image: '/assets/images/roentgen_v3.avif'
+    image: 'assets/images/roentgen_v3.avif'
   },
   {
     title: 'Mammographie',
     description: 'Zertifizierter Screeningstandort für höchste Diagnosesicherheit.',
     microInfo: 'Brustkrebs-Früherkennung',
-    href: '/unser-angebot/mammographie',
+    href: 'unser-angebot/mammographie',
     icon: <HeartPulse size={28} />,
     color: 'bg-red-50 text-[#8B2323]',
     gridClass: 'md:col-span-4 aspect-square',
-    image: '/assets/images/mammographie_v2.avif'
+    image: 'assets/images/mammographie_v2.avif'
   },
   {
     title: 'Knochendichte (DEXA)',
     description: 'Goldstandard zur Osteoporose-Früherkennung und Verlaufskontrolle.',
     microInfo: 'Goldstandard',
-    href: '/unser-angebot/knochendichte',
+    href: 'unser-angebot/knochendichte',
     icon: <Bone size={28} />,
     color: 'bg-purple-50 text-purple-600',
     gridClass: 'md:col-span-4 aspect-square',
-    image: '/assets/images/knochendichte_v3.avif'
+    image: 'assets/images/knochendichte_v3.avif'
   },
   {
     title: 'Körperfett',
     description: 'DEXA-Analyse der Körperzusammensetzung.',
     microInfo: 'Fitness und Longevity',
-    href: '/unser-angebot/koerperfettmessung',
+    href: 'unser-angebot/koerperfettmessung',
     icon: <Scale size={24} />,
     color: 'bg-teal-50 text-teal-600',
     gridClass: 'md:col-span-4 aspect-square',
-    image: '/assets/images/koerperfett.avif'
+    image: 'assets/images/koerperfett.avif'
   },
   {
     title: 'DVT / Zahnröntgen',
     description: 'Präzise 3D-Kieferdiagnostik für die Implantatplanung und Zahnheilkunde.',
     microInfo: 'Modernste Technik',
-    href: '/unser-angebot/dvt',
+    href: 'unser-angebot/dvt',
     icon: <ToothIcon size={24} />,
     color: 'bg-orange-50 text-orange-600',
     gridClass: 'md:col-span-4 aspect-square',
-    image: '/assets/images/hero_interior.avif'
+    image: 'assets/images/hero_interior.avif'
   },
   {
     title: 'Phlebographie',
     description: 'Venenröntgen mit Kontrastmittel.',
     microInfo: 'Präoperative Planung',
-    href: '/unser-angebot/phlebographie',
+    href: 'unser-angebot/phlebographie',
     icon: <Syringe size={24} />,
     color: 'bg-rose-50 text-rose-600',
     gridClass: 'md:col-span-4 aspect-square',
-    image: '/assets/images/phlebographie_v3.avif'
+    image: 'assets/images/phlebographie_v3.avif'
   },
   {
     title: 'Sonografie',
     description: 'Gewebeschonende Diagnostik von Organen, Gelenken und Gefäßen.',
     microInfo: 'Ohne Strahlen',
-    href: '/unser-angebot/ultraschall',
+    href: 'unser-angebot/ultraschall',
     icon: <Waves size={24} />,
     color: 'bg-green-50 text-green-600',
     gridClass: 'md:col-span-4 aspect-square',
-    image: '/assets/images/ultraschall.avif'
+    image: 'assets/images/ultraschall.avif'
   },
   {
     type: 'info',
@@ -216,8 +216,8 @@ const Services = () => {
               {service.image && (
                 <div className="absolute top-0 right-0 w-1/2 h-full opacity-[0.03] group-hover:opacity-[0.08] transition-opacity pointer-events-none">
                    <img 
-                    src={service.image} 
-                    srcSet={`${service.image.replace('.avif', '-mobile.avif')} 800w, ${service.image.replace('.avif', '-tablet.avif')} 1200w, ${service.image} 1920w`}
+                    src={`${import.meta.env.BASE_URL}${service.image}`} 
+                    srcSet={`${import.meta.env.BASE_URL}${service.image.replace('.avif', '-mobile.avif')} 800w, ${import.meta.env.BASE_URL}${service.image.replace('.avif', '-tablet.avif')} 1200w, ${import.meta.env.BASE_URL}${service.image} 1920w`}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
                     alt="" 
                     className="w-full h-full object-cover grayscale" 

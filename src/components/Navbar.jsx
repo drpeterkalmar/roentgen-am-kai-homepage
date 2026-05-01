@@ -18,7 +18,7 @@ const Navbar = ({ highContrast, setHighContrast, isDark, setIsDark }) => {
 
   const navLinks = [
     { name: 'Home', href: '/' },
-    { name: 'Unser Angebot', href: '/#services', dropdown: [
+    { name: 'Unser Angebot', href: '#services', dropdown: [
       { name: 'Digitales Röntgen', href: '/unser-angebot/roentgen' },
       { name: 'Mammographie', href: '/unser-angebot/mammographie' },
       { name: 'Knochendichte', href: '/unser-angebot/knochendichte' },
@@ -27,9 +27,9 @@ const Navbar = ({ highContrast, setHighContrast, isDark, setIsDark }) => {
       { name: 'Phlebographie', href: '/unser-angebot/phlebographie' },
       { name: 'Ultraschall', href: '/unser-angebot/ultraschall' },
     ]},
-    { name: 'Unsere Ärzte', href: '/#about' },
-    { name: 'Blog', href: '/#blog' },
-    { name: 'Kontakt', href: '/#contact' },
+    { name: 'Unsere Ärzte', href: '#about' },
+    { name: 'Blog', href: '#blog' },
+    { name: 'Kontakt', href: '#contact' },
   ];
 
   return (

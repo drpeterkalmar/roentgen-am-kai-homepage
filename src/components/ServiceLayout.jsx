@@ -28,7 +28,7 @@ const ServiceLayout = ({ title, subtitle, children, icon, preparation, requireme
             ) : imageUrl ? (
               <div className="mb-12 rounded-[40px] overflow-hidden shadow-2xl relative h-[400px]">
                 <img 
-                  src={imageUrl} 
+                  src={imageUrl.startsWith('/') ? `${import.meta.env.BASE_URL}${imageUrl.substring(1)}` : imageUrl} 
                   alt={title} 
                   className="w-full h-full object-cover"
                 />

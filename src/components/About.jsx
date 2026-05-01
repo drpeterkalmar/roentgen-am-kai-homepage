@@ -25,8 +25,8 @@ const About = () => {
             <div className="relative mb-12 rounded-[48px] overflow-hidden shadow-[0_32px_80px_rgba(0,0,0,0.15)] aspect-[16/9] md:aspect-[21/9] glass p-1">
               <div className="w-full h-full rounded-[44px] overflow-hidden relative group">
                 <img 
-                  src="/assets/images/team-2025.avif" 
-                  srcSet="/assets/images/team-2025-mobile.avif 800w, /assets/images/team-2025-tablet.avif 1200w, /assets/images/team-2025.avif 1920w"
+                  src={`${import.meta.env.BASE_URL}assets/images/team-2025.avif`} 
+                  srcSet={`${import.meta.env.BASE_URL}assets/images/team-2025-mobile.avif 800w, ${import.meta.env.BASE_URL}assets/images/team-2025-tablet.avif 1200w, ${import.meta.env.BASE_URL}assets/images/team-2025.avif 1920w`}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                   alt="Priv. Doz. Dr. Georg Riegler und Priv. Doz. Dr. Peter Kalmar - Spezialisten für Radiologie in Graz" 
                   className="w-full h-full object-cover grayscale-[0.3] brightness-110 group-hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100"

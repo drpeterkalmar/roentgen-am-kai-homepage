@@ -58,10 +58,18 @@ function App() {
   }, [highContrast]);
 
   return (
-    <Router>
+    <Router basename="/roentgen-am-kai-homepage">
       <ScrollToTop />
       <SchemaMarkup />
-      <div className="min-h-screen bg-transparent selection:bg-red-100 selection:text-[#8B2323] transition-colors duration-300">
+      <div 
+        className="min-h-screen selection:bg-red-100 selection:text-[#8B2323] transition-colors duration-300"
+        style={{
+          backgroundImage: `linear-gradient(${isDark ? 'rgba(15, 23, 42, 0.85)' : 'rgba(255, 255, 255, 0.45)'}, ${isDark ? 'rgba(15, 23, 42, 0.85)' : 'rgba(255, 255, 255, 0.45)'}), url('${import.meta.env.BASE_URL}assets/images/glass-bg.avif')`,
+          backgroundAttachment: 'fixed',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}
+      >
         <ParticleBackground />
         <Navbar 
           highContrast={highContrast} 

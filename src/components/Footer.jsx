@@ -43,11 +43,11 @@ const Footer = () => {
           <div>
             <h4 className="text-xl font-bold mb-8 font-[Outfit] text-gray-950">Navigation</h4>
             <ul className="space-y-4 text-gray-800">
-              <li><a href="/#home" className="hover:text-[#8B2323] transition-colors">Startseite</a></li>
-              <li><a href="/#services" className="hover:text-[#8B2323] transition-colors">Leistungen</a></li>
-              <li><a href="/#about" className="hover:text-[#8B2323] transition-colors">Unsere Ärzte</a></li>
-              <li><a href="/#blog" className="hover:text-[#8B2323] transition-colors">Gesundheits-Blog</a></li>
-              <li><a href="/#booking" className="hover:text-[#8B2323] transition-colors">Terminanfrage</a></li>
+              <li><a href="#home" className="hover:text-[#8B2323] transition-colors">Startseite</a></li>
+              <li><a href="#services" className="hover:text-[#8B2323] transition-colors">Leistungen</a></li>
+              <li><a href="#about" className="hover:text-[#8B2323] transition-colors">Unsere Ärzte</a></li>
+              <li><a href="#blog" className="hover:text-[#8B2323] transition-colors">Gesundheits-Blog</a></li>
+              <li><a href="#booking" className="hover:text-[#8B2323] transition-colors">Terminanfrage</a></li>
             </ul>
           </div>
 
@@ -69,7 +69,7 @@ const Footer = () => {
                     {/* Stylized Map View */}
                     <div className="relative group rounded-3xl overflow-hidden mb-4 shadow-xl border border-gray-700">
                       <img 
-                        src="/assets/images/footer-map.avif" 
+                        src={`${import.meta.env.BASE_URL}assets/images/footer-map.avif`} 
                         alt="Anfahrtsskizze Röntgen am Kai - Körösistraße 9, 8010 Graz" 
                         className="w-full h-[150px] object-cover"
                       />
@@ -131,8 +131,8 @@ const Footer = () => {
             © Röntgen am Kai - Alle Rechte vorbehalten.
           </p>
           <div className="flex gap-8 text-gray-800 text-sm">
-            <a href="/impressum" className="hover:text-[#8B2323] transition-colors focus:text-[#8B2323] outline-none font-bold">Impressum</a>
-            <a href="/datenschutz" className="hover:text-[#8B2323] transition-colors focus:text-[#8B2323] outline-none font-bold">Datenschutz</a>
+            <a href="impressum" className="hover:text-[#8B2323] transition-colors focus:text-[#8B2323] outline-none font-bold">Impressum</a>
+            <a href="datenschutz" className="hover:text-[#8B2323] transition-colors focus:text-[#8B2323] outline-none font-bold">Datenschutz</a>
           </div>
           <button 
             onClick={scrollToTop}
