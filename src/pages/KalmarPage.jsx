@@ -85,8 +85,8 @@ const KalmarPage = () => {
       </script>
       {/* Background Animated Blobs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden -z-10">
-        <motion.div 
-          animate={{ 
+        <motion.div
+          animate={{
             x: [0, 40, 0],
             y: [0, -30, 0],
             rotate: [0, 10, 0]
@@ -95,8 +95,8 @@ const KalmarPage = () => {
           className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-red-100/30 rounded-full blur-[60px]"
           style={{ willChange: 'transform' }}
         />
-        <motion.div 
-          animate={{ 
+        <motion.div
+          animate={{
             x: [0, -30, 0],
             y: [0, 40, 0]
           }}
@@ -116,22 +116,22 @@ const KalmarPage = () => {
 
         {/* Hero Section */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             className="lg:col-span-4"
           >
             <div className="glass p-2 rounded-[48px] shadow-2xl relative aspect-[4/5] overflow-hidden">
-               <img 
-                src={`${import.meta.env.BASE_URL}assets/images/hero-slide-2.avif`} 
-                alt="Prim. a. D. Priv. Doz. Dr. Peter Kalmar" 
+              <img
+                src={`${import.meta.env.BASE_URL}assets/images/hero-slide-2.avif`}
+                alt="Priv. Doz. Dr. Peter Kalmar"
                 className="w-full h-full object-cover object-[20%_center] rounded-[40px] grayscale-[0.3] hover:grayscale-0 transition-all duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1f2937]/40 to-transparent pointer-events-none" />
             </div>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             className="lg:col-span-8 flex flex-col justify-center"
@@ -140,7 +140,7 @@ const KalmarPage = () => {
               Facharzt für Radiologie
             </div>
             <h1 className="text-5xl md:text-6xl font-black text-gray-900 dark:text-white mb-4 font-[Outfit] leading-tight">
-              Prim. a. D. Priv. Doz. Dr. med. univ. <br/>
+              Priv. Doz. Dr. med. univ. <br />
               Peter <span className="text-[#8B2323]">Kalmar</span>, MHBA
             </h1>
             <p className="text-2xl text-gray-700 dark:text-gray-300 mb-8 font-light italic">
@@ -150,7 +150,7 @@ const KalmarPage = () => {
         </div>
 
         {/* Philosophy Section */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -165,7 +165,7 @@ const KalmarPage = () => {
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {sections.map((section, idx) => (
-            <motion.div 
+            <motion.div
               key={idx}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -192,7 +192,7 @@ const KalmarPage = () => {
             </motion.div>
           ))}
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -217,7 +217,7 @@ const KalmarPage = () => {
           </motion.div>
 
           {/* DFP Diplomas Section */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -243,7 +243,7 @@ const KalmarPage = () => {
         </div>
 
         {/* Publications */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
