@@ -14,7 +14,7 @@ const FAQItem = ({ question, answer }) => {
         <span className={`text-lg font-bold transition-colors ${isOpen ? 'text-[#8B2323]' : 'text-gray-800 group-hover:text-[#8B2323]'}`}>
           {question}
         </span>
-        <div className={`shrink-0 ml-4 w-8 h-8 rounded-full flex items-center justify-center transition-all ${isOpen ? 'bg-[#8B2323] text-white rotate-180' : 'bg-gray-50 text-gray-400'}`}>
+        <div className={`shrink-0 ml-4 w-8 h-8 rounded-full flex items-center justify-center transition-all ${isOpen ? 'bg-[#8B2323] text-white rotate-180' : 'bg-gray-50 dark:bg-gray-800 text-gray-400'}`}>
           <ChevronDown size={20} />
         </div>
       </button>

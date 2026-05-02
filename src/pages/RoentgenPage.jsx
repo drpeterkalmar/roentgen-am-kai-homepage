@@ -55,7 +55,7 @@ const RoentgenPage = () => {
             'Magen-/Dünndarmpassage',
             'Darstellung der Eileiter bzw. -durchgängigkeit (Hysterosalpingographie)'
           ].map((item, i) => (
-            <div key={i} className="flex items-center gap-3 p-4 bg-gray-50 rounded-2xl border border-gray-100">
+            <div key={i} className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-2xl border border-gray-100 dark:border-gray-700">
               <div className="w-2 h-2 bg-[#8B2323] rounded-full shrink-0" />
               <span className="text-sm font-medium">{item}</span>
             </div>
@@ -65,10 +65,10 @@ const RoentgenPage = () => {
 
       <section className="mb-12">
         <h2 className="text-2xl font-bold mb-6 font-[Outfit]">Kontrastmitteluntersuchungen</h2>
-        <p className="mb-6 text-gray-600">
+        <p className="mb-6 text-gray-600 dark:text-gray-400">
           Die Aufnahmen werden auf einer digitalen Workstation befundet und bei uns direkt digital archiviert. Die Bilder können Ihrem behandelnden Arzt bzw. Ärztin direkt digital übermittelt werden. Auch mit den steirischen Spitälern besteht eine direkte Verbindung über das MARC-System.
         </p>
-        <p className="mb-6 text-gray-600">
+        <p className="mb-6 text-gray-600 dark:text-gray-400">
           Manche Aufnahmen werden erst dann aussagekräftig, wenn Kontrastmittel eingesetzt werden. Wir informieren Sie im Voraus, unter welchen Umständen dies nötig ist.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -76,9 +76,9 @@ const RoentgenPage = () => {
             'Venenröntgen (Phlebographie)',
             'Nierenröntgen (IVP, AUG)'
           ].map((item, i) => (
-            <div key={i} className="flex items-center gap-3 p-4 bg-red-50 rounded-2xl border border-red-100">
+            <div key={i} className="flex items-center gap-3 p-4 bg-red-50 dark:bg-red-950/20 rounded-2xl border border-red-100 dark:border-red-900/30">
               <div className="w-2 h-2 bg-[#8B2323] rounded-full shrink-0" />
-              <span className="text-sm font-medium text-[#8B2323]">{item}</span>
+              <span className="text-sm font-medium text-[#8B2323] dark:text-red-400">{item}</span>
             </div>
           ))}
         </div>

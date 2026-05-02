@@ -50,9 +50,9 @@ const PhlebographiePage = () => {
       ]}
       customImage={LegComposite}
     >
-      <section className="bg-red-50 rounded-[32px] p-6 border border-red-200 mb-12 flex items-start gap-4">
-        <AlertTriangle className="text-red-600 shrink-0 mt-1" size={24} />
-        <p className="text-sm font-medium text-red-800">
+      <section className="bg-red-50 dark:bg-red-900/20 rounded-[32px] p-6 border border-red-200 dark:border-red-900/30 mb-12 flex items-start gap-4">
+        <AlertTriangle className="text-red-600 dark:text-red-400 shrink-0 mt-1" size={24} />
+        <p className="text-sm font-medium text-red-800 dark:text-red-200">
           <strong>Wichtig:</strong> Diese Untersuchung kann nicht durchgeführt werden, wenn bei Ihnen eine Kontrastmittelallergie vorliegt oder wenn Sie schwanger sind.
         </p>
       </section>
@@ -66,7 +66,7 @@ const PhlebographiePage = () => {
             'Prüfung der Durchgängigkeit der tiefen und oberflächlichen Beinvenen vor einer Krampfadernoperation',
             'Nachweis oder Ausschluss von Verschlüssen der tiefen Beinvenen durch Blutgerinnsel (Thrombose)'
           ].map((item, i) => (
-            <div key={i} className="flex items-start gap-3 p-4 bg-gray-50 rounded-2xl border border-gray-100">
+            <div key={i} className="flex items-start gap-3 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-2xl border border-gray-100 dark:border-gray-700">
               <div className="w-2 h-2 bg-[#8B2323] rounded-full shrink-0 mt-1.5" />
               <span className="text-sm font-medium">{item}</span>
             </div>

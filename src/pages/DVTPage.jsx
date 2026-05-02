@@ -40,7 +40,7 @@ const DVTPage = () => {
             'Nur geringe Metallartefakte durch Kronen oder Brücken',
             'Keine Platzangst'
           ].map((item, i) => (
-            <div key={i} className="flex items-center gap-3 p-4 bg-gray-50 rounded-2xl border border-gray-100">
+            <div key={i} className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-2xl border border-gray-100 dark:border-gray-700">
               <div className="w-2 h-2 bg-[#8B2323] rounded-full shrink-0" />
               <span className="text-sm font-medium">{item}</span>
             </div>
@@ -65,7 +65,7 @@ const DVTPage = () => {
             'Knochendichtebeurteilung im Kieferbereich',
             'Präoperative Planungsbilder ohne Platzangst'
           ].map((item, i) => (
-            <div key={i} className="flex items-start gap-3 p-4 bg-gray-50 rounded-2xl border border-gray-100">
+            <div key={i} className="flex items-start gap-3 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-2xl border border-gray-100 dark:border-gray-700">
               <div className="w-2 h-2 bg-[#8B2323] rounded-full shrink-0 mt-1.5" />
               <span className="text-sm font-medium">{item}</span>
             </div>

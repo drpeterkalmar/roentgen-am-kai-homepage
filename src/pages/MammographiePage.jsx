@@ -62,7 +62,7 @@ const MammographiePage = () => {
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {['Bildqualität', 'Geräteausstattung', 'Fachwissen und laufende Fortbildung der Mitarbeiter'].map((item, i) => (
-            <div key={i} className="flex items-center gap-3 p-4 bg-gray-50 rounded-2xl border border-gray-100">
+            <div key={i} className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-2xl border border-gray-100 dark:border-gray-700">
               <div className="w-2 h-2 bg-[#8B2323] rounded-full shrink-0" />
               <span className="text-sm font-medium">{item}</span>
             </div>
@@ -88,7 +88,7 @@ const MammographiePage = () => {
           <Info size={24} />
           Brustkrebs-Früherkennungsprogramm
         </h2>
-        <div className="space-y-4 text-gray-700">
+        <div className="space-y-4 text-gray-700 dark:text-gray-200">
           <p>
             Bereits seit vielen Jahren sind wir zertifizierter Standort für Mamma-Screenings bzw. Brustkrebsvorsorge in Graz. Unsere Röntgeneinrichtung erfüllt alle Anforderungen an die beste Qualität, so dass wir für Sie höchst zuverlässige Untersuchungen im Rahmen der Brustkrebsfrüherkennung durchführen können.
           </p>
@@ -98,15 +98,15 @@ const MammographiePage = () => {
           <p>
             Wenn Sie zwischen 40 und 44 Jahre bzw. über 74 Jahre alt sind, können Sie auf eigenen Wunsch ebenfalls am Programm für Brustkrebsvorsorge teilnehmen:
           </p>
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 bg-white p-4 rounded-2xl shadow-sm border border-red-50">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 bg-white dark:bg-gray-800/50 p-4 rounded-2xl shadow-sm border border-red-50 dark:border-red-900/30">
             <div className="flex items-center gap-3">
               <Phone className="text-[#8B2323]" size={20} />
               <div>
-                <p className="text-xs text-gray-500 uppercase font-bold tracking-wider">Serviceline</p>
-                <p className="text-lg font-bold text-[#8B2323]">0800 500 181</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 uppercase font-bold tracking-wider">Serviceline</p>
+                <p className="text-xl font-extrabold text-[#8B2323]">0800 500 181</p>
               </div>
             </div>
-            <span className="text-sm text-gray-500">oder online auf</span>
+            <span className="text-sm text-gray-500 dark:text-gray-400">oder online auf</span>
             <a href="http://www.frueh-erkennen.at/" target="_blank" rel="noopener noreferrer" className="text-[#8B2323] font-bold flex items-center gap-1 hover:underline">
               www.frueh-erkennen.at
               <ExternalLink size={14} />

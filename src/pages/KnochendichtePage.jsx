@@ -65,7 +65,7 @@ const KnochendichtePage = () => {
             'Knochenmineralgehalt (BMC)',
             'Trabecular Bone Score (TBS)'
           ].map((item, i) => (
-            <div key={i} className="flex items-center gap-3 p-4 bg-gray-50 rounded-2xl border border-gray-100">
+            <div key={i} className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-2xl border border-gray-100 dark:border-gray-700">
               <div className="w-2 h-2 bg-[#8B2323] rounded-full shrink-0" />
               <span className="text-sm font-medium">{item}</span>
             </div>
@@ -79,17 +79,17 @@ const KnochendichtePage = () => {
           Für eine optimale und individuell angepasste Therapieplanung reicht die alleinige Messung der Knochendichte oft nicht aus. Deshalb berechnen wir standardmäßig zwei weitere essenzielle Diagnose-Parameter für Sie mit:
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden group">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-red-50 rounded-full blur-3xl -mr-10 -mt-10 opacity-50 group-hover:opacity-80 transition-opacity" />
+          <div className="bg-white dark:bg-gray-800/50 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 relative overflow-hidden group">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-red-50 dark:bg-red-900/20 rounded-full blur-3xl -mr-10 -mt-10 opacity-50 group-hover:opacity-80 transition-opacity" />
             <h3 className="text-lg font-bold text-[#8B2323] mb-3 relative z-10">FRAX-Score</h3>
-            <p className="text-sm text-gray-700 leading-relaxed relative z-10">
+            <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed relative z-10">
               Der <strong>FRAX-Algorithmus</strong> (Fracture Risk Assessment Tool) berechnet Ihr individuelles, prozentuales Risiko, innerhalb der nächsten 10 Jahre einen durch Osteoporose bedingten Knochenbruch zu erleiden. Hierbei fließen neben der reinen Knochendichte auch persönliche klinische Risikofaktoren (wie Alter, Gewicht, Vorerkrankungen und familiäre Vorbelastung) direkt in die Auswertung mit ein.
             </p>
           </div>
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden group">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-full blur-3xl -mr-10 -mt-10 opacity-50 group-hover:opacity-80 transition-opacity" />
+          <div className="bg-white dark:bg-gray-800/50 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 relative overflow-hidden group">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 dark:bg-blue-900/20 rounded-full blur-3xl -mr-10 -mt-10 opacity-50 group-hover:opacity-80 transition-opacity" />
             <h3 className="text-lg font-bold text-[#8B2323] mb-3 relative z-10">Risikoklasse nach Manitoba</h3>
-            <p className="text-sm text-gray-700 leading-relaxed relative z-10">
+            <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed relative z-10">
               Basierend auf den Erkenntnissen der groß angelegten kanadischen <strong>Manitoba-Studie</strong> ordnen wir Ihr tatsächliches Frakturrisiko noch genauer ein. Dieses System kombiniert Ihren Knochendichte-Wert systematisch mit weiteren Alters- und Risikofaktoren und stuft Sie in eine niedrige, mittlere oder hohe Risikoklasse ein. Dies bildet die perfekte Grundlage für eine ärztliche Therapieentscheidung.
             </p>
           </div>
@@ -106,21 +106,21 @@ const KnochendichtePage = () => {
         </p>
       </section>
 
-      <section className="bg-gray-50 rounded-[32px] p-8 border border-gray-100 mb-12">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6 font-[Outfit] flex items-center gap-3">
+      <section className="bg-gray-50 dark:bg-gray-800/50 rounded-[32px] p-8 border border-gray-100 dark:border-gray-700 mb-12">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 font-[Outfit] flex items-center gap-3">
           <CreditCard size={24} className="text-[#8B2323]" />
           Verrechnung & Krankenkassen
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
+          <div className="p-6 bg-white dark:bg-gray-900/40 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
             <h4 className="font-bold text-[#8B2323] mb-2 uppercase tracking-widest text-xs">Direktverrechnung</h4>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
               Mit Patienten, die bei der <strong>BVA, SVA und der KFA-Graz</strong> versichert sind, können wir die Knochendichtemessung vornehmen und nach Vorlage eines Überweisungsscheins direkt mit dem zuständigen Versicherungsträger verrechnen.
             </p>
           </div>
-          <div className="p-6 bg-white rounded-2xl shadow-sm border border-red-50">
+          <div className="p-6 bg-white dark:bg-gray-900/40 rounded-2xl shadow-sm border border-red-50 dark:border-red-900/30">
             <h4 className="font-bold text-[#8B2323] mb-2 uppercase tracking-widest text-xs">Wahlarzt (ÖGK)</h4>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
               Für die Knochendichtemessung besteht <strong>keine Direktverrechnung mit der ÖGK</strong>. Sie bezahlen die Untersuchung selbst und bekommen mit einer Überweisung einen Anteil von Ihrer Krankenkasse zurück.
             </p>
           </div>
@@ -141,7 +141,7 @@ const KnochendichtePage = () => {
             'Relativer Skelett-/Muskelindex (RSMI)',
             'Ruhende Stoffwechselrate (RMR)'
           ].map((item, i) => (
-            <div key={i} className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl border border-gray-100">
+            <div key={i} className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800/50 rounded-xl border border-gray-100 dark:border-gray-700">
               <div className="w-2 h-2 bg-[#8B2323] rounded-full shrink-0" />
               <span className="text-sm font-medium">{item}</span>
             </div>
@@ -150,7 +150,7 @@ const KnochendichtePage = () => {
         <p>
           Anhand dieser Daten können ernährungs- oder trainingsbedingte Veränderungen zwischen Körperfett und Muskelmasse gezielt dargestellt und Diät- bzw. Trainingspläne entsprechend optimiert werden.
         </p>
-        <p className="text-sm text-gray-500 italic mb-12">
+        <p className="text-sm text-gray-500 dark:text-gray-400 italic mb-12">
           Die Körperfettanalyse ist eine reine Privatleistung und wird von der Krankenkasse nicht bezahlt. Knochendichtemessung und Körperfettmessung können beim selben Termin durchgeführt werden.
         </p>
       </section>

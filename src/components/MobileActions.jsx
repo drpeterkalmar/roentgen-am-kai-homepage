@@ -21,13 +21,13 @@ const MobileActions = () => {
             Anrufen
           </a>
           
-          <div className="w-px h-8 bg-gray-200/50 mx-2" />
+          <div className="w-px h-8 bg-gray-200/50 dark:bg-gray-700/50 mx-2" />
           
           <a 
             href="https://www.google.com/maps/dir/?api=1&destination=Körösistraße+9,8010+Graz" 
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center gap-3 text-[#1f2937] py-4 rounded-full text-xs font-black uppercase tracking-widest active:scale-95 transition-transform"
+            className="flex-1 flex items-center justify-center gap-3 text-[#1f2937] dark:text-white py-4 rounded-full text-xs font-black uppercase tracking-widest active:scale-95 transition-transform"
           >
             <MapPin size={18} className="text-[#8B2323]" />
             Anfahrt

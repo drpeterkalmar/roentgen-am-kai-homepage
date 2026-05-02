@@ -44,9 +44,9 @@ const KoerperfettPage = () => {
       ]}
       imageUrl="/assets/images/koerperfett.avif"
     >
-      <section className="bg-amber-50 rounded-[32px] p-6 border border-amber-200 mb-12 flex items-start gap-4">
-        <AlertCircle className="text-amber-600 shrink-0 mt-1" size={24} />
-        <p className="text-sm font-medium text-amber-800">
+      <section className="bg-amber-50 dark:bg-amber-900/20 rounded-[32px] p-6 border border-amber-200 dark:border-amber-900/30 mb-12 flex items-start gap-4">
+        <AlertCircle className="text-amber-600 dark:text-amber-400 shrink-0 mt-1" size={24} />
+        <p className="text-sm font-medium text-amber-800 dark:text-amber-200">
           <strong>Hinweis:</strong> Die Körperfettanalyse ist eine reine Privatleistung und wird von der Krankenkasse nicht bezahlt.
         </p>
       </section>
@@ -76,7 +76,7 @@ const KoerperfettPage = () => {
             'Relativer Skelett-/Muskelindex (RSMI)',
             'Ruhende Stoffwechselrate (RMR)'
           ].map((item, i) => (
-            <div key={i} className="flex items-center gap-3 p-4 bg-gray-50 rounded-2xl border border-gray-100">
+            <div key={i} className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-2xl border border-gray-100 dark:border-gray-700">
               <div className="w-2 h-2 bg-[#8B2323] rounded-full shrink-0" />
               <span className="text-sm font-medium">{item}</span>
             </div>

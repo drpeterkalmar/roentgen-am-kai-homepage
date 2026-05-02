@@ -428,8 +428,8 @@ const Appointment = () => {
                     <div className="w-24 h-24 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-8 animate-bounce">
                       <CheckCircle2 size={48} />
                     </div>
-                    <h3 className="text-3xl font-extrabold text-gray-950 mb-4">Vielen Dank!</h3>
-                    <p className="text-gray-900 mb-8 max-w-sm mx-auto font-medium">
+                    <h3 className="text-3xl font-extrabold text-gray-950 dark:text-white mb-4">Vielen Dank!</h3>
+                    <p className="text-gray-900 dark:text-gray-200 mb-8 max-w-sm mx-auto font-medium">
                       Ihre Terminanfrage wurde erfolgreich übermittelt. Wir rufen Sie binnen einer Woche zur Terminbestätigung unter der angegebenen Nummer zurück.
                     </p>
                     <button 

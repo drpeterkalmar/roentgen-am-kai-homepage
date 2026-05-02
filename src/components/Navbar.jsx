@@ -156,45 +156,102 @@ const Navbar = ({ highContrast, setHighContrast, isDark, setIsDark }) => {
       </div>
 
       {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden glass absolute top-full left-0 w-full py-6 px-4 animate-fade shadow-xl border-t border-gray-100 max-h-[80vh] overflow-y-auto">
-          <div className="flex flex-col gap-3">
-            {navLinks.map((link) => (
-              <div key={link.name} className="flex flex-col gap-2">
-                  <Link
-                    to={link.href}
-                    className="text-lg font-semibold text-gray-800 dark:text-gray-200 py-2"
-                    onClick={() => !link.dropdown && setIsMenuOpen(false)}
-                  >
-                    {link.name}
-                  </Link>
-                {link.dropdown && (
-                  <div className="pl-4 grid gap-2 border-l-2 border-red-100 mb-3">
-                    {link.dropdown.map((sub) => (
-                      <Link 
-                        key={sub.name}
-                        to={sub.href}
-                        className="text-gray-600 dark:text-white font-medium text-sm py-1"
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        {sub.name}
-                      </Link>
-                    ))}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden glass absolute top-full left-0 w-full shadow-2xl border-t border-gray-100/50 dark:border-gray-800 overflow-hidden z-50"
+          >
+            <div className="py-8 px-6 space-y-8 max-h-[85vh] overflow-y-auto">
+              <div className="flex flex-col gap-1">
+                {navLinks.map((link) => (
+                  <div key={link.name} className="flex flex-col border-b border-gray-100/50 dark:border-gray-800/50 last:border-0">
+                    <Link
+                      to={link.href}
+                      className="text-xl font-black text-gray-900 dark:text-white py-4 flex items-center justify-between group"
+                      onClick={() => !link.dropdown && setIsMenuOpen(false)}
+                    >
+                      {link.name}
+                      {link.dropdown && <ChevronDown size={20} className="text-gray-400" />}
+                    </Link>
+                    {link.dropdown && (
+                      <div className="pl-4 pb-4 grid gap-4 border-l-2 border-red-100 dark:border-red-900/30">
+                        {link.dropdown.map((sub) => (
+                          <Link 
+                            key={sub.name}
+                            to={sub.href}
+                            className="text-gray-600 dark:text-gray-400 font-bold text-sm hover:text-[#8B2323] transition-colors"
+                            onClick={() => setIsMenuOpen(false)}
+                          >
+                            {sub.name}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
                   </div>
-                )}
+                ))}
+                
+                {/* Additional Mobile Links */}
+                <Link
+                  to="/#booking"
+                  className="text-xl font-black text-gray-900 dark:text-white py-4 border-b border-gray-100/50 dark:border-gray-800/50"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Terminanfrage
+                </Link>
               </div>
-            ))}
-            <a
-              href="tel:+433168409050"
-              className="bg-[#8B2323] text-white py-4 rounded-xl text-center font-bold text-lg mt-2 flex items-center justify-center gap-2"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              <Phone size={20} />
-              Termin
-            </a>
-          </div>
-        </div>
-      )}
+
+              {/* Settings Toggles */}
+              <div className="space-y-4">
+                <p className="text-xs font-black uppercase tracking-widest text-gray-400 px-1">Einstellungen</p>
+                <div className="grid grid-cols-2 gap-4">
+                  <button 
+                    onClick={() => setIsDark(!isDark)}
+                    className={`flex items-center justify-center gap-3 p-4 rounded-2xl transition-all duration-300 border ${
+                      isDark 
+                      ? 'bg-gray-800 border-gray-700 text-yellow-400' 
+                      : 'bg-gray-50 border-gray-200 text-gray-600'
+                    }`}
+                  >
+                    {isDark ? <Sun size={20} /> : <Moon size={20} />}
+                    <span className="text-sm font-bold">{isDark ? 'Hell' : 'Dunkel'}</span>
+                  </button>
+                  <button 
+                    onClick={() => setHighContrast(!highContrast)}
+                    className={`flex items-center justify-center gap-3 p-4 rounded-2xl transition-all duration-300 border ${
+                      highContrast 
+                      ? 'bg-black border-gray-800 text-white' 
+                      : 'bg-gray-50 border-gray-200 text-gray-600'
+                    }`}
+                  >
+                    <Sparkles size={20} />
+                    <span className="text-sm font-bold">Kontrast</span>
+                  </button>
+                </div>
+              </div>
+
+              <div className="space-y-4 pt-4 border-t border-gray-100 dark:border-gray-800">
+                <a
+                  href="tel:+433168409050"
+                  className="bg-[#8B2323] text-white py-5 rounded-2xl text-center font-black uppercase tracking-widest text-sm flex items-center justify-center gap-3 shadow-[0_10px_30px_rgba(139,35,35,0.3)] active:scale-95 transition-all"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <Phone size={20} />
+                  Anrufen
+                </a>
+                
+                <div className="flex justify-center gap-6 text-gray-400 text-xs font-bold py-2">
+                  <Link to="/impressum" onClick={() => setIsMenuOpen(false)}>Impressum</Link>
+                  <span className="opacity-30">•</span>
+                  <Link to="/datenschutz" onClick={() => setIsMenuOpen(false)}>Datenschutz</Link>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };
