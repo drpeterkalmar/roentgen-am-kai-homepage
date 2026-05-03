@@ -215,8 +215,8 @@ const Navbar = ({ highContrast, setHighContrast, isDark, setIsDark }) => {
                       : 'bg-gray-50 border-gray-200 text-gray-600'
                     }`}
                   >
-                    {isDark ? <Sun size={20} /> : <Moon size={20} />}
-                    <span className="text-sm font-bold">{isDark ? 'Hell' : 'Dunkel'}</span>
+                    {isDark ? <Moon size={20} /> : <Sun size={20} />}
+                    <span className="text-sm font-bold">{isDark ? 'Dunkel' : 'Hell'}</span>
                   </button>
                   <button 
                     onClick={() => setHighContrast(!highContrast)}
