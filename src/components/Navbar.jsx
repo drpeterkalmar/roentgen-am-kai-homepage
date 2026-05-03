@@ -122,7 +122,7 @@ const Navbar = ({ highContrast, setHighContrast, isDark, setIsDark }) => {
               title="Theme umschalten"
               aria-label="Dunkelmodus umschalten"
             >
-              {isDark ? <Sun size={20} /> : <Moon size={20} />}
+              {isDark ? <Moon size={20} /> : <Sun size={20} />}
             </button>
             <button 
               onClick={() => setHighContrast(!highContrast)}
