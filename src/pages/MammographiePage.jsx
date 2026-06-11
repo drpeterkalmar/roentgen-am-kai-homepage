@@ -115,64 +115,6 @@ const MammographiePage = () => {
         </div>
       </section>
 
-      <section className="space-y-6 mb-12">
-        <h2 className="text-2xl font-bold mb-4 font-[Outfit]">BI-RADS – Ihr Befund verständlich erklärt</h2>
-        <p className="text-gray-700 dark:text-gray-300">
-          Jede Mammographie wird nach dem internationalen <strong>BI-RADS-System</strong> (Breast Imaging Reporting and Data System) kategorisiert. Dies schafft einheitliche Sprache zwischen Radiologen, Gynäkologen und Ihnen:
-        </p>
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm border-collapse">
-            <thead>
-              <tr className="bg-[#8B2323] text-white">
-                <th className="p-3 text-left font-semibold">Kategorie</th>
-                <th className="p-3 text-left font-semibold">Bedeutung</th>
-                <th className="p-3 text-left font-semibold">Empfohlenes Vorgehen</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-b border-gray-200 dark:border-gray-700 bg-green-50 dark:bg-green-900/20">
-                <td className="p-3 font-mono font-medium">BI-RADS 0</td>
-                <td className="p-3">Unvollständig – Zusatzaufnahmen nötig</td>
-                <td className="p-3">Nachuntersuchung (Zusatzaufnahmen, Ultraschall, ggf. MRT)</td>
-              </tr>
-              <tr className="border-b border-gray-200 dark:border-gray-700 bg-green-50 dark:bg-green-900/20">
-                <td className="p-3 font-mono font-medium">BI-RADS 1</td>
-                <td className="p-3 text-green-700 dark:text-green-400">Negativ – Kein auffälliger Befund</td>
-                <td className="p-3">Routine-Screening fortsetzen (alle 2 Jahre)</td>
-              </tr>
-              <tr className="border-b border-gray-200 dark:border-gray-700 bg-green-50 dark:bg-green-900/20">
-                <td className="p-3 font-mono font-medium">BI-RADS 2</td>
-                <td className="p-3 text-green-700 dark:text-green-400">Gutartige Befunde (Zysten, Fibroadenome, Verkalkungen)</td>
-                <td className="p-3">Routine-Screening fortsetzen, ggf. kurze Kontrolle bei erstmaligem Nachweis</td>
-              </tr>
-              <tr className="border-b border-gray-200 dark:border-gray-700 bg-amber-50 dark:bg-amber-900/20">
-                <td className="p-3 font-mono font-medium">BI-RADS 3</td>
-                <td className="p-3 text-amber-700 dark:text-amber-400">Wahrscheinlich gutartig (&lt; 2 % Malignitätswahrscheinlichkeit)</td>
-                <td className="p-3">Kurzzeitkontrolle nach 6 Monaten (meist 2 Jahre stabil → BI-RADS 2)</td>
-              </tr>
-              <tr className="border-b border-gray-200 dark:border-gray-700 bg-orange-50 dark:bg-orange-900/20">
-                <td className="p-3 font-mono font-medium">BI-RADS 4</td>
-                <td className="p-3 text-orange-700 dark:text-orange-400">Verdächtig (2–95 % Malignitätswahrscheinlichkeit, Unterkategorien 4a/4b/4c)</td>
-                <td className="p-3">Gewebebiopsie (Stanze) zur Abklärung</td>
-              </tr>
-              <tr className="border-b border-gray-200 dark:border-gray-700 bg-red-50 dark:bg-red-900/20">
-                <td className="p-3 font-mono font-medium">BI-RADS 5</td>
-                <td className="p-3 text-red-700 dark:text-red-400">Hochverdächtig auf Malignität (&gt; 95 %)</td>
-                <td className="p-3">Gewebebiopsie + schnelle onkologische Weiterversorgung</td>
-              </tr>
-              <tr className="bg-gray-50 dark:bg-gray-800/50">
-                <td className="p-3 font-mono font-medium">BI-RADS 6</td>
-                <td className="p-3">Biopsiebestätigtes Mammakarzinom (vor Therapiebeginn)</td>
-                <td className="p-3">Onkologische Therapieplanung (Tumorboard)</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p className="mt-4 text-xs text-gray-500 dark:text-gray-400 italic">
-          <strong>Wichtig:</strong> Nur BI-RADS 4–6 erfordern eine Biopsie. BI-RADS 0–3 bedeuten <strong>keinen</strong> Krebsverdacht. Unsere Doppelbefundung durch zwei spezialisierte Radiologen minimiert Fehlklassifikationen.
-        </p>
-      </section>
-
       <FAQ items={faqItems} title="Häufige Fragen zur Mammographie" />
     </ServiceLayout>
     </>
