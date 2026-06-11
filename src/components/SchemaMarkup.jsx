@@ -51,7 +51,7 @@ const SchemaMarkup = () => {
         { "@type": "Organization", "name": "ÖGIR" },
         { "@type": "Organization", "name": "ÖRG" }
       ],
-      "knowsAbout": ["Mammographie", "Knochendichtemessung", "Ultraschall", "DEXA", "Röntgendiagnostik", "DVT", "Zahnröntgen"],
+      "knowsAbout": ["Mammographie", "Knochendichtemessung", "Ultraschall", "DEXA", "Röntgendiagnostik", "DVT", "Zahnröntgen", "Core Scan", "Körperfettanalyse", "Viszeralfettmessung", "Brustkrebs-Screening", "Osteoporose-Vorsorge", "FRAX-Score", "Manitoba-Klassifikation"],
       "isAcceptingNewPatients": true,
       "healthcareReportingData": "Alle Kassen: BVAEB, SVS, KFA | Wahlarzt für ÖGK"
     };

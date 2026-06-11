@@ -29,7 +29,7 @@ const KnochendichtePage = () => {
       <SEO 
         title="DEXA Knochendichtemessung" 
         description="DEXA-Knochendichtemessung und Osteoporose-Vorsorge in Graz. Goldstandard-Messung inklusive FRAX-Score und Manitoba Risikoklasse. Kurze Wartezeiten."
-        keywords="Knochendichtemessung Graz, DEXA Messung Graz, Osteoporose Graz, Knochendichte messen, FRAX Score, Manitoba Studie, Radiologie Graz"
+        keywords="Knochendichtemessung Graz, DEXA Messung Graz, Osteoporose Graz, Knochendichte messen, FRAX Score, Manitoba Studie, T-Score, Z-Score, Osteopenie, Knochenbruchrisiko, Radiologie Graz"
       />
       <ServiceLayout
         title="Knochendichtemessung"
@@ -72,6 +72,48 @@ const KnochendichtePage = () => {
           ))}
         </div>
       </section>
+
+      <section className="mb-12">
+        <h2 className="text-2xl font-bold mb-6 font-[Outfit]">T-Score Interpretation</h2>
+        <p className="mb-4 text-gray-700 dark:text-gray-300">
+          Der T-Score vergleicht Ihre Knochendichte mit der einer gesunden 30-jährigen Referenzpopulation (Peak Bone Mass). Er ist der entscheidende Wert für die Osteoporose-Diagnose nach WHO-Kriterien:
+        </p>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm border-collapse">
+            <thead>
+              <tr className="bg-[#8B2323] text-white">
+                <th className="p-3 text-left font-semibold">T-Score Bereich</th>
+                <th className="p-3 text-left font-semibold">Klassifikation (WHO)</th>
+                <th className="p-3 text-left font-semibold">Bedeutung</th>
+                <th className="p-3 text-left font-semibold">Handlungsempfehlung</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-gray-200 dark:border-gray-700 bg-green-50 dark:bg-green-900/20">
+                <td className="p-3 font-mono font-medium">≥ -1,0</td>
+                <td className="p-3 text-green-700 dark:text-green-400 font-medium">Normal</td>
+                <td className="p-3">Knochendichte im Referenzbereich</td>
+                <td className="p-3">Vorsorge alle 2–5 Jahre, gesunde Lebensführung</td>
+              </tr>
+              <tr className="border-b border-gray-200 dark:border-gray-700 bg-amber-50 dark:bg-amber-900/20">
+                <td className="p-3 font-mono font-medium">-1,0 bis -2,5</td>
+                <td className="p-3 text-amber-700 dark:text-amber-400 font-medium">Osteopenie (Verminderte Knochendichte)</td>
+                <td className="p-3">Erhöhtes Frakturrisiko, Vorstufe der Osteoporose</td>
+                <td className="p-3">Kontrolle alle 1–2 Jahre, Ca/Vitamin D, Sturzprophylaxe, ggf. medikamentöse Therapie bei Risikofaktoren</td>
+              </tr>
+              <tr className="bg-red-50 dark:bg-red-900/20">
+                <td className="p-3 font-mono font-medium">≤ -2,5</td>
+                <td className="p-3 text-red-700 dark:text-red-400 font-medium">Osteoporose</td>
+                <td className="p-3">Hohes Frakturrisiko, manifeste Knochenerkrankung</td>
+                <td className="p-3">Leitliniengerechte Therapie (Bisphosphonate, Denosumab, etc.), FRAX/Manitoba zur Risikostratifizierung, engmaschige Kontrolle</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="mt-4 text-xs text-gray-500 dark:text-gray-400 italic">
+          * Bei vorliegendem Wirbelkörperbruch spricht man von <strong>schwerer (manifester) Osteoporose</strong> unabhängig vom T-Score. Der Z-Score (Vergleich mit Altersgenossen) wird v.a. bei Prämenopausalen, Männern &lt;50 und Kindern herangezogen.
+        </p>
+        </section>
 
       <section className="space-y-6 mb-12">
         <h2 className="text-2xl font-bold mb-4 font-[Outfit]">Umfassende Risikoanalyse: FRAX & Manitoba</h2>

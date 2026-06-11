@@ -24,9 +24,9 @@ const KoerperfettPage = () => {
   return (
     <>
       <SEO 
-        title="Körperfettmessung (DEXA)" 
-        description="Exakte DEXA-Körperfettmessung in Graz. Goldstandard für Körperzusammensetzung, Muskelmasse und Fettverteilung zur Trainings- oder Diätoptimierung."
-        keywords="Körperfettmessung Graz, DEXA Körperfettanalyse, Muskelmasse messen Graz, Fettmessung Radiologie, Body-Mass-Index messen"
+        title="Core Scan (DEXA) – Körperfett & Viszeralfett messen in Graz"
+        description="Exakte DEXA-Körperfettmessung (Core Scan) in Graz. Goldstandard für Körperzusammensetzung, Viszeralfett, Muskelmasse (RSMI) & Stoffwechselrate (RMR). Für Sport, Diät, Gesundheit."
+        keywords="Core Scan Graz, Körperfettmessung Graz, DEXA Scan Graz, Viszeralfett messen Graz, Muskelmasse messen, Körperzusammensetzung Analyse, Radiologie Graz"
       />
       <ServiceLayout
         title="Körperfettmessung"
@@ -87,6 +87,52 @@ const KoerperfettPage = () => {
       <section className="space-y-6 mb-12">
         <p>
           Mit Hilfe dieser Informationen können Ernährung und Training so optimiert werden, dass Körperfett gezielt abgebaut und Muskelmasse aufgebaut wird. Die DEXA-Messung erlaubt es, anhand der Ergebnisse entsprechende Trainings- und Ernährungspläne zu erstellen.
+        </p>
+      </section>
+
+      <section className="space-y-6 mb-12">
+        <h2 className="text-2xl font-bold mb-4 font-[Outfit]">Viszeralfett – das unterschätzte Gesundheitsrisiko</h2>
+        <p className="text-gray-700 dark:text-gray-300">
+          Im Gegensatz zum subkutanen Fett (unter der Haut) liegt <strong>Viszeralfett</strong> tief im Bauchraum und umhüllt innere Organe wie Leber, Bauchspeicheldrüse und Darm. Es ist metabolisch hochaktiv, setzt Entzündungsbotenstoffe (Adipokine) und freie Fettsäuren direkt in die Pfortader frei und gilt als unabhängiger Risikofaktor für:
+        </p>
+        <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+          <li>Typ-2-Diabetes & Insulinresistenz</li>
+          <li>Herz-Kreislauf-Erkrankungen (Arteriosklerose, Bluthochdruck)</li>
+          <li>Fettleber (NAFLD/NASH)</li>
+          <li>Bestimmte Krebserkrankungen</li>
+          <li>Sarkopenie (Muskelschwund im Alter)</li>
+        </ul>
+        <p className="text-gray-700 dark:text-gray-300">
+          Die DEXA-Messung (Core Scan) quantifiziert das Viszeralfettgewebe (VAT – Visceral Adipose Tissue) in Gramm und cm³ präzise und strahlenarm – genauer als Bauchumfang oder BMI.
+        </p>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm border-collapse">
+            <thead>
+              <tr className="bg-[#8B2323] text-white">
+                <th className="p-3 text-left font-semibold">Gruppe</th>
+                <th className="p-3 text-left font-semibold">Viszeralfett (VAT) Normbereich</th>
+                <th className="p-3 text-left font-semibold">Erhöhtes Risiko ab</th>
+                <th className="p-3 text-left font-semibold">Hohes Risiko ab</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-gray-200 dark:border-gray-700">
+                <td className="p-3 font-medium">Männer</td>
+                <td className="p-3 text-green-700 dark:text-green-400">&lt; 100 cm³ (bzw. &lt; 130 g)</td>
+                <td className="p-3 text-amber-700 dark:text-amber-400">100–160 cm³</td>
+                <td className="p-3 text-red-700 dark:text-red-400">&gt; 160 cm³</td>
+              </tr>
+              <tr className="border-b border-gray-200 dark:border-gray-700">
+                <td className="p-3 font-medium">Frauen</td>
+                <td className="p-3 text-green-700 dark:text-green-400">&lt; 70 cm³ (bzw. &lt; 90 g)</td>
+                <td className="p-3 text-amber-700 dark:text-amber-400">70–130 cm³</td>
+                <td className="p-3 text-red-700 dark:text-red-400">&gt; 130 cm³</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="mt-4 text-xs text-gray-500 dark:text-gray-400 italic">
+          * Referenzwerte basierend auf NHANES-Daten & DEXA-Validierungsstudien. Individuelle Risikobeurteilung immer im ärztlichen Kontext (Blutwerte, Familienanamnese, Lebensstil).
         </p>
       </section>
 
