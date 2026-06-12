@@ -83,6 +83,58 @@ const MammographiePage = () => {
         </p>
       </section>
 
+      <section className="space-y-6 mb-12">
+        <h2 className="text-2xl font-bold mb-4 font-[Outfit]">BI-RADS-Kategorien – Was bedeutet mein Befund?</h2>
+        <p className="text-gray-600 dark:text-gray-300 mb-6">
+          Die BI-RADS-Einstufung (Breast Imaging Reporting and Data System) ist ein internationaler Standard zur einheitlichen Bewertung von Brustbildgebung. Ihr Befund erhält eine Kategorie von 0 bis 6 – hier lesen Sie, was diese für Sie bedeutet:
+        </p>
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[600px] border-collapse">
+            <thead>
+              <tr className="bg-[#8B2323] text-white">
+                <th className="px-4 py-3 text-left font-medium">Kategorie</th>
+                <th className="px-4 py-3 text-left font-medium">Bedeutung für Sie</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+              <tr className="bg-white dark:bg-gray-800/50 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                <td className="px-4 py-3 font-bold text-[#8B2323]">BI-RADS 0</td>
+                <td className="px-4 py-3 text-gray-700 dark:text-gray-200">Ergänzende Untersuchung (z.&nbsp;B. MRT) nötig – der Befund lässt sich noch nicht abschließend beurteilen</td>
+              </tr>
+              <tr className="bg-gray-50 dark:bg-gray-800/30 hover:bg-gray-100 dark:hover:bg-gray-700/50 transition-colors">
+                <td className="px-4 py-3 font-bold text-[#8B2323]">BI-RADS 1</td>
+                <td className="px-4 py-3 text-gray-700 dark:text-gray-200">Unauffälliger Befund – alles normal</td>
+              </tr>
+              <tr className="bg-white dark:bg-gray-800/50 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                <td className="px-4 py-3 font-bold text-[#8B2323]">BI-RADS 2</td>
+                <td className="px-4 py-3 text-gray-700 dark:text-gray-200">Gutartiger Befund – keine Krebsverdacht, routinemäßige Kontrollen genügen</td>
+              </tr>
+              <tr className="bg-gray-50 dark:bg-gray-800/30 hover:bg-gray-100 dark:hover:bg-gray-700/50 transition-colors">
+                <td className="px-4 py-3 font-bold text-[#8B2323]">BI-RADS 3</td>
+                <td className="px-4 py-3 text-gray-700 dark:text-gray-200">Wahrscheinlich gutartig – engmaschige Verlaufskontrolle (meist nach 6&nbsp;Monaten) empfohlen</td>
+              </tr>
+              <tr className="bg-white dark:bg-gray-800/50 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                <td className="px-4 py-3 font-bold text-[#8B2323]">BI-RADS 4</td>
+                <td className="px-4 py-3 text-gray-700 dark:text-gray-200">Verdachtsbefund – Gewebeentnahme (Biopsie) zur Abklärung notwendig</td>
+              </tr>
+              <tr className="bg-gray-50 dark:bg-gray-800/30 hover:bg-gray-100 dark:hover:bg-gray-700/50 transition-colors">
+                <td className="px-4 py-3 font-bold text-[#8B2323]">BI-RADS 5</td>
+                <td className="px-4 py-3 text-gray-700 dark:text-gray-200">Hochgradig verdächtig auf Krebs – Biopsie dringend angeraten</td>
+              </tr>
+              <tr className="bg-white dark:bg-gray-800/50 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                <td className="px-4 py-3 font-bold text-[#8B2323]">BI-RADS 6</td>
+                <td className="px-4 py-3 text-gray-700 dark:text-gray-200">Brustkrebs bereits histologisch bestätigt – Sie befinden sich in laufender Therapie</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-sm text-gray-500 dark:text-gray-400 mt-4 italic">
+          <strong>Wichtig:</strong> Diese Einstufung gilt für die <strong>Bildgebung</strong> (Mammographie, Ultraschall, MRT). 
+          Die endgültige Diagnose stellt nur die Gewebeuntersuchung (Biopsie). 
+          Besprechen Sie Ihren Befund immer mit Ihrem behandelnden Radiologen.
+        </p>
+      </section>
+
       <section className="bg-red-50 rounded-[32px] p-8 border border-red-100 mb-20">
         <h2 className="text-2xl font-bold text-[#8B2323] mb-4 font-[Outfit] flex items-center gap-3">
           <Info size={24} />
