@@ -37,13 +37,22 @@ const RieglerPage = () => {
   ];
 
   const diplomas = [
+    "Diplom Sportmedizin",
     "Gültiges DFP Diplom",
     "ÖÄK Zertifikat Mammadiagnostik",
     "ÖÄK Zertifikat Angiologische Basisdiagnostik",
     "ÖÄK Zertifikat Sonographie Arterien",
     "ÖÄK Zertifikat Sonographie Venen",
     "ÖÄK Zertifikat Sonographie Hirnversorgende Arterien",
-    "ÖÄK Zertifikat Sonographie SmallParts"
+    "ÖÄK Zertifikat Sonographie SmallParts",
+    "OAK Zertifikat Pädiatrische Sonographie",
+    "ÖAK Zertifikat Abdomen",
+    "ÖAK Zertifikat Sonographie Bewegungsapparat",
+    "ÖAK Zertifikat Sonographie Schilddrüse",
+    "ÖAK Zertifikat Urogenitale Sonographie",
+    "ÖAK Zertifikat Weiblicher Unterbauch",
+    "ÖGUM Zertifikat Nervensonographie",
+    "ÖGUM Zertifikat Sonographie des Bewegungsapparates"
   ];
 
   const personSchema = {
