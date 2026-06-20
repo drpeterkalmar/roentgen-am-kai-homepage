@@ -36,6 +36,16 @@ const RieglerPage = () => {
     "Funktionelle Nervendiagnostik"
   ];
 
+  const diplomas = [
+    "Gültiges DFP Diplom",
+    "ÖÄK Zertifikat Mammadiagnostik",
+    "ÖÄK Zertifikat Angiologische Basisdiagnostik",
+    "ÖÄK Zertifikat Sonographie Arterien",
+    "ÖÄK Zertifikat Sonographie Venen",
+    "ÖÄK Zertifikat Sonographie Hirnversorgende Arterien",
+    "ÖÄK Zertifikat Sonographie SmallParts"
+  ];
+
   const personSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -191,26 +201,28 @@ const RieglerPage = () => {
           </motion.div>
         </div>
 
-        {/* Main Text Content */}
-        <motion.div 
+        {/* DFP Diplomas Section */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="glass p-12 rounded-[48px] mb-16"
+          whileHover={{ y: -8, transition: { duration: 0.3 } }}
+          transition={{ delay: 0.3 }}
+          className="glass p-8 rounded-[40px] flex flex-col cursor-default mb-16"
         >
-          <div className="prose prose-red dark:prose-invert max-w-none text-gray-700 dark:text-gray-200">
-            <h2 className="text-3xl font-black font-[Outfit] text-gray-900 dark:text-white mb-8">Hochauflösender Nervenultraschall</h2>
-            <div className="space-y-6 text-base md:text-lg leading-relaxed">
-              <p>
-                Der hochauflösende Ultraschall ist für mich die perfekte Methode, um die oft komplexen Fragestellungen bei Erkrankungen des Bewegungsapparates und peripherer Nerven beantworten zu können. Er ist auch das optimale Mittel, um Therapien minimalinvasiv und somit schonend ultraschallgezielt durchführen zu können.
-              </p>
-              <p>
-                Durch meinen Forschungsdrang bin ich ständig auf der Suche nach exakten Diagnosen und erfolgsversprechenden Therapien. Den Fortschritt auf dem Gebiet des hochauflösenden Ultraschalls versuche ich durch die Veröffentlichung zahlreicher wissenschaftlicher Artikel voranzutreiben. Als treibende wissenschaftliche Kraft des PUC und Leiter unserer Forschungsgruppe „Neuromuskulärer Ultraschall“ konnte ich in den letzten Jahren ein erfolgreiches motiviertes Team aufbauen.
-              </p>
-              <p>
-                Die regelmäßige Teilnahme an Kongressen und Durchführung von Fortbildungen ermöglichen es mir, mein diagnostisches und therapeutisches Wissen ständig zu erweitern. Der konstante Austausch mit anderen Fachärztinnen und Fachärzten ist mir sehr wichtig, da er die Grundlage einer vollständigen Betreuung darstellt.
-              </p>
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-12 h-12 bg-red-50 rounded-2xl flex items-center justify-center">
+              <Award className="text-[#8B2323]" size={24} />
             </div>
+            <h3 className="text-xl font-bold font-[Outfit] dark:text-white">Fortbildungsdiplome und Zertifikate</h3>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {diplomas.map((diploma, i) => (
+              <div key={i} className="flex items-center gap-3 p-4 rounded-2xl bg-white/40 dark:bg-gray-800/40 border border-white/60 dark:border-gray-700">
+                <CheckCircle2 size={18} className="text-[#8B2323] shrink-0" />
+                <span className="text-sm font-bold text-gray-800 dark:text-gray-200">{diploma}</span>
+              </div>
+            ))}
           </div>
         </motion.div>
 
