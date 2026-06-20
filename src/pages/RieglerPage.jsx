@@ -6,23 +6,25 @@ import { Link } from 'react-router-dom';
 const RieglerPage = () => {
   const sections = [
     {
-      title: "Werdegang & Ausbildung",
+      title: "Abschlüsse",
       icon: <GraduationCap className="text-[#8B2323]" size={24} />,
       items: [
-        { date: "Facharztausbildung", text: "Medizinische Universität Wien und Royal London Hospital, England" },
-        { date: "Medizinstudium", text: "Studium der Humanmedizin in Wien und Spanien" },
-        { date: "Berufsstart", text: "Ausbildung zum Physiotherapeuten am LKH Steyr" }
+        { date: "2019", text: "Venia docendi im Fach Radiologie, Medizinische Universität Wien" },
+        { date: "2018", text: "Facharztdiplom für Radiologie, Medizinische Universität Wien; Auslandsaufenthalt Royal London Hospital, England" },
+        { date: "2011", text: "Promotion in Humanmedizin, Medizinische Universität Wien; Auslandsaufenthalte (Medizinische Universität La Laguna Spanien, Medizinische Universität Las Palmas Spanien)" },
+        { date: "2005", text: "Akademie für Physiotherapie Steyr" },
+        { date: "2000", text: "Matura Bischöfliches Gymnasium Graz" }
       ]
     },
     {
-      title: "Forschung & Wissenschaft",
-      icon: <BookOpen className="text-[#8B2323]" size={24} />,
+      title: "Berufliche Laufbahn",
+      icon: <Briefcase className="text-[#8B2323]" size={24} />,
       items: [
-        { date: "Leitung", text: "Leiter der Forschungsgruppe „Neuromuskulärer Ultraschall“" },
-        { date: "Wissenschaft", text: "Treibende wissenschaftliche Kraft des PUC (Percutaneous Ultrasound Center)" },
-        { date: "Publikationen", text: "Veröffentlichung zahlreicher wissenschaftlicher Artikel in internationalen Journalen" }
+        { date: "Seit 2025", text: "Gesellschafter der Röntgen am Kai OG (Nachfolger Dr. Konrad Uranitsch)" },
+        { date: "2017-2025", text: "Wahlarztordination Private Ultrasound Center mit Spezialisierung auf Hochauflösenden Ultraschall" },
+        { date: "2017-2019", text: "Facharzt an der Univ. Klinik für Radiologie und Nuklearmedizin, Klinische Abteilung für Neuroradiologie und Muskuloskeletale Radiologie" }
       ]
-    }
+    },
   ];
 
   const expertises = [
