@@ -60,7 +60,8 @@ const KalmarPage = () => {
     "ÖÄK Zertifikat Sonographie Arterien",
     "ÖÄK Zertifikat Sonographie Venen",
     "ÖÄK Zertifikat Sonographie Hirnversorgende Arterien",
-    "ÖÄK Zertifikat Sonographie SmallParts"
+    "ÖÄK Zertifikat Sonographie SmallParts",
+    "ÖGIR Qualifizierung und Spezialisierung in Interventioneller Radiologie (Stufe 1 und 2)"
   ];
 
   const personSchema = {
