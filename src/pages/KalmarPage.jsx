@@ -53,6 +53,10 @@ const KalmarPage = () => {
     "Hatzl, S; Kalmar, P; et al. (2021). Prognostic Value of Baseline and Interim PET Markers in DLBCL. Hemasphere."
   ];
 
+  const grants = [
+    { amount: "50.000 €", source: "EU Commission", title: "Generic Open-End Simulation Environment For Minimally Invasive Cancer Treatment (GoSMART)", url: "http://www.gosmart-project.eu/partners.html" }
+  ];
+
   const diplomas = [
     "Gültiges DFP Diplom",
     "ÖÄK Zertifikat Mammadiagnostik",
@@ -267,6 +271,28 @@ const KalmarPage = () => {
           </div>
           <div className="mt-10 text-center">
             <p className="text-gray-500 text-sm italic">Zahlreiche internationale Kongressbeiträge und Publikationen in internationalen Fachzeitschriften.</p>
+          </div>
+
+          {/* Grants */}
+          <div className="flex items-center gap-4 mb-8 mt-12">
+            <div className="w-12 h-12 bg-red-50 rounded-2xl flex items-center justify-center">
+              <Award className="text-[#8B2323]" size={24} />
+            </div>
+            <h3 className="text-2xl font-black font-[Outfit] dark:text-white">Forschungsgelder</h3>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {grants.map((grant, i) => (
+              <div key={i} className="p-6 rounded-3xl bg-white/50 dark:bg-gray-800/50 border border-white/60 dark:border-gray-700 hover:bg-white/80 dark:hover:bg-gray-700/80 transition-all">
+                <p className="text-2xl font-black text-[#8B2323] mb-2">{grant.amount}</p>
+                <p className="text-sm font-bold text-gray-800 dark:text-gray-200 mb-2">{grant.source}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 italic leading-relaxed">{grant.title}</p>
+                {grant.url && (
+                  <a href={grant.url} target="_blank" rel="noopener noreferrer" className="inline-block mt-3 text-xs font-bold text-[#8B2323] hover:underline">
+                    Projekt-Website →
+                  </a>
+                )}
+              </div>
+            ))}
           </div>
         </motion.div>
 
