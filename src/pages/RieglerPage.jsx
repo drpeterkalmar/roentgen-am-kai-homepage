@@ -55,6 +55,28 @@ const RieglerPage = () => {
     "ÖGUM Zertifikat Sonographie des Bewegungsapparates"
   ];
 
+  const publications = [
+    "Becciolini M, Tamborrini G, Pivec C, Riegler G: Ultrasound findings in 46 cases of incomplete release of the transverse carpal ligament in carpal tunnel surgery. Ultraschall Med 2026",
+    "Becciolini M, Pivec C, Raspanti A, Riegler G. Ultrasound of the Ulnar Nerve: A Pictorial Review: Part 2: Pathological Ultrasound Findings. J Ultrasound Med. 2024",
+    "Becciolini M, Pivec C, Raspanti A, Riegler G. Ultrasound of the Ulnar Nerve: A Pictorial Review: Part 1: Normal Ultrasound Findings. J Ultrasound Med. 2024",
+    "Becciolini M, Pivec C, Riegler G. Ultrasound of the Lateral Femoral Cutaneous Nerve: A Review of the Literature and Pictorial Essay. J Ultrasound Med. 2022",
+    "Becciolini M, Raspanti A, De Scisciolo G, Riegler G. Radial nerve palsy: If in doubt, use ultrasound. J Clin Ultrasound. 2022",
+    "Becciolini M, Pivec C, Raspanti A, Riegler G. Ultrasound of the Radial Nerve: A Pictorial Review. J Ultrasound Med. 2021",
+    "Becciolini M, Pivec C, Riegler G. Ultrasound Imaging of the Deep Peroneal Nerve. J Ultrasound Med. 2021",
+    "Riegler G, Pivec C, Jengojan S, Mayer JA, Schellen C, Trattnig S, Bodner G. Cutaneous nerve fields of the anteromedial lower limb — Determination with selective ultrasound-guided nerve blockade. Clin Anat. 2021",
+    "Pivec C, Bodner G, Mayer JA, Brugger PC, Paraszti I, Moser V, Traxler H, Riegler G. Novel demonstration of the anterior femoral cutaneous nerves using ultrasound. Ultraschall Med. 2018",
+    "Riegler G, Brugger PC, Gruber GM, Pivec C, Jengojan S, Bodner G. High-resolution ultrasound visualization of Pacinian corpuscles. Ultrasound in Medicine and Biology. 2018",
+    "Riegler G, Jengojan S, Mayer JA, Pivec C, Platzgummer H, Brugger PC, Aszmann O, Bodner G. Ultrasound anatomical demonstration of the infrapatellar nerve branches. Arthroscopy. 2018",
+    "Riegler G, Lieba-Samal D, Brugger PC, Pivec C, Platzgummer H, Vierhapper M, Muschitz G, Jengojan S, Bodner G. High-resolution ultrasound visualization of the deep branch of the ulnar nerve. Muscle Nerve. 2017",
+    "Riegler G, Pivec C, Platzgummer H, Lieba-Samal D, Brugger P, Jengojan S, Vierhapper M, Bodner G. High-resolution ultrasound visualization of the recurrent motor branch of the median nerve: normal and first pathological findings. Eur Radiol. 2017",
+    "Riegler G, Drlicek G, Kronnerwetter C, Heule R, Bieri O, Bodner G, Lieba-Samal D, Trattnig S. High-Resolution Axonal Bundle (fascicle) Assessment and Triple-Echo Steady-State T2 Mapping of the Median Nerve at 7 Tesla: Preliminary Experience. Invest Radiol. 2016"
+  ];
+
+  const grants = [
+    { amount: "100.000 €", source: "Austrian National Bank, Jubilee Research Funds", title: "Early detection of cartilage damage, synovitis, and tenosynovitis in patients with rheumatoid arthritis at 7 Tesla Magnetic Resonance Imaging" },
+    { amount: "10.000 €", source: "Medical Scientific Fund of the Mayor of the City of Vienna", title: "High-resolution ultrasound visualization of the cutaneous innervation at the anteromedial side of the knee" }
+  ];
+
   const personSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -230,6 +252,47 @@ const RieglerPage = () => {
               <div key={i} className="flex items-center gap-3 p-4 rounded-2xl bg-white/40 dark:bg-gray-800/40 border border-white/60 dark:border-gray-700">
                 <CheckCircle2 size={18} className="text-[#8B2323] shrink-0" />
                 <span className="text-sm font-bold text-gray-800 dark:text-gray-200">{diploma}</span>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Publications */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="glass p-12 rounded-[48px] mb-16"
+        >
+          <div className="flex items-center gap-4 mb-10">
+            <div className="w-14 h-14 bg-red-50 rounded-2xl flex items-center justify-center">
+              <BookOpen className="text-[#8B2323]" size={28} />
+            </div>
+            <h2 className="text-3xl font-black font-[Outfit] dark:text-white">Ausgewählte Publikationen</h2>
+          </div>
+          <div className="grid grid-cols-1 gap-4">
+            {publications.map((pub, i) => (
+              <div key={i} className="p-6 rounded-3xl bg-white/50 dark:bg-gray-800/50 border border-white/60 dark:border-gray-700 hover:bg-white/80 dark:hover:bg-gray-700/80 transition-all group">
+                <p className="text-gray-800 dark:text-gray-200 leading-relaxed font-medium">
+                  {pub}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Grants */}
+          <div className="flex items-center gap-4 mb-8 mt-12">
+            <div className="w-12 h-12 bg-red-50 rounded-2xl flex items-center justify-center">
+              <Award className="text-[#8B2323]" size={24} />
+            </div>
+            <h3 className="text-2xl font-black font-[Outfit] dark:text-white">Forschungsgelder</h3>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {grants.map((grant, i) => (
+              <div key={i} className="p-6 rounded-3xl bg-white/50 dark:bg-gray-800/50 border border-white/60 dark:border-gray-700 hover:bg-white/80 dark:hover:bg-gray-700/80 transition-all">
+                <p className="text-2xl font-black text-[#8B2323] mb-2">{grant.amount}</p>
+                <p className="text-sm font-bold text-gray-800 dark:text-gray-200 mb-2">{grant.source}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 italic leading-relaxed">{grant.title}</p>
               </div>
             ))}
           </div>
