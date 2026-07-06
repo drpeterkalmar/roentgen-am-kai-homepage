@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, Award, BookOpen, Briefcase, GraduationCap, ArrowLeft, Mail, Phone, Globe, CheckCircle2, Clock } from 'lucide-react';
+import { Calendar, Award, BookOpen, Briefcase, GraduationCap, ArrowLeft, Mail, Phone, Globe, CheckCircle2, Clock, FileText } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const RieglerPage = () => {
@@ -56,7 +56,7 @@ const RieglerPage = () => {
   ];
 
   const publications = [
-    "Becciolini M, Tamborrini G, Pivec C, Riegler G: Ultrasound findings in 46 cases of incomplete release of the transverse carpal ligament in carpal tunnel surgery. Ultraschall Med 2026",
+    { text: "Becciolini M, Tamborrini G, Pivec C, Riegler G: Ultrasound findings in 46 cases of incomplete release of the transverse carpal ligament in carpal tunnel surgery. Ultraschall Med 2026", pdf: "/publications/Becciolini_2026_incomplete_TCL_release.pdf" },
     "Becciolini M, Pivec C, Raspanti A, Riegler G. Ultrasound of the Ulnar Nerve: A Pictorial Review: Part 2: Pathological Ultrasound Findings. J Ultrasound Med. 2024",
     "Becciolini M, Pivec C, Raspanti A, Riegler G. Ultrasound of the Ulnar Nerve: A Pictorial Review: Part 1: Normal Ultrasound Findings. J Ultrasound Med. 2024",
     "Becciolini M, Pivec C, Riegler G. Ultrasound of the Lateral Femoral Cutaneous Nerve: A Review of the Literature and Pictorial Essay. J Ultrasound Med. 2022",
@@ -271,13 +271,23 @@ const RieglerPage = () => {
             <h2 className="text-3xl font-black font-[Outfit] dark:text-white">Ausgewählte Publikationen</h2>
           </div>
           <div className="grid grid-cols-1 gap-4">
-            {publications.map((pub, i) => (
-              <div key={i} className="p-6 rounded-3xl bg-white/50 dark:bg-gray-800/50 border border-white/60 dark:border-gray-700 hover:bg-white/80 dark:hover:bg-gray-700/80 transition-all group">
-                <p className="text-gray-800 dark:text-gray-200 leading-relaxed font-medium">
-                  {pub}
-                </p>
-              </div>
-            ))}
+            {publications.map((pub, i) => {
+              const isObj = typeof pub === 'object';
+              const pubText = isObj ? pub.text : pub;
+              const pubPdf = isObj ? pub.pdf : null;
+              return (
+                <div key={i} className="p-6 rounded-3xl bg-white/50 dark:bg-gray-800/50 border border-white/60 dark:border-gray-700 hover:bg-white/80 dark:hover:bg-gray-700/80 transition-all group">
+                  {pubPdf ? (
+                    <a href={pubPdf} target="_blank" rel="noopener noreferrer" className="flex items-start justify-between gap-4 text-gray-800 dark:text-gray-200 leading-relaxed font-medium group-hover:text-[#8B2323] transition-colors">
+                      <span>{pubText}</span>
+                      <FileText className="text-gray-400 group-hover:text-[#8B2323] shrink-0 mt-1 transition-colors" size={20} />
+                    </a>
+                  ) : (
+                    <p className="text-gray-800 dark:text-gray-200 leading-relaxed font-medium">{pubText}</p>
+                  )}
+                </div>
+              );
+            })}
           </div>
 
           {/* Grants */}
