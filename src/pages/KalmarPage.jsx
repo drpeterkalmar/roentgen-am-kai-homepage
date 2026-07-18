@@ -163,7 +163,7 @@ const KalmarPage = () => {
         >
           <h2 className="text-2xl font-black text-gray-900 dark:text-white mb-6 font-[Outfit]">Medizinische Philosophie</h2>
           <p className="text-lg text-gray-700 dark:text-gray-200 leading-relaxed font-medium italic">
-            "Innovative High-End-Radiologie mit Wertschätzung. Mein Ziel: Diagnostische Sicherheit durch modernste Technik, vermittelt mit Ruhe und Respekt."
+            "Innovative Radiologie mit Wertschätzung. Mein Ziel: Diagnostische Sicherheit durch moderne Technik, vermittelt mit Ruhe und Respekt."
           </p>
         </motion.div>
 

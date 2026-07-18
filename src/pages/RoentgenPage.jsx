@@ -21,7 +21,7 @@ const RoentgenPage = () => {
       imageUrl="/assets/images/roentgen_v3.avif"
     >
       <section className="space-y-6 mb-12">
-        <h2 className="text-2xl font-bold mb-4 font-[Outfit]">Geringe Strahlenbelastung, maximale Auflösung</h2>
+        <h2 className="text-2xl font-bold mb-4 font-[Outfit]">Geringe Strahlenbelastung, hohe Auflösung</h2>
         <p>
           Mit einem Lungenröntgen können krankhafte Veränderungen der Lunge, des Brustkorbs, des Rippenfells und in gewissen Fällen auch des Herzens festgestellt bzw. diagnostiziert werden. Es ist eine wichtige Maßnahme der Früherkennung sowohl zur Vorsorge als auch zur Diagnose bei bestehenden Erkrankungen.
         </p>

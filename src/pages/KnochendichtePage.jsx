@@ -8,7 +8,7 @@ const KnochendichtePage = () => {
   const faqItems = [
     {
       question: "Was ist eine DEXA-Knochendichtemessung?",
-      answer: "Die DEXA-Methode (Dual-Energy X-ray Absorptiometry) ist der weltweite Goldstandard zur Diagnose von Osteoporose. Sie misst präzise den Mineralgehalt der Knochen bei minimaler Strahlenbelastung."
+      answer: "Die DEXA-Methode (Dual-Energy X-ray Absorptiometry) ist der Goldstandard zur Diagnose von Osteoporose. Sie misst den Mineralgehalt der Knochen bei minimaler Strahlenbelastung."
     },
     {
       question: "Übernimmt die Krankenkasse die Kosten für die Knochendichtemessung?",
@@ -116,23 +116,23 @@ const KnochendichtePage = () => {
         </section>
 
       <section className="space-y-6 mb-12">
-        <h2 className="text-2xl font-bold mb-4 font-[Outfit]">Umfassende Risikoanalyse: FRAX & Manitoba</h2>
+        <h2 className="text-2xl font-bold mb-4 font-[Outfit]">Risikoanalyse: FRAX & Manitoba</h2>
         <p>
-          Für eine optimale und individuell angepasste Therapieplanung reicht die alleinige Messung der Knochendichte oft nicht aus. Deshalb berechnen wir standardmäßig zwei weitere essenzielle Diagnose-Parameter für Sie mit:
+          Für eine individuell angepasste Therapieplanung reicht die Messung der Knochendichte oft nicht aus. Deshalb berechnen wir standardmäßig zwei weitere Diagnose-Parameter für Sie mit:
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
           <div className="bg-white dark:bg-gray-800/50 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 relative overflow-hidden group">
             <div className="absolute top-0 right-0 w-32 h-32 bg-red-50 dark:bg-red-900/20 rounded-full blur-3xl -mr-10 -mt-10 opacity-50 group-hover:opacity-80 transition-opacity" />
             <h3 className="text-lg font-bold text-[#8B2323] mb-3 relative z-10">FRAX-Score</h3>
             <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed relative z-10">
-              Der <strong>FRAX-Algorithmus</strong> (Fracture Risk Assessment Tool) berechnet Ihr individuelles, prozentuales Risiko, innerhalb der nächsten 10 Jahre einen durch Osteoporose bedingten Knochenbruch zu erleiden. Hierbei fließen neben der reinen Knochendichte auch persönliche klinische Risikofaktoren (wie Alter, Gewicht, Vorerkrankungen und familiäre Vorbelastung) direkt in die Auswertung mit ein.
+              Der FRAX-Algorithmus (Fracture Risk Assessment Tool) berechnet Ihr individuelles Risiko, innerhalb der nächsten 10 Jahre einen durch Osteoporose bedingten Knochenbruch zu erleiden. Neben der Knochendichte fließen auch persönliche Risikofaktoren wie Alter, Gewicht, Vorerkrankungen und familiäre Vorbelastung in die Auswertung ein.
             </p>
           </div>
           <div className="bg-white dark:bg-gray-800/50 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 relative overflow-hidden group">
             <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 dark:bg-blue-900/20 rounded-full blur-3xl -mr-10 -mt-10 opacity-50 group-hover:opacity-80 transition-opacity" />
             <h3 className="text-lg font-bold text-[#8B2323] mb-3 relative z-10">Risikoklasse nach Manitoba</h3>
             <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed relative z-10">
-              Basierend auf den Erkenntnissen der groß angelegten kanadischen <strong>Manitoba-Studie</strong> ordnen wir Ihr tatsächliches Frakturrisiko noch genauer ein. Dieses System kombiniert Ihren Knochendichte-Wert systematisch mit weiteren Alters- und Risikofaktoren und stuft Sie in eine niedrige, mittlere oder hohe Risikoklasse ein. Dies bildet die perfekte Grundlage für eine ärztliche Therapieentscheidung.
+              Basierend auf der kanadischen Manitoba-Studie ordnen wir Ihr Frakturrisiko genauer ein. Dieses System kombiniert Ihren Knochendichte-Wert mit weiteren Alters- und Risikofaktoren und stuft Sie in eine niedrige, mittlere oder hohe Risikoklasse ein. Darauf stützt sich die ärztliche Therapieentscheidung.
             </p>
           </div>
         </div>

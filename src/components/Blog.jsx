@@ -86,7 +86,7 @@ const Blog = () => {
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 bg-[#8B2323]/5 text-[#8B2323] px-4 py-2 rounded-full text-sm font-bold mb-4">
               <Sparkles size={18} />
-              <span>Diagnostik am Puls der Zeit</span>
+              <span>Aktuelles aus der Radiologie</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-extrabold text-[#1f2937] dark:text-white font-[Outfit]">
               Wissen für Ihre <span className="text-[#8B2323] dark:text-[#8B2323]">Gesundheit</span>

@@ -11,7 +11,7 @@ const About = () => {
             Unsere <span className="text-[#8B2323] dark:text-[#8B2323]">Ärzte</span>
           </h2>
           <p className="text-xl text-gray-950 dark:text-gray-100 leading-relaxed font-normal">
-            Erfahrene Spezialisten für Ihre Gesundheit. Dr. Kalmar und Dr. Riegler stehen für höchste fachliche Kompetenz und modernste Diagnostik.
+            Dr. Kalmar und Dr. Riegler, Fachärzte für Radiologie mit langjähriger Erfahrung in Diagnostik und Intervention.
           </p>
         </div>
 

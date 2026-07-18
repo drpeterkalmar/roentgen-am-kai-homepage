@@ -9,7 +9,7 @@ const KoerperfettPage = () => {
   const faqItems = [
     {
       question: "Was ist eine DEXA-Körperfettmessung?",
-      answer: "Die DEXA-Methode (Dual-Energy X-ray Absorptiometry) gilt als Goldstandard zur Bestimmung der Körperzusammensetzung. Sie liefert präzise Daten zu Körperfett, Muskelmasse und Fettverteilung."
+      answer: "Die DEXA-Methode (Dual-Energy X-ray Absorptiometry) ist das etablierteste Verfahren zur Bestimmung der Körperzusammensetzung. Sie liefert Daten zu Körperfett, Muskelmasse und Fettverteilung."
     },
     {
       question: "Für wen ist eine Körperfettanalyse sinnvoll?",
@@ -93,7 +93,7 @@ const KoerperfettPage = () => {
       <section className="space-y-6 mb-12">
         <h2 className="text-2xl font-bold mb-4 font-[Outfit]">Viszeralfett – das unterschätzte Gesundheitsrisiko</h2>
         <p className="text-gray-700 dark:text-gray-300">
-          Im Gegensatz zum subkutanen Fett (unter der Haut) liegt <strong>Viszeralfett</strong> tief im Bauchraum und umhüllt innere Organe wie Leber, Bauchspeicheldrüse und Darm. Es ist metabolisch hochaktiv, setzt Entzündungsbotenstoffe (Adipokine) und freie Fettsäuren direkt in die Pfortader frei und gilt als unabhängiger Risikofaktor für:
+          Im Gegensatz zum subkutanen Fett (unter der Haut) liegt Viszeralfett tief im Bauchraum und umhüllt innere Organe wie Leber, Bauchspeicheldrüse und Darm. Es ist metabolisch aktiv, setzt Entzündungsbotenstoffe (Adipokine) und freie Fettsäuren direkt in die Pfortader frei und gilt als unabhängiger Risikofaktor für:
         </p>
         <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
           <li>Typ-2-Diabetes & Insulinresistenz</li>
@@ -103,7 +103,7 @@ const KoerperfettPage = () => {
           <li>Sarkopenie (Muskelschwund im Alter)</li>
         </ul>
         <p className="text-gray-700 dark:text-gray-300">
-          Die DEXA-Messung (Core Scan) quantifiziert das Viszeralfettgewebe (VAT – Visceral Adipose Tissue) in Gramm und cm³ präzise und strahlenarm – genauer als Bauchumfang oder BMI.
+          Die DEXA-Messung (Core Scan) quantifiziert das Viszeralfettgewebe (VAT – Visceral Adipose Tissue) in Gramm und cm³ strahlenarm, genauer als Bauchumfang oder BMI.
         </p>
         <div className="overflow-x-auto">
           <table className="w-full text-sm border-collapse">

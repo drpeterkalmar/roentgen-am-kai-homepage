@@ -20,7 +20,7 @@ const MammographiePage = () => {
     },
     {
       question: "Was ist der Vorteil einer Doppelbefundung?",
-      answer: "Bei der Doppelbefundung wird jede Aufnahme von zwei spezialisierten Radiologen unabhängig voneinander beurteilt. Dies erhöht die Sicherheit und Genauigkeit der Diagnose erheblich."
+      answer: "Bei der Doppelbefundung wird jede Aufnahme von zwei speziell zertifizierten Radiologen unabhängig voneinander beurteilt. Das erhöht die Genauigkeit der Diagnose."
     }
   ];
 
@@ -142,10 +142,10 @@ const MammographiePage = () => {
         </h2>
         <div className="space-y-4 text-gray-700 dark:text-gray-200">
           <p>
-            Bereits seit vielen Jahren sind wir zertifizierter Standort für Mamma-Screenings bzw. Brustkrebsvorsorge in Graz. Unsere Röntgeneinrichtung erfüllt alle Anforderungen an die beste Qualität, so dass wir für Sie höchst zuverlässige Untersuchungen im Rahmen der Brustkrebsfrüherkennung durchführen können.
+            Bereits seit vielen Jahren sind wir zertifizierter Standort für Mamma-Screenings bzw. Brustkrebsvorsorge in Graz. Unsere Röntgeneinrichtung erfüllt alle Qualitätsanforderungen des österreichischen Screening-Programms.
           </p>
           <p>
-            Im Rahmen des Programms erhalten alle Frauen in der Altersgruppe zwischen <strong>45 und 74 Jahren</strong> eine Einladung zur Brustkrebsuntersuchung als Vorsorgemaßnahme und können mit ihrer <strong>e-card alle 2 Jahre</strong> zur Brustkrebsfrüherkennungsuntersuchung kommen. <strong>Eine Überweisung ist im Rahmen dieses Programms nicht nötig.</strong>
+            Im Rahmen des Programms erhalten alle Frauen zwischen 45 und 74 Jahren eine Einladung zur Brustkrebsuntersuchung als Vorsorgemaßnahme und können mit ihrer e-Card alle 2 Jahre zur Brustkrebsfrüherkennungsuntersuchung kommen. Eine Überweisung ist im Rahmen dieses Programms nicht nötig.
           </p>
           <p>
             Wenn Sie zwischen 40 und 44 Jahre bzw. über 74 Jahre alt sind, können Sie auf eigenen Wunsch ebenfalls am Programm für Brustkrebsvorsorge teilnehmen:

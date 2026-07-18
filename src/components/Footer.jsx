@@ -33,7 +33,7 @@ const Footer = () => {
               </span>
             </div>
             <p className="text-gray-800 dark:text-gray-200 leading-relaxed mb-8">
-              Ihre Experten für moderne Radiologie in Graz. Fachärzte für Radiologie – alle Kassen und privat.
+              Fachärzte für Radiologie in Graz. Alle Kassen und privat.
             </p>
             <div className="flex gap-4">
               {/* Social icons removed per user request (There are none) */}

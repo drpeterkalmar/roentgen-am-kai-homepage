@@ -27,7 +27,7 @@ const services = [
   },
   {
     title: 'Mammographie',
-    description: 'Zertifizierter Screeningstandort für höchste Diagnosesicherheit.',
+    description: 'Zertifizierter Screeningstandort mit Doppelbefundung.',
     microInfo: 'Brustkrebs-Früherkennung',
     href: 'unser-angebot/mammographie',
     icon: <HeartPulse size={28} />,
@@ -38,7 +38,7 @@ const services = [
   {
     title: 'Knochendichte (DEXA)',
     description: 'Goldstandard zur Osteoporose-Früherkennung und Verlaufskontrolle.',
-    microInfo: 'Goldstandard',
+    microInfo: 'Osteoporose-Früherkennung',
     href: 'unser-angebot/knochendichte',
     icon: <Bone size={28} />,
     color: 'bg-purple-50 text-purple-600',
@@ -58,7 +58,7 @@ const services = [
   {
     title: 'DVT / Zahnröntgen',
     description: 'Präzise 3D-Kieferdiagnostik für die Implantatplanung und Zahnheilkunde.',
-    microInfo: 'Modernste Technik',
+    microInfo: '3D-Kieferdiagnostik',
     href: 'unser-angebot/dvt',
     icon: <ToothIcon size={24} />,
     color: 'bg-orange-50 text-orange-600',

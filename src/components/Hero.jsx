@@ -55,7 +55,7 @@ const Hero = () => {
           </h1>
           
           <p className="text-xl text-gray-900 dark:text-gray-100 mb-12 max-w-lg leading-relaxed font-semibold">
-            Spitzenmedizin in Graz. Wir bieten Ihnen präzise Diagnostik mit modernster Technik und menschlicher Fürsorge.
+            Radiologie in Graz. Wir bieten Ihnen präzise Diagnostik mit moderner Technik und persönlicher Betreuung.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4">
