@@ -6,7 +6,7 @@ const UltraschallPage = () => {
   return (
     <ServiceLayout
       title="Ultraschall"
-      subtitle="Der Ultraschall ist das am häufigsten verwendete bildgebende Verfahren in der Medizin. Er ermöglicht eine schonende und schmerzfreie Untersuchung ohne Strahlenbelastung."
+      subtitle="Ultraschall für Organe, Gelenke und Gefäße. Eine der häufigsten Untersuchungen in unserer Praxis."
       icon={<Waves size={32} />}
       preparation={[
         'Oberbauch-Ultraschall: Bitte kommen Sie nüchtern – mindestens 6 Stunden vorher nicht essen, nicht rauchen, kein Kaffee. Stilles Wasser ist erlaubt.',

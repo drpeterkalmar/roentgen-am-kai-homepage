@@ -77,8 +77,8 @@ const services = [
   },
   {
     title: 'Sonografie',
-    description: 'Gewebeschonende Diagnostik von Organen, Gelenken und Gefäßen.',
-    microInfo: 'Ohne Strahlen',
+    description: 'Ultraschall für Organe, Gelenke und Gefäße.',
+    microInfo: 'Auch bei uns',
     href: 'unser-angebot/ultraschall',
     icon: <Waves size={24} />,
     color: 'bg-green-50 text-green-600',
