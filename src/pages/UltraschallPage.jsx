@@ -6,7 +6,7 @@ const UltraschallPage = () => {
   return (
     <ServiceLayout
       title="Ultraschall"
-      subtitle="Ultraschall für Organe, Gelenke und Gefäße. Eine der häufigsten Untersuchungen in unserer Praxis."
+      subtitle="Ultraschall von Organen, Gelenken und Gefäßen. Wir arbeiten mit modernsten Geräten der Firma GE."
       icon={<Waves size={32} />}
       preparation={[
         'Oberbauch-Ultraschall: Bitte kommen Sie nüchtern – mindestens 6 Stunden vorher nicht essen, nicht rauchen, kein Kaffee. Stilles Wasser ist erlaubt.',
