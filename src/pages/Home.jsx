@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import Hero from '../components/Hero';
 import PatientPortal from '../components/PatientPortal';
+import RaKScribeDownload from '../components/RaKScribeDownload';
 import Appointment from '../components/Appointment';
 import { ServiceSkeleton } from '../components/Skeleton';
 
@@ -13,6 +14,7 @@ const Home = () => {
     <>
       <Hero />
       <PatientPortal />
+      <RaKScribeDownload />
       <Suspense fallback={
         <div className="max-w-[1400px] mx-auto px-6 py-24 grid grid-cols-1 md:grid-cols-3 gap-8">
           <ServiceSkeleton />
