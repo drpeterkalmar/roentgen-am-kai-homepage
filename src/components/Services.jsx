@@ -23,7 +23,8 @@ const services = [
     icon: <Scan size={24} />,
     color: 'bg-blue-50 text-blue-600',
     gridClass: 'md:col-span-4 aspect-square',
-    image: 'assets/images/roentgen_v3.avif'
+    image: 'assets/images/roentgen_v3.avif',
+    featured: true
   },
   {
     title: 'Mammographie',
@@ -33,7 +34,8 @@ const services = [
     icon: <HeartPulse size={28} />,
     color: 'bg-red-50 text-[#8B2323]',
     gridClass: 'md:col-span-4 aspect-square',
-    image: 'assets/images/mammographie_v2.avif'
+    image: 'assets/images/mammographie_v2.avif',
+    featured: true
   },
   {
     title: 'Knochendichte (DEXA)',
@@ -43,7 +45,8 @@ const services = [
     icon: <Bone size={28} />,
     color: 'bg-purple-50 text-purple-600',
     gridClass: 'md:col-span-4 aspect-square',
-    image: 'assets/images/knochendichte_v3.avif'
+    image: 'assets/images/knochendichte_v3.avif',
+    featured: true
   },
   {
     title: 'Körperfett',
@@ -53,7 +56,8 @@ const services = [
     icon: <Scale size={24} />,
     color: 'bg-teal-50 text-teal-600',
     gridClass: 'md:col-span-4 aspect-square',
-    image: 'assets/images/koerperfett.avif'
+    image: 'assets/images/koerperfett.avif',
+    featured: true
   },
   {
     title: 'DVT / Zahnröntgen',
@@ -166,8 +170,12 @@ const Services = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -10, borderColor: 'rgba(139, 35, 35, 0.4)' }}
-                className={`glass group rounded-[40px] p-8 flex flex-col relative overflow-hidden ${service.gridClass} ${
+                className={`group rounded-[40px] p-8 flex flex-col relative overflow-hidden ${service.gridClass} ${
                   service.type === 'info' ? 'order-last' : 'order-none'
+                } ${
+                  service.featured
+                    ? 'glass-featured border-2 border-[#8B2323]/40 shadow-2xl'
+                    : 'glass'
                 }`}
               >
               {service.href && (
@@ -183,13 +191,22 @@ const Services = () => {
                   <div className={`${service.color} w-16 h-16 rounded-2xl flex items-center justify-center shadow-inner`}>
                     {service.icon}
                   </div>
-                  {service.microInfo && (
-                    <div className="bg-white/80 backdrop-blur px-4 py-2 rounded-xl shadow-sm border border-gray-100">
-                      <span className="text-[#8B2323] text-xs font-black uppercase tracking-widest whitespace-nowrap">
-                        {service.microInfo}
-                      </span>
-                    </div>
-                  )}
+                  <div className="flex items-center gap-2">
+                    {service.featured && (
+                      <div className="bg-[#8B2323] text-white px-4 py-2 rounded-xl shadow-md">
+                        <span className="text-xs font-black uppercase tracking-widest whitespace-nowrap">
+                          Beliebt
+                        </span>
+                      </div>
+                    )}
+                    {service.microInfo && (
+                      <div className="bg-white/80 backdrop-blur px-4 py-2 rounded-xl shadow-sm border border-gray-100">
+                        <span className="text-[#8B2323] text-xs font-black uppercase tracking-widest whitespace-nowrap">
+                          {service.microInfo}
+                        </span>
+                      </div>
+                    )}
+                  </div>
                 </div>
 
                 <div className="mb-4">
