@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Lock, ArrowUpRight, Image, FileText } from 'lucide-react';
+import { ArrowUpRight, Image, FileText } from 'lucide-react';
+
+const PORTAL_URL = 'https://portal.marc.at';
 
 const PatientPortal = () => {
   return (
@@ -15,10 +17,7 @@ const PatientPortal = () => {
           {/* Icon Cluster */}
           <div className="relative shrink-0">
             <div className="w-16 h-16 bg-[#8B2323] rounded-2xl flex items-center justify-center shadow-lg shadow-red-900/20">
-              <Lock size={28} className="text-white" />
-            </div>
-            <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-white dark:bg-gray-800 rounded-xl flex items-center justify-center shadow-md border border-gray-100 dark:border-gray-700">
-              <Image size={16} className="text-[#8B2323]" />
+              <Image size={28} className="text-white" />
             </div>
           </div>
 
@@ -26,28 +25,43 @@ const PatientPortal = () => {
           <div className="flex-1 text-center sm:text-left">
             <div className="flex items-center justify-center sm:justify-start gap-3 mb-1">
               <h3 className="text-lg md:text-xl font-black text-gray-950 dark:text-white font-[Outfit] tracking-tight">
-                Bilder & Befunde Online
+                Ihre Bilder und Befunde online
               </h3>
-              <span className="inline-flex items-center gap-1 bg-amber-50 text-amber-700 dark:bg-amber-900/20 dark:text-amber-400 px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.15em] border border-amber-200/50 dark:border-amber-700/30">
-                Bald verfügbar
-              </span>
             </div>
             <p className="text-sm text-gray-600 dark:text-gray-400 font-medium leading-relaxed max-w-md">
-              Zugriff auf Ihre radiologischen Bilder und Befundberichte – sicher und jederzeit.
+              Ihre Bilder und Befunde sind online verfügbar unter{' '}
+              <a
+                href={PORTAL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#8B2323] hover:text-[#A52A2A] dark:text-red-400 dark:hover:text-red-300 font-bold underline decoration-[#8B2323]/40 underline-offset-2 hover:decoration-[#A52A2A] transition-colors break-all"
+              >
+                portal.marc.at
+              </a>
             </p>
           </div>
 
-          {/* CTA Button (placeholder) */}
+          {/* QR Code — scannable from the screen */}
           <a
-            href="#"
-            onClick={(e) => e.preventDefault()}
-            className="shrink-0 inline-flex items-center gap-2 bg-gray-50 dark:bg-gray-800/80 text-gray-400 dark:text-gray-500 px-6 py-3.5 rounded-2xl text-sm font-bold border border-gray-100 dark:border-gray-700 cursor-not-allowed select-none"
-            aria-disabled="true"
-            title="Das Patientenportal ist derzeit noch in Entwicklung."
+            href={PORTAL_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="shrink-0 flex flex-col items-center gap-1.5 group"
+            title="QR-Code scannen und direkt zum Portal gelangen"
           >
-            <FileText size={18} />
-            <span className="uppercase tracking-[0.1em]">Zum Portal</span>
-            <ArrowUpRight size={18} />
+            <div className="bg-white rounded-2xl p-2 shadow-md group-hover:shadow-lg transition-shadow">
+              <img
+                src={`${import.meta.env.BASE_URL}assets/images/portal-qr.avif`}
+                alt="QR-Code zum Patientenportal portal.marc.at"
+                width="96"
+                height="96"
+                className="w-24 h-24 rounded-lg"
+                loading="lazy"
+              />
+            </div>
+            <span className="text-[10px] font-black uppercase tracking-[0.15em] text-gray-500 dark:text-gray-400">
+              Zum Portal
+            </span>
           </a>
         </motion.div>
       </div>
