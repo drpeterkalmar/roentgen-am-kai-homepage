@@ -187,20 +187,20 @@ const Services = () => {
               )}
               
               <div className="relative z-10 flex flex-col h-full">
-                <div className="flex justify-between items-start mb-6">
+                <div className="flex flex-wrap justify-between items-start gap-x-4 gap-y-3 mb-6">
                   <div className={`${service.color} w-16 h-16 rounded-2xl flex items-center justify-center shadow-inner`}>
                     {service.icon}
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex flex-wrap items-center gap-2 justify-end ml-auto">
                     {service.featured && (
-                      <div className="bg-[#8B2323] text-white px-4 py-2 rounded-xl shadow-md">
+                      <div className="bg-[#8B2323] text-white px-3 py-2 sm:px-4 rounded-xl shadow-md">
                         <span className="text-xs font-black uppercase tracking-widest whitespace-nowrap">
                           Beliebt
                         </span>
                       </div>
                     )}
                     {service.microInfo && (
-                      <div className="bg-white/80 backdrop-blur px-4 py-2 rounded-xl shadow-sm border border-gray-100">
+                      <div className="bg-white/80 backdrop-blur px-3 py-2 sm:px-4 rounded-xl shadow-sm border border-gray-100">
                         <span className="text-[#8B2323] text-xs font-black uppercase tracking-widest whitespace-nowrap">
                           {service.microInfo}
                         </span>
@@ -213,7 +213,7 @@ const Services = () => {
                   <h3 className="text-2xl font-black text-gray-950 dark:text-white mb-2 font-[Outfit] leading-tight group-hover:text-[#8B2323] transition-colors">
                     {service.title}
                   </h3>
-                  <p className={`text-base text-gray-950 dark:text-gray-100 leading-relaxed font-semibold ${service.type === 'info' ? 'line-clamp-none' : 'line-clamp-3'}`}>
+                  <p className={`text-base text-gray-950 dark:text-gray-100 leading-relaxed font-semibold ${service.type === 'info' ? 'sm:line-clamp-none' : 'sm:line-clamp-3'}`}>
                     {service.description}
                   </p>
                 </div>
