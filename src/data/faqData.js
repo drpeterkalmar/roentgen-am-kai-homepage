@@ -26,7 +26,7 @@ export const faqData = {
   mammographie: [
     {
       question: "Wann ist eine Mammographie sinnvoll?",
-      answer: "Im Rahmen des österreichischen Brustkrebs-Früherkennungsprogramms ist eine Vorsorgemammographie alle 2 Jahre für Frauen zwischen 45 und 74 Jahren ohne Überweisung möglich. Außerhalb dieses Bereichs oder bei Beschwerden ist eine Untersuchung ab 40 Jahren mit Überweisung ratsam."
+      answer: "Im Rahmen des österreichischen Brustkrebs-Früherkennungsprogramms ist eine Vorsorgemammographie alle 2 Jahre für Frauen zwischen 45 und 74 Jahren ohne Überweisung möglich. Das Programm ist freiwillig; auf Wunsch kann es auf alle Altersgruppen ab 40 Jahren – ohne obere Altersgrenze – ausgedehnt werden, ebenfalls ohne Überweisung. Außerhalb dieses Bereichs oder bei Beschwerden ist eine Untersuchung ab 40 Jahren mit Überweisung ratsam."
     },
     {
       question: "Ist die Mammographie bei Röntgen am Kai schmerzhaft?",
