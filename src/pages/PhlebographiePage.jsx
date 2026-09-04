@@ -1,6 +1,8 @@
 import React from 'react';
 import { Syringe, AlertTriangle } from 'lucide-react';
 import ServiceLayout from '../components/ServiceLayout';
+import FAQ from '../components/FAQ';
+import { faqData } from '../data/faqData';
 
 const PhlebographiePage = () => {
   const LegComposite = (
@@ -86,6 +88,7 @@ const PhlebographiePage = () => {
           Auch als Vorbereitung einer Krampfadern-Operation sowie bei der Abklärung von wiederkehrenden Varizen ist die Phlebographie eine bewährte diagnostische Methode.
         </p>
       </section>
+      <FAQ items={faqData.phlebographie} title="Häufige Fragen zur Phlebographie" />
     </ServiceLayout>
   );
 };

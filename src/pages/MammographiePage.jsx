@@ -2,28 +2,10 @@ import React from 'react';
 import { HeartPulse, Phone, Info, ExternalLink } from 'lucide-react';
 import ServiceLayout from '../components/ServiceLayout';
 import FAQ from '../components/FAQ';
+import { faqData } from '../data/faqData';
 import SEO from '../components/SEO';
 
 const MammographiePage = () => {
-  const faqItems = [
-    {
-      question: "Wann ist eine Mammographie sinnvoll?",
-      answer: "Im Rahmen des österreichischen Brustkrebs-Früherkennungsprogramms ist eine Vorsorgemammographie alle 2 Jahre für Frauen zwischen 45 und 74 Jahren ohne Überweisung möglich. Außerhalb dieses Bereichs oder bei Beschwerden ist eine Untersuchung ab 40 Jahren mit Überweisung ratsam."
-    },
-    {
-      question: "Ist die Mammographie bei Röntgen am Kai schmerzhaft?",
-      answer: "Wir verwenden den modernsten Mammomat Inspiration von Siemens. Dieses Gerät passt den Kompressionsdruck individuell an und reduziert die Strahlendosis um bis zu 50%, was die Untersuchung deutlich angenehmer macht und eine exzellente Bildqualität liefert."
-    },
-    {
-      question: "Benötige ich für das Mammographie-Screening eine Überweisung?",
-      answer: "Wenn Sie in die Altersgruppe der 45- bis 74-Jährigen fallen oder freiwillig am erweiterten Screening teilnehmen (40-44 Jahre, älter als 74 Jahre), benötigen Sie keine Überweisung. Ihre e-Card ist für das Früherkennungsprogramm alle 2 Jahre automatisch freigeschaltet."
-    },
-    {
-      question: "Was ist der Vorteil einer Doppelbefundung?",
-      answer: "Bei der Doppelbefundung wird jede Aufnahme von zwei speziell zertifizierten Radiologen unabhängig voneinander beurteilt. Das erhöht die Genauigkeit der Diagnose."
-    }
-  ];
-
   return (
     <>
       <SEO 
@@ -167,7 +149,7 @@ const MammographiePage = () => {
         </div>
       </section>
 
-      <FAQ items={faqItems} title="Häufige Fragen zur Mammographie" />
+      <FAQ items={faqData.mammographie} title="Häufige Fragen zur Mammographie" />
     </ServiceLayout>
     </>
   );

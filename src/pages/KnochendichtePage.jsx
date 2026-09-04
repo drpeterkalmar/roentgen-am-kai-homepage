@@ -2,28 +2,10 @@ import React from 'react';
 import { Bone, CreditCard } from 'lucide-react';
 import ServiceLayout from '../components/ServiceLayout';
 import FAQ from '../components/FAQ';
+import { faqData } from '../data/faqData';
 import SEO from '../components/SEO';
 
 const KnochendichtePage = () => {
-  const faqItems = [
-    {
-      question: "Was ist eine DEXA-Knochendichtemessung?",
-      answer: "Die DEXA-Methode (Dual-Energy X-ray Absorptiometry) ist der Goldstandard zur Diagnose von Osteoporose. Sie misst den Mineralgehalt der Knochen bei minimaler Strahlenbelastung."
-    },
-    {
-      question: "Übernimmt die Krankenkasse die Kosten für die Knochendichtemessung?",
-      answer: "Wir haben Direktverrechnungsverträge mit der BVAEB, SVS und KFA-Graz. Für ÖGK-Versicherte fungieren wir als Wahlarzt; Sie bezahlen die Untersuchung vorab und können den Anteil bei der ÖGK zur Rückerstattung einreichen."
-    },
-    {
-      question: "Muss ich für die DEXA-Untersuchung nüchtern sein?",
-      answer: "Nein, für eine Knochendichtemessung oder Körperfettanalyse ist keine spezielle Vorbereitung erforderlich. Sie müssen nicht nüchtern erscheinen."
-    },
-    {
-      question: "Wie oft sollte die Knochendichte gemessen werden?",
-      answer: "In der Regel ist eine Kontrolle alle 1-2 Jahre sinnvoll, um den Erfolg einer Therapie zu überwachen oder den Verlauf einer Osteopenie/Osteoporose zu dokumentieren."
-    }
-  ];
-
   return (
     <>
       <SEO 
@@ -197,7 +179,7 @@ const KnochendichtePage = () => {
         </p>
       </section>
 
-      <FAQ items={faqItems} title="Häufige Fragen zur Knochendichtemessung" />
+      <FAQ items={faqData.knochendichte} title="Häufige Fragen zur Knochendichtemessung" />
     </ServiceLayout>
     </>
   );

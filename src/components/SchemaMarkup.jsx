@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { faqData } from '../data/faqData';
 
 const SchemaMarkup = () => {
   const location = useLocation();
@@ -56,127 +57,31 @@ const SchemaMarkup = () => {
       "healthcareReportingData": "Alle Kassen: BVAEB, SVS, KFA | Wahlarzt für ÖGK"
     };
 
-    // 2. FAQ Schemas
-    let faqSchema = null;
-
-    if (location.pathname === '/unser-angebot/knochendichte') {
-      faqSchema = {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Was ist eine DEXA-Knochendichtemessung?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Die DEXA-Methode (Dual-Energy X-ray Absorptiometry) ist der weltweite Goldstandard zur Diagnose von Osteoporose. Sie misst präzise den Mineralgehalt der Knochen bei minimaler Strahlenbelastung."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Übernimmt die Krankenkasse die Kosten für die Knochendichtemessung?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Wir haben Direktverrechnungsverträge mit der BVAEB, SVS und KFA-Graz. Für ÖGK-Versicherte fungieren wir als Wahlarzt; Sie bezahlen die Untersuchung vorab und können den Anteil bei der ÖGK zur Rückerstattung einreichen."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Muss ich für die DEXA-Untersuchung nüchtern sein?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Nein, für eine Knochendichtemessung oder Körperfettanalyse ist keine spezielle Vorbereitung erforderlich. Sie müssen nicht nüchtern erscheinen."
-            }
-          }
-        ]
-      };
-    } else if (location.pathname === '/unser-angebot/mammographie') {
-      faqSchema = {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Wann ist eine Mammographie sinnvoll?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Im Rahmen des österreichischen Brustkrebs-Früherkennungsprogramms ist eine Vorsorgemammographie alle 2 Jahre für Frauen zwischen 45 und 74 Jahren ohne Überweisung möglich. Außerhalb dieses Bereichs oder bei Beschwerden ist eine Untersuchung ab 40 Jahren mit Überweisung ratsam."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Ist die Mammographie bei Röntgen am Kai schmerzhaft?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Wir verwenden den modernsten Mammomat Inspiration von Siemens. Dieses Gerät passt den Kompressionsdruck individuell an und reduziert die Strahlendosis um bis zu 50%, was die Untersuchung deutlich angenehmer macht."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Benötige ich für das Mammographie-Screening eine Überweisung?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Wenn Sie in die Altersgruppe der 45- bis 74-Jährigen fallen, benötigen Sie keine Überweisung. Ihre e-Card ist für das Früherkennungsprogramm alle 2 Jahre freigeschaltet."
-            }
-          }
-        ]
-      };
-    } else if (location.pathname === '/unser-angebot/koerperfettmessung') {
-      faqSchema = {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Was ist eine DEXA-Körperfettmessung?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Die DEXA-Methode (Dual-Energy X-ray Absorptiometry) gilt als Goldstandard zur Bestimmung der Körperzusammensetzung. Sie liefert präzise Daten zu Körperfett, Muskelmasse und Fettverteilung."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Für wen ist eine Körperfettanalyse sinnvoll?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Die Messung ist ideal für Sportler zur Trainingsoptimierung, bei Diäten zur Kontrolle des Fettabbaus oder für gesundheitsbewusste Menschen zur Bestimmung des viszeralen Fetts."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Muss ich für die Messung nüchtern sein?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Nein, eine spezielle Vorbereitung ist nicht nötig. Sie können die Untersuchung jederzeit ohne Fasten durchführen lassen."
-            }
-          }
-        ]
-      };
-    } else if (location.pathname === '/unser-angebot/dvt') {
-      faqSchema = {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Was ist eine DVT (Digitale Volumentomographie)?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Die DVT ist ein hochpräzises 3D-Röntgenverfahren speziell für den Kopf- und Kieferbereich. Sie ermöglicht eine räumliche Darstellung von Knochen, Zähnen und Nervenkanälen bei deutlich geringerer Strahlenbelastung als bei einem herkömmlichen CT."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Bieten Sie auch klassisches Zahnröntgen an?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Ja, neben der 3D-DVT bieten wir auch digitales 2D-Zahnröntgen wie Panoramaaufnahmen (OPTG), Einzelzahnaufnahmen sowie Fernröntgen-Aufnahmen (Ceph) für kieferorthopädische Planungen an."
-            }
-          },
-
-        ]
-      };
-    }
+    // 2. FAQ Schema - zentrale Quelle: src/data/faqData.js
+    // Eine Quelle fuer sichtbaren FAQ-Block UND JSON-LD (kein Drift mehr moeglich).
+    const PATH_TO_FAQ = {
+      '/unser-angebot/knochendichte': 'knochendichte',
+      '/unser-angebot/mammographie': 'mammographie',
+      '/unser-angebot/koerperfettmessung': 'koerperfett',
+      '/unser-angebot/roentgen': 'roentgen',
+      '/unser-angebot/ultraschall': 'ultraschall',
+      '/unser-angebot/phlebographie': 'phlebographie',
+      '/unser-angebot/dvt': 'dvt'
+    };
+    const faqKey = PATH_TO_FAQ[location.pathname];
+    const faqItems = faqKey ? faqData[faqKey] : null;
+    const faqSchema = faqItems ? {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqItems.map(item => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.answer
+        }
+      }))
+    } : null;
 
     // Inject Scripts
     const scripts = [];

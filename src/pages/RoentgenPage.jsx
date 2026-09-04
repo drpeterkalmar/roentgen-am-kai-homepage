@@ -1,6 +1,8 @@
 import React from 'react';
 import { Scan } from 'lucide-react';
 import ServiceLayout from '../components/ServiceLayout';
+import FAQ from '../components/FAQ';
+import { faqData } from '../data/faqData';
 
 const RoentgenPage = () => {
   return (
@@ -83,6 +85,7 @@ const RoentgenPage = () => {
           ))}
         </div>
       </section>
+      <FAQ items={faqData.roentgen} title="Häufige Fragen zum Röntgen" />
     </ServiceLayout>
   );
 };

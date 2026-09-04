@@ -1,6 +1,8 @@
 import React from 'react';
 import { Waves } from 'lucide-react';
 import ServiceLayout from '../components/ServiceLayout';
+import FAQ from '../components/FAQ';
+import { faqData } from '../data/faqData';
 
 const UltraschallPage = () => {
   return (
@@ -52,6 +54,7 @@ const UltraschallPage = () => {
           ))}
         </div>
       </section>
+      <FAQ items={faqData.ultraschall} title="Häufige Fragen zum Ultraschall" />
     </ServiceLayout>
   );
 };

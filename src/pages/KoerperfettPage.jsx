@@ -1,26 +1,12 @@
 import React from 'react';
 import { Scale, AlertCircle } from 'lucide-react';
 import ServiceLayout from '../components/ServiceLayout';
+import FAQ from '../components/FAQ';
+import { faqData } from '../data/faqData';
 import SEO from '../components/SEO';
 
-import FAQ from '../components/FAQ';
 
 const KoerperfettPage = () => {
-  const faqItems = [
-    {
-      question: "Was ist eine DEXA-Körperfettmessung?",
-      answer: "Die DEXA-Methode (Dual-Energy X-ray Absorptiometry) ist das etablierteste Verfahren zur Bestimmung der Körperzusammensetzung. Sie liefert Daten zu Körperfett, Muskelmasse und Fettverteilung."
-    },
-    {
-      question: "Für wen ist eine Körperfettanalyse sinnvoll?",
-      answer: "Die Messung ist ideal für Sportler zur Trainingsoptimierung, bei Diäten zur Kontrolle des Fettabbaus oder für gesundheitsbewusste Menschen zur Bestimmung des viszeralen Fetts."
-    },
-    {
-      question: "Muss ich für die Messung nüchtern sein?",
-      answer: "Nein, eine spezielle Vorbereitung ist nicht nötig. Sie können die Untersuchung jederzeit ohne Fasten durchführen lassen."
-    }
-  ];
-
   return (
     <>
       <SEO 
@@ -136,7 +122,7 @@ const KoerperfettPage = () => {
         </p>
       </section>
 
-      <FAQ items={faqItems} title="Häufige Fragen zur Körperfettmessung" />
+      <FAQ items={faqData.koerperfett} title="Häufige Fragen zur Körperfettmessung" />
     </ServiceLayout>
     </>
   );

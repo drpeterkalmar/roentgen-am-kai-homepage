@@ -2,6 +2,8 @@ import React from 'react';
 import { AlertCircle } from 'lucide-react';
 import { ToothIcon } from '../components/CustomIcons';
 import ServiceLayout from '../components/ServiceLayout';
+import FAQ from '../components/FAQ';
+import { faqData } from '../data/faqData';
 
 const DVTPage = () => {
   return (
@@ -72,6 +74,7 @@ const DVTPage = () => {
           ))}
         </div>
       </section>
+      <FAQ items={faqData.dvt} title="Häufige Fragen zur DVT und zum Zahnröntgen" />
     </ServiceLayout>
   );
 };
