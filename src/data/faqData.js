@@ -72,7 +72,7 @@ export const faqData = {
     },
     {
       question: "Wie bekomme ich meine Bilder?",
-      answer: "Ihre Aufnahmen werden digital befundet und archiviert. Wir übermitteln sie rasch an Ihren Haus- oder Facharzt, geben sie Ihnen auf Wunsch auf einem Datenträger mit – und mit den steirischen Spitälern besteht über das MARC-System eine direkte Verbindung. Zusätzlich sind Ihre Bilder und Befunde über ELGA sowie im Patientenarchiv mit MARC-Anbindung verfügbar."
+      answer: "Ihre Aufnahmen werden digital befundet und archiviert und stehen Ihrem Haus- oder Facharzt rasch zur Verfügung – mit den steirischen Spitälern besteht über das MARC-System eine direkte Verbindung. Ihre Bilder und Befunde sind zusätzlich über ELGA sowie online unter portal.marc.at verfügbar."
     }
   ],
 
