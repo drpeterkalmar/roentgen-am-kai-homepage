@@ -30,7 +30,7 @@ export const faqData = {
     },
     {
       question: "Ist die Mammographie bei Röntgen am Kai schmerzhaft?",
-      answer: "Wir verwenden den modernsten Mammomat Inspiration von Siemens. Dieses Gerät passt den Kompressionsdruck individuell an und reduziert die Strahlendosis um bis zu 50%, was die Untersuchung deutlich angenehmer macht und eine exzellente Bildqualität liefert."
+      answer: "Das Gerät passt den Kompressionsdruck individuell an und reduziert die Strahlendosis um bis zu 50 %, was die Untersuchung deutlich angenehmer macht und eine exzellente Bildqualität liefert."
     },
     {
       question: "Benötige ich für das Mammographie-Screening eine Überweisung?",
