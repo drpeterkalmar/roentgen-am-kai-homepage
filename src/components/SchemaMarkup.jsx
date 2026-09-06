@@ -66,7 +66,14 @@ const SchemaMarkup = () => {
       '/unser-angebot/roentgen': 'roentgen',
       '/unser-angebot/ultraschall': 'ultraschall',
       '/unser-angebot/phlebographie': 'phlebographie',
-      '/unser-angebot/dvt': 'dvt'
+      '/unser-angebot/dvt': 'dvt',
+      // Unterseiten in Vorbereitung (wie an HEROLD geliefert, Sep 2026) —
+      // FAQ-Sets liegen in faqData.js bereit; Seiten/Routes folgen.
+      '/unser-angebot/digitales-roentgen/lungenroentgen': 'lungenroentgen',
+      '/unser-angebot/digitales-roentgen/wirbelsaeulenroentgen': 'wirbelsaeulenroentgen',
+      '/unser-angebot/digitales-roentgen/roentgen-nach-unfall': 'roentgenNachUnfall',
+      '/unser-angebot/mammographie/mammascreening': 'mammascreening',
+      '/unser-angebot': 'angebot'
     };
     const faqKey = PATH_TO_FAQ[location.pathname];
     const faqItems = faqKey ? faqData[faqKey] : null;
