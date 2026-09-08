@@ -194,7 +194,7 @@ export const blogPosts = [
       <h2>Fazit: Früh erkennen</h2>
       <p>Die Brustkrebs-Früherkennung ist eine der erfolgreichsten Vorsorgemaßnahmen der modernen Medizin. Das österreichische Programm "früh-erkennen" bietet Ihnen die Möglichkeit, kostenlos, ohne Überweisung und in zertifizierter Qualität Vorsorge zu betreiben.</p>
       <p>Vereinbaren Sie Ihren Mammographie-Termin in unserer Praxis Röntgen am Kai in Graz. Unsere spezialisierten Radiologen sorgen für eine präzise und zuverlässige Untersuchung, mit Doppelbefundung und modernster Technologie.</p>
-      <p>Rufen Sie uns an oder buchen Sie online. Ihre Gesundheit verdient die beste Vorsorge.</p>
+      <p>Rufen Sie uns an und vereinbaren Sie Ihren Termin. Ihre Gesundheit verdient die beste Vorsorge.</p>
     `,
     image: 'assets/images/mammographie_v2.avif',
     status: 'published'

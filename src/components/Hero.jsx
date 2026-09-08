@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronRight, ShieldCheck, Clock, MapPin } from 'lucide-react';
+import { ChevronRight, ShieldCheck, Phone, MapPin } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const images = [
@@ -59,19 +59,19 @@ const Hero = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4">
-            <a 
+            <a
               href="#services"
               className="bg-[#8B2323] text-white px-10 py-5 rounded-2xl text-sm font-black uppercase tracking-[0.2em] hover:bg-[#A52A2A] shadow-xl shadow-red-900/10 transition-all flex items-center justify-center gap-3 active:scale-95"
             >
               Unsere Leistungen
               <ChevronRight size={18} />
             </a>
-            <a 
-              href="/#booking"
+            <a
+              href="tel:+433****9050"
               className="bg-white/60 backdrop-blur-md text-gray-950 border-2 border-white/50 px-10 py-5 rounded-2xl text-sm font-black uppercase tracking-[0.2em] hover:bg-white transition-all flex items-center justify-center gap-3 active:scale-95 shadow-lg"
             >
-              <Clock size={18} />
-              Terminanfrage
+              <Phone size={18} />
+              Termin: 0316 840 90 50
             </a>
           </div>
         </motion.div>

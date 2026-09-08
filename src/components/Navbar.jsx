@@ -193,14 +193,7 @@ const Navbar = ({ highContrast, setHighContrast, isDark, setIsDark }) => {
                   </div>
                 ))}
                 
-                {/* Additional Mobile Links */}
-                <Link
-                  to="/#booking"
-                  className="text-xl font-black text-gray-900 dark:text-white py-4 border-b border-gray-100/50 dark:border-gray-800/50"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Terminanfrage
-                </Link>
+                {/* Additional Mobile Links removed: Online-Terminvereinbarung vorerst aus der HP */}
               </div>
 
               {/* Settings Toggles */}

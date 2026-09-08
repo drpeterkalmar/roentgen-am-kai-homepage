@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChevronRight, Calendar, ArrowLeft, ShieldCheck, MapPin, Phone } from 'lucide-react';
+import { ChevronRight, ArrowLeft, ShieldCheck, MapPin, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
@@ -104,18 +104,11 @@ const ServiceLayout = ({ title, subtitle, children, icon, preparation, requireme
                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#8B2323] rounded-full blur-[80px] opacity-20 -mr-16 -mt-16" />
                 <h3 className="text-2xl font-bold mb-6 font-[Outfit] relative z-10">Termin vereinbaren</h3>
                 <p className="text-gray-400 mb-8 relative z-10">
-                  Nutzen Sie unsere Online-Terminvergabe oder rufen Sie uns direkt an.
+                  Rufen Sie uns direkt an – wir vereinbaren gerne Ihren Wunschtermin.
                 </p>
-                <Link 
-                  to="/#booking"
-                  className="w-full bg-[#8B2323] text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-[#A52A2A] transition-all mb-4 relative z-10"
-                >
-                  <Calendar size={20} />
-                  Online buchen
-                </Link>
-                <a 
-                  href="tel:+433168409050"
-                  className="w-full bg-white/10 hover:bg-white/20 text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all relative z-10 border border-white/10"
+                <a
+                  href="tel:+433****9050"
+                  className="w-full bg-[#8B2323] text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-[#A52A2A] transition-all relative z-10"
                 >
                   <Phone size={20} />
                   0316 840 90 50

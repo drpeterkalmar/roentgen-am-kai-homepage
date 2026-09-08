@@ -41,7 +41,7 @@ const DatenschutzPage = () => {
           <section>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Datenspeicherung bei Kontakt</h2>
             <p>
-              Wenn Sie per Formular auf der Website oder per E-Mail Kontakt mit uns aufnehmen, werden Ihre angegebenen Daten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen sechs Monate bei uns gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.
+              Wenn Sie per E-Mail Kontakt mit uns aufnehmen, werden Ihre angegebenen Daten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen sechs Monate bei uns gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.
             </p>
           </section>
 
