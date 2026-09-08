@@ -107,7 +107,7 @@ const ServiceLayout = ({ title, subtitle, children, icon, preparation, requireme
                   Rufen Sie uns direkt an – wir vereinbaren gerne Ihren Wunschtermin.
                 </p>
                 <a
-                  href="tel:+433****9050"
+                  href="tel:+433168409050"
                   className="w-full bg-[#8B2323] text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-[#A52A2A] transition-all relative z-10"
                 >
                   <Phone size={20} />
