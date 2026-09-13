@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck } from 'lucide-react';
+import { ShieldCheck, Github } from 'lucide-react';
 
 const ImpressumPage = () => {
   return (
@@ -65,6 +65,26 @@ const ImpressumPage = () => {
               <h3 className="font-bold text-gray-900 dark:text-white mb-2">UID-Nummer</h3>
               <p>ATU76189537</p>
             </div>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Offener Quellcode</h2>
+            <p>
+              Der vollständige Quellcode dieser Website ist öffentlich auf GitHub verfügbar und
+              kann dort jederzeit eingesehen werden. Wir setzen auf bewährte, frei verfügbare
+              Standards – ohne geschlossene Baukasten-Systeme und ohne Tracking.
+            </p>
+            <p className="mt-3">
+              <a
+                href="https://github.com/drpeterkalmar/roentgen-am-kai-homepage"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-[#8B2323] hover:underline font-medium"
+              >
+                <Github size={18} />
+                github.com/drpeterkalmar/roentgen-am-kai-homepage
+              </a>
+            </p>
           </section>
 
           <section>
