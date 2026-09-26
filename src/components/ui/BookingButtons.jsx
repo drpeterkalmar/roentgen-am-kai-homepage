@@ -3,8 +3,8 @@ import { CalendarCheck, Phone } from 'lucide-react';
 import Button from './Button';
 import { BOOKING_URL, PHONE_HREF, PHONE_DISPLAY } from '../../data/practice';
 
-// „Termin buchen“ – führt zur Online-Buchung der Praxis (MiraNext, neues Fenster).
-export const BookingButton = ({ label = 'Termin buchen', ...rest }) => (
+// „Termin online buchen“ – führt zur Online-Buchung der Praxis (MiraNext, neues Fenster).
+export const BookingButton = ({ label = 'Termin online buchen', ...rest }) => (
   <Button href={BOOKING_URL} external icon={CalendarCheck} data-cta="booking" {...rest}>
     {label}
   </Button>

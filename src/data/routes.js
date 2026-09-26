@@ -6,9 +6,9 @@
 // Kanonische Domain (Hauptdomain ab Jan 2027: Umlaut-Domain, hier in Punycode).
 export const SITE_URL = 'https://www.xn--rntgen-am-kai-imb.at';
 
-export const DEFAULT_TITLE = 'Röntgen am Kai | Radiologie in Graz – Alle Kassen & Privat';
+export const DEFAULT_TITLE = 'Radiologie Graz – Röntgen am Kai | Mammographie, DEXA, Röntgen';
 export const DEFAULT_DESCRIPTION =
-  'Radiologie in Graz: Mammographie und Brustvorsorge, DEXA-Knochendichtemessung, DEXA-Körperanalyse, digitales Röntgen, Ultraschall und Durchleuchtung. Alle Kassen und privat.';
+  'Radiologie in Graz: Mammographie, DEXA-Knochendichte, DEXA-Körperanalyse, digitales Röntgen und Ultraschall. Alle Kassen und privat – Termin online buchen.';
 
 export const routes = [
   {
@@ -68,8 +68,8 @@ export const routes = [
   },
   {
     path: '/gesundheitsziele',
-    title: 'Gesundheitsziele: Brust, Knochen, Körperzusammensetzung',
-    description: 'Die passende Untersuchung für Ihr Anliegen: Brustgesundheit, Knochengesundheit und Körperzusammensetzung – Röntgen am Kai in Graz.',
+    title: 'Gesundheitsziele: Gewicht, Fitness, Wechseljahre, Osteoporose',
+    description: 'Die passende Untersuchung für Ihr Anliegen: Gewichtsabnahme, Fitness, Wechseljahre, Osteoporosevorsorge und rasche Beschwerdeabklärung – Röntgen am Kai, Graz.',
     priority: '0.6',
   },
   {

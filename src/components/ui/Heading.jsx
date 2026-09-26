@@ -4,7 +4,7 @@ import { cx } from './cx';
 // Typografie-Skala (mobile-first). Die Ebene (h1–h4) bestimmt die Semantik,
 // `look` optional die Optik – so bleibt die Überschriftenhierarchie korrekt.
 const looks = {
-  display: 'text-4xl sm:text-5xl lg:text-[3.5rem] leading-[1.1]',
+  display: 'text-[2rem] sm:text-5xl lg:text-[3.25rem] leading-[1.1]',
   h1: 'text-3xl sm:text-4xl lg:text-5xl leading-[1.15]',
   h2: 'text-2xl sm:text-3xl leading-tight',
   h3: 'text-xl sm:text-2xl leading-snug',

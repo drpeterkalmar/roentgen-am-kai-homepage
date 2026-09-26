@@ -16,7 +16,7 @@ const Hero = ({ breadcrumbs, eyebrow, title, lead, actions, meta, image, imageSl
       aria-labelledby="page-title"
       className={cx(tone === 'muted' ? 'bg-slate-50 dark:bg-slate-900' : 'bg-white dark:bg-slate-950', 'border-b border-slate-200 dark:border-slate-800', className)}
     >
-      <Container className={cx('py-10 sm:py-14 lg:py-20', hasMedia && 'grid items-center gap-10 lg:grid-cols-2 lg:gap-16')}>
+      <Container className={cx('py-8 sm:py-12 lg:py-14', hasMedia && 'grid items-center gap-10 lg:grid-cols-2 lg:gap-16')}>
         <div className={cx(!hasMedia && 'max-w-3xl')}>
           {breadcrumbs && <div className="mb-6"><Breadcrumbs items={breadcrumbs} /></div>}
           {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}

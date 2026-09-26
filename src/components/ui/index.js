@@ -11,6 +11,7 @@ export { default as Notice } from './Notice';
 export { default as PriceList } from './PriceList';
 export { default as ReferralInfo, INSURANCE_SUMMARY } from './ReferralInfo';
 export { default as Placeholder } from './Placeholder';
+export { default as ImagePlaceholder } from './ImagePlaceholder';
 export { default as Breadcrumbs } from './Breadcrumbs';
 export { ContactDetails, OpeningHours, Directions } from './PracticeInfo';
 export { cx } from './cx';
