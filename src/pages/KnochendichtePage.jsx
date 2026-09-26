@@ -133,7 +133,7 @@ const KnochendichtePage = () => {
           <div className="p-6 bg-white dark:bg-gray-900/40 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700">
             <h4 className="font-bold text-[#8B2323] mb-2 uppercase tracking-widest text-xs">Direktverrechnung</h4>
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              Mit Patienten, die bei der <strong>BVA, SVA und der KFA-Graz</strong> versichert sind, können wir die Knochendichtemessung vornehmen und nach Vorlage eines Überweisungsscheins direkt mit dem zuständigen Versicherungsträger verrechnen.
+              Mit Patienten, die bei der <strong>BVAEB, SVS oder der KFA Graz</strong> versichert sind, können wir die Knochendichtemessung vornehmen und nach Vorlage eines Überweisungsscheins direkt mit dem zuständigen Versicherungsträger verrechnen.
             </p>
           </div>
           <div className="p-6 bg-white dark:bg-gray-900/40 rounded-2xl shadow-sm border border-red-50 dark:border-red-900/30">
