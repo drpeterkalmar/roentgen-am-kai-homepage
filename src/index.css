@@ -37,281 +37,115 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ------------------------------------------------------------------
+   Design-Grundlage Relaunch (09/2026)
+   Ruhig, viel Weißraum, klare Typografie. Keine Glas-/Blur-/Partikel-Effekte.
+   Farben: Slate (neutral) + Markenrot (brand, tailwind.config.js).
+   ------------------------------------------------------------------ */
+
 :root {
-  /* Brand Colors */
   --primary: #8B2323;
   --primary-rgb: 139, 35, 35;
-  --primary-hover: #A52A2A;
-  --primary-soft: rgba(var(--primary-rgb), 0.1);
-  
-  /* UI Colors */
-  --bg-white: #ffffff;
-  --bg-light: #f9fafb;
-  --text-dark: #111827;
-  --text-gray: #1f2937;
-  --text-muted: #4b5563;
-  
-  /* Structural */
-  --header-height: 80px;
-  --container-max: 1200px;
-  --radius-sm: 8px;
-  --radius-md: 16px;
-  --radius-lg: 32px;
-  --radius-xl: 48px;
-  
-  /* Transitions */
-  --transition-fast: 150ms ease;
-  --transition-normal: 400ms cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-slow: 700ms cubic-bezier(0.16, 1, 0.3, 1);
-  --bg-overlay: rgba(255, 255, 255, 0.4);
+  --primary-hover: #761D1D;
+  --header-height: 176px; /* Höhe des fixierten Headers (Desktop, 3 Zeilen) */
+  color-scheme: light;
+}
+.dark { color-scheme: dark; }
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Anker-Sprünge nicht unter dem fixierten Header verstecken */
+    scroll-padding-top: calc(var(--header-height) + 16px);
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-white font-sans text-slate-800 antialiased dark:bg-slate-950 dark:text-slate-200;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+    text-wrap: balance;
+    /* lange deutsche Komposita („Datenschutzerklärung“) am Handy trennen statt überlaufen */
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+  p { text-wrap: pretty; }
+  #root { min-height: 100vh; display: flex; flex-direction: column; }
+
+  /* Tastatur-Fokus sichtbar (WCAG 2.4.7 / 2.4.11) */
+  :focus-visible {
+    outline: 3px solid #8B2323;
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  .dark :focus-visible { outline-color: #F28B82; }
+  .bg-brand-800 :focus-visible,
+  .bg-brand :focus-visible,
+  :is(.bg-brand, .bg-brand-800):focus-visible { outline-color: #0f172a; }
+  .dark .bg-brand-800 :focus-visible { outline-color: #ffffff; }
 }
 
-.dark {
-  --primary: #8B2323;
-  --primary-rgb: 139, 35, 35;
-  --bg-white: #0f172a;
-  --bg-light: #1e293b;
-  --text-dark: #ffffff;
-  --text-gray: #f1f5f9;
-  --text-muted: #cbd5e1;
-  --bg-overlay: rgba(15, 23, 42, 0.92);
+@media (max-width: 1279px) {
+  :root { --header-height: 130px; }
+}
+@media (max-width: 767px) {
+  :root { --header-height: 70px; }
 }
 
-/* 8px Grid Helpers */
-.gap-8 { gap: 2rem; }
-.p-8 { padding: 2rem; }
-.m-8 { margin: 2rem; }
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Leistungsseiten: Fließtext aus den bestehenden Seiten einheitlich setzen */
+.service-content h2 {
+  @apply mt-12 mb-4 font-display text-2xl font-semibold tracking-tight text-slate-900 dark:text-white;
 }
+.service-content h3 { @apply text-slate-900 dark:text-white; }
+.service-content > section:first-child h2 { margin-top: 0; }
+.service-content p + p { margin-top: 1rem; }
+.service-content table { @apply text-[0.95rem]; }
 
-html {
-  scroll-behavior: smooth;
+/* ------------------------------------------------------------------
+   Übergang: Klassen der bisherigen Komponenten (Team-Seiten, Ratgeber)
+   auf die ruhige Kartenoptik umgestellt – kein Blur, kein Rauschen.
+   ------------------------------------------------------------------ */
+.glass,
+.glass-featured {
+  @apply border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-900;
+  position: relative;
 }
+.glass-featured { @apply border-brand-200 dark:border-brand-800; }
+.glass-glow { box-shadow: none; }
 
-body {
-  font-family: 'Inter', sans-serif;
-  background-color: var(--bg-white);
-  color: var(--text-dark);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  min-height: 100vh;
-}
+/* Dunkelmodus: Markenrot als TEXT hat auf dunklem Grund nur ~2:1 Kontrast → hellere Variante.
+   Flächen (bg-[#8B2323]) bleiben unverändert. */
+.dark .text-\[\#8B2323\] { color: #F28B82; }
+.dark .hover\:text-\[\#8B2323\]:hover { color: #F8A9A3; }
 
-/* High Contrast Mode - Aggressive contrast for accessibility */
-body.high-contrast {
-  --primary: #ff4d4d; /* High contrast Red */
-  --text-dark: #ffffff;
-  --text-gray: #ffffff;
-  --bg-light: #000000;
-  --bg-white: #000000;
-  background: #000000 !important;
-  font-size: 115%;
-}
-
+/* Hoher Kontrast: schwarz auf weiß, kräftige Rahmen, unterstrichene Links */
+body.high-contrast,
 body.high-contrast * {
-  border-color: #ffff00 !important;
-  color: inherit !important;
   background-image: none !important;
   box-shadow: none !important;
   text-shadow: none !important;
 }
-
-body.high-contrast .glass {
-  background: #000 !important;
-  border: 2px solid #ff0 !important;
+body.high-contrast *:not(img):not(svg):not(svg *) {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-color: #000000 !important;
 }
+body.high-contrast a { text-decoration: underline !important; text-underline-offset: 3px; }
+body.high-contrast a[class*='rounded'],
+body.high-contrast button { border: 2px solid #000 !important; }
+body.high-contrast :focus-visible { outline: 4px solid #000 !important; outline-offset: 3px; }
+body.high-contrast [data-placeholder] { border: 2px dashed #000 !important; }
 
-body.high-contrast .text-\[\#8B2323\], 
-body.high-contrast .text-gray-900,
-body.high-contrast .text-gray-800 {
-  color: #ffffff !important;
-}
-
-body.high-contrast * {
-  border-color: #000 !important;
-}
-
-h1, h2, h3, h4, h5 {
-  font-family: 'Outfit', sans-serif;
-  font-weight: 800 !important;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-  transition: var(--transition-fast);
-}
-
-button {
-  cursor: pointer;
-  border: none;
-  background: none;
-  font-family: inherit;
-}
-
-#root {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Glassmorphism 2.0 - Refined for 2026 */
-.glass {
-  background: rgba(255, 255, 255, 0.45);
-  backdrop-filter: blur(16px) saturate(210%);
-  -webkit-backdrop-filter: blur(16px) saturate(210%);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 
-    0 8px 32px 0 rgba(0, 0, 0, 0.04),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.3);
-  position: relative;
-  overflow: hidden;
-  transition: all var(--transition-normal);
-  will-change: transform;
-}
-
-.dark .glass {
-  background: rgba(15, 23, 42, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 
-    0 8px 32px 0 rgba(0, 0, 0, 0.3),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
-}
-
-.glass::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  opacity: 0.02;
-  pointer-events: none;
-}
-
-.glass-glow {
-  box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
-}
-
-/* Featured service cards — glass base + subtle brand-red tint */
-.glass-featured {
-  background: rgba(255, 250, 250, 0.6);
-  backdrop-filter: blur(16px) saturate(210%);
-  -webkit-backdrop-filter: blur(16px) saturate(210%);
-  box-shadow: 
-    0 8px 32px 0 rgba(139, 35, 35, 0.12),
-    inset 0 0 0 1px rgba(139, 35, 35, 0.12);
-  position: relative;
-  overflow: hidden;
-  transition: all var(--transition-normal);
-  will-change: transform;
-}
-
-.dark .glass-featured {
-  background: rgba(30, 20, 24, 0.7);
-  box-shadow: 
-    0 8px 32px 0 rgba(0, 0, 0, 0.35),
-    inset 0 0 0 1px rgba(139, 35, 35, 0.3);
-}
-
-.glass-featured::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  opacity: 0.02;
-  pointer-events: none;
-}
-
-/* Base Container Class */
-.container-custom {
-  max-width: var(--container-max);
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 2rem;
-  padding-right: 2rem;
-}
-
-/* Bento Grid Utilities */
-.bento-grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-auto-rows: auto;
-  gap: 1.5rem;
-}
-
-@media (max-width: 1024px) {
-  .bento-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .bento-grid > * {
-    grid-column: span 1 !important;
-    aspect-ratio: auto !important;
-  }
-}
-
-@media (max-width: 640px) {
-  .bento-grid {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-  .bento-grid > * {
-    grid-column: span 1 !important;
-    aspect-ratio: auto !important;
-  }
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-fade {
-  animation: fadeIn var(--transition-normal) forwards;
-  will-change: transform, opacity;
-}
-
-/* Skeleton Pulse Animation */
+/* Skeleton (Ladeanzeige) */
 @keyframes pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
 }
+.animate-skeleton { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
 
-.animate-skeleton {
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-/* Staggered Entrance Utility */
-.stagger-in > * {
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-.stagger-in > *.visible {
-  animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-/* Dark mode: Markenrot #8B2323 hat auf dunklem Grund nur Kontrast 2:1 (WCAG verlangt 4.5:1).
-   Textfarbe wird im Dunkelmodus auf eine hellere Variante derselben Farbfamilie gehoben;
-   Flächen (Buttons, Badges mit bg-[#8B2323]) bleiben unverändert. */
-.dark .text-\[\#8B2323\] { color: #F28B82; }
-.dark .hover\:text-\[\#8B2323\]:hover { color: #F8A9A3; }
-
-/* Tastatur-Fokus sichtbar (WCAG 2.4.7) */
-:focus-visible {
-  outline: 3px solid #8B2323;
-  outline-offset: 3px;
-  border-radius: 6px;
-}
-.dark :focus-visible { outline-color: #F28B82; }
-
-/* Nutzer mit „Bewegung reduzieren“: keine Ken-Burns-/Partikel-/Scroll-Animationen */
+/* Nutzer mit „Bewegung reduzieren“ */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {
@@ -319,4 +153,9 @@ button {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Druck: nur Inhalt */
+@media print {
+  header, footer, nav[aria-label='Schnellzugriff'] { display: none !important; }
 }

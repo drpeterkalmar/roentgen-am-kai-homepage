@@ -9,7 +9,7 @@ const KoerperfettPage = () => {
   return (
     <>
       <ServiceLayout
-        title="Körperfettmessung"
+        title="DEXA-Körperanalyse"
       subtitle="Die DEXA-Methode gilt als Goldstandard bei der Bestimmung von Fett- und Muskelmasse. Mit einer Ganzkörperfettanalyse erhalten Sie exakte Informationen über Ihre Körperzusammensetzung."
       icon={<Scale size={32} />}
       preparation={[
@@ -116,7 +116,7 @@ const KoerperfettPage = () => {
         </p>
       </section>
 
-      <FAQ items={faqData.koerperfett} title="Häufige Fragen zur Körperfettmessung" />
+      <FAQ items={faqData.koerperfett} title="Häufige Fragen zur DEXA-Körperanalyse" />
     </ServiceLayout>
     </>
   );

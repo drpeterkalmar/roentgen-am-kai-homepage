@@ -1,61 +1,49 @@
-import React, { useState } from 'react';
-import { ChevronDown, HelpCircle } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useId } from 'react';
+import { ChevronDown } from 'lucide-react';
+import { cx } from './ui/cx';
 
-const FAQItem = ({ question, answer }) => {
+// Barrierearme FAQ (Disclosure-Muster): Frage = Schaltfläche in einer Überschrift,
+// aria-expanded/aria-controls, Antwort-Region. Inhalte aus src/data/faqData.js
+// (dieselbe Quelle speist das FAQPage-Schema in SchemaMarkup.jsx).
+const FAQItem = ({ question, answer, headingLevel }) => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const id = useId();
+  const H = `h${headingLevel}`;
   return (
-    <div className="border-b border-gray-200 dark:border-gray-700 last:border-0">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full py-6 flex items-center justify-between text-left group transition-all"
-      >
-        <span className={`text-lg font-bold transition-colors ${isOpen ? 'text-[#8B2323] dark:text-[#F28B82]' : 'text-gray-900 dark:text-white group-hover:text-[#8B2323] dark:group-hover:text-[#A52A2A]'}`}>
-          {question}
-        </span>
-        <div className={`shrink-0 ml-4 w-8 h-8 rounded-full flex items-center justify-center transition-all ${isOpen ? 'bg-[#8B2323] text-white rotate-180' : 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-300'}`}>
-          <ChevronDown size={20} />
-        </div>
-      </button>
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="overflow-hidden"
-          >
-            <p className="pb-6 text-gray-700 dark:text-gray-200 leading-relaxed">
-              {answer}
-            </p>
-          </motion.div>
-        )}
-      </AnimatePresence>
+    <div className="border-b border-slate-200 last:border-0 dark:border-slate-700">
+      <H className="font-sans text-base font-normal">
+        <button
+          type="button"
+          id={`${id}-q`}
+          aria-expanded={isOpen}
+          aria-controls={`${id}-a`}
+          onClick={() => setIsOpen((o) => !o)}
+          className="flex w-full items-start justify-between gap-4 py-5 text-left text-lg font-semibold text-slate-900 hover:text-brand dark:text-white dark:hover:text-brand-300"
+        >
+          <span>{question}</span>
+          <ChevronDown size={22} aria-hidden="true" className={cx('mt-1 shrink-0 text-slate-500 transition-transform', isOpen && 'rotate-180')} />
+        </button>
+      </H>
+      <div id={`${id}-a`} role="region" aria-labelledby={`${id}-q`} hidden={!isOpen} className="pb-5 pr-10 leading-relaxed text-slate-700 dark:text-slate-200">
+        <p>{answer}</p>
+      </div>
     </div>
   );
 };
 
-const FAQ = ({ items, title = "Häufig gestellte Fragen" }) => {
+const FAQ = ({ items, title = 'Häufig gestellte Fragen', headingLevel = 2 }) => {
+  const itemLevel = Math.min(headingLevel + 1, 6);
+  const H = `h${headingLevel}`;
   return (
-    <section id="faq" className="py-24 bg-transparent relative">
-      <div className="max-w-4xl mx-auto px-6">
-        <div className="flex items-center gap-3 mb-12">
-          <div className="w-12 h-12 bg-red-50 dark:bg-red-900/30 rounded-2xl flex items-center justify-center text-[#8B2323] dark:text-[#F28B82]">
-            <HelpCircle size={24} />
-          </div>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white font-[Outfit]">
-            {title}
-          </h2>
-        </div>
-
-        <div className="glass rounded-[40px] p-8 md:p-12">
-          <div className="divide-y divide-gray-200 dark:divide-gray-700">
-            {items.map((item, index) => (
-              <FAQItem key={index} question={item.question} answer={item.answer} />
-            ))}
-          </div>
+    <section id="faq" aria-labelledby="faq-title" className="py-14 sm:py-20">
+      <div className="mx-auto max-w-3xl px-5 sm:px-6">
+        <H id="faq-title" className="mb-6 font-display text-2xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-3xl">
+          {title}
+        </H>
+        <div className="rounded-2xl border border-slate-200 bg-white px-5 sm:px-8 dark:border-slate-700 dark:bg-slate-900">
+          {items.map((item) => (
+            <FAQItem key={item.question} question={item.question} answer={item.answer} headingLevel={itemLevel} />
+          ))}
         </div>
       </div>
     </section>

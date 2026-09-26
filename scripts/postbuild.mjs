@@ -70,7 +70,6 @@ const legacy = {
   '/unser-angebot/digitales-roentgen/wirbelsaeulenroentgen': '/unser-angebot/roentgen',
   '/unser-angebot/digitales-roentgen/roentgen-nach-unfall': '/unser-angebot/roentgen',
   '/unser-angebot/mammographie/mammascreening': '/unser-angebot/mammographie',
-  '/kontakt': '/#contact',
   '/datenschutzerklarung': '/datenschutz',
 };
 for (const [from, to] of Object.entries(legacy)) {

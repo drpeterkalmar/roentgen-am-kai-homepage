@@ -1,138 +1,131 @@
 import React from 'react';
-import { ChevronRight, ArrowLeft, ShieldCheck, MapPin, Phone } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { useLocation } from 'react-router-dom';
+import { Clock } from 'lucide-react';
+import { services, serviceKeyByPath } from '../data/services';
+import { OTHER_EXAMS } from '../data/navigation';
+import Container from './ui/Container';
+import Breadcrumbs from './ui/Breadcrumbs';
+import Card from './ui/Card';
+import { Lead } from './ui/Heading';
+import { BookingButton, PhoneButton } from './ui/BookingButtons';
+import ReferralInfo from './ui/ReferralInfo';
+import PriceList from './ui/PriceList';
+
+// Vorlage für Leistungsseiten. Die Seiten (src/pages/*Page.jsx) liefern Titel, Einleitung und Inhalt;
+// Termin-, Kassen- und Preisangaben kommen zentral aus src/data/services.js.
+const ListBlock = ({ title, items }) => (
+  <div>
+    <h3 className="mb-3 font-display text-lg font-semibold text-slate-900 dark:text-white">{title}</h3>
+    <ul className="space-y-2 text-slate-700 dark:text-slate-200">
+      {items.map((item) => (
+        <li key={item} className="flex gap-3">
+          <span aria-hidden="true" className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand dark:bg-brand-300" />
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+);
 
 const ServiceLayout = ({ title, subtitle, children, icon, preparation, requirements, imageUrl, customImage }) => {
+  const { pathname } = useLocation();
+  const key = serviceKeyByPath(pathname);
+  const service = key ? services[key] : null;
+  const isOther = OTHER_EXAMS.some((e) => pathname.replace(/\/+$/, '') === e.href);
+
+  const crumbs = [
+    { name: 'Startseite', href: '/' },
+    ...(isOther ? [{ name: 'Weitere Untersuchungen', href: '/weitere-untersuchungen' }] : []),
+    { name: title },
+  ];
+
+  const imgSrc = imageUrl
+    ? imageUrl.startsWith('/') ? `${import.meta.env.BASE_URL}${imageUrl.substring(1)}` : imageUrl
+    : null;
+
   return (
-    <div className="pt-40 lg:pt-48 pb-24 bg-transparent min-h-screen">
-      <div className="max-w-[1200px] mx-auto px-6">
-        {/* Breadcrumbs */}
-        <nav className="flex items-center gap-2 text-sm font-medium text-gray-500 mb-8 overflow-x-auto whitespace-nowrap">
-          <Link to="/" className="hover:text-[#8B2323] transition-colors">Startseite</Link>
-          <ChevronRight size={14} />
-          <span className="text-[#8B2323]">Unser Angebot</span>
-          <ChevronRight size={14} />
-          <span className="text-gray-900 dark:text-white font-bold">{title}</span>
-        </nav>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
-          {/* Main Content */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="lg:col-span-2"
-          >
-            {customImage ? (
-              customImage
-            ) : imageUrl ? (
-              <div className="mb-12 rounded-[40px] overflow-hidden shadow-2xl relative h-[400px]">
-                <img 
-                  src={imageUrl.startsWith('/') ? `${import.meta.env.BASE_URL}${imageUrl.substring(1)}` : imageUrl} 
-                  alt={title} 
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+    <article className="pb-16 sm:pb-24">
+      <div className="border-b border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900">
+        <Container className="py-8 sm:py-12">
+          <Breadcrumbs items={crumbs} />
+          <div className="mt-6 flex items-start gap-4">
+            {icon && (
+              <div aria-hidden="true" className="hidden h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-white text-brand shadow-sm dark:bg-slate-800 dark:text-brand-300 sm:flex">
+                {React.cloneElement(icon, { size: 28 })}
               </div>
-            ) : null}
-
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-12 h-12 bg-red-50 dark:bg-red-900/30 text-[#8B2323] rounded-2xl flex items-center justify-center">
-                {icon}
-              </div>
-              <h1 className="text-4xl md:text-5xl font-extrabold text-[#1f2937] dark:text-white font-[Outfit] tracking-tight">
+            )}
+            <div className="min-w-0">
+              <h1 id="page-title" className="font-display text-3xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-4xl lg:text-5xl">
                 {title}
               </h1>
+              {subtitle && <Lead className="mt-4 max-w-3xl">{subtitle}</Lead>}
+              {service?.durationMinutes && (
+                <p className="mt-4 inline-flex items-center gap-2 text-slate-700 dark:text-slate-200">
+                  <Clock size={18} aria-hidden="true" className="text-brand dark:text-brand-300" />
+                  Dauer: etwa {service.durationMinutes} Minuten
+                </p>
+              )}
             </div>
-            
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-10 leading-relaxed font-light">
-              {subtitle}
-            </p>
+          </div>
+        </Container>
+      </div>
 
-            <div className="prose prose-lg dark:prose-invert prose-red max-w-none text-gray-700 dark:text-gray-200 leading-relaxed mb-12">
+      <Container className="pt-10 sm:pt-14">
+        <div className="grid gap-10 lg:grid-cols-3 lg:gap-14">
+          <div className="min-w-0 lg:col-span-2">
+            {customImage ||
+              (imgSrc && (
+                <div className="mb-10 overflow-hidden rounded-2xl bg-slate-100 dark:bg-slate-800">
+                  <img src={imgSrc} alt="" width="1200" height="600" className="h-56 w-full object-cover sm:h-80" />
+                </div>
+              ))}
+
+            <div className="service-content text-[1.0625rem] leading-relaxed text-slate-700 dark:text-slate-200">
               {children}
             </div>
 
-            {/* Preparation/Requirements Box */}
             {(preparation || requirements) && (
-              <div className="bg-gray-50 dark:bg-gray-800/50 rounded-[32px] p-8 border border-gray-100 dark:border-gray-700 mb-12">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3 font-[Outfit]">
-                  <ShieldCheck className="text-[#8B2323] dark:text-[#F28B82]" />
+              <Card tone="muted" as="section" aria-labelledby="info-title" className="mt-12">
+                <h2 id="info-title" className="mb-6 font-display text-2xl font-semibold tracking-tight text-slate-900 dark:text-white">
                   Wichtige Informationen
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  {preparation && (
-                    <div className="space-y-3">
-                      <p className="font-bold text-[#8B2323] text-sm uppercase tracking-wider">Vorbereitung</p>
-                      <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
-                        {preparation.map((item, i) => (
-                          <li key={i} className="flex gap-2">
-                            <span className="text-[#8B2323] font-bold">•</span>
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                  {requirements && (
-                    <div className="space-y-3">
-                      <p className="font-bold text-[#8B2323] text-sm uppercase tracking-wider">Mitzubringen</p>
-                      <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
-                        {requirements.map((item, i) => (
-                          <li key={i} className="flex gap-2">
-                            <span className="text-[#8B2323] font-bold">•</span>
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
+                </h2>
+                <div className="grid gap-8 md:grid-cols-2">
+                  {preparation && <ListBlock title="Vorbereitung" items={preparation} />}
+                  {requirements && <ListBlock title="Bitte mitbringen" items={requirements} />}
                 </div>
-              </div>
+              </Card>
             )}
-
-            <Link to="/" className="inline-flex items-center gap-2 text-[#8B2323] font-bold hover:gap-3 transition-all uppercase text-sm tracking-wider">
-              <ArrowLeft size={18} />
-              Zur Übersicht
-            </Link>
-          </motion.div>
-
-          {/* Sidebar */}
-          <div className="lg:col-span-1">
-            <div className="sticky top-32 space-y-6">
-              <div className="bg-[#1f2937] text-white p-8 rounded-[40px] shadow-2xl relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#8B2323] rounded-full blur-[80px] opacity-20 -mr-16 -mt-16" />
-                <h3 className="text-2xl font-bold mb-6 font-[Outfit] relative z-10">Termin vereinbaren</h3>
-                <p className="text-gray-400 mb-8 relative z-10">
-                  Rufen Sie uns direkt an – wir vereinbaren gerne Ihren Wunschtermin.
-                </p>
-                <a
-                  href="tel:+433168409050"
-                  className="w-full bg-[#8B2323] text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-[#A52A2A] transition-all relative z-10"
-                >
-                  <Phone size={20} />
-                  0316 840 90 50
-                </a>
-              </div>
-
-              <div className="bg-gray-50 dark:bg-gray-800/50 p-8 rounded-[40px] border border-gray-100 dark:border-gray-700">
-                <h4 className="font-bold text-gray-900 dark:text-white mb-4 font-[Outfit]">Informationen</h4>
-                <div className="space-y-4 text-sm text-gray-600 dark:text-gray-300">
-                  <div className="flex items-start gap-3">
-                    <MapPin className="text-[#8B2323] shrink-0" size={18} />
-                    <span>Körösistraße 9, 8010 Graz</span>
-                  </div>
-                  <div className="pt-4 border-t border-gray-100 dark:border-gray-700">
-                    <p className="font-bold text-gray-900 dark:text-white mb-1">Alle Kassen & Privat</p>
-                    <p className="dark:text-gray-300">ÖGK, SVS, BVAEB, KFA</p>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
+
+          <aside aria-label="Termin und Kosten" className="lg:col-span-1">
+            <div className="space-y-6 lg:sticky lg:top-[calc(var(--header-height)+24px)]">
+              <Card tone="brand">
+                <h2 className="font-display text-xl font-semibold text-slate-900 dark:text-white">Termin vereinbaren</h2>
+                <p className="mt-2 text-slate-700 dark:text-slate-200">
+                  {service?.onlineBooking
+                    ? 'Buchen Sie Ihren Termin online oder rufen Sie uns an.'
+                    : 'Termine für diese Untersuchung vereinbaren Sie bitte telefonisch.'}
+                </p>
+                <div className="mt-5 flex flex-col gap-3">
+                  {service?.onlineBooking && <BookingButton block />}
+                  <PhoneButton block variant={service?.onlineBooking ? 'secondary' : 'primary'} />
+                </div>
+              </Card>
+
+              <Card>
+                <ReferralInfo serviceKey={key} headingLevel={2} />
+              </Card>
+
+              {service?.priceIds && (
+                <Card>
+                  <PriceList ids={service.priceIds} headingLevel={2} />
+                </Card>
+              )}
+            </div>
+          </aside>
         </div>
-      </div>
-    </div>
+      </Container>
+    </article>
   );
 };
 

@@ -1,11 +1,10 @@
 import React, { useEffect, lazy, Suspense, useState } from 'react'
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
-import Navbar from './components/Navbar'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Header from './components/Header'
 import Home from './pages/Home'
 import Footer from './components/Footer'
 import SchemaMarkup from './components/SchemaMarkup'
 import MobileActions from './components/MobileActions'
-import ParticleBackground from './components/ParticleBackground'
 import ScrollToHash from './components/ScrollToHash'
 import RouteMeta from './components/RouteMeta'
 
@@ -21,6 +20,10 @@ const ImpressumPage = lazy(() => import('./pages/ImpressumPage'))
 const DatenschutzPage = lazy(() => import('./pages/DatenschutzPage'))
 const KalmarPage = lazy(() => import('./pages/KalmarPage'))
 const RieglerPage = lazy(() => import('./pages/RieglerPage'))
+const WeitereUntersuchungenPage = lazy(() => import('./pages/WeitereUntersuchungenPage'))
+const GesundheitszielePage = lazy(() => import('./pages/GesundheitszielePage'))
+const RatgeberPage = lazy(() => import('./pages/RatgeberPage'))
+const KontaktPage = lazy(() => import('./pages/KontaktPage'))
 
 // ScrollToTop removed in favor of ScrollToHash
 
@@ -62,28 +65,21 @@ function App() {
       <ScrollToHash />
       <RouteMeta />
       <SchemaMarkup />
-      <div 
-        className="relative min-h-screen selection:bg-red-100 selection:text-[#8B2323] transition-colors duration-300 overflow-x-hidden"
-      >
-        {/* Background Layer */}
-        <div 
-          className="fixed inset-0 -z-[20] pointer-events-none transition-colors duration-300"
-          style={{
-            backgroundImage: `linear-gradient(var(--bg-overlay), var(--bg-overlay)), url('${import.meta.env.BASE_URL}assets/images/glass-bg.avif')`,
-            backgroundAttachment: 'fixed',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
-          }}
+      <div className="flex min-h-screen flex-col bg-white pb-[calc(56px+env(safe-area-inset-bottom))] text-slate-800 dark:bg-slate-950 dark:text-slate-200 md:pb-0">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-4 focus:py-3 focus:font-semibold focus:text-brand focus:shadow-lg"
+        >
+          Zum Inhalt springen
+        </a>
+        <Header
+          highContrast={highContrast}
+          setHighContrast={setHighContrast}
+          isDark={isDark}
+          toggleTheme={toggleTheme}
         />
-        <ParticleBackground isDark={isDark} />
-        <Navbar 
-          highContrast={highContrast} 
-          setHighContrast={setHighContrast} 
-          isDark={isDark} 
-          toggleTheme={toggleTheme} 
-        />
-        <main>
-          <Suspense fallback={<div className="min-h-screen bg-transparent" />}>
+        <main id="main" tabIndex={-1} className="flex-1 focus:outline-none">
+          <Suspense fallback={<div className="min-h-[60vh]" />}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/unser-angebot/roentgen" element={<RoentgenPage />} />
@@ -93,6 +89,10 @@ function App() {
               <Route path="/unser-angebot/dvt" element={<DVTPage />} />
               <Route path="/unser-angebot/phlebographie" element={<PhlebographiePage />} />
               <Route path="/unser-angebot/koerperfettmessung" element={<KoerperfettPage />} />
+              <Route path="/weitere-untersuchungen" element={<WeitereUntersuchungenPage />} />
+              <Route path="/gesundheitsziele" element={<GesundheitszielePage />} />
+              <Route path="/ratgeber" element={<RatgeberPage />} />
+              <Route path="/kontakt" element={<KontaktPage />} />
               <Route path="/impressum" element={<ImpressumPage />} />
               <Route path="/datenschutz" element={<DatenschutzPage />} />
               <Route path="/unser-team/dr-peter-kalmar" element={<KalmarPage />} />

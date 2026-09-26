@@ -8,7 +8,7 @@ export const SITE_URL = 'https://www.xn--rntgen-am-kai-imb.at';
 
 export const DEFAULT_TITLE = 'Röntgen am Kai | Radiologie in Graz – Alle Kassen & Privat';
 export const DEFAULT_DESCRIPTION =
-  'Radiologie in Graz: digitales Röntgen, Sonographie, Mammographie, DEXA-Knochendichte- und Körperfettmessung, DVT und Phlebographie. Alle Kassen und privat.';
+  'Radiologie in Graz: Mammographie und Brustvorsorge, DEXA-Knochendichtemessung, DEXA-Körperanalyse, digitales Röntgen, Ultraschall und Durchleuchtung. Alle Kassen und privat.';
 
 export const routes = [
   {
@@ -56,9 +56,33 @@ export const routes = [
   },
   {
     path: '/unser-angebot/koerperfettmessung',
-    title: 'Körperfettmessung (DEXA Core Scan) in Graz',
-    description: 'Exakte DEXA-Körperfettmessung (Core Scan) in Graz: Körperzusammensetzung, Viszeralfett, Muskelmasse und Grundumsatz. Für Sport, Ernährung und Gesundheit.',
+    title: 'DEXA-Körperanalyse in Graz',
+    description: 'DEXA-Körperanalyse in Graz: Körperfett, Muskelmasse und Fettverteilung in etwa 15 Minuten. Privatleistung, online buchbar.',
     priority: '0.9',
+  },
+  {
+    path: '/weitere-untersuchungen',
+    title: 'Weitere Untersuchungen: Röntgen, Ultraschall, Durchleuchtung',
+    description: 'Digitales Röntgen, Ultraschall, Durchleuchtung, Phlebographie sowie DVT und Zahnröntgen bei Röntgen am Kai, Körösistraße 9, Graz.',
+    priority: '0.7',
+  },
+  {
+    path: '/gesundheitsziele',
+    title: 'Gesundheitsziele: Brust, Knochen, Körperzusammensetzung',
+    description: 'Die passende Untersuchung für Ihr Anliegen: Brustgesundheit, Knochengesundheit und Körperzusammensetzung – Röntgen am Kai in Graz.',
+    priority: '0.6',
+  },
+  {
+    path: '/ratgeber',
+    title: 'Ratgeber',
+    description: 'Informationen von Röntgen am Kai rund um Vorsorge, Untersuchungen und Befunde.',
+    priority: '0.6',
+  },
+  {
+    path: '/kontakt',
+    title: 'Praxis und Kontakt',
+    description: 'Röntgen am Kai, Körösistraße 9, 8010 Graz: Kontakt, Öffnungszeiten, Anfahrt mit Öffis und Tiefgarage, Termin online oder unter 0316 840 90 50.',
+    priority: '0.8',
   },
   {
     path: '/unser-team/dr-peter-kalmar',

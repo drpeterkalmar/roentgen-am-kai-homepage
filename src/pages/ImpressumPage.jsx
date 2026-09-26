@@ -4,14 +4,14 @@ import { COMPANY_NAME, FN, FB_GERICHT, UID, RECHTSFORM, SITZ, GEGENSTAND } from 
 
 const ImpressumPage = () => {
   return (
-    <div className="pt-32 pb-24 bg-white dark:bg-gray-950">
+    <div className="pt-10 sm:pt-14 pb-24 bg-white dark:bg-slate-950">
       <div className="max-w-[800px] mx-auto px-6">
         <div className="inline-flex items-center gap-2 bg-red-50 dark:bg-red-900/30 text-[#8B2323] px-4 py-2 rounded-full text-sm font-bold mb-8">
           <ShieldCheck size={18} />
           <span>Rechtliche Informationen</span>
         </div>
         
-        <h1 className="text-4xl md:text-6xl font-extrabold text-[#1f2937] dark:text-white mb-12 font-[Outfit]">
+        <h1 id="page-title" className="mb-10 font-display text-3xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-4xl lg:text-5xl">
           Impressum
         </h1>
 

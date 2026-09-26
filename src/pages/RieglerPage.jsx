@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, MotionConfig } from 'framer-motion';
 import { Calendar, Award, BookOpen, Briefcase, GraduationCap, ArrowLeft, Mail, Phone, Globe, CheckCircle2, Clock, FileText } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { SITE_URL } from '../data/routes';
@@ -96,32 +96,10 @@ const RieglerPage = () => {
   };
 
   return (
-    <div className="pt-40 lg:pt-48 pb-24 bg-transparent min-h-screen relative overflow-hidden">
+    <div className="pt-10 sm:pt-14 pb-24 relative">
       <script type="application/ld+json">
         {JSON.stringify(personSchema)}
       </script>
-      {/* Background Animated Blobs */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden -z-10">
-        <motion.div 
-          animate={{ 
-            x: [0, 50, 0],
-            y: [0, 30, 0],
-            rotate: [0, -10, 0]
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-red-100/30 rounded-full blur-[60px]"
-          style={{ willChange: 'transform' }}
-        />
-        <motion.div 
-          animate={{ 
-            x: [0, 30, 0],
-            y: [0, -50, 0]
-          }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-1/4 -left-20 w-[450px] h-[450px] bg-blue-50/20 rounded-full blur-[60px]"
-          style={{ willChange: 'transform' }}
-        />
-      </div>
 
       <div className="max-w-[1200px] mx-auto px-6 relative z-10">
         {/* Breadcrumbs */}
@@ -323,4 +301,11 @@ const RieglerPage = () => {
   );
 };
 
-export default RieglerPage;
+// Animationen respektieren die Systemeinstellung „Bewegung reduzieren“
+const RieglerPageWithMotion = (props) => (
+  <MotionConfig reducedMotion="user">
+    <RieglerPage {...props} />
+  </MotionConfig>
+);
+
+export default RieglerPageWithMotion;

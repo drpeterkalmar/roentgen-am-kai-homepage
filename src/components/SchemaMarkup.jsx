@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { faqData } from '../data/faqData';
 import { SITE_URL } from '../data/routes';
 import { COMPANY_NAME, FN, UID } from '../data/company';
+import { PHONE_E164, EMAIL, ADDRESS, OPENING_HOURS } from '../data/practice';
 
 const SchemaMarkup = () => {
   const location = useLocation();
@@ -19,13 +20,14 @@ const SchemaMarkup = () => {
       "legalName": COMPANY_NAME,
       "vatID": UID,
       "identifier": { "@type": "PropertyValue", "propertyID": "Firmenbuchnummer", "value": `FN ${FN}` },
-      "telephone": "+433168409050",
+      "telephone": PHONE_E164,
+      "email": EMAIL,
       "priceRange": "$$",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Körösistraße 9",
-        "addressLocality": "Graz",
-        "postalCode": "8010",
+        "streetAddress": ADDRESS.street,
+        "addressLocality": ADDRESS.city,
+        "postalCode": ADDRESS.zip,
         "addressCountry": "AT"
       },
       "geo": {
@@ -34,20 +36,12 @@ const SchemaMarkup = () => {
         "longitude": 15.4326
       },
       "hasMap": "https://www.google.com/maps/@47.0788842,15.4326856,226m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI2MDQxNS4wIKXMDSoASAFQAw%3D%3D",
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
-          "opens": "08:00",
-          "closes": "17:00"
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": "Friday",
-          "opens": "08:00",
-          "closes": "13:00"
-        }
-      ],
+      "openingHoursSpecification": OPENING_HOURS.map((h) => ({
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": h.schema,
+        "opens": h.opens,
+        "closes": h.closes
+      })),
       "medicalSpecialty": ["Radiology", "DiagnosticImaging"],
       "founder": [
         { "@type": "Person", "name": "Priv. Doz. Dr. Peter Kalmar" },
@@ -57,7 +51,7 @@ const SchemaMarkup = () => {
         { "@type": "Organization", "name": "ÖGIR" },
         { "@type": "Organization", "name": "ÖRG" }
       ],
-      "knowsAbout": ["Mammographie", "Knochendichtemessung", "Ultraschall", "DEXA", "Röntgendiagnostik", "DVT", "Zahnröntgen", "Core Scan", "Körperfettanalyse", "Viszeralfettmessung", "Brustkrebs-Screening", "Osteoporose-Vorsorge", "FRAX-Score", "Manitoba-Klassifikation"],
+      "knowsAbout": ["Mammographie", "Brustkrebs-Früherkennung", "Knochendichtemessung", "DEXA", "DEXA-Körperanalyse", "Röntgendiagnostik", "Ultraschall", "Durchleuchtung", "Phlebographie", "DVT", "Zahnröntgen", "Körperfettanalyse", "Viszeralfettmessung", "Brustkrebs-Screening", "Osteoporose-Vorsorge", "FRAX-Score", "Manitoba-Klassifikation"],
       "isAcceptingNewPatients": true
     };
 

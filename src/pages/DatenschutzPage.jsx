@@ -8,14 +8,14 @@ const H2 = ({ children }) => (
 
 const DatenschutzPage = () => {
   return (
-    <div className="pt-32 pb-24 bg-white dark:bg-gray-950">
+    <div className="pt-10 sm:pt-14 pb-24 bg-white dark:bg-slate-950">
       <div className="max-w-[800px] mx-auto px-6">
         <div className="inline-flex items-center gap-2 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-4 py-2 rounded-full text-sm font-bold mb-8">
           <Lock size={18} />
           <span>Privatsphäre & Sicherheit</span>
         </div>
 
-        <h1 className="text-4xl md:text-6xl font-extrabold text-[#1f2937] dark:text-white mb-12 font-[Outfit]">
+        <h1 id="page-title" className="mb-10 font-display text-3xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-4xl lg:text-5xl">
           Datenschutzerklärung
         </h1>
 

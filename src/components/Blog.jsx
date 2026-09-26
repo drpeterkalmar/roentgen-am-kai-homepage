@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { BookOpen, Sparkles, CheckCircle, Clock, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, MotionConfig } from 'framer-motion';
 
 import { blogPosts as samplePosts } from '../data/blogPosts';
 
 const BlogModal = ({ post, onClose }) => {
-  if (!post) return null;
-
-  // Prevent scroll when modal is open
+  // Hintergrund nicht scrollen, solange der Artikel offen ist; Escape schließt
   useEffect(() => {
     document.body.style.overflow = 'hidden';
+    const onKey = (e) => { if (e.key === 'Escape') onClose(); };
+    document.addEventListener('keydown', onKey);
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', onKey);
     };
-  }, []);
+  }, [onClose]);
+
+  if (!post) return null;
 
   return (
     <motion.div
@@ -191,4 +194,11 @@ const Blog = () => {
   );
 };
 
-export default Blog;
+// Animationen respektieren die Systemeinstellung „Bewegung reduzieren“
+const BlogWithMotion = (props) => (
+  <MotionConfig reducedMotion="user">
+    <Blog {...props} />
+  </MotionConfig>
+);
+
+export default BlogWithMotion;

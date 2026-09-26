@@ -1,150 +1,87 @@
 import React from 'react';
-import { Mail, Phone, MapPin, Instagram, Facebook, ArrowUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/images/rak-logo-128.png';
+import { MAIN_NAV, LEGAL_NAV, OTHER_EXAMS } from '../data/navigation';
+import { MAPS_ROUTE_URL, PRACTICE_NAME } from '../data/practice';
+import { ContactDetails, OpeningHours, Directions } from './ui/PracticeInfo';
+import { BookingButton } from './ui/BookingButtons';
+import { INSURANCE_SUMMARY } from './ui/ReferralInfo';
+
+const FooterHeading = ({ id, children }) => (
+  <h2 id={id} className="mb-4 font-display text-base font-semibold text-slate-900 dark:text-white">{children}</h2>
+);
+
+const linkCls = 'text-slate-700 underline-offset-4 hover:text-brand hover:underline dark:text-slate-300 dark:hover:text-brand-300';
 
 const Footer = () => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
+  const year = new Date().getFullYear();
+  const mainLinks = MAIN_NAV.filter((i) => i.href !== '/');
   return (
-    <footer id="contact" className="bg-transparent text-white pt-24 pb-12 overflow-hidden relative">
-      {/* Background decoration */}
-      <div className="absolute -top-24 -left-24 w-64 h-64 bg-[#8B2323] rounded-full blur-[120px] opacity-20" />
-      
-      <div className="max-w-[1200px] mx-auto px-6 relative z-10 glass p-12 md:p-16 rounded-[48px] border-white/10 shadow-2xl">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-16 mb-20">
-          {/* Brand Info */}
-          <div className="lg:col-span-1">
-            <div className="mb-4">
-              <img 
-                src={logo} 
-                alt="Röntgen am Kai Logo" 
-                width="69"
-                height="64"
-                loading="lazy"
-                className="h-16 w-auto object-contain"
-              />
-            </div>
-            <div className="flex flex-col mb-8">
-              <span className="text-3xl font-extrabold tracking-tight text-[#8B2323] font-[Outfit]">
-                RÖNTGEN AM KAI
-              </span>
-              <span className="text-sm tracking-widest uppercase font-semibold text-gray-500 dark:text-gray-400">
-                Radiologie Graz
-              </span>
-            </div>
-            <p className="text-gray-800 dark:text-gray-200 leading-relaxed mb-8">
-              Fachärzte für Radiologie in Graz. Alle Kassen und privat.
-            </p>
-            <div className="flex gap-4">
-              {/* Social icons removed per user request (There are none) */}
-            </div>
+    <footer id="contact" className="border-t border-slate-200 bg-slate-50 text-slate-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300">
+      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 sm:px-6 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1.2fr_1fr] lg:px-8">
+        <section aria-labelledby="f-kontakt">
+          <div className="mb-5 flex items-center gap-3">
+            <img src={logo} alt="" width="40" height="37" loading="lazy" className="h-10 w-auto" />
+            <p className="font-display text-lg font-semibold text-slate-900 dark:text-white">{PRACTICE_NAME}</p>
           </div>
-
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-xl font-bold mb-8 font-[Outfit] text-gray-950 dark:text-white">Navigation</h4>
-            <ul className="space-y-4 text-gray-800 dark:text-gray-200">
-              <li><Link to="/" className="hover:text-[#8B2323] transition-colors">Startseite</Link></li>
-              <li><Link to="/#services" className="hover:text-[#8B2323] transition-colors">Leistungen</Link></li>
-              <li><Link to="/#about" className="hover:text-[#8B2323] transition-colors">Unsere Ärzte</Link></li>
-              <li><Link to="/#blog" className="hover:text-[#8B2323] transition-colors">Gesundheits-Blog</Link></li>
-            </ul>
+          <FooterHeading id="f-kontakt">Kontakt</FooterHeading>
+          <ContactDetails />
+          <p className="mt-5 text-sm">{INSURANCE_SUMMARY}</p>
+          <div className="mt-6 flex flex-col gap-3">
+            <BookingButton />
           </div>
+        </section>
 
-          {/* Contact Info */}
-          <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-10">
-            <div>
-              <h4 className="text-xl font-bold mb-8 font-[Outfit] text-gray-950 dark:text-white">Kontakt & Anfahrt</h4>
-              <ul className="space-y-6">
-                <li className="flex items-start gap-4 text-gray-800 dark:text-gray-200">
-                  <MapPin className="text-[#8B2323] shrink-0" size={24} />
-                  <div>
-                    <p className="text-gray-950 dark:text-white font-bold">Zentrale Lage</p>
-                    <p className="mb-2">Körösistraße 9<br />8010 Graz, Österreich</p>
-                    <div className="text-xs space-y-1 mb-4 opacity-80">
-                      <p><strong>Öffentlich:</strong> Straßenbahn 3 & 5, Bus 58 & 63 (Haltestelle Keplerbrücke)</p>
-                      <p><strong>Parken:</strong> Kostenlose Tiefgarage im Haus (Einfahrt via Körösistraße)</p>
-                    </div>
-                    
-                    {/* Stylized Map View */}
-                    <div className="relative group rounded-3xl overflow-hidden mb-4 shadow-xl border border-gray-700">
-                      <img 
-                        src={`${import.meta.env.BASE_URL}assets/images/footer-map.avif`} 
-                        alt="Anfahrtsskizze Röntgen am Kai - Körösistraße 9, 8010 Graz" 
-                        loading="lazy"
-                        className="w-full h-[150px] object-cover"
-                      />
-                      <a 
-                        href="https://www.google.com/maps/dir/?api=1&destination=Körösistraße+9+8010+Graz" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity focus:opacity-100 outline-none"
-                        aria-label="Anfahrt bei Google Maps öffnen"
-                      >
-                        <span className="bg-white text-gray-900 px-4 py-2 rounded-full text-xs font-bold">Route öffnen</span>
-                      </a>
-                    </div>
+        <section aria-labelledby="f-zeiten">
+          <FooterHeading id="f-zeiten">Öffnungszeiten</FooterHeading>
+          <OpeningHours />
+        </section>
 
-                    <a 
-                      href="https://www.google.com/maps/dir/?api=1&destination=Körösistraße+9+8010+Graz" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-[#8B2323] hover:text-[#A52A2A] font-bold text-sm transition-colors border-b-2 border-[#8B2323]/30 pb-0.5"
-                    >
-                      Anreise planen
-                    </a>
-                  </div>
-                </li>
-                <li className="flex items-start gap-4 text-gray-800 dark:text-gray-200">
-                  <Phone className="text-[#8B2323] shrink-0" size={24} />
-                  <div>
-                    <p className="text-gray-950 dark:text-white font-bold">Telefon</p>
-                    <a href="tel:+433168409050" className="hover:text-[#8B2323] transition-colors">0316 840 90 50</a>
-                  </div>
-                </li>
-              </ul>
-            </div>
+        <section aria-labelledby="f-anfahrt">
+          <FooterHeading id="f-anfahrt">Anfahrt</FooterHeading>
+          <a href={MAPS_ROUTE_URL} target="_blank" rel="noopener noreferrer" className="mb-5 block overflow-hidden rounded-xl border border-slate-200 dark:border-slate-700">
+            <img
+              src={`${import.meta.env.BASE_URL}assets/images/footer-map.avif`}
+              alt="Lageplan: Körösistraße 9, 8010 Graz – Route in Google Maps öffnen (neues Fenster)"
+              loading="lazy"
+              width="400"
+              height="150"
+              className="h-[140px] w-full object-cover"
+            />
+          </a>
+          <Directions />
+        </section>
 
-            <div>
-              <h4 className="text-xl font-bold mb-8 font-[Outfit] text-gray-950 dark:text-white">Öffnungszeiten</h4>
-              <ul className="space-y-3 text-gray-800 dark:text-gray-200 mb-8">
-                <li className="flex justify-between">
-                  <span>Mo - Do</span>
-                  <span className="text-gray-950 dark:text-white font-medium">08:00 - 17:00</span>
-                </li>
-                <li className="flex justify-between">
-                  <span>Freitag</span>
-                  <span className="text-gray-950 dark:text-white font-medium">08:00 - 13:00</span>
-                </li>
-              </ul>
-              <div className="bg-red-50/50 dark:bg-red-950/30 p-6 rounded-3xl border border-red-100 dark:border-red-900/40 mt-4">
-                <p className="text-sm text-gray-800 dark:text-gray-200 leading-relaxed">
-                  <strong>Wichtiger Hinweis:</strong> Wir bieten <strong>kein CT</strong> (Computertomographie) und <strong>kein MRT</strong> (Magnetresonanztomographie) an. Wir empfehlen hierfür z.B. das nahegelegene <a href="https://kreuzschwestern-graz.at/ct-mr-zentrum/" target="_blank" rel="noopener noreferrer" className="text-[#8B2323] underline font-bold hover:text-red-900 transition-colors">Institut der Kreuzschwestern Graz</a>.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <nav aria-labelledby="f-nav">
+          <FooterHeading id="f-nav">Übersicht</FooterHeading>
+          <ul className="space-y-2.5">
+            {mainLinks.map((i) => (
+              <li key={i.href}><Link to={i.href} className={linkCls}>{i.name}</Link></li>
+            ))}
+          </ul>
+          <p id="f-weitere" className="mb-3 mt-6 text-sm font-semibold text-slate-900 dark:text-white">Weitere Untersuchungen</p>
+          <ul aria-labelledby="f-weitere" className="space-y-2.5 text-sm">
+            {OTHER_EXAMS.map((i) => (
+              <li key={i.href}><Link to={i.href} className={linkCls}>{i.name}</Link></li>
+            ))}
+          </ul>
+        </nav>
+      </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-12 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-gray-700 dark:text-gray-300 text-sm">
-            © Röntgen am Kai - Alle Rechte vorbehalten.
+      <div className="border-t border-slate-200 dark:border-slate-800">
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-6 text-sm sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+          <p>© {year} {PRACTICE_NAME}</p>
+          <p className="max-w-xl">
+            Wir bieten kein CT und kein MRT an. Wir empfehlen hierfür z. B. das nahegelegene{' '}
+            <a href="https://kreuzschwestern-graz.at/ct-mr-zentrum/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-brand dark:hover:text-brand-300">
+              Institut der Kreuzschwestern Graz<span className="sr-only"> (öffnet in neuem Fenster)</span>
+            </a>.
           </p>
-          <div className="flex gap-8 text-gray-800 dark:text-gray-200 text-sm">
-            <Link to="/impressum" className="hover:text-[#8B2323] transition-colors focus:text-[#8B2323] outline-none font-bold">Impressum</Link>
-            <Link to="/datenschutz" className="hover:text-[#8B2323] transition-colors focus:text-[#8B2323] outline-none font-bold">Datenschutz</Link>
-          </div>
-          <button 
-            onClick={scrollToTop}
-            className="w-12 h-12 bg-[#8B2323] rounded-full flex items-center justify-center hover:bg-[#A52A2A] transition-all group focus:ring-4 focus:ring-red-200 outline-none"
-            aria-label="Nach oben scrollen"
-          >
-            <ArrowUp className="group-hover:-translate-y-1 transition-transform" size={24} />
-          </button>
+          <ul className="flex gap-5">
+            {LEGAL_NAV.map((l) => (
+              <li key={l.href}><Link to={l.href} className="font-medium underline underline-offset-4 hover:text-brand dark:hover:text-brand-300">{l.name}</Link></li>
+            ))}
+          </ul>
         </div>
       </div>
     </footer>

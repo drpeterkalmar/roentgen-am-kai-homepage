@@ -12,10 +12,13 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        // React/Router/Framer ändern sich selten → eigener Chunk, bleibt bei Content-Updates im Browser-Cache
-        manualChunks: {
-          vendor: ['react', 'react-dom', 'react-router-dom'],
-          motion: ['framer-motion'],
+        // React/Router/Framer ändern sich selten; framer-motion wird nur noch von Team-Seiten und Ratgeber geladen → eigener Chunk, bleibt bei Content-Updates im Browser-Cache
+        // jsx-runtime/scheduler gehören in vendor – sonst landen sie im motion-Chunk und ziehen ihn auf jede Seite
+        manualChunks(id) {
+          if (!id.includes('node_modules')) return undefined;
+          if (id.includes('framer-motion') || id.includes('motion-dom') || id.includes('motion-utils')) return 'motion';
+          if (/node_modules\/(react|react-dom|react-router|react-router-dom|scheduler|@remix-run)\//.test(id)) return 'vendor';
+          return undefined;
         },
       },
     },
