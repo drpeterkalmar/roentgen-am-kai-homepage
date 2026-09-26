@@ -1,5 +1,10 @@
 import React from 'react';
 import { Lock } from 'lucide-react';
+import { COMPANY_NAME } from '../data/company';
+
+const H2 = ({ children }) => (
+  <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">{children}</h2>
+);
 
 const DatenschutzPage = () => {
   return (
@@ -9,58 +14,82 @@ const DatenschutzPage = () => {
           <Lock size={18} />
           <span>Privatsphäre & Sicherheit</span>
         </div>
-        
+
         <h1 className="text-4xl md:text-6xl font-extrabold text-[#1f2937] dark:text-white mb-12 font-[Outfit]">
           Datenschutzerklärung
         </h1>
 
         <div className="prose prose-lg max-w-none text-gray-600 dark:text-gray-300 space-y-8">
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Einleitung</h2>
+            <H2>Verantwortlicher</H2>
             <p>
-              Diese Website verwendet Cookies. Dabei handelt es sich um kleine Textdateien, die mit Hilfe des Browsers auf Ihrem Endgerät abgelegt werden. Sie richten keinen Schaden an. Wir nutzen Cookies dazu, unser Angebot nutzerfreundlich zu gestalten.
+              <strong>{COMPANY_NAME}</strong><br />
+              Körösistraße 9, 8010 Graz, Österreich<br />
+              E-Mail: <a href="mailto:office@roentgen-am-kai.at" className="text-[#8B2323] hover:underline font-medium">office@roentgen-am-kai.at</a><br />
+              Telefon: <a href="tel:+433168409050" className="text-[#8B2323] hover:underline font-medium">0316 840 90 50</a>
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Verantwortlicher</h2>
+            <H2>Das Wichtigste in Kürze</H2>
             <p>
-              Verantwortlicher für die Datenverarbeitung auf dieser Website ist:<br />
-              <strong>Röntgen am Kai - Priv. Doz. Kalmar & Priv. Doz. Dr. Riegler Fachärzte für Radiologie OG</strong><br />
-              Körösistraße 9, 8010 Graz, Österreich
+              Diese Website verwendet keine Cookies, kein Tracking und keine Analyse-Werkzeuge. Beim Aufruf
+              werden keine Inhalte von Drittanbietern geladen – auch die Schriften liegen auf unserem eigenen Server.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Ihre Rechte</h2>
+            <H2>Hosting</H2>
             <p>
-              Ihnen stehen grundsätzlich die Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit, Widerruf und Widerspruch zu. Wenn Sie glauben, dass die Verarbeitung Ihrer Daten gegen das Datenschutzrecht verstößt oder Ihre datenschutzrechtlichen Ansprüche sonst in einer Weise verletzt worden sind, können Sie sich bei der Aufsichtsbehörde beschweren. In Österreich ist dies die Datenschutzbehörde.
+              Die Website wird über GitHub Pages bereitgestellt (GitHub, Inc., 88 Colin P. Kelly Jr. Street,
+              San Francisco, CA 94107, USA). Beim Aufruf verarbeitet GitHub technisch notwendige Daten in
+              Server-Protokollen (IP-Adresse, Datum und Uhrzeit, aufgerufene Seite, Browsertyp), um die Website
+              auszuliefern und abzusichern. Rechtsgrundlage ist unser berechtigtes Interesse an einem sicheren und
+              stabilen Betrieb (Art. 6 Abs. 1 lit. f DSGVO). GitHub ist nach dem EU-US Data Privacy Framework
+              zertifiziert; damit besteht ein angemessenes Datenschutzniveau (Art. 45 DSGVO).
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Datenspeicherung bei Kontakt</h2>
+            <H2>Speicherung in Ihrem Browser</H2>
             <p>
-              Wenn Sie per E-Mail Kontakt mit uns aufnehmen, werden Ihre angegebenen Daten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen sechs Monate bei uns gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.
+              Ihre Wahl zwischen hellem und dunklem Design wird im lokalen Speicher Ihres Browsers abgelegt
+              (Eintrag „theme“). Dieser Eintrag bleibt auf Ihrem Gerät, wird nicht an uns übertragen und kann
+              jederzeit über die Browser-Einstellungen gelöscht werden.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Web-Analyse und Google Analytics</h2>
+            <H2>Links zu anderen Websites</H2>
             <p>
-              Unsere Website benutzt Google Analytics, einen Webanalysedienst der Google Inc. Google Analytics verwendet sog. „Cookies“, Textdateien, die auf Ihrem Computer gespeichert werden und die eine Analyse der Benutzung der Website durch Sie ermöglichen. Wir haben mit dem Anbieter einen entsprechenden Vertrag zur Auftragsdatenverarbeitung abgeschlossen.
-            </p>
-            <p>
-              Ihre IP-Adresse wird erfasst, aber umgehend (z.B. durch Löschung der letzten 8 Bit) pseudonymisiert. Dadurch ist nur mehr eine grobe Lokalisierung möglich.
+              Unsere Seite enthält Links, etwa zu Google Maps (Anfahrt), zum Patientenportal portal.marc.at oder
+              zu Informationsseiten Dritter. Diese Dienste werden erst geladen, wenn Sie den Link anklicken; ab dann
+              gelten die Datenschutzbestimmungen des jeweiligen Anbieters.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Cookies</h2>
+            <H2>Kontakt per E-Mail oder Telefon</H2>
             <p>
-              Unsere Website verwendet so genannte Cookies. Dies sind kleine Textdateien, die mit Hilfe des Browsers auf Ihrem Endgerät abgelegt werden. Sie richten keinen Schaden an. Wir nutzen Cookies dazu, unser Angebot nutzerfreundlich zu gestalten. Einige Cookies bleiben auf Ihrem Endgerät gespeichert, bis Sie diese löschen. Sie ermöglichen es uns, Ihren Browser beim nächsten Besuch wiederzuerkennen.
+              Wenn Sie uns kontaktieren, verarbeiten wir Ihre Angaben, um Ihr Anliegen zu bearbeiten. Betrifft Ihre
+              Anfrage eine Untersuchung oder Behandlung, bewahren wir sie im Rahmen der ärztlichen
+              Dokumentationspflicht auf. Wir geben Ihre Daten nicht ohne Ihre Einwilligung weiter, außer eine
+              gesetzliche Verpflichtung besteht.
             </p>
           </section>
+
+          <section>
+            <H2>Ihre Rechte</H2>
+            <p>
+              Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung,
+              Datenübertragbarkeit und Widerspruch. Wenn Sie der Meinung sind, dass die Verarbeitung Ihrer Daten
+              gegen das Datenschutzrecht verstößt, können Sie sich bei der Aufsichtsbehörde beschweren:
+              Österreichische Datenschutzbehörde, Barichgasse 40–42, 1030 Wien,{' '}
+              <a href="https://www.dsb.gv.at" target="_blank" rel="noopener noreferrer" className="text-[#8B2323] hover:underline font-medium">www.dsb.gv.at</a>.
+            </p>
+          </section>
+
+          <p className="text-sm text-gray-500 dark:text-gray-400">Stand: September 2026</p>
         </div>
       </div>
     </div>

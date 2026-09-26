@@ -1,5 +1,6 @@
 import React from 'react';
 import { ShieldCheck, Github } from 'lucide-react';
+import { COMPANY_NAME, FN, FB_GERICHT, UID } from '../data/company';
 
 const ImpressumPage = () => {
   return (
@@ -19,7 +20,7 @@ const ImpressumPage = () => {
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Offenlegung gemäß § 25 Mediengesetz</h2>
             <p>
               <strong>Vollständiger Firmenname:</strong><br />
-              Röntgen am Kai - Priv. Doz. Kalmar & Priv. Doz. Dr. Riegler Fachärzte für Radiologie OG
+              {COMPANY_NAME}
             </p>
           </section>
 
@@ -42,7 +43,7 @@ const ImpressumPage = () => {
           </section>
 
           <section className="bg-white dark:bg-gray-800/50 p-8 rounded-3xl border border-gray-100 dark:border-gray-700">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Geschäftsführer</h2>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Unbeschränkt haftende Gesellschafter</h2>
             <p className="text-xl text-[#8B2323] font-bold">
               Dr. Georg Riegler und Dr. Peter Kalmar
             </p>
@@ -59,11 +60,11 @@ const ImpressumPage = () => {
             </div>
             <div>
               <h3 className="font-bold text-gray-900 dark:text-white mb-2">Firmenbuchnummer</h3>
-              <p>FN 544837 w</p>
+              <p>FN {FN}, {FB_GERICHT}</p>
             </div>
             <div>
               <h3 className="font-bold text-gray-900 dark:text-white mb-2">UID-Nummer</h3>
-              <p>ATU76189537</p>
+              <p>{UID}</p>
             </div>
           </section>
 
