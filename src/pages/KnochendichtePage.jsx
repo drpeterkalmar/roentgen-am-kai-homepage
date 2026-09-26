@@ -137,7 +137,7 @@ const KnochendichtePage = () => {
             </p>
           </div>
           <div className="p-6 bg-white dark:bg-gray-900/40 rounded-2xl shadow-sm border border-red-50 dark:border-red-900/30">
-            <h4 className="font-bold text-[#8B2323] mb-2 uppercase tracking-widest text-xs">Wahlarzt (ÖGK)</h4>
+            <h4 className="font-bold text-[#8B2323] mb-2 uppercase tracking-widest text-xs">ÖGK-Versicherte</h4>
             <p className="text-sm text-gray-600 dark:text-gray-400">
               Für die Knochendichtemessung besteht <strong>keine Direktverrechnung mit der ÖGK</strong>. Sie bezahlen die Untersuchung selbst und bekommen mit einer Überweisung einen Anteil von Ihrer Krankenkasse zurück.
             </p>
