@@ -1,31 +1,37 @@
 import React from 'react';
 import { ShieldCheck, Github } from 'lucide-react';
-import { COMPANY_NAME, FN, FB_GERICHT, UID } from '../data/company';
+import { COMPANY_NAME, FN, FB_GERICHT, UID, RECHTSFORM, SITZ, GEGENSTAND } from '../data/company';
 
 const ImpressumPage = () => {
   return (
     <div className="pt-32 pb-24 bg-white dark:bg-gray-950">
       <div className="max-w-[800px] mx-auto px-6">
-        <div className="inline-flex items-center gap-2 bg-red-50 text-[#8B2323] px-4 py-2 rounded-full text-sm font-bold mb-8">
+        <div className="inline-flex items-center gap-2 bg-red-50 dark:bg-red-900/30 text-[#8B2323] px-4 py-2 rounded-full text-sm font-bold mb-8">
           <ShieldCheck size={18} />
           <span>Rechtliche Informationen</span>
         </div>
         
-        <h1 className="text-4xl md:text-6xl font-extrabold text-[#1f2937] mb-12 font-[Outfit]">
+        <h1 className="text-4xl md:text-6xl font-extrabold text-[#1f2937] dark:text-white mb-12 font-[Outfit]">
           Impressum
         </h1>
 
-        <div className="prose prose-lg max-w-none text-gray-600 space-y-8">
+        <div className="prose prose-lg max-w-none text-gray-600 dark:text-gray-300 space-y-8">
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Offenlegung gemäß § 25 Mediengesetz</h2>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Offenlegung gemäß § 25 Mediengesetz</h2>
             <p>
               <strong>Vollständiger Firmenname:</strong><br />
               {COMPANY_NAME}
             </p>
+            <p>
+              <strong>Rechtsform:</strong> {RECHTSFORM}, Sitz: {SITZ}<br />
+              <strong>Unternehmensgegenstand:</strong> {GEGENSTAND}<br />
+              <strong>Grundlegende Richtung der Website:</strong> Information über das radiologische Leistungsangebot
+              der Praxis sowie allgemeine Gesundheitsinformation.
+            </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Sitz der Gesellschaft</h2>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Sitz der Gesellschaft</h2>
             <p>
               Körösistraße 9<br />
               8010 Graz<br />
@@ -66,10 +72,21 @@ const ImpressumPage = () => {
               <h3 className="font-bold text-gray-900 dark:text-white mb-2">UID-Nummer</h3>
               <p>{UID}</p>
             </div>
+            <div className="md:col-span-2">
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2">Aufsichtsbehörde</h3>
+              <p>Ärztekammer für Steiermark; Magistrat Graz als Bezirksverwaltungsbehörde (§ 56 ÄrzteG 1998)</p>
+            </div>
+            <div className="md:col-span-2">
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2">Berufsrechtliche Vorschriften</h3>
+              <p>
+                Ärztegesetz 1998 (ÄrzteG), abrufbar unter{' '}
+                <a href="https://www.ris.bka.gv.at" target="_blank" rel="noopener noreferrer" className="text-[#8B2323] hover:underline font-medium">www.ris.bka.gv.at</a>
+              </p>
+            </div>
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Offener Quellcode</h2>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Offener Quellcode</h2>
             <p>
               Der vollständige Quellcode dieser Website ist öffentlich auf GitHub verfügbar und
               kann dort jederzeit eingesehen werden. Wir setzen auf bewährte, frei verfügbare
@@ -92,13 +109,6 @@ const ImpressumPage = () => {
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Haftung für Inhalte</h2>
             <p>
               Der Autor übernimmt keinerlei Gewähr für die Aktualität, Korrektheit, Vollständigkeit oder Qualität der bereitgestellten Informationen. Haftungsansprüche gegen den Autor, welche sich auf Schäden materieller oder ideeller Art beziehen, die durch die Nutzung oder Nichtnutzung der dargebotenen Informationen bzw. durch die Nutzung fehlerhafter und unvollständiger Informationen verursacht wurden, sind grundsätzlich ausgeschlossen.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Online-Streitbeilegung</h2>
-            <p>
-              Verbraucher haben die Möglichkeit, Beschwerden an die Online-Streitbeilegungsplattform der EU zu richten: <a href="http://ec.europa.eu/odr" className="text-[#8B2323] hover:underline" target="_blank" rel="noopener noreferrer">http://ec.europa.eu/odr</a>.
             </p>
           </section>
         </div>

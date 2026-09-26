@@ -101,9 +101,7 @@ async function optimizeImages() {
         await Promise.all(sharpPromises);
 
         // 4. Cleanup original if it was not an AVIF
-        if (ext !== '.avif') {
-          await fs.promises.unlink(inputPath);
-        }
+        // Originale werden NICHT mehr gelöscht (früher: unlink bei Nicht-AVIF → Datenverlust im Repo)
 
       } catch (err) {
         console.error(`Error processing ${file}:`, err.message);

@@ -37,7 +37,7 @@ const ServiceLayout = ({ title, subtitle, children, icon, preparation, requireme
             ) : null}
 
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-12 h-12 bg-red-50 text-[#8B2323] rounded-2xl flex items-center justify-center">
+              <div className="w-12 h-12 bg-red-50 dark:bg-red-900/30 text-[#8B2323] rounded-2xl flex items-center justify-center">
                 {icon}
               </div>
               <h1 className="text-4xl md:text-5xl font-extrabold text-[#1f2937] dark:text-white font-[Outfit] tracking-tight">

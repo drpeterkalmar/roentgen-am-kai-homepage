@@ -3,7 +3,7 @@ import { Menu, X, Phone, Calendar, ChevronDown, Sparkles, Sun, Moon } from 'luci
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const Navbar = ({ highContrast, setHighContrast, isDark, setIsDark }) => {
+const Navbar = ({ highContrast, setHighContrast, isDark, toggleTheme }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
@@ -115,7 +115,7 @@ const Navbar = ({ highContrast, setHighContrast, isDark, setIsDark }) => {
 
           <div className="flex items-center gap-2 lg:gap-4">
             <button 
-              onClick={() => setIsDark(!isDark)}
+              onClick={toggleTheme}
               className={`p-3 rounded-2xl transition-all duration-300 ${
                 isDark ? 'bg-gray-800 text-yellow-400' : 'bg-gray-100 text-gray-600 hover:text-[#8B2323]'
               }`}
@@ -201,7 +201,7 @@ const Navbar = ({ highContrast, setHighContrast, isDark, setIsDark }) => {
                 <p className="text-xs font-black uppercase tracking-widest text-gray-400 px-1">Einstellungen</p>
                 <div className="grid grid-cols-2 gap-4">
                   <button 
-                    onClick={() => setIsDark(!isDark)}
+                    onClick={toggleTheme}
                     className={`flex items-center justify-center gap-3 p-4 rounded-2xl transition-all duration-300 border ${
                       isDark 
                       ? 'bg-gray-800 border-gray-700 text-yellow-400' 

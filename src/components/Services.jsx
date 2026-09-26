@@ -32,7 +32,7 @@ const services = [
     microInfo: 'Brustkrebs-Früherkennung',
     href: 'unser-angebot/mammographie',
     icon: <HeartPulse size={28} />,
-    color: 'bg-red-50 text-[#8B2323]',
+    color: 'bg-red-50 dark:bg-red-900/30 text-[#8B2323]',
     gridClass: 'md:col-span-4 aspect-square',
     image: 'assets/images/mammographie_v2.avif',
     featured: true

@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, Award, BookOpen, Briefcase, GraduationCap, ArrowLeft, Mail, Phone, MapPin, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { SITE_URL } from '../data/routes';
 
 const KalmarPage = () => {
   const sections = [
@@ -75,10 +76,11 @@ const KalmarPage = () => {
     "jobTitle": "Facharzt für Radiologie",
     "worksFor": {
       "@type": "MedicalBusiness",
-      "name": "Röntgen am Kai"
+      "name": "Röntgen am Kai",
+      "@id": `${SITE_URL}/#praxis`
     },
-    "url": "https://roentgen-am-kai.at/unser-team/dr-peter-kalmar",
-    "image": "https://roentgen-am-kai.at/assets/images/hero-slide-2.avif",
+    "url": `${SITE_URL}/unser-team/dr-peter-kalmar`,
+    "image": `${SITE_URL}/assets/images/dr-kalmar.avif`,
     "alumniOf": "Medizinische Universität Graz",
     "description": "Facharzt für Radiologie mit Spezialisierung auf Gefäßtherapie und interventionelle Radiologie."
   };
@@ -141,7 +143,7 @@ const KalmarPage = () => {
             animate={{ opacity: 1, x: 0 }}
             className="lg:col-span-8 flex flex-col justify-center"
           >
-            <div className="inline-block px-4 py-1.5 bg-red-50 text-[#8B2323] rounded-full text-sm font-bold mb-6 tracking-wide uppercase">
+            <div className="inline-block px-4 py-1.5 bg-red-50 dark:bg-red-900/30 text-[#8B2323] rounded-full text-sm font-bold mb-6 tracking-wide uppercase">
               Facharzt für Radiologie
             </div>
             <h1 className="text-5xl md:text-6xl font-black text-gray-900 dark:text-white mb-4 font-[Outfit] leading-tight">

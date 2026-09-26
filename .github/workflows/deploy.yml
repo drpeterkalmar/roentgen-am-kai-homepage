@@ -32,6 +32,9 @@ jobs:
 
       - name: Build
         run: npm run build
+        # Beim Umzug auf die eigene Domain (röntgen-am-kai.at) PFLICHT, sonst laufen alle Assets ins Leere:
+        # env:
+        #   BASE_PATH: /
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

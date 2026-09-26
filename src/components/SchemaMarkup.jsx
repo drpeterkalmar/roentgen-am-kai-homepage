@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { faqData } from '../data/faqData';
+import { SITE_URL } from '../data/routes';
+import { COMPANY_NAME, FN, UID } from '../data/company';
 
 const SchemaMarkup = () => {
   const location = useLocation();
@@ -11,9 +13,12 @@ const SchemaMarkup = () => {
       "@context": "https://schema.org",
       "@type": "MedicalBusiness",
       "name": "Röntgen am Kai",
-      "image": "https://roentgen-am-kai.at/assets/images/hero-home-2025.avif",
-      "@id": "https://roentgen-am-kai.at",
-      "url": "https://roentgen-am-kai.at",
+      "image": `${SITE_URL}/assets/images/og-image.jpg`,
+      "@id": `${SITE_URL}/#praxis`,
+      "url": `${SITE_URL}/`,
+      "legalName": COMPANY_NAME,
+      "vatID": UID,
+      "identifier": { "@type": "PropertyValue", "propertyID": "Firmenbuchnummer", "value": `FN ${FN}` },
       "telephone": "+433168409050",
       "priceRange": "$$",
       "address": {

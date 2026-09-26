@@ -35,15 +35,19 @@ function App() {
     return false;
   });
 
+  // Nur die CSS-Klasse setzen. Gespeichert wird ausschließlich nach aktivem Umschalten
+  // (toggleTheme) – kein localStorage-Eintrag ohne Nutzeraktion (§ 165 Abs 3 TKG 2021).
   useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
+    document.documentElement.classList.toggle('dark', isDark);
   }, [isDark]);
+
+  const toggleTheme = () => {
+    setIsDark((prev) => {
+      const next = !prev;
+      try { localStorage.setItem('theme', next ? 'dark' : 'light'); } catch { /* privater Modus */ }
+      return next;
+    });
+  };
 
   useEffect(() => {
     if (highContrast) {
@@ -76,7 +80,7 @@ function App() {
           highContrast={highContrast} 
           setHighContrast={setHighContrast} 
           isDark={isDark} 
-          setIsDark={setIsDark} 
+          toggleTheme={toggleTheme} 
         />
         <main>
           <Suspense fallback={<div className="min-h-screen bg-transparent" />}>

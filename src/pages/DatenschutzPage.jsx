@@ -34,7 +34,7 @@ const DatenschutzPage = () => {
             <H2>Das Wichtigste in Kürze</H2>
             <p>
               Diese Website verwendet keine Cookies, kein Tracking und keine Analyse-Werkzeuge. Beim Aufruf
-              werden keine Inhalte von Drittanbietern geladen – auch die Schriften liegen auf unserem eigenen Server.
+              werden keine Inhalte von Drittanbietern geladen – auch die Schriften werden vom selben Server wie die Website ausgeliefert.
             </p>
           </section>
 
@@ -45,7 +45,7 @@ const DatenschutzPage = () => {
               San Francisco, CA 94107, USA). Beim Aufruf verarbeitet GitHub technisch notwendige Daten in
               Server-Protokollen (IP-Adresse, Datum und Uhrzeit, aufgerufene Seite, Browsertyp), um die Website
               auszuliefern und abzusichern. Rechtsgrundlage ist unser berechtigtes Interesse an einem sicheren und
-              stabilen Betrieb (Art. 6 Abs. 1 lit. f DSGVO). GitHub ist nach dem EU-US Data Privacy Framework
+              stabilen Betrieb (Art. 6 Abs. 1 lit. f DSGVO). Laut GitHub werden diese Protokolle nur so lange aufbewahrt, wie es für Betrieb und Sicherheit erforderlich ist; auf die Protokolle selbst haben wir keinen Zugriff. GitHub ist nach dem EU-US Data Privacy Framework
               zertifiziert; damit besteht ein angemessenes Datenschutzniveau (Art. 45 DSGVO).
             </p>
           </section>
@@ -53,8 +53,9 @@ const DatenschutzPage = () => {
           <section>
             <H2>Speicherung in Ihrem Browser</H2>
             <p>
-              Ihre Wahl zwischen hellem und dunklem Design wird im lokalen Speicher Ihres Browsers abgelegt
-              (Eintrag „theme“). Dieser Eintrag bleibt auf Ihrem Gerät, wird nicht an uns übertragen und kann
+              Nur wenn Sie selbst zwischen hellem und dunklem Design umschalten, wird Ihre Wahl im lokalen Speicher
+              Ihres Browsers abgelegt (Eintrag „theme“), damit sie beim nächsten Besuch erhalten bleibt. Ohne diesen
+              Klick wird nichts gespeichert. Der Eintrag bleibt auf Ihrem Gerät, wird nicht an uns übertragen und kann
               jederzeit über die Browser-Einstellungen gelöscht werden.
             </p>
           </section>
@@ -71,9 +72,12 @@ const DatenschutzPage = () => {
           <section>
             <H2>Kontakt per E-Mail oder Telefon</H2>
             <p>
-              Wenn Sie uns kontaktieren, verarbeiten wir Ihre Angaben, um Ihr Anliegen zu bearbeiten. Betrifft Ihre
-              Anfrage eine Untersuchung oder Behandlung, bewahren wir sie im Rahmen der ärztlichen
-              Dokumentationspflicht auf. Wir geben Ihre Daten nicht ohne Ihre Einwilligung weiter, außer eine
+              Wenn Sie uns kontaktieren, verarbeiten wir Ihre Angaben, um Ihr Anliegen zu bearbeiten
+              (Art. 6 Abs. 1 lit. b DSGVO – Anbahnung bzw. Durchführung des Behandlungsvertrags; bei
+              Gesundheitsdaten Art. 9 Abs. 2 lit. h DSGVO). Allgemeine Anfragen löschen wir, sobald sie erledigt
+              sind und keine Rückfragen mehr zu erwarten sind. Betrifft Ihre Anfrage eine Untersuchung oder
+              Behandlung, wird sie Teil der ärztlichen Dokumentation und 10 Jahre aufbewahrt
+              (§ 51 ÄrzteG 1998, Art. 6 Abs. 1 lit. c DSGVO). Wir geben Ihre Daten nicht ohne Ihre Einwilligung weiter, außer eine
               gesetzliche Verpflichtung besteht.
             </p>
           </section>

@@ -113,7 +113,7 @@ const Blog = () => {
             >
               Vorschau
               {samplePosts.filter(p => p.status === 'draft').length > 0 && (
-                <span className="w-5 h-5 bg-white text-[#8B2323] rounded-full text-[10px] flex items-center justify-center">
+                <span className="w-5 h-5 bg-white dark:bg-gray-900 text-[#8B2323] rounded-full text-[10px] flex items-center justify-center">
                   {samplePosts.filter(p => p.status === 'draft').length}
                 </span>
               )}

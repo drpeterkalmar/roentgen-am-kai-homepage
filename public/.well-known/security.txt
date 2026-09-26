@@ -1,7 +1,7 @@
-# Security contact for roentgen-am-kai.at
+# Security contact for röntgen-am-kai.at
 # https://www.rfc-editor.org/rfc/rfc9116
 
 Contact: mailto:office@roentgen-am-kai.at
 Expires: 2027-08-07T00:00:00.000Z
 Preferred-Languages: de, en
-Canonical: https://roentgen-am-kai.at/.well-known/security.txt
+Canonical: https://www.xn--rntgen-am-kai-imb.at/.well-known/security.txt

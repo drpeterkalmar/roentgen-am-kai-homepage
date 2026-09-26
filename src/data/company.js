@@ -5,3 +5,7 @@ export const COMPANY_NAME =
 export const FN = '348028 g';
 export const FB_GERICHT = 'Landesgericht für Zivilrechtssachen Graz';
 export const UID = 'ATU65813603';
+export const RECHTSFORM = 'Offene Gesellschaft (OG)';
+export const SITZ = 'Graz';
+export const GEGENSTAND =
+  'Errichtung und Betrieb einer Gruppenpraxis für Radiologie und Ausübung des Arztberufes der Fachrichtung Radiologie';

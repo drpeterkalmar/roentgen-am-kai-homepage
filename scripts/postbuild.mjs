@@ -33,6 +33,14 @@ const renderRoute = (route) => {
   html = replaceOnce(html, /(<meta property="og:description" content=")[^"]*(")/, `$1${desc}$2`, 'og:description');
   html = replaceOnce(html, /(<meta property="og:url" content=")[^"]*(")/, `$1${url}$2`, 'og:url');
   html = replaceOnce(html, /(<link rel="canonical" href=")[^"]*(")/, `$1${url}$2`, 'canonical');
+  if (route.path !== '/') {
+    // Unterseiten: kein Startseiten-Titelbild vorladen, statt Startseiten-Skelett den Seitentitel zeigen
+    html = replaceOnce(html, /\s*<!-- identisch zu srcset[\s\S]*?imagesizes="[^"]*">/, '', 'hero-preload');
+    html = replaceOnce(html, /<div id="root">[\s\S]*<\/div>(\s*<\/body>)/,
+      `<div id="root"><main style="padding:160px 24px 48px;max-width:800px;margin:0 auto">`
+      + `<h1 class="lcp-text" style="font-size:2.5rem;line-height:1.1;margin:0 0 16px">${esc(route.title)}</h1>`
+      + `<p style="font-size:1.125rem;color:#4b5563;margin:0">${desc}</p></main></div>$1`, 'skeleton');
+  }
   return html;
 };
 
@@ -69,7 +77,7 @@ for (const [from, to] of Object.entries(legacy)) {
   const target = base.replace(/\/$/, '') + to;
   const canonical = urlFor(to.split('#')[0] || '/');
   const html = `<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><title>Weiterleitung – Röntgen am Kai</title>`
-    + `<link rel="canonical" href="${canonical}"><meta name="robots" content="noindex">`
+    + `<link rel="canonical" href="${canonical}">`
     + `<meta http-equiv="refresh" content="0; url=${target}"></head>`
     + `<body><p>Diese Seite ist umgezogen: <a href="${target}">weiter</a></p></body></html>`;
   const out = path.join(dist, from.replace(/^\//, ''), 'index.html');
