@@ -11,7 +11,7 @@ const FAQItem = ({ question, answer }) => {
         onClick={() => setIsOpen(!isOpen)}
         className="w-full py-6 flex items-center justify-between text-left group transition-all"
       >
-        <span className={`text-lg font-bold transition-colors ${isOpen ? 'text-[#8B2323] dark:text-[#A52A2A]' : 'text-gray-900 dark:text-white group-hover:text-[#8B2323] dark:group-hover:text-[#A52A2A]'}`}>
+        <span className={`text-lg font-bold transition-colors ${isOpen ? 'text-[#8B2323] dark:text-[#F28B82]' : 'text-gray-900 dark:text-white group-hover:text-[#8B2323] dark:group-hover:text-[#A52A2A]'}`}>
           {question}
         </span>
         <div className={`shrink-0 ml-4 w-8 h-8 rounded-full flex items-center justify-center transition-all ${isOpen ? 'bg-[#8B2323] text-white rotate-180' : 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-300'}`}>
@@ -42,7 +42,7 @@ const FAQ = ({ items, title = "Häufig gestellte Fragen" }) => {
     <section id="faq" className="py-24 bg-transparent relative">
       <div className="max-w-4xl mx-auto px-6">
         <div className="flex items-center gap-3 mb-12">
-          <div className="w-12 h-12 bg-red-50 dark:bg-red-900/30 rounded-2xl flex items-center justify-center text-[#8B2323] dark:text-[#A52A2A]">
+          <div className="w-12 h-12 bg-red-50 dark:bg-red-900/30 rounded-2xl flex items-center justify-center text-[#8B2323] dark:text-[#F28B82]">
             <HelpCircle size={24} />
           </div>
           <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white font-[Outfit]">

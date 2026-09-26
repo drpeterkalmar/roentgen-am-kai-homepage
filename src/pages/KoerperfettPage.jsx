@@ -3,17 +3,11 @@ import { Scale, AlertCircle } from 'lucide-react';
 import ServiceLayout from '../components/ServiceLayout';
 import FAQ from '../components/FAQ';
 import { faqData } from '../data/faqData';
-import SEO from '../components/SEO';
 
 
 const KoerperfettPage = () => {
   return (
     <>
-      <SEO 
-        title="Core Scan (DEXA) – Körperfett & Viszeralfett messen in Graz"
-        description="Exakte DEXA-Körperfettmessung (Core Scan) in Graz. Goldstandard für Körperzusammensetzung, Viszeralfett, Muskelmasse (RSMI) & Stoffwechselrate (RMR). Für Sport, Diät, Gesundheit."
-        keywords="Core Scan Graz, Körperfettmessung Graz, DEXA Scan Graz, Viszeralfett messen Graz, Muskelmasse messen, Körperzusammensetzung Analyse, Radiologie Graz"
-      />
       <ServiceLayout
         title="Körperfettmessung"
       subtitle="Die DEXA-Methode gilt als Goldstandard bei der Bestimmung von Fett- und Muskelmasse. Mit einer Ganzkörperfettanalyse erhalten Sie exakte Informationen über Ihre Körperzusammensetzung."

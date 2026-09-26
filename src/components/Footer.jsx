@@ -1,7 +1,7 @@
 import React from 'react';
 import { Mail, Phone, MapPin, Instagram, Facebook, ArrowUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import logo from '../assets/images/rak-logo.png';
+import logo from '../assets/images/rak-logo-128.png';
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -21,6 +21,9 @@ const Footer = () => {
               <img 
                 src={logo} 
                 alt="Röntgen am Kai Logo" 
+                width="69"
+                height="64"
+                loading="lazy"
                 className="h-16 w-auto object-contain"
               />
             </div>
@@ -71,6 +74,7 @@ const Footer = () => {
                       <img 
                         src={`${import.meta.env.BASE_URL}assets/images/footer-map.avif`} 
                         alt="Anfahrtsskizze Röntgen am Kai - Körösistraße 9, 8010 Graz" 
+                        loading="lazy"
                         className="w-full h-[150px] object-cover"
                       />
                       <a 
@@ -113,10 +117,10 @@ const Footer = () => {
                 </li>
                 <li className="flex justify-between">
                   <span>Freitag</span>
-                  <span className="text-gray-950 font-medium">08:00 - 13:00</span>
+                  <span className="text-gray-950 dark:text-white font-medium">08:00 - 13:00</span>
                 </li>
               </ul>
-              <div className="bg-red-50/50 p-6 rounded-3xl border border-red-100 mt-4">
+              <div className="bg-red-50/50 dark:bg-red-950/30 p-6 rounded-3xl border border-red-100 dark:border-red-900/40 mt-4">
                 <p className="text-sm text-gray-800 dark:text-gray-200 leading-relaxed">
                   <strong>Wichtiger Hinweis:</strong> Wir bieten <strong>kein CT</strong> (Computertomographie) und <strong>kein MRT</strong> (Magnetresonanztomographie) an. Wir empfehlen hierfür z.B. das nahegelegene <a href="https://kreuzschwestern-graz.at/ct-mr-zentrum/" target="_blank" rel="noopener noreferrer" className="text-[#8B2323] underline font-bold hover:text-red-900 transition-colors">Institut der Kreuzschwestern Graz</a>.
                 </p>

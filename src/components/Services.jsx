@@ -80,7 +80,7 @@ const services = [
     image: 'assets/images/phlebographie_v3.avif'
   },
   {
-    title: 'Sonografie',
+    title: 'Sonographie',
     description: 'Ultraschall von Organen, Gelenken und Gefäßen.',
     microInfo: 'Breites Spektrum',
     href: 'unser-angebot/ultraschall',
@@ -121,7 +121,7 @@ const Services = () => {
       <div className="max-w-[1400px] mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-16 gap-8 text-center md:text-left">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 bg-red-50 dark:bg-red-900/20 text-[#8B2323] dark:text-[#8B2323] px-4 py-2 rounded-full text-xs font-black uppercase tracking-[0.2em] mb-4">
+            <div className="inline-flex items-center gap-2 bg-red-50 dark:bg-red-900/20 text-[#8B2323] dark:text-[#F28B82] px-4 py-2 rounded-full text-xs font-black uppercase tracking-[0.2em] mb-4">
               <Info size={14} />
               Diagnostische Präzision
             </div>
@@ -187,20 +187,13 @@ const Services = () => {
               )}
               
               <div className="relative z-10 flex flex-col h-full">
-                <div className="flex flex-wrap justify-between items-start gap-x-4 gap-y-3 mb-6">
+                <div className="flex flex-col items-start gap-4 mb-6">
                   <div className={`${service.color} w-16 h-16 rounded-2xl flex items-center justify-center shadow-inner`}>
                     {service.icon}
                   </div>
-                  <div className="flex flex-wrap items-center gap-2 justify-end ml-auto">
-                    {service.featured && (
-                      <div className="bg-[#8B2323] text-white px-3 py-2 sm:px-4 rounded-xl shadow-md">
-                        <span className="text-xs font-black uppercase tracking-widest whitespace-nowrap">
-                          Beliebt
-                        </span>
-                      </div>
-                    )}
+                  <div className="flex flex-wrap items-center gap-2 min-h-[2.25rem]">
                     {service.microInfo && (
-                      <div className="bg-white/80 backdrop-blur px-3 py-2 sm:px-4 rounded-xl shadow-sm border border-gray-100">
+                      <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur px-3 py-2 sm:px-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
                         <span className="text-[#8B2323] text-xs font-black uppercase tracking-widest whitespace-nowrap">
                           {service.microInfo}
                         </span>
@@ -235,8 +228,10 @@ const Services = () => {
                    <img 
                     src={`${import.meta.env.BASE_URL}${service.image}`} 
                     srcSet={`${import.meta.env.BASE_URL}${service.image.replace('.avif', '-mobile.avif')} 800w, ${import.meta.env.BASE_URL}${service.image.replace('.avif', '-tablet.avif')} 1200w, ${import.meta.env.BASE_URL}${service.image} 1920w`}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 240px"
                     alt="" 
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover grayscale" 
                   />
                 </div>

@@ -27,6 +27,10 @@ const createParticle = (canvas, isDark) => ({
   }
 });
 
+// Dekorativer Hintergrund. Performance-Regeln:
+//  * startet erst, wenn der Browser nach dem Laden Leerlauf hat (blockiert nicht den ersten Paint)
+//  * pausiert, wenn der Tab nicht sichtbar ist (Akku/CPU)
+//  * bei „Bewegung reduzieren“ nur ein statisches Bild, keine Animation
 const ParticleBackground = ({ isDark }) => {
   const canvasRef = useRef(null);
 
@@ -34,41 +38,76 @@ const ParticleBackground = ({ isDark }) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
-    let animationFrameId;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let animationFrameId = null;
     let particlesArray = [];
+    let started = false;
 
     const init = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       particlesArray = [];
-      const numberOfParticles = window.innerWidth < 768 ? 12 : 25;
+      const numberOfParticles = window.innerWidth < 768 ? 10 : 25;
       for (let i = 0; i < numberOfParticles; i++) {
         particlesArray.push(createParticle(canvas, isDark));
       }
     };
 
-    const animate = () => {
+    const drawFrame = (move) => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particlesArray.forEach(p => {
-        p.update();
+        if (move) p.update();
         p.draw(ctx);
       });
+    };
+
+    const animate = () => {
+      drawFrame(true);
       animationFrameId = requestAnimationFrame(animate);
     };
 
-    window.addEventListener('resize', init);
-    init();
-    animate();
+    const stop = () => {
+      if (animationFrameId !== null) cancelAnimationFrame(animationFrameId);
+      animationFrameId = null;
+    };
+
+    const run = () => {
+      stop();
+      if (reduceMotion) {
+        drawFrame(false);
+      } else if (!document.hidden) {
+        animate();
+      }
+    };
+
+    const onResize = () => { if (started) { init(); run(); } };
+    const onVisibility = () => { if (!started) return; document.hidden ? stop() : run(); };
+
+    const start = () => {
+      started = true;
+      init();
+      run();
+    };
+
+    const idle = window.requestIdleCallback || ((cb) => setTimeout(cb, 1200));
+    const cancelIdle = window.cancelIdleCallback || clearTimeout;
+    const idleId = idle(start, { timeout: 2500 });
+
+    window.addEventListener('resize', onResize);
+    document.addEventListener('visibilitychange', onVisibility);
 
     return () => {
-      window.removeEventListener('resize', init);
-      cancelAnimationFrame(animationFrameId);
+      cancelIdle(idleId);
+      stop();
+      window.removeEventListener('resize', onResize);
+      document.removeEventListener('visibilitychange', onVisibility);
     };
   }, [isDark]);
 
   return (
     <canvas
       ref={canvasRef}
+      aria-hidden="true"
       className="fixed inset-0 pointer-events-none -z-[10]"
       style={{ opacity: isDark ? 0.4 : 0.8 }}
     />

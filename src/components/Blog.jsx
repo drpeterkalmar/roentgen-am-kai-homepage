@@ -32,6 +32,7 @@ const BlogModal = ({ post, onClose }) => {
       >
         <button
           onClick={onClose}
+          aria-label="Artikel schließen"
           className="absolute top-6 right-6 z-20 bg-white/90 backdrop-blur p-2 rounded-full text-gray-900 hover:bg-[#8B2323] hover:text-white transition-all shadow-lg"
         >
           <X size={24} />
@@ -89,15 +90,17 @@ const Blog = () => {
               <span>Aktuelles aus der Radiologie</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-extrabold text-[#1f2937] dark:text-white font-[Outfit]">
-              Wissen für Ihre <span className="text-[#8B2323] dark:text-[#8B2323]">Gesundheit</span>
+              Wissen für Ihre <span className="text-[#8B2323] dark:text-[#F28B82]">Gesundheit</span>
             </h2>
           </div>
           
+          {/* Entwurfs-Vorschau nur lokal (npm run dev) – Patienten sehen ausschließlich veröffentlichte Artikel */}
+          {import.meta.env.DEV && (
           <div className="flex bg-gray-100 p-1.5 rounded-2xl">
             <button 
               onClick={() => setView('published')}
               className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${
-                view === 'published' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'
+                view === 'published' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-600 hover:text-gray-800'
               }`}
             >
               Veröffentlicht
@@ -105,7 +108,7 @@ const Blog = () => {
             <button 
               onClick={() => setView('draft')}
               className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all flex items-center gap-2 ${
-                view === 'draft' ? 'bg-[#8B2323] text-white shadow-sm' : 'text-gray-500 hover:text-gray-700'
+                view === 'draft' ? 'bg-[#8B2323] text-white shadow-sm' : 'text-gray-600 hover:text-gray-800'
               }`}
             >
               Vorschau
@@ -116,6 +119,7 @@ const Blog = () => {
               )}
             </button>
           </div>
+          )}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -130,17 +134,18 @@ const Blog = () => {
               className="group cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#8B2323] rounded-[32px]"
               role="button"
               tabIndex={0}
-              aria-label={`Artikel lesen: ${post.title}`}
             >
               <div className="relative rounded-[32px] overflow-hidden mb-6 aspect-[4/3]">
                 <img 
                   src={`${import.meta.env.BASE_URL}${post.image}`} 
                   alt="" 
                   aria-hidden="true"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute top-4 left-4">
-                  <span className="bg-white/90 backdrop-blur px-4 py-1.5 rounded-full text-xs font-bold text-[#8B2323]">
+                  <span className="bg-white/90 backdrop-blur px-4 py-1.5 rounded-full text-xs font-bold text-[#8B2323] dark:bg-gray-900/90">
                     {post.category}
                   </span>
                 </div>

@@ -1,3 +1,37 @@
+/* Selbst gehostete Schriften (SIL OFL, siehe src/assets/fonts/LICENSE-*).
+   Kein Google-Fonts-Request mehr: keine IP-Übermittlung an Google (DSGVO, LG München 2022). */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('./assets/fonts/inter-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('./assets/fonts/inter-latin-ext-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Outfit';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('./assets/fonts/outfit-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Outfit';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('./assets/fonts/outfit-latin-ext-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
 
 @tailwind base;
 @tailwind components;
@@ -92,7 +126,7 @@ body.high-contrast .glass {
   border: 2px solid #ff0 !important;
 }
 
-body.high-contrast .text-[#8B2323], 
+body.high-contrast .text-\[\#8B2323\], 
 body.high-contrast .text-gray-900,
 body.high-contrast .text-gray-800 {
   color: #ffffff !important;
@@ -261,4 +295,28 @@ button {
 
 .stagger-in > *.visible {
   animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Dark mode: Markenrot #8B2323 hat auf dunklem Grund nur Kontrast 2:1 (WCAG verlangt 4.5:1).
+   Textfarbe wird im Dunkelmodus auf eine hellere Variante derselben Farbfamilie gehoben;
+   Flächen (Buttons, Badges mit bg-[#8B2323]) bleiben unverändert. */
+.dark .text-\[\#8B2323\] { color: #F28B82; }
+.dark .hover\:text-\[\#8B2323\]:hover { color: #F8A9A3; }
+
+/* Tastatur-Fokus sichtbar (WCAG 2.4.7) */
+:focus-visible {
+  outline: 3px solid #8B2323;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+.dark :focus-visible { outline-color: #F28B82; }
+
+/* Nutzer mit „Bewegung reduzieren“: keine Ken-Burns-/Partikel-/Scroll-Animationen */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

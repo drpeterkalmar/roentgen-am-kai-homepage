@@ -8,7 +8,7 @@ const About = () => {
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="max-w-3xl mx-auto mb-16 text-center">
           <h2 className="text-4xl md:text-5xl font-extrabold text-[#1f2937] dark:text-white mb-6 font-[Outfit]">
-            Unsere <span className="text-[#8B2323] dark:text-[#8B2323]">Ärzte</span>
+            Unsere <span className="text-[#8B2323] dark:text-[#F28B82]">Ärzte</span>
           </h2>
           <p className="text-xl text-gray-950 dark:text-gray-100 leading-relaxed font-normal">
             Dr. Kalmar und Dr. Riegler, Fachärzte für Radiologie mit langjähriger Erfahrung in Diagnostik und Intervention.

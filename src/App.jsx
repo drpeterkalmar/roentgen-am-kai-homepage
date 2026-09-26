@@ -7,6 +7,7 @@ import SchemaMarkup from './components/SchemaMarkup'
 import MobileActions from './components/MobileActions'
 import ParticleBackground from './components/ParticleBackground'
 import ScrollToHash from './components/ScrollToHash'
+import RouteMeta from './components/RouteMeta'
 
 // Lazy loaded pages
 const RoentgenPage = lazy(() => import('./pages/RoentgenPage'))
@@ -55,6 +56,7 @@ function App() {
   return (
     <Router basename={import.meta.env.BASE_URL}>
       <ScrollToHash />
+      <RouteMeta />
       <SchemaMarkup />
       <div 
         className="relative min-h-screen selection:bg-red-100 selection:text-[#8B2323] transition-colors duration-300 overflow-x-hidden"

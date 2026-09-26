@@ -28,7 +28,7 @@ async function optimizeImages() {
       const ext = path.extname(file).toLowerCase();
       
       // Skip already processed variants, logos, or specific icons to avoid build issues
-      if (!SUPPORTED_FORMATS.includes(ext) || file.includes('-mobile') || file.includes('-tablet') || file.includes('logo')) {
+      if (!SUPPORTED_FORMATS.includes(ext) || file.includes('-mobile') || file.includes('-tablet') || file.includes('logo') || file.includes('portal-qr') || file.startsWith('og-image')) {
         return;
       }
 

@@ -57,7 +57,7 @@ const ServiceLayout = ({ title, subtitle, children, icon, preparation, requireme
             {(preparation || requirements) && (
               <div className="bg-gray-50 dark:bg-gray-800/50 rounded-[32px] p-8 border border-gray-100 dark:border-gray-700 mb-12">
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3 font-[Outfit]">
-                  <ShieldCheck className="text-[#8B2323] dark:text-[#8B2323]" />
+                  <ShieldCheck className="text-[#8B2323] dark:text-[#F28B82]" />
                   Wichtige Informationen
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

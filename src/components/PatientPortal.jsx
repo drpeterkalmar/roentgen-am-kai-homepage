@@ -24,9 +24,9 @@ const PatientPortal = () => {
           {/* Text Content */}
           <div className="flex-1 text-center sm:text-left">
             <div className="flex items-center justify-center sm:justify-start gap-3 mb-1">
-              <h3 className="text-lg md:text-xl font-black text-gray-950 dark:text-white font-[Outfit] tracking-tight">
+              <h2 className="text-lg md:text-xl font-black text-gray-950 dark:text-white font-[Outfit] tracking-tight">
                 Ihre Bilder und Befunde online
-              </h3>
+              </h2>
             </div>
             <p className="text-sm text-gray-600 dark:text-gray-400 font-medium leading-relaxed max-w-md">
               Ihre Bilder und Befunde sind online verfügbar unter{' '}

@@ -3,16 +3,10 @@ import { HeartPulse, Phone, Info, ExternalLink } from 'lucide-react';
 import ServiceLayout from '../components/ServiceLayout';
 import FAQ from '../components/FAQ';
 import { faqData } from '../data/faqData';
-import SEO from '../components/SEO';
 
 const MammographiePage = () => {
   return (
     <>
-      <SEO 
-        title="Mammographie & Brust-Ultraschall" 
-        description="Mammographie und Brust-Ultraschall in Graz. Zertifizierter Standort für das österreichische Brustkrebs-Früherkennungsprogramm mit Doppelbefundung."
-        keywords="Mammographie Graz, Brustkrebsvorsorge Graz, Brust Ultraschall Graz, Mammographie Screening, Radiologe Brustkrebs Graz"
-      />
       <ServiceLayout
         title="Mammographie"
       subtitle="Die Mammographie ist das am meisten etablierte Verfahren in der Brustdiagnostik. Die Brustdiagnostik bildet einen Schwerpunkt in unserer Praxis."
@@ -118,7 +112,7 @@ const MammographiePage = () => {
       </section>
 
       <section className="bg-red-50 dark:bg-red-900/20 rounded-[32px] p-8 border border-red-100 dark:border-red-900/30 mb-20">
-        <h2 className="text-2xl font-bold text-[#8B2323] dark:text-[#A52A2A] mb-4 font-[Outfit] flex items-center gap-3">
+        <h2 className="text-2xl font-bold text-[#8B2323] dark:text-[#F28B82] mb-4 font-[Outfit] flex items-center gap-3">
           <Info size={24} />
           Brustkrebs-Früherkennungsprogramm
         </h2>
