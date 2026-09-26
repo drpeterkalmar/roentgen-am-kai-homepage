@@ -1,5 +1,5 @@
 import React, { useEffect, lazy, Suspense, useState } from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import Header from './components/Header'
 import Home from './pages/Home'
 import Footer from './components/Footer'
@@ -84,7 +84,10 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/unser-angebot/roentgen" element={<RoentgenPage />} />
               <Route path="/unser-angebot/ultraschall" element={<UltraschallPage />} />
-              <Route path="/unser-angebot/mammographie" element={<MammographiePage />} />
+              <Route path="/mammographie-graz" element={<MammographiePage />} />
+              {/* alte Adressen → dauerhaft neue Seite (statisch: scripts/postbuild.mjs) */}
+              <Route path="/unser-angebot/mammographie" element={<Navigate to="/mammographie-graz" replace />} />
+              <Route path="/unser-angebot/mammographie/mammascreening" element={<Navigate to="/mammographie-graz" replace />} />
               <Route path="/unser-angebot/knochendichte" element={<KnochendichtePage />} />
               <Route path="/unser-angebot/dvt" element={<DVTPage />} />
               <Route path="/unser-angebot/phlebographie" element={<PhlebographiePage />} />

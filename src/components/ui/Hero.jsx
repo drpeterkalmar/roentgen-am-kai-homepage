@@ -8,8 +8,9 @@ import Breadcrumbs from './Breadcrumbs';
 //   image: { src, srcSet?, sizes?, alt, width?, height? } – optional; ohne Bild einspaltig.
 //   actions: Schaltflächen (z. B. <BookingButton/>, <PhoneButton/>)
 //   breadcrumbs: [{ name, href? }] – Brotkrumen über der Überschrift
+//   highlight: gut sichtbarer Hinweis direkt unter der H1 (z. B. „Ohne Zuweisung · mit e-card …“)
 //   meta: kleine Zusatzinfos unter den Schaltflächen (z. B. Öffnungszeiten)
-const Hero = ({ breadcrumbs, eyebrow, title, lead, actions, meta, image, imageSlot, tone = 'muted', className, children }) => {
+const Hero = ({ breadcrumbs, eyebrow, title, highlight, lead, actions, meta, image, imageSlot, tone = 'muted', className, children }) => {
   const hasMedia = image || imageSlot;
   return (
     <section
@@ -18,11 +19,16 @@ const Hero = ({ breadcrumbs, eyebrow, title, lead, actions, meta, image, imageSl
     >
       <Container className={cx('py-8 sm:py-12 lg:py-14', hasMedia && 'grid items-center gap-10 lg:grid-cols-2 lg:gap-16')}>
         <div className={cx(!hasMedia && 'max-w-3xl')}>
-          {breadcrumbs && <div className="mb-6"><Breadcrumbs items={breadcrumbs} /></div>}
+          {breadcrumbs && <div className="mb-4 sm:mb-6"><Breadcrumbs items={breadcrumbs} /></div>}
           {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
           <Heading level={1} look={hasMedia ? 'display' : 'h1'} id="page-title">{title}</Heading>
-          {lead && <Lead className="mt-5 max-w-2xl">{lead}</Lead>}
-          {actions && <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">{actions}</div>}
+          {highlight && (
+            <p className="mt-4 inline-flex items-center gap-2 rounded-full border border-brand-200 bg-white px-3 py-1.5 text-sm font-semibold sm:mt-5 sm:px-4 sm:py-2 sm:text-base text-brand-800 dark:border-brand-800 dark:bg-slate-950 dark:text-brand-200">
+              {highlight}
+            </p>
+          )}
+          {lead && <Lead className="mt-4 max-w-2xl text-base sm:mt-5 sm:text-lg">{lead}</Lead>}
+          {actions && <div className="mt-6 sm:mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">{actions}</div>}
           {meta && <div className="mt-6 text-sm text-slate-600 dark:text-slate-300">{meta}</div>}
           {children}
         </div>

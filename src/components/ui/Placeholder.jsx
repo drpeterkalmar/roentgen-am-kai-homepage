@@ -3,7 +3,8 @@ import { cx } from './cx';
 
 // Deutlich sichtbarer Platzhalter für Angaben, die die Praxis noch liefern muss.
 // Alle Vorkommen sind per [data-placeholder] auffindbar (Tests, Abnahme).
-const Placeholder = ({ children, inline = false, className }) => {
+// internal: interne Notiz für die Praxis (Angabe offen / zu bestätigen) – vor Veröffentlichung klären.
+const Placeholder = ({ children, inline = false, internal = false, className }) => {
   const Tag = inline ? 'span' : 'div';
   return (
     <Tag
@@ -14,7 +15,7 @@ const Placeholder = ({ children, inline = false, className }) => {
         className
       )}
     >
-      <strong className="font-semibold">Platzhalter:</strong> {children}
+      <strong className="font-semibold">{internal ? 'Interner Platzhalter:' : 'Platzhalter:'}</strong> {children}
     </Tag>
   );
 };

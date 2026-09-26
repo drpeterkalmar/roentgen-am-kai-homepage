@@ -4,7 +4,9 @@ import { cx } from './cx';
 
 // Neutraler Bildplatzhalter für noch fehlende Fotos. `motif` beschreibt das benötigte Motiv genau
 // (für Fotograf/Praxis). Alle Vorkommen sind über [data-placeholder] auffindbar.
-const ImagePlaceholder = ({ motif, className }) => (
+const ImagePlaceholder = ({ motif: motifProp, brief, className }) => {
+  const motif = motifProp || brief?.motif;
+  return (
   <div
     role="img"
     aria-label={`Bildplatzhalter: ${motif}`}
@@ -16,11 +18,13 @@ const ImagePlaceholder = ({ motif, className }) => (
     )}
   >
     <ImageIcon size={28} aria-hidden="true" />
-    <p className="max-w-xs text-sm leading-snug">
+    <p className="max-w-sm text-sm leading-snug">
       <span className="block font-semibold text-slate-700 dark:text-slate-200">Bildplatzhalter</span>
       {motif}
+      {brief && <span className="mt-1 block text-xs">Format {brief.ratio}, mind. {brief.minSize}</span>}
     </p>
   </div>
-);
+  );
+};
 
 export default ImagePlaceholder;

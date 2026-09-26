@@ -13,7 +13,7 @@ TEL = "tel:+43" + "3168409050"
 BOOK = "https://patient-portal.miranext.ai/patient-booking?c_Id=23"
 ROUTES = {
     "/": ("Radiologie Graz", "Moderne Radiologie in Graz"),
-    "/unser-angebot/mammographie": ("Mammographie", "Häufige Fragen zur Mammographie"),
+    "/mammographie-graz": ("Mammographie Graz ohne Zuweisung", "Häufige Fragen zur Mammographie"),
     "/unser-angebot/knochendichte": ("Knochendichte", "Häufige Fragen zur Knochendichtemessung"),
     "/unser-angebot/koerperfettmessung": ("DEXA-Körperanalyse", "Häufige Fragen zur DEXA-Körperanalyse"),
     "/unser-angebot/roentgen": ("Digitales Röntgen", "Häufige Fragen zum Röntgen"),
@@ -29,9 +29,10 @@ ROUTES = {
     "/impressum": ("Impressum", "Offener Quellcode"),
     "/datenschutz": ("Datenschutz", "Verantwortlicher"),
 }
-LEGACY = {"/datenschutzerklarung": "/datenschutz", "/unser-angebot/mammographie/mammascreening": "/unser-angebot/mammographie"}
-NAV = ["Startseite", "Mammographie", "Knochendichte", "DEXA-Körperanalyse", "Weitere Untersuchungen", "Gesundheitsziele", "Ratgeber", "Praxis und Kontakt"]
-FORBIDDEN = ["Terminanfrage", "Online-Terminvergabe", "script.google.com", "Sonografie", "Wahlarzt für", "Wahlarztpraxis"]  # Lebenslauf-Einträge "Wahlarztordination 20xx" sind korrekt
+LEGACY = {"/datenschutzerklarung": "/datenschutz", "/unser-angebot/mammographie": "/mammographie-graz", "/unser-angebot/mammographie/mammascreening": "/mammographie-graz"}
+NAV = ["Startseite", "Mammographie & Brustgesundheit", "Knochendichte", "DEXA-Körperanalyse", "Weitere Untersuchungen", "Gesundheitsziele", "Ratgeber", "Praxis und Kontakt"]
+TEL_OK = {TEL, "tel:0800" + "500181"}  # Praxis + Serviceline des Früherkennungsprogramms
+FORBIDDEN = ["Tomosynth", "3D-Mammo", "3D Mammo", "dreidimensionale Mammo", "Terminanfrage", "Online-Terminvergabe", "script.google.com", "Sonografie", "Wahlarzt für", "Wahlarztpraxis"]  # Lebenslauf-Einträge "Wahlarztordination 20xx" sind korrekt
 fails, external = [], set()
 
 def check(cond, msg):
@@ -58,7 +59,7 @@ with sync_playwright() as p:
             h1 = pg.locator("h1").count()
             bad = [f for f in FORBIDDEN if f.lower() in body.lower()]
             ok = (resp.status == 200 and tpart in title and bpart.lower() in body.lower() and not errs
-                  and canon.endswith(path) and not bad and tels and all(t == TEL for t in tels)
+                  and canon.endswith(path) and not bad and tels and TEL in tels and all(t in TEL_OK for t in tels)
                   and books and all(x[0] == BOOK and x[1] == "_blank" and "noopener" in x[2] for x in books) and h1 == 1)
             check(ok, f"[{label}] {resp.status} {path} title={title[:45]!r} h1={h1} tel={len(tels)} booking={len(books)} bad={bad} errs={errs[:1]}")
         # horizontal overflow on every page (mobile)
@@ -109,7 +110,7 @@ with sync_playwright() as p:
     ow = pg.evaluate("getComputedStyle(document.activeElement).outlineStyle + ' ' + getComputedStyle(document.activeElement).outlineWidth")
     check(ow.startswith("solid") and not ow.endswith(" 0px"), f"Fokusrahmen sichtbar am Terminbutton ({ow})")
     # FAQ aria
-    pg.goto(BASE + "/unser-angebot/mammographie", wait_until="networkidle")
+    pg.goto(BASE + "/mammographie-graz", wait_until="networkidle")
     q = pg.locator("#faq button[aria-expanded]").first
     q.click(); pg.wait_for_timeout(100)
     check(q.get_attribute("aria-expanded") == "true" and pg.locator('[id="' + q.get_attribute("aria-controls") + '"]').is_visible(), "FAQ: aria-expanded + Antwortregion sichtbar")

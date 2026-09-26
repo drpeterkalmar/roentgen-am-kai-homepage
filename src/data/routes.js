@@ -4,6 +4,8 @@
 // Neue Seite = Route in App.jsx + Eintrag hier.
 
 // Kanonische Domain (Hauptdomain ab Jan 2027: Umlaut-Domain, hier in Punycode).
+import { SCREENING_META_DESCRIPTION } from './screening.js';
+
 export const SITE_URL = 'https://www.xn--rntgen-am-kai-imb.at';
 
 export const DEFAULT_TITLE = 'Radiologie Graz – Röntgen am Kai | Mammographie, DEXA, Röntgen';
@@ -31,9 +33,14 @@ export const routes = [
     priority: '0.8',
   },
   {
-    path: '/unser-angebot/mammographie',
-    title: 'Mammographie & Brust-Sonographie in Graz',
-    description: 'Mammographie und Brust-Sonographie in Graz. Zertifizierter Standort des österreichischen Brustkrebs-Früherkennungsprogramms mit Doppelbefundung.',
+    path: '/mammographie-graz',
+    // Vollständiger SEO-Titel (ohne automatischen Zusatz)
+    fullTitle: 'Mammographie Graz ohne Zuweisung | Röntgen am Kai',
+    title: 'Mammographie & Brustgesundheit',
+    h1: 'Mammographie in Graz – für Ihre Brustgesundheit',
+    crumb: 'Mammographie & Brustgesundheit', // → BreadcrumbList
+    medicalProcedure: { name: 'Mammographie', alternateName: ['Mammografie', 'Screening-Mammographie'] },
+    description: SCREENING_META_DESCRIPTION,
     priority: '0.9',
   },
   {
@@ -113,7 +120,7 @@ export const routes = [
 ];
 
 export const fullTitle = (route) =>
-  route.path === '/' ? route.title : `${route.title} | Röntgen am Kai Graz`;
+  route.fullTitle || (route.path === '/' ? route.title : `${route.title} | Röntgen am Kai Graz`);
 
 export const findRoute = (pathname) => {
   const clean = pathname.replace(/\/+$/, '') || '/';

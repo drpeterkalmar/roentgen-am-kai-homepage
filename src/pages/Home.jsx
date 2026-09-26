@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Phone, HelpCircle, CreditCard, FileCheck } from 'lucide-react';
+import { ArrowRight, Phone, HelpCircle, CreditCard, FileCheck, HeartPulse } from 'lucide-react';
 import Hero from '../components/ui/Hero';
 import Section from '../components/ui/Section';
 import Card from '../components/ui/Card';
@@ -15,6 +15,8 @@ import { INSURANCE_SUMMARY } from '../components/ui/ReferralInfo';
 import ServiceGrid, { badgesFor } from '../components/ServiceGrid';
 import PatientPortal from '../components/PatientPortal';
 import { services } from '../data/services';
+import { SCREENING_HOME_LINE, SCREENING_HOME_CARD } from '../data/screening';
+import { IMAGE_BRIEFS } from '../data/imageBriefs';
 import { goals } from '../data/goals';
 import { PHONE_HREF, PHONE_DISPLAY, OPENING_HOURS, MAPS_ROUTE_URL, ADDRESS } from '../data/practice';
 
@@ -45,10 +47,11 @@ const ONLINE = listDE(Object.values(services).filter((s) => s.onlineBooking).map
 const FEATURED = [
   {
     key: 'mammographie',
-    title: 'Mammographie und Brustvorsorge',
-    text: 'Früherkennung kann entscheidend sein. Informieren Sie sich über Screening, diagnostische Mammographie und Brustultraschall.',
-    cta: 'Zur Mammographie',
-    media: <Photo name="mammographie_v2" />,
+    title: 'Mammographie & Brustgesundheit',
+    text: SCREENING_HOME_CARD,
+    cta: 'Mammographie-Termin buchen',
+    // Freigegebenes Foto des realen Geräts fehlt noch (bisheriges Bild zeigt vermutlich ein Fremdgerät)
+    media: <ImagePlaceholder brief={IMAGE_BRIEFS.mammoDevice} className="aspect-[16/10] border-0 border-b-2" />,
   },
   {
     key: 'knochendichte',
@@ -116,7 +119,14 @@ const Home = () => (
 
     {/* 2. Drei Schwerpunkte */}
     <Section id="services" labelledBy="schwerpunkte-title">
-      <SectionHeading id="schwerpunkte-title" eyebrow="Unsere Schwerpunkte" title="Vorsorge und Diagnostik" />
+      <SectionHeading id="schwerpunkte-title" eyebrow="Unsere Schwerpunkte" title="Vorsorge und Diagnostik" className="!mb-6" />
+      <p className="mb-10 flex items-start gap-3 rounded-xl border border-brand-100 bg-brand-50 px-4 py-3 text-slate-800 dark:border-brand-900 dark:bg-slate-900 dark:text-slate-100">
+        <HeartPulse size={20} aria-hidden="true" className="mt-0.5 shrink-0 text-brand dark:text-brand-300" />
+        <span>
+          {SCREENING_HOME_LINE}{' '}
+          <Link to="/mammographie-graz#screening" className="whitespace-nowrap font-semibold text-brand underline underline-offset-4 dark:text-brand-300">Mehr erfahren</Link>
+        </span>
+      </p>
       <ul className="grid gap-6 md:grid-cols-3">
         {FEATURED.map((f) => (
           <li key={f.key}>
@@ -262,7 +272,7 @@ const Home = () => (
         </li>
         <li>
           <Card padding="p-0" className="h-full overflow-hidden">
-            <Photo name="mammographie_v2" alt="Mammographiegerät der Praxis" />
+            <Photo name="knochendichte_v3" alt="Gerät zur DEXA-Messung in der Ordination Röntgen am Kai" />
             <div className="p-6">
               <h3 className="font-display text-xl font-semibold text-slate-900 dark:text-white">Moderne Technik</h3>
               <p className="mt-2 text-slate-600 dark:text-slate-300">

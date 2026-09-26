@@ -172,7 +172,7 @@ export const blogPosts = [
 
       <h3>4. Screening bei extrem dichtem Brustgewebe (2022, EUSOBI)</h3>
       <p><em>Mann RM, Athanasiou A, Baltzer PAT, et al. Breast cancer screening in women with extremely dense breasts recommendations of the European Society of Breast Imaging (EUSOBI). Eur Radiol. 2022;32(6):4036-4045. <a href="https://pubmed.ncbi.nlm.nih.gov/35258677/" target="_blank" rel="noopener">PubMed: 35258677</a></em></p>
-      <p>Frauen mit extrem dichtem Drüsengewebe haben ein erhöhtes Brustkrebsrisiko, und der Tumor ist auf der Mammographie schwerer zu erkennen. Diese EUSOBI-Empfehlung plädiert für ergänzende Bildgebung (z. B. MRT oder Ultraschall) bei dieser Patientengruppe, ein Angebot, das wir in unserer Praxis ebenfalls bereitstellen.</p>
+      <p>Frauen mit extrem dichtem Drüsengewebe haben ein erhöhtes Brustkrebsrisiko, und der Tumor ist auf der Mammographie schwerer zu erkennen. Diese EUSOBI-Empfehlung plädiert für ergänzende Bildgebung (z. B. MRT oder Ultraschall) bei dieser Patientengruppe. Den Ultraschall bieten wir in unserer Praxis an, eine MRT nicht; ob eine ergänzende Untersuchung sinnvoll ist, wird individuell ärztlich entschieden.</p>
 
       <h3>5. Brustkrebs-Screening-Programme in Europa (2023)</h3>
       <p><em>Cardoso R, Hoffmeister M, Brenner H. Breast cancer screening programmes and self-reported mammography use in European countries. Int J Cancer. 2023;152(12):2512-2527. <a href="https://pubmed.ncbi.nlm.nih.gov/36883419/" target="_blank" rel="noopener">PubMed: 36883419</a></em></p>

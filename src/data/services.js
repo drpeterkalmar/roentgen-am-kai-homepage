@@ -1,3 +1,5 @@
+import { SCREENING, AGE_RANGE, INTERVAL_TEXT } from './screening.js';
+
 // Leistungen — zentrale Stammdaten für Karten, Übersichten, Buchungs- und Kassenhinweise.
 // Nur Angaben, die auf der bisherigen Website stehen oder von der Praxis bestätigt wurden.
 // Offene Punkte sind als PLATZHALTER (null) markiert.
@@ -8,21 +10,22 @@
 
 export const services = {
   mammographie: {
-    title: 'Mammographie und Brustvorsorge',
+    title: 'Mammographie & Brustgesundheit',
     short: 'Mammographie',
-    href: '/unser-angebot/mammographie',
+    href: '/mammographie-graz',
     description:
-      'Mammographie und Brust-Ultraschall. Zertifizierter Standort des österreichischen Brustkrebs-Früherkennungsprogramms mit Doppelbefundung.',
+      'Screening-Mammographie im Brustkrebs-Früherkennungsprogramm, diagnostische Mammographie und Brustultraschall.',
     priority: 1,
     onlineBooking: true,
     referral: {
-      summary: 'Im Brustkrebs-Früherkennungsprogramm ohne Überweisung, sonst mit Überweisung.',
+      summary: 'Im Brustkrebs-Früherkennungsprogramm ohne Zuweisung, sonst in der Regel mit Zuweisung.',
       items: [
-        'Früherkennungsprogramm (Frauen 45–74 Jahre, alle 2 Jahre): e-Card genügt, keine Überweisung nötig.',
+        `Früherkennungsprogramm (Frauen zwischen ${AGE_RANGE}, ${INTERVAL_TEXT}): e-card genügt, keine Zuweisung nötig.`,
         'Abklärung von Beschwerden oder Befunden: mit Überweisung.',
       ],
     },
-    billing: 'Kassenleistung mit e-Card.',
+    billing: 'Kassenleistung mit e-card.',
+    programUrl: SCREENING.officialUrl,
   },
   knochendichte: {
     title: 'DEXA-Knochendichtemessung',

@@ -31,16 +31,16 @@ const FAQItem = ({ question, answer, headingLevel }) => {
   );
 };
 
-const FAQ = ({ items, title = 'Häufig gestellte Fragen', headingLevel = 2 }) => {
+const FAQ = ({ items, title = 'Häufig gestellte Fragen', headingLevel = 2, align = 'center' }) => {
   const itemLevel = Math.min(headingLevel + 1, 6);
   const H = `h${headingLevel}`;
   return (
     <section id="faq" aria-labelledby="faq-title" className="py-14 sm:py-20">
-      <div className="mx-auto max-w-3xl px-5 sm:px-6">
+      <div className={align === "left" ? "mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8" : "mx-auto max-w-3xl px-5 sm:px-6"}>
         <H id="faq-title" className="mb-6 font-display text-2xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-3xl">
           {title}
         </H>
-        <div className="rounded-2xl border border-slate-200 bg-white px-5 sm:px-8 dark:border-slate-700 dark:bg-slate-900">
+        <div className={`rounded-2xl border border-slate-200 bg-white px-5 sm:px-8 dark:border-slate-700 dark:bg-slate-900 ${align === "left" ? "max-w-4xl" : ""}`}>
           {items.map((item) => (
             <FAQItem key={item.question} question={item.question} answer={item.answer} headingLevel={itemLevel} />
           ))}

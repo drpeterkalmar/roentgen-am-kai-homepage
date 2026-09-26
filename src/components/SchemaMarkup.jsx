@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { faqData } from '../data/faqData';
-import { SITE_URL } from '../data/routes';
+import { SITE_URL, findRoute, fullTitle } from '../data/routes';
 import { COMPANY_NAME, FN, UID } from '../data/company';
 import { PHONE_E164, EMAIL, ADDRESS, OPENING_HOURS } from '../data/practice';
 
@@ -22,7 +22,6 @@ const SchemaMarkup = () => {
       "identifier": { "@type": "PropertyValue", "propertyID": "Firmenbuchnummer", "value": `FN ${FN}` },
       "telephone": PHONE_E164,
       "email": EMAIL,
-      "priceRange": "$$",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": ADDRESS.street,
@@ -42,7 +41,7 @@ const SchemaMarkup = () => {
         "opens": h.opens,
         "closes": h.closes
       })),
-      "medicalSpecialty": ["Radiology", "DiagnosticImaging"],
+      "medicalSpecialty": "Radiography",
       "founder": [
         { "@type": "Person", "name": "Priv. Doz. Dr. Peter Kalmar" },
         { "@type": "Person", "name": "Priv. Doz. Dr. Georg Riegler" }
@@ -59,21 +58,17 @@ const SchemaMarkup = () => {
     // Eine Quelle fuer sichtbaren FAQ-Block UND JSON-LD (kein Drift mehr moeglich).
     const PATH_TO_FAQ = {
       '/unser-angebot/knochendichte': 'knochendichte',
-      '/unser-angebot/mammographie': 'mammographie',
+      '/mammographie-graz': 'mammographie',
       '/unser-angebot/koerperfettmessung': 'koerperfett',
       '/unser-angebot/roentgen': 'roentgen',
       '/unser-angebot/ultraschall': 'ultraschall',
       '/unser-angebot/phlebographie': 'phlebographie',
       '/unser-angebot/dvt': 'dvt',
-      // Unterseiten in Vorbereitung (wie an HEROLD geliefert, Sep 2026) —
-      // FAQ-Sets liegen in faqData.js bereit; Seiten/Routes folgen.
-      '/unser-angebot/digitales-roentgen/lungenroentgen': 'lungenroentgen',
-      '/unser-angebot/digitales-roentgen/wirbelsaeulenroentgen': 'wirbelsaeulenroentgen',
-      '/unser-angebot/digitales-roentgen/roentgen-nach-unfall': 'roentgenNachUnfall',
-      '/unser-angebot/mammographie/mammascreening': 'mammascreening',
-      '/unser-angebot': 'angebot'
+      // Weitere Sets (lungenroentgen, mammascreening, …) liegen in faqData.js bereit.
+      // Nur Routen mit SICHTBAREM FAQ eintragen – Weiterleitungsseiten nie.
     };
-    const faqKey = PATH_TO_FAQ[location.pathname];
+    const cleanPath = location.pathname.replace(/\/+$/, '') || '/';
+    const faqKey = PATH_TO_FAQ[cleanPath];
     const faqItems = faqKey ? faqData[faqKey] : null;
     const faqSchema = faqItems ? {
       "@context": "https://schema.org",
@@ -88,8 +83,44 @@ const SchemaMarkup = () => {
       }))
     } : null;
 
+    // 3. Seiten-Schemas: BreadcrumbList (nur Routen mit `crumb` in routes.js – deckungsgleich mit den
+    //    sichtbaren Brotkrumen) und MedicalWebPage für Leistungsseiten mit `medicalProcedure`.
+    const route = findRoute(cleanPath);
+    const pageUrl = route ? `${SITE_URL}${route.path === '/' ? '/' : route.path}` : null;
+    const extraSchemas = [];
+    if (route?.crumb) {
+      extraSchemas.push({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Startseite", "item": `${SITE_URL}/` },
+          { "@type": "ListItem", "position": 2, "name": route.crumb, "item": pageUrl }
+        ]
+      });
+    }
+    if (route?.medicalProcedure) {
+      extraSchemas.push({
+        "@context": "https://schema.org",
+        "@type": "MedicalWebPage",
+        "@id": `${pageUrl}#webpage`,
+        "url": pageUrl,
+        "name": fullTitle(route),
+        "description": route.description,
+        "inLanguage": "de-AT",
+        "about": { "@type": "MedicalProcedure", ...route.medicalProcedure },
+        "publisher": { "@id": `${SITE_URL}/#praxis` }
+      });
+    }
+
     // Inject Scripts
     const scripts = [];
+    extraSchemas.forEach((schema) => {
+      const el = document.createElement('script');
+      el.type = 'application/ld+json';
+      el.innerHTML = JSON.stringify(schema);
+      document.head.appendChild(el);
+      scripts.push(el);
+    });
     
     // Base Script
     const baseScript = document.createElement('script');

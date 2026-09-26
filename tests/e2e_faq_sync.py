@@ -25,7 +25,7 @@ BASE = f"http://localhost:{PORT}/roentgen-am-kai-homepage/"
 ROUTES = {
     "/unser-angebot/roentgen": ("roentgen", 4, "klassische Filmtechnik"),
     "/unser-angebot/ultraschall": ("ultraschall", 4, "natürliches Schallfenster"),
-    "/unser-angebot/mammographie": ("mammographie", 4, "Unser Mammographiegerät passt den Kompressionsdruck"),
+    "/mammographie-graz": ("mammographie", 13, "automatisch freigeschaltet"),
     "/unser-angebot/dvt": ("dvt", 3, "Zahnimplantaten"),
     "/unser-angebot/knochendichte": ("knochendichte", 4, "BVAEB, SVS und KFA"),
     "/unser-angebot/koerperfettmessung": ("koerperfett", 3, "viszeralen Fetts"),

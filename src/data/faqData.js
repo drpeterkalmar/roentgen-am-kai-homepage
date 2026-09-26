@@ -1,3 +1,67 @@
+import { SCREENING, AGE_RANGE, INTERVAL_TEXT } from './screening.js';
+
+// FAQ Mammographie & Brustgesundheit (26.09.2026). Programmregeln aus src/data/screening.js.
+// review: interne Markierung – Angabe von der Praxis / ärztlich zu bestätigen (wird NICHT angezeigt).
+const sl = SCREENING.serviceline;
+export const mammographieFaq = [
+  {
+    question: 'Brauche ich eine Überweisung?',
+    answer: `Für die Screening-Mammographie im Früherkennungsprogramm nicht: Frauen zwischen ${AGE_RANGE} ohne Beschwerden kommen ohne ärztliche Zuweisung. Bei Beschwerden oder zur Abklärung eines auffälligen Befundes ist in der Regel eine ärztliche Zuweisung nötig.`,
+  },
+  {
+    question: 'Reicht meine e-card für das Screening?',
+    answer: `Ja. Für Frauen zwischen ${AGE_RANGE} ist die e-card für die Screening-Mammographie automatisch freigeschaltet. Bitte bringen Sie sie zum Termin mit.`,
+  },
+  {
+    question: 'Wie oft kann ich zur Screening-Mammographie kommen?',
+    answer: `Im Früherkennungsprogramm ${INTERVAL_TEXT}.`,
+  },
+  {
+    question: 'Muss ich das Einladungsschreiben mitbringen?',
+    answer: 'Nein. Das Erinnerungsschreiben ist für die Untersuchung nicht erforderlich – Ihre e-card genügt.',
+  },
+  {
+    question: 'Was gilt für Frauen zwischen 40 und 44 Jahren?',
+    answer: `Sie können sich entsprechend den aktuellen Programmregeln zum Früherkennungsprogramm anmelden – über die Serviceline ${sl.display} (${sl.hours}) oder unter ${SCREENING.officialUrlLabel}.`,
+  },
+  {
+    question: 'Was gilt für Frauen ab 75 Jahren?',
+    answer: `Auch Frauen ab 75 Jahren können sich entsprechend den aktuellen Programmregeln anmelden – über die Serviceline ${sl.display} (${sl.hours}) oder unter ${SCREENING.officialUrlLabel}.`,
+  },
+  {
+    question: 'Was mache ich bei Beschwerden?',
+    answer: 'Warten Sie nicht auf einen regulären Screening-Termin. Lassen Sie neue Veränderungen der Brust – etwa einen tastbaren Knoten, Sekretion aus der Brustwarze oder eine Hauteinziehung – rasch ärztlich abklären. Das Screening ist für Frauen ohne Beschwerden vorgesehen.',
+  },
+  {
+    question: 'Tut eine Mammographie weh?',
+    answer: 'Für die Aufnahme wird die Brust kurz zusammengedrückt. Das kann unangenehm und manchmal auch schmerzhaft sein, dauert aber jeweils nur kurz. Ist Ihre Brust vor der Regel empfindlich, ist ein Termin während oder in der Woche nach der Regel oft angenehmer.',
+  },
+  {
+    question: 'Ist eine Mammographie mit Brustimplantaten möglich?',
+    answer: 'In der Regel ja. Bitte teilen Sie uns bei der Terminvereinbarung mit, dass Sie Brustimplantate haben.',
+    review: 'Praxis bestätigen: Mammographie bei Implantaten im Angebot? Besonderheiten bei Terminvergabe/Screening?',
+  },
+  {
+    question: 'Wann kann ein Brustultraschall sinnvoll sein?',
+    answer: 'Zum Beispiel bei dichtem Brustgewebe oder zur weiteren Abklärung eines Befundes. Ultraschall und Mammographie liefern unterschiedliche Informationen; ob ein Ultraschall nötig ist, wird ärztlich beurteilt.',
+    review: 'Ärztlich freigeben.',
+  },
+  {
+    question: 'Was bedeutet dichtes Brustgewebe?',
+    answer: 'Die Brust besteht aus Drüsen-, Binde- und Fettgewebe. Von dichtem Brustgewebe spricht man, wenn der Anteil an Drüsen- und Bindegewebe hoch ist. Das ist häufig und keine Krankheit, kann aber die Beurteilung der Mammographie erschweren.',
+    review: 'Ärztlich freigeben.',
+  },
+  {
+    question: 'Was muss ich mitbringen?',
+    answer: 'Ihre e-card, Voraufnahmen und Vorbefunde (sofern sie uns nicht bereits vorliegen) und – falls vorhanden – Ihre Zuweisung. Für die Screening-Mammographie ist keine Zuweisung nötig.',
+  },
+  {
+    question: 'Wie erhalte ich meinen Befund?',
+    answer: 'Ihre Aufnahmen werden digital befundet und archiviert und stehen Ihrem Haus- oder Facharzt rasch zur Verfügung. Ihre Bilder und Befunde sind zusätzlich über ELGA sowie online unter portal.marc.at verfügbar.',
+    review: 'Praxis bestätigen: Befundweg im Screening (z. B. Befundbrief, Befundbesprechung) – nicht erfinden.',
+  },
+];
+
 // Zentrale FAQ-Daten für alle Leistungsseiten.
 // Eine Quelle für den sichtbaren FAQ-Block (components/FAQ.jsx) UND das
 // FAQPage-JSON-LD (components/SchemaMarkup.jsx) — keine Duplikate mehr.
@@ -43,24 +107,7 @@ export const faqData = {
       answer: "Wir untersuchen Oberbauchorgane (Leber, Gallenblase, Milz, Bauchspeicheldrüse), Unterbauchorgane, Nieren und ableitende Harnwege, Halsorgane wie Schilddrüse und Speicheldrüsen, Lymphknoten, Brust sowie Gelenke. Mit dem Farbdoppler beurteilen wir Bauchaorta, Arm-, Becken-, Beinvenen sowie -arterien sowie die großen Halsgefäße."
     }
   ],
-  mammographie: [
-    {
-      question: "Wann ist eine Mammographie sinnvoll?",
-      answer: "Im Rahmen des österreichischen Brustkrebs-Früherkennungsprogramms ist eine Vorsorgemammographie alle 2 Jahre für Frauen zwischen 45 und 74 Jahren ohne Überweisung möglich. Das Programm ist freiwillig; auf Wunsch kann es auf alle Altersgruppen ab 40 Jahren – ohne obere Altersgrenze – ausgedehnt werden, ebenfalls ohne Überweisung. Außerhalb dieses Bereichs oder bei Beschwerden ist eine Untersuchung mit Überweisung ratsam."
-    },
-    {
-      question: "Ist die Mammographie bei Röntgen am Kai schmerzhaft?",
-      answer: "Unser Mammographiegerät passt den Kompressionsdruck individuell an und reduziert die Strahlendosis um bis zu 50 %, was die Untersuchung deutlich angenehmer macht und eine exzellente Bildqualität liefert."
-    },
-    {
-      question: "Benötige ich für das Mammographie-Screening eine Überweisung?",
-      answer: "Wenn Sie in die Altersgruppe der 45- bis 74-Jährigen fallen oder freiwillig am erweiterten Screening teilnehmen (40–44 Jahre, älter als 74 Jahre), benötigen Sie keine Überweisung. Ihre e-Card ist für das Früherkennungsprogramm alle 2 Jahre automatisch freigeschaltet."
-    },
-    {
-      question: "Was ist der Vorteil einer Doppelbefundung?",
-      answer: "Bei der für uns verpflichtenden Doppelbefundung wird jede Mammographie von zwei speziell zertifizierten RadiologInnen unabhängig voneinander beurteilt."
-    }
-  ],
+  mammographie: mammographieFaq,
   dvt: [
     {
       question: "Was ist eine DVT (Digitale Volumentomographie)?",

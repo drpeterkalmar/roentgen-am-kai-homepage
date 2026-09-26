@@ -38,7 +38,7 @@ const renderRoute = (route) => {
     html = replaceOnce(html, /\s*<!-- identisch zu srcset[\s\S]*?imagesizes="[^"]*">/, '', 'hero-preload');
     html = replaceOnce(html, /<div id="root">[\s\S]*<\/div>(\s*<\/body>)/,
       `<div id="root"><main style="padding:160px 24px 48px;max-width:800px;margin:0 auto">`
-      + `<h1 class="lcp-text" style="font-size:2.5rem;line-height:1.1;margin:0 0 16px">${esc(route.title)}</h1>`
+      + `<h1 class="lcp-text" style="font-size:2.5rem;line-height:1.1;margin:0 0 16px">${esc(route.h1 || route.title)}</h1>`
       + `<p style="font-size:1.125rem;color:#4b5563;margin:0">${desc}</p></main></div>$1`, 'skeleton');
   }
   return html;
@@ -61,15 +61,17 @@ for (const route of routes) {
   }
 }
 
-// Alte HEROLD-Pfade → neue Seiten. GitHub Pages kann kein 301; Meta-Refresh 0 s + Canonical
-// wertet Google als permanente Weiterleitung.
+// Alte Pfade → neue Seiten. GitHub Pages kann kein HTTP-301; Meta-Refresh 0 s + Canonical
+// wertet Google als permanente Weiterleitung. Nach dem Domain-Umzug auf einen eigenen Server: echte 301.
 const legacy = {
   '/unser-angebot': '/#services',
   '/unser-angebot/digitales-roentgen': '/unser-angebot/roentgen',
   '/unser-angebot/digitales-roentgen/lungenroentgen': '/unser-angebot/roentgen',
   '/unser-angebot/digitales-roentgen/wirbelsaeulenroentgen': '/unser-angebot/roentgen',
   '/unser-angebot/digitales-roentgen/roentgen-nach-unfall': '/unser-angebot/roentgen',
-  '/unser-angebot/mammographie/mammascreening': '/unser-angebot/mammographie',
+  // Mammographie-Seite ist nach /mammographie-graz umgezogen (26.09.2026)
+  '/unser-angebot/mammographie': '/mammographie-graz',
+  '/unser-angebot/mammographie/mammascreening': '/mammographie-graz',
   '/datenschutzerklarung': '/datenschutz',
 };
 for (const [from, to] of Object.entries(legacy)) {
