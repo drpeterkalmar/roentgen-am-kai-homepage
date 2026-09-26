@@ -4,17 +4,17 @@ export const blogPosts = [
     title: 'Knochendichtemessung (DEXA): Warum Vorsorge Leben schützt',
     date: '17. April 2026',
     category: 'Vorsorge',
-    excerpt: 'Osteoporose verläuft lange ohne Symptome. Die DEXA-Messung ist das einzige von der WHO anerkannte Verfahren zur Früherkennung. Wer sie wann machen sollte.',
+    excerpt: 'Osteoporose verläuft lange ohne Symptome. Die DEXA-Messung ist die wissenschaftlich etablierte Standard- und Referenzmethode zur Messung der Knochendichte. Wann sie sinnvoll sein kann.',
     content: `
       <p>Osteoporose verringert die Knochenmasse und verschlechtert die Knochenarchitektur. Die Knochen werden brüchiger, oft ohne Vorwarnung.</p>
       
-      <h3>Der Goldstandard: DEXA-Messung</h3>
-      <p>In unserer Praxis verwenden wir die DEXA-Methode (Dual-Energy X-ray Absorptiometry). Sie ist das einzige von der WHO anerkannte Verfahren zur Diagnose von Osteoporose. Die Untersuchung ist schmerzfrei, dauert wenige Minuten. Die Strahlenbelastung ist minimal, vergleichbar mit der natürlichen Strahlung auf einem kurzen Flug.</p>
+      <h3>Die Standardmethode: DEXA-Messung</h3>
+      <p>In unserer Praxis verwenden wir die DEXA-Methode (Dual-Energy X-ray Absorptiometry). Sie ist die wissenschaftlich etablierte Standard- und Referenzmethode zur Messung der Knochenmineraldichte. Die Untersuchung ist schmerzlos und arbeitet mit einer sehr geringen Röntgendosis – deutlich geringer als bei einer üblichen Röntgenaufnahme.</p>
       
       <h3>Wann ist eine Messung sinnvoll?</h3>
-      <p>In Österreich wird die Knochendichtemessung Frauen ab der Menopause und Männern ab 65 Jahren empfohlen. Bei Risikofaktoren wie vorangegangenen Knochenbrüchen, familiärer Belastung oder Langzeittherapie mit Cortison sollte die Untersuchung früher erfolgen.</p>
+      <p>Nicht jede Person benötigt ab einem bestimmten Alter automatisch eine Knochendichtemessung. Ab dem 50. Lebensjahr ist aber eine persönliche Einschätzung des Osteoporoserisikos sinnvoll. Empfohlen wird die Messung etwa bei Frauen ab 65 und Männern ab 70 Jahren sowie früher bei Risikofaktoren wie einem Knochenbruch nach geringem Anlass, familiärer Belastung oder einer längeren Cortisontherapie.</p>
       
-      <p>Früherkennung ermöglicht eine gezielte Therapie, oft bevor der erste Knochenbruch passiert. Sprechen Sie mit Ihrem überweisenden Arzt über eine DEXA-Untersuchung.</p>
+      <p>Das Ergebnis wird immer gemeinsam mit Ihren Risikofaktoren ärztlich beurteilt. Sprechen Sie mit Ihrer Ärztin oder Ihrem Arzt, ob eine DEXA-Messung für Sie sinnvoll ist. Mehr dazu auf unserer Seite zur Knochendichtemessung.</p>
     `,
     image: 'assets/images/knochendichte.avif',
     status: 'published'

@@ -9,7 +9,7 @@ export const OTHER_EXAMS = [
 export const MAIN_NAV = [
   { name: 'Startseite', href: '/' },
   { name: 'Mammographie & Brustgesundheit', href: '/mammographie-graz' },
-  { name: 'Knochendichte', href: '/unser-angebot/knochendichte' },
+  { name: 'Knochendichte', href: '/knochendichtemessung-graz' },
   { name: 'DEXA-Körperanalyse', href: '/unser-angebot/koerperfettmessung' },
   {
     name: 'Weitere Untersuchungen',

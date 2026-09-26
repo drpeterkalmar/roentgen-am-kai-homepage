@@ -10,7 +10,8 @@ import Breadcrumbs from './Breadcrumbs';
 //   breadcrumbs: [{ name, href? }] – Brotkrumen über der Überschrift
 //   highlight: gut sichtbarer Hinweis direkt unter der H1 (z. B. „Ohne Zuweisung · mit e-card …“)
 //   meta: kleine Zusatzinfos unter den Schaltflächen (z. B. Öffnungszeiten)
-const Hero = ({ breadcrumbs, eyebrow, title, highlight, lead, actions, meta, image, imageSlot, tone = 'muted', className, children }) => {
+//   facts: kurze Stichpunkte als Chips zwischen Einleitung und Schaltflächen ([string | { text, strong }])
+const Hero = ({ breadcrumbs, eyebrow, title, highlight, lead, facts, actions, meta, image, imageSlot, tone = 'muted', className, children }) => {
   const hasMedia = image || imageSlot;
   return (
     <section
@@ -28,6 +29,26 @@ const Hero = ({ breadcrumbs, eyebrow, title, highlight, lead, actions, meta, ima
             </p>
           )}
           {lead && <Lead className="mt-4 max-w-2xl text-base sm:mt-5 sm:text-lg">{lead}</Lead>}
+          {facts && facts.length > 0 && (
+            <ul className="mt-4 flex flex-wrap gap-2 sm:mt-5" aria-label="Auf einen Blick">
+              {facts.map((f) => {
+                const item = typeof f === 'string' ? { text: f } : f;
+                return (
+                  <li
+                    key={item.text}
+                    className={cx(
+                      'inline-flex items-center rounded-full border px-3 py-1 text-sm font-semibold',
+                      item.strong
+                        ? 'border-brand-200 bg-white text-brand-800 dark:border-brand-800 dark:bg-slate-950 dark:text-brand-200'
+                        : 'border-slate-200 bg-white text-slate-700 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200'
+                    )}
+                  >
+                    {item.text}
+                  </li>
+                );
+              })}
+            </ul>
+          )}
           {actions && <div className="mt-6 sm:mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">{actions}</div>}
           {meta && <div className="mt-6 text-sm text-slate-600 dark:text-slate-300">{meta}</div>}
           {children}

@@ -5,6 +5,7 @@
 
 // Kanonische Domain (Hauptdomain ab Jan 2027: Umlaut-Domain, hier in Punycode).
 import { SCREENING_META_DESCRIPTION } from './screening.js';
+import { DEXA_META_DESCRIPTION } from './dexa.js';
 
 export const SITE_URL = 'https://www.xn--rntgen-am-kai-imb.at';
 
@@ -44,9 +45,13 @@ export const routes = [
     priority: '0.9',
   },
   {
-    path: '/unser-angebot/knochendichte',
-    title: 'DEXA-Knochendichtemessung in Graz',
-    description: 'DEXA-Knochendichtemessung zur Osteoporose-Früherkennung in Graz, inklusive FRAX-Score. Keine Vorbereitung nötig, kurze Wartezeiten.',
+    path: '/knochendichtemessung-graz',
+    fullTitle: 'Knochendichtemessung Graz mit DEXA | Röntgen am Kai',
+    title: 'Knochendichtemessung mit DEXA',
+    h1: 'Knochendichtemessung in Graz mit DEXA',
+    crumb: 'Knochendichte',
+    medicalProcedure: { name: 'DEXA-Knochendichtemessung', alternateName: ['DXA', 'Knochendichtemessung', 'Osteodensitometrie'] },
+    description: DEXA_META_DESCRIPTION,
     priority: '0.9',
   },
   {

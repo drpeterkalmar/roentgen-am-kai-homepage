@@ -14,7 +14,7 @@ BOOK = "https://patient-portal.miranext.ai/patient-booking?c_Id=23"
 ROUTES = {
     "/": ("Radiologie Graz", "Moderne Radiologie in Graz"),
     "/mammographie-graz": ("Mammographie Graz ohne Zuweisung", "Häufige Fragen zur Mammographie"),
-    "/unser-angebot/knochendichte": ("Knochendichte", "Häufige Fragen zur Knochendichtemessung"),
+    "/knochendichtemessung-graz": ("Knochendichte", "Häufige Fragen zur Knochendichtemessung"),
     "/unser-angebot/koerperfettmessung": ("DEXA-Körperanalyse", "Häufige Fragen zur DEXA-Körperanalyse"),
     "/unser-angebot/roentgen": ("Digitales Röntgen", "Häufige Fragen zum Röntgen"),
     "/unser-angebot/ultraschall": ("Sonographie", "Häufige Fragen"),
@@ -29,7 +29,7 @@ ROUTES = {
     "/impressum": ("Impressum", "Offener Quellcode"),
     "/datenschutz": ("Datenschutz", "Verantwortlicher"),
 }
-LEGACY = {"/datenschutzerklarung": "/datenschutz", "/unser-angebot/mammographie": "/mammographie-graz", "/unser-angebot/mammographie/mammascreening": "/mammographie-graz"}
+LEGACY = {"/datenschutzerklarung": "/datenschutz", "/unser-angebot/mammographie": "/mammographie-graz", "/unser-angebot/mammographie/mammascreening": "/mammographie-graz", "/unser-angebot/knochendichte": "/knochendichtemessung-graz"}
 NAV = ["Startseite", "Mammographie & Brustgesundheit", "Knochendichte", "DEXA-Körperanalyse", "Weitere Untersuchungen", "Gesundheitsziele", "Ratgeber", "Praxis und Kontakt"]
 TEL_OK = {TEL, "tel:0800" + "500181"}  # Praxis + Serviceline des Früherkennungsprogramms
 FORBIDDEN = ["Tomosynth", "3D-Mammo", "3D Mammo", "dreidimensionale Mammo", "Terminanfrage", "Online-Terminvergabe", "script.google.com", "Sonografie", "Wahlarzt für", "Wahlarztpraxis"]  # Lebenslauf-Einträge "Wahlarztordination 20xx" sind korrekt

@@ -88,7 +88,8 @@ function App() {
               {/* alte Adressen → dauerhaft neue Seite (statisch: scripts/postbuild.mjs) */}
               <Route path="/unser-angebot/mammographie" element={<Navigate to="/mammographie-graz" replace />} />
               <Route path="/unser-angebot/mammographie/mammascreening" element={<Navigate to="/mammographie-graz" replace />} />
-              <Route path="/unser-angebot/knochendichte" element={<KnochendichtePage />} />
+              <Route path="/knochendichtemessung-graz" element={<KnochendichtePage />} />
+              <Route path="/unser-angebot/knochendichte" element={<Navigate to="/knochendichtemessung-graz" replace />} />
               <Route path="/unser-angebot/dvt" element={<DVTPage />} />
               <Route path="/unser-angebot/phlebographie" element={<PhlebographiePage />} />
               <Route path="/unser-angebot/koerperfettmessung" element={<KoerperfettPage />} />

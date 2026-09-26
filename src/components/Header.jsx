@@ -129,9 +129,9 @@ const DesktopDropdown = ({ item, pathname }) => {
 
 const navLinkCls = (active) =>
   cx(
-    'relative inline-flex min-h-[44px] items-center whitespace-nowrap rounded-lg px-3 text-[0.95rem] font-medium transition-colors',
+    'relative inline-flex min-h-[44px] items-center whitespace-nowrap rounded-lg px-2 text-[0.9375rem] font-medium transition-colors 2xl:px-3',
     'text-slate-700 hover:text-brand dark:text-slate-200 dark:hover:text-brand-300',
-    'after:absolute after:inset-x-3 after:bottom-1 after:h-0.5 after:rounded-full after:transition-colors',
+    'after:absolute after:inset-x-2 2xl:after:inset-x-3 after:bottom-1 after:h-0.5 after:rounded-full after:transition-colors',
     active ? 'text-brand after:bg-brand dark:text-brand-300 dark:after:bg-brand-300' : 'after:bg-transparent'
   );
 

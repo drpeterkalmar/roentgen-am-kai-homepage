@@ -1,4 +1,5 @@
 import { SCREENING, AGE_RANGE, INTERVAL_TEXT } from './screening.js';
+import { DEXA_PRICE_TEXT, DEXA_OTHER_CARRIERS, DEXA_RADIATION_TEXT, DEXA_RHO_SENTENCE } from './dexa.js';
 
 // FAQ Mammographie & Brustgesundheit (26.09.2026). Programmregeln aus src/data/screening.js.
 // review: interne Markierung – Angabe von der Praxis / ärztlich zu bestätigen (wird NICHT angezeigt).
@@ -70,6 +71,79 @@ export const mammographieFaq = [
 // roentgenNachUnfall, mammascreening und angebot liegen für die noch zu
 // bauenden Unterseiten bereit — Schema-Routen in SchemaMarkup.jsx).
 
+// FAQ DEXA-Knochendichtemessung (26.09.2026). Preis/Kassenregeln/Rho aus src/data/dexa.js.
+// review: interne Markierung – Angabe von der Praxis / ärztlich zu bestätigen (wird NICHT angezeigt).
+export const dexaFaq = [
+  {
+    question: 'Was ist eine DEXA-Knochendichtemessung?',
+    answer: 'DEXA (auch DXA, „Dual-Energy X-ray Absorptiometry“) ist eine Röntgenmessung mit sehr geringer Dosis. Sie bestimmt den Mineralgehalt des Knochens – meist an der Lendenwirbelsäule und an der Hüfte bzw. am Oberschenkelhals. Das Ergebnis hilft, eine Osteoporose zu erkennen und das Bruchrisiko einzuschätzen.',
+  },
+  {
+    question: 'Warum wird DEXA als Standardmethode verwendet?',
+    answer: 'DEXA ist die wissenschaftlich etablierte Standard- und Referenzmethode zur Messung der Knochenmineraldichte. Die Messwerte sind standardisiert (T-Score, Z-Score), international vergleichbar und eignen sich für Diagnose, Risikoeinschätzung und Verlaufskontrollen.',
+  },
+  {
+    question: 'Wann ist die Untersuchung sinnvoll?',
+    answer: 'Zum Beispiel bei Frauen nach der Menopause mit Risikofaktoren, bei Frauen ab 65 und Männern ab 70 Jahren, nach einem Knochenbruch bei geringem Anlass, bei längerer Cortisontherapie oder bei Erkrankungen, die den Knochen schwächen können. Nicht jede Person braucht ab einem bestimmten Alter automatisch eine DEXA – ab 50 ist aber eine persönliche Einschätzung des Osteoporoserisikos sinnvoll.',
+  },
+  {
+    question: 'Brauche ich eine ärztliche Zuweisung?',
+    answer: `Für die Abrechnung als Kassenleistung bei ${DEXA_OTHER_CARRIERS} ist eine ärztliche Zuweisung erforderlich. Für ÖGK-Versicherte ist die Messung eine Privatleistung. Ob Sie für eine mögliche Kostenerstattung durch die ÖGK eine Zuweisung benötigen, klären Sie bitte vorab mit der ÖGK oder mit uns.`,
+    review: 'Praxis bestätigen: ÖGK-Privatleistung auch ohne Zuweisung buchbar? Welche Unterlagen braucht die ÖGK für eine Erstattung (Zuweisung, Honorarnote)?',
+  },
+  {
+    question: 'Was kostet die Untersuchung bei der ÖGK?',
+    answer: `Für ÖGK-Versicherte wird die DEXA-Knochendichtemessung als Privatleistung angeboten. Der Preis beträgt ${DEXA_PRICE_TEXT}.`,
+  },
+  {
+    question: 'Kann die ÖGK Kosten rückerstatten?',
+    answer: 'Abhängig von den individuellen Voraussetzungen kann eine teilweise oder vollständige Kostenerstattung möglich sein. Eine Rückerstattung kann nicht garantiert werden. Bitte informieren Sie sich im Zweifel vorab bei der ÖGK.',
+  },
+  {
+    question: 'Welche anderen Kassen übernehmen die Untersuchung?',
+    answer: `Mit ${DEXA_OTHER_CARRIERS} kann die Untersuchung bei Vorliegen der erforderlichen ärztlichen Zuweisung als Kassenleistung abgerechnet werden. Bei Unsicherheit informieren Sie sich bitte vor der Terminvereinbarung bei uns oder Ihrem Versicherungsträger.`,
+  },
+  {
+    question: 'Wie läuft die Messung ab?',
+    answer: 'Sie liegen ruhig auf dem Rücken auf einer Untersuchungsliege, während ein Messarm über Lendenwirbelsäule und Hüfte fährt. Metallteile im Messbereich – etwa Gürtelschnallen, Knöpfe oder Reißverschlüsse – müssen gegebenenfalls abgelegt werden. Eine besondere Vorbereitung ist nicht nötig; Sie müssen nicht nüchtern sein.',
+    review: 'Praxis bestätigen: keine besondere Vorbereitung / nicht nüchtern (lt. bisheriger Website).',
+  },
+  {
+    question: 'Tut die Untersuchung weh?',
+    answer: 'Nein. Die Messung ist schmerzlos und nicht invasiv – es gibt keine Spritze und keine Röhre. Sie liegen lediglich ruhig auf der Liege.',
+  },
+  {
+    question: 'Wie hoch ist die Strahlenbelastung?',
+    answer: `${DEXA_RADIATION_TEXT} Die Belastung ist damit deutlich geringer als bei einer üblichen Röntgenaufnahme. Weil es sich dennoch um Röntgenstrahlung handelt, teilen Sie uns eine mögliche Schwangerschaft bitte vorher mit.`,
+  },
+  {
+    question: 'Was bedeuten T-Score und Z-Score?',
+    answer: 'Der T-Score vergleicht Ihre Knochendichte mit dem Durchschnitt junger, gesunder Erwachsener. Er wird vor allem bei Frauen nach der Menopause und Männern ab 50 Jahren verwendet. Der Z-Score vergleicht Ihren Wert mit Menschen gleichen Alters und Geschlechts – er ist vor allem bei jüngeren Personen aussagekräftig. Beide Werte werden immer gemeinsam mit Ihren Risikofaktoren ärztlich beurteilt.',
+  },
+  {
+    question: 'Wie oft soll die Messung wiederholt werden?',
+    answer: 'Dafür gibt es kein fixes Intervall für alle. Ob und wann eine Kontrolle sinnvoll ist, hängt vom Ausgangswert, von Ihren Risikofaktoren, einer laufenden Therapie und der medizinischen Fragestellung ab. Das legt Ihre behandelnde Ärztin oder Ihr behandelnder Arzt fest.',
+  },
+  {
+    question: 'Kann ich Mammographie und DEXA gemeinsam buchen?',
+    answer: 'Ja, nach Möglichkeit führen wir Mammographie und Knochendichtemessung an einem gemeinsamen Termin durch. Einen gemeinsamen Termin vereinbaren Sie derzeit am einfachsten telefonisch. Bitte sagen Sie uns dabei Ihre Krankenkasse und ob eine Zuweisung vorliegt.',
+    review: 'Online-Kombibuchung erst möglich, wenn DEXA in MiraNext angelegt ist – dann Antwort anpassen (DEXA.combinedOnline).',
+  },
+  {
+    question: 'Was macht das KI-Screening Rho?',
+    answer: `${DEXA_RHO_SENTENCE} Das Programm Rho nutzt dafür bereits angefertigte Aufnahmen – ohne zusätzliche Aufnahme und ohne zusätzliche Strahlung. Es liefert einen Risikohinweis auf eine möglicherweise niedrige Knochenmineraldichte, aber keine Diagnose.`,
+  },
+  {
+    question: 'Ersetzt ein Rho-Hinweis die DEXA?',
+    answer: 'Nein. Ein Rho-Hinweis ist keine Osteoporosediagnose. Ein auffälliger Hinweis kann Anlass für eine gezielte DEXA-Messung und eine weitere ärztliche Abklärung sein. Die Knochendichte selbst wird mit der DEXA gemessen.',
+  },
+  {
+    question: 'Darf eine DEXA in der Schwangerschaft erfolgen?',
+    answer: 'In der Schwangerschaft wird eine DEXA in der Regel nicht durchgeführt, auch wenn die Dosis sehr gering ist. Teilen Sie uns eine mögliche oder bestehende Schwangerschaft bitte vor der Untersuchung mit – wir besprechen dann mit Ihnen das weitere Vorgehen.',
+    review: 'Ärztlich freigeben.',
+  },
+];
+
 export const faqData = {
   roentgen: [
     {
@@ -122,24 +196,7 @@ export const faqData = {
       answer: "Ja, neben der 3D-DVT bieten wir auch digitales 2D-Zahnröntgen wie Panoramaaufnahmen (OPTG), Einzelzahnaufnahmen sowie Fernröntgen-Aufnahmen (Ceph) für kieferorthopädische Planungen an."
     }
   ],
-  knochendichte: [
-    {
-      question: "Was ist eine DEXA-Knochendichtemessung?",
-      answer: "Die DEXA-Methode (Dual-Energy X-ray Absorptiometry) ist der Goldstandard zur Diagnose von Osteoporose. Sie misst den Mineralgehalt der Knochen bei minimaler Strahlenbelastung."
-    },
-    {
-      question: "Übernimmt die Krankenkasse die Kosten für die Knochendichtemessung?",
-      answer: "Wir haben Direktverrechnungsverträge mit der BVAEB, SVS und KFA."
-    },
-    {
-      question: "Muss ich für die DEXA-Untersuchung nüchtern sein?",
-      answer: "Nein, für eine Knochendichtemessung oder Körperfettanalyse ist keine spezielle Vorbereitung erforderlich. Sie müssen nicht nüchtern erscheinen."
-    },
-    {
-      question: "Wie oft sollte die Knochendichte gemessen werden?",
-      answer: "In der Regel ist eine Kontrolle alle 1–2 Jahre sinnvoll, um den Erfolg einer Therapie zu überwachen oder den Verlauf einer Osteopenie/Osteoporose zu dokumentieren."
-    }
-  ],
+  knochendichte: dexaFaq,
   koerperfett: [
     {
       question: "Was ist eine DEXA-Körperfettmessung?",

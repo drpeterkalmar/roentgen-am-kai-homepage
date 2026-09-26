@@ -24,7 +24,7 @@ const sizes = {
 
 export const buttonClasses = ({ variant = 'primary', size = 'md', block = false, className } = {}) =>
   cx(
-    'inline-flex items-center justify-center rounded-xl text-center font-semibold transition-colors duration-150',
+    'inline-flex items-center justify-center rounded-xl py-2 text-center font-semibold leading-snug transition-colors duration-150',
     'disabled:cursor-not-allowed disabled:opacity-60',
     variants[variant],
     sizes[size],

@@ -27,7 +27,7 @@ ROUTES = {
     "/unser-angebot/ultraschall": ("ultraschall", 4, "natürliches Schallfenster"),
     "/mammographie-graz": ("mammographie", 13, "automatisch freigeschaltet"),
     "/unser-angebot/dvt": ("dvt", 3, "Zahnimplantaten"),
-    "/unser-angebot/knochendichte": ("knochendichte", 4, "BVAEB, SVS und KFA"),
+    "/knochendichtemessung-graz": ("knochendichte", 16, "Standard- und Referenzmethode"),
     "/unser-angebot/koerperfettmessung": ("koerperfett", 3, "viszeralen Fetts"),
     "/unser-angebot/phlebographie": ("phlebographie", 4, "Venenklappen bei venöser Insuffizienz"),
 }

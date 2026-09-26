@@ -36,4 +36,33 @@ export const IMAGE_BRIEFS = {
     minSize: '1200 × 630 px (JPG)',
     alt: 'Mammographie bei Röntgen am Kai in Graz',
   },
+  // ── DEXA-Knochendichtemessung ──
+  dexaDevice: {
+    motif: 'Das reale DEXA-Gerät der Praxis (GE Lunar) im Untersuchungsraum, ohne Person. Das bisherige Foto „knochendichte_v3“ zeigt ein GE-Lunar-Gerät – Praxis bitte bestätigen, dass es das eigene Gerät ist.',
+    position: 'Knochendichte-Seite, Hero; Startseite, Karte „Knochendichtemessung mit DEXA“',
+    ratio: '3:2',
+    minSize: '1600 × 1067 px',
+    alt: 'DEXA-Gerät zur Knochendichtemessung bei Röntgen am Kai in Graz',
+  },
+  dexaRoom: {
+    motif: 'DEXA-Untersuchungsraum als Raumaufnahme: Messliege mit Messarm, Ablage/Umkleidemöglichkeit, helles Licht, ohne Personen.',
+    position: 'Knochendichte-Seite, Abschnitt „Warum Knochendichtemessung mit DEXA?“',
+    ratio: '3:2',
+    minSize: '1500 × 1000 px',
+    alt: 'Untersuchungsraum für die Knochendichtemessung bei Röntgen am Kai',
+  },
+  dexaExam: {
+    motif: 'Untersuchungssituation: bekleidete Person liegt entspannt auf dem Rücken auf der DEXA-Liege, Radiologietechnologin daneben erklärt; keine erkennbaren Gesichter ohne Einwilligung.',
+    position: 'Knochendichte-Seite, Abschnitt „Ablauf“',
+    ratio: '3:2',
+    minSize: '1500 × 1000 px',
+    alt: 'Patientin liegt während der DEXA-Knochendichtemessung auf der Untersuchungsliege',
+  },
+  ogDexa: {
+    motif: 'Social-Media-Vorschaubild für die Knochendichte-Seite (reales DEXA-Gerät der Praxis), Text frei.',
+    position: 'og:image der Seite /knochendichtemessung-graz (derzeit allgemeines Praxisbild als Ersatz)',
+    ratio: '1,91:1',
+    minSize: '1200 × 630 px (JPG)',
+    alt: 'Knochendichtemessung mit DEXA bei Röntgen am Kai in Graz',
+  },
 };

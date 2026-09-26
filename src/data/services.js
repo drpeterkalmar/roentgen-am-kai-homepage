@@ -1,4 +1,5 @@
 import { SCREENING, AGE_RANGE, INTERVAL_TEXT } from './screening.js';
+import { DEXA, DEXA_OTHER_CARRIERS } from './dexa.js';
 
 // Leistungen — zentrale Stammdaten für Karten, Übersichten, Buchungs- und Kassenhinweise.
 // Nur Angaben, die auf der bisherigen Website stehen oder von der Praxis bestätigt wurden.
@@ -30,17 +31,18 @@ export const services = {
   knochendichte: {
     title: 'DEXA-Knochendichtemessung',
     short: 'Knochendichte',
-    href: '/unser-angebot/knochendichte',
+    href: '/knochendichtemessung-graz',
     description: 'Knochendichtemessung mit der DEXA-Methode zur Früherkennung und Verlaufskontrolle der Osteoporose.',
     priority: 2,
     onlineBooking: true,
     selfPay: true,
     priceIds: ['knochendichte'],
+    // Kassenregeln zentral in src/data/dexa.js
     referral: {
-      summary: 'Mit Überweisung; Verrechnung abhängig von Ihrer Krankenkasse.',
+      summary: 'ÖGK: Privatleistung. Andere Kassen: Kassenleistung mit ärztlicher Zuweisung.',
       items: [
-        'BVAEB, SVS und KFA Graz: Direktverrechnung mit Überweisung.',
-        'ÖGK: keine Direktverrechnung. Sie bezahlen selbst und erhalten mit Überweisung einen Anteil von der Kasse zurück.',
+        `ÖGK: Privatleistung um ${DEXA.priceEUR} Euro; eine Kostenerstattung ist je nach Voraussetzungen möglich, aber nicht garantiert.`,
+        `${DEXA_OTHER_CARRIERS}: Kassenleistung bei Vorliegen der erforderlichen ärztlichen Zuweisung.`,
       ],
     },
   },
@@ -108,7 +110,7 @@ export const services = {
 
 // Selbstzahler-Preise — die Beträge pflegt die Praxis ein. price: null = PLATZHALTER.
 export const selfPayPrices = [
-  { id: 'knochendichte', label: 'DEXA-Knochendichtemessung', price: null, note: 'Für ÖGK-Versicherte; Teilerstattung mit Überweisung möglich.' },
+  { id: 'knochendichte', label: 'DEXA-Knochendichtemessung', price: DEXA.priceEUR, note: 'Privatleistung für ÖGK-Versicherte; Kostenerstattung je nach Voraussetzungen möglich, nicht garantiert.' },
   { id: 'koerperanalyse', label: 'DEXA-Körperanalyse', price: null, note: 'Dauer etwa 15 Minuten.' },
   { id: 'dvt', label: 'DVT (digitale Volumentomographie)', price: null },
   { id: 'zahnroentgen', label: 'Zahnröntgen', price: null },

@@ -57,7 +57,7 @@ const SchemaMarkup = () => {
     // 2. FAQ Schema - zentrale Quelle: src/data/faqData.js
     // Eine Quelle fuer sichtbaren FAQ-Block UND JSON-LD (kein Drift mehr moeglich).
     const PATH_TO_FAQ = {
-      '/unser-angebot/knochendichte': 'knochendichte',
+      '/knochendichtemessung-graz': 'knochendichte',
       '/mammographie-graz': 'mammographie',
       '/unser-angebot/koerperfettmessung': 'koerperfett',
       '/unser-angebot/roentgen': 'roentgen',
