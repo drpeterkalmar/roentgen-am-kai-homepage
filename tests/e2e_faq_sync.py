@@ -28,7 +28,8 @@ ROUTES = {
     "/mammographie-graz": ("mammographie", 13, "automatisch freigeschaltet"),
     "/unser-angebot/dvt": ("dvt", 3, "Zahnimplantaten"),
     "/knochendichtemessung-graz": ("knochendichte", 16, "Standard- und Referenzmethode"),
-    "/unser-angebot/koerperfettmessung": ("koerperfett", 3, "viszeralen Fetts"),
+    # 14 sichtbar, 10 im Schema: Fragen mit offener Praxisangabe (pending) bleiben aus dem FAQPage-Schema
+    "/koerperanalyse-graz": ("koerperanalyse", 14, "Berechnungsmodelle", 13),
     "/unser-angebot/phlebographie": ("phlebographie", 4, "Venenklappen bei venöser Insuffizienz"),
 }
 
@@ -39,10 +40,11 @@ with sync_playwright() as p:
     pg.on("pageerror", lambda e: errors.append(f"PAGEERROR: {e}"))
     pg.on("console", lambda m: errors.append(f"CONSOLE-ERR: {m.text}") if m.type == "error" else None)
 
-    for route, (key, want, answer_probe) in ROUTES.items():
+    for route, (key, want, answer_probe, *rest) in ROUTES.items():
+        want_schema = rest[0] if rest else want
         pg.goto(BASE.rstrip("/") + route, wait_until="networkidle")
         pg.wait_for_timeout(1200)
-        visible = pg.locator("#faq button").count()
+        visible = pg.locator("#faq button[aria-expanded]").count()
         schema_q = pg.evaluate("""() => {
             const scripts = [...document.querySelectorAll('script[type="application/ld+json"]')];
             for (const s of scripts) {
@@ -53,13 +55,13 @@ with sync_playwright() as p:
             }
             return null;
         }""")
-        ok_cnt = (visible == want and schema_q == want)
-        print(f"{route}: sichtbar={visible} schema={schema_q} soll={want} -> {'OK' if ok_cnt else 'FAIL'}")
+        ok_cnt = (visible == want and schema_q == want_schema)
+        print(f"{route}: sichtbar={visible} schema={schema_q} soll={want}/{want_schema} -> {'OK' if ok_cnt else 'FAIL'}")
         if not ok_cnt:
             failures.append(route)
         # Antwort-Rendercheck: zweite Frage aufklappen, Probe-String muss erscheinen
         if visible >= 2:
-            pg.locator("#faq button").nth(1).click()
+            pg.locator("#faq button[aria-expanded]").nth(1).click()
             pg.wait_for_timeout(500)
             faq_text = pg.locator("#faq").inner_text()
             ok_ans = answer_probe in faq_text

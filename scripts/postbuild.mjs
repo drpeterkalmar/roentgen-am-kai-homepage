@@ -74,6 +74,8 @@ const legacy = {
   '/unser-angebot/mammographie/mammascreening': '/mammographie-graz',
   // Knochendichte-Seite ist nach /knochendichtemessung-graz umgezogen (26.09.2026)
   '/unser-angebot/knochendichte': '/knochendichtemessung-graz',
+  // Körperanalyse-Seite ist nach /koerperanalyse-graz umgezogen (27.09.2026)
+  '/unser-angebot/koerperfettmessung': '/koerperanalyse-graz',
   '/datenschutzerklarung': '/datenschutz',
 };
 for (const [from, to] of Object.entries(legacy)) {

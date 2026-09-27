@@ -62,7 +62,7 @@ export const blogPosts = [
     title: 'Semaglutid und Muskelmasse: Warum begleitende DEXA-Scans wichtig sind',
     date: '20. Juni 2026',
     category: 'Vorsorge',
-    excerpt: 'Semaglutid (Ozempic, Wegovy) reduziert nicht nur Fett, sondern auch Muskelmasse. Regelmäßige DEXA-Körperzusammensetzungsmessungen helfen, den Muskelabbau frühzeitig zu erkennen und gegenzusteuern.',
+    excerpt: 'Semaglutid (Ozempic, Wegovy) reduziert nicht nur Fett, sondern auch Muskelmasse. Eine DEXA-Körperanalyse zu Beginn und im Verlauf macht sichtbar, wie sich Fett- und fettfreie Masse verändern.',
     content: `
       <p>Semaglutid hat die Behandlung von Typ-2-Diabetes und Adipositas verändert. Präparate wie Ozempic, Wegovy und Rybelsus erzielen deutliche Gewichtsverluste. Doch hinter der Zahl auf der Waage verbirgt sich ein oft übersehenes Risiko: der Verlust von Muskelmasse. Hier setzt die DEXA-Körperzusammensetzungsmessung an.</p>
 
@@ -70,8 +70,8 @@ export const blogPosts = [
       <p>Semaglutid ist ein GLP-1-Rezeptor-Agonist, der als wöchentliche Injektion (Ozempic, Wegovy) oder als Tablette (Rybelsus) verabreicht wird. Es ahmt das natürliche Darmhormon GLP-1 (Glucagon-like Peptide-1) nach, reguliert den Blutzuckerspiegel und reduziert den Appetit. Studien zeigen einen durchschnittlichen Gewichtsverlust von 15 bis 20 Prozent des Körpergewichts innerhalb von 68 Wochen.</p>
       <p>Doch die Waage allein sagt nicht, was eigentlich verloren geht. Mehrere klinische Studien, darunter die STEP-Programme, belegen, dass ein erheblicher Anteil des Gewichtsverlusts nicht aus Fettgewebe, sondern aus Magermasse stammt. Bei einigen Patienten lag der Muskelmasseverlust bei bis zu 40 Prozent des Gesamtgewichtsverlusts.</p>
 
-      <h3>Das Problem: Sarkopenie durch Semaglutid</h3>
-      <p>Der medizinische Fachbegriff für den alters- oder krankheitsbedingten Muskelabbau lautet Sarkopenie. Eine unkontrollierte Abnahme der Muskelmasse hat ernsthafte Konsequenzen:</p>
+      <h3>Warum der Erhalt der Muskelmasse wichtig ist</h3>
+      <p>Ein fortschreitender Verlust von Muskelkraft und Muskelmasse wird als Sarkopenie bezeichnet. Ein deutlicher Verlust an Muskelmasse kann unter anderem folgende Auswirkungen haben:</p>
       <ul>
         <li>Verminderte körperliche Leistungsfähigkeit und schnellere Ermüdung</li>
         <li>Erhöhtes Sturz- und Frakturrisiko, besonders gefährlich bei bereits reduzierter Knochendichte</li>
@@ -79,27 +79,26 @@ export const blogPosts = [
         <li>Verlangsamter Metabolismus durch geringere Muskelmasse. Das Gewicht steigt nach Absetzen des Medikaments schneller wieder an (Rebound-Effekt)</li>
         <li>Reduzierte Lebensqualität und verminderte Selbstständigkeit im Alter</li>
       </ul>
-      <p>Für Diabetes-Patienten über 50 Jahre, die ohnehin ein erhöhtes Osteoporose-Risiko haben, ist der kombinierte Verlust von Muskel- und Knochenmasse besonders problematisch. Hier wird die Früherkennung zum entscheidenden Faktor.</p>
+      <p>Für Diabetes-Patienten über 50 Jahre, die ohnehin ein erhöhtes Osteoporose-Risiko haben, ist der kombinierte Verlust von Muskel- und Knochenmasse besonders problematisch.</p>
 
       <h3>Warum die Waage täuscht und die DEXA-Messung Klarheit schafft</h3>
-      <p>Ein BMI-Wert oder eine Körperwaage kann nicht zwischen Fett-, Muskel- und Knochenmasse unterscheiden. Wer 15 kg durch Semaglutid abnimmt, verliert zwar an Gewicht. Aber ist es überwiegend Fett oder Muskel? Nur eine DEXA-Körperzusammensetzungsmessung (Dual-Energy X-ray Absorptiometry) liefert die präzise Antwort.</p>
-      <p>Die DEXA-Methode ist der Goldstandard für die Bestimmung der Körperzusammensetzung. Sie misst mit minimaler Strahlenbelastung, vergleichbar mit der natürlichen Hintergrundstrahlung eines kurzen Fluges, folgende Parameter:</p>
+      <p>Ein BMI-Wert oder eine Körperwaage kann nicht zwischen Fett-, Muskel- und Knochenmasse unterscheiden. Wer 15 kg durch Semaglutid abnimmt, verliert zwar an Gewicht. Aber ist es überwiegend Fett oder Muskel? Eine DEXA-Körperanalyse (Dual-Energy X-ray Absorptiometry) kann das unterscheiden.</p>
+      <p>Die DEXA-Methode ist eine in der klinischen Praxis etablierte, sehr präzise und gut reproduzierbare Methode zur Bestimmung der Körperzusammensetzung. Sie arbeitet mit einer sehr niedrigen Röntgendosis und erfasst unter anderem:</p>
       <ul>
-        <li>Muskelmasse (Magermasse), regionalspezifisch für Arme, Beine und Rumpf</li>
+        <li>Magere Weichteilmasse als Näherungswert für die Muskelmasse, getrennt für Arme, Beine und Rumpf (Muskelkraft wird nicht gemessen)</li>
         <li>Fettmasse und Körperfettanteil in Prozent</li>
-        <li>Knochendichte (T-Score und Z-Score) zur Osteoporose-Früherkennung</li>
-        <li>Viszerales Fettgewebe, das besonders gesundheitsschädliche Bauchfett um die inneren Organe</li>
+        <li>Knochenmineralgehalt (eine Knochendichtemessung zur Osteoporose-Abklärung ist eine eigene Untersuchung)</li>
       </ul>
 
-      <h3>Unsere Empfehlung: Regelmäßige DEXA-Scans während der Semaglutid-Therapie</h3>
-      <p>Wir empfehlen allen Patienten, die Semaglutid (Ozempic, Wegovy, Rybelsus) oder andere GLP-1-Rezeptor-Agonisten (wie Liraglutid/Saxenda oder Tirzepatid/Mounjaro) einnehmen, einen DEXA-Scan zu Beginn der Therapie. Dieser Erst-Scan dient als Ausgangswert, die Referenz, gegen die alle folgenden Messungen verglichen werden.</p>
-      <p>Anschließend empfiehlt sich eine Kontrollmessung alle 3 bis 6 Monate, solange die Semaglutid-Therapie läuft. So lässt sich frühzeitig erkennen, ob übermäßig viel Muskelmasse verloren geht und ob Gegenmaßnahmen wie kraftorientiertes Training, eiweißreiche Ernährung oder eine Anpassung der Dosierung erforderlich sind.</p>
-      <p>Nach Absetzen des Medikaments ist eine weitere DEXA-Messung sinnvoll, um die langfristige Gewichtsstabilität und die Regeneration der Muskelmasse zu beurteilen.</p>
+      <h3>Ausgangsmessung und Verlaufskontrolle</h3>
+      <p>Wer Semaglutid (Ozempic, Wegovy, Rybelsus) oder andere ärztlich verordnete GLP-1- bzw. GIP-basierte Medikamente (wie Liraglutid/Saxenda oder Tirzepatid/Mounjaro) erhält, kann mit einer DEXA-Körperanalyse zu Beginn der Therapie einen Ausgangswert festhalten – die Referenz für spätere Vergleiche.</p>
+      <p>Eine Verlaufsmessung erfolgt häufig nach mehreren Monaten; der geeignete Abstand hängt vom individuellen Verlauf ab. Sie zeigt, wie sich Fettmasse und fettfreie Masse verändert haben. Die Messung ist keine Kontrolle der Medikamentendosis: Änderungen einer medikamentösen Behandlung erfolgen ausschließlich durch die behandelnde Ärztin oder den behandelnden Arzt.</p>
+      <p>Auch nach Absetzen des Medikaments kann eine weitere Messung den Verlauf der Körperzusammensetzung dokumentieren.</p>
 
       <h3>Was Sie als Patient tun können</h3>
-      <p>Wenn Sie Semaglutid einnehmen oder planen, es zu tun, sprechen Sie mit Ihrem behandelnden Arzt über eine begleitende DEXA-Körperzusammensetzungsmessung. In unserer Praxis Röntgen am Kai in Graz führen wir diese Untersuchung mit modernster DEXA-Technologie durch, schnell, schmerzfrei und mit präziser Auswertung aller relevanten Parameter: Muskelmasse, Fettmasse, Knochendichte und viszerales Fett.</p>
-      <p>Mit einer ärztlichen Überweisung ist die Knochendichtemessung (DEXA-Scan) in Österreich kassengebührenfrei. Die zusätzliche Bestimmung der Körperzusammensetzung (Muskel- und Fettmasse) erfolgt als ergänzende Leistung.</p>
-      <p>Vereinbaren Sie Ihren Termin und sichern Sie sich die Gewissheit, dass Ihre Semaglutid-Therapie nicht auf Kosten Ihrer Muskelgesundheit geht.</p>
+      <p>Wenn Sie Semaglutid einnehmen oder planen, es zu tun, sprechen Sie mit Ihrer behandelnden Ärztin oder Ihrem behandelnden Arzt über eine begleitende Körperanalyse. Bei Röntgen am Kai in Graz planen Sie für die Körperanalyse mit DEXA etwa 20 Minuten ein; die Messung ist schmerzfrei.</p>
+      <p>Die Körperanalyse ist eine Privatleistung. Die Knochendichtemessung ist eine eigene Untersuchung mit eigenen Kassenregeln.</p>
+      <p>Termine vereinbaren Sie online oder telefonisch.</p>
     `,
     image: 'assets/images/knochendichte_v3.avif',
     status: 'published'

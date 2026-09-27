@@ -1,5 +1,6 @@
 import { SCREENING, AGE_RANGE, INTERVAL_TEXT } from './screening.js';
 import { DEXA, DEXA_OTHER_CARRIERS } from './dexa.js';
+import { BODY } from './bodyComposition.js';
 
 // Leistungen — zentrale Stammdaten für Karten, Übersichten, Buchungs- und Kassenhinweise.
 // Nur Angaben, die auf der bisherigen Website stehen oder von der Praxis bestätigt wurden.
@@ -47,19 +48,19 @@ export const services = {
     },
   },
   koerperanalyse: {
-    title: 'DEXA-Körperanalyse',
-    short: 'DEXA-Körperanalyse',
-    href: '/unser-angebot/koerperfettmessung',
+    title: 'Körperanalyse mit DEXA',
+    short: 'Körperanalyse',
+    href: '/koerperanalyse-graz',
     description:
-      'Messung von Körperfett, Muskelmasse und Fettverteilung mit der DEXA-Methode. Dauer etwa 15 Minuten.',
+      'Körperfett und Muskelmasse präzise messen – mit regionaler Auswertung und für Verlaufskontrollen. Termin etwa 20 Minuten.',
     priority: 3,
     durationMinutes: 15,
     onlineBooking: true,
     selfPay: true,
-    priceIds: ['koerperanalyse'],
+    priceIds: ['koerperanalyse', 'koerperanalyse-paket'],
     referral: {
       summary: 'Reine Privatleistung, wird von der Krankenkasse nicht bezahlt.',
-      items: ['Dauer etwa 15 Minuten, kein ärztliches Ergebnisgespräch.'],
+      items: ['Termin etwa 20 Minuten, kein ärztliches Ergebnisgespräch.'],
     },
   },
   roentgen: {
@@ -111,7 +112,8 @@ export const services = {
 // Selbstzahler-Preise — die Beträge pflegt die Praxis ein. price: null = PLATZHALTER.
 export const selfPayPrices = [
   { id: 'knochendichte', label: 'DEXA-Knochendichtemessung', price: DEXA.priceEUR, note: 'Privatleistung für ÖGK-Versicherte; Kostenerstattung je nach Voraussetzungen möglich, nicht garantiert.' },
-  { id: 'koerperanalyse', label: 'DEXA-Körperanalyse', price: null, note: 'Dauer etwa 15 Minuten.' },
+  { id: 'koerperanalyse', label: 'Körperanalyse mit DEXA', price: BODY.prices.start, note: 'Termin etwa 20 Minuten.' },
+  { id: 'koerperanalyse-paket', label: 'Körperanalyse Start- und Re-Check-Paket', price: BODY.prices.package, note: 'Zwei Messungen innerhalb von 2 Jahren.' },
   { id: 'dvt', label: 'DVT (digitale Volumentomographie)', price: null },
   { id: 'zahnroentgen', label: 'Zahnröntgen', price: null },
   { id: 'nervenultraschall', label: 'Nervenultraschall', price: null },

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { faqData } from '../data/faqData';
+import { faqData, faqSchemaItems } from '../data/faqData';
 import { SITE_URL, findRoute, fullTitle } from '../data/routes';
 import { COMPANY_NAME, FN, UID } from '../data/company';
 import { PHONE_E164, EMAIL, ADDRESS, OPENING_HOURS } from '../data/practice';
@@ -50,7 +50,7 @@ const SchemaMarkup = () => {
         { "@type": "Organization", "name": "ÖGIR" },
         { "@type": "Organization", "name": "ÖRG" }
       ],
-      "knowsAbout": ["Mammographie", "Brustkrebs-Früherkennung", "Knochendichtemessung", "DEXA", "DEXA-Körperanalyse", "Röntgendiagnostik", "Ultraschall", "Durchleuchtung", "Phlebographie", "DVT", "Zahnröntgen", "Körperfettanalyse", "Viszeralfettmessung", "Brustkrebs-Screening", "Osteoporose-Vorsorge", "FRAX-Score", "Manitoba-Klassifikation"],
+      "knowsAbout": ["Mammographie", "Brustkrebs-Früherkennung", "Knochendichtemessung", "DEXA", "DEXA-Körperanalyse", "Röntgendiagnostik", "Ultraschall", "Durchleuchtung", "Phlebographie", "DVT", "Zahnröntgen", "Körperanalyse", "Körperzusammensetzung", "Brustkrebs-Screening", "Osteoporose-Vorsorge", "FRAX-Score", "Manitoba-Klassifikation"],
       "isAcceptingNewPatients": true
     };
 
@@ -59,7 +59,7 @@ const SchemaMarkup = () => {
     const PATH_TO_FAQ = {
       '/knochendichtemessung-graz': 'knochendichte',
       '/mammographie-graz': 'mammographie',
-      '/unser-angebot/koerperfettmessung': 'koerperfett',
+      '/koerperanalyse-graz': 'koerperanalyse',
       '/unser-angebot/roentgen': 'roentgen',
       '/unser-angebot/ultraschall': 'ultraschall',
       '/unser-angebot/phlebographie': 'phlebographie',
@@ -69,8 +69,9 @@ const SchemaMarkup = () => {
     };
     const cleanPath = location.pathname.replace(/\/+$/, '') || '/';
     const faqKey = PATH_TO_FAQ[cleanPath];
-    const faqItems = faqKey ? faqData[faqKey] : null;
-    const faqSchema = faqItems ? {
+    // Fragen mit offener Praxisangabe (pending) bleiben sichtbar, gehen aber nicht ins Schema.
+    const faqItems = faqKey ? faqSchemaItems(faqData[faqKey]) : null;
+    const faqSchema = faqItems?.length ? {
       "@context": "https://schema.org",
       "@type": "FAQPage",
       "mainEntity": faqItems.map(item => ({
@@ -109,6 +110,18 @@ const SchemaMarkup = () => {
         "inLanguage": "de-AT",
         "about": { "@type": "MedicalProcedure", ...route.medicalProcedure },
         "publisher": { "@id": `${SITE_URL}/#praxis` }
+      });
+    }
+    // Leistungs-Markup (nur für Seiten mit `service` in routes.js – ohne Preis, solange keiner bestätigt ist)
+    if (route?.service) {
+      extraSchemas.push({
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "@id": `${pageUrl}#leistung`,
+        "url": pageUrl,
+        ...route.service,
+        "provider": { "@id": `${SITE_URL}/#praxis` },
+        "areaServed": { "@type": "City", "name": "Graz" }
       });
     }
 

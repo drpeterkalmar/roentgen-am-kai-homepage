@@ -10,6 +10,7 @@ const CTASection = ({
   id = 'cta-title',
   showHours = true,
   bookingLabel,
+  phoneLabel,
 }) => (
   <section aria-labelledby={id} className="bg-brand-800 text-white">
     <Container className="py-14 sm:py-16">
@@ -25,7 +26,7 @@ const CTASection = ({
         </div>
         <div className="flex shrink-0 flex-col gap-3 sm:flex-row">
           <BookingButton variant="inverse" size="lg" label={bookingLabel} />
-          <PhoneButton variant="secondary" size="lg" className="!border-white/60 !bg-transparent !text-white hover:!bg-white/10" />
+          <PhoneButton label={phoneLabel} variant="secondary" size="lg" className="!border-white/60 !bg-transparent !text-white hover:!bg-white/10" />
         </div>
       </div>
     </Container>

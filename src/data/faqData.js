@@ -1,4 +1,5 @@
 import { SCREENING, AGE_RANGE, INTERVAL_TEXT } from './screening.js';
+import { BODY, BODY_RADIATION_TEXT, BODY_LEAN_MASS_TEXT } from './bodyComposition.js';
 import { DEXA_PRICE_TEXT, DEXA_OTHER_CARRIERS, DEXA_RADIATION_TEXT, DEXA_RHO_SENTENCE } from './dexa.js';
 
 // FAQ Mammographie & Brustgesundheit (26.09.2026). Programmregeln aus src/data/screening.js.
@@ -144,6 +145,87 @@ export const dexaFaq = [
   },
 ];
 
+// FAQ Körperanalyse (27.09.2026). Zentrale Praxisangaben: src/data/bodyComposition.js.
+// pending: Angabe der Praxis fehlt → Antwort zeigt einen gelben Platzhalter und die Frage wird
+// NICHT ins FAQPage-Schema übernommen (siehe SchemaMarkup.jsx / faqSchemaItems).
+const eur = (n) => `${n} Euro`;
+export const koerperanalyseFaq = [
+  {
+    question: 'Was ist eine DEXA-Körperanalyse?',
+    answer:
+      'Eine medizinische Messung Ihrer Körperzusammensetzung. DEXA (Dual-Röntgen-Absorptiometrie) arbeitet mit zwei sehr schwachen Röntgenenergien und unterscheidet so zwischen Fettmasse, fettfreier Weichteilmasse und Knochenmineral – für den ganzen Körper und getrennt nach Armen, Beinen und Rumpf.',
+  },
+  {
+    question: 'Was ist der Unterschied zur Körperfettwaage oder BIA?',
+    answer:
+      'Körperfettwaagen und die bioelektrische Impedanzanalyse (BIA) schätzen die Körperzusammensetzung über den elektrischen Widerstand und Berechnungsmodelle. Das Ergebnis hängt unter anderem vom Gerät, vom Algorithmus und vom Flüssigkeitshaushalt ab. DEXA misst die Gewebe direkt, liefert eine regionale Auswertung und eignet sich gut für standardisierte Verlaufskontrollen.',
+  },
+  {
+    question: 'Misst DEXA tatsächlich die Muskelmasse?',
+    answer: `Nicht direkt. ${BODY_LEAN_MASS_TEXT}`,
+  },
+  {
+    question: 'Kann DEXA Sarkopenie feststellen?',
+    answer:
+      'DEXA allein bestätigt oder widerlegt keine Sarkopenie. Die Messung zeigt die magere Masse von Armen und Beinen. Für eine vollständige Beurteilung gehören zusätzlich die Muskelkraft – etwa Handkraft oder Aufstehtest – und gegebenenfalls die körperliche Leistungsfähigkeit dazu. Ihr Bericht enthält den RSMI, einen Index der mageren Masse von Armen und Beinen im Verhältnis zur Körpergröße. Die Beurteilung erfolgt durch Ihre behandelnde Ärztin oder Ihren behandelnden Arzt.',
+  },
+  {
+    question: 'Wie lange dauert die Untersuchung?',
+    answer: `Planen Sie für Ihren Termin etwa ${BODY.durationMinutes} Minuten ein. Die Messung ist schmerzfrei, Sie liegen dabei ruhig auf dem Untersuchungstisch.`,
+  },
+  {
+    question: 'Wie hoch ist die Strahlenbelastung?',
+    answer: `${BODY_RADIATION_TEXT} Die genaue Dosis hängt vom Gerät und vom Untersuchungsprotokoll ab.`,
+  },
+  {
+    question: 'Wie bereite ich mich auf die Messung vor?',
+    answer:
+      'Am besten kommen Sie nüchtern, mit entleerter Harnblase und in leichter Kleidung. Metallteile im Messbereich – etwa Gürtelschnallen, Reißverschlüsse, Knöpfe oder Schmuck – können die Messung stören. Für Verlaufsmessungen sind möglichst gleiche Bedingungen wichtig, etwa eine ähnliche Tageszeit.',
+  },
+  {
+    question: 'Wie oft ist eine Verlaufsmessung sinnvoll?',
+    answer:
+      'Dafür gibt es kein fixes Intervall. Veränderungen der Körperzusammensetzung brauchen Zeit, eine Verlaufsmessung erfolgt deshalb häufig nach mehreren Monaten. Der geeignete Abstand hängt von Ihrem Ziel und Ihrem individuellen Verlauf ab. Aussagekräftig ist der Vergleich vor allem am selben Gerät und unter vergleichbaren Bedingungen.',
+  },
+  {
+    question: 'Brauche ich eine ärztliche Zuweisung?',
+    answer: 'Nein. Die Körperanalyse ist eine Privatleistung und ohne ärztliche Zuweisung buchbar. Die Krankenkasse übernimmt die Kosten nicht.',
+  },
+  {
+    question: 'Was kostet die Körperanalyse?',
+    answer:
+      BODY.prices.start != null
+        ? `Die Körperanalyse ist eine Privatleistung. Eine Messung kostet ${eur(BODY.prices.start)}, das Paket aus Start- und Verlaufsmessung ${eur(BODY.prices.package)} (beide Messungen innerhalb von 2 Jahren).`
+        : 'Die Körperanalyse ist eine Privatleistung und wird von der Krankenkasse nicht bezahlt.',
+    pending: BODY.prices.start != null ? undefined : '[PREIS] für Startmessung, Verlaufskontrolle und Paket.',
+  },
+  {
+    question: 'Ist die Untersuchung während einer Schwangerschaft möglich?',
+    answer:
+      'Bitte teilen Sie uns eine mögliche oder bestehende Schwangerschaft unbedingt vor der Untersuchung mit. Eine Körperanalyse ist eine Untersuchung ohne medizinische Dringlichkeit und wird in der Schwangerschaft in der Regel nicht durchgeführt.',
+  },
+  {
+    question: 'Ist Körperanalyse dasselbe wie Knochendichtemessung?',
+    answer:
+      'Nein. Beide Untersuchungen verwenden DEXA, verfolgen aber unterschiedliche Fragestellungen: Die Körperanalyse erfasst Fettmasse, magere Weichteilmasse und deren Verteilung. Die Knochendichtemessung dient der Abklärung einer Osteoporose. Beide können getrennte Buchungen erfordern.',
+  },
+  {
+    question: 'Kann ich damit den Verlauf während einer Abnehmtherapie kontrollieren?',
+    answer:
+      'Ja, eine Ausgangsmessung und spätere Verlaufsmessungen zeigen, wie sich Fettmasse und fettfreie Masse verändern. Die Messung ist aber keine Kontrolle der Medikamentendosis. Änderungen einer medikamentösen Behandlung erfolgen ausschließlich durch die behandelnde Ärztin oder den behandelnden Arzt.',
+  },
+  {
+    question: 'Wird auch viszerales Fett ausgewertet?',
+    answer: BODY.visceralFat
+      ? 'Ja. Die Software unseres DEXA-Geräts wertet zusätzlich das viszerale Fett (inneres Bauchfett) aus.'
+      : 'Ein Wert für das viszerale Fett (inneres Bauchfett) setzt eine eigene, validierte Auswertungssoftware voraus. Ob diese Auswertung Teil Ihres Berichts ist, beantworten wir Ihnen gerne vor der Terminbuchung.',
+    pending: BODY.visceralFat ? undefined : 'Praxis bestätigen: Ist CoreScan (viszerales Fett) in der enCORE-Software freigeschaltet?',
+  },
+];
+
+// Nur vollständig beantwortete Fragen gehen ins FAQPage-Schema.
+export const faqSchemaItems = (items) => items.filter((i) => !i.pending);
+
 export const faqData = {
   roentgen: [
     {
@@ -197,20 +279,7 @@ export const faqData = {
     }
   ],
   knochendichte: dexaFaq,
-  koerperfett: [
-    {
-      question: "Was ist eine DEXA-Körperfettmessung?",
-      answer: "Die DEXA-Methode (Dual-Energy X-ray Absorptiometry) ist das genaueste und etablierteste Verfahren zur Bestimmung der Körperzusammensetzung. Sie liefert Daten zu Körperfett, Muskelmasse und Fettverteilung."
-    },
-    {
-      question: "Für wen ist eine Körperfettanalyse sinnvoll?",
-      answer: "Die Messung ist ideal für Sportler zur Trainingsoptimierung, bei Diäten zur Kontrolle des Fettabbaus oder für gesundheitsbewusste Menschen zur Bestimmung des viszeralen Fetts."
-    },
-    {
-      question: "Muss ich für die Messung nüchtern sein?",
-      answer: "Nein, eine spezielle Vorbereitung ist nicht nötig. Sie können die Untersuchung jederzeit ohne Fasten durchführen lassen."
-    }
-  ],
+  koerperanalyse: koerperanalyseFaq,
   phlebographie: [
     {
       question: "Was ist eine Phlebographie?",

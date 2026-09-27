@@ -5,20 +5,20 @@ export const goals = [
   {
     id: 'gewicht',
     title: 'Gewichtsabnahme',
-    text: 'Veränderungen von Körperfett und Magermasse im Verlauf messbar machen.',
+    text: 'Veränderungen von Körperfett und fettfreier Masse im Verlauf messbar machen – auch während einer ärztlich begleiteten Therapie mit einer Abnehmspritze.',
     services: ['koerperanalyse'],
   },
   {
     id: 'fitness',
-    title: 'Fitness',
+    title: 'Fitness und Muskelaufbau',
     text: 'Körperzusammensetzung und die regionale Verteilung von Fett- und Magermasse erfassen.',
     services: ['koerperanalyse'],
   },
   {
     id: 'wechseljahre',
-    title: 'Wechseljahre',
-    text: 'Knochendichte und Brustvorsorge im Blick behalten.',
-    services: ['knochendichte', 'mammographie'],
+    title: 'Wechseljahre und gesundes Älterwerden',
+    text: 'Knochendichte und Brustvorsorge im Blick behalten – und Veränderungen von Fettverteilung und Muskelmasse erfassen.',
+    services: ['knochendichte', 'mammographie', 'koerperanalyse'],
   },
   {
     id: 'osteoporose',

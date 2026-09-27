@@ -450,13 +450,14 @@ const KnochendichtePage = () => (
           <div>
             <H3 id="abgrenzung-title">Nicht verwechseln: DEXA-Körperanalyse</H3>
             <P className="mt-2">
-              Die DEXA-Knochendichtemessung dient der Osteoporose-Abklärung. Die DEXA-Körperanalyse ist eine eigene
-              Privatleistung und misst Körperfett, Muskelmasse und Fettverteilung. Beide Untersuchungen können beim selben
-              Termin durchgeführt werden.
+              Die DEXA-Knochendichtemessung dient der Osteoporose-Abklärung. Die Körperanalyse mit DEXA ist eine eigene
+              Privatleistung und erfasst Körperfett, magere Weichteilmasse (als Näherungswert für die Muskelmasse) und deren
+              Verteilung. Beide verwenden DEXA, verfolgen aber unterschiedliche Fragestellungen und können getrennte Buchungen
+              erfordern.
             </P>
             <p className="mt-3">
-              <Link to="/unser-angebot/koerperfettmessung" className={buttonClasses({ variant: 'ghost', className: '-ml-3' })}>
-                Zur DEXA-Körperanalyse <ArrowRight size={18} aria-hidden="true" />
+              <Link to="/koerperanalyse-graz" className={buttonClasses({ variant: 'ghost', className: '-ml-3' })}>
+                Zur Körperanalyse <ArrowRight size={18} aria-hidden="true" />
               </Link>
             </p>
           </div>

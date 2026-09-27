@@ -15,7 +15,7 @@ const MammographiePage = lazy(() => import('./pages/MammographiePage'))
 const KnochendichtePage = lazy(() => import('./pages/KnochendichtePage'))
 const DVTPage = lazy(() => import('./pages/DVTPage'))
 const PhlebographiePage = lazy(() => import('./pages/PhlebographiePage'))
-const KoerperfettPage = lazy(() => import('./pages/KoerperfettPage'))
+const KoerperanalysePage = lazy(() => import('./pages/KoerperanalysePage'))
 const ImpressumPage = lazy(() => import('./pages/ImpressumPage'))
 const DatenschutzPage = lazy(() => import('./pages/DatenschutzPage'))
 const KalmarPage = lazy(() => import('./pages/KalmarPage'))
@@ -92,7 +92,8 @@ function App() {
               <Route path="/unser-angebot/knochendichte" element={<Navigate to="/knochendichtemessung-graz" replace />} />
               <Route path="/unser-angebot/dvt" element={<DVTPage />} />
               <Route path="/unser-angebot/phlebographie" element={<PhlebographiePage />} />
-              <Route path="/unser-angebot/koerperfettmessung" element={<KoerperfettPage />} />
+              <Route path="/koerperanalyse-graz" element={<KoerperanalysePage />} />
+              <Route path="/unser-angebot/koerperfettmessung" element={<Navigate to="/koerperanalyse-graz" replace />} />
               <Route path="/weitere-untersuchungen" element={<WeitereUntersuchungenPage />} />
               <Route path="/gesundheitsziele" element={<GesundheitszielePage />} />
               <Route path="/ratgeber" element={<RatgeberPage />} />

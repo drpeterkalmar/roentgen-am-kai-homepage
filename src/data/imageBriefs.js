@@ -58,6 +58,28 @@ export const IMAGE_BRIEFS = {
     minSize: '1500 × 1000 px',
     alt: 'Patientin liegt während der DEXA-Knochendichtemessung auf der Untersuchungsliege',
   },
+  // ── Körperanalyse (DEXA-Ganzkörpermessung) ──
+  bodyHero: {
+    motif: 'Reale Praxisaufnahme: DEXA-Messplatz von Röntgen am Kai (Übergangslösung: Foto „knochendichte_v3“ – GE-Lunar-Gerät ohne Person, identisch mit Knochendichte-Hero; „service_densitometry“ zeigt v. a. Tür und Schreibtisch und ist als Hero ungeeignet). Wunschmotiv: bekleidete Person liegt ruhig auf dem Rücken zur Ganzkörpermessung, Radiologietechnologin daneben; kein Fitnessmodel, keine Vorher-nachher-Darstellung.',
+    position: 'Körperanalyse-Seite, Hero; Startseite, Karte „Körperanalyse“',
+    ratio: '4:3',
+    minSize: '1600 × 1200 px',
+    alt: 'DEXA-Messplatz für die Körperanalyse bei Röntgen am Kai in Graz',
+  },
+  bodyExam: {
+    motif: 'Ganzkörpermessung: bekleidete Person (Alltagskleidung ohne Metall, kein Fitnessmodel) liegt ruhig auf dem Rücken auf der DEXA-Liege, Messarm über dem Körper, Radiologietechnologin daneben; keine erkennbaren Gesichter ohne Einwilligung.',
+    position: 'Körperanalyse-Seite, Abschnitt „So läuft Ihre Körperanalyse ab“',
+    ratio: '3:2',
+    minSize: '1500 × 1000 px',
+    alt: 'Person liegt während der Körperanalyse mit DEXA ruhig auf dem Untersuchungstisch',
+  },
+  bodyReport: {
+    motif: 'Beispielhafter, anonymisierter Messbericht der Körperanalyse (Körperfett, magere Masse, regionale Verteilung) – echter Bericht der Praxissoftware, ohne Patientendaten.',
+    position: 'Körperanalyse-Seite, Abschnitt „Was zeigt eine medizinische Körperanalyse?“',
+    ratio: '4:3',
+    minSize: '1200 × 900 px',
+    alt: 'Anonymisierter Beispielbericht einer Körperanalyse mit DEXA',
+  },
   ogDexa: {
     motif: 'Social-Media-Vorschaubild für die Knochendichte-Seite (reales DEXA-Gerät der Praxis), Text frei.',
     position: 'og:image der Seite /knochendichtemessung-graz (derzeit allgemeines Praxisbild als Ersatz)',

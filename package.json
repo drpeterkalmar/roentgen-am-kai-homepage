@@ -9,7 +9,7 @@
     "build": "vite build && node scripts/postbuild.mjs",
     "lint": "eslint . --max-warnings 0",
     "preview": "vite preview",
-    "test": "python3 -u tests/e2e_site.py && python3 -u tests/e2e_faq_sync.py && python3 -u tests/e2e_mammographie.py && python3 -u tests/e2e_knochendichte.py"
+    "test": "python3 -u tests/e2e_site.py && python3 -u tests/e2e_faq_sync.py && python3 -u tests/e2e_mammographie.py && python3 -u tests/e2e_knochendichte.py && python3 -u tests/e2e_koerperanalyse.py"
   },
   "homepage": "https://drpeterkalmar.github.io/roentgen-am-kai-homepage/",
   "dependencies": {

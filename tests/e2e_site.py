@@ -15,7 +15,7 @@ ROUTES = {
     "/": ("Radiologie Graz", "Moderne Radiologie in Graz"),
     "/mammographie-graz": ("Mammographie Graz ohne Zuweisung", "Häufige Fragen zur Mammographie"),
     "/knochendichtemessung-graz": ("Knochendichte", "Häufige Fragen zur Knochendichtemessung"),
-    "/unser-angebot/koerperfettmessung": ("DEXA-Körperanalyse", "Häufige Fragen zur DEXA-Körperanalyse"),
+    "/koerperanalyse-graz": ("Körperanalyse", "Häufige Fragen zur Körperanalyse"),
     "/unser-angebot/roentgen": ("Digitales Röntgen", "Häufige Fragen zum Röntgen"),
     "/unser-angebot/ultraschall": ("Sonographie", "Häufige Fragen"),
     "/unser-angebot/dvt": ("DVT", "Häufige Fragen"),
@@ -29,8 +29,8 @@ ROUTES = {
     "/impressum": ("Impressum", "Offener Quellcode"),
     "/datenschutz": ("Datenschutz", "Verantwortlicher"),
 }
-LEGACY = {"/datenschutzerklarung": "/datenschutz", "/unser-angebot/mammographie": "/mammographie-graz", "/unser-angebot/mammographie/mammascreening": "/mammographie-graz", "/unser-angebot/knochendichte": "/knochendichtemessung-graz"}
-NAV = ["Startseite", "Mammographie & Brustgesundheit", "Knochendichte", "DEXA-Körperanalyse", "Weitere Untersuchungen", "Gesundheitsziele", "Ratgeber", "Praxis und Kontakt"]
+LEGACY = {"/datenschutzerklarung": "/datenschutz", "/unser-angebot/mammographie": "/mammographie-graz", "/unser-angebot/mammographie/mammascreening": "/mammographie-graz", "/unser-angebot/knochendichte": "/knochendichtemessung-graz", "/unser-angebot/koerperfettmessung": "/koerperanalyse-graz"}
+NAV = ["Startseite", "Mammographie & Brustgesundheit", "Knochendichte", "Körperanalyse", "Weitere Untersuchungen", "Gesundheitsziele", "Ratgeber", "Praxis und Kontakt"]
 TEL_OK = {TEL, "tel:0800" + "500181"}  # Praxis + Serviceline des Früherkennungsprogramms
 FORBIDDEN = ["Tomosynth", "3D-Mammo", "3D Mammo", "dreidimensionale Mammo", "Terminanfrage", "Online-Terminvergabe", "script.google.com", "Sonografie", "Wahlarzt für", "Wahlarztpraxis"]  # Lebenslauf-Einträge "Wahlarztordination 20xx" sind korrekt
 fails, external = [], set()
@@ -144,7 +144,7 @@ with sync_playwright() as p:
     check(inside, "Mobil: Fokus bleibt im Menü (Fokusfalle)")
     pg.keyboard.press("Escape"); pg.wait_for_timeout(200)
     check(not dlg.is_visible() and pg.evaluate("document.activeElement.textContent.includes('Menü')"), "Mobil: Escape schließt Menü, Fokus zurück auf 'Menü'")
-    pg.goto(BASE + "/unser-angebot/koerperfettmessung", wait_until="networkidle"); pg.wait_for_timeout(300)
+    pg.goto(BASE + "/koerperanalyse-graz", wait_until="networkidle"); pg.wait_for_timeout(300)
     pg.screenshot(path="/tmp/rak-new-koerper-mobile.png", full_page=True)
     ph = pg.eval_on_selector_all('[data-placeholder]', 'els => els.map(e => e.getAttribute("data-placeholder"))')
     check(len(ph) >= 1, f"Platzhalter sichtbar auf Körperanalyse-Seite: {ph}")

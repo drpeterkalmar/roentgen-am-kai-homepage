@@ -62,9 +62,9 @@ const FEATURED = [
   },
   {
     key: 'koerperanalyse',
-    title: 'DEXA-Körperanalyse',
-    text: 'Körperfett, Magermasse und deren regionale Verteilung medizinisch präzise erfassen.',
-    cta: 'Körperanalyse entdecken',
+    title: 'Körperanalyse mit DEXA',
+    text: 'Körperfett und Muskelmasse präzise messen – mit regionaler Auswertung und für Verlaufskontrollen.',
+    cta: 'Zur Körperanalyse',
     media: (
       <ImagePlaceholder
         className="aspect-[16/10] border-0 border-b-2"
@@ -216,7 +216,7 @@ const Home = () => (
           },
           {
             t: 'Untersuchung',
-            d: 'Nach der Anmeldung an der Rezeption folgt Ihre Untersuchung. Die DEXA-Körperanalyse dauert etwa 15 Minuten.',
+            d: 'Nach der Anmeldung an der Rezeption folgt Ihre Untersuchung. Für die Körperanalyse planen Sie etwa 20 Minuten ein.',
           },
           {
             t: 'Befund',

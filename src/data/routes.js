@@ -6,6 +6,7 @@
 // Kanonische Domain (Hauptdomain ab Jan 2027: Umlaut-Domain, hier in Punycode).
 import { SCREENING_META_DESCRIPTION } from './screening.js';
 import { DEXA_META_DESCRIPTION } from './dexa.js';
+import { BODY_SEO_TITLE, BODY_META_DESCRIPTION, BODY_H1 } from './bodyComposition.js';
 
 export const SITE_URL = 'https://www.xn--rntgen-am-kai-imb.at';
 
@@ -67,9 +68,22 @@ export const routes = [
     priority: '0.7',
   },
   {
-    path: '/unser-angebot/koerperfettmessung',
-    title: 'DEXA-Körperanalyse in Graz',
-    description: 'DEXA-Körperanalyse in Graz: Körperfett, Muskelmasse und Fettverteilung in etwa 15 Minuten. Privatleistung, online buchbar.',
+    path: '/koerperanalyse-graz',
+    fullTitle: BODY_SEO_TITLE,
+    title: 'Körperanalyse',
+    h1: BODY_H1,
+    crumb: 'Körperanalyse',
+    medicalProcedure: {
+      name: 'DEXA-Körperanalyse',
+      alternateName: ['Körperanalyse', 'Körperfettmessung', 'Ganzkörperanalyse', 'DXA-Körperzusammensetzung'],
+      procedureType: 'https://schema.org/NoninvasiveProcedure',
+    },
+    service: {
+      name: 'Körperanalyse mit DEXA',
+      serviceType: 'Messung der Körperzusammensetzung (DEXA)',
+      description: BODY_META_DESCRIPTION,
+    },
+    description: BODY_META_DESCRIPTION,
     priority: '0.9',
   },
   {

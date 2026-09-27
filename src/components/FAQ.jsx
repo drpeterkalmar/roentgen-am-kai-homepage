@@ -1,11 +1,13 @@
 import React, { useState, useId } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { cx } from './ui/cx';
+import Placeholder from './ui/Placeholder';
 
 // Barrierearme FAQ (Disclosure-Muster): Frage = Schaltfläche in einer Überschrift,
 // aria-expanded/aria-controls, Antwort-Region. Inhalte aus src/data/faqData.js
 // (dieselbe Quelle speist das FAQPage-Schema in SchemaMarkup.jsx).
-const FAQItem = ({ question, answer, headingLevel }) => {
+// pending: offene Praxisangabe → sichtbarer Platzhalter, Frage NICHT im Schema.
+const FAQItem = ({ question, answer, pending, headingLevel }) => {
   const [isOpen, setIsOpen] = useState(false);
   const id = useId();
   const H = `h${headingLevel}`;
@@ -26,6 +28,7 @@ const FAQItem = ({ question, answer, headingLevel }) => {
       </H>
       <div id={`${id}-a`} role="region" aria-labelledby={`${id}-q`} hidden={!isOpen} className="pb-5 pr-10 leading-relaxed text-slate-700 dark:text-slate-200">
         <p>{answer}</p>
+        {pending && <Placeholder internal className="mt-3">{pending}</Placeholder>}
       </div>
     </div>
   );
@@ -42,7 +45,7 @@ const FAQ = ({ items, title = 'Häufig gestellte Fragen', headingLevel = 2, alig
         </H>
         <div className={`rounded-2xl border border-slate-200 bg-white px-5 sm:px-8 dark:border-slate-700 dark:bg-slate-900 ${align === "left" ? "max-w-4xl" : ""}`}>
           {items.map((item) => (
-            <FAQItem key={item.question} question={item.question} answer={item.answer} headingLevel={itemLevel} />
+            <FAQItem key={item.question} question={item.question} answer={item.answer} pending={item.pending} headingLevel={itemLevel} />
           ))}
         </div>
       </div>

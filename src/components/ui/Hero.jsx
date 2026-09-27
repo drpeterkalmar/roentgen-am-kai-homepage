@@ -11,14 +11,15 @@ import Breadcrumbs from './Breadcrumbs';
 //   highlight: gut sichtbarer Hinweis direkt unter der H1 (z. B. „Ohne Zuweisung · mit e-card …“)
 //   meta: kleine Zusatzinfos unter den Schaltflächen (z. B. Öffnungszeiten)
 //   facts: kurze Stichpunkte als Chips zwischen Einleitung und Schaltflächen ([string | { text, strong }])
-const Hero = ({ breadcrumbs, eyebrow, title, highlight, lead, facts, actions, meta, image, imageSlot, tone = 'muted', className, children }) => {
+//   keyMessage: hervorgehobene Kernbotschaft direkt unter der Einleitung
+const Hero = ({ breadcrumbs, eyebrow, title, highlight, lead, keyMessage, facts, actions, meta, image, imageSlot, tone = 'muted', className, children }) => {
   const hasMedia = image || imageSlot;
   return (
     <section
       aria-labelledby="page-title"
       className={cx(tone === 'muted' ? 'bg-slate-50 dark:bg-slate-900' : 'bg-white dark:bg-slate-950', 'border-b border-slate-200 dark:border-slate-800', className)}
     >
-      <Container className={cx('py-8 sm:py-12 lg:py-14', hasMedia && 'grid items-center gap-10 lg:grid-cols-2 lg:gap-16')}>
+      <Container className={cx('py-8 sm:py-12 lg:py-14', hasMedia && 'grid items-start gap-10 lg:grid-cols-2 lg:gap-16')}>
         <div className={cx(!hasMedia && 'max-w-3xl')}>
           {breadcrumbs && <div className="mb-4 sm:mb-6"><Breadcrumbs items={breadcrumbs} /></div>}
           {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
@@ -29,6 +30,11 @@ const Hero = ({ breadcrumbs, eyebrow, title, highlight, lead, facts, actions, me
             </p>
           )}
           {lead && <Lead className="mt-4 max-w-2xl text-base sm:mt-5 sm:text-lg">{lead}</Lead>}
+          {keyMessage && (
+            <p className="mt-4 max-w-2xl border-l-4 border-brand pl-4 text-lg font-semibold leading-snug text-slate-900 sm:mt-5 sm:text-xl dark:border-brand-300 dark:text-white">
+              {keyMessage}
+            </p>
+          )}
           {facts && facts.length > 0 && (
             <ul className="mt-4 flex flex-wrap gap-2 sm:mt-5" aria-label="Auf einen Blick">
               {facts.map((f) => {
