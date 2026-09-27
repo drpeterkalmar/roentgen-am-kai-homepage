@@ -21,7 +21,7 @@ ROUTES = {
     "/unser-angebot/dvt": ("DVT", "Häufige Fragen"),
     "/unser-angebot/phlebographie": ("Phlebographie", "Häufige Fragen"),
     "/weitere-untersuchungen": ("Weitere Untersuchungen", "Durchleuchtung"),
-    "/gesundheitsziele": ("Gesundheitsziele", "Osteoporosevorsorge"),
+    "/gesundheitsziele": ("Gesundheitsziele", "Welche Untersuchung passt zu Ihrem Gesundheitsziel"),
     "/ratgeber": ("Ratgeber", "Weiterlesen"),
     "/kontakt": ("Praxis und Kontakt", "Öffnungszeiten"),
     "/unser-team/dr-peter-kalmar": ("Peter Kalmar", "Publikationen"),
@@ -31,7 +31,7 @@ ROUTES = {
 }
 LEGACY = {"/datenschutzerklarung": "/datenschutz", "/unser-angebot/mammographie": "/mammographie-graz", "/unser-angebot/mammographie/mammascreening": "/mammographie-graz", "/unser-angebot/knochendichte": "/knochendichtemessung-graz", "/unser-angebot/koerperfettmessung": "/koerperanalyse-graz"}
 NAV = ["Startseite", "Mammographie & Brustgesundheit", "Knochendichte", "Körperanalyse", "Weitere Untersuchungen", "Gesundheitsziele", "Ratgeber", "Praxis und Kontakt"]
-TEL_OK = {TEL, "tel:0800" + "500181"}  # Praxis + Serviceline des Früherkennungsprogramms
+TEL_OK = {TEL, "tel:0800" + "500181", "tel:144"}  # Praxis + Serviceline Früherkennungsprogramm + Notruf
 FORBIDDEN = ["Tomosynth", "3D-Mammo", "3D Mammo", "dreidimensionale Mammo", "Terminanfrage", "Online-Terminvergabe", "script.google.com", "Sonografie", "Wahlarzt für", "Wahlarztpraxis"]  # Lebenslauf-Einträge "Wahlarztordination 20xx" sind korrekt
 fails, external = [], set()
 

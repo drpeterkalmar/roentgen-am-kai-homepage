@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { BookOpen, Sparkles, CheckCircle, Clock, X } from 'lucide-react';
+import { BookOpen, Sparkles, CheckCircle, Clock, X, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, MotionConfig } from 'framer-motion';
 
 import { blogPosts as samplePosts } from '../data/blogPosts';
@@ -70,6 +71,18 @@ const BlogModal = ({ post, onClose }) => {
               className="prose prose-lg dark:prose-invert max-w-none text-gray-800 dark:text-gray-200 leading-relaxed space-y-6"
               dangerouslySetInnerHTML={{ __html: post.content }}
             />
+            {/* Artikel führen zuerst zu GENAU EINER passenden Gesundheitsziel- oder Leistungsseite */}
+            {post.primaryLink && (
+              <p className="mt-10 border-t border-gray-200 pt-6 dark:border-gray-700">
+                <Link
+                  to={post.primaryLink.to}
+                  onClick={onClose}
+                  className="inline-flex min-h-[48px] items-center gap-2 rounded-xl bg-[#8B2323] px-5 font-semibold text-white hover:bg-[#6f1c1c]"
+                >
+                  {post.primaryLink.label} <ArrowRight size={18} aria-hidden="true" />
+                </Link>
+              </p>
+            )}
           </div>
         </div>
       </motion.div>

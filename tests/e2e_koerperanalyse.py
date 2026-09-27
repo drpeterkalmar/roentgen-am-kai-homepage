@@ -149,7 +149,7 @@ with sync_playwright() as p:
     top = pg.evaluate("document.getElementById('ablauf').getBoundingClientRect().top")
     check(-5 <= top <= 260, f"'So funktioniert die Messung' springt zu #ablauf (top={round(top)})")
     hrefs = sorted(set(pg.eval_on_selector_all("a[href]", "as => as.map(a => a.href)")))
-    for need in ["/knochendichtemessung-graz", "/gesundheitsziele#gewicht", "/gesundheitsziele#fitness", "/gesundheitsziele#wechseljahre", "/kontakt", "/ratgeber"]:
+    for need in ["/knochendichtemessung-graz", "/gesundheitsziele/gesund-abnehmen", "/gesundheitsziele/fitness-muskelaufbau", "/gesundheitsziele/frauengesundheit-wechseljahre", "/kontakt", "/ratgeber"]:
         check(any(h.endswith(need) for h in hrefs), f"interner Link: {need}")
     check(any("google.com/maps" in h for h in hrefs) and BOOK in hrefs, "Links Anfahrt (Maps) + Online-Buchung")
     internal = [h for h in hrefs if h.startswith(BASE)]

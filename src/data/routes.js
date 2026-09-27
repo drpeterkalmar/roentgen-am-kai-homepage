@@ -7,6 +7,7 @@
 import { SCREENING_META_DESCRIPTION } from './screening.js';
 import { DEXA_META_DESCRIPTION } from './dexa.js';
 import { BODY_SEO_TITLE, BODY_META_DESCRIPTION, BODY_H1 } from './bodyComposition.js';
+import { GOAL_ROUTES } from './healthGoals.js';
 
 export const SITE_URL = 'https://www.xn--rntgen-am-kai-imb.at';
 
@@ -92,12 +93,8 @@ export const routes = [
     description: 'Digitales Röntgen, Ultraschall, Durchleuchtung, Phlebographie sowie DVT und Zahnröntgen bei Röntgen am Kai, Körösistraße 9, Graz.',
     priority: '0.7',
   },
-  {
-    path: '/gesundheitsziele',
-    title: 'Gesundheitsziele: Gewicht, Fitness, Wechseljahre, Osteoporose',
-    description: 'Die passende Untersuchung für Ihr Anliegen: Gewichtsabnahme, Fitness, Wechseljahre, Osteoporosevorsorge und rasche Beschwerdeabklärung – Röntgen am Kai, Graz.',
-    priority: '0.6',
-  },
+  // Gesundheitsziele: Übersicht + Zielseiten (Daten: src/data/healthGoals.js)
+  ...GOAL_ROUTES,
   {
     path: '/ratgeber',
     title: 'Ratgeber',

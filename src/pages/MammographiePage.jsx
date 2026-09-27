@@ -286,6 +286,11 @@ const MammographiePage = () => (
           </li>
         </ul>
       </div>
+      <p className="mt-6">
+        <Link to="/gesundheitsziele/frauengesundheit-wechseljahre" className="flex min-h-[56px] items-center gap-3 rounded-xl border border-slate-200 bg-white p-4 font-semibold text-slate-900 hover:border-brand-200 hover:text-brand dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:hover:text-brand-300 sm:inline-flex">
+          <ArrowRight size={20} aria-hidden="true" className="shrink-0 text-brand dark:text-brand-300" /> Gesundheitsziel: Frauengesundheit und Wechseljahre
+        </Link>
+      </p>
       <Placeholder internal className="mt-6">
         Geplant: eigene Seite „Brustultraschall“ und eigene Ratgeber-Artikel mit URL zur Brustgesundheit – dann hier verlinken.
       </Placeholder>

@@ -169,7 +169,14 @@ const Home = () => (
             <Card className="flex h-full flex-col">
               <h3 className="font-display text-xl font-semibold tracking-tight text-slate-900 dark:text-white">{g.title}</h3>
               <p className="mt-2 text-slate-600 dark:text-slate-300">{g.text}</p>
-              <ul className="mt-auto pt-4" aria-label={`Passende Untersuchungen: ${g.title}`}>
+              {g.goalPath && (
+                <p className="pt-3">
+                  <Link to={g.goalPath} data-cta="goal" data-cta-service={g.id} className="inline-flex min-h-[44px] items-center gap-2 font-semibold text-slate-900 underline underline-offset-4 hover:text-brand dark:text-white dark:hover:text-brand-300">
+                    Mehr zum Gesundheitsziel<span className="sr-only">: {g.title}</span> <ArrowRight size={16} aria-hidden="true" />
+                  </Link>
+                </p>
+              )}
+              <ul className="mt-auto pt-2" aria-label={`Passende Untersuchungen: ${g.title}`}>
                 {g.services.map((k) => (
                   <li key={k}>
                     <Link

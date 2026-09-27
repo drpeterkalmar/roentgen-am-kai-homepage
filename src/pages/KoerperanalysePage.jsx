@@ -68,7 +68,7 @@ const AUDIENCES = [
   { icon: Syringe, t: 'Behandlung mit einer Abnehmspritze', d: 'Ausgangsmessung und Verlaufskontrolle während einer ärztlich begleiteten Therapie.', href: '#abnehmen', link: 'Mehr zu Verlaufsmessungen' },
   { icon: Dumbbell, t: 'Fitness und Muskelaufbau', d: 'Trainingserfolge objektiver beurteilen, auch wenn sich das Körpergewicht kaum verändert.', href: '#training', link: 'Mehr zum Training' },
   { icon: HeartPulse, t: 'Ausdauer- und Leistungssport', d: 'Körperzusammensetzung und regionale Verteilung im Verlauf dokumentieren.', href: '#training', link: 'Mehr zu Messvarianten' },
-  { icon: UserRound, t: 'Wechseljahre und gesundes Älterwerden', d: 'Veränderungen von Fettverteilung und Muskelmasse frühzeitig erkennen.', to: '/gesundheitsziele#wechseljahre', link: 'Zum Gesundheitsziel Wechseljahre' },
+  { icon: UserRound, t: 'Wechseljahre und gesundes Älterwerden', d: 'Veränderungen von Fettverteilung und Muskelmasse frühzeitig erkennen.', to: '/gesundheitsziele/frauengesundheit-wechseljahre', link: 'Zum Gesundheitsziel Wechseljahre' },
   { icon: BarChart3, t: 'Muskelverlust und Sarkopenie', d: 'Niedrige Muskelmasse als Bestandteil einer weiterführenden medizinischen Abklärung erfassen.', href: '#sarkopenie', link: 'Mehr zur Sarkopenie' },
 ];
 
@@ -314,8 +314,8 @@ const KoerperanalysePage = () => {
             </ol>
             <div className="mt-6 flex flex-col gap-3">
               <BookingButton size="lg" label="Ausgangsmessung oder Verlaufskontrolle buchen" className="!text-base" />
-              <Link to="/gesundheitsziele#gewicht" className={textLink}>
-                Gesundheitsziel Gewichtsabnahme <ArrowRight size={16} aria-hidden="true" />
+              <Link to="/gesundheitsziele/abnehmspritze-koerperanalyse" className={textLink}>
+                Gesundheitsziel Abnehmspritze und Muskelverlust <ArrowRight size={16} aria-hidden="true" />
               </Link>
             </div>
           </Card>
@@ -398,7 +398,7 @@ const KoerperanalysePage = () => {
         </Card>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <BookingButton size="lg" label="Meinen Fortschritt objektiv messen" />
-          <Link to="/gesundheitsziele#fitness" className={buttonClasses({ variant: 'ghost', size: 'lg', className: 'justify-start sm:justify-center' })}>
+          <Link to="/gesundheitsziele/fitness-muskelaufbau" className={buttonClasses({ variant: 'ghost', size: 'lg', className: 'justify-start sm:justify-center' })}>
             Gesundheitsziel Fitness und Muskelaufbau <ArrowRight size={18} aria-hidden="true" />
           </Link>
         </div>
@@ -635,18 +635,28 @@ const KoerperanalysePage = () => {
             </Link>
           </li>
           <li>
-            <Link to="/gesundheitsziele#gewicht" className={linkRow}>
-              <TrendingDown size={20} aria-hidden="true" className="shrink-0 text-brand dark:text-brand-300" /> Abnehmen und Abnehmspritzen
+            <Link to="/gesundheitsziele/gesund-abnehmen" className={linkRow}>
+              <TrendingDown size={20} aria-hidden="true" className="shrink-0 text-brand dark:text-brand-300" /> Gesund abnehmen
             </Link>
           </li>
           <li>
-            <Link to="/gesundheitsziele#fitness" className={linkRow}>
+            <Link to="/gesundheitsziele/abnehmspritze-koerperanalyse" className={linkRow}>
+              <Syringe size={20} aria-hidden="true" className="shrink-0 text-brand dark:text-brand-300" /> Abnehmspritze und Muskelverlust
+            </Link>
+          </li>
+          <li>
+            <Link to="/gesundheitsziele/fitness-muskelaufbau" className={linkRow}>
               <Dumbbell size={20} aria-hidden="true" className="shrink-0 text-brand dark:text-brand-300" /> Fitness und Muskelaufbau
             </Link>
           </li>
           <li>
-            <Link to="/gesundheitsziele#wechseljahre" className={linkRow}>
-              <UserRound size={20} aria-hidden="true" className="shrink-0 text-brand dark:text-brand-300" /> Wechseljahre und gesundes Älterwerden
+            <Link to="/gesundheitsziele/muskelverlust-sarkopenie" className={linkRow}>
+              <BarChart3 size={20} aria-hidden="true" className="shrink-0 text-brand dark:text-brand-300" /> Muskelverlust und Sarkopenie
+            </Link>
+          </li>
+          <li>
+            <Link to="/gesundheitsziele/frauengesundheit-wechseljahre" className={linkRow}>
+              <UserRound size={20} aria-hidden="true" className="shrink-0 text-brand dark:text-brand-300" /> Frauengesundheit und Wechseljahre
             </Link>
           </li>
           <li>

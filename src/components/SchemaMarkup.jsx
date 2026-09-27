@@ -95,7 +95,9 @@ const SchemaMarkup = () => {
         "@type": "BreadcrumbList",
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Startseite", "item": `${SITE_URL}/` },
-          { "@type": "ListItem", "position": 2, "name": route.crumb, "item": pageUrl }
+          // Zielseiten: Elternseite „Gesundheitsziele“ als zweite Ebene (wie die sichtbaren Brotkrumen)
+          ...(route.parent ? [{ "@type": "ListItem", "position": 2, "name": route.parent.name, "item": `${SITE_URL}${route.parent.path}` }] : []),
+          { "@type": "ListItem", "position": route.parent ? 3 : 2, "name": route.crumb, "item": pageUrl }
         ]
       });
     }
@@ -109,6 +111,21 @@ const SchemaMarkup = () => {
         "description": route.description,
         "inLanguage": "de-AT",
         "about": { "@type": "MedicalProcedure", ...route.medicalProcedure },
+        "publisher": { "@id": `${SITE_URL}/#praxis` }
+      });
+    }
+    // Gesundheitsziel-Seiten: MedicalWebPage mit Thema (ohne Prüfdatum, solange die ärztliche Freigabe offen ist)
+    if (route?.medicalPage) {
+      extraSchemas.push({
+        "@context": "https://schema.org",
+        "@type": "MedicalWebPage",
+        "@id": `${pageUrl}#webpage`,
+        "url": pageUrl,
+        "name": fullTitle(route),
+        "description": route.description,
+        "inLanguage": "de-AT",
+        "about": route.medicalPage.about.map((name) => ({ "@type": "Thing", "name": name })),
+        "isPartOf": { "@id": `${SITE_URL}${route.parent.path}` },
         "publisher": { "@id": `${SITE_URL}/#praxis` }
       });
     }

@@ -22,6 +22,13 @@ const KalmarPage = lazy(() => import('./pages/KalmarPage'))
 const RieglerPage = lazy(() => import('./pages/RieglerPage'))
 const WeitereUntersuchungenPage = lazy(() => import('./pages/WeitereUntersuchungenPage'))
 const GesundheitszielePage = lazy(() => import('./pages/GesundheitszielePage'))
+const WechseljahrePage = lazy(() => import('./pages/goals/WechseljahrePage'))
+const AbnehmenPage = lazy(() => import('./pages/goals/AbnehmenPage'))
+const AbnehmspritzePage = lazy(() => import('./pages/goals/AbnehmspritzePage'))
+const FitnessPage = lazy(() => import('./pages/goals/FitnessPage'))
+const AelterWerdenPage = lazy(() => import('./pages/goals/AelterWerdenPage'))
+const SarkopeniePage = lazy(() => import('./pages/goals/SarkopeniePage'))
+const SportPage = lazy(() => import('./pages/goals/SportPage'))
 const RatgeberPage = lazy(() => import('./pages/RatgeberPage'))
 const KontaktPage = lazy(() => import('./pages/KontaktPage'))
 
@@ -96,6 +103,13 @@ function App() {
               <Route path="/unser-angebot/koerperfettmessung" element={<Navigate to="/koerperanalyse-graz" replace />} />
               <Route path="/weitere-untersuchungen" element={<WeitereUntersuchungenPage />} />
               <Route path="/gesundheitsziele" element={<GesundheitszielePage />} />
+              <Route path="/gesundheitsziele/frauengesundheit-wechseljahre" element={<WechseljahrePage />} />
+              <Route path="/gesundheitsziele/gesund-abnehmen" element={<AbnehmenPage />} />
+              <Route path="/gesundheitsziele/abnehmspritze-koerperanalyse" element={<AbnehmspritzePage />} />
+              <Route path="/gesundheitsziele/fitness-muskelaufbau" element={<FitnessPage />} />
+              <Route path="/gesundheitsziele/gesund-aelter-werden" element={<AelterWerdenPage />} />
+              <Route path="/gesundheitsziele/muskelverlust-sarkopenie" element={<SarkopeniePage />} />
+              <Route path="/gesundheitsziele/dexa-sportler-red-s" element={<SportPage />} />
               <Route path="/ratgeber" element={<RatgeberPage />} />
               <Route path="/kontakt" element={<KontaktPage />} />
               <Route path="/impressum" element={<ImpressumPage />} />

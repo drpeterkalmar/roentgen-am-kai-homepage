@@ -87,4 +87,26 @@ export const IMAGE_BRIEFS = {
     minSize: '1200 × 630 px (JPG)',
     alt: 'Knochendichtemessung mit DEXA bei Röntgen am Kai in Graz',
   },
+  // ── Gesundheitsziele (27.09.2026) – ruhige, glaubwürdige Motive; kein Fitnessmodel, kein Vorher-nachher ──
+  goalWeight: {
+    motif: 'Ruhige Beratungs- oder Messsituation: bekleidete erwachsene Person (normale Statur, Alltagskleidung) auf der DEXA-Liege oder im Gespräch am Empfang; keine Waage-Nahaufnahme, kein Maßband, kein Vorher-nachher.',
+    position: 'Gesundheitsziele: Karte und Seite „Gesund abnehmen“',
+    ratio: '4:3',
+    minSize: '1600 × 1200 px',
+    alt: 'Körperanalyse bei Röntgen am Kai als Ausgangsmessung vor einer Gewichtsabnahme',
+  },
+  goalFitness: {
+    motif: 'Sportlich gekleidete, erwachsene Person (kein Fitnessmodel) liegt zur Ganzkörpermessung ruhig auf der DEXA-Liege, Radiologietechnologin daneben; natürliche Praxissituation.',
+    position: 'Gesundheitsziele: Karte und Seite „Fitness und Muskelaufbau“',
+    ratio: '4:3',
+    minSize: '1600 × 1200 px',
+    alt: 'Körperanalyse mit DEXA zur Verlaufskontrolle beim Training',
+  },
+  goalSarcopenia: {
+    motif: 'Ältere Person (bekleidet, würdevoll dargestellt) im ruhigen Gespräch mit einer Radiologietechnologin vor der Messung; keine gebrechliche Darstellung, keine erkennbaren Gesichter ohne Einwilligung.',
+    position: 'Gesundheitsziele: Karte und Seite „Muskelverlust und Sarkopenie“',
+    ratio: '4:3',
+    minSize: '1600 × 1200 px',
+    alt: 'Ältere Patientin vor der Messung der Muskelmasse bei Röntgen am Kai',
+  },
 };

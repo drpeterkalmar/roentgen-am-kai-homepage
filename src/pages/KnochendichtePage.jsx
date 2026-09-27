@@ -444,6 +444,24 @@ const KnochendichtePage = () => (
         </li>
       </ul>
 
+      <nav aria-labelledby="kd-ziele-title" className="mt-8">
+        <h3 id="kd-ziele-title" className="font-display text-lg font-semibold tracking-tight text-slate-900 dark:text-white">Passende Gesundheitsziele</h3>
+        <ul className="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            ['/gesundheitsziele/gesund-aelter-werden', 'Gesund älter werden'],
+            ['/gesundheitsziele/frauengesundheit-wechseljahre', 'Frauengesundheit und Wechseljahre'],
+            ['/gesundheitsziele/dexa-sportler-red-s', 'Knochengesundheit im Sport'],
+            ['/gesundheitsziele', 'Alle Gesundheitsziele'],
+          ].map(([to, label]) => (
+            <li key={to}>
+              <Link to={to} className={linkRow}>
+                <ArrowRight size={20} aria-hidden="true" className="shrink-0 text-brand dark:text-brand-300" /> {label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
       <Card as="aside" tone="muted" className="mt-8" aria-labelledby="abgrenzung-title">
         <div className="flex gap-4">
           <Scale size={24} aria-hidden="true" className="mt-0.5 shrink-0 text-brand dark:text-brand-300" />
