@@ -438,8 +438,8 @@ const KnochendichtePage = () => (
           </a>
         </li>
         <li>
-          <Link to="/ratgeber" className={linkRow}>
-            <BookOpen size={20} aria-hidden="true" className="shrink-0 text-brand dark:text-brand-300" /> Ratgeber: Osteoporose früh erkennen
+          <Link to="/ratgeber/knochendichtemessung-dexa-vorsorge" className={linkRow}>
+            <BookOpen size={20} aria-hidden="true" className="shrink-0 text-brand dark:text-brand-300" /> Ratgeber: Knochendichtemessung – wann sinnvoll?
           </Link>
         </li>
       </ul>
@@ -481,9 +481,6 @@ const KnochendichtePage = () => (
           </div>
         </div>
       </Card>
-      <Placeholder internal className="mt-6">
-        Geplant: eigene Ratgeber-Artikel mit eigener URL (z. B. „Osteoporose früh erkennen“) – dann hier direkt verlinken.
-      </Placeholder>
     </Section>
 
     <CTASection

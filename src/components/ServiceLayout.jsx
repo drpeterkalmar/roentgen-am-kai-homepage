@@ -76,7 +76,15 @@ const ServiceLayout = ({ title, subtitle, children, icon, preparation, requireme
             {customImage ||
               (imgSrc && (
                 <div className="mb-10 overflow-hidden rounded-2xl bg-slate-100 dark:bg-slate-800">
-                  <img src={imgSrc} alt="" width="1200" height="600" className="h-56 w-full object-cover sm:h-80" />
+                  <img
+                    src={imgSrc}
+                    srcSet={imgSrc.endsWith('.avif') ? `${imgSrc.replace(/\.avif$/, '-mobile.avif')} 800w, ${imgSrc.replace(/\.avif$/, '-tablet.avif')} 1200w, ${imgSrc} 1920w` : undefined}
+                    sizes="(max-width: 1023px) 100vw, 740px"
+                    alt=""
+                    width="1200"
+                    height="600"
+                    className="h-56 w-full object-cover sm:h-80"
+                  />
                 </div>
               ))}
 

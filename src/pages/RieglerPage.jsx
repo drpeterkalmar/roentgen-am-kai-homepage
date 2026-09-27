@@ -118,7 +118,9 @@ const RieglerPage = () => {
           >
             <div className="glass p-2 rounded-[48px] shadow-2xl relative aspect-[4/5] overflow-hidden">
                <img 
-                src={`${import.meta.env.BASE_URL}assets/images/knochendichte.avif`} 
+                src={`${import.meta.env.BASE_URL}assets/images/knochendichte.avif`}
+                srcSet={`${import.meta.env.BASE_URL}assets/images/knochendichte-mobile.avif 800w, ${import.meta.env.BASE_URL}assets/images/knochendichte-tablet.avif 1200w, ${import.meta.env.BASE_URL}assets/images/knochendichte.avif 1920w`}
+                sizes="(max-width: 1023px) 90vw, 380px" 
                 alt="Priv. Doz. Dr. Georg Riegler" 
                 className="w-full h-full object-cover rounded-[40px] grayscale-[0.3] hover:grayscale-0 transition-all duration-700"
               />

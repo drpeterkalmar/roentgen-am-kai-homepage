@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { faqData, faqSchemaItems } from '../data/faqData';
 import { SITE_URL, findRoute, fullTitle } from '../data/routes';
+import { articleBySlug, categoryById, PUBLISHER_NAME } from '../data/ratgeber';
 import { COMPANY_NAME, FN, UID } from '../data/company';
 import { PHONE_E164, EMAIL, ADDRESS, OPENING_HOURS } from '../data/practice';
 
@@ -128,6 +129,34 @@ const SchemaMarkup = () => {
         "isPartOf": { "@id": `${SITE_URL}${route.parent.path}` },
         "publisher": { "@id": `${SITE_URL}/#praxis` }
       });
+    }
+    // Ratgeber-Artikel: Article-Markup (nur veröffentlichte Artikel; Platzhalter-Artikel haben route.article = null)
+    const article = route?.article ? articleBySlug[route.article.slug] : null;
+    if (article) {
+      extraSchemas.push({
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "@id": `${pageUrl}#artikel`,
+        "mainEntityOfPage": pageUrl,
+        "headline": article.title,
+        "description": article.description,
+        "inLanguage": "de-AT",
+        "articleSection": categoryById[article.category].name,
+        "datePublished": article.datePublished,
+        "dateModified": article.dateModified,
+        // Autor: bestätigte Person, sonst die Praxis (keine Namen erfinden)
+        "author": article.author ? { "@type": "Person", "name": article.author } : { "@id": `${SITE_URL}/#praxis`, "@type": "MedicalBusiness", "name": PUBLISHER_NAME },
+        "publisher": { "@id": `${SITE_URL}/#praxis` },
+        "image": article.photo ? `${SITE_URL}/assets/images/${article.photo.name}.avif` : `${SITE_URL}/assets/images/og-image.jpg`
+      });
+      // FAQ-Markup nur, wenn der Artikel sichtbare FAQ hat
+      if (article.faq?.length) {
+        extraSchemas.push({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": article.faq.map((f) => ({ "@type": "Question", "name": f.question, "acceptedAnswer": { "@type": "Answer", "text": f.answer } }))
+        });
+      }
     }
     // Leistungs-Markup (nur für Seiten mit `service` in routes.js – ohne Preis, solange keiner bestätigt ist)
     if (route?.service) {

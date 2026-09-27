@@ -660,7 +660,7 @@ const KoerperanalysePage = () => {
             </Link>
           </li>
           <li>
-            <Link to="/ratgeber" className={linkRow}>
+            <Link to="/ratgeber/abnehmspritze-muskelmasse-koerperanalyse" className={linkRow}>
               <BookOpen size={20} aria-hidden="true" className="shrink-0 text-brand dark:text-brand-300" /> Ratgeber: Abnehmspritze und Muskelmasse
             </Link>
           </li>

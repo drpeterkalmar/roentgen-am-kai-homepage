@@ -133,7 +133,7 @@ with sync_playwright() as p:
     check(sec.locator('a[href$="/mammographie-graz"]').count() >= 1, "Kombi: Link zu Mammographie & Brustgesundheit")
     # Interne Links → 200 und Pflichtziele vorhanden
     hrefs = sorted(set(pg.eval_on_selector_all("a[href]", "as => as.map(a => a.href)")))
-    for need in ["/mammographie-graz", "/kontakt", "/ratgeber", "/koerperanalyse-graz"]:
+    for need in ["/mammographie-graz", "/kontakt", "/ratgeber/knochendichtemessung-dexa-vorsorge", "/koerperanalyse-graz"]:
         check(any(h.split("#")[0].endswith(need) for h in hrefs), f"interner Link vorhanden: {need}")
     check(any("google.com/maps" in h for h in hrefs) and BOOK in hrefs, "Links Anfahrt (Maps) + Online-Buchung")
     internal = [h for h in hrefs if h.startswith(BASE)]

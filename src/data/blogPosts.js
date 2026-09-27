@@ -1,3 +1,6 @@
+// Artikeltexte des Ratgebers (HTML). Metadaten (URL, SEO-Titel, Kategorie, Datum, Zielseite, Autor):
+// src/data/ratgeber.js – Titel/Kurzfassung dort identisch halten (Test prüft).
+// `category`/`date` hier sind Altbestand; maßgeblich sind die Werte in ratgeber.js.
 export const blogPosts = [
   {
     id: 1,
@@ -9,10 +12,10 @@ export const blogPosts = [
     content: `
       <p>Osteoporose verringert die Knochenmasse und verschlechtert die Knochenarchitektur. Die Knochen werden brüchiger, oft ohne Vorwarnung.</p>
       
-      <h3>Die Standardmethode: DEXA-Messung</h3>
+      <h2>Die Standardmethode: DEXA-Messung</h2>
       <p>In unserer Praxis verwenden wir die DEXA-Methode (Dual-Energy X-ray Absorptiometry). Sie ist die wissenschaftlich etablierte Standard- und Referenzmethode zur Messung der Knochenmineraldichte. Die Untersuchung ist schmerzlos und arbeitet mit einer sehr geringen Röntgendosis – deutlich geringer als bei einer üblichen Röntgenaufnahme.</p>
       
-      <h3>Wann ist eine Messung sinnvoll?</h3>
+      <h2>Wann ist eine Messung sinnvoll?</h2>
       <p>Nicht jede Person benötigt ab einem bestimmten Alter automatisch eine Knochendichtemessung. Ab dem 50. Lebensjahr ist aber eine persönliche Einschätzung des Osteoporoserisikos sinnvoll. Empfohlen wird die Messung etwa bei Frauen ab 65 und Männern ab 70 Jahren sowie früher bei Risikofaktoren wie einem Knochenbruch nach geringem Anlass, familiärer Belastung oder einer längeren Cortisontherapie.</p>
       
       <p>Das Ergebnis wird immer gemeinsam mit Ihren Risikofaktoren ärztlich beurteilt. Sprechen Sie mit Ihrer Ärztin oder Ihrem Arzt, ob eine DEXA-Messung für Sie sinnvoll ist. Mehr dazu auf unserer Seite zur Knochendichtemessung.</p>
@@ -29,10 +32,10 @@ export const blogPosts = [
     content: `
       <p>In unserer Praxis am Kai setzen wir Softwarelösungen ein, die uns bei der Befundung unterstützen.</p>
       
-      <h3>Der Radiologe und die KI</h3>
+      <h2>Der Radiologe und die KI</h2>
       <p>Die KI ersetzt nicht den Arzt. Sie ist ein "zweites Augenpaar", das Bilder in Sekundenschnelle auf Anomalien scannt. Besonders bei der Suche nach Lungenrundherden oder bei der Knochenstrukturanalyse hilft sie dem Radiologen.</p>
       
-      <h3>Ihre Vorteile als Patient</h3>
+      <h2>Ihre Vorteile als Patient</h2>
       <p>Durch die computergestützte Analyse erreichen wir eine höhere diagnostische Sicherheit. Kleinste Veränderungen, die in frühen Stadien schwer erkennbar sind, werden markiert und vom Radiologen detailliert geprüft. Das führt zu einer schnelleren und präziseren Diagnose, der Basis für jede erfolgreiche Behandlung.</p>
     `,
     image: 'assets/images/roentgen.avif',
@@ -48,10 +51,10 @@ export const blogPosts = [
     content: `
       <p>Brustkrebs ist die häufigste Krebserkrankung bei Frauen. Rechtzeitig erkannt sind die Heilungschancen heute exzellent. Das österreichische Brustkrebs-Früherkennungsprogramm "früh-erkennen" setzt hier an.</p>
       
-      <h3>Zertifizierte Qualität in Graz</h3>
+      <h2>Zertifizierte Qualität in Graz</h2>
       <p>Als zertifizierter Standort erfüllen wir strengste Qualitätsrichtlinien. Jede Mammographie wird bei uns von zwei spezialisierten Radiologen unabhängig voneinander beurteilt (Doppelbefundung). Das garantiert ein Höchstmaß an Sicherheit.</p>
       
-      <h3>Wer kann teilnehmen?</h3>
+      <h2>Wer kann teilnehmen?</h2>
       <p>Frauen zwischen 45 und 74 Jahren werden alle zwei Jahre automatisch eingeladen. Mit der e-Card ist die Untersuchung kostenlos und ohne Überweisung möglich. Frauen ab 40 sowie ab 75 können sich aktiv zum Programm anmelden.</p>
       
       <p>Vorbereitung: Verwenden Sie am Tag der Untersuchung bitte kein Puder, Deo oder Lotion im Brustbereich, da dies das Bild stören könnte. Bringen Sie Voraufnahmen zum Vergleich mit.</p>
@@ -71,26 +74,26 @@ export const blogPosts = [
     content: `
       <p>Medikamente auf Basis von GLP-1 beziehungsweise GLP-1/GIP haben die Behandlung von Adipositas und Typ-2-Diabetes verändert. Bei entsprechender Indikation können sie eine deutliche Gewichtsreduktion unterstützen. Die Waage zeigt dabei, wie viele Kilogramm verloren wurden – aber nicht, woraus dieser Gewichtsverlust besteht.</p>
 
-      <h3>Was Studien zur Körperzusammensetzung zeigen</h3>
+      <h2>Was Studien zur Körperzusammensetzung zeigen</h2>
       <p>In den großen Zulassungsstudien wurde die Körperzusammensetzung in Teilgruppen mit DEXA gemessen. Im Mittel nahm die Fettmasse stärker ab als die Magermasse. Gleichzeitig kann jedoch auch Magermasse zurückgehen. Wie viel davon auf einzelne Menschen zutrifft, lässt sich aus Studienmittelwerten nicht ableiten – es hängt unter anderem von Ausgangsgewicht, Alter, Ernährung, Bewegung und Tempo der Abnahme ab.</p>
 
-      <h3>Magermasse ist nicht gleich Muskelmasse</h3>
+      <h2>Magermasse ist nicht gleich Muskelmasse</h2>
       <p>Die „magere“ oder fettfreie Masse umfasst neben der Skelettmuskulatur auch Organe, Bindegewebe und Körperwasser. Sie ist deshalb ein Näherungswert für die Muskelmasse, keine direkte Messung. Muskelkraft wird bei einer DEXA-Messung nicht erfasst.</p>
 
-      <h3>Warum der Erhalt der Muskulatur wichtig ist</h3>
+      <h2>Warum der Erhalt der Muskulatur wichtig ist</h2>
       <p>Muskelkraft und Muskelmasse tragen zu Beweglichkeit, Stabilität und Selbstständigkeit bei – besonders im höheren Lebensalter. Ein fortschreitender Verlust von Muskelkraft und Muskelmasse wird als Sarkopenie bezeichnet; ihre Diagnose erfordert eine ärztliche Abklärung, bei der neben der Muskelmenge vor allem die Kraft geprüft wird.</p>
 
-      <h3>Was die DEXA-Körperanalyse erfasst</h3>
+      <h2>Was die DEXA-Körperanalyse erfasst</h2>
       <ul>
         <li>Fettmasse und Körperfettanteil</li>
         <li>Magere Weichteilmasse als Näherungswert für die Muskelmasse, getrennt für Arme, Beine und Rumpf</li>
         <li>Knochenmineralgehalt (eine Knochendichtemessung zur Osteoporose-Abklärung ist eine eigene Untersuchung)</li>
       </ul>
 
-      <h3>Ausgangsmessung und Verlaufskontrolle</h3>
+      <h2>Ausgangsmessung und Verlaufskontrolle</h2>
       <p>Eine Messung zu Beginn der Behandlung hält einen Ausgangswert fest – die Referenz für spätere Vergleiche. Eine Verlaufsmessung erfolgt häufig nach mehreren Monaten; den passenden Abstand stimmen Sie mit Ihrer behandelnden Ärztin oder Ihrem behandelnden Arzt ab. Auch nach dem Absetzen kann eine weitere Messung den Verlauf dokumentieren.</p>
 
-      <h3>Was die Messung nicht leistet</h3>
+      <h2>Was die Messung nicht leistet</h2>
       <ul>
         <li>DEXA entscheidet nicht über Beginn, Dosis oder Absetzen eines Medikaments.</li>
         <li>Die Messung ersetzt keine ärztliche Betreuung und keine Ernährungsberatung.</li>

@@ -103,6 +103,17 @@
 .service-content p + p { margin-top: 1rem; }
 .service-content table { @apply text-[0.95rem]; }
 
+/* Ratgeber-Artikel: Fließtext aus blogPosts.js (HTML) – ruhige Typografie ohne Typography-Plugin */
+.article-html { @apply text-[1.0625rem] leading-relaxed text-slate-800 dark:text-slate-200; }
+.article-html h2 { @apply mt-10 mb-3 font-display text-2xl font-semibold tracking-tight text-slate-900 dark:text-white; }
+.article-html h3 { @apply mt-8 mb-2 font-display text-xl font-semibold tracking-tight text-slate-900 dark:text-white; }
+.article-html p { @apply my-4; }
+.article-html ul { @apply my-4 list-disc space-y-2 pl-6; }
+.article-html ol { @apply my-4 list-decimal space-y-2 pl-6; }
+.article-html a { @apply font-medium text-brand underline underline-offset-4 dark:text-brand-300; overflow-wrap: anywhere; }
+.article-html em { @apply text-slate-700 dark:text-slate-300; }
+.article-html > :first-child { margin-top: 0; }
+
 /* ------------------------------------------------------------------
    Übergang: Klassen der bisherigen Komponenten (Team-Seiten, Ratgeber)
    auf die ruhige Kartenoptik umgestellt – kein Blur, kein Rauschen.

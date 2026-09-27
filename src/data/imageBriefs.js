@@ -109,4 +109,18 @@ export const IMAGE_BRIEFS = {
     minSize: '1600 × 1200 px',
     alt: 'Ältere Patientin vor der Messung der Muskelmasse bei Röntgen am Kai',
   },
+  ratgeberAbnehmspritze: {
+    motif: 'Ruhige Gesprächssituation vor einer DEXA-Körperanalyse: Radiologietechnologin und bekleidete Patientin am Messplatz, keine Spritzen- oder Medikamentendarstellung, keine Markenlogos, keine erkennbaren Gesichter ohne Einwilligung.',
+    position: 'Ratgeber: Artikel „Abnehmspritze und Muskelverlust“ (Titelbild und Übersichtskarte)',
+    ratio: '4:3',
+    minSize: '1600 × 1200 px',
+    alt: 'Vorbereitung auf eine DEXA-Körperanalyse bei Röntgen am Kai',
+  },
+  ratgeberKi: {
+    motif: 'Befundarbeitsplatz der Praxis mit Röntgenbild am Monitor (ohne Patientendaten, ohne lesbare Namen); kein Stock- oder KI-generiertes Bild.',
+    position: 'Ratgeber: Artikel „KI-Unterstützung in unserer Praxis“ (Titelbild und Übersichtskarte)',
+    ratio: '4:3',
+    minSize: '1600 × 1200 px',
+    alt: 'Befundarbeitsplatz mit Röntgenbild bei Röntgen am Kai',
+  },
 };

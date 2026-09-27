@@ -30,6 +30,8 @@ const AelterWerdenPage = lazy(() => import('./pages/goals/AelterWerdenPage'))
 const SarkopeniePage = lazy(() => import('./pages/goals/SarkopeniePage'))
 const SportPage = lazy(() => import('./pages/goals/SportPage'))
 const RatgeberPage = lazy(() => import('./pages/RatgeberPage'))
+const ArticlePage = lazy(() => import('./pages/ArticlePage'))
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
 const KontaktPage = lazy(() => import('./pages/KontaktPage'))
 
 // ScrollToTop removed in favor of ScrollToHash
@@ -111,11 +113,13 @@ function App() {
               <Route path="/gesundheitsziele/muskelverlust-sarkopenie" element={<SarkopeniePage />} />
               <Route path="/gesundheitsziele/dexa-sportler-red-s" element={<SportPage />} />
               <Route path="/ratgeber" element={<RatgeberPage />} />
+              <Route path="/ratgeber/:slug" element={<ArticlePage />} />
               <Route path="/kontakt" element={<KontaktPage />} />
               <Route path="/impressum" element={<ImpressumPage />} />
               <Route path="/datenschutz" element={<DatenschutzPage />} />
               <Route path="/unser-team/dr-peter-kalmar" element={<KalmarPage />} />
               <Route path="/unser-team/dr-georg-riegler" element={<RieglerPage />} />
+              <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </Suspense>
         </main>

@@ -33,6 +33,18 @@ const renderRoute = (route) => {
   html = replaceOnce(html, /(<meta property="og:description" content=")[^"]*(")/, `$1${desc}$2`, 'og:description');
   html = replaceOnce(html, /(<meta property="og:url" content=")[^"]*(")/, `$1${url}$2`, 'og:url');
   html = replaceOnce(html, /(<link rel="canonical" href=")[^"]*(")/, `$1${url}$2`, 'canonical');
+  // Artikel: og:type article + Datum/Rubrik (Open Graph)
+  if (route.og?.type) {
+    html = replaceOnce(html, /(<meta property="og:type" content=")[^"]*(")/, `$1${route.og.type}$2`, 'og:type');
+    const extra = [
+      route.og.publishedTime && `<meta property="article:published_time" content="${route.og.publishedTime}">`,
+      route.og.modifiedTime && `<meta property="article:modified_time" content="${route.og.modifiedTime}">`,
+      route.og.section && `<meta property="article:section" content="${esc(route.og.section)}">`,
+    ].filter(Boolean).join('\n  ');
+    if (extra) html = html.replace('</head>', `  ${extra}\n</head>`);
+  }
+  // Noch nicht freigegebene Inhalte (Platzhalter-Artikel): nicht indexieren
+  if (route.noindex) html = html.replace('</head>', '  <meta name="robots" content="noindex, follow">\n</head>');
   if (route.path !== '/') {
     // Unterseiten: kein Startseiten-Titelbild vorladen, statt Startseiten-Skelett den Seitentitel zeigen
     html = replaceOnce(html, /\s*<!-- identisch zu srcset[\s\S]*?imagesizes="[^"]*">/, '', 'hero-preload');
@@ -103,8 +115,9 @@ fs.writeFileSync(path.join(dist, '404.html'),
   + `<a href="${base}">Zur Startseite</a><p style="margin-top:24px">Termine: <a style="background:none;color:#8B2323;padding:0;margin:0" href="tel:+433168409050">0316 840 90 50</a></p></main></body></html>`);
 
 const today = new Date().toISOString().slice(0, 10);
+// Sitemap automatisch aus routes.js – ohne noindex-Seiten (Platzhalter-Artikel); Artikel mit eigenem Änderungsdatum
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`
-  + routes.map((r) => `  <url><loc>${urlFor(r.path)}</loc><lastmod>${today}</lastmod>`
+  + routes.filter((r) => !r.noindex).map((r) => `  <url><loc>${urlFor(r.path)}</loc><lastmod>${r.lastmod || today}</lastmod>`
     + `<changefreq>${r.changefreq || 'monthly'}</changefreq><priority>${r.priority}</priority></url>`).join('\n')
   + `\n</urlset>\n`;
 fs.writeFileSync(path.join(dist, 'sitemap.xml'), sitemap);

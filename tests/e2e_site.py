@@ -23,6 +23,7 @@ ROUTES = {
     "/weitere-untersuchungen": ("Weitere Untersuchungen", "Durchleuchtung"),
     "/gesundheitsziele": ("Gesundheitsziele", "Welche Untersuchung passt zu Ihrem Gesundheitsziel"),
     "/ratgeber": ("Ratgeber", "Weiterlesen"),
+    "/ratgeber/knochendichtemessung-dexa-vorsorge": ("Knochendichtemessung (DEXA)", "Passende Seite"),
     "/kontakt": ("Praxis und Kontakt", "Öffnungszeiten"),
     "/unser-team/dr-peter-kalmar": ("Peter Kalmar", "Publikationen"),
     "/unser-team/dr-georg-riegler": ("Georg Riegler", "Publikationen"),

@@ -54,7 +54,7 @@ const AbnehmspritzePage = () => (
             Abnahme ab.
           </P>
           <p className="mt-4">
-            <Link to="/ratgeber" className={textLink}>
+            <Link to="/ratgeber/abnehmspritze-muskelmasse-koerperanalyse" className={textLink}>
               <BookOpen size={18} aria-hidden="true" /> Ratgeber: Abnehmspritze und Muskelmasse
             </Link>
           </p>

@@ -81,7 +81,7 @@ export const HEALTH_GOALS = [
     h1: 'Gesund durch die Wechseljahre – Brust, Knochen und Muskelmasse im Blick',
     crumb: 'Frauengesundheit und Wechseljahre',
     description:
-      'Frauengesundheit in Graz: Brustkrebs-Früherkennung, Knochendichtemessung und Körperanalyse rund um die Wechseljahre – drei getrennte Untersuchungen, jede mit eigener Fragestellung.',
+      'Frauengesundheit in Graz: Brustkrebs-Früherkennung, Knochendichte und Körperanalyse rund um die Wechseljahre – drei Untersuchungen mit eigener Fragestellung.',
     image: 'waiting',
     about: ['Menopause', 'Brustkrebs-Früherkennung', 'Osteoporose'],
   },
@@ -151,7 +151,7 @@ export const HEALTH_GOALS = [
     h1: 'Muskelmasse messen in Graz – Sarkopenie frühzeitig abklären',
     crumb: 'Muskelverlust und Sarkopenie',
     description:
-      'Sarkopenie in Graz abklären: Die DEXA-Messung erfasst die Magermasse von Armen und Beinen als Näherung für die Muskelmasse – ein Teil der ärztlichen Abklärung, keine Diagnose.',
+      'Sarkopenie in Graz abklären: DEXA erfasst die Magermasse von Armen und Beinen als Näherung für die Muskelmasse – Teil der ärztlichen Abklärung, keine Diagnose.',
     image: 'goalSarcopenia',
     about: ['Sarkopenie'],
   },
@@ -194,7 +194,7 @@ export const HUB = {
   lead: 'Ob Brustvorsorge, Knochengesundheit, Gewichtsabnahme oder Erhalt der Muskelmasse: Finden Sie den passenden medizinischen Zugang zu Ihrem persönlichen Anliegen.',
   crumb: 'Gesundheitsziele',
   description:
-    'Welche Untersuchung passt zu Ihrem Gesundheitsziel? Wechseljahre, Abnehmen, Abnehmspritze, Fitness, Älterwerden und Sarkopenie – Orientierung von Röntgen am Kai in Graz.',
+    'Welche Untersuchung passt zu Ihrem Gesundheitsziel? Wechseljahre, Abnehmen, Abnehmspritze, Fitness, Älterwerden, Sarkopenie – Orientierung in Graz.',
 };
 
 // Routen-Einträge für routes.js (Titel, Description, Canonical, Sitemap, Breadcrumbs, MedicalWebPage)

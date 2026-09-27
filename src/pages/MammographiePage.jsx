@@ -280,8 +280,8 @@ const MammographiePage = () => (
             </a>
           </li>
           <li>
-            <Link to="/ratgeber" className="flex min-h-[56px] items-center gap-3 rounded-xl border border-slate-200 bg-white p-4 font-semibold text-slate-900 hover:border-brand-200 hover:text-brand dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:hover:text-brand-300">
-              <BookOpen size={20} aria-hidden="true" className="shrink-0 text-brand dark:text-brand-300" /> Ratgeber: Brustkrebs-Früherkennung
+            <Link to="/ratgeber/mammascreening-oesterreich" className="flex min-h-[56px] items-center gap-3 rounded-xl border border-slate-200 bg-white p-4 font-semibold text-slate-900 hover:border-brand-200 hover:text-brand dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:hover:text-brand-300">
+              <BookOpen size={20} aria-hidden="true" className="shrink-0 text-brand dark:text-brand-300" /> Ratgeber: Mammascreening in Österreich
             </Link>
           </li>
         </ul>

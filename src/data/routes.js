@@ -8,6 +8,7 @@ import { SCREENING_META_DESCRIPTION } from './screening.js';
 import { DEXA_META_DESCRIPTION } from './dexa.js';
 import { BODY_SEO_TITLE, BODY_META_DESCRIPTION, BODY_H1 } from './bodyComposition.js';
 import { GOAL_ROUTES } from './healthGoals.js';
+import { ARTICLE_ROUTES } from './ratgeber.js';
 
 export const SITE_URL = 'https://www.xn--rntgen-am-kai-imb.at';
 
@@ -90,6 +91,7 @@ export const routes = [
   {
     path: '/weitere-untersuchungen',
     title: 'Weitere Untersuchungen: Röntgen, Ultraschall, Durchleuchtung',
+    fullTitle: 'Weitere Untersuchungen: Röntgen, Ultraschall, DVT | Röntgen am Kai',
     description: 'Digitales Röntgen, Ultraschall, Durchleuchtung, Phlebographie sowie DVT und Zahnröntgen bei Röntgen am Kai, Körösistraße 9, Graz.',
     priority: '0.7',
   },
@@ -97,10 +99,15 @@ export const routes = [
   ...GOAL_ROUTES,
   {
     path: '/ratgeber',
+    fullTitle: 'Ratgeber: DEXA, Knochen, Mammographie | Röntgen am Kai',
     title: 'Ratgeber',
-    description: 'Informationen von Röntgen am Kai rund um Vorsorge, Untersuchungen und Befunde.',
+    h1: 'Ratgeber',
+    crumb: 'Ratgeber',
+    description: 'Ratgeber von Röntgen am Kai in Graz: verständliche Artikel zu DEXA-Körperanalyse, Knochengesundheit, Mammographie und Röntgen.',
     priority: '0.6',
   },
+  // Ratgeber-Artikel (Daten: src/data/ratgeber.js; Platzhalter-Artikel sind noindex und nicht in der Sitemap)
+  ...ARTICLE_ROUTES,
   {
     path: '/kontakt',
     title: 'Praxis und Kontakt',
@@ -110,12 +117,14 @@ export const routes = [
   {
     path: '/unser-team/dr-peter-kalmar',
     title: 'Priv. Doz. Dr. Peter Kalmar – Facharzt für Radiologie',
+    fullTitle: 'Priv. Doz. Dr. Peter Kalmar – Facharzt für Radiologie | Röntgen am Kai',
     description: 'Priv. Doz. Dr. Peter Kalmar, Facharzt für Radiologie bei Röntgen am Kai in Graz: Werdegang, Schwerpunkte und Publikationen.',
     priority: '0.7',
   },
   {
     path: '/unser-team/dr-georg-riegler',
     title: 'Priv. Doz. Dr. Georg Riegler – Facharzt für Radiologie',
+    fullTitle: 'Priv. Doz. Dr. Georg Riegler – Radiologe in Graz | Röntgen am Kai',
     description: 'Priv. Doz. Dr. Georg Riegler, Facharzt für Radiologie bei Röntgen am Kai in Graz: Werdegang, Schwerpunkte und Publikationen.',
     priority: '0.7',
   },
