@@ -49,18 +49,24 @@ with sync_playwright() as p:
     fig = pg.locator('[data-dexa-figure="body"]')
     check(fig.count() == 1 and "is-playing" not in (fig.get_attribute("class") or ""), "Körperanalyse-Schema wartet, bis es im Bild ist")
     vat = fig.locator("[data-vat]")
+    roi = fig.locator("[data-android]")
+    opa = lambda loc: float(loc.evaluate("e => getComputedStyle(e).opacity"))
     if VISCERAL:
-        check(vat.count() == 1 and float(vat.evaluate("e => getComputedStyle(e).opacity")) == 0, "Viszerales Fett: vor dem Abspielen verborgen")
+        check(vat.count() == 1 and roi.count() == 1 and opa(vat) == 0 and opa(roi) == 0, "Viszerales Fett + Messbereich: vor dem Abspielen verborgen")
+        bb = lambda loc: loc.evaluate("e => { const b = e.getBBox(); return [b.x, b.y, b.x + b.width, b.y + b.height]; }")
+        v, r = bb(vat), bb(roi)
+        check(r[0] < v[0] and r[1] < v[1] and v[2] < r[2] and v[3] < r[3], f"Viszerales Fett liegt im Messbereich ({[round(x) for x in v]} in {[round(x) for x in r]})")
     else:
-        check(vat.count() == 0, "Viszerales Fett: nicht eingezeichnet (visceralFat nicht bestätigt)")
+        check(vat.count() == 0 and roi.count() == 0, "Viszerales Fett: nicht eingezeichnet (visceralFat nicht bestätigt)")
     fig.scroll_into_view_if_needed(); pg.wait_for_timeout(1800)
     check("is-playing" in fig.get_attribute("class"), "Körperanalyse-Schema startet im Bild")
     fig.screenshot(path=str(OUT / "dexa-koerperanalyse-mitte.png"))
     pg.wait_for_timeout(3800)
     fig.screenshot(path=str(OUT / "dexa-koerperanalyse-ende.png"))
     if VISCERAL:
-        check(float(vat.evaluate("e => getComputedStyle(e).opacity")) == 1 and fig.get_by_text("Viszerales Fett (inneres Bauchfett)").is_visible(),
-              "Viszerales Fett: nach der Messung eingezeichnet + Legende")
+        check(opa(vat) == 1 and opa(roi) == 1 and fig.get_by_text("Viszerales Fett (inneres Bauchfett)").is_visible()
+              and fig.get_by_text("Messbereich für das Bauchfett").is_visible(),
+              "Viszerales Fett + Messbereich: nach der Messung eingezeichnet + Legende")
     arm = fig.locator(".dexa-arm").evaluate("e => getComputedStyle(e).transform")
     check(arm.endswith("574, 0)"), f"Messarm am Ende ({arm})")
     tint = fig.locator(".dexa-tint").evaluate("e => { const r = e.getBoundingClientRect(); return [r.width, getComputedStyle(e).fill]; }")

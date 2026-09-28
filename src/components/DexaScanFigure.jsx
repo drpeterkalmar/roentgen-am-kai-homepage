@@ -41,14 +41,22 @@ const BODY_SHAPES = [
   <ellipse key="foot-r" cx="540" cy="119.5" rx="13" ry="8" />,
 ];
 
-// Viszerales Fett (inneres Bauchfett) im Bauchraum – schematisch, innerhalb der Rumpfkontur
-const VAT_PATH = 'M260.0 110.0 C260.3 112.1 259.8 114.5 258.8 116.5 C257.8 118.4 255.8 120.3 253.9 121.9 C252.0 123.5 249.7 124.9 247.3 126.0 C244.9 127.2 242.2 128.2 239.5 128.7 C236.8 129.3 233.8 129.4 231.0 129.4 C228.2 129.3 225.4 129.0 222.6 128.5 C219.8 128.0 216.8 127.5 214.2 126.5 C211.6 125.5 208.8 124.1 207.0 122.5 C205.3 120.8 204.2 118.4 203.7 116.3 C203.2 114.3 203.7 112.0 204.0 110.0 C204.3 108.0 204.8 106.0 205.6 104.1 C206.3 102.2 207.1 100.1 208.6 98.4 C210.1 96.6 212.1 95.0 214.4 93.7 C216.7 92.4 219.5 91.4 222.2 90.7 C225.0 90.0 228.1 89.4 231.0 89.4 C233.9 89.3 237.2 89.6 239.9 90.4 C242.6 91.2 245.0 92.7 247.1 94.2 C249.2 95.6 250.7 97.3 252.3 98.9 C254.0 100.6 255.7 102.1 256.9 104.0 C258.2 105.8 259.7 107.9 260.0 110.0 Z';
+// Viszerales Fett wie im Befund (GE Lunar CoreScan): ausgewertet in der Android-Region. Unterer Rand am
+// Beckenkamm (x 243 = Oberkante der Beckenschaufel im Skelett), oberer Rand 20 % des Abstands Becken–Hals
+// (Halsschnitt unter dem Kinn, x 88) darüber → x 212–243; seitlich bis zu den Armschnitten (Spalt Arm/Rumpf).
+// Gelb = viszerales Fett innerhalb der Bauchwand, der rosa Rand bis zur Rumpfkontur = Unterhautfett.
+// Glatte Form aus vier Bézier-Bögen (tangentenstetig, keine Wellen im Rand).
+const ANDROID = { x: 212, y: 72, width: 31, height: 76 };
+const VAT_PATH = 'M238.5 110 C238.5 127.3 235.4 134 227.5 134 C219.6 134 216.5 127.3 216.5 110 C216.5 92.7 219.6 86 227.5 86 C235.4 86 238.5 92.7 238.5 110 Z';
 
 const LEGEND_BONE = [
   { label: 'Lendenwirbelsäule', swatch: 'border-2 border-brand dark:border-white' },
   { label: 'Hüfte (Oberschenkelhals)', swatch: 'border-2 border-dashed border-brand dark:border-white' },
 ];
-const LEGEND_VAT = [{ label: 'Viszerales Fett (inneres Bauchfett)', swatch: 'border border-amber-500 bg-amber-300 dark:border-amber-400' }];
+const LEGEND_VAT = [
+  { label: 'Viszerales Fett (inneres Bauchfett)', swatch: 'border border-amber-500 bg-amber-300 dark:border-amber-400' },
+  { label: 'Messbereich für das Bauchfett', swatch: 'border-2 border-brand dark:border-white' },
+];
 
 // Skelett-Andeutung für die Knochendichte (Brustwirbelsäule, Becken, beide Oberschenkel)
 const Skeleton = () => (
@@ -80,7 +88,9 @@ const Skeleton = () => (
 const DexaScanFigure = ({ mode = 'body', visceral = false, className }) => {
   const m = MODES[mode];
   const showVat = mode === 'body' && visceral;
-  const desc = showVat ? `${m.desc} Das viszerale Fett (inneres Bauchfett) im Bauchraum ist gelb markiert.` : m.desc;
+  const desc = showVat
+    ? `${m.desc} Die Software wertet das viszerale Fett (inneres Bauchfett) in einem umrahmten Messbereich knapp über dem Becken aus; es ist gelb markiert.`
+    : m.desc;
   const legend = mode === 'bone' ? LEGEND_BONE : showVat ? LEGEND_VAT : [];
   const ref = useRef(null);
   const [run, setRun] = useState(0);
@@ -145,13 +155,16 @@ const DexaScanFigure = ({ mode = 'body', visceral = false, className }) => {
           </>
         )}
         {showVat && (
-          <path
-            data-vat=""
-            d={VAT_PATH}
-            strokeWidth="1"
-            style={{ animationDelay: at(262) }}
-            className="dexa-hit fill-amber-300/85 stroke-amber-500 dark:stroke-amber-400"
-          />
+          <>
+            <rect data-android="" className={box} style={{ animationDelay: at(ANDROID.x + ANDROID.width) }} {...ANDROID} rx="5" strokeWidth="3" />
+            <path
+              data-vat=""
+              d={VAT_PATH}
+              strokeWidth="1"
+              style={{ animationDelay: at(ANDROID.x + ANDROID.width) }}
+              className="dexa-hit fill-amber-300/85 stroke-amber-500 dark:stroke-amber-400"
+            />
+          </>
         )}
         {/* Messarm */}
         <g className="dexa-arm">
