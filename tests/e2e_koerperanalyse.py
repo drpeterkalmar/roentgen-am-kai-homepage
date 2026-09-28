@@ -9,6 +9,9 @@ from playwright.sync_api import sync_playwright
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = "http://localhost:4174/roentgen-am-kai-homepage"
+import subprocess
+VISCERAL = bool(json.loads(subprocess.run(["node", "--input-type=module", "-e", "const m = await import('./src/data/bodyComposition.js'); console.log(JSON.stringify(m.BODY.visceralFat ?? null))"],
+                                          capture_output=True, text=True, cwd=ROOT).stdout.strip() or "null"))
 SITE = "https://www.xn--rntgen-am-kai-imb.at"
 PAGE = "/koerperanalyse-graz"
 OLD = "/unser-angebot/koerperfettmessung"
@@ -17,7 +20,8 @@ BOOK = "https://patient-portal.miranext.ai/patient-booking?c_Id=23"
 TITLE = "Körperanalyse Graz: Körperfett & Muskelmasse messen"
 DESC = "Medizinische Körperanalyse mit DEXA in Graz: Körperfett, Muskelmasse und deren Verteilung präzise erfassen und Veränderungen objektiv vergleichen."
 H1 = "Medizinische Körperanalyse in Graz – Körperfett und Muskelmasse präzise messen"
-FAQ_N, FAQ_SCHEMA_N = 14, 13
+FAQ_N = 14
+FAQ_SCHEMA_N = FAQ_N if VISCERAL else FAQ_N - 1  # offene Frage (viszerales Fett) nur bis zur Bestätigung außerhalb des Schemas
 AXE = (ROOT / "node_modules/axe-core/axe.min.js").read_text()
 fails = []
 
@@ -129,9 +133,14 @@ with sync_playwright() as p:
             "Körperanalyse in Graz buchen", "Frage zur Untersuchung stellen"]
     missing = [m for m in must if m not in body]
     check(not missing, f"alle Abschnitte/Pflichtsätze vorhanden {missing}")
-    # viszerales Fett: nur als offene Frage, nicht als Leistungsversprechen
+    # viszerales Fett: nur nennen, wenn bodyComposition.js es bestätigt (visceralFat) – sonst nur als offene Frage
     vis = [s for s in body.split("\n") if "viszeral" in s.lower()]
-    check(all(("setzt eine eigene" in s) or ("Wird auch viszerales Fett" in s) or ("Platzhalter" in s) for s in vis), f"viszerales Fett nicht versprochen ({len(vis)} Stellen)")
+    if VISCERAL:
+        check(any("wertet die Software unseres Geräts das viszerale Fett" in s for s in vis)
+              and "Viszerales Fett wird nicht versprochen" not in body and not any("setzt eine eigene" in s for s in vis),
+              f"viszerales Fett bestätigt: genannt, ohne Platzhalter ({len(vis)} Stellen)")
+    else:
+        check(all(("setzt eine eigene" in s) or ("Wird auch viszerales Fett" in s) or ("Platzhalter" in s) for s in vis), f"viszerales Fett nicht versprochen ({len(vis)} Stellen)")
     heads = pg.eval_on_selector_all("main h1, main h2, main h3, main h4", "hs => hs.map(h => [+h.tagName[1], h.textContent.trim()])")
     jumps = [(a, b2) for a, b2 in zip(heads, heads[1:]) if b2[0] - a[0] > 1]
     check(sum(1 for h in heads if h[0] == 1) == 1 and heads[0][0] == 1 and not jumps, f"Überschriftenhierarchie ({len(heads)} Überschriften, Sprünge {jumps})")

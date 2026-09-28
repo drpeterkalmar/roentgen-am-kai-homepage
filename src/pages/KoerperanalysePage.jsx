@@ -557,7 +557,7 @@ const KoerperanalysePage = () => {
                     Sie liegen ruhig auf dem Untersuchungstisch, während das Gerät Ihren Körper abtastet. Die Untersuchung ist
                     schmerzfrei. {BODY_DURATION_TEXT}
                   </P>
-                  <DexaScanFigure mode="body" className="mt-4" />
+                  <DexaScanFigure mode="body" visceral={Boolean(BODY.visceralFat)} className="mt-4" />
                 </div>
               </li>
               <li className="flex gap-4">

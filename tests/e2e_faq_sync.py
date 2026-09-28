@@ -29,7 +29,7 @@ ROUTES = {
     "/unser-angebot/dvt": ("dvt", 3, "Zahnimplantaten"),
     "/knochendichtemessung-graz": ("knochendichte", 16, "Standard- und Referenzmethode"),
     # 14 sichtbar, 10 im Schema: Fragen mit offener Praxisangabe (pending) bleiben aus dem FAQPage-Schema
-    "/koerperanalyse-graz": ("koerperanalyse", 14, "Berechnungsmodelle", 13),
+    "/koerperanalyse-graz": ("koerperanalyse", 14, "Berechnungsmodelle", 14),
     "/unser-angebot/phlebographie": ("phlebographie", 4, "Venenklappen bei venöser Insuffizienz"),
 }
 

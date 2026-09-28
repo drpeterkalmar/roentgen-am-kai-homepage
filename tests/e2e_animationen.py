@@ -2,6 +2,12 @@
 """Funktionsprüfung der Animationen (Playwright headless) gegen vite preview :4174."""
 import pathlib
 from playwright.sync_api import sync_playwright
+import json
+import subprocess
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+VISCERAL = bool(json.loads(subprocess.run(["node", "--input-type=module", "-e", "const m = await import('./src/data/bodyComposition.js'); console.log(JSON.stringify(m.BODY.visceralFat ?? null))"],
+                                          capture_output=True, text=True, cwd=ROOT).stdout.strip() or "null"))
 
 BASE = "http://localhost:4174/roentgen-am-kai-homepage"
 OUT = pathlib.Path.home() / "Desktop/relaunch-screenshots-animationen"
@@ -42,11 +48,19 @@ with sync_playwright() as p:
     # 4. DEXA-Schema Körperanalyse: startet erst im Bild, läuft durch
     fig = pg.locator('[data-dexa-figure="body"]')
     check(fig.count() == 1 and "is-playing" not in (fig.get_attribute("class") or ""), "Körperanalyse-Schema wartet, bis es im Bild ist")
+    vat = fig.locator("[data-vat]")
+    if VISCERAL:
+        check(vat.count() == 1 and float(vat.evaluate("e => getComputedStyle(e).opacity")) == 0, "Viszerales Fett: vor dem Abspielen verborgen")
+    else:
+        check(vat.count() == 0, "Viszerales Fett: nicht eingezeichnet (visceralFat nicht bestätigt)")
     fig.scroll_into_view_if_needed(); pg.wait_for_timeout(1800)
     check("is-playing" in fig.get_attribute("class"), "Körperanalyse-Schema startet im Bild")
     fig.screenshot(path=str(OUT / "dexa-koerperanalyse-mitte.png"))
     pg.wait_for_timeout(3800)
     fig.screenshot(path=str(OUT / "dexa-koerperanalyse-ende.png"))
+    if VISCERAL:
+        check(float(vat.evaluate("e => getComputedStyle(e).opacity")) == 1 and fig.get_by_text("Viszerales Fett (inneres Bauchfett)").is_visible(),
+              "Viszerales Fett: nach der Messung eingezeichnet + Legende")
     arm = fig.locator(".dexa-arm").evaluate("e => getComputedStyle(e).transform")
     check(arm.endswith("574, 0)"), f"Messarm am Ende ({arm})")
     tint = fig.locator(".dexa-tint").evaluate("e => { const r = e.getBoundingClientRect(); return [r.width, getComputedStyle(e).fill]; }")
@@ -67,7 +81,12 @@ with sync_playwright() as p:
     hs = pg.evaluate("window.__h"); h_end = max(hs)
     mids = [h for h in hs if 0 < h < h_end]
     check(h_end > 0 and len(mids) >= 2 and reg.is_visible(), f"FAQ gleitet auf ({len(mids)} Zwischenbilder, 0 → {h_end:.0f}px)")
-    q.click(); pg.wait_for_timeout(400)
+    q.click()
+    try:
+        reg.wait_for(state="hidden", timeout=3000)
+    except Exception:
+        pass
+    pg.wait_for_timeout(100)
     check(reg.evaluate("e => getComputedStyle(e).visibility") == "hidden" and reg.evaluate("e => e.getBoundingClientRect().height") == 0, "FAQ schließt wieder vollständig")
     # 6. Knochendichte-Schema
     pg.goto(BASE + "/knochendichtemessung-graz", wait_until="networkidle")

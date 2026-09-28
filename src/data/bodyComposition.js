@@ -33,7 +33,9 @@ export const BODY = {
   // ── Offen – von der Praxis zu liefern (null = Platzhalter) ────────
   // Viszerales Fett: am GE Lunar Prodigy nur mit lizenzierter Zusatzsoftware CoreScan.
   // true NUR, wenn CoreScan freigeschaltet ist → dann darf der Wert genannt werden. Praxis 27.09.: „weiß ich nicht“.
-  visceralFat: null,
+  // Bestätigt 28.09.2026: Die Ganzkörper-Berichte der Praxis enthalten VAT – DEXAbot liest es aus der Seite
+  // „8(DXA) Ganzkörper untergeordnete“ (ROI_VAT) und schreibt „Viszerales Fettgewebe (VAT)“ in den Befund.
+  visceralFat: true,
 
   // ── Buchung ──────────────────────────────────────────────────────
   booking: {
