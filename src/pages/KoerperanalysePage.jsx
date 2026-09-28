@@ -15,6 +15,7 @@ import Button, { buttonClasses } from '../components/ui/Button';
 import { SectionHeading } from '../components/ui/Heading';
 import { BookingButton } from '../components/ui/BookingButtons';
 import FAQ from '../components/FAQ';
+import DexaScanFigure from '../components/DexaScanFigure';
 import { faqData } from '../data/faqData';
 import { IMAGE_BRIEFS } from '../data/imageBriefs';
 import { PHONE_HREF, PHONE_DISPLAY, MAPS_ROUTE_URL, BOOKING_URL, ADDRESS, TRANSPORT } from '../data/practice';
@@ -556,6 +557,7 @@ const KoerperanalysePage = () => {
                     Sie liegen ruhig auf dem Untersuchungstisch, während das Gerät Ihren Körper abtastet. Die Untersuchung ist
                     schmerzfrei. {BODY_DURATION_TEXT}
                   </P>
+                  <DexaScanFigure mode="body" className="mt-4" />
                 </div>
               </li>
               <li className="flex gap-4">

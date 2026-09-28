@@ -156,6 +156,60 @@ body.high-contrast [data-placeholder] { border: 2px dashed #000 !important; }
 }
 .animate-skeleton { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
 
+/* ------------------------------------------------------------------
+   Bewegung (09/2026) – dezent und ohne Bibliothek: nur CSS, nur transform/opacity
+   (bzw. grid-template-rows beim Aufklappen). Nie beim ersten Laden im sichtbaren
+   Bereich (LCP). „Bewegung reduzieren“ → alles steht (Regel ganz unten).
+   ------------------------------------------------------------------ */
+
+/* Aufklappbereiche (FAQ): Höhe gleitet 0fr → 1fr. Geschlossen = visibility:hidden
+   → wie [hidden] nicht fokussierbar und für Screenreader unsichtbar. */
+.disclosure {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition: grid-template-rows 220ms ease-out, visibility 0s linear 220ms;
+}
+.disclosure[data-open='true'] {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  transition: grid-template-rows 220ms ease-out, visibility 0s;
+}
+.disclosure > * { min-height: 0; overflow: hidden; }
+
+/* Menüs: Handy-Menü gleitet von rechts herein, Hintergrund blendet ein, Untermenü klappt weich auf */
+@keyframes rak-panel-in { from { transform: translateX(100%); } }
+@keyframes rak-fade-in { from { opacity: 0; } }
+@keyframes rak-drop-in { from { opacity: 0; transform: translateY(-6px); } }
+@media (prefers-reduced-motion: no-preference) {
+  .anim-panel-in { animation: rak-panel-in 240ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .anim-fade-in { animation: rak-fade-in 200ms ease-out; }
+  .anim-drop-in { animation: rak-drop-in 160ms ease-out; }
+  .anim-page-in { animation: rak-fade-in 200ms ease-out; }
+}
+
+/* Ganze Karte klickbar → hebt sich beim Überfahren mit der Maus leicht an (nur Geräte mit Maus) */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .card-lift { transition: transform 200ms ease-out, box-shadow 200ms ease-out; }
+  .card-lift:hover { transform: translateY(-3px); }
+}
+
+/* DEXA-Schema (components/DexaScanFigure.jsx): Messarm fährt einmal über den Messbereich.
+   Grundzustand = Endbild (für „Bewegung reduzieren“, Druck und ohne JavaScript). */
+.dexa-arm { transform: translateX(var(--arm-end)); }
+.dexa-tint { transform-box: fill-box; transform-origin: left center; }
+@keyframes rak-dexa-arm { from { transform: translateX(var(--arm-start)); } to { transform: translateX(var(--arm-end)); } }
+@keyframes rak-dexa-hit { from { opacity: 0; } to { opacity: 1; } }
+@keyframes rak-dexa-tint { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@media (prefers-reduced-motion: no-preference) {
+  .dexa-fig:not(.is-playing) .dexa-arm { transform: translateX(var(--arm-start)); }
+  .dexa-fig:not(.is-playing) .dexa-hit { opacity: 0; }
+  .dexa-fig:not(.is-playing) .dexa-tint { transform: scaleX(0); }
+  .dexa-fig.is-playing .dexa-arm { animation: rak-dexa-arm var(--dur) linear both; }
+  .dexa-fig.is-playing .dexa-hit { animation: rak-dexa-hit 350ms ease-out both; }
+  .dexa-fig.is-playing .dexa-tint { animation: rak-dexa-tint var(--dur) linear both; }
+}
+
 /* Nutzer mit „Bewegung reduzieren“ */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -163,6 +217,7 @@ body.high-contrast [data-placeholder] { border: 2px dashed #000 !important; }
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
   }
 }
 

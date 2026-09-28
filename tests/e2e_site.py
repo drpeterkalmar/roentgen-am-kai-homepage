@@ -113,8 +113,10 @@ with sync_playwright() as p:
     # FAQ aria
     pg.goto(BASE + "/mammographie-graz", wait_until="networkidle")
     q = pg.locator("#faq button[aria-expanded]").first
-    q.click(); pg.wait_for_timeout(100)
-    check(q.get_attribute("aria-expanded") == "true" and pg.locator('[id="' + q.get_attribute("aria-controls") + '"]').is_visible(), "FAQ: aria-expanded + Antwortregion sichtbar")
+    q.click()
+    reg = pg.locator('[id="' + q.get_attribute("aria-controls") + '"]')
+    reg.wait_for(state="visible", timeout=1000)
+    check(q.get_attribute("aria-expanded") == "true" and reg.is_visible(), "FAQ: aria-expanded + Antwortregion sichtbar")
     pg.screenshot(path="/tmp/rak-new-mammo-desktop.png", full_page=False)
     pg.goto(BASE + "/", wait_until="networkidle"); pg.wait_for_timeout(500)
     pg.screenshot(path="/tmp/rak-new-home-desktop.png", full_page=True)

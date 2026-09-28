@@ -11,6 +11,7 @@ import Button, { buttonClasses } from '../components/ui/Button';
 import { SectionHeading } from '../components/ui/Heading';
 import { BookingButton } from '../components/ui/BookingButtons';
 import FAQ from '../components/FAQ';
+import DexaScanFigure from '../components/DexaScanFigure';
 import BoneRiskCheck from '../components/BoneRiskCheck';
 import { faqData } from '../data/faqData';
 import { IMAGE_BRIEFS } from '../data/imageBriefs';
@@ -79,7 +80,7 @@ const STEPS = [
       ? 'Eine besondere Vorbereitung ist nicht nötig, Sie müssen nicht nüchtern sein. Metallteile im Messbereich – etwa Gürtelschnallen, Knöpfe oder Reißverschlüsse – legen Sie gegebenenfalls ab.'
       : 'Metallteile im Messbereich – etwa Gürtelschnallen, Knöpfe oder Reißverschlüsse – legen Sie gegebenenfalls ab.',
   },
-  { t: 'Messung im Liegen', d: 'Sie liegen ruhig auf dem Rücken, während der Messarm über Lendenwirbelsäule und Hüfte bzw. Oberschenkelhals fährt. Die Messung ist schmerzlos und nicht invasiv.' },
+  { t: 'Messung im Liegen', figure: 'bone', d: 'Sie liegen ruhig auf dem Rücken, während der Messarm über Lendenwirbelsäule und Hüfte bzw. Oberschenkelhals fährt. Die Messung ist schmerzlos und nicht invasiv.' },
   { t: 'Befundung', d: 'Die Messwerte werden von Fachärzten für Radiologie beurteilt und gemeinsam mit Ihren Angaben zu Risikofaktoren bewertet.' },
 ];
 
@@ -347,6 +348,7 @@ const KnochendichtePage = () => (
                 <div>
                   <H3 className="!text-lg">{step.t}</H3>
                   <P className="mt-1">{step.d}</P>
+                  {step.figure && <DexaScanFigure mode={step.figure} className="mt-4" />}
                 </div>
               </li>
             ))}

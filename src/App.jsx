@@ -7,6 +7,7 @@ import SchemaMarkup from './components/SchemaMarkup'
 import MobileActions from './components/MobileActions'
 import ScrollToHash from './components/ScrollToHash'
 import RouteMeta from './components/RouteMeta'
+import PageTransition from './components/PageTransition'
 
 // Lazy loaded pages
 const RoentgenPage = lazy(() => import('./pages/RoentgenPage'))
@@ -88,7 +89,10 @@ function App() {
           toggleTheme={toggleTheme}
         />
         <main id="main" tabIndex={-1} className="flex-1 focus:outline-none">
-          <Suspense fallback={<div className="min-h-[60vh]" />}>
+          {/* bildschirmhoch: Solange der Seiten-Code lädt, bleibt der Footer unter dem sichtbaren Bereich.
+              Mit 60vh sprang er beim Nachladen nach unten (Lighthouse: CLS 0,21–0,31 auf Unterseiten). */}
+          <Suspense fallback={<div className="min-h-screen" />}>
+            <PageTransition>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/unser-angebot/roentgen" element={<RoentgenPage />} />
@@ -121,6 +125,7 @@ function App() {
               <Route path="/unser-team/dr-georg-riegler" element={<RieglerPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
+            </PageTransition>
           </Suspense>
         </main>
         <Footer />

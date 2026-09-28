@@ -12,7 +12,7 @@ const ServiceCard = ({ title, description, href, icon: Icon, media, badges = [],
     <article
       className={cx(
         'group relative flex h-full flex-col rounded-2xl border bg-white p-6 shadow-sm transition-shadow duration-150 dark:bg-slate-900',
-        href && 'hover:shadow-md focus-within:shadow-md',
+        href && 'card-lift hover:shadow-md focus-within:shadow-md',
         featured ? 'border-brand-200 shadow-md dark:border-brand-800' : 'border-slate-200 dark:border-slate-700',
         media && 'overflow-hidden',
         className

@@ -157,7 +157,7 @@ export const RelatedGoals = ({ ids, title = 'Passende Gesundheitsziele' }) => (
               to={g.path}
               data-cta="goal"
               data-cta-service={id}
-              className="flex min-h-[56px] items-center gap-3 rounded-xl border border-slate-200 bg-white p-4 font-semibold text-slate-900 hover:border-brand-200 hover:text-brand dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:hover:text-brand-300"
+              className="card-lift flex min-h-[56px] items-center gap-3 rounded-xl border border-slate-200 bg-white p-4 font-semibold text-slate-900 hover:border-brand-200 hover:shadow-sm hover:text-brand dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:hover:text-brand-300"
             >
               <ArrowRight size={20} aria-hidden="true" className="shrink-0 text-brand dark:text-brand-300" /> {g.navName}
             </Link>
@@ -165,7 +165,7 @@ export const RelatedGoals = ({ ids, title = 'Passende Gesundheitsziele' }) => (
         );
       })}
       <li>
-        <Link to="/gesundheitsziele" className="flex min-h-[56px] items-center gap-3 rounded-xl border border-slate-200 bg-white p-4 font-semibold text-slate-900 hover:border-brand-200 hover:text-brand dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:hover:text-brand-300">
+        <Link to="/gesundheitsziele" className="card-lift flex min-h-[56px] items-center gap-3 rounded-xl border border-slate-200 bg-white p-4 font-semibold text-slate-900 hover:border-brand-200 hover:shadow-sm hover:text-brand dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:hover:text-brand-300">
           <ArrowRight size={20} aria-hidden="true" className="shrink-0 text-brand dark:text-brand-300" /> Alle Gesundheitsziele
         </Link>
       </li>

@@ -104,7 +104,7 @@ const DesktopDropdown = ({ item, pathname }) => {
       <ul
         id={menuId}
         hidden={!open}
-        className="absolute left-0 top-full z-50 mt-2 w-72 rounded-xl border border-slate-200 bg-white p-2 shadow-lg dark:border-slate-700 dark:bg-slate-900"
+        className="anim-drop-in absolute left-0 top-full z-50 mt-2 w-72 rounded-xl border border-slate-200 bg-white p-2 shadow-lg dark:border-slate-700 dark:bg-slate-900"
       >
         {item.children.map((c) => (
           <li key={c.href + c.name}>
@@ -172,14 +172,14 @@ const MobilePanel = ({ open, onClose, pathname, toggles, returnFocusRef }) => {
   // (Panel würde auf Header-Höhe beschnitten).
   return createPortal(
     <div className="fixed inset-0 z-[70] xl:hidden">
-      <div className="absolute inset-0 bg-slate-900/40" aria-hidden="true" onClick={onClose} />
+      <div className="anim-fade-in absolute inset-0 bg-slate-900/40" aria-hidden="true" onClick={onClose} />
       <div
         ref={panelRef}
         id="mobile-menu"
         role="dialog"
         aria-modal="true"
         aria-label="Hauptmenü"
-        className="absolute inset-y-0 right-0 flex w-full flex-col overflow-y-auto bg-white shadow-xl dark:bg-slate-950 sm:max-w-sm"
+        className="anim-panel-in absolute inset-y-0 right-0 flex w-full flex-col overflow-y-auto bg-white shadow-xl dark:bg-slate-950 sm:max-w-sm"
       >
         <div className="flex items-center justify-between border-b border-slate-200 px-5 py-4 dark:border-slate-800">
           <span className="font-display text-lg font-semibold text-slate-900 dark:text-white">Menü</span>
@@ -208,7 +208,7 @@ const MobilePanel = ({ open, onClose, pathname, toggles, returnFocusRef }) => {
                       {item.name}
                       <ChevronDown size={20} aria-hidden="true" className={cx('transition-transform', subOpen && 'rotate-180')} />
                     </button>
-                    <ul id="mobile-sub" hidden={!subOpen} className="mt-1 space-y-1 border-l-2 border-slate-200 pl-3 ml-4 dark:border-slate-700">
+                    <ul id="mobile-sub" hidden={!subOpen} className="anim-drop-in mt-1 space-y-1 border-l-2 border-slate-200 pl-3 ml-4 dark:border-slate-700">
                       {item.children.map((c) => (
                         <li key={c.href + c.name}>
                           <NavLink

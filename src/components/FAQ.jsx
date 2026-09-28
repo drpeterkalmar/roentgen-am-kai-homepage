@@ -26,9 +26,14 @@ const FAQItem = ({ question, answer, pending, headingLevel }) => {
           <ChevronDown size={22} aria-hidden="true" className={cx('mt-1 shrink-0 text-slate-500 transition-transform', isOpen && 'rotate-180')} />
         </button>
       </H>
-      <div id={`${id}-a`} role="region" aria-labelledby={`${id}-q`} hidden={!isOpen} className="pb-5 pr-10 leading-relaxed text-slate-700 dark:text-slate-200">
-        <p>{answer}</p>
-        {pending && <Placeholder internal className="mt-3">{pending}</Placeholder>}
+      {/* .disclosure (index.css): Antwort gleitet auf; geschlossen visibility:hidden = wie [hidden] */}
+      <div id={`${id}-a`} role="region" aria-labelledby={`${id}-q`} data-open={isOpen} className="disclosure">
+        <div>
+          <div className="pb-5 pr-10 leading-relaxed text-slate-700 dark:text-slate-200">
+            <p>{answer}</p>
+            {pending && <Placeholder internal className="mt-3">{pending}</Placeholder>}
+          </div>
+        </div>
       </div>
     </div>
   );

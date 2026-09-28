@@ -62,7 +62,7 @@ const RatgeberPage = () => {
         <ul className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {list.map((a) => (
             <li key={a.slug}>
-              <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm focus-within:ring-2 focus-within:ring-brand dark:border-slate-700 dark:bg-slate-900">
+              <article className="card-lift group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-md focus-within:ring-2 focus-within:ring-brand dark:border-slate-700 dark:bg-slate-900">
                 <ArticleImage article={a} sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 380px" />
                 <div className="flex flex-1 flex-col p-5 sm:p-6">
                   <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
