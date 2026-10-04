@@ -14,7 +14,7 @@ export const BookingButton = ({ label, service, ...rest }) => (
 // Telefon-Schaltfläche mit Nummer aus den zentralen Praxisdaten.
 export const PhoneButton = ({ label, variant = 'secondary', service, ...rest }) => (
   <Button href={PHONE_HREF} variant={variant} icon={Phone} data-cta="phone" data-cta-service={service} {...rest}>
-    <span className="whitespace-nowrap">{label || PHONE_DISPLAY}</span>
+    <span className={label ? "sm:whitespace-nowrap" : "whitespace-nowrap"}>{label || PHONE_DISPLAY}</span>
     {label && <span className="sr-only">: {PHONE_DISPLAY}</span>}
   </Button>
 );

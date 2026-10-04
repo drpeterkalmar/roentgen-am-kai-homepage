@@ -158,7 +158,7 @@ with sync_playwright() as p:
               f"Telefon/Mail {r['path']} (tel {len(tels)}, mail {len(mails)})")
         check(books and all(x[0] == BOOK and x[1] == "_blank" and "noopener" in x[2] and x[3] == "booking" for x in books),
               f"Terminbuttons → MiraNext, neues Fenster, data-cta=booking {r['path']} ({len(books)})")
-        for h in pg.eval_on_selector_all("a[href]", "as => as.map(a => a.href)"):
+        for h in pg.eval_on_selector_all("a[href]", "as => as.map(a => new URL(a.getAttribute('href'), location.href).href)"):
             if h.startswith(BASE):
                 internal.add(h.split("#")[0].split("?")[0])
     ctx.close()

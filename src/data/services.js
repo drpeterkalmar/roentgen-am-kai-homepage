@@ -8,6 +8,7 @@ import { BODY } from './bodyComposition.js';
 //
 // onlineBooking: über MiraNext online buchbar (Praxis-Entscheidung 26.09.2026:
 //   Mammographie, DEXA-Knochendichte, DEXA-Körperanalyse, Röntgen)
+// Nervenultraschall: Buchung und Abrechnung über PUCmed (externe Weiterleitung) – kein Preis hier.
 // selfPay: Selbstzahler-Preis wird online angezeigt (Praxis-Entscheidung 26.09.2026)
 
 export const services = {
@@ -63,49 +64,48 @@ export const services = {
       items: ['Termin etwa 20 Minuten, kein ärztliches Ergebnisgespräch.'],
     },
   },
+  // Weitere Untersuchungen – Terminlogik und Inhalte zentral in src/data/examinations.js
   roentgen: {
-    title: 'Digitales Röntgen',
+    title: 'Röntgen',
     short: 'Röntgen',
-    href: '/unser-angebot/roentgen',
-    description: 'Digitale Röntgenaufnahmen von Skelett und Lunge.',
+    href: '/roentgen-graz',
+    description: 'Röntgen von Knochen, Gelenken, Wirbelsäule und Lunge – ohne vorherige Terminvereinbarung, mit Zuweisung und e-card.',
     onlineBooking: true,
-    referral: { summary: 'Mit Überweisung, Kassenleistung mit e-Card.' },
+    referral: { summary: 'Mit gültiger ärztlicher Zuweisung und e-card, Kassenleistung.' },
   },
   ultraschall: {
-    title: 'Ultraschall (Sonographie)',
+    title: 'Ultraschall',
     short: 'Ultraschall',
-    href: '/unser-angebot/ultraschall',
-    description: 'Sonographie von Organen, Gelenken, Nerven und Gefäßen.',
+    href: '/ultraschall-graz',
+    description: 'Sonographie von Organen, Schilddrüse, Gelenken, Brust und Gefäßen.',
     onlineBooking: false,
-    selfPay: true, // nur Nervenultraschall
-    priceIds: ['nervenultraschall'],
-    referral: { summary: 'Mit Überweisung, Kassenleistung mit e-Card.' },
+    referral: { summary: 'Mit Zuweisung, Kassenleistung mit e-card.' },
   },
-  durchleuchtung: {
-    title: 'Durchleuchtung',
-    short: 'Durchleuchtung',
-    href: null, // PLATZHALTER: eigene Seite folgt (Videoschluckakt, Ösophagus, Magen, Phlebographie)
-    description: 'Videoschluckakt, Speiseröhre (Ösophagus), Magen und Phlebographie.',
+  spezialroentgen: {
+    title: 'Spezialröntgen mit Kontrastmittel',
+    short: 'Spezialröntgen',
+    href: '/spezialroentgen',
+    description: 'Schluckröntgen, Venenröntgen, Eileiterdurchgängigkeit und Nierenröntgen mit Kontrastmittel.',
     onlineBooking: false,
-    referral: { summary: 'Mit Überweisung.' },
+    referral: { summary: 'Mit Zuweisung.' },
   },
   phlebographie: {
-    title: 'Phlebographie',
-    short: 'Phlebographie',
+    title: 'Venenröntgen (Phlebographie)',
+    short: 'Venenröntgen',
     href: '/unser-angebot/phlebographie',
     description: 'Röntgenuntersuchung der Venen mit Kontrastmittel.',
     onlineBooking: false,
-    referral: { summary: 'Mit Überweisung.' },
+    referral: { summary: 'Mit Zuweisung.' },
   },
   dvt: {
-    title: 'DVT / Zahnröntgen',
-    short: 'DVT / Zahnröntgen',
-    href: '/unser-angebot/dvt',
-    description: 'Digitale Volumentomographie und Zahnröntgen, etwa für die Implantatplanung.',
+    title: 'Zahnröntgen und 3D-DVT',
+    short: 'Zahnröntgen und DVT',
+    href: '/zahnroentgen-dvt-graz',
+    description: 'Panoramaröntgen, Einzelzahn- und Fernröntgen sowie 3D-DVT von Kiefer, Nasennebenhöhlen, Gesichtsschädel und Kiefergelenken.',
     onlineBooking: false,
     selfPay: true,
     priceIds: ['dvt', 'zahnroentgen'],
-    referral: { summary: 'Mit Überweisung.' },
+    referral: { summary: 'Mit Zuweisung.' },
   },
 };
 
@@ -116,7 +116,6 @@ export const selfPayPrices = [
   { id: 'koerperanalyse-paket', label: 'Körperanalyse Start- und Re-Check-Paket', price: BODY.prices.package, note: 'Zwei Messungen innerhalb von 2 Jahren.' },
   { id: 'dvt', label: 'DVT (digitale Volumentomographie)', price: null },
   { id: 'zahnroentgen', label: 'Zahnröntgen', price: null },
-  { id: 'nervenultraschall', label: 'Nervenultraschall', price: null },
 ];
 
 export const serviceKeyByPath = (pathname) => {

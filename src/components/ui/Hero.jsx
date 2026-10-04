@@ -9,10 +9,11 @@ import Breadcrumbs from './Breadcrumbs';
 //   actions: Schaltflächen (z. B. <BookingButton/>, <PhoneButton/>)
 //   breadcrumbs: [{ name, href? }] – Brotkrumen über der Überschrift
 //   highlight: gut sichtbarer Hinweis direkt unter der H1 (z. B. „Ohne Zuweisung · mit e-card …“)
+//   status: Terminstatus (Badge-Komponente) direkt unter der H1 – z. B. <StatusBadge area="roentgen" />
 //   meta: kleine Zusatzinfos unter den Schaltflächen (z. B. Öffnungszeiten)
 //   facts: kurze Stichpunkte als Chips zwischen Einleitung und Schaltflächen ([string | { text, strong }])
 //   keyMessage: hervorgehobene Kernbotschaft direkt unter der Einleitung
-const Hero = ({ breadcrumbs, eyebrow, title, highlight, lead, keyMessage, facts, actions, meta, image, imageSlot, tone = 'muted', className, children }) => {
+const Hero = ({ breadcrumbs, eyebrow, title, highlight, status, lead, keyMessage, facts, actions, meta, image, imageSlot, tone = 'muted', className, children }) => {
   const hasMedia = image || imageSlot;
   return (
     <section
@@ -29,6 +30,7 @@ const Hero = ({ breadcrumbs, eyebrow, title, highlight, lead, keyMessage, facts,
               {highlight}
             </p>
           )}
+          {status && <div className="mt-4 sm:mt-5">{status}</div>}
           {lead && <Lead className="mt-4 max-w-2xl text-base sm:mt-5 sm:text-lg">{lead}</Lead>}
           {keyMessage && (
             <p className="mt-4 max-w-2xl border-l-4 border-brand pl-4 text-lg font-semibold leading-snug text-slate-900 sm:mt-5 sm:text-xl dark:border-brand-300 dark:text-white">

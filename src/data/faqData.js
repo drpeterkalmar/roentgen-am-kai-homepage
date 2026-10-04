@@ -233,7 +233,7 @@ export const faqData = {
       answer: "Ja, für eine kassenfinanzierte Röntgenuntersuchung benötigen Sie einen Überweisungsschein von Ihrem Haus- oder Facharzt – in Papierform oder digital – sowie Ihre aktuelle e-Card. Eventuelle Voraufnahmen zum Vergleich helfen uns bei der Beurteilung."
     },
     {
-      question: "Wie hoch ist die Strahlenbelastung beim digitalen Röntgen?",
+      question: "Wie hoch ist die Strahlenbelastung beim Röntgen?",
       answer: "Das digitale Detektorfeld liefert hochaufgelöste Bilder bei deutlich geringerer Strahlenbelastung als die klassische Filmtechnik. Wiederholungsaufnahmen entfallen, weil Ihre Aufnahmen dauerhaft in unserem Bildarchiv gespeichert sind."
     },
     {
@@ -243,6 +243,10 @@ export const faqData = {
     {
       question: "Wie bekomme ich meine Bilder?",
       answer: "Ihre Aufnahmen werden digital befundet und archiviert und stehen Ihrem Haus- oder Facharzt rasch zur Verfügung – mit den steirischen Spitälern besteht über das MARC-System eine direkte Verbindung. Ihre Bilder und Befunde sind zusätzlich über ELGA sowie online unter portal.marc.at verfügbar."
+    },
+    {
+      question: "Brauche ich für das Röntgen einen Termin?",
+      answer: "Nein, eine vorherige Terminvereinbarung ist nicht nötig: Mit gültiger ärztlicher Zuweisung und e-card können Sie während unserer Röntgenzeiten direkt vorbeikommen. Alternativ können Sie online eine Wunschzeit reservieren."
     }
   ],
   ultraschall: [
@@ -271,7 +275,7 @@ export const faqData = {
     },
     {
       question: "Wofür wird die DVT eingesetzt?",
-      answer: "Typische Einsatzgebiete sind die Planung von Zahnimplantaten, die Abklärung überzähliger Zahnanlagen bei Kindern, der Ausschluss entzündlicher oder tumoröser Veränderungen, die Darstellung der Kieferstrukturen sowie der Nasen-, Kiefer- und Nebenhöhlen. Auch bei Kiefergelenksbeschwerden liefert die DVT wichtige Planungsgrundlagen."
+      answer: "Typische Einsatzgebiete sind die Planung von Zahnimplantaten, die Abklärung überzähliger Zahnanlagen bei Kindern, der Ausschluss entzündlicher oder tumoröser Veränderungen, die Darstellung der Kieferstrukturen sowie der Nasen-, Kiefer- und Nebenhöhlen. Außerdem stellen wir mit der DVT den Gesichtsschädel, die Kiefergelenke und den Übergang vom Schädel zur Halswirbelsäule (kraniozervikaler Übergang) dreidimensional dar."
     },
     {
       question: "Bieten Sie auch klassisches Zahnröntgen an?",

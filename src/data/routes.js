@@ -10,11 +10,13 @@ import { BODY_SEO_TITLE, BODY_META_DESCRIPTION, BODY_H1 } from './bodyCompositio
 import { GOAL_ROUTES } from './healthGoals.js';
 import { ARTICLE_ROUTES } from './ratgeber.js';
 
+const EXAMS_PARENT = { name: 'Weitere Untersuchungen', path: '/weitere-untersuchungen' };
+
 export const SITE_URL = 'https://www.xn--rntgen-am-kai-imb.at';
 
 export const DEFAULT_TITLE = 'Radiologie Graz – Röntgen am Kai | Mammographie, DEXA, Röntgen';
 export const DEFAULT_DESCRIPTION =
-  'Radiologie in Graz: Mammographie, DEXA-Knochendichte, DEXA-Körperanalyse, digitales Röntgen und Ultraschall. Alle Kassen und privat – Termin online buchen.';
+  'Radiologie in Graz: Mammographie, DEXA-Knochendichte, DEXA-Körperanalyse, Röntgen und Ultraschall. Alle Kassen und privat – Termin online buchen.';
 
 export const routes = [
   {
@@ -23,18 +25,6 @@ export const routes = [
     description: DEFAULT_DESCRIPTION,
     priority: '1.0',
     changefreq: 'weekly',
-  },
-  {
-    path: '/unser-angebot/roentgen',
-    title: 'Digitales Röntgen in Graz',
-    description: 'Digitales Röntgen von Skelett und Lunge mit geringer Strahlenbelastung – Röntgen am Kai, Körösistraße 9, Graz. Alle Kassen.',
-    priority: '0.8',
-  },
-  {
-    path: '/unser-angebot/ultraschall',
-    title: 'Sonographie (Ultraschall) in Graz',
-    description: 'Sonographie von Organen, Gelenken, Nerven und Gefäßen in Graz – Röntgen am Kai. Termin unter 0316 840 90 50.',
-    priority: '0.8',
   },
   {
     path: '/mammographie-graz',
@@ -58,18 +48,6 @@ export const routes = [
     priority: '0.9',
   },
   {
-    path: '/unser-angebot/dvt',
-    title: 'DVT / Zahnröntgen in Graz',
-    description: 'Digitale Volumentomographie (DVT) und Zahnröntgen in Graz – 3D-Diagnostik von Kiefer und Zähnen, z. B. für die Implantatplanung.',
-    priority: '0.8',
-  },
-  {
-    path: '/unser-angebot/phlebographie',
-    title: 'Phlebographie (Venenröntgen) in Graz',
-    description: 'Phlebographie in Graz: Röntgenuntersuchung der Venen mit Kontrastmittel, etwa zur Operationsplanung. Röntgen am Kai.',
-    priority: '0.7',
-  },
-  {
     path: '/koerperanalyse-graz',
     fullTitle: BODY_SEO_TITLE,
     title: 'Körperanalyse',
@@ -88,12 +66,71 @@ export const routes = [
     description: BODY_META_DESCRIPTION,
     priority: '0.9',
   },
+  // Weitere Untersuchungen: Übersicht + vier Hauptbereiche (Daten: src/data/examinations.js)
   {
     path: '/weitere-untersuchungen',
-    title: 'Weitere Untersuchungen: Röntgen, Ultraschall, Durchleuchtung',
     fullTitle: 'Weitere Untersuchungen: Röntgen, Ultraschall, DVT | Röntgen am Kai',
-    description: 'Digitales Röntgen, Ultraschall, Durchleuchtung, Phlebographie sowie DVT und Zahnröntgen bei Röntgen am Kai, Körösistraße 9, Graz.',
+    title: 'Weitere Untersuchungen',
+    h1: 'Weitere radiologische Untersuchungen in Graz',
+    crumb: 'Weitere Untersuchungen',
+    prerender: true,
+    description: 'Röntgen ohne vorherige Terminvereinbarung, Ultraschall, Spezialröntgen mit Kontrastmittel sowie Zahnröntgen und 3D-DVT bei Röntgen am Kai in Graz.',
+    priority: '0.8',
+  },
+  {
+    path: '/roentgen-graz',
+    fullTitle: 'Röntgen Graz ohne Termin – mit Zuweisung | Röntgen am Kai',
+    title: 'Röntgen in Graz',
+    h1: 'Röntgen in Graz – direkt vorbeikommen oder Wunschzeit reservieren',
+    crumb: 'Röntgen',
+    parent: EXAMS_PARENT,
+    prerender: true,
+    medicalProcedure: { name: 'Röntgen', alternateName: ['Röntgenuntersuchung', 'Skelettröntgen', 'Lungenröntgen'] },
+    description: 'Röntgen in Graz ohne vorherige Terminvereinbarung: mit gültiger ärztlicher Zuweisung und e-card direkt vorbeikommen oder Wunschzeit reservieren.',
+    priority: '0.9',
+  },
+  {
+    path: '/ultraschall-graz',
+    fullTitle: 'Ultraschall Graz – Sonographie | Röntgen am Kai',
+    title: 'Ultraschall in Graz',
+    h1: 'Ultraschall in Graz',
+    crumb: 'Ultraschall',
+    parent: EXAMS_PARENT,
+    prerender: true,
+    medicalProcedure: { name: 'Ultraschall', alternateName: ['Sonographie', 'Ultraschalluntersuchung'], procedureType: 'https://schema.org/NoninvasiveProcedure' },
+    description: 'Ultraschall in Graz: Bauchorgane, Nieren, Schilddrüse, Hals, Gelenke, Brust und Gefäße. Termin erforderlich – Röntgen am Kai, Körösistraße 9.',
+    priority: '0.8',
+  },
+  {
+    path: '/spezialroentgen',
+    fullTitle: 'Spezialröntgen mit Kontrastmittel in Graz | Röntgen am Kai',
+    title: 'Spezialröntgen und Kontrastmitteluntersuchungen',
+    h1: 'Spezialröntgen und Kontrastmitteluntersuchungen in Graz',
+    crumb: 'Spezialröntgen',
+    parent: EXAMS_PARENT,
+    prerender: true,
+    description: 'Schluckröntgen, Venenröntgen (Phlebographie), Eileiterdurchgängigkeit (HSG) und Nierenröntgen mit Kontrastmittel in Graz. Termin erforderlich.',
     priority: '0.7',
+  },
+  {
+    path: '/unser-angebot/phlebographie',
+    title: 'Venenröntgen (Phlebographie) in Graz',
+    h1: 'Venenröntgen (Phlebographie)',
+    prerender: true,
+    description: 'Phlebographie in Graz: Röntgenuntersuchung der Venen mit Kontrastmittel, etwa zur Operationsplanung. Termin erforderlich – Röntgen am Kai.',
+    priority: '0.6',
+  },
+  {
+    path: '/zahnroentgen-dvt-graz',
+    fullTitle: 'Zahnröntgen und 3D-DVT in Graz | Röntgen am Kai',
+    title: 'Zahnröntgen und 3D-DVT',
+    h1: 'Zahnröntgen und 3D-DVT in Graz',
+    crumb: 'Zahnröntgen und 3D-DVT',
+    parent: EXAMS_PARENT,
+    prerender: true,
+    medicalProcedure: { name: 'Digitale Volumentomographie', alternateName: ['DVT', '3D-Röntgen', 'Zahnröntgen', 'Panoramaröntgen'] },
+    description: 'Zahnröntgen, Panoramaröntgen (OPG), Fernröntgen und 3D-DVT von Kiefer, Nebenhöhlen, Gesichtsschädel und Kiefergelenken in Graz. Termin erforderlich – Röntgen am Kai.',
+    priority: '0.8',
   },
   // Gesundheitsziele: Übersicht + Zielseiten (Daten: src/data/healthGoals.js)
   ...GOAL_ROUTES,

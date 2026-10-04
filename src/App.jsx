@@ -10,11 +10,12 @@ import RouteMeta from './components/RouteMeta'
 import PageTransition from './components/PageTransition'
 
 // Lazy loaded pages
-const RoentgenPage = lazy(() => import('./pages/RoentgenPage'))
-const UltraschallPage = lazy(() => import('./pages/UltraschallPage'))
+const RoentgenGrazPage = lazy(() => import('./pages/RoentgenGrazPage'))
+const UltraschallGrazPage = lazy(() => import('./pages/UltraschallGrazPage'))
+const SpezialroentgenPage = lazy(() => import('./pages/SpezialroentgenPage'))
+const ZahnroentgenDvtPage = lazy(() => import('./pages/ZahnroentgenDvtPage'))
 const MammographiePage = lazy(() => import('./pages/MammographiePage'))
 const KnochendichtePage = lazy(() => import('./pages/KnochendichtePage'))
-const DVTPage = lazy(() => import('./pages/DVTPage'))
 const PhlebographiePage = lazy(() => import('./pages/PhlebographiePage'))
 const KoerperanalysePage = lazy(() => import('./pages/KoerperanalysePage'))
 const ImpressumPage = lazy(() => import('./pages/ImpressumPage'))
@@ -95,15 +96,21 @@ function App() {
             <PageTransition>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/unser-angebot/roentgen" element={<RoentgenPage />} />
-              <Route path="/unser-angebot/ultraschall" element={<UltraschallPage />} />
+              {/* Weitere Untersuchungen (04.10.2026): vier Hauptseiten; alte Adressen leiten weiter (postbuild.mjs) */}
+              <Route path="/roentgen-graz" element={<RoentgenGrazPage />} />
+              <Route path="/ultraschall-graz" element={<UltraschallGrazPage />} />
+              <Route path="/spezialroentgen" element={<SpezialroentgenPage />} />
+              <Route path="/zahnroentgen-dvt-graz" element={<ZahnroentgenDvtPage />} />
+              <Route path="/unser-angebot/roentgen" element={<Navigate to="/roentgen-graz" replace />} />
+              <Route path="/unser-angebot/ultraschall" element={<Navigate to="/ultraschall-graz" replace />} />
+              <Route path="/unser-angebot/dvt" element={<Navigate to="/zahnroentgen-dvt-graz" replace />} />
+              <Route path="/unser-angebot/digitales-roentgen/*" element={<Navigate to="/roentgen-graz" replace />} />
               <Route path="/mammographie-graz" element={<MammographiePage />} />
               {/* alte Adressen → dauerhaft neue Seite (statisch: scripts/postbuild.mjs) */}
               <Route path="/unser-angebot/mammographie" element={<Navigate to="/mammographie-graz" replace />} />
               <Route path="/unser-angebot/mammographie/mammascreening" element={<Navigate to="/mammographie-graz" replace />} />
               <Route path="/knochendichtemessung-graz" element={<KnochendichtePage />} />
               <Route path="/unser-angebot/knochendichte" element={<Navigate to="/knochendichtemessung-graz" replace />} />
-              <Route path="/unser-angebot/dvt" element={<DVTPage />} />
               <Route path="/unser-angebot/phlebographie" element={<PhlebographiePage />} />
               <Route path="/koerperanalyse-graz" element={<KoerperanalysePage />} />
               <Route path="/unser-angebot/koerperfettmessung" element={<Navigate to="/koerperanalyse-graz" replace />} />

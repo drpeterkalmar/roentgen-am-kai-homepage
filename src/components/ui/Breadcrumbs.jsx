@@ -11,7 +11,7 @@ const Breadcrumbs = ({ items }) => (
         return (
           <li key={item.name} className="flex items-center gap-1.5">
             {item.href && !last ? (
-              <Link to={item.href} className="underline-offset-4 hover:text-brand hover:underline dark:hover:text-brand-300">{item.name}</Link>
+              <Link to={item.href} className="-my-3 inline-flex min-h-[44px] items-center underline-offset-4 hover:text-brand hover:underline dark:hover:text-brand-300">{item.name}</Link>
             ) : (
               <span aria-current={last ? 'page' : undefined} className={last ? 'font-medium text-slate-900 dark:text-white' : undefined}>{item.name}</span>
             )}

@@ -27,13 +27,13 @@ const ListBlock = ({ title, items }) => (
   </div>
 );
 
-const ServiceLayout = ({ title, subtitle, children, icon, preparation, requirements, imageUrl, customImage }) => {
+const ServiceLayout = ({ title, subtitle, children, icon, preparation, requirements, imageUrl, customImage, crumbs: crumbsProp, status, bookingNote }) => {
   const { pathname } = useLocation();
   const key = serviceKeyByPath(pathname);
   const service = key ? services[key] : null;
   const isOther = OTHER_EXAMS.some((e) => pathname.replace(/\/+$/, '') === e.href);
 
-  const crumbs = [
+  const crumbs = crumbsProp || [
     { name: 'Startseite', href: '/' },
     ...(isOther ? [{ name: 'Weitere Untersuchungen', href: '/weitere-untersuchungen' }] : []),
     { name: title },
@@ -58,6 +58,7 @@ const ServiceLayout = ({ title, subtitle, children, icon, preparation, requireme
               <h1 id="page-title" className="font-display text-3xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-4xl lg:text-5xl">
                 {title}
               </h1>
+              {status && <div className="mt-4">{status}</div>}
               {subtitle && <Lead className="mt-4 max-w-3xl">{subtitle}</Lead>}
               {service?.durationMinutes && (
                 <p className="mt-4 inline-flex items-center gap-2 text-slate-700 dark:text-slate-200">
@@ -107,17 +108,24 @@ const ServiceLayout = ({ title, subtitle, children, icon, preparation, requireme
 
           <aside aria-label="Termin und Kosten" className="lg:col-span-1">
             <div className="space-y-6 lg:sticky lg:top-[calc(var(--header-height)+24px)]">
-              <Card tone="brand">
+              <Card tone="brand" data-exam-cta={key || undefined}>
                 <h2 className="font-display text-xl font-semibold text-slate-900 dark:text-white">Termin vereinbaren</h2>
-                <p className="mt-2 text-slate-700 dark:text-slate-200">
-                  {service?.onlineBooking
-                    ? 'Buchen Sie Ihren Termin online oder rufen Sie uns an.'
-                    : 'Termine für diese Untersuchung vereinbaren Sie bitte telefonisch.'}
-                </p>
-                <div className="mt-5 flex flex-col gap-3">
-                  {service?.onlineBooking && <BookingButton block />}
-                  <PhoneButton block variant={service?.onlineBooking ? 'secondary' : 'primary'} />
-                </div>
+                {status && <div className="mt-3">{status}</div>}
+                {bookingNote ? (
+                  <div className="mt-4">{bookingNote}</div>
+                ) : (
+                  <>
+                    <p className="mt-2 text-slate-700 dark:text-slate-200">
+                      {service?.onlineBooking
+                        ? 'Buchen Sie Ihren Termin online oder rufen Sie uns an.'
+                        : 'Termine für diese Untersuchung vereinbaren Sie bitte telefonisch.'}
+                    </p>
+                    <div className="mt-5 flex flex-col gap-3">
+                      {service?.onlineBooking && <BookingButton block />}
+                      <PhoneButton block variant={service?.onlineBooking ? 'secondary' : 'primary'} />
+                    </div>
+                  </>
+                )}
               </Card>
 
               <Card>

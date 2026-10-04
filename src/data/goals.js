@@ -33,7 +33,7 @@ export const goals = [
   {
     id: 'abklaerung',
     title: 'Rasche Beschwerdeabklärung',
-    text: 'Digitales Röntgen und Ultraschall – mit Überweisung Ihrer Ärztin oder Ihres Arztes.',
+    text: 'Röntgen ohne vorherige Terminvereinbarung (mit Zuweisung und e-card) und Ultraschall mit Termin.',
     services: ['roentgen', 'ultraschall'],
   },
 ];

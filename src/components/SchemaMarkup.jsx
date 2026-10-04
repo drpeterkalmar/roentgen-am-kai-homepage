@@ -61,10 +61,10 @@ const SchemaMarkup = () => {
       '/knochendichtemessung-graz': 'knochendichte',
       '/mammographie-graz': 'mammographie',
       '/koerperanalyse-graz': 'koerperanalyse',
-      '/unser-angebot/roentgen': 'roentgen',
-      '/unser-angebot/ultraschall': 'ultraschall',
+      '/roentgen-graz': 'roentgen',
+      '/ultraschall-graz': 'ultraschall',
       '/unser-angebot/phlebographie': 'phlebographie',
-      '/unser-angebot/dvt': 'dvt',
+      '/zahnroentgen-dvt-graz': 'dvt',
       // Weitere Sets (lungenroentgen, mammascreening, …) liegen in faqData.js bereit.
       // Nur Routen mit SICHTBAREM FAQ eintragen – Weiterleitungsseiten nie.
     };

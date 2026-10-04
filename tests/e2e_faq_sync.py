@@ -23,10 +23,10 @@ BASE = f"http://localhost:{PORT}/roentgen-am-kai-homepage/"
 
 # EDIT PER CHECK: route -> (faqKey in faqData.js, Sollzahl Fragen, Stichwort aus der ANTWORT der 2. Frage)
 ROUTES = {
-    "/unser-angebot/roentgen": ("roentgen", 4, "klassische Filmtechnik"),
-    "/unser-angebot/ultraschall": ("ultraschall", 4, "natürliches Schallfenster"),
+    "/roentgen-graz": ("roentgen", 5, "klassische Filmtechnik"),
+    "/ultraschall-graz": ("ultraschall", 4, "natürliches Schallfenster"),
     "/mammographie-graz": ("mammographie", 13, "automatisch freigeschaltet"),
-    "/unser-angebot/dvt": ("dvt", 3, "Zahnimplantaten"),
+    "/zahnroentgen-dvt-graz": ("dvt", 3, "Zahnimplantaten"),
     "/knochendichtemessung-graz": ("knochendichte", 16, "Standard- und Referenzmethode"),
     # 14 sichtbar, 10 im Schema: Fragen mit offener Praxisangabe (pending) bleiben aus dem FAQPage-Schema
     "/koerperanalyse-graz": ("koerperanalyse", 14, "Berechnungsmodelle", 14),

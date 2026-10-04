@@ -1,6 +1,8 @@
 import React from 'react';
 import { Syringe, AlertTriangle } from 'lucide-react';
 import ServiceLayout from '../components/ServiceLayout';
+import { StatusBadge, AppointmentActions } from '../components/exams/ExamParts';
+import { AREAS } from '../data/examinations';
 import FAQ from '../components/FAQ';
 import { faqData } from '../data/faqData';
 
@@ -36,14 +38,22 @@ const PhlebographiePage = () => {
 
   return (
     <ServiceLayout
-      title="Phlebographie"
+      title="Venenröntgen (Phlebographie)"
+      crumbs={[
+        { name: 'Startseite', href: '/' },
+        { name: 'Weitere Untersuchungen', href: '/weitere-untersuchungen' },
+        { name: 'Spezialröntgen', href: '/spezialroentgen' },
+        { name: 'Venenröntgen (Phlebographie)' },
+      ]}
+      status={<StatusBadge area={AREAS.spezialroentgen} />}
+      bookingNote={<AppointmentActions area={{ ...AREAS.spezialroentgen, key: 'phlebographie', phoneHint: '„Phlebographie“ bzw. „Venenröntgen“' }} />}
       subtitle="Die Phlebographie ist eine Venenuntersuchung, bei der ein Kontrastmittel in eine Vene der zu untersuchenden Region gespritzt wird, um deren Beschaffenheit und Lage zu beurteilen."
       icon={<Syringe size={32} />}
       preparation={[
         'Bei bekannten Nierenerkrankungen benötigen wir Ihren aktuellen Kreatinin- (bzw. GFR-)Wert.',
         'Bei einer Schilddrüsenerkrankung müssen wir Ihren TSH-Wert wissen.',
         'In beiden Fällen wenden Sie sich bitte vor der Untersuchung an Ihren Hausarzt.',
-        'Telefonische Voranmeldung ist erforderlich.'
+        'Termin erforderlich: bitte telefonisch vereinbaren.'
       ]}
       requirements={[
         'Überweisungsschein (Papier oder digital)',

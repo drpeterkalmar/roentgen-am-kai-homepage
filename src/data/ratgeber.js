@@ -55,13 +55,13 @@ export const TARGETS = {
     bookingLabel: 'Mammographie-Termin buchen',
   },
   roentgen: {
-    endTitle: 'Röntgen-Termin vereinbaren',
-    to: '/unser-angebot/roentgen',
-    label: 'Digitales Röntgen in Graz',
+    endTitle: 'Röntgen: direkt vorbeikommen oder Wunschzeit reservieren',
+    to: '/roentgen-graz',
+    label: 'Röntgen in Graz',
     service: 'roentgen',
-    ctaTitle: 'Digitales Röntgen',
-    ctaText: 'Informationen zu Ablauf und Zuweisung finden Sie auf unserer Seite zum digitalen Röntgen.',
-    bookingLabel: 'Röntgen-Termin buchen',
+    ctaTitle: 'Röntgen bei Röntgen am Kai',
+    ctaText: 'Röntgen ist ohne vorherige Terminvereinbarung möglich – mit gültiger ärztlicher Zuweisung und e-card. Alternativ reservieren Sie eine Wunschzeit.',
+    bookingLabel: 'Wunschzeit reservieren',
   },
 };
 

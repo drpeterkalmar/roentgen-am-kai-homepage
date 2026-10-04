@@ -1,9 +1,10 @@
 // Hauptnavigation — eine Quelle für Header (Desktop + Mobil) und Footer.
+// Vier Hauptbereiche (Daten: src/data/examinations.js). „Digitales Röntgen“ ist kein Menüpunkt mehr (04.10.2026).
 export const OTHER_EXAMS = [
-  { name: 'Digitales Röntgen', href: '/unser-angebot/roentgen' },
-  { name: 'Ultraschall (Sonographie)', href: '/unser-angebot/ultraschall' },
-  { name: 'Phlebographie', href: '/unser-angebot/phlebographie' },
-  { name: 'DVT / Zahnröntgen', href: '/unser-angebot/dvt' },
+  { name: 'Röntgen', href: '/roentgen-graz' },
+  { name: 'Ultraschall', href: '/ultraschall-graz' },
+  { name: 'Spezialröntgen mit Kontrastmittel', href: '/spezialroentgen' },
+  { name: 'Zahnröntgen und 3D-DVT', href: '/zahnroentgen-dvt-graz' },
 ];
 
 export const MAIN_NAV = [
@@ -16,7 +17,7 @@ export const MAIN_NAV = [
     href: '/weitere-untersuchungen',
     children: [{ name: 'Alle weiteren Untersuchungen', href: '/weitere-untersuchungen' }, ...OTHER_EXAMS],
     // Aktiv auch auf den Detailseiten der weiteren Untersuchungen
-    match: OTHER_EXAMS.map((e) => e.href),
+    match: [...OTHER_EXAMS.map((e) => e.href), '/unser-angebot/phlebographie'],
   },
   { name: 'Gesundheitsziele', href: '/gesundheitsziele' },
   { name: 'Ratgeber', href: '/ratgeber' },

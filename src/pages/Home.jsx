@@ -12,13 +12,18 @@ import { SectionHeading } from '../components/ui/Heading';
 import { BookingButton, PhoneButton } from '../components/ui/BookingButtons';
 import { ContactDetails, OpeningHours, Directions } from '../components/ui/PracticeInfo';
 import { INSURANCE_SUMMARY } from '../components/ui/ReferralInfo';
-import ServiceGrid, { badgesFor } from '../components/ServiceGrid';
+import { badgesFor } from '../components/ServiceGrid';
+import { AreaCard } from '../components/exams/ExamParts';
+import { Scan, Waves, Monitor } from 'lucide-react';
+import { ToothIcon } from '../components/CustomIcons';
 import PatientPortal from '../components/PatientPortal';
 import { services } from '../data/services';
 import { SCREENING_HOME_LINE, SCREENING_HOME_CARD } from '../data/screening';
 import { IMAGE_BRIEFS } from '../data/imageBriefs';
 import { goals } from '../data/goals';
 import { PHONE_HREF, PHONE_DISPLAY, OPENING_HOURS, MAPS_ROUTE_URL, ADDRESS } from '../data/practice';
+
+const AREA_ICONS = { roentgen: Scan, ultraschall: Waves, spezialroentgen: Monitor, zahn: ToothIcon };
 
 const img = (name) => `${import.meta.env.BASE_URL}assets/images/${name}`;
 const srcSet = (name) =>
@@ -83,7 +88,7 @@ const Home = () => (
     {/* 1. Hero: Angebot + Terminbuchung im ersten Bildschirm */}
     <Hero
       title="Moderne Radiologie in Graz – rasch, persönlich und präzise"
-      lead="Mammographie, Knochendichte, DEXA-Körperanalyse, digitales Röntgen und Ultraschall. Alle Kassen und privat."
+      lead="Mammographie, Knochendichte, DEXA-Körperanalyse, Röntgen und Ultraschall. Alle Kassen und privat."
       actions={
         <>
           <BookingButton size="lg" label="Termin online buchen" />
@@ -152,7 +157,11 @@ const Home = () => (
           Alle Untersuchungen <ArrowRight size={18} aria-hidden="true" />
         </Link>
       </div>
-      <ServiceGrid keys={['roentgen', 'ultraschall', 'durchleuchtung', 'phlebographie']} columns={4} />
+      <ul className="grid gap-5 sm:grid-cols-2 sm:gap-6 xl:grid-cols-4">
+        {['roentgen', 'ultraschall', 'spezialroentgen', 'zahn'].map((k) => (
+          <li key={k}><AreaCard area={k} icon={AREA_ICONS[k]} /></li>
+        ))}
+      </ul>
     </Section>
 
     {/* 4. Was möchten Sie erreichen? (Ziel des Hero-Buttons „Welche Untersuchung brauche ich?“) */}
@@ -283,7 +292,7 @@ const Home = () => (
             <div className="p-6">
               <h3 className="font-display text-xl font-semibold text-slate-900 dark:text-white">Moderne Technik</h3>
               <p className="mt-2 text-slate-600 dark:text-slate-300">
-                Digitales Röntgen, digitale Mammographie, DEXA und Ultraschall – befundet von Fachärzten für Radiologie.
+                Röntgen und Mammographie in digitaler Technik, DEXA und Ultraschall – befundet von Fachärzten für Radiologie.
               </p>
             </div>
           </Card>

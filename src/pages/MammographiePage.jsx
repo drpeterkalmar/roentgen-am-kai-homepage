@@ -237,7 +237,7 @@ const MammographiePage = () => (
             />
           </div>
           <p className="mt-6">
-            <Link to="/unser-angebot/ultraschall" className={buttonClasses({ variant: 'ghost', className: '-ml-3' })}>
+            <Link to="/ultraschall-graz" className={buttonClasses({ variant: 'ghost', className: '-ml-3' })}>
               Mehr zum Ultraschall <ArrowRight size={18} aria-hidden="true" />
             </Link>
           </p>

@@ -14,6 +14,13 @@ const dist = path.join(root, 'dist');
 const base = process.env.BASE_PATH || '/roentgen-am-kai-homepage/';
 const template = fs.readFileSync(path.join(dist, 'index.html'), 'utf8');
 
+// Vorgerenderte Seiten (routes.js: prerender: true) – voller Inhalt im HTML, damit sie ohne JavaScript nutzbar sind.
+// Quelle: `vite build --ssr src/entry-server.jsx --outDir dist-ssr` (Teil von npm run build).
+const ssrEntry = path.join(root, 'dist-ssr', 'entry-server.js');
+const ssr = fs.existsSync(ssrEntry) ? await import(ssrEntry) : null;
+if (routes.some((r) => r.prerender) && !ssr) throw new Error('postbuild: dist-ssr/entry-server.js fehlt (npm run build verwenden)');
+let prerendered = 0;
+
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 const urlFor = (p) => SITE_URL + (p === '/' ? '/' : p);
 
@@ -48,7 +55,11 @@ const renderRoute = (route) => {
   if (route.path !== '/') {
     // Unterseiten: kein Startseiten-Titelbild vorladen, statt Startseiten-Skelett den Seitentitel zeigen
     html = replaceOnce(html, /\s*<!-- identisch zu srcset[\s\S]*?imagesizes="[^"]*">/, '', 'hero-preload');
-    html = replaceOnce(html, /<div id="root">[\s\S]*<\/div>(\s*<\/body>)/,
+    const body = route.prerender ? ssr.render(route.path, base) : null;
+    if (route.prerender && !body) throw new Error(`postbuild: kein Vorrendern für ${route.path}`);
+    if (body) prerendered++;
+    html = body ? replaceOnce(html, /<div id="root">[\s\S]*<\/div>(\s*<\/body>)/, () => `<div id="root">${body}</div>\n</body>`, 'prerender')
+      : replaceOnce(html, /<div id="root">[\s\S]*<\/div>(\s*<\/body>)/,
       `<div id="root"><main style="padding:160px 24px 48px;max-width:800px;margin:0 auto">`
       + `<h1 class="lcp-text" style="font-size:2.5rem;line-height:1.1;margin:0 0 16px">${esc(route.h1 || route.title)}</h1>`
       + `<p style="font-size:1.125rem;color:#4b5563;margin:0">${desc}</p></main></div>$1`, 'skeleton');
@@ -77,10 +88,14 @@ for (const route of routes) {
 // wertet Google als permanente Weiterleitung. Nach dem Domain-Umzug auf einen eigenen Server: echte 301.
 const legacy = {
   '/unser-angebot': '/#services',
-  '/unser-angebot/digitales-roentgen': '/unser-angebot/roentgen',
-  '/unser-angebot/digitales-roentgen/lungenroentgen': '/unser-angebot/roentgen',
-  '/unser-angebot/digitales-roentgen/wirbelsaeulenroentgen': '/unser-angebot/roentgen',
-  '/unser-angebot/digitales-roentgen/roentgen-nach-unfall': '/unser-angebot/roentgen',
+  // Weitere Untersuchungen neu strukturiert (04.10.2026): Röntgen, Ultraschall, Spezialröntgen, Zahnröntgen/DVT
+  '/unser-angebot/digitales-roentgen': '/roentgen-graz',
+  '/unser-angebot/digitales-roentgen/lungenroentgen': '/roentgen-graz#lunge-brustkorb',
+  '/unser-angebot/digitales-roentgen/wirbelsaeulenroentgen': '/roentgen-graz#wirbelsaeule',
+  '/unser-angebot/digitales-roentgen/roentgen-nach-unfall': '/roentgen-graz',
+  '/unser-angebot/roentgen': '/roentgen-graz',
+  '/unser-angebot/ultraschall': '/ultraschall-graz',
+  '/unser-angebot/dvt': '/zahnroentgen-dvt-graz',
   // Mammographie-Seite ist nach /mammographie-graz umgezogen (26.09.2026)
   '/unser-angebot/mammographie': '/mammographie-graz',
   '/unser-angebot/mammographie/mammascreening': '/mammographie-graz',
@@ -123,4 +138,4 @@ const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://w
 fs.writeFileSync(path.join(dist, 'sitemap.xml'), sitemap);
 fs.writeFileSync(path.join(dist, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`);
 
-console.log(`postbuild: ${routes.length} Routen + ${Object.keys(legacy).length} Weiterleitungen (${written} Dateien), 404.html, sitemap.xml, robots.txt – base ${base}`);
+console.log(`postbuild: ${routes.length} Routen (${prerendered} vorgerendert) + ${Object.keys(legacy).length} Weiterleitungen (${written} Dateien), 404.html, sitemap.xml, robots.txt – base ${base}`);

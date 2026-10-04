@@ -8,7 +8,7 @@ export const serviceIcons = {
   koerperanalyse: Scale,
   roentgen: Scan,
   ultraschall: Waves,
-  durchleuchtung: Monitor,
+  spezialroentgen: Monitor,
   phlebographie: Syringe,
   dvt: ToothIcon,
 };

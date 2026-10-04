@@ -13,7 +13,7 @@ const Row = ({ icon: Icon, label, children }) => (
   </div>
 );
 
-const linkCls = 'underline decoration-slate-300 underline-offset-4 hover:text-brand hover:decoration-brand dark:decoration-slate-600 dark:hover:text-brand-300';
+const linkCls = 'inline-flex min-h-[44px] items-center underline decoration-slate-300 underline-offset-4 hover:text-brand hover:decoration-brand dark:decoration-slate-600 dark:hover:text-brand-300';
 
 // Kontaktdaten (Adresse, Telefon, E-Mail) aus data/practice.js
 export const ContactDetails = ({ className }) => (
