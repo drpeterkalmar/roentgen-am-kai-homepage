@@ -210,6 +210,29 @@ body.high-contrast [data-placeholder] { border: 2px dashed #000 !important; }
   .dexa-fig.is-playing .dexa-tint { animation: rak-dexa-tint var(--dur) linear both; }
 }
 
+/* Körpernavigator (Skelett-Schema, /roentgen-graz) – Knochen elfenbein mit Kontur, Kontext hellgrau, Auswahl Markenrot.
+   Kontrast Kontur/Hintergrund ≥ 3:1 (WCAG 1.4.11). Striche: .bn-ol = Kontur, .bn-il = Füllung (zweilagig, wirkt wie Knochen). */
+.bn-svg { --bn-fill: #f3ede2; --bn-edge: #7c7264; --bn-ctx: #eef2f6; --bn-ctx-edge: #94a3b8;
+  --bn-hi: #f5d9d9; --bn-hi-edge: #8b2323; --bn-on: #b33b3b; --bn-on-edge: #5f1818; }
+.dark .bn-svg { --bn-fill: #cbd5e1; --bn-edge: #f1f5f9; --bn-ctx: #1e293b; --bn-ctx-edge: #8a9ab0;
+  --bn-hi: #ffffff; --bn-hi-edge: #f28b82; --bn-on: #e0574d; --bn-on-edge: #ffffff; }
+.bn-svg .bn-ol, .bn-svg .bn-il { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.bn-shape { fill: var(--bn-fill); stroke: var(--bn-edge); stroke-width: 0.9; }
+.bn-ol { stroke: var(--bn-edge); }
+.bn-il { stroke: var(--bn-fill); }
+.bn-base { --bn-fill: var(--bn-ctx); --bn-edge: var(--bn-ctx-edge); }
+.bn-base > :is(path, rect, circle, ellipse), .bn-base g > :is(path, rect, circle, ellipse):not(.bn-ol):not(.bn-il) { fill: var(--bn-ctx); stroke: var(--bn-ctx-edge); stroke-width: 0.8; }
+.bn-hit { fill: transparent; stroke: transparent; stroke-linecap: round; }
+.bn-region { cursor: pointer; outline: none; }
+.bn-region :is(.bn-shape, .bn-ol, .bn-il) { transition: fill 150ms ease, stroke 150ms ease; }
+.bn-region:is(:hover, :focus-visible, [data-preview='true']) { --bn-fill: var(--bn-hi); --bn-edge: var(--bn-hi-edge); }
+.bn-region[aria-current='true'] { --bn-fill: var(--bn-on); --bn-edge: var(--bn-on-edge); }
+.bn-region[aria-current='true'] .bn-shape { stroke-width: 1.4; }
+.bn-region:is(:hover, :focus-visible, [data-preview='true']):not([aria-current='true']) .bn-shape { stroke-width: 1.8; }
+.bn-region:focus-visible { outline: 2px solid var(--bn-hi-edge); outline-offset: 2px; }
+.bn-label { fill: #475569; font-size: 11px; font-weight: 600; }
+.dark .bn-label { fill: #cbd5e1; }
+
 /* Nutzer mit „Bewegung reduzieren“ */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

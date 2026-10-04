@@ -134,7 +134,7 @@ def main():
         inp.press("Enter")
         page.wait_for_timeout(300)
         check(any(k in page.url for k in ("region-hws", "halswirbelsaeule")), f"Suche Enter → falsches Ziel {page.url}")
-        for term, target in [("Thorax", "Lunge"), ("OSG", "Sprunggelenk"), ("Beckenübersicht", "Becken"), ("Rippen", "Rippen"), ("Knie stehend", "Knie"), ("Hand ap/seitlich", "Hand")]:
+        for term, target in [("Calcaneus", "Fersenbein"), ("Thorax", "Lunge"), ("OSG", "Sprunggelenk"), ("Beckenübersicht", "Becken"), ("Rippen", "Rippen"), ("Knie stehend", "Knie"), ("Hand ap/seitlich", "Hand")]:
             inp.fill(term)
             page.wait_for_timeout(80)
             check(page.locator("[role=option]").count() >= 1 and target in page.locator("[role=option]").first.inner_text(), f"Suche {term} → {target} fehlt")
@@ -153,9 +153,9 @@ def main():
         page.goto(BASE + "roentgen-graz", wait_until="networkidle")
         regions = page.locator("[data-region]")
         n = regions.count()
-        check(n >= 14, f"Navigator: {n} statt ≥14 Regionen")
+        check(n >= 15, f"Navigator: {n} statt ≥15 Regionen")
         names = set(regions.evaluate_all("els => els.map(e => e.dataset.region)"))
-        check(len(names) == 14, f"Navigator: {len(names)} unterschiedliche Regionen statt 14")
+        check(len(names) == 15, f"Navigator: {len(names)} unterschiedliche Regionen statt 15")
         first = regions.first
         first.focus()
         check(page.evaluate("document.activeElement.dataset.region") is not None, "Navigator: Region nicht fokussierbar")
@@ -176,7 +176,7 @@ def main():
         check(page.locator("[data-region='knie'][aria-pressed='true'], [data-region='knie'][aria-current='true']").count() >= 1, "Navigator: Auswahl nicht per aria-pressed/aria-current markiert")
         # Textliste
         tl = page.locator("#navigator-liste a")
-        check(tl.count() >= 14, f"Textalternative: {tl.count()} statt ≥14 Links")
+        check(tl.count() >= 15, f"Textalternative: {tl.count()} statt ≥15 Links")
         check(page.locator("#navigator-hinweis").inner_text().startswith("Die Auswahl dient Ihrer Orientierung."), "Navigator-Hinweis fehlt")
 
         # PUCmed
@@ -343,8 +343,8 @@ def main():
             check(len(t) > 1500, f"{slug} ohne JS: kaum Inhalt ({len(t)} Zeichen)")
             check(np.locator("header nav a").count() >= 4, f"{slug} ohne JS: keine Navigation")
         np.goto(BASE + "roentgen-graz")
-        check(np.locator("#navigator-liste a").count() >= 14, "ohne JS: Textliste des Navigators fehlt")
-        check(np.locator("[data-region]").count() >= 14 and np.locator("a[data-region]").count() >= 14, "ohne JS: Navigator-Regionen sind keine Links")
+        check(np.locator("#navigator-liste a").count() >= 15, "ohne JS: Textliste des Navigators fehlt")
+        check(np.locator("[data-region]").count() >= 15 and np.locator("a[data-region]").count() >= 15, "ohne JS: Navigator-Regionen sind keine Links")
         check(np.locator("[data-terms-all] a").count() >= 9, "ohne JS: Begriffsliste der Zuweisungssuche fehlt")
         check(np.locator("a[href*='#direkt-vorbeikommen']").count() >= 1, "ohne JS: „Direkt vorbeikommen“ fehlt")
         np.goto(BASE + "ultraschall-graz")

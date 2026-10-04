@@ -112,7 +112,7 @@ export const XRAY_GROUPS = [
   { id: 'schulter-arm', title: 'Schulter und Arm', items: ['Schulter und Schlüsselbein', 'Oberarm', 'Ellenbogen und Unterarm'] },
   { id: 'hand-handgelenk', title: 'Hand und Handgelenk', items: ['Handgelenk', 'Hand', 'Finger'] },
   { id: 'knie-unterschenkel', title: 'Knie und Unterschenkel', items: ['Knie', 'Unterschenkel'] },
-  { id: 'sprunggelenk-fuss', title: 'Sprunggelenk und Fuß', items: ['Sprunggelenk', 'Fuß und Zehen'] },
+  { id: 'sprunggelenk-fuss', title: 'Sprunggelenk und Fuß', items: ['Sprunggelenk', 'Fersenbein', 'Fuß und Zehen'] },
   {
     id: 'weitere-regionen',
     title: 'Weitere angebotene Körperregionen',
@@ -122,7 +122,7 @@ export const XRAY_GROUPS = [
 ];
 
 // ---------------------------------------------------------------------------
-// Körpernavigator (Röntgen) – 14 Regionen. view: Vorder- oder Rückansicht im Skelett.
+// Körpernavigator (Röntgen) – 15 Regionen. view: Vorder- oder Rückansicht im Skelett.
 // questions = typische Fragestellungen (neutral, Orientierung – medizinische Freigabe ausstehend).
 // ---------------------------------------------------------------------------
 export const BODY_REGIONS = [
@@ -140,6 +140,7 @@ export const BODY_REGIONS = [
   { id: 'unterschenkel', name: 'Unterschenkel', view: 'front', group: 'knie-unterschenkel', questions: ['Schmerzen nach Sturz oder Unfall', 'Verdacht auf Knochenbruch', 'Verlaufskontrolle nach Knochenbruch'] },
   { id: 'sprunggelenk', name: 'Sprunggelenk', view: 'front', group: 'sprunggelenk-fuss', questions: ['Umknicken oder Verdrehen', 'Schwellung und Schmerzen nach Verletzung', 'Verlaufskontrolle nach Knochenbruch'] },
   { id: 'fuss', name: 'Fuß und Zehen', view: 'front', group: 'sprunggelenk-fuss', questions: ['Fuß- oder Zehenverletzung', 'Fehlstellung, etwa Hallux valgus', 'Belastungsschmerzen'] },
+  { id: 'fersenbein', name: 'Fersenbein', view: 'back', group: 'sprunggelenk-fuss', questions: ['Fersenschmerzen, etwa bei Verdacht auf Fersensporn', 'Sturz oder Sprung aus der Höhe auf die Ferse', 'Verlaufskontrolle nach Knochenbruch'] },
 ];
 
 // ---------------------------------------------------------------------------

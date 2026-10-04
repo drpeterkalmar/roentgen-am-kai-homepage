@@ -16,6 +16,7 @@ export const REFERRAL_TERMS = [
   { term: 'Wirbelsäulenganzaufnahme', label: 'Wirbelsäule', to: '/roentgen-graz#wirbelsaeule', aliases: ['Ganzwirbelsäule', 'Wirbelsäule', 'WS gesamt', 'Funktionsaufnahmen'] },
   { term: 'OSG', label: 'oberes Sprunggelenk', to: '/roentgen-graz#region-sprunggelenk', aliases: ['oberes Sprunggelenk', 'Sprunggelenk', 'Knöchel'] },
   { term: 'USG', label: 'unteres Sprunggelenk', to: '/roentgen-graz#region-sprunggelenk', aliases: ['unteres Sprunggelenk'] },
+  { term: 'Calcaneus', label: 'Fersenbein', to: '/roentgen-graz#region-fersenbein', aliases: ['Fersenbein', 'Ferse', 'Kalkaneus', 'Fersensporn', 'Calcaneus axial'] },
   { term: 'Hand ap/seitlich', label: 'Handröntgen', to: '/roentgen-graz#region-hand', aliases: ['Hand', 'Hand ap', 'Hand seitlich', 'Hand dp', 'Handgelenk', 'Finger', 'Daumen', 'Kahnbein'] },
   { term: 'Knie stehend', label: 'Knieröntgen', to: '/roentgen-graz#region-knie', aliases: ['Knie', 'Kniegelenk', 'Knie 2 Ebenen', 'Patella', 'Kniescheibe'] },
   { term: 'Beckenübersicht', label: 'Beckenröntgen', to: '/roentgen-graz#region-becken', aliases: ['Becken', 'Becken ap', 'Hüfte', 'Hüftgelenk'] },
