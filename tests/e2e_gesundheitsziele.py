@@ -7,7 +7,7 @@ JSON-LD gültig + BreadcrumbList, keine Konsolenfehler, kein horizontales Scroll
 Buttons (MiraNext, _blank, noopener), tel:-Links, Bilder geladen + alt, interne Links erreichbar,
 verbotene Aussagen, Überschriftenfolge ohne Sprünge, Tastatur (Skip-Link, Fokusrahmen), axe WCAG AA hell/dunkel.
 Hub: 6 Zielkarten → Zielseiten, Sonderseite Sport verlinkt; alte Anker → neue Seiten; Sitemap.
-Screenshots: ~/Desktop/relaunch-screenshots-gesundheitsziele/ (für Vision-Prüfung).
+Screenshots: ~/Documents/Hermes-Berichte/Homepage-Tests/relaunch-screenshots-gesundheitsziele/ (für Vision-Prüfung).
 """
 import json, sys, pathlib, subprocess, urllib.request, urllib.error
 from playwright.sync_api import sync_playwright
@@ -18,7 +18,7 @@ SITE = "https://www.xn--rntgen-am-kai-imb.at"
 TEL = "tel:+43" + "3168409050"
 BOOK = "https://patient-portal.miranext.ai/patient-booking?c_Id=23"
 AXE = (ROOT / "node_modules/axe-core/axe.min.js").read_text()
-SHOTS = pathlib.Path.home() / "Desktop/relaunch-screenshots-gesundheitsziele"
+SHOTS = pathlib.Path.home() / "Documents/Hermes-Berichte/Homepage-Tests/relaunch-screenshots-gesundheitsziele"
 SHOTS.mkdir(parents=True, exist_ok=True)
 FORBIDDEN = ["Terminanfrage", "Online-Terminvergabe", "script.google.com", "Sonografie", "Wahlarzt für",
              "Ergebnisgespräch inklusive", "garantiert", "heilt ", "Heilung"]

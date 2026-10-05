@@ -21,7 +21,7 @@ TEL_OK = {TEL, "tel:0800" + "500181", "tel:144"}
 MAIL = "mailto:office@roentgen-am-kai.at"
 BOOK = "https://patient-portal.miranext.ai/patient-booking?c_Id=23"
 AXE = (ROOT / "node_modules/axe-core/axe.min.js").read_text()
-REPORT = pathlib.Path.home() / "Desktop/relaunch-endkontrolle.txt"
+REPORT = pathlib.Path.home() / "Documents/Hermes-Berichte/Homepage-Tests/relaunch-endkontrolle.txt"
 
 R = json.loads(subprocess.run(
     ["node", "--input-type=module", "-e",
@@ -229,6 +229,7 @@ with sync_playwright() as p:
 
 summary = "\n".join([f"Endkontrolle Röntgen am Kai – {len(R)} Routen", "RESULT: " + ("ALL GREEN" if not fails else f"{len(fails)} FAIL"), ""]
                     + ["FAIL " + x for x in fails] + ["INFO " + x for x in notes])
+REPORT.parent.mkdir(parents=True, exist_ok=True)
 REPORT.write_text(summary + "\n")
 print("RESULT:", "ALL GREEN" if not fails else f"{len(fails)} FAIL")
 sys.exit(1 if fails else 0)

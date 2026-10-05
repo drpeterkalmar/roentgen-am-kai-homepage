@@ -17,7 +17,7 @@ SITE = "https://www.xn--rntgen-am-kai-imb.at"
 TEL = "tel:+43" + "3168409050"
 BOOK = "https://patient-portal.miranext.ai/patient-booking?c_Id=23"
 AXE = (ROOT / "node_modules/axe-core/axe.min.js").read_text()
-SHOTS = pathlib.Path.home() / "Desktop/relaunch-screenshots-ratgeber"
+SHOTS = pathlib.Path.home() / "Documents/Hermes-Berichte/Homepage-Tests/relaunch-screenshots-ratgeber"
 SHOTS.mkdir(parents=True, exist_ok=True)
 
 data = json.loads(subprocess.run(

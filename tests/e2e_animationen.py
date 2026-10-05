@@ -10,7 +10,7 @@ VISCERAL = bool(json.loads(subprocess.run(["node", "--input-type=module", "-e", 
                                           capture_output=True, text=True, cwd=ROOT).stdout.strip() or "null"))
 
 BASE = "http://localhost:4174/roentgen-am-kai-homepage"
-OUT = pathlib.Path.home() / "Desktop/relaunch-screenshots-animationen"
+OUT = pathlib.Path.home() / "Documents/Hermes-Berichte/Homepage-Tests/relaunch-screenshots-animationen"
 OUT.mkdir(parents=True, exist_ok=True)
 fails = []
 
