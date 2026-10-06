@@ -13,6 +13,7 @@
 //   (author: null) plus interner Platzhalter. Keine Namen erfinden.
 // * FAQPage-Schema nur, wenn der Artikel ein sichtbares `faq`-Array hat (wird als FAQ-Block angezeigt).
 import { SCREENING } from './screening.js';
+import { PHOTOS } from './photos.js';
 
 export const RATGEBER_BASE = '/ratgeber';
 export const PUBLISHER_NAME = 'Röntgen am Kai';
@@ -65,13 +66,8 @@ export const TARGETS = {
   },
 };
 
-// Bilder: nur echte Praxisfotos (Namen = public/assets/images/<name>.avif, Varianten -mobile/-tablet),
+// Bilder: nur echte Praxisfotos (src/data/photos.js, gemeinsam mit den Gesundheitszielen),
 // sonst Platzhalter aus imageBriefs.js (imageBrief).
-const PHOTOS = {
-  device: { name: 'dexa-messplatz-knochendichte', width: 1600, height: 1200, alt: 'DEXA-Messplatz im Untersuchungsraum von Röntgen am Kai in Graz' },
-  scan: { name: 'dexa-koerperanalyse-ganzkoerperscan', width: 1416, height: 1062, alt: 'Bildschirm mit einer DEXA-Ganzkörperaufnahme: Knochenbild und Weichteilbild mit Körperregionen' },
-  waiting: { name: 'wartebereich-mammographie-knochendichte', width: 1308, height: 981, alt: 'Heller Wartebereich von Röntgen am Kai mit Wegweiser zu Mammographie und Knochendichtemessung' },
-};
 
 // Metadaten je Artikel. id = Eintrag in blogPosts.js (Text); ohne id → Platzhalter-Artikel.
 // review: medizinisch/rechtlich vor Veröffentlichung zu prüfen (erscheint als interner Platzhalter).

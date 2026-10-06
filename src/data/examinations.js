@@ -8,6 +8,8 @@
 //   * Quelle der Leistungen: bisherige Website (Leistungsseiten + FAQ) und Praxisangaben vom 26.09.2026.
 //   * Offene Praxisangaben = null → sichtbarer redaktioneller Platzhalter.
 
+import { services } from './services.js';
+
 export const EXAMS_BASE = '/weitere-untersuchungen';
 export const EXAMS_CRUMB = 'Weitere Untersuchungen';
 
@@ -39,45 +41,41 @@ export const XRAY_HOURS_NOTE = null;
 export const WALK_IN_HREF = '/roentgen-graz#direkt-vorbeikommen';
 
 // ---------------------------------------------------------------------------
-// Die vier Hauptbereiche
+// Die vier Hauptbereiche. Titel, Pfad und Online-Buchung kommen aus services.js (eine Quelle für Karten,
+// Menü und Bereichsseiten); hier nur, was die Bereichsseiten zusätzlich brauchen. `short` ist der
+// Beschreibungstext der Bereichskarte (nicht das Kurzlabel services.short).
 // ---------------------------------------------------------------------------
+const fromService = (s) => ({ title: s.title, path: s.href, onlineBooking: s.onlineBooking });
+
 export const AREAS = {
   roentgen: {
     key: 'roentgen',
-    title: 'Röntgen',
-    path: '/roentgen-graz',
+    ...fromService(services.roentgen), // onlineBooking: „Wunschzeit reservieren“ über MiraNext (Praxis-Entscheidung 26.09.2026)
     walkIn: true,
-    onlineBooking: true, // „Wunschzeit reservieren“ über MiraNext (Praxis-Entscheidung 26.09.2026)
     short: 'Röntgen von Knochen, Gelenken, Wirbelsäule und Lunge.',
     overviewText:
       'Röntgen von Knochen, Gelenken, Wirbelsäule und Lunge. Mit gültiger ärztlicher Zuweisung und e-card können Sie während unserer Röntgenzeiten direkt vorbeikommen. Alternativ können Sie eine Wunschzeit reservieren.',
   },
   ultraschall: {
     key: 'ultraschall',
-    title: 'Ultraschall',
-    path: '/ultraschall-graz',
+    ...fromService(services.ultraschall),
     walkIn: false,
-    onlineBooking: false,
     short: 'Sonographie von Bauchorganen, Nieren, Schilddrüse, Hals, Gelenken, Weichteilen, Brust und Gefäßen – ohne Röntgenstrahlung.',
     ctaLabel: 'Ultraschalltermin vereinbaren',
     phoneHint: '„Ultraschall“ und die Körperregion, die auf Ihrer Zuweisung steht (z. B. Oberbauch oder Schilddrüse)',
   },
   spezialroentgen: {
     key: 'spezialroentgen',
-    title: 'Spezialröntgen mit Kontrastmittel',
-    path: '/spezialroentgen',
+    ...fromService(services.spezialroentgen),
     walkIn: false,
-    onlineBooking: false,
     short: 'Schluckröntgen, Venenröntgen, Eileiterdurchgängigkeit und Nierenröntgen – mit Kontrastmittel und bewegten Röntgenaufnahmen.',
     ctaLabel: 'Termin für Spezialröntgen vereinbaren',
     phoneHint: 'die Untersuchung, die auf Ihrer Zuweisung steht (z. B. „Phlebographie“ oder „Videoschluckakt“)',
   },
   zahn: {
     key: 'zahn',
-    title: 'Zahnröntgen und 3D-DVT',
-    path: '/zahnroentgen-dvt-graz',
+    ...fromService(services.dvt),
     walkIn: false,
-    onlineBooking: false,
     short: 'Panoramaröntgen, Fernröntgen, Einzelzahnröntgen und 3D-Aufnahmen von Zähnen, Kiefer, Nasennebenhöhlen, Gesichtsschädel, Kiefergelenken und kraniozervikalem Übergang.',
     ctaLabel: 'Termin für Zahnröntgen oder DVT vereinbaren',
     phoneHint: '„Zahnröntgen“ oder „DVT“ und den Aufnahmebereich laut Zuweisung (z. B. Panoramaröntgen oder DVT Unterkiefer)',

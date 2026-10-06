@@ -1,0 +1,175 @@
+{
+  "AREAS": {
+    "roentgen": {
+      "key": "roentgen",
+      "title": "Röntgen",
+      "path": "/roentgen-graz",
+      "walkIn": true,
+      "onlineBooking": true,
+      "short": "Röntgen von Knochen, Gelenken, Wirbelsäule und Lunge.",
+      "overviewText": "Röntgen von Knochen, Gelenken, Wirbelsäule und Lunge. Mit gültiger ärztlicher Zuweisung und e-card können Sie während unserer Röntgenzeiten direkt vorbeikommen. Alternativ können Sie eine Wunschzeit reservieren."
+    },
+    "ultraschall": {
+      "key": "ultraschall",
+      "title": "Ultraschall",
+      "path": "/ultraschall-graz",
+      "walkIn": false,
+      "onlineBooking": false,
+      "short": "Sonographie von Bauchorganen, Nieren, Schilddrüse, Hals, Gelenken, Weichteilen, Brust und Gefäßen – ohne Röntgenstrahlung.",
+      "ctaLabel": "Ultraschalltermin vereinbaren",
+      "phoneHint": "„Ultraschall“ und die Körperregion, die auf Ihrer Zuweisung steht (z. B. Oberbauch oder Schilddrüse)"
+    },
+    "spezialroentgen": {
+      "key": "spezialroentgen",
+      "title": "Spezialröntgen mit Kontrastmittel",
+      "path": "/spezialroentgen",
+      "walkIn": false,
+      "onlineBooking": false,
+      "short": "Schluckröntgen, Venenröntgen, Eileiterdurchgängigkeit und Nierenröntgen – mit Kontrastmittel und bewegten Röntgenaufnahmen.",
+      "ctaLabel": "Termin für Spezialröntgen vereinbaren",
+      "phoneHint": "die Untersuchung, die auf Ihrer Zuweisung steht (z. B. „Phlebographie“ oder „Videoschluckakt“)"
+    },
+    "zahn": {
+      "key": "zahn",
+      "title": "Zahnröntgen und 3D-DVT",
+      "path": "/zahnroentgen-dvt-graz",
+      "walkIn": false,
+      "onlineBooking": false,
+      "short": "Panoramaröntgen, Fernröntgen, Einzelzahnröntgen und 3D-Aufnahmen von Zähnen, Kiefer, Nasennebenhöhlen, Gesichtsschädel, Kiefergelenken und kraniozervikalem Übergang.",
+      "ctaLabel": "Termin für Zahnröntgen oder DVT vereinbaren",
+      "phoneHint": "„Zahnröntgen“ oder „DVT“ und den Aufnahmebereich laut Zuweisung (z. B. Panoramaröntgen oder DVT Unterkiefer)"
+    }
+  },
+  "OTHER_EXAMS": [
+    {
+      "name": "Röntgen",
+      "href": "/roentgen-graz"
+    },
+    {
+      "name": "Ultraschall",
+      "href": "/ultraschall-graz"
+    },
+    {
+      "name": "Spezialröntgen mit Kontrastmittel",
+      "href": "/spezialroentgen"
+    },
+    {
+      "name": "Zahnröntgen und 3D-DVT",
+      "href": "/zahnroentgen-dvt-graz"
+    }
+  ],
+  "MAIN_NAV": [
+    {
+      "name": "Startseite",
+      "href": "/"
+    },
+    {
+      "name": "Mammographie & Brustgesundheit",
+      "href": "/mammographie-graz"
+    },
+    {
+      "name": "Knochendichte",
+      "href": "/knochendichtemessung-graz"
+    },
+    {
+      "name": "Körperanalyse",
+      "href": "/koerperanalyse-graz"
+    },
+    {
+      "name": "Weitere Untersuchungen",
+      "href": "/weitere-untersuchungen",
+      "children": [
+        {
+          "name": "Alle weiteren Untersuchungen",
+          "href": "/weitere-untersuchungen"
+        },
+        {
+          "name": "Röntgen",
+          "href": "/roentgen-graz"
+        },
+        {
+          "name": "Ultraschall",
+          "href": "/ultraschall-graz"
+        },
+        {
+          "name": "Spezialröntgen mit Kontrastmittel",
+          "href": "/spezialroentgen"
+        },
+        {
+          "name": "Zahnröntgen und 3D-DVT",
+          "href": "/zahnroentgen-dvt-graz"
+        }
+      ],
+      "match": [
+        "/roentgen-graz",
+        "/ultraschall-graz",
+        "/spezialroentgen",
+        "/zahnroentgen-dvt-graz",
+        "/unser-angebot/phlebographie"
+      ]
+    },
+    {
+      "name": "Gesundheitsziele",
+      "href": "/gesundheitsziele"
+    },
+    {
+      "name": "Ratgeber",
+      "href": "/ratgeber"
+    },
+    {
+      "name": "Praxis und Kontakt",
+      "href": "/kontakt",
+      "match": [
+        "/unser-team"
+      ]
+    }
+  ],
+  "GOAL_IMAGES": {
+    "waiting": {
+      "name": "wartebereich-mammographie-knochendichte",
+      "width": 1308,
+      "height": 981,
+      "alt": "Heller Wartebereich von Röntgen am Kai mit Wegweiser zu Mammographie und Knochendichtemessung"
+    },
+    "scan": {
+      "name": "dexa-koerperanalyse-ganzkoerperscan",
+      "width": 1416,
+      "height": 1062,
+      "alt": "Bildschirm mit einer DEXA-Ganzkörperaufnahme: Knochenbild und Weichteilbild mit Körperregionen"
+    },
+    "device": {
+      "name": "dexa-messplatz-knochendichte",
+      "width": 1600,
+      "height": 1200,
+      "alt": "DEXA-Messplatz im Untersuchungsraum von Röntgen am Kai in Graz"
+    }
+  },
+  "ARTICLE_PHOTOS": {
+    "abnehmspritze-muskelverlust": null,
+    "knochendichtemessung-dexa-vorsorge": {
+      "name": "dexa-messplatz-knochendichte",
+      "width": 1600,
+      "height": 1200,
+      "alt": "DEXA-Messplatz im Untersuchungsraum von Röntgen am Kai in Graz"
+    },
+    "ki-unterstuetzung-radiologie": null,
+    "mammascreening-oesterreich": {
+      "name": "wartebereich-mammographie-knochendichte",
+      "width": 1308,
+      "height": 981,
+      "alt": "Heller Wartebereich von Röntgen am Kai mit Wegweiser zu Mammographie und Knochendichtemessung"
+    },
+    "abnehmspritze-muskelmasse-koerperanalyse": {
+      "name": "dexa-koerperanalyse-ganzkoerperscan",
+      "width": 1416,
+      "height": 1062,
+      "alt": "Bildschirm mit einer DEXA-Ganzkörperaufnahme: Knochenbild und Weichteilbild mit Körperregionen"
+    },
+    "brustkrebs-frueherkennung-mammographie": {
+      "name": "wartebereich-mammographie-knochendichte",
+      "width": 1308,
+      "height": 981,
+      "alt": "Heller Wartebereich von Röntgen am Kai mit Wegweiser zu Mammographie und Knochendichtemessung"
+    }
+  }
+}

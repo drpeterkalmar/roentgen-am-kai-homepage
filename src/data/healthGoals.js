@@ -9,6 +9,8 @@
 // * Medizinische Kernaussagen nur aus den Quellen unten (Leitlinien, Konsensus, begutachtete Studien).
 // * Bilder: nur echte Praxisfotos; fehlt eines → ImagePlaceholder mit Brief aus imageBriefs.js.
 
+import { PHOTOS } from './photos.js';
+
 export const GOALS_BASE = '/gesundheitsziele';
 
 // ── Medizinische Quellen (geprüft 27.09.2026) ─────────────────────────────────────────
@@ -45,27 +47,8 @@ export const SOURCES = {
   },
 };
 
-// ── Fotos (echte Praxisfotos, zugeschnitten; Varianten -mobile/-tablet erzeugt der Prebuild) ─────
-export const GOAL_IMAGES = {
-  waiting: {
-    name: 'wartebereich-mammographie-knochendichte',
-    width: 1308,
-    height: 981,
-    alt: 'Heller Wartebereich von Röntgen am Kai mit Wegweiser zu Mammographie und Knochendichtemessung',
-  },
-  scan: {
-    name: 'dexa-koerperanalyse-ganzkoerperscan',
-    width: 1416,
-    height: 1062,
-    alt: 'Bildschirm mit einer DEXA-Ganzkörperaufnahme: Knochenbild und Weichteilbild mit Körperregionen',
-  },
-  device: {
-    name: 'dexa-messplatz-knochendichte',
-    width: 1600,
-    height: 1200,
-    alt: 'DEXA-Messplatz im Untersuchungsraum von Röntgen am Kai in Graz',
-  },
-};
+// ── Fotos: echte Praxisfotos aus src/data/photos.js (gemeinsam mit dem Ratgeber) ─────────────────
+export const GOAL_IMAGES = PHOTOS;
 
 // ── Seiten ────────────────────────────────────────────────────────────────────────────
 // keyword = Haupt-Suchintention (natürlich in H1/Einleitung/H2/Meta/Links, kein Stuffing)

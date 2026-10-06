@@ -1,11 +1,9 @@
+import { AREAS, AREA_ORDER } from './examinations.js';
+
 // Hauptnavigation — eine Quelle für Header (Desktop + Mobil) und Footer.
-// Vier Hauptbereiche (Daten: src/data/examinations.js). „Digitales Röntgen“ ist kein Menüpunkt mehr (04.10.2026).
-export const OTHER_EXAMS = [
-  { name: 'Röntgen', href: '/roentgen-graz' },
-  { name: 'Ultraschall', href: '/ultraschall-graz' },
-  { name: 'Spezialröntgen mit Kontrastmittel', href: '/spezialroentgen' },
-  { name: 'Zahnröntgen und 3D-DVT', href: '/zahnroentgen-dvt-graz' },
-];
+// Vier Hauptbereiche aus src/data/examinations.js (Titel/Pfad dort aus services.js).
+// „Digitales Röntgen“ ist kein Menüpunkt mehr (04.10.2026).
+export const OTHER_EXAMS = AREA_ORDER.map((k) => ({ name: AREAS[k].title, href: AREAS[k].path }));
 
 export const MAIN_NAV = [
   { name: 'Startseite', href: '/' },
