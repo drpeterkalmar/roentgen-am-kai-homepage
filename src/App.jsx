@@ -8,6 +8,7 @@ import MobileActions from './components/MobileActions'
 import ScrollToHash from './components/ScrollToHash'
 import RouteMeta from './components/RouteMeta'
 import PageTransition from './components/PageTransition'
+import { RouteErrorBoundary } from './components/ErrorBoundary'
 
 // Lazy loaded pages
 const RoentgenGrazPage = lazy(() => import('./pages/RoentgenGrazPage'))
@@ -92,6 +93,8 @@ function App() {
         <main id="main" tabIndex={-1} className="flex-1 focus:outline-none">
           {/* bildschirmhoch: Solange der Seiten-Code lädt, bleibt der Footer unter dem sichtbaren Bereich.
               Mit 60vh sprang er beim Nachladen nach unten (Lighthouse: CLS 0,21–0,31 auf Unterseiten). */}
+          {/* Fehlergrenze: Seite lädt nicht (z. B. Chunk nach Deploy weg) → „Neu laden“ + Telefon statt weißem Bildschirm */}
+          <RouteErrorBoundary>
           <Suspense fallback={<div className="min-h-screen" />}>
             <PageTransition>
             <Routes>
@@ -134,6 +137,7 @@ function App() {
             </Routes>
             </PageTransition>
           </Suspense>
+          </RouteErrorBoundary>
         </main>
         <Footer />
         <MobileActions />
