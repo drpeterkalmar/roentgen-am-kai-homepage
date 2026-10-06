@@ -41,6 +41,20 @@ test('dist: Sitemap enthält genau die indexierbaren Routen', { skip }, () => {
   assert.deepEqual([...locs].sort(), [...want].sort());
 });
 
+test('dist: Sitemap-lastmod = letzte Änderung der Seitendatei (git), Artikel mit eigenem Datum', { skip }, async () => {
+  const { execFileSync } = await import('node:child_process');
+  const sm = read('sitemap.xml');
+  for (const r of routes.filter((x) => !x.noindex)) {
+    const loc = SITE_URL + (r.path === '/' ? '/' : r.path);
+    const lastmod = sm.match(new RegExp(`<loc>${loc.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}</loc><lastmod>([^<]+)</lastmod>`))?.[1];
+    assert.match(lastmod ?? '', /^\d{4}-\d{2}-\d{2}$/, r.path);
+    let git = '';
+    try { git = execFileSync('git', ['log', '-1', '--format=%cs', '--', `src/pages/${r.page}.jsx`], { cwd: root, encoding: 'utf8' }).trim(); } catch { /* ohne git */ }
+    if (r.lastmod) assert.equal(lastmod, r.lastmod, `${r.path}: Artikeldatum`);
+    else if (git) assert.equal(lastmod, git, `${r.path}: git-Datum der Seitendatei`);
+  }
+});
+
 test('dist: alte Adressen leiten per Meta-Refresh weiter', { skip }, () => {
   for (const [from, to] of Object.entries(LEGACY_REDIRECTS)) {
     const html = read(`${from.slice(1)}/index.html`);

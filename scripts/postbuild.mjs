@@ -5,6 +5,7 @@
 //      Startseite → für Google unsichtbar).
 //   2. Weiterleitungsseiten für die alten HEROLD-URLs (Ranking bleibt beim Domain-Umzug erhalten).
 //   3. dist/404.html, dist/sitemap.xml, dist/robots.txt – passend zu Basis-Pfad und Domain.
+import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -118,9 +119,21 @@ fs.writeFileSync(path.join(dist, '404.html'),
   + `<a href="${base}">Zur Startseite</a><p style="margin-top:24px">Termine: <a style="background:none;color:#8B2323;padding:0;margin:0" href="tel:+433168409050">0316 840 90 50</a></p></main></body></html>`);
 
 const today = new Date().toISOString().slice(0, 10);
-// Sitemap automatisch aus routes.js – ohne noindex-Seiten (Platzhalter-Artikel); Artikel mit eigenem Änderungsdatum
+// lastmod = Datum der letzten Änderung der Seitendatei (git, src/pages/<page>.jsx) statt Build-Datum – sonst
+// „ändert“ jeder Deploy alle Seiten und Google gewichtet lastmod weniger. Ohne git-Historie: Build-Datum.
+// Artikel behalten ihr eigenes Änderungsdatum (ratgeber.js), da sich alle dieselbe Seitendatei teilen.
+// In GitHub Actions braucht das die volle Historie (checkout fetch-depth: 0).
+const gitDate = (file) => {
+  try {
+    return execFileSync('git', ['log', '-1', '--format=%cs', '--', file], { cwd: root, encoding: 'utf8' }).trim() || null;
+  } catch {
+    return null;
+  }
+};
+const lastmodFor = (r) => r.lastmod || gitDate(`src/pages/${r.page}.jsx`) || today;
+// Sitemap automatisch aus routes.js – ohne noindex-Seiten (Platzhalter-Artikel)
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`
-  + routes.filter((r) => !r.noindex).map((r) => `  <url><loc>${urlFor(r.path)}</loc><lastmod>${r.lastmod || today}</lastmod>`
+  + routes.filter((r) => !r.noindex).map((r) => `  <url><loc>${urlFor(r.path)}</loc><lastmod>${lastmodFor(r)}</lastmod>`
     + `<changefreq>${r.changefreq || 'monthly'}</changefreq><priority>${r.priority}</priority></url>`).join('\n')
   + `\n</urlset>\n`;
 fs.writeFileSync(path.join(dist, 'sitemap.xml'), sitemap);
