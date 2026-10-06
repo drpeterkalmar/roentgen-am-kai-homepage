@@ -18,11 +18,24 @@
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://www.xn--rntgen-am-kai-imb.at/" />
+  <!-- Dunkelmodus vor dem ersten Bild (kein heller Blitz): gespeicherte Wahl, sonst Systemeinstellung –
+       dieselbe Regel wie src/lib/storage.js; gesperrter Speicher (Safari, Cookies blockiert) → Systemeinstellung.
+       React übernimmt den Wert aus der Klasse (src/AppShell.jsx). -->
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('theme'); } catch (e) {}
+      try { if (t ? t === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.classList.add('dark'); } catch (e) {}
+    })();
+  </script>
   <style>
     :root { --brand: #8B2323; }
     body { background-color: #ffffff; margin: 0; font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; }
     .lcp-text { font-family: 'Outfit', system-ui, sans-serif; font-weight: 600; letter-spacing: -0.02em; color: #0f172a; }
     .brand-text { color: var(--brand); }
+    /* Grundgerüst im Dunkelmodus lesbar, bis React übernimmt */
+    .dark body { background-color: #020617; color: #e2e8f0; }
+    .dark .lcp-text { color: #f8fafc; }
   </style>
 
   <!-- identisch zu srcset/sizes des Hero-Bildes (Hero.jsx), sonst lädt der Browser doppelt -->

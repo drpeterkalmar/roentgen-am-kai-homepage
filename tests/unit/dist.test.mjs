@@ -72,6 +72,9 @@ test('dist: vorgerenderte Seiten enthalten den Seiteninhalt (Körpernavigator nu
   for (const r of routes.filter((x) => x.prerender)) {
     const html = read(`${r.path.slice(1)}/index.html`);
     assert.ok(html.includes('<main id="main"'), `${r.path}: kein vorgerendertes <main>`);
+    // Hydration (main.jsx): Marker am äußeren Div, Suspense-Grenze wie in der App (AppShell)
+    assert.ok(html.includes('<div id="root"><div data-prerendered="true"'), `${r.path}: data-prerendered fehlt`);
+    assert.ok(html.includes('<!--$-->') && html.includes('<!--/$-->'), `${r.path}: Suspense-Marker fehlen`);
   }
   const nav = htmlFiles().filter((f) => f.endsWith('index.html') && read(f).includes('data-body-navigator'));
   assert.deepEqual(nav, ['roentgen-graz/index.html']);

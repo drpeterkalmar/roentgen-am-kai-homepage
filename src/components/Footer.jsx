@@ -69,7 +69,8 @@ const Footer = () => {
 
       <div className="border-t border-slate-200 dark:border-slate-800">
         <div className="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-6 text-sm sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
-          <p>© {year} {PRACTICE_NAME}</p>
+          {/* Jahr beim Vorrendern = Build-Jahr; nach einem Jahreswechsel übernimmt der Browser das aktuelle ohne Hydration-Fehler */}
+          <p suppressHydrationWarning>© {year} {PRACTICE_NAME}</p>
           <p className="max-w-xl">
             Wir bieten kein CT und kein MRT an. Wir empfehlen hierfür z. B. das nahegelegene{' '}
             <a href="https://kreuzschwestern-graz.at/ct-mr-zentrum/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-brand dark:hover:text-brand-300">

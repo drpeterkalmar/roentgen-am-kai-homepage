@@ -45,3 +45,29 @@ test('prefersDark: ohne matchMedia hell, sonst Systemeinstellung', () => {
   globalThis.matchMedia = () => { throw new Error('kaputt'); };
   assert.equal(prefersDark(), false);
 });
+
+// P2-14: Das Inline-Skript in index.html setzt die Klasse 'dark' vor dem ersten Bild – nach derselben Regel
+// wie readTheme()/prefersDark() (gespeicherte Wahl, sonst Systemeinstellung; gesperrter Speicher → System).
+test('index.html: Dunkelmodus-Inline-Skript folgt derselben Regel wie storage.js', async () => {
+  const { readFileSync } = await import('node:fs');
+  const html = readFileSync(new URL('../../index.html', import.meta.url), 'utf8');
+  const code = html.match(/<script>\s*([\s\S]*?)\s*<\/script>/)?.[1];
+  assert.ok(code && code.includes("localStorage.getItem('theme')"), 'Inline-Skript nicht gefunden');
+  const run = (storage, systemDark) => {
+    const classes = new Set();
+    const document = { documentElement: { classList: { add: (c) => classes.add(c) } } };
+    const matchMedia = (q) => ({ matches: systemDark && q === '(prefers-color-scheme: dark)' });
+    new Function('localStorage', 'matchMedia', 'document', code)(storage, matchMedia, document);
+    return classes.has('dark');
+  };
+  const blocked = { getItem() { throw securityError(); } };
+  const cases = [[null, false], [null, true], ['dark', false], ['light', true], ['irgendwas', true], [blocked, true], [blocked, false]];
+  for (const [saved, systemDark] of cases) {
+    const storage = saved && typeof saved === 'object' ? saved : { getItem: () => saved };
+    setStorage({ value: storage });
+    globalThis.matchMedia = (q) => ({ matches: systemDark && q === '(prefers-color-scheme: dark)' });
+    const theme = readTheme();
+    const expected = theme ? theme === 'dark' : prefersDark();
+    assert.equal(run(storage, systemDark), expected, `gespeichert=${typeof saved === 'string' ? saved : saved ? 'gesperrt' : 'nichts'}, System dunkel=${systemDark}`);
+  }
+});

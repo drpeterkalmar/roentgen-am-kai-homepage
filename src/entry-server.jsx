@@ -1,11 +1,10 @@
 // Vorrendern für Seiten, die auch ohne JavaScript vollständig nutzbar sein müssen (routes.js: prerender: true).
-// Wird von `vite build --ssr` gebaut und von scripts/postbuild.mjs aufgerufen; im Browser lädt die App wie gewohnt
-// (main.jsx rendert neu – keine Hydration, daher keine Abweichungen durch Dunkelmodus o. Ä.).
+// Wird von `vite build --ssr` gebaut und von scripts/postbuild.mjs aufgerufen. Im Browser übernimmt main.jsx
+// das HTML per hydrateRoot – deshalb derselbe Seitenrahmen wie in der App (AppShell) und dieselbe Struktur
+// (Routes → Seite). Die Seiten werden hier direkt importiert (kein lazy, sonst käme nur der Ladeplatzhalter).
 import { renderToString } from 'react-dom/server';
-import { StaticRouter } from 'react-router-dom';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import MobileActions from './components/MobileActions';
+import { StaticRouter, Routes, Route } from 'react-router-dom';
+import AppShell from './AppShell';
 import WeitereUntersuchungenPage from './pages/WeitereUntersuchungenPage';
 import RoentgenGrazPage from './pages/RoentgenGrazPage';
 import UltraschallGrazPage from './pages/UltraschallGrazPage';
@@ -25,28 +24,17 @@ export const PAGES = {
   '/unser-angebot/phlebographie': PhlebographiePage,
 };
 
-const noop = () => {};
-
-// Gleiche Grundstruktur wie App.jsx (Skip-Link, Header, main#main, Footer, Schnellzugriff am Handy)
 export const render = (path, basename) => {
   const Page = PAGES[path];
   if (!Page) return null;
+  // basename wie im Browser (import.meta.env.BASE_URL, mit Schrägstrich) – sonst weicht z. B. href des Logo-Links ab
   return renderToString(
-    <StaticRouter location={basename.replace(/\/$/, '') + path} basename={basename.replace(/\/$/, '')}>
-      <div className="flex min-h-screen flex-col bg-white pb-[calc(56px+env(safe-area-inset-bottom))] text-slate-800 dark:bg-slate-950 dark:text-slate-200 md:pb-0">
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-4 focus:py-3 focus:font-semibold focus:text-brand focus:shadow-lg"
-        >
-          Zum Inhalt springen
-        </a>
-        <Header highContrast={false} setHighContrast={noop} isDark={false} toggleTheme={noop} />
-        <main id="main" tabIndex={-1} className="flex-1 focus:outline-none">
-          <Page />
-        </main>
-        <Footer />
-        <MobileActions />
-      </div>
+    <StaticRouter location={basename.replace(/\/$/, '') + path} basename={basename}>
+      <AppShell prerendered>
+        <Routes>
+          <Route path={path} element={<Page />} />
+        </Routes>
+      </AppShell>
     </StaticRouter>
   );
 };

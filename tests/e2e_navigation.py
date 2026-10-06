@@ -4,7 +4,9 @@ Voraussetzung: `npm run build:staging` und `npx vite preview --port 4174`.
 Prüft: Zurück behält die Scrollposition, neue Seite beginnt oben mit Fokus auf #main (Desktop und Handy-Menü),
 Escape im Menü gibt den Fokus an „Menü“ zurück, Anker beim Erstaufruf (/roentgen-graz#lunge-brustkorb),
 fehlender Seiten-Chunk nach Deploy → einmal neu laden, dann Fehlerseite statt weißem Bildschirm (Gutachten P1-1),
-gesperrter Browser-Speicher (Safari, Cookies blockiert) → App startet trotzdem (P1-2).
+gesperrter Browser-Speicher (Safari, Cookies blockiert) → App startet trotzdem (P1-2),
+vorgerenderte Seite bleibt beim Start sichtbar (kein Blinken, auch wenn der Seiten-Code verzögert kommt; P2-1),
+Dunkelmodus schon beim ersten Bild (P2-14).
 """
 import sys
 from playwright.sync_api import sync_playwright
@@ -108,6 +110,25 @@ with sync_playwright() as p:
     pg.locator("header").get_by_role("button", name="Dunkelmodus").first.click(); pg.wait_for_timeout(200)
     check(pg.evaluate("document.documentElement.classList.contains('dark')") and not blocked, "Speicher gesperrt: Dunkelmodus schaltbar ohne Fehler")
     ctx.close()
+
+    # --- 6. Vorgerenderte Seite blinkt nicht: Seiten-Code 1,5 s verzögert, Überschrift darf nie verschwinden ---
+    WATCH = """window.__h1Seen = false; window.__h1Lost = false;
+      new MutationObserver(() => { const h = document.querySelector('main h1');
+        if (h) window.__h1Seen = true; else if (window.__h1Seen) window.__h1Lost = true; })
+        .observe(document, { childList: true, subtree: true });
+      document.addEventListener('DOMContentLoaded', () => { window.__darkAtDCL = document.documentElement.classList.contains('dark'); });"""
+    for scheme in ("light", "dark"):
+        ctx = b.new_context(viewport={"width": 390, "height": 844}, color_scheme=scheme)
+        ctx.add_init_script(WATCH)
+        pg = ctx.new_page()
+        pg.on("pageerror", lambda e: errs.append(str(e)))
+        pg.on("console", lambda m: errs.append(m.text) if m.type == "error" else None)
+        pg.route("**/assets/RoentgenGrazPage-*.js", lambda r: (pg.wait_for_timeout(1500), r.continue_()))
+        pg.goto(BASE + "/roentgen-graz", wait_until="networkidle"); pg.wait_for_timeout(500)
+        st = pg.evaluate("({ seen: window.__h1Seen, lost: window.__h1Lost, dark: window.__darkAtDCL, hydrated: !!document.querySelector('#root [data-prerendered]') })")
+        check(st["seen"] and not st["lost"] and st["hydrated"], f"[{scheme}] /roentgen-graz bleibt beim Start sichtbar (kein Blinken) {st}")
+        check(st["dark"] == (scheme == "dark"), f"[{scheme}] Dunkelmodus schon beim ersten Bild (DOMContentLoaded: dark={st['dark']})")
+        ctx.close()
 
     check(not errs, f"keine JS-Fehler {errs[:2]}")
     b.close()
