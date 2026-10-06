@@ -1,6 +1,7 @@
 import { SCREENING, AGE_RANGE, INTERVAL_TEXT } from './screening.js';
 import { BODY, BODY_RADIATION_TEXT, BODY_LEAN_MASS_TEXT } from './bodyComposition.js';
 import { DEXA_PRICE_TEXT, DEXA_OTHER_CARRIERS, DEXA_RADIATION_TEXT, DEXA_RHO_SENTENCE } from './dexa.js';
+import { PHONE_DISPLAY_INTL } from './practice.js';
 
 // FAQ Mammographie & Brustgesundheit (26.09.2026). Programmregeln aus src/data/screening.js.
 // review: interne Markierung – Angabe von der Praxis / ärztlich zu bestätigen (wird NICHT angezeigt).
@@ -313,7 +314,7 @@ export const faqData = {
     },
     {
       question: "Wie vereinbare ich einen Termin für das Lungenröntgen?",
-      answer: "Die Untersuchung erfolgt nach telefonischer Terminvereinbarung unter +43 316 8409050. Lungenröntgen-Aufnahmen, etwa vor einer geplanten Operation, können in der Regel zeitnah durchgeführt werden."
+      answer: `Die Untersuchung erfolgt nach telefonischer Terminvereinbarung unter ${PHONE_DISPLAY_INTL}. Lungenröntgen-Aufnahmen, etwa vor einer geplanten Operation, können in der Regel zeitnah durchgeführt werden.`
     },
     {
       question: "Wie läuft die Lungenröntgen-Untersuchung ab?",
@@ -351,7 +352,7 @@ export const faqData = {
   mammascreening: [
     {
       question: "Wie melde ich mich für das Brustkrebs-Früherkennungsprogramm an?",
-      answer: "Frauen zwischen 45 und 74 Jahren sind mit der e-Card automatisch alle 2 Jahre freigeschaltet und erhalten rechtzeitig einen Erinnerungsbrief; die Teilnahme ist kostenfrei. Frauen zwischen 40 und 44 Jahren sowie ab 74 Jahren können sich freiwillig anmelden – telefonisch unter 0800 500 181 (Mo–Fr 8:00–17:00 Uhr) oder online unter www.frueh-erkennen.at."
+      answer: `Frauen zwischen ${AGE_RANGE} sind mit der e-Card automatisch alle ${SCREENING.intervalYears} Jahre freigeschaltet und erhalten rechtzeitig einen Erinnerungsbrief; die Teilnahme ist kostenfrei. ${SCREENING.optIn.map((o) => o.label).join(' sowie ')} können sich freiwillig anmelden – telefonisch unter ${SCREENING.serviceline.display} (${SCREENING.serviceline.hours}) oder online unter ${SCREENING.officialUrlLabel}.`
     },
     {
       question: "Wann ist der beste Zeitpunkt für die Untersuchung?",

@@ -1,5 +1,6 @@
 import { Lock } from 'lucide-react';
 import { COMPANY_NAME } from '../data/company';
+import { PHONE_HREF, PHONE_DISPLAY, EMAIL } from '../data/practice';
 
 const H2 = ({ children }) => (
   <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">{children}</h2>
@@ -24,8 +25,8 @@ const DatenschutzPage = () => {
             <p>
               <strong>{COMPANY_NAME}</strong><br />
               Körösistraße 9, 8010 Graz, Österreich<br />
-              E-Mail: <a href="mailto:office@roentgen-am-kai.at" className="text-[#8B2323] hover:underline font-medium">office@roentgen-am-kai.at</a><br />
-              Telefon: <a href="tel:+433168409050" className="text-[#8B2323] hover:underline font-medium">0316 840 90 50</a>
+              E-Mail: <a href={`mailto:${EMAIL}`} className="text-[#8B2323] hover:underline font-medium">{EMAIL}</a><br />
+              Telefon: <a href={PHONE_HREF} className="text-[#8B2323] hover:underline font-medium">{PHONE_DISPLAY}</a>
             </p>
           </section>
 

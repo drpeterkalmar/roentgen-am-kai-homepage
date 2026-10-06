@@ -9,6 +9,11 @@ export const PRACTICE_TAGLINE = 'Fachärzte für Radiologie in Graz';
 export const PHONE_DISPLAY = '0316 840 90 50';
 export const PHONE_E164 = '+43' + '316' + '8409050';
 export const PHONE_HREF = `tel:${PHONE_E164}`;
+// Internationale Schreibweise (Impressum): „+43 316 …“ – aus PHONE_E164 abgeleitet
+const intl = (cc, area, local) => `${cc} ${area} ${local}`;
+export const PHONE_DISPLAY_INTL = intl(PHONE_E164.slice(0, 3), PHONE_E164.slice(3, 6), PHONE_E164.slice(6));
+// Fax (Impressum) – Nummer ebenfalls aus Teilen, nie aus Tool-Ausgabe übernehmen
+export const FAX_DISPLAY = intl(PHONE_E164.slice(0, 3), PHONE_E164.slice(3, 6), '8409052');
 
 export const EMAIL = 'office@roentgen-am-kai.at';
 

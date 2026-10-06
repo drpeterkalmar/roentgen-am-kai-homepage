@@ -1,5 +1,6 @@
 import { ShieldCheck, Github } from 'lucide-react';
 import { COMPANY_NAME, FN, FB_GERICHT, UID, RECHTSFORM, SITZ, GEGENSTAND } from '../data/company';
+import { PHONE_HREF, PHONE_DISPLAY_INTL, FAX_DISPLAY, EMAIL } from '../data/practice';
 
 const ImpressumPage = () => {
   return (
@@ -41,9 +42,9 @@ const ImpressumPage = () => {
           <section>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Kontakt</h2>
             <p>
-              Telefon: <a href="tel:+433168409050" className="text-[#8B2323] hover:underline font-medium">+43 316 8409050</a><br />
-              Fax: +43 316 8409052<br />
-              E-Mail: <a href="mailto:office@roentgen-am-kai.at" className="text-[#8B2323] hover:underline font-medium">office@roentgen-am-kai.at</a>
+              Telefon: <a href={PHONE_HREF} className="text-[#8B2323] hover:underline font-medium">{PHONE_DISPLAY_INTL}</a><br />
+              Fax: {FAX_DISPLAY}<br />
+              E-Mail: <a href={`mailto:${EMAIL}`} className="text-[#8B2323] hover:underline font-medium">{EMAIL}</a>
             </p>
           </section>
 

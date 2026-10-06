@@ -121,3 +121,27 @@ test('FAQ: faqSchemaItems lässt Fragen mit offener Praxisangabe weg', () => {
     }
   }
 });
+
+// --- P3-3: Kontaktdaten nur aus practice.js, Screening-Angaben nur aus screening.js ---
+test('Kontaktdaten: Telefon, Fax und E-Mail stehen nur in practice.js', async () => {
+  const { readdirSync } = await import('node:fs');
+  const { PHONE_E164, EMAIL, FAX_DISPLAY, PHONE_DISPLAY_INTL } = await import('../../src/data/practice.js');
+  assert.match(FAX_DISPLAY, /^\+43 316 \d{7}$/);
+  assert.match(PHONE_DISPLAY_INTL, /^\+43 316 \d{7}$/);
+  assert.notEqual(FAX_DISPLAY, PHONE_DISPLAY_INTL);
+  const src = new URL('../../src/', import.meta.url);
+  const files = readdirSync(src, { recursive: true }).filter((f) => /\.(jsx?|mjs)$/.test(f) && f !== 'data/practice.js');
+  const local = PHONE_E164.slice(6);
+  const hits = files.filter((f) => {
+    const s = readFileSync(new URL(f, src), 'utf8');
+    return s.includes(EMAIL) || s.includes(local) || s.includes(FAX_DISPLAY.slice(-7));
+  });
+  assert.deepEqual(hits, []);
+});
+
+test('FAQ-Set mammascreening: Alter und Serviceline aus screening.js', async () => {
+  const { SCREENING, AGE_RANGE } = await import('../../src/data/screening.js');
+  const a = faqData.mammascreening[0].answer;
+  assert.ok(a.includes(AGE_RANGE) && a.includes(SCREENING.serviceline.display));
+  for (const o of SCREENING.optIn) assert.ok(a.includes(o.label), o.label);
+});
