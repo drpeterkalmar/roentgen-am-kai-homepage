@@ -1,4 +1,5 @@
-import { ShieldCheck, Github } from 'lucide-react';
+import { ShieldCheck } from 'lucide-react';
+import { GithubIcon } from '../components/CustomIcons';
 import { COMPANY_NAME, FN, FB_GERICHT, UID, RECHTSFORM, SITZ, GEGENSTAND } from '../data/company';
 import { PHONE_HREF, PHONE_DISPLAY_INTL, FAX_DISPLAY, EMAIL } from '../data/practice';
 
@@ -99,7 +100,7 @@ const ImpressumPage = () => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-[#8B2323] hover:underline font-medium"
               >
-                <Github size={18} />
+                <GithubIcon size={18} />
                 github.com/drpeterkalmar/roentgen-am-kai-homepage
               </a>
             </p>

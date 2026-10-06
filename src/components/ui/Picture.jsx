@@ -14,7 +14,8 @@ const Picture = ({ name, sizes, alt, width, height, eager = false, className }) 
     width={width}
     height={height}
     loading={eager ? 'eager' : 'lazy'}
-    fetchPriority={eager ? 'high' : undefined}
+    // nur bei eager übergeben – sonst meldet React 18 beim Vorrendern „fetchPriority“ als unbekannte Eigenschaft
+    {...(eager ? { fetchPriority: 'high' } : {})}
     decoding="async"
     className={className}
   />
