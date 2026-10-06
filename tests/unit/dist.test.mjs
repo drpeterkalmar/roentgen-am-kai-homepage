@@ -66,6 +66,17 @@ test('dist: alte Adressen leiten per Meta-Refresh weiter', { skip }, () => {
   }
 });
 
+test('dist: Schrift-Preloads zeigen auf dieselben Dateien wie das CSS (@font-face)', { skip }, () => {
+  const html = read('index.html');
+  const hrefs = [...html.matchAll(/<link rel="preload" as="font" type="font\/woff2" crossorigin href="([^"]+)">/g)].map((m) => m[1]);
+  assert.equal(hrefs.length, 2);
+  const css = readdirSync(path.join(dist, 'assets')).filter((f) => f.endsWith('.css')).map((f) => read(`assets/${f}`)).join('');
+  for (const h of hrefs) {
+    assert.ok(css.includes(`url(${h})`), `${h} nicht im CSS`);
+    assert.ok(existsSync(path.join(dist, 'assets', h.split('/').pop())), `${h} fehlt in dist`);
+  }
+});
+
 test('dist: 404.html mit noindex, Startseiten-Link und Telefon', { skip }, () => {
   const html = read('404.html');
   assert.match(html, /<meta name="robots" content="noindex">/);

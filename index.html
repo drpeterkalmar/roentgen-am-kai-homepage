@@ -38,6 +38,11 @@
     .dark .lcp-text { color: #f8fafc; }
   </style>
 
+  <!-- Schriften früh laden (sonst erst nach dem CSS entdeckt → sichtbarer Schriftwechsel). Vite ersetzt den Pfad
+       durch dieselbe gehashte Datei, die index.css per @font-face lädt (nur die beiden Latin-Schnitte). -->
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="/src/assets/fonts/inter-latin-wght-normal.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="/src/assets/fonts/outfit-latin-wght-normal.woff2">
+
   <!-- identisch zu srcset/sizes des Hero-Bildes (Hero.jsx), sonst lädt der Browser doppelt -->
   <link rel="preload" as="image" fetchpriority="high"
         imagesrcset="%BASE_URL%assets/images/hero-slide-1-mobile.avif 800w, %BASE_URL%assets/images/hero-slide-1-tablet.avif 1200w, %BASE_URL%assets/images/hero-slide-1.avif 1920w"
