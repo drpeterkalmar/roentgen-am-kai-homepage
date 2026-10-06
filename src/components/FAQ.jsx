@@ -8,7 +8,7 @@ import { findRoute } from '../data/routes';
 
 // Barrierearme FAQ (Disclosure-Muster): Frage = Schaltfläche in einer Überschrift,
 // aria-expanded/aria-controls, Antwort-Region. Inhalte aus src/data/faqData.js
-// (dieselbe Quelle speist das FAQPage-Schema in SchemaMarkup.jsx).
+// (dieselbe Quelle speist das FAQPage-Schema, src/data/schema.js).
 // pending: offene Praxisangabe → sichtbarer Platzhalter, Frage NICHT im Schema.
 const FAQItem = ({ question, answer, pending, headingLevel }) => {
   const [isOpen, setIsOpen] = useState(false);

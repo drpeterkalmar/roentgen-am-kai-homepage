@@ -67,11 +67,12 @@ export const mammographieFaq = [
 
 // Zentrale FAQ-Daten für alle Leistungsseiten.
 // Eine Quelle für den sichtbaren FAQ-Block (components/FAQ.jsx) UND das
-// FAQPage-JSON-LD (components/SchemaMarkup.jsx) — keine Duplikate mehr.
+// FAQPage-JSON-LD (src/data/schema.js) — welches Set zu welcher Seite gehört,
+// steht in der Routentabelle (src/data/routes.js: faq).
 // Stand 06.09.2026: 1:1 aus der gesendeten HEROLD-FAQ-Mail übernommen
 // (43 Q&A auf 12 Seiten; die Sets lungenroentgen, wirbelsaeulenroentgen,
 // roentgenNachUnfall, mammascreening und angebot liegen für die noch zu
-// bauenden Unterseiten bereit — Schema-Routen in SchemaMarkup.jsx).
+// bauenden Unterseiten bereit — Zuordnung dann in routes.js: faq).
 
 // FAQ DEXA-Knochendichtemessung (26.09.2026). Preis/Kassenregeln/Rho aus src/data/dexa.js.
 // review: interne Markierung – Angabe von der Praxis / ärztlich zu bestätigen (wird NICHT angezeigt).
@@ -148,7 +149,7 @@ export const dexaFaq = [
 
 // FAQ Körperanalyse (27.09.2026). Zentrale Praxisangaben: src/data/bodyComposition.js.
 // pending: Angabe der Praxis fehlt → Antwort zeigt einen gelben Platzhalter und die Frage wird
-// NICHT ins FAQPage-Schema übernommen (siehe SchemaMarkup.jsx / faqSchemaItems).
+// NICHT ins FAQPage-Schema übernommen (siehe src/data/schema.js / faqSchemaItems).
 const eur = (n) => `${n} Euro`;
 export const koerperanalyseFaq = [
   {

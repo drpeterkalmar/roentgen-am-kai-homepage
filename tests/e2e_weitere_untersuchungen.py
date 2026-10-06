@@ -5,7 +5,6 @@ Prüft Inhalt (Begriffe, Terminlogik, PUCmed, Doppelbezeichnungen, Strahlenbeisp
 (Weiterleitungen, interne Links, SVG-Navigator per Maus/Touch/Tastatur, Textalternative, ohne JavaScript,
 360 px ohne horizontales Scrollen/Überlappung, eindeutige Buttons, Fokus, axe-Kontrast).
 """
-import json
 import os
 import re
 import sys
@@ -146,8 +145,7 @@ def main():
         check(nr.get_by_role("link", name=re.compile("Kontakt aufnehmen")).count() == 1, "Kein Treffer: „Kontakt aufnehmen“ fehlt")
         stxt = page.locator("#zuweisung-suche").inner_text()
         check("keine medizinische Empfehlung" in stxt or "nur der Orientierung" in stxt, "Suche ohne Hinweis „keine medizinische Empfehlung“")
-        # Suchziele existieren
-        terms = json.loads((ROOT / "dist-ssr" / "terms.json").read_text()) if (ROOT / "dist-ssr" / "terms.json").exists() else None
+        # Suchziele: Seite existiert (tests/unit/data.test.mjs), Anker existiert (Prüfung der internen Links unten)
 
         # Körpernavigator: Tastatur
         page.goto(BASE + "roentgen-graz", wait_until="networkidle")

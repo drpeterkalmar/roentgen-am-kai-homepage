@@ -5,15 +5,16 @@ Prüft je Route: sichtbare FAQ-Fragen == FAQPage-Schema-Fragen == Sollzahl,
 Antwort-Rendercheck (2. Frage aufklappen, Stichwort muss im FAQ-Text stehen),
 JS-Error-Sweep. Exit 0 = alles OK.
 
-Usage:
-  1. npx vite preview --port 4174   (terminal background=true, danach killen)
+Aufruf:
+  1. npm run build:staging && npx vite preview --port 4174 &   (PID merken, danach beenden)
   2. ROUTES unten anpassen. WICHTIG: der Probe-String muss aus der ANTWORT der
      2. Frage stammen (das Skript klickt Frage 2 auf) — nicht aus einer anderen.
-  3. python3 -u scripts/e2e_faq_sync_check.py [port]   (default 4174)
+  3. python3 -u tests/e2e_faq_sync.py [port]   (Standard 4174)
 
-Stand Sep 2026 (Commit 934b1c2): 12 Sets/43 Q&A in faqData.js, 7 Live-Routen.
-Die 5 Unterseiten-Sets (lungenroentgen, wirbelsaeulenroentgen, roentgenNachUnfall,
-mammascreening, angebot) werden hier ergänzt, sobald die Routen live gehen.
+Welches FAQ-Set zu einer Seite gehört, steht in der Routentabelle (src/data/routes.js: faq).
+Die Sets lungenroentgen, wirbelsaeulenroentgen, roentgenNachUnfall, mammascreening und
+angebot liegen in faqData.js für künftige Unterseiten bereit und werden hier ergänzt,
+sobald die Routen live gehen.
 """
 import sys
 from playwright.sync_api import sync_playwright
