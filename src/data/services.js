@@ -117,8 +117,3 @@ export const selfPayPrices = [
   { id: 'dvt', label: 'DVT (digitale Volumentomographie)', price: null },
   { id: 'zahnroentgen', label: 'Zahnröntgen', price: null },
 ];
-
-export const serviceKeyByPath = (pathname) => {
-  const clean = pathname.replace(/\/+$/, '');
-  return Object.keys(services).find((k) => services[k].href === clean) || null;
-};
