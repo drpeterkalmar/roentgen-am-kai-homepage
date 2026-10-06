@@ -6,6 +6,7 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { routes, fullTitle, SITE_URL, LEGACY_REDIRECTS } from '../../src/data/routes.js';
+import { schemasFor } from '../../src/data/schema.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const dist = path.join(root, 'dist');
@@ -21,6 +22,16 @@ test('dist: jede Route hat eine eigene HTML-Datei mit Titel und Canonical (plus 
     assert.ok(html.includes(`<title>${esc(fullTitle(r))}</title>`), `${r.path}: <title>`);
     assert.ok(html.includes(`<link rel="canonical" href="${SITE_URL}${r.path === '/' ? '/' : r.path}"`), `${r.path}: canonical`);
     if (r.path !== '/') assert.equal(read(`${r.path.slice(1)}.html`), html, `${r.path}.html = ${rel}`);
+  }
+});
+
+test('dist: strukturierte Daten im statischen HTML = schemasFor(route), genau ein MedicalBusiness je Seite', { skip }, () => {
+  for (const r of routes) {
+    const rel = r.path === '/' ? 'index.html' : `${r.path.slice(1)}/index.html`;
+    const head = read(rel).split('</head>')[0];
+    const lds = [...head.matchAll(/<script type="application\/ld\+json" data-schema>([\s\S]*?)<\/script>/g)].map((m) => JSON.parse(m[1]));
+    assert.deepEqual(lds, schemasFor(r), `${r.path}: JSON-LD im HTML`);
+    assert.equal(lds.filter((x) => x['@type'] === 'MedicalBusiness').length, 1, `${r.path}: MedicalBusiness`);
   }
 });
 

@@ -1,13 +1,15 @@
 // Läuft nach `vite build` (npm run build). Erzeugt aus src/data/routes.js:
 //   1. dist/<route>/index.html  – je Route eine echte Datei mit eigenem <title>, Description,
-//      Canonical und OG-Tags. GitHub Pages liefert Unterseiten dadurch mit HTTP 200 statt 404
-//      (vorher: jede Unterseite = 404 + JS-Umleitung auf die Startseite → für Google unsichtbar).
+//      Canonical, OG-Tags und strukturierten Daten (JSON-LD aus src/data/schema.js). GitHub Pages liefert
+//      Unterseiten dadurch mit HTTP 200 statt 404 (vorher: jede Unterseite = 404 + JS-Umleitung auf die
+//      Startseite → für Google unsichtbar).
 //   2. Weiterleitungsseiten für die alten HEROLD-URLs (Ranking bleibt beim Domain-Umzug erhalten).
 //   3. dist/404.html, dist/sitemap.xml, dist/robots.txt – passend zu Basis-Pfad und Domain.
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { routes, fullTitle, SITE_URL, LEGACY_REDIRECTS } from '../src/data/routes.js';
+import { schemasFor, jsonLd } from '../src/data/schema.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dist = path.join(root, 'dist');
@@ -52,6 +54,10 @@ const renderRoute = (route) => {
   }
   // Noch nicht freigegebene Inhalte (Platzhalter-Artikel): nicht indexieren
   if (route.noindex) html = html.replace('</head>', '  <meta name="robots" content="noindex, follow">\n</head>');
+  // Strukturierte Daten (JSON-LD) auch ohne JavaScript – dieselben wie im Browser (src/data/schema.js);
+  // data-schema: SchemaMarkup.jsx ersetzt sie beim ersten Rendern (keine Dopplung)
+  const ld = schemasFor(route).map((s) => `<script type="application/ld+json" data-schema>${jsonLd(s)}</script>`).join('\n  ');
+  html = html.replace('</head>', `  ${ld}\n</head>`);
   if (route.path !== '/') {
     // Unterseiten: kein Startseiten-Titelbild vorladen, statt Startseiten-Skelett den Seitentitel zeigen
     html = replaceOnce(html, /\s*<!-- identisch zu srcset[\s\S]*?imagesizes="[^"]*">/, '', 'hero-preload');
