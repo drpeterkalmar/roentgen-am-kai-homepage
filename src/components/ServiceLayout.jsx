@@ -10,6 +10,7 @@ import { Lead } from './ui/Heading';
 import { BookingButton, PhoneButton } from './ui/BookingButtons';
 import ReferralInfo from './ui/ReferralInfo';
 import PriceList from './ui/PriceList';
+import { imageSrcSet } from './ui/Picture';
 
 // Vorlage für Leistungsseiten. Die Seiten (src/pages/*Page.jsx) liefern Titel, Einleitung und Inhalt;
 // Termin-, Kassen- und Preisangaben kommen zentral aus src/data/services.js.
@@ -42,6 +43,8 @@ const ServiceLayout = ({ title, subtitle, children, icon, preparation, requireme
   const imgSrc = imageUrl
     ? imageUrl.startsWith('/') ? `${import.meta.env.BASE_URL}${imageUrl.substring(1)}` : imageUrl
     : null;
+  // Praxisfoto aus public/assets/images → Varianten wie überall (ui/Picture.jsx)
+  const imgName = imgSrc?.match(/assets\/images\/(.+)\.avif$/)?.[1];
 
   return (
     <article className="pb-16 sm:pb-24">
@@ -79,7 +82,7 @@ const ServiceLayout = ({ title, subtitle, children, icon, preparation, requireme
                 <div className="mb-10 overflow-hidden rounded-2xl bg-slate-100 dark:bg-slate-800">
                   <img
                     src={imgSrc}
-                    srcSet={imgSrc.endsWith('.avif') ? `${imgSrc.replace(/\.avif$/, '-mobile.avif')} 800w, ${imgSrc.replace(/\.avif$/, '-tablet.avif')} 1200w, ${imgSrc} 1920w` : undefined}
+                    srcSet={imgName ? imageSrcSet(imgName) : undefined}
                     sizes="(max-width: 1023px) 100vw, 740px"
                     alt=""
                     width="1200"

@@ -12,6 +12,8 @@ import { BookingButton } from '../components/ui/BookingButtons';
 import FAQ, { useRouteFaq } from '../components/FAQ';
 import DexaScanFigure from '../components/DexaScanFigure';
 import BoneRiskCheck from '../components/BoneRiskCheck';
+import { imageUrl, imageSrcSet } from '../components/ui/Picture';
+import { H3, P, Bullets, NewWindow, linkRow, extLink } from '../components/ui/Text';
 import { IMAGE_BRIEFS } from '../data/imageBriefs';
 import { PHONE_HREF, PHONE_DISPLAY, MAPS_ROUTE_URL, BOOKING_URL } from '../data/practice';
 import { SCREENING_BADGE } from '../data/screening';
@@ -29,29 +31,6 @@ import {
 // DEXA-Knochendichtemessung – /knochendichtemessung-graz (ersetzt /unser-angebot/knochendichte, Weiterleitung).
 // Preis, Kassenregeln, Quellen und Rho-Angaben: src/data/dexa.js. FAQ: src/data/faqData.js (sichtbar = FAQPage-Schema).
 // Keine Heilungsversprechen, keine automatische Therapieempfehlung, keine Aussage „beste Methode“ oder „strahlungsfrei“.
-
-const img = (name) => `${import.meta.env.BASE_URL}assets/images/${name}`;
-
-const H3 = ({ children, className = '', id }) => (
-  <h3 id={id} className={`font-display text-xl font-semibold tracking-tight text-slate-900 dark:text-white ${className}`}>{children}</h3>
-);
-const P = ({ children, className = '' }) => (
-  <p className={`text-[1.0625rem] leading-relaxed text-slate-700 dark:text-slate-200 ${className}`}>{children}</p>
-);
-const Bullets = ({ items, cols = false }) => (
-  <ul className={cols ? 'grid grid-cols-1 gap-x-8 gap-y-3 md:grid-cols-2' : 'space-y-3'}>
-    {items.map((item) => (
-      <li key={item} className="flex gap-3 text-[1.0625rem] leading-relaxed text-slate-700 dark:text-slate-200">
-        <span aria-hidden="true" className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand dark:bg-brand-300" />
-        <span>{item}</span>
-      </li>
-    ))}
-  </ul>
-);
-const extLink = 'font-semibold text-brand underline underline-offset-4 hover:text-brand-700 dark:text-brand-300';
-const NewWindow = () => <span className="sr-only"> (öffnet in neuem Fenster)</span>;
-const linkRow =
-  'flex min-h-[56px] items-center gap-3 rounded-xl border border-slate-200 bg-white p-4 font-semibold text-slate-900 hover:border-brand-200 hover:text-brand dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:hover:text-brand-300';
 
 const INDICATIONS = [
   'Frauen nach der Menopause',
@@ -115,8 +94,8 @@ const KnochendichtePage = () => {
           </a>
         }
         image={{
-          src: img('knochendichte_v3.avif'),
-          srcSet: `${img('knochendichte_v3-mobile.avif')} 800w, ${img('knochendichte_v3-tablet.avif')} 1200w, ${img('knochendichte_v3.avif')} 1920w`,
+          src: imageUrl('knochendichte_v3'),
+          srcSet: imageSrcSet('knochendichte_v3'),
           sizes: '(max-width: 1023px) 100vw, 50vw',
           alt: IMAGE_BRIEFS.dexaDevice.alt,
           width: 1920,

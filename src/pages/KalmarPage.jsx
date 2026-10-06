@@ -3,10 +3,10 @@ import { Award, BookOpen, Briefcase, GraduationCap, ArrowLeft, CheckCircle2 } fr
 import { Link } from 'react-router-dom';
 import { SITE_URL } from '../data/routes';
 import { TEAM } from '../data/team';
+import { imageUrl, imageSrcSet } from '../components/ui/Picture';
 
 // Porträt und Person-Schema aus derselben Quelle (src/data/team.js)
 const doctor = TEAM.kalmar;
-const imageUrl = (variant = '') => `${import.meta.env.BASE_URL}assets/images/${doctor.photo.name}${variant}.avif`;
 
 const KalmarPage = () => {
   const sections = [
@@ -112,8 +112,8 @@ const KalmarPage = () => {
           >
             <div className="glass p-2 rounded-[48px] shadow-2xl relative aspect-[4/5] overflow-hidden">
               <img
-                src={imageUrl()}
-                srcSet={`${imageUrl('-mobile')} 800w, ${imageUrl('-tablet')} 1200w, ${imageUrl()} 1920w`}
+                src={imageUrl(doctor.photo.name)}
+                srcSet={imageSrcSet(doctor.photo.name)}
                 sizes="(max-width: 1023px) 90vw, 380px"
                 alt={doctor.photo.alt}
                 className="w-full h-full object-cover object-[20%_center] rounded-[40px] grayscale-[0.3] hover:grayscale-0 transition-all duration-700"

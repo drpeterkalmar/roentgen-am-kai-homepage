@@ -3,6 +3,7 @@
 // Bei Änderungen (Preis, Kassenregeln, Ablauf) NUR hier anpassen.
 // Stand: Praxisangaben 26.09.2026 (Telegram-Gruppe „Homepage“).
 // Keine Kostenübernahmen, Zertifizierungen oder Bewertungen ergänzen, die die Praxis nicht bestätigt hat.
+import { listDE } from '../lib/text.js';
 
 export const DEXA = {
   // ── Preis & Abrechnung ─────────────────────────────────────────────
@@ -58,7 +59,6 @@ const fmtEUR = (n) => `${n} Euro`;
 export const DEXA_PRICE_TEXT = fmtEUR(DEXA.priceEUR); // „70 Euro“
 export const DEXA_PRICE_SHORT = `${DEXA.priceEUR} €`; // „70 €“
 export const DEXA_PRICE_LINE = `Preis für ÖGK-Versicherte: ${DEXA_PRICE_TEXT}`;
-const listDE = (a) => (a.length < 2 ? a.join('') : `${a.slice(0, -1).join(', ')} und ${a[a.length - 1]}`);
 export const DEXA_OTHER_CARRIERS = listDE(DEXA.otherCarriers); // „BVAEB, SVS und KFA Graz“
 
 export const DEXA_META_DESCRIPTION =

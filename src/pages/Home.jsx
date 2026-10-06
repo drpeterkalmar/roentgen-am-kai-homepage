@@ -20,31 +20,18 @@ import { services } from '../data/services';
 import { SCREENING_HOME_LINE, SCREENING_HOME_CARD } from '../data/screening';
 import { IMAGE_BRIEFS } from '../data/imageBriefs';
 import { goals } from '../data/goals';
-import { PHONE_HREF, PHONE_DISPLAY, OPENING_HOURS, MAPS_ROUTE_URL, ADDRESS } from '../data/practice';
+import { PHONE_HREF, PHONE_DISPLAY, OPENING_HOURS_SHORT, MAPS_ROUTE_URL, ADDRESS } from '../data/practice';
+import Picture, { imageUrl, imageSrcSet } from '../components/ui/Picture';
+import { listDE } from '../lib/text';
 
 const AREA_ICONS = { roentgen: Scan, ultraschall: Waves, spezialroentgen: Monitor, zahn: ToothIcon };
 
-const img = (name) => `${import.meta.env.BASE_URL}assets/images/${name}`;
-const srcSet = (name) =>
-  `${img(`${name}-mobile.avif`)} 800w, ${img(`${name}-tablet.avif`)} 1200w, ${img(`${name}.avif`)} 1920w`;
-
 // Vorhandene Praxisfotos (AVIF mit Handy-/Tablet-Varianten aus scripts/optimize-images.js)
 const Photo = ({ name, alt = '', sizes = '(max-width: 767px) 100vw, 400px' }) => (
-  <img
-    src={img(`${name}.avif`)}
-    srcSet={srcSet(name)}
-    sizes={sizes}
-    alt={alt}
-    width="800"
-    height="500"
-    loading="lazy"
-    decoding="async"
-    className="aspect-[16/10] w-full object-cover"
-  />
+  <Picture name={name} sizes={sizes} alt={alt} width="800" height="500" className="aspect-[16/10] w-full object-cover" />
 );
 
-const hours = OPENING_HOURS.map((h) => `${h.short} ${h.opens}–${h.closes}`).join(', ');
-const listDE = (a) => (a.length < 2 ? a.join('') : `${a.slice(0, -1).join(', ')} und ${a[a.length - 1]}`);
+const hours = OPENING_HOURS_SHORT;
 const ONLINE = listDE(Object.values(services).filter((s) => s.onlineBooking).map((s) => s.short));
 
 // Die drei Schwerpunkte (Texte von der Praxis vorgegeben, 26.09.2026)
@@ -111,8 +98,8 @@ const Home = () => (
       }
       image={{
         // identisch zum Preload in index.html (srcset/sizes), sonst lädt der Browser doppelt
-        src: img('hero-slide-1.avif'),
-        srcSet: srcSet('hero-slide-1'),
+        src: imageUrl('hero-slide-1'),
+        srcSet: imageSrcSet('hero-slide-1'),
         sizes: '(max-width: 1023px) 100vw, 50vw',
         alt: 'Eingang der Ordination Röntgen am Kai in der Körösistraße 9, Graz',
         width: 800,
@@ -340,7 +327,7 @@ const Home = () => (
           <h3 id="hk-anfahrt" className="mb-5 font-display text-xl font-semibold text-slate-900 dark:text-white">Anfahrt</h3>
           <a href={MAPS_ROUTE_URL} target="_blank" rel="noopener noreferrer" className="mb-5 block overflow-hidden rounded-xl border border-slate-200 dark:border-slate-700">
             <img
-              src={img('footer-map.avif')}
+              src={imageUrl('footer-map')}
               alt="Lageplan: Körösistraße 9, 8010 Graz – Route in Google Maps öffnen (neues Fenster)"
               loading="lazy"
               width="400"

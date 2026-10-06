@@ -9,13 +9,13 @@ import Placeholder from '../components/ui/Placeholder';
 import { SectionHeading } from '../components/ui/Heading';
 import { StatusBadge, AppointmentActions, AreaCard, RadiationInfo } from '../components/exams/ExamParts';
 import { AREAS, EXAMS_CRUMB, RADIATION_BY_AREA, XRAY_HOURS_NOTE, WALK_IN, APPOINTMENT_REQUIRED } from '../data/examinations';
-import { OPENING_HOURS } from '../data/practice';
+import { OPENING_HOURS_SHORT } from '../data/practice';
 
 // /weitere-untersuchungen – Übersicht, gegliedert nach der Terminlogik:
 //   1. Ohne vorherige Terminvereinbarung (Röntgen – immer mit Zuweisung und e-card)
 //   2. Termin erforderlich (Ultraschall, Spezialröntgen, Zahnröntgen und 3D-DVT)
 const ICONS = { ultraschall: Waves, spezialroentgen: Monitor, zahn: ToothIcon };
-const hours = OPENING_HOURS.map((h) => `${h.short} ${h.opens}–${h.closes}`).join(', ') + ' Uhr';
+const hours = OPENING_HOURS_SHORT + ' Uhr';
 
 const WeitereUntersuchungenPage = () => {
   const xray = AREAS.roentgen;

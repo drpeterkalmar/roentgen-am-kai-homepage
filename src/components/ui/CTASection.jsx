@@ -1,6 +1,6 @@
 import Container from './Container';
 import { BookingButton, PhoneButton } from './BookingButtons';
-import { OPENING_HOURS } from '../../data/practice';
+import { OPENING_HOURS_SHORT } from '../../data/practice';
 
 // Einheitlicher Abschluss-Aufruf „Termin vereinbaren“ (online + telefonisch).
 const CTASection = ({
@@ -20,7 +20,7 @@ const CTASection = ({
           <p className="mt-3 text-lg text-brand-50">{text}</p>
           {showHours && (
             <p className="mt-3 text-sm text-white">
-              Öffnungszeiten: {OPENING_HOURS.map((h) => `${h.short} ${h.opens}–${h.closes}`).join(', ')} Uhr
+              Öffnungszeiten: {OPENING_HOURS_SHORT} Uhr
             </p>
           )}
         </div>

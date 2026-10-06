@@ -1,32 +1,18 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, CalendarDays } from 'lucide-react';
 import ImagePlaceholder from '../ui/ImagePlaceholder';
+import Picture from '../ui/Picture';
 import { BookingButton, PhoneButton } from '../ui/BookingButtons';
 import { IMAGE_BRIEFS } from '../../data/imageBriefs';
 import { TARGETS, categoryById, formatDate } from '../../data/ratgeber';
 
 // Gemeinsame Bausteine für Ratgeber-Übersicht und Artikelseiten.
 
-const img = (name) => `${import.meta.env.BASE_URL}assets/images/${name}`;
-
 // Echtes Praxisfoto (mit -mobile/-tablet-Varianten) oder Bildplatzhalter mit Motivbeschreibung
 export const ArticleImage = ({ article, sizes, eager = false, className = 'aspect-[4/3] w-full' }) => {
   const p = article.photo;
   if (!p) return <ImagePlaceholder brief={IMAGE_BRIEFS[article.imageBrief]} className={className} />;
-  return (
-    <img
-      src={img(`${p.name}.avif`)}
-      srcSet={`${img(`${p.name}-mobile.avif`)} 800w, ${img(`${p.name}-tablet.avif`)} 1200w, ${img(`${p.name}.avif`)} 1920w`}
-      sizes={sizes}
-      alt={p.alt}
-      width={p.width}
-      height={p.height}
-      loading={eager ? 'eager' : 'lazy'}
-      fetchPriority={eager ? 'high' : undefined}
-      decoding="async"
-      className={`${className} object-cover`}
-    />
-  );
+  return <Picture name={p.name} sizes={sizes} alt={p.alt} width={p.width} height={p.height} eager={eager} className={`${className} object-cover`} />;
 };
 
 export const CategoryBadge = ({ id }) => (

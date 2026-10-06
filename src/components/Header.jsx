@@ -4,7 +4,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, Phone, Sun, Moon, Contrast } from 'lucide-react';
 import logo from '../assets/images/rak-logo-128.png';
 import { MAIN_NAV, LEGAL_NAV, isActive } from '../data/navigation';
-import { PHONE_DISPLAY, PHONE_HREF, OPENING_HOURS } from '../data/practice';
+import { PHONE_DISPLAY, PHONE_HREF, OPENING_HOURS_SHORT } from '../data/practice';
 import { BookingButton } from './ui/BookingButtons';
 import { cx } from './ui/cx';
 
@@ -280,7 +280,7 @@ const Header = ({ isDark, toggleTheme, highContrast, setHighContrast }) => {
           <p>
             <span className="font-medium text-slate-800 dark:text-slate-100">Alle Kassen und privat</span>
             <span aria-hidden="true" className="mx-2">·</span>
-            {OPENING_HOURS.map((h) => `${h.short} ${h.opens}–${h.closes}`).join(', ')} Uhr
+            {OPENING_HOURS_SHORT} Uhr
           </p>
           <div className="flex items-center gap-2">
             <a href={PHONE_HREF} className="inline-flex min-h-[40px] items-center gap-2 rounded-lg px-2 font-medium text-slate-800 hover:text-brand dark:text-slate-100 dark:hover:text-brand-300">

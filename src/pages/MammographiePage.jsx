@@ -10,6 +10,7 @@ import { SectionHeading } from '../components/ui/Heading';
 import { BookingButton } from '../components/ui/BookingButtons';
 import { buttonClasses } from '../components/ui/Button';
 import FAQ, { useRouteFaq } from '../components/FAQ';
+import { H3, P, Bullets, NewWindow, extLink } from '../components/ui/Text';
 import { IMAGE_BRIEFS } from '../data/imageBriefs';
 import { PHONE_HREF, PHONE_DISPLAY, MAPS_ROUTE_URL } from '../data/practice';
 import {
@@ -25,24 +26,6 @@ import {
 // Programmregeln kommen aus src/data/screening.js, FAQ aus src/data/faqData.js (sichtbar = FAQPage-Schema).
 // Röntgen am Kai bietet KEINE Tomosynthese/3D-Mammographie an – nicht erwähnen.
 
-const H3 = ({ children, className = '' }) => (
-  <h3 className={`font-display text-xl font-semibold tracking-tight text-slate-900 dark:text-white ${className}`}>{children}</h3>
-);
-const P = ({ children, className = '' }) => (
-  <p className={`text-[1.0625rem] leading-relaxed text-slate-700 dark:text-slate-200 ${className}`}>{children}</p>
-);
-const Bullets = ({ items }) => (
-  <ul className="space-y-3">
-    {items.map((item) => (
-      <li key={typeof item === 'string' ? item : item.key} className="flex gap-3 text-[1.0625rem] leading-relaxed text-slate-700 dark:text-slate-200">
-        <span aria-hidden="true" className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand dark:bg-brand-300" />
-        <span>{item}</span>
-      </li>
-    ))}
-  </ul>
-);
-const extLink = 'font-semibold text-brand underline underline-offset-4 hover:text-brand-700 dark:text-brand-300';
-const NewWindow = () => <span className="sr-only"> (öffnet in neuem Fenster)</span>;
 const sl = SCREENING.serviceline;
 
 const STEPS = [

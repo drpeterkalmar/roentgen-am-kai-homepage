@@ -34,6 +34,9 @@ export const OPENING_HOURS = [
   { days: 'Freitag', short: 'Fr', opens: '08:00', closes: '13:00', schema: ['Friday'] },
 ];
 
+// Kurzform für Kopfzeile, Startseite und Terminblöcke: „Mo – Do 08:00–17:00, Fr 08:00–13:00“ (ohne „Uhr“)
+export const OPENING_HOURS_SHORT = OPENING_HOURS.map((h) => `${h.short} ${h.opens}–${h.closes}`).join(', ');
+
 // Anreise (von der Praxis bestätigt, 26.09.2026)
 export const TRANSPORT = {
   public: 'Straßenbahn 3 und 5, Bus 58 und 63 (Haltestelle Keplerbrücke)',

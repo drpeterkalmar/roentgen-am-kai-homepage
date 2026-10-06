@@ -3,26 +3,22 @@ import ServiceLayout from '../components/ServiceLayout';
 import { StatusBadge, AppointmentActions } from '../components/exams/ExamParts';
 import { AREAS } from '../data/examinations';
 import FAQ, { useRouteFaq } from '../components/FAQ';
+import { imageUrl, imageSrcSet } from '../components/ui/Picture';
 
 const PhlebographiePage = () => {
   const faq = useRouteFaq(); // FAQ laut Routentabelle (routes.js: faq) = FAQPage-Schema
   const LegComposite = (
     <div className="grid grid-cols-3 gap-2 md:gap-6 mb-16 px-2 md:px-0">
       {[
-        { id: 1, label: "Phlebografie Oberschenkel", img: "phlebo-leg-1.avif" },
-        { id: 2, label: "Phlebografie Knie", img: "phlebo-leg-2.avif" },
-        { id: 3, label: "Phlebografie Unterschenkel", img: "phlebo-leg-3.avif" }
+        { id: 1, label: "Phlebografie Oberschenkel", img: "phlebo-leg-1" },
+        { id: 2, label: "Phlebografie Knie", img: "phlebo-leg-2" },
+        { id: 3, label: "Phlebografie Unterschenkel", img: "phlebo-leg-3" }
       ].map((segment) => {
-        const base = import.meta.env.BASE_URL;
-        const fullImg = `${base}assets/images/${segment.img}`;
-        const mobileImg = fullImg.replace('.avif', '-mobile.avif');
-        const tabletImg = fullImg.replace('.avif', '-tablet.avif');
-        
         return (
           <div key={segment.id} className="group relative bg-[#000] border border-gray-800 flex items-center justify-center overflow-visible">
             <img 
-              src={fullImg} 
-              srcSet={`${mobileImg} 800w, ${tabletImg} 1200w, ${fullImg} 1920w`}
+              src={imageUrl(segment.img)} 
+              srcSet={imageSrcSet(segment.img)}
               sizes="(max-width: 768px) 33vw, 33vw"
               className="max-w-full max-h-[70vh] w-auto h-auto block transition-transform duration-700 group-hover:scale-105 shadow-2xl" 
               alt={segment.label} 

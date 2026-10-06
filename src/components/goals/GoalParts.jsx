@@ -12,53 +12,21 @@ import { BookingButton, PhoneButton } from '../ui/BookingButtons';
 import { IMAGE_BRIEFS } from '../../data/imageBriefs';
 import { GOAL_IMAGES, SOURCES, goalById, HUB } from '../../data/healthGoals';
 import { BODY, BODY_PRICE_TEXT, BODY_PACKAGE_TEXT } from '../../data/bodyComposition';
-import { OPENING_HOURS } from '../../data/practice';
+import { OPENING_HOURS_SHORT } from '../../data/practice';
+import Picture, { imageUrl, imageSrcSet } from '../ui/Picture';
+import { H3, P, Bullets, textLink, NewWindow } from '../ui/Text';
 
 // Gemeinsame Bausteine der Gesundheitsziel-Seiten (/gesundheitsziele/*).
 // Texte stehen in den Seiten selbst; Fakten (Preise, Kassen, Screening) kommen aus src/data/*.
-
-const img = (name) => `${import.meta.env.BASE_URL}assets/images/${name}`;
-export const photoSrcSet = (name) =>
-  `${img(`${name}-mobile.avif`)} 800w, ${img(`${name}-tablet.avif`)} 1200w, ${img(`${name}.avif`)} 1920w`;
 
 // Foto aus GOAL_IMAGES oder Platzhalter aus IMAGE_BRIEFS
 export const GoalImage = ({ imageKey, sizes = '(max-width: 767px) 100vw, 400px', className = 'aspect-[4/3] w-full', eager = false }) => {
   const photo = GOAL_IMAGES[imageKey];
   if (!photo) return <ImagePlaceholder brief={IMAGE_BRIEFS[imageKey]} className={`${className} rounded-none`} />;
-  return (
-    <img
-      src={img(`${photo.name}.avif`)}
-      srcSet={photoSrcSet(photo.name)}
-      sizes={sizes}
-      alt={photo.alt}
-      width={photo.width}
-      height={photo.height}
-      loading={eager ? 'eager' : 'lazy'}
-      fetchPriority={eager ? 'high' : undefined}
-      decoding="async"
-      className={`${className} object-cover`}
-    />
-  );
+  return <Picture name={photo.name} sizes={sizes} alt={photo.alt} width={photo.width} height={photo.height} eager={eager} className={`${className} object-cover`} />;
 };
 
-export const H3 = ({ children, className = '', id }) => (
-  <h3 id={id} className={`font-display text-xl font-semibold tracking-tight text-slate-900 dark:text-white ${className}`}>{children}</h3>
-);
-export const P = ({ children, className = '' }) => (
-  <p className={`text-[1.0625rem] leading-relaxed text-slate-700 dark:text-slate-200 ${className}`}>{children}</p>
-);
-export const Bullets = ({ items, cols = false }) => (
-  <ul className={cols ? 'grid grid-cols-1 gap-x-8 gap-y-3 md:grid-cols-2' : 'space-y-3'}>
-    {items.map((item) => (
-      <li key={typeof item === 'string' ? item : item.key} className="flex gap-3 text-[1.0625rem] leading-relaxed text-slate-700 dark:text-slate-200">
-        <span aria-hidden="true" className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand dark:bg-brand-300" />
-        <span>{typeof item === 'string' ? item : item.content}</span>
-      </li>
-    ))}
-  </ul>
-);
-export const textLink = 'inline-flex min-h-[44px] items-center gap-2 font-semibold text-brand underline-offset-4 hover:underline dark:text-brand-300';
-export const NewWindow = () => <span className="sr-only"> (öffnet in neuem Fenster)</span>;
+// Textbausteine (H3, P, Bullets, textLink, NewWindow): components/ui/Text.jsx – hier für die Zielseiten weitergereicht
 
 // Weiche Trennstellen für lange Komposita in Überschriften (Browser trennt sonst falsch, z. B. „Körpe-ranalyse“)
 const SHY = [
@@ -93,7 +61,7 @@ export const GoalHero = ({ goalId, eyebrow, lead, keyMessage, actions, facts }) 
       keyMessage={keyMessage}
       facts={facts}
       actions={actions}
-      image={photo ? { src: img(`${photo.name}.avif`), srcSet: photoSrcSet(photo.name), sizes: '(max-width: 1023px) 100vw, 600px', alt: photo.alt, width: photo.width, height: photo.height, priority: true } : undefined}
+      image={photo ? { src: imageUrl(photo.name), srcSet: imageSrcSet(photo.name), sizes: '(max-width: 1023px) 100vw, 600px', alt: photo.alt, width: photo.width, height: photo.height, priority: true } : undefined}
       imageSlot={photo ? undefined : <ImagePlaceholder brief={IMAGE_BRIEFS[g.image]} className="h-full w-full" />}
     />
   );
@@ -225,7 +193,7 @@ export const MultiCTA = ({ id, title, text, items }) => (
       </ul>
       <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
         <PhoneButton label="Telefonisch vereinbaren" variant="secondary" size="lg" className="!border-white/60 !bg-transparent !text-white hover:!bg-white/10" />
-        <p className="text-sm text-white">Öffnungszeiten: {OPENING_HOURS.map((h) => `${h.short} ${h.opens}–${h.closes}`).join(', ')} Uhr</p>
+        <p className="text-sm text-white">Öffnungszeiten: {OPENING_HOURS_SHORT} Uhr</p>
       </div>
     </Container>
   </section>
@@ -236,4 +204,4 @@ export const SeeDoctor = ({ title = 'Bitte zuerst ärztlich abklären lassen', c
   <Notice tone="important" title={title} className={className}>{children}</Notice>
 );
 
-export { Section, Card, Notice, Placeholder, SectionHeading, BookingButton, PhoneButton, goalById };
+export { Section, Card, Notice, Placeholder, SectionHeading, BookingButton, PhoneButton, goalById, H3, P, Bullets, textLink, NewWindow };
