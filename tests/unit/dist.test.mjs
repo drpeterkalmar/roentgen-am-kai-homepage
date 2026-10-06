@@ -84,6 +84,18 @@ test('dist: Release-Build ohne „Interner Platzhalter“ (HTML und JavaScript),
   else assert.deepEqual(hits, [], 'Release-Build enthält „Interner Platzhalter“');
 });
 
+test('dist: interne Notizen (review, BODY.device) nur im Staging-Bundle', { skip: skip || (!variant && 'dist-ssr/ fehlt') }, async () => {
+  const { faqData } = await import('../../src/data/faqData.js');
+  const { ARTICLES } = await import('../../src/data/ratgeber.js');
+  const { BODY } = await import('../../src/data/bodyComposition.js');
+  const notes = [...Object.values(faqData).flat().map((i) => i.review), ...ARTICLES.map((a) => a.review), BODY.device].filter(Boolean);
+  assert.ok(notes.length > 5, 'interne Notizen gefunden');
+  const js = readdirSync(path.join(dist, 'assets')).filter((f) => f.endsWith('.js')).map((f) => read(`assets/${f}`)).join('\n');
+  const inBundle = notes.filter((n) => js.includes(n));
+  if (variant.SHOW_INTERNAL) assert.ok(inBundle.length > 0, 'Staging: Notizen erwartet');
+  else assert.deepEqual(inBundle, [], 'Release-Bundle enthält interne Notizen');
+});
+
 test('dist-ssr: vorgerendert werden genau die prerender-Routen der Routentabelle', { skip: skip || (!variant && 'dist-ssr/ fehlt') }, () => {
   assert.deepEqual(Object.keys(variant.PAGES).sort(), routes.filter((r) => r.prerender).map((r) => r.path).sort());
 });
