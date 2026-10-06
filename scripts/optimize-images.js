@@ -1,119 +1,64 @@
+// Bildvarianten erzeugen: Vorlagen in assets-src/images (jpg, png, webp, avif) →
+// public/assets/images/<name>.avif (1920 px), <name>-tablet.avif (1200 px), <name>-mobile.avif (800 px).
+// Aufruf: npm run images – lokal, das Ergebnis wird eingecheckt; der Build (auch in GitHub Actions)
+// verarbeitet keine Bilder.
+// - Die Vorlagen werden nie überschrieben: Ausgabe ausschließlich nach public/assets/images.
+// - Übersprungen wird per Inhalts-Hash der Vorlage (public/assets/images/manifest.json), nicht per Dateizeit.
+// - Erstlauf ohne Manifest-Eintrag: vorhandene Varianten werden übernommen, nicht neu codiert
+//   (jede Neucodierung kostet Bildqualität).
 import sharp from 'sharp';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import crypto from 'node:crypto';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const DIRS_TO_OPTIMIZE = [
-  path.join(__dirname, '../public/assets/images'),
-  path.join(__dirname, '../src/assets/images')
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const SRC = path.join(root, 'assets-src/images');
+const OUT = path.join(root, 'public/assets/images');
+const MANIFEST = path.join(OUT, 'manifest.json');
+const FORMATS = ['.jpg', '.jpeg', '.png', '.webp', '.avif'];
+const TIERS = [
+  { suffix: '', width: 1920, quality: 50 },
+  { suffix: '-tablet', width: 1200, quality: 45 },
+  { suffix: '-mobile', width: 800, quality: 40 },
 ];
-const SUPPORTED_FORMATS = ['.jpg', '.jpeg', '.png', '.webp', '.avif'];
 
-async function optimizeImages() {
-  let totalSkipped = 0;
-  let totalProcessed = 0;
+const sha256 = (buf) => crypto.createHash('sha256').update(buf).digest('hex');
+const manifest = fs.existsSync(MANIFEST) ? JSON.parse(fs.readFileSync(MANIFEST, 'utf8')) : {};
+const count = { made: 0, adopted: 0, skipped: 0 };
 
-  for (const IMAGES_DIR of DIRS_TO_OPTIMIZE) {
-    if (!fs.existsSync(IMAGES_DIR)) {
-      continue;
-    }
+for (const file of fs.readdirSync(SRC).sort()) {
+  if (!FORMATS.includes(path.extname(file).toLowerCase())) continue;
+  const name = path.basename(file, path.extname(file));
+  const source = path.join(SRC, file);
+  const input = fs.readFileSync(source);
+  const hash = sha256(input);
+  const outputs = TIERS.map((t) => path.join(OUT, `${name}${t.suffix}.avif`));
+  if (outputs.some((o) => path.resolve(o) === path.resolve(source))) throw new Error(`Vorlage = Ausgabe: ${file}`);
+  const complete = outputs.every((o) => fs.existsSync(o));
 
-    const files = fs.readdirSync(IMAGES_DIR);
-    console.log(`Scanning ${files.length} files in ${IMAGES_DIR}...`);
-
-    const imagePromises = files.map(async (file) => {
-      const ext = path.extname(file).toLowerCase();
-      
-      // Skip already processed variants, logos, or specific icons to avoid build issues
-      if (!SUPPORTED_FORMATS.includes(ext) || file.includes('-mobile') || file.includes('-tablet') || file.includes('logo') || file.includes('portal-qr') || file.startsWith('og-image')) {
-        return;
-      }
-
-      const inputPath = path.join(IMAGES_DIR, file);
-      const baseName = path.basename(file, ext);
-      
-      const desktopOutputPath = path.join(IMAGES_DIR, baseName + '.avif');
-      const tabletOutputPath = path.join(IMAGES_DIR, baseName + '-tablet.avif');
-      const mobileOutputPath = path.join(IMAGES_DIR, baseName + '-mobile.avif');
-
-      // --- Cache Check ---
-      let shouldSkip = false;
-      if (fs.existsSync(tabletOutputPath) && fs.existsSync(mobileOutputPath)) {
-        const inputStat = fs.statSync(inputPath);
-        const tabletStat = fs.statSync(tabletOutputPath);
-        const mobileStat = fs.statSync(mobileOutputPath);
-        
-        let desktopUpToDate = true;
-        if (ext !== '.avif') {
-           if (fs.existsSync(desktopOutputPath)) {
-             const desktopStat = fs.statSync(desktopOutputPath);
-             if (desktopStat.mtimeMs < inputStat.mtimeMs) {
-                desktopUpToDate = false;
-             }
-           } else {
-             desktopUpToDate = false;
-           }
-        }
-
-        // Allow 1000ms difference due to FS precision
-        if (desktopUpToDate && tabletStat.mtimeMs >= inputStat.mtimeMs - 1000 && mobileStat.mtimeMs >= inputStat.mtimeMs - 1000) {
-           shouldSkip = true;
-        }
-      }
-
-      if (shouldSkip) {
-        totalSkipped++;
-        return;
-      }
-      
-      try {
-        totalProcessed++;
-        console.log(`Processing ${file}...`);
-        
-        // Read into buffer to avoid "same file" errors during processing
-        const inputBuffer = await fs.promises.readFile(inputPath);
-        
-        // Process images concurrently
-        const sharpPromises = [
-          // 1. Desktop Tier (1920px)
-          sharp(inputBuffer)
-            .resize(1920, null, { withoutEnlargement: true })
-            .avif({ quality: 50 })
-            .toBuffer()
-            .then(buf => fs.promises.writeFile(desktopOutputPath, buf)),
-            
-          // 2. Tablet Tier (1200px)
-          sharp(inputBuffer)
-            .resize(1200, null, { withoutEnlargement: true })
-            .avif({ quality: 45 })
-            .toFile(tabletOutputPath),
-            
-          // 3. Mobile Tier (800px)
-          sharp(inputBuffer)
-            .resize(800, null, { withoutEnlargement: true })
-            .avif({ quality: 40 })
-            .toFile(mobileOutputPath)
-        ];
-
-        await Promise.all(sharpPromises);
-
-        // 4. Cleanup original if it was not an AVIF
-        // Originale werden NICHT mehr gelöscht (früher: unlink bei Nicht-AVIF → Datenverlust im Repo)
-
-      } catch (err) {
-        console.error(`Error processing ${file}:`, err.message);
-      }
-    });
-
-    await Promise.all(imagePromises);
+  if (complete && manifest[name]?.source === hash) {
+    count.skipped++;
+    continue;
   }
-  
-  console.log(`\nOverall optimization complete!`);
-  console.log(`✅ Processed: ${totalProcessed}`);
-  console.log(`⏭️  Skipped:   ${totalSkipped}`);
+  if (complete && !manifest[name]) {
+    manifest[name] = { file, source: hash };
+    count.adopted++;
+    continue;
+  }
+  for (const [i, t] of TIERS.entries()) {
+    const buf = await sharp(input).resize(t.width, null, { withoutEnlargement: true }).avif({ quality: t.quality }).toBuffer();
+    fs.writeFileSync(outputs[i], buf);
+  }
+  manifest[name] = { file, source: hash };
+  count.made++;
+  console.log(`erzeugt: ${name}.avif, ${name}-tablet.avif, ${name}-mobile.avif`);
 }
 
-optimizeImages();
+// Einträge gelöschter Vorlagen entfernen (die Ausgaben bleiben – Bilder löscht man bewusst von Hand)
+for (const [name, entry] of Object.entries(manifest)) {
+  if (!fs.existsSync(path.join(SRC, entry.file))) delete manifest[name];
+}
+const sorted = Object.fromEntries(Object.keys(manifest).sort().map((k) => [k, manifest[k]]));
+fs.writeFileSync(MANIFEST, JSON.stringify(sorted, null, 2) + '\n');
+console.log(`Bilder: ${count.made} erzeugt, ${count.adopted} übernommen, ${count.skipped} unverändert – Manifest ${path.relative(root, MANIFEST)}`);

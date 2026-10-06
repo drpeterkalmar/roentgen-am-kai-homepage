@@ -35,6 +35,13 @@ npm run test:e2e                    # elf Suiten nacheinander, oder einzeln: pyt
 ```
 Die Suiten nie parallel starten (ein Browser zur Zeit).
 
+## Bilder
+- Vorlagen (Originalfotos) liegen in `assets-src/images`. `npm run images` erzeugt daraus
+  `public/assets/images/<name>.avif` (1920 px), `-tablet` (1200 px) und `-mobile` (800 px) – nur bei neuer oder
+  geänderter Vorlage (Inhalts-Hash in `public/assets/images/manifest.json`), die Vorlagen werden nie überschrieben.
+- Ergebnis einchecken; der Build verarbeitet keine Bilder (`sharp` ist nur Entwicklungsabhängigkeit).
+- Im Code: `components/ui/Picture.jsx` (`<Picture name=… />`, `imageUrl`, `imageSrcSet`).
+
 ## Build/Deploy
 - Zwei Varianten: `npm run build` = Release (interne Platzhalter für die Praxis ausgeblendet) und
   `npm run build:staging` = Staging (`VITE_INTERNAL_NOTES=1` aus `.env.staging`, interne Platzhalter sichtbar).
