@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 import { RotateCcw } from 'lucide-react';
 import { cx } from './ui/cx';
 
@@ -92,7 +92,8 @@ const DexaScanFigure = ({ mode = 'body', visceral = false, className }) => {
   const legend = mode === 'bone' ? LEGEND_BONE : showVat ? LEGEND_VAT : [];
   const ref = useRef(null);
   const [run, setRun] = useState(0);
-  const uid = `dexa-${mode}`;
+  // eindeutig je Figur (auch mehrere Figuren desselben Modus auf einer Seite); ohne „:“ für url(#…)
+  const uid = `dexa-${mode}-${useId().replace(/:/g, '')}`;
 
   useEffect(() => {
     const el = ref.current;

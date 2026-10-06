@@ -179,6 +179,14 @@ export const formatDate = (iso) => {
   return `${d}. ${MONTHS[mo - 1]} ${y}`;
 };
 
+// Reihenfolge der Übersicht: Artikel in Vorbereitung (ohne Datum) zuerst, dann neueste zuerst; Gleichstand nach
+// Titel – ein konsistenter Vergleich (vorher lieferten zwei Artikel ohne Datum beide −1).
+export const byArticleOrder = (a, b) => {
+  if (!a.datePublished !== !b.datePublished) return a.datePublished ? 1 : -1;
+  if (a.datePublished && b.datePublished && a.datePublished !== b.datePublished) return b.datePublished.localeCompare(a.datePublished);
+  return a.title.localeCompare(b.title, 'de');
+};
+
 export const ARTICLE_ROUTES = ARTICLES.map((a) => ({
   path: a.path,
   page: 'ArticlePage',

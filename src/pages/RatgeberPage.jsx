@@ -5,16 +5,12 @@ import Section from '../components/ui/Section';
 import CTASection from '../components/ui/CTASection';
 import { cx } from '../components/ui/cx';
 import { ArticleImage, CategoryBadge, ArticleDate } from '../components/ratgeber/ArticleParts';
-import { ARTICLES, CATEGORIES } from '../data/ratgeber';
+import { ARTICLES, CATEGORIES, byArticleOrder } from '../data/ratgeber';
 
 // Ratgeber-Übersicht: Artikel als echte Links (/ratgeber/<slug>), Filter nach Rubrik (?rubrik=<id>).
-// Reihenfolge: Artikel in Vorbereitung zuerst (Auftrag: „erster Artikel“), dann neueste zuerst.
+// Reihenfolge: Artikel in Vorbereitung zuerst (Auftrag: „erster Artikel“), dann neueste zuerst (ratgeber.js).
 // Die frühere Modal-Ansicht (components/Blog.jsx) ist ersetzt – Artikel haben jetzt eigene URLs.
-const sorted = [...ARTICLES].sort((a, b) => {
-  if (!a.datePublished) return -1;
-  if (!b.datePublished) return 1;
-  return b.datePublished.localeCompare(a.datePublished);
-});
+const sorted = [...ARTICLES].sort(byArticleOrder);
 
 const RatgeberPage = () => {
   const [params, setParams] = useSearchParams();
