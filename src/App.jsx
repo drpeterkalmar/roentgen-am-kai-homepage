@@ -5,7 +5,7 @@ import Home from './pages/Home'
 import Footer from './components/Footer'
 import SchemaMarkup from './components/SchemaMarkup'
 import MobileActions from './components/MobileActions'
-import ScrollToHash from './components/ScrollToHash'
+import RouteEffects from './components/RouteEffects'
 import RouteMeta from './components/RouteMeta'
 import PageTransition from './components/PageTransition'
 import { RouteErrorBoundary } from './components/ErrorBoundary'
@@ -37,8 +37,6 @@ const RatgeberPage = lazy(() => import('./pages/RatgeberPage'))
 const ArticlePage = lazy(() => import('./pages/ArticlePage'))
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
 const KontaktPage = lazy(() => import('./pages/KontaktPage'))
-
-// ScrollToTop removed in favor of ScrollToHash
 
 function App() {
   const [highContrast, setHighContrast] = useState(false);
@@ -76,7 +74,7 @@ function App() {
 
   return (
     <Router basename={import.meta.env.BASE_URL}>
-      <ScrollToHash />
+      <RouteEffects />
       <RouteMeta />
       <SchemaMarkup />
       <div className="flex min-h-screen flex-col bg-white pb-[calc(56px+env(safe-area-inset-bottom))] text-slate-800 dark:bg-slate-950 dark:text-slate-200 md:pb-0">

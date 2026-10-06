@@ -142,6 +142,7 @@ const MobilePanel = ({ open, onClose, pathname, toggles, returnFocusRef }) => {
 
   useEffect(() => {
     if (!open) return undefined;
+    const openedAt = window.location.pathname; // Pfad beim Öffnen merken
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     const first = panelRef.current?.querySelector('button, a');
@@ -162,7 +163,9 @@ const MobilePanel = ({ open, onClose, pathname, toggles, returnFocusRef }) => {
     return () => {
       document.body.style.overflow = prevOverflow;
       document.removeEventListener('keydown', onKey);
-      returnTo?.focus();
+      // Fokus nur zurück auf „Menü“, wenn die Seite gleich bleibt (Escape, Schließen). Nach einem Klick auf
+      // eine andere Seite setzt RouteEffects den Fokus auf den Inhalt (#main).
+      if (window.location.pathname === openedAt) returnTo?.focus();
     };
   }, [open, onClose, returnFocusRef]);
 

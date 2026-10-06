@@ -31,7 +31,7 @@ Browser-Tests (Playwright, Python) laufen gegen den Staging-Build (mit internen 
 ```bash
 npm run build:staging
 npx vite preview --port 4174 &      # PID merken, danach beenden
-npm run test:e2e                    # zehn Suiten nacheinander, oder einzeln: python3 -u tests/e2e_site.py
+npm run test:e2e                    # elf Suiten nacheinander, oder einzeln: python3 -u tests/e2e_site.py
 ```
 Die Suiten nie parallel starten (ein Browser zur Zeit).
 
