@@ -20,7 +20,7 @@ export const blogPosts = [
       
       <p>Das Ergebnis wird immer gemeinsam mit Ihren Risikofaktoren ärztlich beurteilt. Sprechen Sie mit Ihrer Ärztin oder Ihrem Arzt, ob eine DEXA-Messung für Sie sinnvoll ist. Mehr dazu auf unserer Seite zur Knochendichtemessung.</p>
     `,
-    image: 'assets/images/knochendichte.avif',
+    image: 'assets/images/portrait-riegler.avif',
     status: 'published'
   },
   {

@@ -2,6 +2,11 @@ import { motion, MotionConfig } from 'framer-motion';
 import { Award, BookOpen, Briefcase, GraduationCap, ArrowLeft, CheckCircle2, FileText } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { SITE_URL } from '../data/routes';
+import { TEAM } from '../data/team';
+
+// Porträt und Person-Schema aus derselben Quelle (src/data/team.js)
+const doctor = TEAM.riegler;
+const imageUrl = (variant = '') => `${import.meta.env.BASE_URL}assets/images/${doctor.photo.name}${variant}.avif`;
 
 const RieglerPage = () => {
   const sections = [
@@ -81,17 +86,17 @@ const RieglerPage = () => {
   const personSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
-    "name": "Priv. Doz. Dr. Georg Riegler",
+    "name": doctor.name,
     "jobTitle": "Facharzt für Radiologie",
     "worksFor": {
       "@type": "MedicalBusiness",
       "name": "Röntgen am Kai",
       "@id": `${SITE_URL}/#praxis`
     },
-    "url": `${SITE_URL}/unser-team/dr-georg-riegler`,
-    "image": `${SITE_URL}/assets/images/dr-riegler.avif`,
+    "url": `${SITE_URL}${doctor.path}`,
+    "image": `${SITE_URL}/assets/images/${doctor.photo.name}.avif`,
     "alumniOf": "Medizinische Universität Wien",
-    "description": "Facharzt für Radiologie mit Spezialisierung auf hochauflösenden Ultraschall und neuromuskuläre Diagnostik."
+    "description": doctor.description
   };
 
   return (
@@ -117,10 +122,10 @@ const RieglerPage = () => {
           >
             <div className="glass p-2 rounded-[48px] shadow-2xl relative aspect-[4/5] overflow-hidden">
                <img 
-                src={`${import.meta.env.BASE_URL}assets/images/knochendichte.avif`}
-                srcSet={`${import.meta.env.BASE_URL}assets/images/knochendichte-mobile.avif 800w, ${import.meta.env.BASE_URL}assets/images/knochendichte-tablet.avif 1200w, ${import.meta.env.BASE_URL}assets/images/knochendichte.avif 1920w`}
+                src={imageUrl()}
+                srcSet={`${imageUrl('-mobile')} 800w, ${imageUrl('-tablet')} 1200w, ${imageUrl()} 1920w`}
                 sizes="(max-width: 1023px) 90vw, 380px" 
-                alt="Priv. Doz. Dr. Georg Riegler" 
+                alt={doctor.photo.alt} 
                 className="w-full h-full object-cover rounded-[40px] grayscale-[0.3] hover:grayscale-0 transition-all duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1f2937]/40 to-transparent pointer-events-none" />
