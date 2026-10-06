@@ -7,7 +7,7 @@ Moderne, responsive Homepage für die Radiologie-Ordination "Röntgen am Kai" in
 ## Tech Stack
 - **Framework**: React 18 (Vite)
 - **Styling**: Tailwind CSS
-- **Animationen**: Framer Motion
+- **Animationen**: CSS (index.css, „Bewegung reduzieren“ wird beachtet)
 - **Icons**: Lucide React
 
 ## Features

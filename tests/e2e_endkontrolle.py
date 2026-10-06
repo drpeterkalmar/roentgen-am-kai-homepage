@@ -225,6 +225,14 @@ with sync_playwright() as p:
         res = p2.evaluate("async () => { const r = await axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21aa'] } }); return r.violations.map(v => [v.id, v.impact, v.nodes.length, v.nodes.slice(0,2).map(n => n.target.join(' '))]); }")
         check(not res, f"axe WCAG AA {r['path']}: {res}")
     c.close()
+    # axe dunkel: Teamseiten (Designsystem seit 10/2026, vorher eigenes Layout)
+    c = b.new_context(viewport={"width": 1280, "height": 900}, color_scheme="dark"); p2 = c.new_page()
+    for pth in ["/unser-team/dr-peter-kalmar", "/unser-team/dr-georg-riegler"]:
+        p2.goto(BASE + pth, wait_until="networkidle"); p2.wait_for_timeout(200)
+        p2.add_script_tag(content=AXE)
+        res = p2.evaluate("async () => { const r = await axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21aa'] } }); return r.violations.map(v => [v.id, v.impact, v.nodes.length, v.nodes.slice(0,2).map(n => n.target.join(' '))]); }")
+        check(not res and p2.evaluate("document.documentElement.classList.contains('dark')"), f"axe WCAG AA dunkel {pth}: {res}")
+    c.close()
     b.close()
 
 summary = "\n".join([f"Endkontrolle Röntgen am Kai – {len(R)} Routen", "RESULT: " + ("ALL GREEN" if not fails else f"{len(fails)} FAIL"), ""]

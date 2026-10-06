@@ -1,5 +1,6 @@
-// Ärzteteam – EINE Quelle für die Teamseiten: sichtbares Porträt und Person-Schema (image) kommen aus
-// derselben Konstante, damit sie nicht wieder auseinanderlaufen (Gutachten 05.10.2026, P1-4).
+// Ärzteteam – EINE Quelle für die Teamseiten: sichtbares Porträt und Person-Schema (Name, Bild, Adresse,
+// Beschreibung, Universität) kommen aus derselben Konstante, damit sie nicht wieder auseinanderlaufen
+// (Gutachten 05.10.2026, P1-4).
 // Fotozuordnung von Peter bestätigt (06.10.2026). Dateien in public/assets/images, je Bild drei Größen
 // (<name>.avif 1920 px, -tablet 1200 px, -mobile 800 px). Die früheren Namen waren irreführend:
 //   portrait-kalmar         = früher hero-slide-2  (Dr. Kalmar am Befundungsplatz)
@@ -16,6 +17,7 @@ export const TEAM = {
     path: '/unser-team/dr-peter-kalmar',
     photo: { name: 'portrait-kalmar', width: 1920, height: 1280, alt: 'Priv.-Doz. Dr. Peter Kalmar am Befundungsplatz' },
     description: 'Facharzt für Radiologie mit Spezialisierung auf Gefäßtherapie und interventionelle Radiologie.',
+    alumniOf: 'Medizinische Universität Graz',
   },
   riegler: {
     id: 'riegler',
@@ -24,6 +26,7 @@ export const TEAM = {
     path: '/unser-team/dr-georg-riegler',
     photo: { name: 'portrait-riegler', width: 1920, height: 1280, alt: 'Priv.-Doz. Dr. Georg Riegler' },
     description: 'Facharzt für Radiologie mit Spezialisierung auf hochauflösenden Ultraschall und neuromuskuläre Diagnostik.',
+    alumniOf: 'Medizinische Universität Wien',
   },
 };
 

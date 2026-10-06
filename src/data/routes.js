@@ -177,6 +177,7 @@ export const routes = [
   {
     path: '/unser-team/dr-peter-kalmar',
     page: 'KalmarPage',
+    crumb: 'Peter Kalmar', // sichtbare Brotkrumen = BreadcrumbList
     title: 'Priv. Doz. Dr. Peter Kalmar – Facharzt für Radiologie',
     fullTitle: 'Priv. Doz. Dr. Peter Kalmar – Facharzt für Radiologie | Röntgen am Kai',
     description: 'Priv. Doz. Dr. Peter Kalmar, Facharzt für Radiologie bei Röntgen am Kai in Graz: Werdegang, Schwerpunkte und Publikationen.',
@@ -185,6 +186,7 @@ export const routes = [
   {
     path: '/unser-team/dr-georg-riegler',
     page: 'RieglerPage',
+    crumb: 'Georg Riegler', // sichtbare Brotkrumen = BreadcrumbList
     title: 'Priv. Doz. Dr. Georg Riegler – Facharzt für Radiologie',
     fullTitle: 'Priv. Doz. Dr. Georg Riegler – Radiologe in Graz | Röntgen am Kai',
     description: 'Priv. Doz. Dr. Georg Riegler, Facharzt für Radiologie bei Röntgen am Kai in Graz: Werdegang, Schwerpunkte und Publikationen.',
