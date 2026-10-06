@@ -6,10 +6,12 @@ import react from '@vitejs/plugin-react'
 const base = process.env.BASE_PATH || '/roentgen-am-kai-homepage/'
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ isSsrBuild }) => ({
   base,
   plugins: [react()],
   build: {
+    // Vorrender-Build (--ssr nach dist-ssr) braucht public/ nicht (Bilder, PDFs) – nur dist bekommt die Kopie
+    copyPublicDir: !isSsrBuild,
     rollupOptions: {
       output: {
         // React/Router ändern sich selten → eigener vendor-Chunk, bleibt bei Content-Updates im Browser-Cache
@@ -22,4 +24,4 @@ export default defineConfig({
       },
     },
   },
-})
+}))

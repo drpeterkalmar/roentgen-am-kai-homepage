@@ -1,8 +1,4 @@
 {
-  "about-team": {
-    "file": "about-team.avif",
-    "source": "58e02d30c3ea9c82e5bf4a0757fda5fbac2ac27f2c8c40bc613adf0796b04486"
-  },
   "dexa-koerperanalyse-ganzkoerperscan": {
     "file": "dexa-koerperanalyse-ganzkoerperscan.avif",
     "source": "2059914225441f0291c6f6cbf93a9cf03845b8a7657d8a4a99fd80196507ee74"
@@ -15,49 +11,17 @@
     "file": "dvt.avif",
     "source": "ad3f04d485b3ab4c2a5f14e599340037082b387f879eba4a4191d04a8183e114"
   },
-  "dvt_v3": {
-    "file": "dvt_v3.avif",
-    "source": "72acb42e29c6ebaa611d6e6042774c3eb2f85ed839f27de47a9546f2108065d0"
-  },
   "footer-map": {
     "file": "footer-map.avif",
     "source": "62d05951bdbc3aceba8082850b8807aad23eaae4b39a6bca0e3f11138f9353a0"
-  },
-  "glass-bg": {
-    "file": "glass-bg.avif",
-    "source": "083bc476c17c30b22448bf8838039a415b42dac42b4bb69d635a1a09620da085"
-  },
-  "hero-clinic": {
-    "file": "hero-clinic.avif",
-    "source": "dd93942cb80004e6cab1d260d6b4902b3994255e56ea2a79c8a7fe271fb7ac9e"
-  },
-  "hero-home-2025": {
-    "file": "hero-home-2025.avif",
-    "source": "8b3f1e43b68e98220c17b69f42cf9e10fe178c546a8caf7f254d3b6bdec54fb4"
   },
   "hero-slide-1": {
     "file": "hero-slide-1.avif",
     "source": "1aae7f1ef40065a5d3e8f51bc375f4d4011d25f0d1929e470e4ae6ac2b213941"
   },
-  "hero-slide-3": {
-    "file": "hero-slide-3.avif",
-    "source": "183b875a555a232809084d596831bedd4f30cacb339faa510aaacdbbf3f5aff1"
-  },
-  "hero-slide-4": {
-    "file": "hero-slide-4.avif",
-    "source": "1281f18ea54ba26792b9380b2ab8cdd665ee8b67ea700e42c004b00efff72f3f"
-  },
-  "hero_building": {
-    "file": "hero_building.avif",
-    "source": "1aae7f1ef40065a5d3e8f51bc375f4d4011d25f0d1929e470e4ae6ac2b213941"
-  },
   "hero_interior": {
     "file": "hero_interior.avif",
     "source": "9516335aacb403d2698db84e7de296d39fa23fdda020928e9728f5172112ba9a"
-  },
-  "knochendichte_v2": {
-    "file": "knochendichte_v2.avif",
-    "source": "fee40255a7dc16ec35fa35c4374aedae46e97d67875dd0b0ac7dc611165ab1aa"
   },
   "knochendichte_v3": {
     "file": "knochendichte_v3.avif",
@@ -91,10 +55,6 @@
     "file": "phlebographie.avif",
     "source": "b9c776c613ace1bd9317b23657131c14dd6b42e5032eb7cf93f29d6b585fa5e7"
   },
-  "phlebographie_v3": {
-    "file": "phlebographie_v3.avif",
-    "source": "1977dc86e0b1342b80cec7dcb122d9e191257778117bc09a7b720f909536d0e7"
-  },
   "portrait-kalmar": {
     "file": "portrait-kalmar.avif",
     "source": "9d39a25432635998cd5104da19e1a16c09ff6ab351afbb8c91edba63297576b3"
@@ -110,10 +70,6 @@
   "roentgen": {
     "file": "roentgen.avif",
     "source": "db2a1cec343848614d38642fa6c7ce549450ce12f301d0bc42de113762bf9cee"
-  },
-  "roentgen_v3": {
-    "file": "roentgen_v3.avif",
-    "source": "bb3d4eb6d6bd7f564dc18ae7049941d9008cc6e72aaa35daee22f4597ebd6b43"
   },
   "service_densitometry": {
     "file": "service_densitometry.avif",
