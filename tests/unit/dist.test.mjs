@@ -57,6 +57,17 @@ test('dist: 404.html mit noindex, Startseiten-Link und Telefon', { skip }, () =>
   assert.ok(html.includes('href="tel:+43' + '3168409050"'));
 });
 
+// Build-Variante aus dem SSR-Bundle desselben Builds (gleicher Modus wie der Client-Build)
+const ssrEntry = path.join(root, 'dist-ssr/entry-server.js');
+const variant = !skip && existsSync(ssrEntry) ? await import(ssrEntry) : null;
+
+test('dist: Release-Build ohne „Interner Platzhalter“ (HTML und JavaScript), Staging-Build mit', { skip: skip || (!variant && 'dist-ssr/ fehlt') }, () => {
+  const files = [...htmlFiles(), ...readdirSync(path.join(dist, 'assets')).filter((f) => f.endsWith('.js')).map((f) => `assets/${f}`)];
+  const hits = files.filter((f) => read(f).includes('Interner Platzhalter'));
+  if (variant.SHOW_INTERNAL) assert.ok(hits.length > 0, 'Staging-Build: interne Platzhalter erwartet');
+  else assert.deepEqual(hits, [], 'Release-Build enthält „Interner Platzhalter“');
+});
+
 test('dist: vorgerenderte Seiten enthalten den Seiteninhalt (Körpernavigator nur auf /roentgen-graz)', { skip }, () => {
   for (const r of routes.filter((x) => x.prerender)) {
     const html = read(`${r.path.slice(1)}/index.html`);

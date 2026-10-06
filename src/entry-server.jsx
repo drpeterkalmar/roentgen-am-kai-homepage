@@ -13,6 +13,9 @@ import SpezialroentgenPage from './pages/SpezialroentgenPage';
 import ZahnroentgenDvtPage from './pages/ZahnroentgenDvtPage';
 import PhlebographiePage from './pages/PhlebographiePage';
 
+// Build-Variante (Staging mit internen Platzhaltern oder Release) – für die Prüfung der Build-Ausgabe (tests/unit/dist.test.mjs)
+export { SHOW_INTERNAL } from './components/ui/Placeholder';
+
 export const PAGES = {
   '/weitere-untersuchungen': WeitereUntersuchungenPage,
   '/roentgen-graz': RoentgenGrazPage,

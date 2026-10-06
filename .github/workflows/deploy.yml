@@ -40,9 +40,12 @@ jobs:
 
       - name: Build
         run: npm run build
-        # Beim Umzug auf die eigene Domain (röntgen-am-kai.at) PFLICHT, sonst laufen alle Assets ins Leere:
-        # env:
-        #   BASE_PATH: /
+        env:
+          # github.io ist die Staging-Seite: interne Platzhalter für die Praxis sichtbar lassen.
+          # Release-Build (eigene Domain) ohne diese Variable → interne Platzhalter ausgeblendet.
+          VITE_INTERNAL_NOTES: '1'
+          # Beim Umzug auf die eigene Domain (röntgen-am-kai.at) PFLICHT, sonst laufen alle Assets ins Leere:
+          # BASE_PATH: /
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
