@@ -171,8 +171,7 @@ const MobilePanel = ({ open, onClose, pathname, toggles, returnFocusRef }) => {
 
   if (!open) return null;
 
-  // Portal an <body>: der Header hat backdrop-filter und wäre sonst Bezugsrahmen für position:fixed
-  // (Panel würde auf Header-Höhe beschnitten).
+  // Portal an <body>: Das Panel liegt so unabhängig vom (klebenden) Header über der ganzen Seite.
   return createPortal(
     <div className="fixed inset-0 z-[70] xl:hidden">
       <div className="anim-fade-in absolute inset-0 bg-slate-900/40" aria-hidden="true" onClick={onClose} />
@@ -270,10 +269,27 @@ const Header = ({ isDark, toggleTheme, highContrast, setHighContrast }) => {
 
   useEffect(() => setMenuOpen(false), [pathname]);
 
+  // Tatsächliche Header-Höhe als CSS-Variable (Anker-Abstand scroll-padding-top, klebende Seitenleisten).
+  // Die festen Werte in index.css bleiben als Startwert bzw. Rückfall ohne ResizeObserver.
+  const headerRef = useRef(null);
+  useEffect(() => {
+    const el = headerRef.current;
+    if (!el || typeof ResizeObserver === 'undefined') return undefined;
+    const root = document.documentElement;
+    const update = () => root.style.setProperty('--header-height', `${Math.round(el.getBoundingClientRect().height)}px`);
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => {
+      ro.disconnect();
+      root.style.removeProperty('--header-height');
+    };
+  }, []);
+
   const toggleProps = { isDark, toggleTheme, highContrast, setHighContrast };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-sm dark:border-slate-800 dark:bg-slate-950/95">
+    <header ref={headerRef} className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 dark:border-slate-800 dark:bg-slate-950/95">
       {/* Servicezeile (ab Tablet) */}
       <div className="hidden border-b border-slate-100 bg-slate-50 dark:border-slate-800 dark:bg-slate-900 md:block">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-1.5 text-sm text-slate-600 dark:text-slate-300 sm:px-6 lg:px-8">

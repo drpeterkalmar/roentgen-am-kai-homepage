@@ -47,7 +47,7 @@
   --primary: #8B2323;
   --primary-rgb: 139, 35, 35;
   --primary-hover: #761D1D;
-  --header-height: 176px; /* Höhe des fixierten Headers (Desktop, 3 Zeilen) */
+  --header-height: 176px; /* Höhe des Headers (Desktop, 3 Zeilen) – Startwert; Header.jsx misst und setzt den echten Wert */
   color-scheme: light;
 }
 .dark { color-scheme: dark; }
@@ -74,12 +74,13 @@
   p { text-wrap: pretty; }
   #root { min-height: 100vh; display: flex; flex-direction: column; }
 
-  /* Tastatur-Fokus sichtbar (WCAG 2.4.7 / 2.4.11) */
+  /* Tastatur-Fokus sichtbar (WCAG 2.4.7 / 2.4.11). Gerundeter Fokusrahmen nur für Elemente ohne eigene
+     Rundung – Schaltflächen mit rounded-* behalten beim Fokus ihre Form. */
   :focus-visible {
     outline: 3px solid #8B2323;
     outline-offset: 3px;
-    border-radius: 6px;
   }
+  :focus-visible:not([class*="rounded"]) { border-radius: 6px; }
   .dark :focus-visible { outline-color: #F28B82; }
   .bg-brand-800 :focus-visible,
   .bg-brand :focus-visible,

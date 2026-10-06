@@ -27,3 +27,7 @@ dist-ssr
 # If you want to keep clinic images in git, leave this. 
 # If they are too large (>100MB), you might want to use LFS or exclude them.
 # For now, we keep them as they are essential for the site.
+
+# Python (tests/_paths.py)
+__pycache__/
+
