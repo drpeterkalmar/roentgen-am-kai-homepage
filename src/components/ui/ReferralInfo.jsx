@@ -1,4 +1,3 @@
-import React from 'react';
 import { FileText, CreditCard } from 'lucide-react';
 import { services } from '../../data/services';
 

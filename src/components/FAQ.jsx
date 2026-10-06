@@ -1,4 +1,4 @@
-import React, { useState, useId } from 'react';
+import { useState, useId } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { cx } from './ui/cx';
 import Placeholder from './ui/Placeholder';

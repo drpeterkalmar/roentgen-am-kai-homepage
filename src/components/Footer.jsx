@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/images/rak-logo-128.png';
 import { MAIN_NAV, LEGAL_NAV, OTHER_EXAMS } from '../data/navigation';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, CalendarCheck } from 'lucide-react';
 import { cx } from './cx';

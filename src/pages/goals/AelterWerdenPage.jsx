@@ -1,6 +1,5 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Bone, Activity, Footprints, Dumbbell, Utensils, AlertTriangle, BedDouble, TrendingDown, UserRound } from 'lucide-react';
+import { ArrowRight, Bone, Activity, Footprints, Dumbbell, Utensils, BedDouble, TrendingDown, UserRound } from 'lucide-react';
 import {
   GoalPage, GoalHero, OnThisPage, Section, Card, SectionHeading, BookingButton, P, H3, textLink,
   RelatedGoals, SourcesSection, SeeDoctor, MultiCTA, goalById,

@@ -1,4 +1,3 @@
-import React from 'react';
 import { MapPin, Phone, Mail, Clock, Train, Car } from 'lucide-react';
 import { ADDRESS, PHONE_DISPLAY, PHONE_HREF, EMAIL, OPENING_HOURS, TRANSPORT, MAPS_ROUTE_URL } from '../../data/practice';
 import { cx } from './cx';

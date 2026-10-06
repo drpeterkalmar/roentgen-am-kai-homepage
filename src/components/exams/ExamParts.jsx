@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { CalendarClock, CheckCircle2, FileText, MapPin, Phone, Info, ArrowRight } from 'lucide-react';
 import { cx } from '../ui/cx';

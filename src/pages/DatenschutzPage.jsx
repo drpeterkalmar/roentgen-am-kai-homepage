@@ -1,4 +1,3 @@
-import React from 'react';
 import { Lock } from 'lucide-react';
 import { COMPANY_NAME } from '../data/company';
 

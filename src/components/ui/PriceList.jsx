@@ -1,4 +1,3 @@
-import React from 'react';
 import { selfPayPrices } from '../../data/services';
 import Placeholder from './Placeholder';
 import { cx } from './cx';

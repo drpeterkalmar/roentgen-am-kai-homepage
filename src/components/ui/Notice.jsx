@@ -1,4 +1,3 @@
-import React from 'react';
 import { Info, AlertTriangle, CheckCircle2 } from 'lucide-react';
 import { cx } from './cx';
 

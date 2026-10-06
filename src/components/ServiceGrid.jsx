@@ -1,4 +1,3 @@
-import React from 'react';
 import { services } from '../data/services';
 import { serviceIcons } from './serviceIcons';
 import ServiceCard from './ui/ServiceCard';

@@ -1,10 +1,8 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ExternalLink, Phone, AlertTriangle, BookOpen, MapPin } from 'lucide-react';
 import Hero from '../components/ui/Hero';
 import Section from '../components/ui/Section';
 import Card from '../components/ui/Card';
-import Notice from '../components/ui/Notice';
 import Placeholder from '../components/ui/Placeholder';
 import ImagePlaceholder from '../components/ui/ImagePlaceholder';
 import CTASection from '../components/ui/CTASection';

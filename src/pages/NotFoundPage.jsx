@@ -1,4 +1,3 @@
-import React from 'react';
 import { Home, BookOpen, Phone } from 'lucide-react';
 import Container from '../components/ui/Container';
 import Button from '../components/ui/Button';

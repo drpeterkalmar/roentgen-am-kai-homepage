@@ -1,7 +1,6 @@
 // Vorrendern für Seiten, die auch ohne JavaScript vollständig nutzbar sein müssen (routes.js: prerender: true).
 // Wird von `vite build --ssr` gebaut und von scripts/postbuild.mjs aufgerufen; im Browser lädt die App wie gewohnt
 // (main.jsx rendert neu – keine Hydration, daher keine Abweichungen durch Dunkelmodus o. Ä.).
-import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import Header from './components/Header';

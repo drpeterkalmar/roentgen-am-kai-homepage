@@ -1,4 +1,3 @@
-import React from 'react';
 import { Syringe, AlertTriangle } from 'lucide-react';
 import ServiceLayout from '../components/ServiceLayout';
 import { StatusBadge, AppointmentActions } from '../components/exams/ExamParts';

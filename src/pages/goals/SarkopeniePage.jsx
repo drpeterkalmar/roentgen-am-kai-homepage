@@ -1,6 +1,5 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Hand, Gauge, Footprints, Ruler, CheckCircle2, XCircle } from 'lucide-react';
+import { ArrowRight, Hand, Gauge, Ruler, CheckCircle2, XCircle } from 'lucide-react';
 import {
   GoalPage, GoalHero, OnThisPage, Section, Card, Notice, SectionHeading, BookingButton, PhoneButton,
   P, H3, Bullets, textLink, RelatedGoals, SourcesSection, SeeDoctor, BodyPriceNote,

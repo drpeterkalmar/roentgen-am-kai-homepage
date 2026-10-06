@@ -1,4 +1,3 @@
-import React from 'react';
 import { Image } from 'lucide-react';
 import { PORTAL_URL } from '../data/practice';
 import Container from './ui/Container';

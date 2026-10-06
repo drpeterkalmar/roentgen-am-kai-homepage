@@ -1,4 +1,3 @@
-import React from 'react';
 import { cx } from './cx';
 
 // Einheitliche Inhaltsbreiten:

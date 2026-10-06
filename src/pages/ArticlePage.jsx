@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Stethoscope, UserRound } from 'lucide-react';
 import Container from '../components/ui/Container';

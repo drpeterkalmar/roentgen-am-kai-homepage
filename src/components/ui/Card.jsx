@@ -1,4 +1,3 @@
-import React from 'react';
 import { cx } from './cx';
 
 // Ruhige Karte: weiße Fläche, feine Kontur, dezenter Schatten – kein Glas-/Blur-Effekt.

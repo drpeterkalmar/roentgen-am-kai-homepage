@@ -1,4 +1,3 @@
-import React from 'react';
 import { cx } from './cx';
 
 // Deutlich sichtbarer Platzhalter für Angaben, die die Praxis noch liefern muss.

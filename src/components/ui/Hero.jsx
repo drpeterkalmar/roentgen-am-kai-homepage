@@ -1,4 +1,3 @@
-import React from 'react';
 import { cx } from './cx';
 import Container from './Container';
 import { Eyebrow, Heading, Lead } from './Heading';

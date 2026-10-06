@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { faqData, faqSchemaItems } from '../data/faqData';
 import { SITE_URL, findRoute, fullTitle } from '../data/routes';

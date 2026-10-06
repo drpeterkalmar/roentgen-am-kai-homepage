@@ -1,4 +1,4 @@
-import React, { useState, useId } from 'react';
+import { useState, useId } from 'react';
 import { ClipboardCheck, Phone } from 'lucide-react';
 import Button from './ui/Button';
 import { BookingButton } from './ui/BookingButtons';

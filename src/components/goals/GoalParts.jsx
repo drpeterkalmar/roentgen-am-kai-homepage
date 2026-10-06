@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, BookOpen, ExternalLink, Stethoscope } from 'lucide-react';
 import Hero from '../ui/Hero';

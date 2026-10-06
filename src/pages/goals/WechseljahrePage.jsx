@@ -1,8 +1,7 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, HeartPulse, Bone, Activity, CalendarClock } from 'lucide-react';
 import {
-  GoalPage, GoalHero, OnThisPage, Section, Card, Notice, SectionHeading, BookingButton, P, H3, Bullets, textLink,
+  GoalPage, GoalHero, OnThisPage, Section, Card, Notice, BookingButton, P, H3, textLink,
   RelatedGoals, SourcesSection, MultiCTA, NewWindow, shy,
 } from '../../components/goals/GoalParts';
 import { SCREENING, INTERVAL_TEXT, SCREENING_ONLY_WITHOUT_SYMPTOMS } from '../../data/screening';

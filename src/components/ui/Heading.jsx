@@ -1,4 +1,3 @@
-import React from 'react';
 import { cx } from './cx';
 
 // Typografie-Skala (mobile-first). Die Ebene (h1–h4) bestimmt die Semantik,

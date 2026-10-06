@@ -1,4 +1,3 @@
-import React from 'react';
 import { ShieldCheck, Github } from 'lucide-react';
 import { COMPANY_NAME, FN, FB_GERICHT, UID, RECHTSFORM, SITZ, GEGENSTAND } from '../data/company';
 

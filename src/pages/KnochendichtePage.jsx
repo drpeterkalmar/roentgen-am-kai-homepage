@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, BookOpen, MapPin, Phone, CalendarCheck, Scale, ExternalLink } from 'lucide-react';
 import Hero from '../components/ui/Hero';

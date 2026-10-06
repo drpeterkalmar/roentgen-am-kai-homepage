@@ -1,4 +1,3 @@
-import React from 'react';
 import Container from './Container';
 import { BookingButton, PhoneButton } from './BookingButtons';
 import { OPENING_HOURS } from '../../data/practice';

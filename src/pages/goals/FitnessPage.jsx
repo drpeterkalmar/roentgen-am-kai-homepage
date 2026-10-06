@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Flag, Dumbbell, Zap, HeartPulse, TrendingDown, Repeat, Ban } from 'lucide-react';
 import {

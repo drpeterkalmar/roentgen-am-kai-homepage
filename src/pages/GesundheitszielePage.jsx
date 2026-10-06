@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowRight, CalendarCheck, Phone, MapPin, Pill, Bone, Scissors, UserRound, HeartHandshake, Activity, Stethoscope } from 'lucide-react';
 import Hero from '../components/ui/Hero';

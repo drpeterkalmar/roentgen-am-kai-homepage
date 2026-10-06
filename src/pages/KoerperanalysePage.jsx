@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   ArrowRight, BookOpen, CalendarCheck, CheckCircle2, MapPin, Phone, Scale, Activity, Dumbbell, HeartPulse,

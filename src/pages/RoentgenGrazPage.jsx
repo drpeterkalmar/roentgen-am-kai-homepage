@@ -1,4 +1,3 @@
-import React from 'react';
 import { FileText, Send, Clock, MapPin, Images, Stethoscope } from 'lucide-react';
 import Hero from '../components/ui/Hero';
 import Section from '../components/ui/Section';

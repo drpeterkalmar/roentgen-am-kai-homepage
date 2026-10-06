@@ -1,6 +1,5 @@
-import React from 'react';
 import { motion, MotionConfig } from 'framer-motion';
-import { Calendar, Award, BookOpen, Briefcase, GraduationCap, ArrowLeft, Mail, Phone, Globe, CheckCircle2, Clock, FileText } from 'lucide-react';
+import { Award, BookOpen, Briefcase, GraduationCap, ArrowLeft, CheckCircle2, FileText } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { SITE_URL } from '../data/routes';
 

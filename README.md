@@ -22,8 +22,23 @@ npm install
 npm run dev
 ```
 
-## Deployment
-Automatisiert via GitHub Pages (GitHub Actions).
+## Prüfen
+```bash
+npm test             # = npm run lint && npm run test:unit (Sekunden, läuft auch in GitHub Actions vor dem Build)
+npm run test:unit    # Node-Unit-Tests in tests/unit (Daten, Routen, Suche; Build-Ausgabe nur, wenn dist/ existiert)
+```
+Browser-Tests (Playwright, Python) laufen gegen die gebaute Seite – Voraussetzung:
 ```bash
 npm run build
+npx vite preview --port 4174 &      # PID merken, danach beenden
+npm run test:e2e                    # zehn Suiten nacheinander, oder einzeln: python3 -u tests/e2e_site.py
 ```
+Die Suiten nie parallel starten (ein Browser zur Zeit).
+
+## Build/Deploy
+- `npm run build` = Client-Build (`vite build`) + Vorrendern (`vite build --ssr src/entry-server.jsx` nach `dist-ssr/`) + `scripts/postbuild.mjs`.
+- `postbuild.mjs` schreibt aus `src/data/routes.js` je Route eine eigene HTML-Datei (Titel, Description, Canonical, OG),
+  rendert die Seiten mit `prerender: true` vollständig vor (ohne JavaScript nutzbar), erzeugt die Weiterleitungsseiten
+  für alte Adressen, `404.html`, `sitemap.xml` und `robots.txt`.
+- Deploy automatisch per GitHub Actions (`.github/workflows/deploy.yml`) bei jedem Push auf `main`:
+  Lint → Unit-Tests → Build → GitHub Pages.

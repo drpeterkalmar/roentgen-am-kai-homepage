@@ -1,4 +1,3 @@
-import React from 'react';
 import { CalendarCheck, Phone, MapPin } from 'lucide-react';
 import { BOOKING_URL, PHONE_HREF, PHONE_DISPLAY, MAPS_ROUTE_URL } from '../data/practice';
 
