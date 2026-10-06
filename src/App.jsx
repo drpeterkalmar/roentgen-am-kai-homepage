@@ -9,6 +9,7 @@ import ScrollToHash from './components/ScrollToHash'
 import RouteMeta from './components/RouteMeta'
 import PageTransition from './components/PageTransition'
 import { RouteErrorBoundary } from './components/ErrorBoundary'
+import { readTheme, writeTheme, prefersDark } from './lib/storage'
 
 // Lazy loaded pages
 const RoentgenGrazPage = lazy(() => import('./pages/RoentgenGrazPage'))
@@ -43,9 +44,10 @@ function App() {
   const [highContrast, setHighContrast] = useState(false);
   const [isDark, setIsDark] = useState(() => {
     if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('theme');
+      // Lesen abgesichert (lib/storage.js): gesperrter Speicher darf den Start nicht verhindern
+      const saved = readTheme();
       if (saved) return saved === 'dark';
-      return window.matchMedia('(prefers-color-scheme: dark)').matches;
+      return prefersDark();
     }
     return false;
   });
@@ -59,7 +61,7 @@ function App() {
   const toggleTheme = () => {
     setIsDark((prev) => {
       const next = !prev;
-      try { localStorage.setItem('theme', next ? 'dark' : 'light'); } catch { /* privater Modus */ }
+      writeTheme(next ? 'dark' : 'light');
       return next;
     });
   };
