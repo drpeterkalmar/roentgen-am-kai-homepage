@@ -73,6 +73,7 @@ export const GOAL_IMAGES = {
 export const HEALTH_GOALS = [
   {
     id: 'wechseljahre',
+    page: 'goals/WechseljahrePage', // Seitenkomponente (src/pages/goals)
     slug: 'frauengesundheit-wechseljahre',
     keyword: 'Wechseljahre Vorsorge Graz · Frauengesundheit Graz',
     navName: 'Frauengesundheit und Wechseljahre',
@@ -87,6 +88,7 @@ export const HEALTH_GOALS = [
   },
   {
     id: 'abnehmen',
+    page: 'goals/AbnehmenPage', // Seitenkomponente (src/pages/goals)
     slug: 'gesund-abnehmen',
     keyword: 'gesund abnehmen Graz',
     navName: 'Gesund abnehmen',
@@ -101,6 +103,7 @@ export const HEALTH_GOALS = [
   },
   {
     id: 'abnehmspritze',
+    page: 'goals/AbnehmspritzePage', // Seitenkomponente (src/pages/goals)
     slug: 'abnehmspritze-koerperanalyse',
     keyword: 'Abnehmspritze Muskelverlust · Körperanalyse Abnehmspritze',
     navName: 'Abnehmspritze und Muskelverlust',
@@ -115,6 +118,7 @@ export const HEALTH_GOALS = [
   },
   {
     id: 'fitness',
+    page: 'goals/FitnessPage', // Seitenkomponente (src/pages/goals)
     slug: 'fitness-muskelaufbau',
     keyword: 'Körperanalyse Fitness Graz',
     navName: 'Fitness und Muskelaufbau',
@@ -129,6 +133,7 @@ export const HEALTH_GOALS = [
   },
   {
     id: 'aelter',
+    page: 'goals/AelterWerdenPage', // Seitenkomponente (src/pages/goals)
     slug: 'gesund-aelter-werden',
     keyword: 'Knochengesundheit im Alter',
     navName: 'Gesund älter werden',
@@ -143,6 +148,7 @@ export const HEALTH_GOALS = [
   },
   {
     id: 'sarkopenie',
+    page: 'goals/SarkopeniePage', // Seitenkomponente (src/pages/goals)
     slug: 'muskelverlust-sarkopenie',
     keyword: 'Muskelmasse messen Graz · Sarkopenie Graz',
     navName: 'Muskelverlust und Sarkopenie',
@@ -158,6 +164,7 @@ export const HEALTH_GOALS = [
   {
     // Spezialthema – nicht im Hauptmenü und nicht als Hub-Karte; dezent verlinkt (Hub, Fitness, Knochendichte)
     id: 'sport',
+    page: 'goals/SportPage', // Seitenkomponente (src/pages/goals)
     slug: 'dexa-sportler-red-s',
     special: true,
     keyword: 'DEXA für Sportler Graz',
@@ -201,6 +208,7 @@ export const HUB = {
 export const GOAL_ROUTES = [
   {
     path: GOALS_BASE,
+    page: 'GesundheitszielePage',
     fullTitle: HUB.fullTitle,
     title: HUB.title,
     h1: HUB.h1,
@@ -210,6 +218,7 @@ export const GOAL_ROUTES = [
   },
   ...HEALTH_GOALS.map((g) => ({
     path: goalPath(g),
+    page: g.page,
     fullTitle: `${g.fullTitle} | Röntgen am Kai`.length <= 70 ? `${g.fullTitle} | Röntgen am Kai` : g.fullTitle,
     title: g.crumb,
     h1: g.h1,

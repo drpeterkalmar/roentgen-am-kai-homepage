@@ -51,6 +51,14 @@ with sync_playwright() as p:
     pg.click('main a[href="#gemeinsam"] >> nth=0'); pg.wait_for_timeout(1500)
     top = pg.evaluate("document.getElementById('gemeinsam').getBoundingClientRect().top")
     check(-5 <= top <= 260, f"Sprungmarke #gemeinsam (top={round(top)})")
+
+    # Alte Adresse innerhalb der App (ohne Neuladen) → Weiterleitung mit Anker wie die statische Seite
+    pg.goto(BASE + "/", wait_until="networkidle")
+    pg.evaluate("history.pushState({}, '', '/roentgen-am-kai-homepage/unser-angebot/digitales-roentgen/lungenroentgen'); dispatchEvent(new PopStateEvent('popstate'))")
+    pg.wait_for_timeout(2000)
+    top = pg.evaluate("document.getElementById('lunge-brustkorb')?.getBoundingClientRect().top ?? -1")
+    check(pg.url.endswith("/roentgen-graz#lunge-brustkorb") and 0 <= top < 450,
+          f"alte Adresse in der App → /roentgen-graz#lunge-brustkorb mit Sprung zur Gruppe ({pg.url.replace(BASE, '')}, top={round(top)})")
     ctx.close()
 
     # --- 2. Handy-Menü: Klick → neue Seite, Fokus auf #main; Escape → Fokus auf „Menü“ ---

@@ -7,7 +7,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { routes, fullTitle, SITE_URL } from '../src/data/routes.js';
+import { routes, fullTitle, SITE_URL, LEGACY_REDIRECTS } from '../src/data/routes.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dist = path.join(root, 'dist');
@@ -84,28 +84,10 @@ for (const route of routes) {
   }
 }
 
-// Alte Pfade → neue Seiten. GitHub Pages kann kein HTTP-301; Meta-Refresh 0 s + Canonical
-// wertet Google als permanente Weiterleitung. Nach dem Domain-Umzug auf einen eigenen Server: echte 301.
-const legacy = {
-  '/unser-angebot': '/#services',
-  // Weitere Untersuchungen neu strukturiert (04.10.2026): Röntgen, Ultraschall, Spezialröntgen, Zahnröntgen/DVT
-  '/unser-angebot/digitales-roentgen': '/roentgen-graz',
-  '/unser-angebot/digitales-roentgen/lungenroentgen': '/roentgen-graz#lunge-brustkorb',
-  '/unser-angebot/digitales-roentgen/wirbelsaeulenroentgen': '/roentgen-graz#wirbelsaeule',
-  '/unser-angebot/digitales-roentgen/roentgen-nach-unfall': '/roentgen-graz',
-  '/unser-angebot/roentgen': '/roentgen-graz',
-  '/unser-angebot/ultraschall': '/ultraschall-graz',
-  '/unser-angebot/dvt': '/zahnroentgen-dvt-graz',
-  // Mammographie-Seite ist nach /mammographie-graz umgezogen (26.09.2026)
-  '/unser-angebot/mammographie': '/mammographie-graz',
-  '/unser-angebot/mammographie/mammascreening': '/mammographie-graz',
-  // Knochendichte-Seite ist nach /knochendichtemessung-graz umgezogen (26.09.2026)
-  '/unser-angebot/knochendichte': '/knochendichtemessung-graz',
-  // Körperanalyse-Seite ist nach /koerperanalyse-graz umgezogen (27.09.2026)
-  '/unser-angebot/koerperfettmessung': '/koerperanalyse-graz',
-  '/datenschutzerklarung': '/datenschutz',
-};
-for (const [from, to] of Object.entries(legacy)) {
+// Alte Pfade → neue Seiten (Tabelle LEGACY_REDIRECTS in src/data/routes.js – dieselbe nutzt die App).
+// GitHub Pages kann kein HTTP-301; Meta-Refresh 0 s + Canonical wertet Google als permanente Weiterleitung.
+// Nach dem Domain-Umzug auf einen eigenen Server: echte 301.
+for (const [from, to] of Object.entries(LEGACY_REDIRECTS)) {
   const target = base.replace(/\/$/, '') + to;
   const canonical = urlFor(to.split('#')[0] || '/');
   const html = `<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><title>Weiterleitung – Röntgen am Kai</title>`
@@ -138,4 +120,4 @@ const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://w
 fs.writeFileSync(path.join(dist, 'sitemap.xml'), sitemap);
 fs.writeFileSync(path.join(dist, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`);
 
-console.log(`postbuild: ${routes.length} Routen (${prerendered} vorgerendert) + ${Object.keys(legacy).length} Weiterleitungen (${written} Dateien), 404.html, sitemap.xml, robots.txt – base ${base}`);
+console.log(`postbuild: ${routes.length} Routen (${prerendered} vorgerendert) + ${Object.keys(LEGACY_REDIRECTS).length} Weiterleitungen (${written} Dateien), 404.html, sitemap.xml, robots.txt – base ${base}`);

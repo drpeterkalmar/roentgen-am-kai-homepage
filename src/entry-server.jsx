@@ -1,28 +1,21 @@
 // Vorrendern für Seiten, die auch ohne JavaScript vollständig nutzbar sein müssen (routes.js: prerender: true).
 // Wird von `vite build --ssr` gebaut und von scripts/postbuild.mjs aufgerufen. Im Browser übernimmt main.jsx
 // das HTML per hydrateRoot – deshalb derselbe Seitenrahmen wie in der App (AppShell) und dieselbe Struktur
-// (Routes → Seite). Die Seiten werden hier direkt importiert (kein lazy, sonst käme nur der Ladeplatzhalter).
+// (Routes → Seite). Die Seiten werden hier direkt geladen (kein lazy, sonst käme nur der Ladeplatzhalter).
 import { renderToString } from 'react-dom/server';
 import { StaticRouter, Routes, Route } from 'react-router-dom';
 import AppShell from './AppShell';
-import WeitereUntersuchungenPage from './pages/WeitereUntersuchungenPage';
-import RoentgenGrazPage from './pages/RoentgenGrazPage';
-import UltraschallGrazPage from './pages/UltraschallGrazPage';
-import SpezialroentgenPage from './pages/SpezialroentgenPage';
-import ZahnroentgenDvtPage from './pages/ZahnroentgenDvtPage';
-import PhlebographiePage from './pages/PhlebographiePage';
+import { routes } from './data/routes';
 
 // Build-Variante (Staging mit internen Platzhaltern oder Release) – für die Prüfung der Build-Ausgabe (tests/unit/dist.test.mjs)
 export { SHOW_INTERNAL } from './components/ui/Placeholder';
 
-export const PAGES = {
-  '/weitere-untersuchungen': WeitereUntersuchungenPage,
-  '/roentgen-graz': RoentgenGrazPage,
-  '/ultraschall-graz': UltraschallGrazPage,
-  '/spezialroentgen': SpezialroentgenPage,
-  '/zahnroentgen-dvt-graz': ZahnroentgenDvtPage,
-  '/unser-angebot/phlebographie': PhlebographiePage,
-};
+const modules = import.meta.glob('./pages/**/*.jsx', { eager: true });
+
+// Seiten zum Vorrendern: alle Routen mit prerender: true aus der Routentabelle
+export const PAGES = Object.fromEntries(
+  routes.filter((r) => r.prerender).map((r) => [r.path, modules[`./pages/${r.page}.jsx`].default])
+);
 
 export const render = (path, basename) => {
   const Page = PAGES[path];

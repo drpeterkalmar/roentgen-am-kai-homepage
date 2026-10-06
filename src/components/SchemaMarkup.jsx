@@ -55,21 +55,11 @@ const SchemaMarkup = () => {
       "isAcceptingNewPatients": true
     };
 
-    // 2. FAQ Schema - zentrale Quelle: src/data/faqData.js
-    // Eine Quelle fuer sichtbaren FAQ-Block UND JSON-LD (kein Drift mehr moeglich).
-    const PATH_TO_FAQ = {
-      '/knochendichtemessung-graz': 'knochendichte',
-      '/mammographie-graz': 'mammographie',
-      '/koerperanalyse-graz': 'koerperanalyse',
-      '/roentgen-graz': 'roentgen',
-      '/ultraschall-graz': 'ultraschall',
-      '/unser-angebot/phlebographie': 'phlebographie',
-      '/zahnroentgen-dvt-graz': 'dvt',
-      // Weitere Sets (lungenroentgen, mammascreening, …) liegen in faqData.js bereit.
-      // Nur Routen mit SICHTBAREM FAQ eintragen – Weiterleitungsseiten nie.
-    };
+    // 2. FAQ Schema - zentrale Quelle: src/data/faqData.js; welches Set zur Seite gehört, steht in der
+    // Routentabelle (routes.js: faq) – dieselbe Angabe nutzt die Seite für die sichtbare FAQ (useRouteFaq).
     const cleanPath = location.pathname.replace(/\/+$/, '') || '/';
-    const faqKey = PATH_TO_FAQ[cleanPath];
+    const route = findRoute(cleanPath);
+    const faqKey = route?.faq;
     // Fragen mit offener Praxisangabe (pending) bleiben sichtbar, gehen aber nicht ins Schema.
     const faqItems = faqKey ? faqSchemaItems(faqData[faqKey]) : null;
     const faqSchema = faqItems?.length ? {
@@ -87,7 +77,6 @@ const SchemaMarkup = () => {
 
     // 3. Seiten-Schemas: BreadcrumbList (nur Routen mit `crumb` in routes.js – deckungsgleich mit den
     //    sichtbaren Brotkrumen) und MedicalWebPage für Leistungsseiten mit `medicalProcedure`.
-    const route = findRoute(cleanPath);
     const pageUrl = route ? `${SITE_URL}${route.path === '/' ? '/' : route.path}` : null;
     const extraSchemas = [];
     if (route?.crumb) {

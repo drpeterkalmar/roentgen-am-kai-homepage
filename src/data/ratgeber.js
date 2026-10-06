@@ -185,6 +185,8 @@ export const formatDate = (iso) => {
 
 export const ARTICLE_ROUTES = ARTICLES.map((a) => ({
   path: a.path,
+  page: 'ArticlePage',
+  pattern: `${RATGEBER_BASE}/:slug`, // eine App-Route für alle Artikel; unbekannte Slugs zeigen dort die 404-Seite
   fullTitle: a.seoTitle,
   title: a.title,
   h1: a.title,

@@ -13,9 +13,8 @@ import CTASection from '../components/ui/CTASection';
 import Button, { buttonClasses } from '../components/ui/Button';
 import { SectionHeading } from '../components/ui/Heading';
 import { BookingButton } from '../components/ui/BookingButtons';
-import FAQ from '../components/FAQ';
+import FAQ, { useRouteFaq } from '../components/FAQ';
 import DexaScanFigure from '../components/DexaScanFigure';
-import { faqData } from '../data/faqData';
 import { IMAGE_BRIEFS } from '../data/imageBriefs';
 import { PHONE_HREF, PHONE_DISPLAY, MAPS_ROUTE_URL, BOOKING_URL, ADDRESS, TRANSPORT } from '../data/practice';
 import {
@@ -121,6 +120,7 @@ const COMPARISON = [
 ];
 
 const KoerperanalysePage = () => {
+  const faq = useRouteFaq(); // FAQ laut Routentabelle (routes.js: faq) = FAQPage-Schema
   const variants = [
     {
       id: 'start',
@@ -605,7 +605,7 @@ const KoerperanalysePage = () => {
       </Section>
 
       {/* 9. FAQ – sichtbar; Schema nur für vollständig beantwortete Fragen */}
-      <FAQ items={faqData.koerperanalyse} title="Häufige Fragen zur Körperanalyse" align="left" />
+      <FAQ items={faq} title="Häufige Fragen zur Körperanalyse" align="left" />
 
       {/* 10. Termin, Praxis, weiterführende Themen */}
       <Section tone="muted" labelledBy="mehr-title">

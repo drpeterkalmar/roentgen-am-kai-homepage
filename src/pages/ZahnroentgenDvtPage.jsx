@@ -4,8 +4,7 @@ import Card from '../components/ui/Card';
 import Notice from '../components/ui/Notice';
 import PriceList from '../components/ui/PriceList';
 import { SectionHeading } from '../components/ui/Heading';
-import FAQ from '../components/FAQ';
-import { faqData } from '../data/faqData';
+import FAQ, { useRouteFaq } from '../components/FAQ';
 import { StatusBadge, AppointmentActions, RadiationInfo, ExamCTA } from '../components/exams/ExamParts';
 import { AREAS, EXAMS_BASE, EXAMS_CRUMB, confirmedDental, RADIATION_BY_AREA } from '../data/examinations';
 
@@ -27,6 +26,7 @@ const Group = ({ id, title, lead, items }) => (
 );
 
 const ZahnroentgenDvtPage = () => {
+  const faq = useRouteFaq(); // FAQ laut Routentabelle (routes.js: faq) = FAQPage-Schema
   const area = AREAS.zahn;
   return (
     <>
@@ -69,7 +69,7 @@ const ZahnroentgenDvtPage = () => {
         </div>
       </Section>
 
-      <FAQ items={faqData.dvt} title="Häufige Fragen zur DVT und zum Zahnröntgen" />
+      <FAQ items={faq} title="Häufige Fragen zur DVT und zum Zahnröntgen" />
 
       <ExamCTA area="zahn" id="zahn-cta-title" title="Termin für Zahnröntgen oder DVT vereinbaren" label={area.ctaLabel} />
     </>

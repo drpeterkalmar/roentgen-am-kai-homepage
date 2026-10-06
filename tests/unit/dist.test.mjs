@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { routes, fullTitle, SITE_URL } from '../../src/data/routes.js';
+import { routes, fullTitle, SITE_URL, LEGACY_REDIRECTS } from '../../src/data/routes.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const dist = path.join(root, 'dist');
@@ -13,13 +13,6 @@ const skip = existsSync(path.join(dist, 'index.html')) ? false : 'dist/ fehlt �
 const read = (rel) => readFileSync(path.join(dist, rel), 'utf8');
 const htmlFiles = () => (skip ? [] : readdirSync(dist, { recursive: true }).filter((f) => f.endsWith('.html')));
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
-
-// Weiterleitungstabelle aus scripts/postbuild.mjs (bis zur zentralen Routentabelle per Text gelesen)
-const legacyRedirects = () => {
-  const src = readFileSync(path.join(root, 'scripts/postbuild.mjs'), 'utf8');
-  const block = src.match(/const legacy = \{([\s\S]*?)\n\};/)?.[1] ?? '';
-  return Object.fromEntries([...block.matchAll(/'([^']+)':\s*'([^']+)'/g)].map((m) => [m[1], m[2]]));
-};
 
 test('dist: jede Route hat eine eigene HTML-Datei mit Titel und Canonical (plus <route>.html)', { skip }, () => {
   for (const r of routes) {
@@ -38,9 +31,7 @@ test('dist: Sitemap enthält genau die indexierbaren Routen', { skip }, () => {
 });
 
 test('dist: alte Adressen leiten per Meta-Refresh weiter', { skip }, () => {
-  const legacy = legacyRedirects();
-  assert.ok(Object.keys(legacy).length >= 10, 'Weiterleitungstabelle nicht gefunden');
-  for (const [from, to] of Object.entries(legacy)) {
+  for (const [from, to] of Object.entries(LEGACY_REDIRECTS)) {
     const html = read(`${from.slice(1)}/index.html`);
     assert.match(html, /http-equiv="refresh"/, from);
     assert.ok(html.includes(`${to}"></head>`), `${from} → ${to}`);
@@ -66,6 +57,10 @@ test('dist: Release-Build ohne „Interner Platzhalter“ (HTML und JavaScript),
   const hits = files.filter((f) => read(f).includes('Interner Platzhalter'));
   if (variant.SHOW_INTERNAL) assert.ok(hits.length > 0, 'Staging-Build: interne Platzhalter erwartet');
   else assert.deepEqual(hits, [], 'Release-Build enthält „Interner Platzhalter“');
+});
+
+test('dist-ssr: vorgerendert werden genau die prerender-Routen der Routentabelle', { skip: skip || (!variant && 'dist-ssr/ fehlt') }, () => {
+  assert.deepEqual(Object.keys(variant.PAGES).sort(), routes.filter((r) => r.prerender).map((r) => r.path).sort());
 });
 
 test('dist: vorgerenderte Seiten enthalten den Seiteninhalt (Körpernavigator nur auf /roentgen-graz)', { skip }, () => {

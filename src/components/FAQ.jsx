@@ -1,7 +1,10 @@
 import { useState, useId } from 'react';
+import { useLocation } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
 import { cx } from './ui/cx';
 import Placeholder from './ui/Placeholder';
+import { faqData } from '../data/faqData';
+import { findRoute } from '../data/routes';
 
 // Barrierearme FAQ (Disclosure-Muster): Frage = Schaltfläche in einer Überschrift,
 // aria-expanded/aria-controls, Antwort-Region. Inhalte aus src/data/faqData.js
@@ -37,6 +40,13 @@ const FAQItem = ({ question, answer, pending, headingLevel }) => {
       </div>
     </div>
   );
+};
+
+// FAQ der aktuellen Seite laut Routentabelle (routes.js: faq) – dieselbe Zuordnung wie im FAQPage-Schema
+export const useRouteFaq = () => {
+  const { pathname } = useLocation();
+  const key = findRoute(pathname)?.faq;
+  return key ? faqData[key] : [];
 };
 
 const FAQ = ({ items, title = 'Häufig gestellte Fragen', headingLevel = 2, align = 'center' }) => {

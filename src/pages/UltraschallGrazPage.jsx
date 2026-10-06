@@ -4,13 +4,13 @@ import Hero from '../components/ui/Hero';
 import Section from '../components/ui/Section';
 import { SectionHeading } from '../components/ui/Heading';
 import { buttonClasses } from '../components/ui/Button';
-import FAQ from '../components/FAQ';
-import { faqData } from '../data/faqData';
+import FAQ, { useRouteFaq } from '../components/FAQ';
 import { StatusBadge, AppointmentActions, RadiationInfo, ExamCTA, FactList } from '../components/exams/ExamParts';
 import { AREAS, EXAMS_BASE, EXAMS_CRUMB, ULTRASOUND_AREAS, ULTRASOUND_FACTS, PUCMED } from '../data/examinations';
 
 // /ultraschall-graz – Ultraschall (Termin erforderlich). Nervenultraschall: externe Weiterleitung zu PUCmed.
 const UltraschallGrazPage = () => {
+  const faq = useRouteFaq(); // FAQ laut Routentabelle (routes.js: faq) = FAQPage-Schema
   const area = AREAS.ultraschall;
   return (
     <>
@@ -100,7 +100,7 @@ const UltraschallGrazPage = () => {
         <RadiationInfo ids={[]} ultrasound xray={false} />
       </Section>
 
-      <FAQ items={faqData.ultraschall} title="Häufige Fragen zum Ultraschall" />
+      <FAQ items={faq} title="Häufige Fragen zum Ultraschall" />
 
       <ExamCTA area="ultraschall" id="us-cta-title" title="Ultraschalltermin vereinbaren" label={area.ctaLabel} />
     </>

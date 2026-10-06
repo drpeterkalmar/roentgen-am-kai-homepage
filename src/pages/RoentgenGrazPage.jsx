@@ -5,8 +5,7 @@ import Card from '../components/ui/Card';
 import Placeholder from '../components/ui/Placeholder';
 import { SectionHeading } from '../components/ui/Heading';
 import { OpeningHours, Directions, ContactDetails } from '../components/ui/PracticeInfo';
-import FAQ from '../components/FAQ';
-import { faqData } from '../data/faqData';
+import FAQ, { useRouteFaq } from '../components/FAQ';
 import { StatusBadge, AppointmentActions, RadiationInfo, ExamCTA } from '../components/exams/ExamParts';
 import BodyNavigator from '../components/exams/BodyNavigator';
 import ReferralSearch from '../components/exams/ReferralSearch';
@@ -21,6 +20,7 @@ const Bullet = ({ children }) => (
 );
 
 const RoentgenGrazPage = () => {
+  const faq = useRouteFaq(); // FAQ laut Routentabelle (routes.js: faq) = FAQPage-Schema
   const area = AREAS.roentgen;
   return (
     <>
@@ -130,7 +130,7 @@ const RoentgenGrazPage = () => {
         />
       </Section>
 
-      <FAQ items={faqData.roentgen} title="Häufige Fragen zum Röntgen" />
+      <FAQ items={faq} title="Häufige Fragen zum Röntgen" />
 
       <ExamCTA
         area="roentgen"

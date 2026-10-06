@@ -2,11 +2,11 @@
 // Aufruf: npm run test:unit (läuft auch in GitHub Actions vor dem Build).
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { services } from '../../src/data/services.js';
 import { BODY } from '../../src/data/bodyComposition.js';
-import { routes, fullTitle, findRoute } from '../../src/data/routes.js';
-import { AREAS, AREA_ORDER } from '../../src/data/examinations.js';
+import { routes, fullTitle, findRoute, LEGACY_REDIRECTS } from '../../src/data/routes.js';
+import { AREAS, AREA_ORDER, XRAY_GROUPS } from '../../src/data/examinations.js';
 import { OTHER_EXAMS, MAIN_NAV, isActive } from '../../src/data/navigation.js';
 import { REFERRAL_TERMS, searchTerms, normalize } from '../../src/data/referralTerms.js';
 import { faqData, faqSchemaItems } from '../../src/data/faqData.js';
@@ -36,11 +36,35 @@ test('Routen: Description 50–165 Zeichen und eindeutig', () => {
   assert.equal(new Set(routes.map((r) => r.description)).size, routes.length, 'doppelte Descriptions');
 });
 
-test('Routen: jede prerender-Route ist in entry-server.PAGES eingetragen', () => {
-  const src = readFileSync(new URL('../../src/entry-server.jsx', import.meta.url), 'utf8');
-  const block = src.match(/export const PAGES = \{([\s\S]*?)\};/)?.[1] ?? '';
-  const pages = [...block.matchAll(/'([^']+)':/g)].map((m) => m[1]).sort();
-  assert.deepEqual(pages, routes.filter((r) => r.prerender).map((r) => r.path).sort());
+// --- Routentabelle: Seite, FAQ, Weiterleitungen (eine Quelle für App, Vorrendern, Schema, postbuild) ---
+const pageFile = (key) => new URL(`../../src/pages/${key}.jsx`, import.meta.url);
+const pageSource = (key) => readFileSync(pageFile(key), 'utf8');
+
+test('Routentabelle: jede Route hat eine Seite (page), die Datei existiert', () => {
+  const missing = routes.filter((r) => !r.page || !existsSync(pageFile(r.page))).map((r) => [r.path, r.page]);
+  assert.deepEqual(missing, []);
+  assert.ok(routes.filter((r) => r.prerender).length >= 6, 'vorgerenderte Seiten');
+});
+
+test('Routentabelle: FAQ-Zuordnung – jedes faq hat ein Set, jede Seite mit FAQ hat faq', () => {
+  for (const r of routes.filter((x) => x.faq)) assert.ok(faqData[r.faq]?.length > 0, `${r.path}: faqData.${r.faq}`);
+  for (const r of routes) {
+    const src = pageSource(r.page);
+    assert.ok(!/faqData(\.(?!js\b)\w+|\[)/.test(src), `${r.page}: FAQ direkt aus faqData statt über useRouteFaq()`);
+    if (src.includes('<FAQ ') && src.includes('useRouteFaq()')) assert.ok(r.faq, `${r.path}: Seite zeigt FAQ, Route ohne faq`);
+    if (r.faq) assert.ok(src.includes('useRouteFaq()'), `${r.path}: faq gesetzt, Seite nutzt useRouteFaq() nicht`);
+  }
+});
+
+test('Weiterleitungen: alte Adressen sind keine echten Routen, Ziele (samt Anker) existieren', () => {
+  const anchors = { '/': ['services'], '/roentgen-graz': XRAY_GROUPS.map((g) => g.id) };
+  assert.ok(Object.keys(LEGACY_REDIRECTS).length >= 10);
+  for (const [from, to] of Object.entries(LEGACY_REDIRECTS)) {
+    assert.ok(!findRoute(from), `${from} ist zugleich echte Route`);
+    const [p, hash] = to.split('#');
+    assert.ok(findRoute(p || '/'), `${from} → ${to}: Ziel ist keine Route`);
+    if (hash) assert.ok(anchors[p || '/']?.includes(hash), `${from} → ${to}: Anker unbekannt`);
+  }
 });
 
 // --- Weitere Untersuchungen: Stammdaten in services.js und examinations.js ---

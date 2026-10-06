@@ -1,7 +1,11 @@
-// Zentrale Routen-Metadaten — EINE Quelle für:
-//   * RouteMeta.jsx (Titel/Description/Canonical zur Laufzeit)
-//   * scripts/prerender.mjs (statische index.html je Route, sitemap.xml, robots.txt)
-// Neue Seite = Route in App.jsx + Eintrag hier.
+// Zentrale Routentabelle — EINE Quelle für:
+//   * die App (src/routes.jsx: Seite je Route, Weiterleitungen) und das Vorrendern (src/entry-server.jsx: prerender)
+//   * RouteMeta.jsx (Titel/Description/Canonical zur Laufzeit), SchemaMarkup.jsx (FAQ, Brotkrumen, Leistung)
+//   * scripts/postbuild.mjs (statische index.html je Route, Weiterleitungsseiten, sitemap.xml, robots.txt)
+// Neue Seite = Seitendatei in src/pages + Eintrag hier (page = Dateiname ohne .jsx, relativ zu src/pages).
+// Felder: page (Seitenkomponente), faq (Schlüssel in faqData.js, nur bei sichtbarer FAQ – dieselbe Liste
+// speist das FAQPage-Schema), prerender (vollständig vorgerendert, ohne JavaScript nutzbar).
+// Wird auch von Node importiert (postbuild, Tests) → nur .js-Importe, kein JSX, kein import.meta.
 
 // Kanonische Domain (Hauptdomain ab Jan 2027: Umlaut-Domain, hier in Punycode).
 import { SCREENING_META_DESCRIPTION } from './screening.js';
@@ -21,6 +25,7 @@ export const DEFAULT_DESCRIPTION =
 export const routes = [
   {
     path: '/',
+    page: 'Home',
     title: DEFAULT_TITLE,
     description: DEFAULT_DESCRIPTION,
     priority: '1.0',
@@ -28,6 +33,8 @@ export const routes = [
   },
   {
     path: '/mammographie-graz',
+    page: 'MammographiePage',
+    faq: 'mammographie',
     // Vollständiger SEO-Titel (ohne automatischen Zusatz)
     fullTitle: 'Mammographie Graz ohne Zuweisung | Röntgen am Kai',
     title: 'Mammographie & Brustgesundheit',
@@ -39,6 +46,8 @@ export const routes = [
   },
   {
     path: '/knochendichtemessung-graz',
+    page: 'KnochendichtePage',
+    faq: 'knochendichte',
     fullTitle: 'Knochendichtemessung Graz mit DEXA | Röntgen am Kai',
     title: 'Knochendichtemessung mit DEXA',
     h1: 'Knochendichtemessung in Graz mit DEXA',
@@ -49,6 +58,8 @@ export const routes = [
   },
   {
     path: '/koerperanalyse-graz',
+    page: 'KoerperanalysePage',
+    faq: 'koerperanalyse',
     fullTitle: BODY_SEO_TITLE,
     title: 'Körperanalyse',
     h1: BODY_H1,
@@ -69,6 +80,7 @@ export const routes = [
   // Weitere Untersuchungen: Übersicht + vier Hauptbereiche (Daten: src/data/examinations.js)
   {
     path: '/weitere-untersuchungen',
+    page: 'WeitereUntersuchungenPage',
     fullTitle: 'Weitere Untersuchungen: Röntgen, Ultraschall, DVT | Röntgen am Kai',
     title: 'Weitere Untersuchungen',
     h1: 'Weitere radiologische Untersuchungen in Graz',
@@ -79,6 +91,8 @@ export const routes = [
   },
   {
     path: '/roentgen-graz',
+    page: 'RoentgenGrazPage',
+    faq: 'roentgen',
     fullTitle: 'Röntgen Graz ohne Termin – mit Zuweisung | Röntgen am Kai',
     title: 'Röntgen in Graz',
     h1: 'Röntgen in Graz – direkt vorbeikommen oder Wunschzeit reservieren',
@@ -91,6 +105,8 @@ export const routes = [
   },
   {
     path: '/ultraschall-graz',
+    page: 'UltraschallGrazPage',
+    faq: 'ultraschall',
     fullTitle: 'Ultraschall Graz – Sonographie | Röntgen am Kai',
     title: 'Ultraschall in Graz',
     h1: 'Ultraschall in Graz',
@@ -103,6 +119,7 @@ export const routes = [
   },
   {
     path: '/spezialroentgen',
+    page: 'SpezialroentgenPage',
     fullTitle: 'Spezialröntgen mit Kontrastmittel in Graz | Röntgen am Kai',
     title: 'Spezialröntgen und Kontrastmitteluntersuchungen',
     h1: 'Spezialröntgen und Kontrastmitteluntersuchungen in Graz',
@@ -114,6 +131,8 @@ export const routes = [
   },
   {
     path: '/unser-angebot/phlebographie',
+    page: 'PhlebographiePage',
+    faq: 'phlebographie',
     title: 'Venenröntgen (Phlebographie) in Graz',
     h1: 'Venenröntgen (Phlebographie)',
     prerender: true,
@@ -122,6 +141,8 @@ export const routes = [
   },
   {
     path: '/zahnroentgen-dvt-graz',
+    page: 'ZahnroentgenDvtPage',
+    faq: 'dvt',
     fullTitle: 'Zahnröntgen und 3D-DVT in Graz | Röntgen am Kai',
     title: 'Zahnröntgen und 3D-DVT',
     h1: 'Zahnröntgen und 3D-DVT in Graz',
@@ -136,6 +157,7 @@ export const routes = [
   ...GOAL_ROUTES,
   {
     path: '/ratgeber',
+    page: 'RatgeberPage',
     fullTitle: 'Ratgeber: DEXA, Knochen, Mammographie | Röntgen am Kai',
     title: 'Ratgeber',
     h1: 'Ratgeber',
@@ -147,12 +169,14 @@ export const routes = [
   ...ARTICLE_ROUTES,
   {
     path: '/kontakt',
+    page: 'KontaktPage',
     title: 'Praxis und Kontakt',
     description: 'Röntgen am Kai, Körösistraße 9, 8010 Graz: Kontakt, Öffnungszeiten, Anfahrt mit Öffis und Tiefgarage, Termin online oder unter 0316 840 90 50.',
     priority: '0.8',
   },
   {
     path: '/unser-team/dr-peter-kalmar',
+    page: 'KalmarPage',
     title: 'Priv. Doz. Dr. Peter Kalmar – Facharzt für Radiologie',
     fullTitle: 'Priv. Doz. Dr. Peter Kalmar – Facharzt für Radiologie | Röntgen am Kai',
     description: 'Priv. Doz. Dr. Peter Kalmar, Facharzt für Radiologie bei Röntgen am Kai in Graz: Werdegang, Schwerpunkte und Publikationen.',
@@ -160,6 +184,7 @@ export const routes = [
   },
   {
     path: '/unser-team/dr-georg-riegler',
+    page: 'RieglerPage',
     title: 'Priv. Doz. Dr. Georg Riegler – Facharzt für Radiologie',
     fullTitle: 'Priv. Doz. Dr. Georg Riegler – Radiologe in Graz | Röntgen am Kai',
     description: 'Priv. Doz. Dr. Georg Riegler, Facharzt für Radiologie bei Röntgen am Kai in Graz: Werdegang, Schwerpunkte und Publikationen.',
@@ -167,6 +192,7 @@ export const routes = [
   },
   {
     path: '/impressum',
+    page: 'ImpressumPage',
     title: 'Impressum',
     description: 'Impressum von Röntgen am Kai, Fachärzte für Radiologie, Körösistraße 9, 8010 Graz.',
     priority: '0.3',
@@ -174,12 +200,36 @@ export const routes = [
   },
   {
     path: '/datenschutz',
+    page: 'DatenschutzPage',
     title: 'Datenschutz',
     description: 'Datenschutzerklärung von Röntgen am Kai, Fachärzte für Radiologie in Graz.',
     priority: '0.3',
     changefreq: 'yearly',
   },
 ];
+
+// Alte Adressen → neue Seiten (eine Tabelle für App und Build): scripts/postbuild.mjs schreibt je Eintrag eine
+// Weiterleitungsseite (GitHub Pages kann kein HTTP-301; Meta-Refresh 0 s + Canonical wertet Google als dauerhafte
+// Weiterleitung), src/routes.jsx leitet in der App per <Navigate> weiter – beide mit Anker.
+export const LEGACY_REDIRECTS = {
+  '/unser-angebot': '/#services',
+  // Weitere Untersuchungen neu strukturiert (04.10.2026): Röntgen, Ultraschall, Spezialröntgen, Zahnröntgen/DVT
+  '/unser-angebot/digitales-roentgen': '/roentgen-graz',
+  '/unser-angebot/digitales-roentgen/lungenroentgen': '/roentgen-graz#lunge-brustkorb',
+  '/unser-angebot/digitales-roentgen/wirbelsaeulenroentgen': '/roentgen-graz#wirbelsaeule',
+  '/unser-angebot/digitales-roentgen/roentgen-nach-unfall': '/roentgen-graz',
+  '/unser-angebot/roentgen': '/roentgen-graz',
+  '/unser-angebot/ultraschall': '/ultraschall-graz',
+  '/unser-angebot/dvt': '/zahnroentgen-dvt-graz',
+  // Mammographie-Seite ist nach /mammographie-graz umgezogen (26.09.2026)
+  '/unser-angebot/mammographie': '/mammographie-graz',
+  '/unser-angebot/mammographie/mammascreening': '/mammographie-graz',
+  // Knochendichte-Seite ist nach /knochendichtemessung-graz umgezogen (26.09.2026)
+  '/unser-angebot/knochendichte': '/knochendichtemessung-graz',
+  // Körperanalyse-Seite ist nach /koerperanalyse-graz umgezogen (27.09.2026)
+  '/unser-angebot/koerperfettmessung': '/koerperanalyse-graz',
+  '/datenschutzerklarung': '/datenschutz',
+};
 
 export const fullTitle = (route) =>
   route.fullTitle || (route.path === '/' ? route.title : `${route.title} | Röntgen am Kai Graz`);
