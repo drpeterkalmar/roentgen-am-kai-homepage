@@ -55,7 +55,7 @@ export const services = {
     description:
       'Körperfett und Muskelmasse präzise messen – mit regionaler Auswertung und für Verlaufskontrollen. Termin etwa 20 Minuten.',
     priority: 3,
-    durationMinutes: 15,
+    durationMinutes: BODY.durationMinutes, // Termindauer: eine Quelle (bodyComposition.js, Praxisangabe 27.09.2026)
     onlineBooking: true,
     selfPay: true,
     priceIds: ['koerperanalyse', 'koerperanalyse-paket'],

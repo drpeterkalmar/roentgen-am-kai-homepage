@@ -12,7 +12,7 @@ import { REFERRAL_TERMS, searchTerms, normalize } from '../../src/data/referralT
 import { faqData, faqSchemaItems } from '../../src/data/faqData.js';
 
 // --- P1-3: Termindauer Körperanalyse (Startseiten-Badge) = Angabe der Praxis ---
-test('Körperanalyse: Termindauer aus einer Quelle (services = bodyComposition)', { todo: 'Schritt 3 (P1-3)' }, () => {
+test('Körperanalyse: Termindauer aus einer Quelle (services = bodyComposition)', () => {
   assert.equal(services.koerperanalyse.durationMinutes, BODY.durationMinutes);
 });
 
