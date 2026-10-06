@@ -7,8 +7,10 @@ bedienung, mobiles Menü, erster Bildschirm der Startseite, kein horizontales Sc
 """
 import sys, re
 from playwright.sync_api import sync_playwright
+from _paths import shots
 
 BASE = "http://localhost:4174/roentgen-am-kai-homepage"
+SHOTS = shots("relaunch-screenshots-site")
 TEL = "tel:+43" + "3168409050"
 BOOK = "https://patient-portal.miranext.ai/patient-booking?c_Id=23"
 ROUTES = {
@@ -118,18 +120,18 @@ with sync_playwright() as p:
     reg = pg.locator('[id="' + q.get_attribute("aria-controls") + '"]')
     reg.wait_for(state="visible", timeout=1000)
     check(q.get_attribute("aria-expanded") == "true" and reg.is_visible(), "FAQ: aria-expanded + Antwortregion sichtbar")
-    pg.screenshot(path="/tmp/rak-new-mammo-desktop.png", full_page=False)
+    pg.screenshot(path=str(SHOTS / "mammo-desktop.png"), full_page=False)
     pg.goto(BASE + "/", wait_until="networkidle"); pg.wait_for_timeout(500)
-    pg.screenshot(path="/tmp/rak-new-home-desktop.png", full_page=True)
+    pg.screenshot(path=str(SHOTS / "home-desktop.png"), full_page=True)
     pg.goto(BASE + "/kontakt", wait_until="networkidle"); pg.wait_for_timeout(300)
-    pg.screenshot(path="/tmp/rak-new-kontakt-desktop.png", full_page=True)
+    pg.screenshot(path=str(SHOTS / "kontakt-desktop.png"), full_page=True)
     ctx.close()
 
     # Mobil: Menü-Dialog, Fokusfalle, MobileBar
     ctx = b.new_context(viewport={"width": 390, "height": 844}, device_scale_factor=2, is_mobile=True, has_touch=True); pg = ctx.new_page()
     pg.goto(BASE + "/", wait_until="networkidle"); pg.wait_for_timeout(400)
-    pg.screenshot(path="/tmp/rak-new-home-mobile.png", full_page=False)
-    pg.screenshot(path="/tmp/rak-new-home-mobile-full.png", full_page=True)
+    pg.screenshot(path=str(SHOTS / "home-mobile.png"), full_page=False)
+    pg.screenshot(path=str(SHOTS / "home-mobile-full.png"), full_page=True)
     bar = pg.locator('nav[aria-label="Schnellzugriff"]')
     check(bar.is_visible() and bar.locator('a[data-cta="booking"]').count() == 1, "Mobil: Schnellzugriff mit 'Termin buchen'")
     menu = pg.get_by_role("button", name="Menü")
@@ -142,14 +144,14 @@ with sync_playwright() as p:
     check(box and box["height"] >= 700, f"Mobil: Menü-Panel volle Höhe ({box and round(box['height'])}px)")
     last = dlg.get_by_role("link", name="Praxis und Kontakt")
     check(last.is_visible() and last.bounding_box()["y"] < 844, "Mobil: letzter Menüpunkt im sichtbaren Bereich")
-    pg.screenshot(path="/tmp/rak-new-menu-mobile.png")
+    pg.screenshot(path=str(SHOTS / "menu-mobile.png"))
     for _ in range(40): pg.keyboard.press("Tab")
     inside = pg.evaluate("!!document.activeElement.closest('[role=dialog]')")
     check(inside, "Mobil: Fokus bleibt im Menü (Fokusfalle)")
     pg.keyboard.press("Escape"); pg.wait_for_timeout(200)
     check(not dlg.is_visible() and pg.evaluate("document.activeElement.textContent.includes('Menü')"), "Mobil: Escape schließt Menü, Fokus zurück auf 'Menü'")
     pg.goto(BASE + "/koerperanalyse-graz", wait_until="networkidle"); pg.wait_for_timeout(300)
-    pg.screenshot(path="/tmp/rak-new-koerper-mobile.png", full_page=True)
+    pg.screenshot(path=str(SHOTS / "koerper-mobile.png"), full_page=True)
     ph = pg.eval_on_selector_all('[data-placeholder]', 'els => els.map(e => e.getAttribute("data-placeholder"))')
     check(len(ph) >= 1, f"Platzhalter sichtbar auf Körperanalyse-Seite: {ph}")
     ctx.close()
@@ -182,7 +184,7 @@ with sync_playwright() as p:
     # Dark mode desktop
     ctx = b.new_context(viewport={"width": 1440, "height": 900}, color_scheme="dark"); pg = ctx.new_page()
     pg.goto(BASE + "/", wait_until="networkidle"); pg.wait_for_timeout(400)
-    pg.screenshot(path="/tmp/rak-new-home-dark.png")
+    pg.screenshot(path=str(SHOTS / "home-dark.png"))
     ctx.close()
     for old, new in LEGACY.items():
         pg2 = b.new_page(); pg2.goto(BASE + old, wait_until="networkidle"); pg2.wait_for_timeout(400)

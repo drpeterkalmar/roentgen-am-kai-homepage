@@ -4,9 +4,11 @@ Voraussetzung: `npm run build` und `npx vite preview --port 4174`.
 """
 import json, re, sys, pathlib, urllib.request
 from playwright.sync_api import sync_playwright
+from _paths import shots
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = "http://localhost:4174/roentgen-am-kai-homepage"
+SHOTS = shots("relaunch-screenshots-mammographie")
 SITE = "https://www.xn--rntgen-am-kai-imb.at"
 PAGE = "/mammographie-graz"
 TEL = "tel:+43" + "3168409050"
@@ -66,7 +68,7 @@ with sync_playwright() as p:
         ow = pg.evaluate(f"Math.max(document.documentElement.scrollWidth, window.innerWidth) - {vw}")
         check(ow <= 0, f"[{label}] kein horizontales Scrollen ({ow}px)")
         check(not errs, f"[{label}] keine JS-Fehler {errs[:1]}")
-        pg.screenshot(path=f"/tmp/mammo-{label.replace(' ', '-')}.png", full_page=True)
+        pg.screenshot(path=str(SHOTS / f"mammo-{label.replace(' ', '-')}.png"), full_page=True)
         c.close()
 
     # --- 3. Desktop-Detailprüfung ---

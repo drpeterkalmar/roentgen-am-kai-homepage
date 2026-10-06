@@ -6,9 +6,11 @@ Prüft Metadaten, Weiterleitung, Geräteklassen, Pflichtaussagen, verbotene Auss
 """
 import json, sys, pathlib, urllib.request
 from playwright.sync_api import sync_playwright
+from _paths import shots
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = "http://localhost:4174/roentgen-am-kai-homepage"
+SHOTS = shots("relaunch-screenshots-koerperanalyse")
 import subprocess
 VISCERAL = bool(json.loads(subprocess.run(["node", "--input-type=module", "-e", "const m = await import('./src/data/bodyComposition.js'); console.log(JSON.stringify(m.BODY.visceralFat ?? null))"],
                                           capture_output=True, text=True, cwd=ROOT).stdout.strip() or "null"))
@@ -91,7 +93,7 @@ with sync_playwright() as p:
         cards = pg.locator("#vergleich ul.md\\:hidden").is_visible()
         check((cards and not tbl) if vw < 768 else (tbl and not cards), f"[{label}] Vergleich: {'Karten' if vw < 768 else 'Tabelle'}")
         check(not errs, f"[{label}] keine JS-Fehler {errs[:1]}")
-        pg.screenshot(path=f"/tmp/ka-{label.replace(' ', '-')}.png", full_page=True)
+        pg.screenshot(path=str(SHOTS / f"ka-{label.replace(' ', '-')}.png"), full_page=True)
         c.close()
 
     # --- 3. Inhalte ---

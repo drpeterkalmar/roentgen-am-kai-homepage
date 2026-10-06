@@ -12,6 +12,7 @@ Bundle- und Bildgrößen, Ladezeiten (lokal).
 """
 import json, sys, pathlib, subprocess, urllib.request, urllib.error, gzip
 from playwright.sync_api import sync_playwright
+from _paths import REPORTS
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = "http://localhost:4174/roentgen-am-kai-homepage"
@@ -21,7 +22,7 @@ TEL_OK = {TEL, "tel:0800" + "500181", "tel:144"}
 MAIL = "mailto:office@roentgen-am-kai.at"
 BOOK = "https://patient-portal.miranext.ai/patient-booking?c_Id=23"
 AXE = (ROOT / "node_modules/axe-core/axe.min.js").read_text()
-REPORT = pathlib.Path.home() / "Documents/Hermes-Berichte/Homepage-Tests/relaunch-endkontrolle.txt"
+REPORT = REPORTS / "relaunch-endkontrolle.txt"
 
 R = json.loads(subprocess.run(
     ["node", "--input-type=module", "-e",

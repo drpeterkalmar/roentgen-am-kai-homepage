@@ -2,6 +2,7 @@
 """Funktionsprüfung der Animationen (Playwright headless) gegen vite preview :4174."""
 import pathlib
 from playwright.sync_api import sync_playwright
+from _paths import shots
 import json
 import subprocess
 
@@ -10,8 +11,7 @@ VISCERAL = bool(json.loads(subprocess.run(["node", "--input-type=module", "-e", 
                                           capture_output=True, text=True, cwd=ROOT).stdout.strip() or "null"))
 
 BASE = "http://localhost:4174/roentgen-am-kai-homepage"
-OUT = pathlib.Path.home() / "Documents/Hermes-Berichte/Homepage-Tests/relaunch-screenshots-animationen"
-OUT.mkdir(parents=True, exist_ok=True)
+OUT = shots("relaunch-screenshots-animationen")
 fails = []
 
 

@@ -10,6 +10,7 @@ Telefon), Kategorien-Filter, Platzhalter-Artikel ohne erfundenen Text, Titel/Kur
 """
 import json, sys, pathlib, subprocess, urllib.request
 from playwright.sync_api import sync_playwright
+from _paths import shots
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = "http://localhost:4174/roentgen-am-kai-homepage"
@@ -17,8 +18,7 @@ SITE = "https://www.xn--rntgen-am-kai-imb.at"
 TEL = "tel:+43" + "3168409050"
 BOOK = "https://patient-portal.miranext.ai/patient-booking?c_Id=23"
 AXE = (ROOT / "node_modules/axe-core/axe.min.js").read_text()
-SHOTS = pathlib.Path.home() / "Documents/Hermes-Berichte/Homepage-Tests/relaunch-screenshots-ratgeber"
-SHOTS.mkdir(parents=True, exist_ok=True)
+SHOTS = shots("relaunch-screenshots-ratgeber")
 
 data = json.loads(subprocess.run(
     ["node", "--input-type=module", "-e",
