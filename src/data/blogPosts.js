@@ -1,6 +1,8 @@
 // Artikeltexte des Ratgebers (HTML). Metadaten (URL, SEO-Titel, Kategorie, Datum, Zielseite, Autor):
 // src/data/ratgeber.js – Titel/Kurzfassung dort identisch halten (Test prüft).
 // `category`/`date` hier sind Altbestand; maßgeblich sind die Werte in ratgeber.js.
+import { SARKOPENIE_TITLE, SARKOPENIE_EXCERPT, SARKOPENIE_HTML } from './ratgeber/sarkopenie.js';
+
 export const blogPosts = [
   {
     id: 1,
@@ -199,6 +201,17 @@ export const blogPosts = [
       <p>Rufen Sie uns an und vereinbaren Sie Ihren Termin. Ihre Gesundheit verdient die beste Vorsorge.</p>
     `,
     image: 'assets/images/mammographie_v2.avif',
+    status: 'published'
+  },
+  {
+    id: 6,
+    title: SARKOPENIE_TITLE,
+    date: '07. Oktober 2026',
+    category: 'Körperanalyse',
+    excerpt: SARKOPENIE_EXCERPT,
+    primaryLink: { to: '/koerperanalyse-graz', label: 'Zur DEXA-Körperanalyse in Graz' },
+    content: SARKOPENIE_HTML,
+    image: 'assets/images/dexa-koerperanalyse-ganzkoerperscan.avif',
     status: 'published'
   }
 ];

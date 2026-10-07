@@ -57,6 +57,12 @@ for a in ARTS:
     check(len(a["seo"]) <= 60 and 70 <= len(a["desc"]) <= 160, f"SEO-Titel {len(a['seo'])} / Description {len(a['desc'])} Zeichen ({a['slug']})")
 check(len({a["seo"] for a in ARTS}) == len(ARTS) and len({a["desc"] for a in ARTS}) == len(ARTS), "SEO-Titel und Descriptions eindeutig")
 
+# --- 0b. Sarkopenie-Artikel (07.10.2026): fachliche Leitplanken im Text ---
+SARKO = next(a for a in ARTS if a["slug"] == "sarkopenie-muskelverlust-dexa")
+check(SARKO["seo"] == "Sarkopenie erkennen: Muskelverlust mit DEXA messen" and SARKO["title"] == "Sarkopenie: Wenn Muskelkraft und Muskelmasse unbemerkt abnehmen",
+      "Sarkopenie-Artikel: SEO-Titel + H1 laut Auftrag")
+check(SARKO["faq"] and SARKO["target"] == "/koerperanalyse-graz", "Sarkopenie-Artikel: FAQ vorhanden, Zielseite Körperanalyse")
+
 # --- 1. Statisches HTML + Sitemap ---
 sm = urllib.request.urlopen(BASE + "/sitemap.xml").read().decode()
 robots = urllib.request.urlopen(BASE + "/robots.txt").read().decode()
@@ -154,6 +160,22 @@ with sync_playwright() as p:
                 ph = pg.eval_on_selector_all("[data-placeholder]", "es => es.length")
                 body = pg.locator("main article .article-content").count()
                 check(ph >= 2 and body == 0 and "in Vorbereitung" in text, f"Platzhalter-Artikel: deutlich markiert, kein erfundener Text ({ph} Platzhalter)")
+            if a["slug"] == "sarkopenie-muskelverlust-dexa":
+                t = " ".join(text.split())
+                check("DEXA allein diagnostiziert keine Sarkopenie" in t and "Magermasse ist nicht gleich Muskelmasse" in t,
+                      "Sarkopenie: Grenzen von DEXA ausdrücklich genannt")
+                check("Bitte nicht zur Selbstdiagnose verwenden" in t and "EWGSOP2-Orientierungswerte" in t, "Sarkopenie: Grenzwerte als Orientierungswerte, keine Selbstdiagnose")
+                bad = [w for w in ("Sarkopenie-Test", "Goldstandard", "heilt", "garantiert", "g Eiweiß", "Gramm Eiweiß", "pro Kilogramm Körpergewicht") if w in t]
+                check(not bad, f"Sarkopenie: keine Heilversprechen / pauschalen Empfehlungen {bad}")
+                base = "/roentgen-am-kai-homepage"
+                hrefs = pg.eval_on_selector_all(".article-html a", "as => as.map(a => a.getAttribute('href'))")
+                for need in ("/koerperanalyse-graz", "/knochendichtemessung-graz", "/gesundheitsziele/gesund-aelter-werden"):
+                    check(base + need in hrefs, f"Sarkopenie: interner Link {need} (mit Basis-URL)")
+                check(BOOK in hrefs, "Sarkopenie: Link zur Terminbuchung im Text")
+                src = pg.locator("section[aria-labelledby=quellen-title] li").all_inner_texts()
+                check(len(src) == 3 and all("doi" in s for s in src), f"Sarkopenie: 3 Quellen mit DOI am Ende ({len(src)})")
+                tbl = pg.locator(".article-table")
+                check(tbl.count() == 1 and tbl.evaluate("e => e.scrollWidth - e.clientWidth") <= 0, "Sarkopenie: Tabelle ohne Überlauf (1440)")
         ctx.close()
 
     # --- Tastatur: Artikelkarte per Tab erreichbar, Fokusrahmen sichtbar ---

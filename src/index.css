@@ -105,6 +105,14 @@
 .article-html a { @apply font-medium text-brand underline underline-offset-4 dark:text-brand-300; overflow-wrap: anywhere; }
 .article-html em { @apply text-slate-700 dark:text-slate-300; }
 .article-html > :first-child { margin-top: 0; }
+/* Tabellen im Artikel: eigener Scrollbereich, damit schmale Handys nicht seitlich verrutschen */
+.article-html .article-table { @apply my-6 overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-700; }
+.article-html table { @apply w-full border-collapse text-left text-sm sm:text-[0.9375rem]; }
+.article-html caption { @apply bg-slate-50 px-3 py-2 text-left text-sm font-semibold text-slate-700 dark:bg-slate-800 dark:text-slate-200; caption-side: top; }
+.article-html th, .article-html td { @apply border-t border-slate-200 px-2.5 py-2 align-top dark:border-slate-700 sm:px-3; }
+.article-html thead th { @apply bg-slate-50 font-semibold text-slate-900 dark:bg-slate-800 dark:text-white; }
+.article-html tbody th { @apply font-medium text-slate-900 dark:text-white; }
+.article-html .article-sources { @apply text-base text-slate-700 dark:text-slate-300; }
 
 /* ------------------------------------------------------------------
    Übergang: Klassen der bisherigen Komponenten (Team-Seiten, Ratgeber)

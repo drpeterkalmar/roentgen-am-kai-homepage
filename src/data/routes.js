@@ -231,6 +231,8 @@ export const LEGACY_REDIRECTS = {
   // Körperanalyse-Seite ist nach /koerperanalyse-graz umgezogen (27.09.2026)
   '/unser-angebot/koerperfettmessung': '/koerperanalyse-graz',
   '/datenschutzerklarung': '/datenschutz',
+  // Auftrag nannte /blog/…; Artikel liegen einheitlich unter /ratgeber/<slug> (07.10.2026)
+  '/blog/sarkopenie-muskelverlust-dexa': '/ratgeber/sarkopenie-muskelverlust-dexa',
 };
 
 export const fullTitle = (route) =>

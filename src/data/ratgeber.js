@@ -14,6 +14,7 @@
 // * FAQPage-Schema nur, wenn der Artikel ein sichtbares `faq`-Array hat (wird als FAQ-Block angezeigt).
 import { SCREENING } from './screening.js';
 import { PHOTOS } from './photos.js';
+import { SARKOPENIE_TITLE, SARKOPENIE_EXCERPT, SARKOPENIE_FAQ, SARKOPENIE_SOURCES } from './ratgeber/sarkopenie.js';
 
 export const RATGEBER_BASE = '/ratgeber';
 export const PUBLISHER_NAME = 'Röntgen am Kai';
@@ -36,6 +37,15 @@ export const TARGETS = {
     ctaTitle: 'Körperzusammensetzung vor und während der Behandlung messen',
     ctaText: 'Die DEXA-Körperanalyse ist ohne Zuweisung als Privatleistung buchbar – als Ausgangsmessung oder Verlaufskontrolle.',
     bookingLabel: 'Körperanalyse buchen',
+  },
+  koerperanalyse: {
+    endTitle: 'Muskelmasse messen lassen',
+    to: '/koerperanalyse-graz',
+    label: 'DEXA-Körperanalyse in Graz',
+    service: 'koerperanalyse',
+    ctaTitle: 'Muskelmasse als Teil der Sarkopenie-Abklärung messen',
+    ctaText: 'Lassen Sie Ihre Muskelmasse mit einer DEXA-Körperanalyse in Graz messen – ohne Zuweisung als Privatleistung buchbar.',
+    bookingLabel: 'DEXA-Körperanalyse buchen',
   },
   knochendichte: {
     endTitle: 'Termin zur Knochendichtemessung',
@@ -153,6 +163,21 @@ const META = [
     datePublished: '2026-07-06',
     photo: 'waiting',
     review: 'Bestehender Artikeltext – Zahlen prüfen (etwa 5.000 Diagnosen pro Jahr, Heilungschancen „über 90 Prozent“), Träger „ÖQG“, Einladungsschreiben ab 45 (laut Praxis nicht erforderlich), „zertifizierter Standort“, FAQ-Antwort „Nein“ zur Strahlenbelastung, Empfehlung „ab 40 bei familiärer Belastung“.',
+  },
+  {
+    id: 6,
+    title: SARKOPENIE_TITLE,
+    excerpt: SARKOPENIE_EXCERPT,
+    slug: 'sarkopenie-muskelverlust-dexa',
+    seoTitle: 'Sarkopenie erkennen: Muskelverlust mit DEXA messen',
+    description: 'Sarkopenie: Muskelverlust im Alter erkennen, Diagnose nach EWGSOP2 und was die DEXA-Körperanalyse in Graz zur Muskelmasse zeigen kann – und was nicht.',
+    category: 'dexa-koerperanalyse',
+    target: 'koerperanalyse',
+    datePublished: '2026-10-07',
+    photo: 'scan',
+    faq: SARKOPENIE_FAQ,
+    sources: SARKOPENIE_SOURCES,
+    review: 'Neu am 07.10.2026 aus EWGSOP2 2019, Chaves 2022 und Ofenheimer 2020 – ärztlich freigeben (Orientierungswerte-Tabelle, Dosisangabe 0,001 mSv laut Chaves).',
   },
 ];
 

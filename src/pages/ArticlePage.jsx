@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Stethoscope, UserRound } from 'lucide-react';
 import Container from '../components/ui/Container';
 import Breadcrumbs from '../components/ui/Breadcrumbs';
@@ -13,6 +13,11 @@ import NotFoundPage from './NotFoundPage';
 // Der Text wird am zweiten H2 geteilt, dort steht der CTA „im Artikel“ – am Ende folgt der Abschluss-CTA.
 const textById = Object.fromEntries(blogPosts.map((p) => [p.id, p.content]));
 
+// Interne Links im Artikeltext stehen als Wurzelpfade (href="/koerperanalyse-graz"). Für GitHub Pages die Basis-URL
+// davorsetzen, damit sie auch ohne JavaScript und beim Öffnen in neuem Tab stimmen.
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (html) => html.replace(/href="\/(?!\/)/g, `href="${BASE}/`);
+
 const splitForCTA = (html) => {
   const parts = html.split(/(?=<h2>)/);
   if (parts.length < 3) return [html, ''];
@@ -22,10 +27,20 @@ const splitForCTA = (html) => {
 
 const ArticlePage = () => {
   const { slug } = useParams();
+  const navigate = useNavigate();
+  // Klicks auf interne Links im Artikeltext ohne Neuladen der Seite (normale Klicks; Strg/Cmd/Mittelklick bleiben Browser-Sache)
+  const onTextClick = (e) => {
+    const link = e.target.closest?.('a[href]');
+    if (!link || link.target || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    const href = link.getAttribute('href');
+    if (!href.startsWith(`${BASE}/`)) return;
+    e.preventDefault();
+    navigate(href.slice(BASE.length) || '/');
+  };
   const a = articleBySlug[slug];
   if (!a) return <NotFoundPage />;
   const t = TARGETS[a.target];
-  const html = a.id ? textById[a.id] : null;
+  const html = a.id ? withBase(textById[a.id]) : null;
   const [before, after] = html ? splitForCTA(html) : ['', ''];
   const others = ARTICLES.filter((x) => x.slug !== a.slug && x.category === a.category && x.status === 'published').slice(0, 2);
 
@@ -77,7 +92,8 @@ const ArticlePage = () => {
               <InlineCTA targetId={a.target} id="artikel-cta-inline" />
             </div>
           ) : (
-            <div className="article-content mt-8">
+            // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions -- nur Delegation für echte Links (per Tastatur über Enter auf dem Link)
+            <div className="article-content mt-8" onClick={onTextClick}>
               <div className="article-html" dangerouslySetInnerHTML={{ __html: before }} />
               <InlineCTA targetId={a.target} id="artikel-cta-inline" />
               {after && <div className="article-html" dangerouslySetInnerHTML={{ __html: after }} />}
@@ -88,6 +104,17 @@ const ArticlePage = () => {
             <div className="mt-12">
               <FAQ items={a.faq} title="Häufige Fragen" headingLevel={2} align="left" />
             </div>
+          )}
+
+          {a.sources?.length > 0 && (
+            <section aria-labelledby="quellen-title" className="mt-12">
+              <h2 id="quellen-title" className="font-display text-xl font-semibold tracking-tight text-slate-900 dark:text-white">Quellen</h2>
+              <ol className="article-html article-sources mt-3">
+                {a.sources.map((src) => (
+                  <li key={src} dangerouslySetInnerHTML={{ __html: src }} />
+                ))}
+              </ol>
+            </section>
           )}
 
           <footer className="mt-12 space-y-3 border-t border-slate-200 pt-6 text-sm text-slate-600 dark:border-slate-700 dark:text-slate-300">
