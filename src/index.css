@@ -225,6 +225,49 @@ body.high-contrast [data-placeholder] { border: 2px dashed #000 !important; }
 .bn-label { fill: #475569; font-size: 11px; font-weight: 600; }
 .dark .bn-label { fill: #cbd5e1; }
 
+/* DEXA-Befund-Slider (components/dexa/DexaReportSlider.jsx)
+   Markierungen sind reine Rahmen ohne Füllung, 3 px außerhalb des Werts – die Zahl bleibt immer lesbar.
+   Ruhezustand: feine, neutrale Kontur (zeigt nur, wo es etwas zu erklären gibt – Rot würde wie „auffällig“ wirken);
+   aktiv: Markenrot, der Rest der Seite wird leicht abgedunkelt (Spotlight). */
+.dexa-track { transition: transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1); touch-action: pan-y; }
+.dexa-track[data-dragging] { transition: none; }
+.dexa-viewport { touch-action: pan-y; }
+.dexa-hotspot {
+  background: transparent;
+  border: 1px solid rgb(100 116 139 / 0.45);
+  cursor: pointer;
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+.dexa-hotspot:hover, .dexa-hotspot-on {
+  border: 2px solid #8B2323;
+  box-shadow: 0 0 0 3px rgb(242 139 130 / 0.45);
+}
+.dexa-hotspot-on { box-shadow: 0 0 0 3px rgb(242 139 130 / 0.55), 0 0 0 9999px rgb(15 23 42 / 0.08); z-index: 1; }
+.dexa-icon-btn {
+  display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 9999px;
+  border: 1px solid rgb(203 213 225); background: #fff; color: rgb(15 23 42);
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+.dexa-icon-btn:hover:not(:disabled) { background: #FBF4F4; border-color: #8B2323; }
+.dexa-icon-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.dark .dexa-icon-btn { background: rgb(15 23 42); border-color: rgb(71 85 105); color: #fff; }
+.dexa-tool-btn {
+  display: inline-flex; align-items: center; gap: 0.5rem; min-height: 44px; padding: 0.5rem 0.9rem;
+  border-radius: 0.75rem; border: 1px solid rgb(203 213 225); background: #fff;
+  font-size: 0.9rem; font-weight: 600; color: rgb(15 23 42);
+}
+.dexa-tool-btn:hover { border-color: #8B2323; color: #8B2323; }
+.dark .dexa-tool-btn:hover, .dark .dexa-icon-btn:hover:not(:disabled) { border-color: #F28B82; color: #F28B82; background: rgb(15 23 42); }
+.dark .dexa-tool-btn { background: rgb(15 23 42); border-color: rgb(71 85 105); color: #fff; }
+.dexa-zoom-scroller { touch-action: pan-x pan-y; cursor: grab; overscroll-behavior: contain; }
+.dexa-zoom-scroller:active { cursor: grabbing; }
+.dexa-zoom[open] { display: block; }
+.dexa-switch { position: relative; width: 2rem; height: 1.125rem; border-radius: 9999px; background: rgb(203 213 225); transition: background-color 150ms ease; }
+.dexa-switch::after { content: ''; position: absolute; top: 2px; left: 2px; width: 0.875rem; height: 0.875rem; border-radius: 9999px; background: #fff; box-shadow: 0 1px 2px rgb(0 0 0 / 0.25); transition: transform 150ms ease; }
+.dexa-switch.is-on { background: #8B2323; }
+.dexa-switch.is-on::after { transform: translateX(0.875rem); }
+.dark .dexa-switch.is-on { background: #F28B82; }
+
 /* Nutzer mit „Bewegung reduzieren“ */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

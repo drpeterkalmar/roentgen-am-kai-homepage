@@ -1,0 +1,38 @@
+{
+  "dexa-beispielbefund-1": {
+    "file": "dexa-beispielbefund-1.png",
+    "source": "e9b6eae029a8a3a9ece1b234917fc6a64c46c29f016b4ada7882757e4e968f5b",
+    "width": 2400,
+    "height": 3395
+  },
+  "dexa-beispielbefund-2a": {
+    "file": "dexa-beispielbefund-2a.png",
+    "source": "b2627e7a2c0969b4953eaafa087bdc21d9979f063869c889dc1759540e2d640b",
+    "width": 2400,
+    "height": 3395
+  },
+  "dexa-beispielbefund-2b": {
+    "file": "dexa-beispielbefund-2b.png",
+    "source": "6dff7650b73b7e5c40fae365a4cf820ca171dcb500a4b2abf0ff05dc488e2972",
+    "width": 2400,
+    "height": 3395
+  },
+  "dexa-beispielbefund-3": {
+    "file": "dexa-beispielbefund-3.png",
+    "source": "509730440cac5562a4a2bcc62e464ac4bf27fef3568e707dfaa6bd1b94ffd65d",
+    "width": 2400,
+    "height": 3395
+  },
+  "dexa-beispielbefund-4": {
+    "file": "dexa-beispielbefund-4.png",
+    "source": "5d508065c3445bdc5e612dcbb16457f9d41271bf5c2a6058411a15e41e3d9a8a",
+    "width": 2400,
+    "height": 3395
+  },
+  "dexa-beispielbefund-5": {
+    "file": "dexa-beispielbefund-5.png",
+    "source": "7b067f6a790d6bcf6bd865de6453572dcf5069629ca32b087c32049b97b00ba4",
+    "width": 2400,
+    "height": 3395
+  }
+}

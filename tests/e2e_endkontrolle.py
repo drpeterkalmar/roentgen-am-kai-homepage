@@ -146,6 +146,8 @@ with sync_playwright() as p:
         # Touch-Ziele: Schaltflächen und CTAs ≥ 44 px hoch
         small = pg.evaluate("""[...document.querySelectorAll('main a[data-cta], main button, header button, nav[aria-label=Schnellzugriff] a')]
             .filter(e => e.offsetParent !== null)
+            // Markierungen im DEXA-Befund: Zusatzweg zur gleichwertigen Messwert-Liste (≥ 44 px) – WCAG 2.5.8 „Equivalent“
+            .filter(e => !e.hasAttribute('data-hotspot'))
             // WCAG 2.5.8: Links im Fließtext (inline) sind von der Mindestgröße ausgenommen
             .filter(e => !(getComputedStyle(e).display === 'inline' && e.closest('p, li')))
             .map(e => [e.textContent.trim().slice(0, 30), Math.round(e.getBoundingClientRect().height)])

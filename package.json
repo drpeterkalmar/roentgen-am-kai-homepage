@@ -12,7 +12,7 @@
     "preview": "vite preview",
     "test": "npm run lint && npm run test:unit",
     "test:unit": "node --test tests/unit/*.test.mjs",
-    "test:e2e": "python3 -u tests/e2e_site.py && python3 -u tests/e2e_faq_sync.py && python3 -u tests/e2e_mammographie.py && python3 -u tests/e2e_knochendichte.py && python3 -u tests/e2e_koerperanalyse.py && python3 -u tests/e2e_gesundheitsziele.py && python3 -u tests/e2e_ratgeber.py && python3 -u tests/e2e_weitere_untersuchungen.py && python3 -u tests/e2e_endkontrolle.py && python3 -u tests/e2e_animationen.py && python3 -u tests/e2e_navigation.py"
+    "test:e2e": "python3 -u tests/e2e_site.py && python3 -u tests/e2e_faq_sync.py && python3 -u tests/e2e_mammographie.py && python3 -u tests/e2e_knochendichte.py && python3 -u tests/e2e_koerperanalyse.py && python3 -u tests/e2e_gesundheitsziele.py && python3 -u tests/e2e_ratgeber.py && python3 -u tests/e2e_weitere_untersuchungen.py && python3 -u tests/e2e_endkontrolle.py && python3 -u tests/e2e_animationen.py && python3 -u tests/e2e_navigation.py && python3 -u tests/e2e_dexa_slider.py"
   },
   "homepage": "https://drpeterkalmar.github.io/roentgen-am-kai-homepage/",
   "dependencies": {

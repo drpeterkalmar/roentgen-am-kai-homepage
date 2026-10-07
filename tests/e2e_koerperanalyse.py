@@ -107,7 +107,9 @@ with sync_playwright() as p:
     bad = [w for w in ["goldstandard", "100 prozent", "100 %", "fehlerfrei", "misst den stoffwechsel", "stoffwechselrate",
                        "sarkopenie-test", "sarkopenietest", "garantiert", "misst die muskelkraft", "misst muskelkraft",
                        "überweisungsschein", "e-card", "strahlungsfrei", "strahlenfrei", "ergebnisgespräch mit",
-                       "abnehmen garantiert", "leistungssteigerung", " vat ", "(vat)", "cm³", "mikrosievert", "msv",
+                       "abnehmen garantiert", "leistungssteigerung", "mikrosievert", "msv",
+                       # VAT-Begriffe nur verboten, solange viszerales Fett nicht bestätigt ist (Befund-Slider erklärt es seit 07.10.2026)
+                       *([] if VISCERAL else [" vat ", "(vat)", "cm³"]),
                        "bioresonanz-analyse", "bioresonanz (bia)", "bia (bioresonanz)"] if w in low]
     check(not bad, f"keine verbotenen Aussagen {bad}")
     check("dexa analyse" not in low and low.count("dexa-analyse") == 0, "'DEXA-Analyse' nicht als Hauptbegriff")

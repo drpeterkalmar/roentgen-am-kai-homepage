@@ -12,9 +12,11 @@ import ImagePlaceholder from '../components/ui/ImagePlaceholder';
 import CTASection from '../components/ui/CTASection';
 import Button, { buttonClasses } from '../components/ui/Button';
 import { SectionHeading } from '../components/ui/Heading';
-import { BookingButton } from '../components/ui/BookingButtons';
+import { BookingButton, PhoneButton } from '../components/ui/BookingButtons';
 import FAQ, { useRouteFaq } from '../components/FAQ';
 import DexaScanFigure from '../components/DexaScanFigure';
+import DexaReportSlider, { DexaSources } from '../components/dexa/DexaReportSlider';
+import { DEXA_SECTION } from '../data/dexaReportExamples';
 import { imageUrl, imageSrcSet } from '../components/ui/Picture';
 import { H3, P, Bullets, NewWindow, linkRow, textLink } from '../components/ui/Text';
 import { IMAGE_BRIEFS } from '../data/imageBriefs';
@@ -227,6 +229,20 @@ const KoerperanalysePage = () => {
             „visceralFat: true“ setzen.
           </Placeholder>
         )}
+      </Section>
+
+      {/* 2b. Befund-Slider: anonymisierte Beispielbefunde mit erklärten Messwerten (src/data/dexaReportExamples.js) */}
+      <Section tone="muted" id="beispielbefund" labelledBy="befund-title">
+        <SectionHeading id="befund-title" title={DEXA_SECTION.title} lead={DEXA_SECTION.lead} className="!mb-6" />
+        <DexaReportSlider />
+        <Notice tone="info" className="mt-8 max-w-3xl">
+          <p data-dexa-notice="">{DEXA_SECTION.notice}</p>
+        </Notice>
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+          <BookingButton size="lg" label={DEXA_SECTION.cta} service="koerperanalyse" />
+          <PhoneButton service="koerperanalyse" />
+        </div>
+        <DexaSources className="mt-10 max-w-3xl border-t border-slate-200 pt-6 dark:border-slate-700" />
       </Section>
 
       {/* 3. Für wen? */}
