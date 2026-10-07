@@ -60,10 +60,31 @@ for s in slides:
 check(not (set(expl) - used), f"jede Erklärung wird verwendet {sorted(set(expl) - used)}")
 ids = [h["id"] for s in slides for h in s["hotspots"]]
 check(len(ids) == len(set(ids)), "Hotspot-IDs eindeutig")
-alltext = json.dumps(expl, ensure_ascii=False).lower()
-# Fachregeln: keine Grenzwerte aus den Quellen als Schwelle, Magermasse nie = Muskelmasse
+# Erklärtexte OHNE Referenzblock: dort keine Grenzwerte und keine Urteile
+alltext = json.dumps({k: {f: v for f, v in e.items() if f != "referenz"} for k, e in expl.items()}, ensure_ascii=False).lower()
 for bad in ["< 100", "≥ 100", "100 cm²", "160 cm²", "< 0,4", "≥ 0,4", "5,5 kg", "7 kg/m", "normalbereich", "normal range", "zu hoch", "zu niedrig", "erhöhtes risiko"]:
-    check(bad not in alltext, f"kein Grenzwert/Urteil '{bad}' in den Erklärungen")
+    check(bad not in alltext, f"kein Grenzwert/Urteil '{bad}' außerhalb der Referenzwerte")
+# Referenzwerte (Wunsch der Praxis 07.10.2026): wörtlich aus den Publikationen, mit Quelle + Hinweis, ohne Urteil über das Beispiel
+REF_PFLICHT = {
+    "vat": ["100 cm²", "160 cm²", "1 053 ± 628", "2 038 ± 888"],
+    "sat": ["0,4"],
+    "agVerhaeltnis": ["unter 1"],
+    "rsmi": ["5,5 kg/m²", "7 kg/m²", "6,6 ± 0,9", "8,5 ± 1,0"],
+    "fettmasse": ["5–9", "3–6", "über 21,0"],
+    "koerperfettanteil": ["39,9 ± 6,9", "31,3 ± 6,2"],
+    "bmi": ["18,5", "25", "30"],
+}
+for k, must in REF_PFLICHT.items():
+    r = expl[k].get("referenz")
+    check(bool(r), f"Referenzwerte bei {k}")
+    if not r:
+        continue
+    txt = json.dumps(r, ensure_ascii=False).replace("\u00a0", " ")  # geschützte Leerzeichen zwischen Zahl und Einheit
+    check(all(m in txt for m in must), f"Referenz {k} enthält {must}")
+    check(bool(r.get("hinweis")) and r.get("quellen") and all(q["id"] in ("chaves", "ofenheimer") and q.get("seiten") for q in r["quellen"]),
+          f"Referenz {k}: Hinweis + Quelle mit Seite")
+    for bad in ["ihr wert", "dieser befund liegt", "im beispiel liegt", "normalbereich", "unauffällig", "auffällig"]:
+        check(bad not in txt.lower(), f"Referenz {k}: kein Urteil über den Beispielwert ('{bad}')")
 check("keine direkt gemessene muskelmasse" in alltext and "muskelkraft" in alltext, "Magermasse ausdrücklich ≠ Muskelmasse/-kraft")
 for s in slides:
     for f in ["53,36", "263629", "DF+513588", "169,0"]:
@@ -267,6 +288,15 @@ with sync_playwright() as p:
             .map(e => [e.textContent.trim().slice(0, 30) || e.getAttribute('aria-label'), Math.round(e.getBoundingClientRect().height)])
             .filter(x => x[1] < 44)""")
         check(not small, f"[{label}] Touch-Ziele ≥ 44 px {small[:3]}")
+        # Jede Erklärung mit Referenzwerten öffnen: kein horizontales Scrollen (lange Quellenangaben, Tabellen)
+        for hid in ["s1-rsmi", "s1-bmi", "s2b-vat", "s2b-sat", "s2a-ag", "s3-fett", "s4-prozent"]:
+            slide_id = hid[1:].split("-")[0]
+            sec.locator(f"[data-dexa-dot='{slide_id}']").tap(); pg.wait_for_timeout(450)
+            sec.locator(f"[data-dexa-list] [data-hotspot-btn='{hid}']").tap()
+            pg.wait_for_timeout(350)
+            ow = pg.evaluate(f"Math.max(document.documentElement.scrollWidth, window.innerWidth) - {vp['width']}")
+            check(ow <= 0 and sec.locator("[data-dexa-referenz]").count() > 0, f"[{label}] Referenz {hid}: sichtbar, kein horizontales Scrollen ({ow}px)")
+        sec.locator("[data-dexa-dot='1']").tap(); pg.wait_for_timeout(450)
         pg.screenshot(path=str(SHOTS / f"{label.replace(' ', '-')}.png"), full_page=False)
         # Zoom am Handy
         sec.locator("[data-dexa-zoom]").tap(); pg.wait_for_timeout(500)

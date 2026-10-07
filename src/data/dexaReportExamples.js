@@ -4,7 +4,10 @@
 //
 // Regeln (Auftrag 07.10.2026):
 // - Erklärungen ausschließlich aus den beiden Publikationen in DEXA_SOURCES (plus Beschriftungen und
-//   Texten, die im Befund selbst stehen). Keine Grenzwerte, keine individuelle Diagnose.
+//   Texten, die im Befund selbst stehen). Keine individuelle Diagnose, keine Bewertung der Beispielwerte.
+// - Referenzwerte (Feld „referenz“, Wunsch der Praxis 07.10.2026) NUR wörtlich aus den Publikationen, mit Seite:
+//   Chaves Tab. 1/2 (S. 308) und Text S. 309–310; LEAD-Studie Tab. 1 (S. 1185, Mittelwert ± Standardabweichung).
+//   Jede Referenz braucht einen Hinweis (Herkunft, Gültigkeit, keine Diagnose).
 // - Magermasse ≠ direkt gemessene Muskelmasse oder Muskelkraft. VAT nur so, wie Befund und Quellen es definieren.
 // - Jede Erklärung: name, definition, beschreibt, einheit, einschraenkung, quellen (mind. eine der beiden Publikationen).
 //
@@ -44,6 +47,27 @@ export const DEXA_EXPLANATIONS = {
     einschraenkung:
       'Vergleichswerte hängen von Alter, Geschlecht und Herkunft ab und gelten nur für dasselbe DEXA-Gerät mit derselben Software.',
     quellen: [{ id: 'ofenheimer', seiten: '1184' }],
+    referenz: {
+      punkte: [
+        'Für den Körperfettanteil nennen die beiden Publikationen keinen festen Grenzwert.',
+        'Zur Orientierung: Durchschnittswerte der österreichischen LEAD-Studie (10.894 Erwachsene, gemessen am selben Gerätetyp wie dieser Befund).',
+      ],
+      tabelle: {
+        titel: 'Körperfettanteil in % – Mittelwert ± Standardabweichung (LEAD-Studie)',
+        kopf: ['Alter', 'Frauen', 'Männer'],
+        zeilen: [
+        ['18–29 Jahre', '34,9 ± 6,6', '24,8 ± 7,4'],
+        ['30–39 Jahre', '35,5 ± 7,3', '27,7 ± 6,9'],
+        ['40–49 Jahre', '37,4 ± 7,2', '29,8 ± 6,5'],
+        ['50–59 Jahre', '39,9 ± 6,9', '31,3 ± 6,2'],
+        ['60–69 Jahre', '42,3 ± 6,4', '32,7 ± 5,7'],
+        ['70–81 Jahre', '43,0 ± 6,3', '33,6 ± 5,9'],
+        ],
+      },
+      hinweis:
+        'Durchschnittswerte sind keine Grenzwerte. Die LEAD-Werte gelten nur für Erwachsene europäischer Herkunft und nur für diesen Gerätetyp.',
+      quellen: [{ id: 'ofenheimer', seiten: '1185' }, { id: 'ofenheimer', seiten: '1190' }],
+    },
   },
   fettmasse: {
     name: 'Fettmasse',
@@ -55,6 +79,29 @@ export const DEXA_EXPLANATIONS = {
     einschraenkung:
       'Fettmasse ist nicht dasselbe wie Fettgewebe: Fettgewebe besteht nur zum Teil aus Fett, der Rest ist Wasser, Eiweiß und Mineralstoffe.',
     quellen: [{ id: 'ofenheimer', seiten: '1181–1182' }, { id: 'chaves', seiten: '305–306' }],
+    referenz: {
+      punkte: [
+        'Feste Einteilungen gibt es für den Fettmasse-Index (FMI): Fettmasse in kg geteilt durch die Körpergröße in Metern zum Quadrat. Anders als der BMI beruht er nur auf dem Fett.',
+        'Der FMI ist in diesem Beispielbefund nicht ausgedruckt, weil die Körpergröße zum Schutz der Person geschwärzt ist.',
+      ],
+      tabelle: {
+        titel: 'Fettmasse-Index (FMI) in kg/m² – Einteilung nach Kelly et al.',
+        kopf: ['Einteilung', 'Frauen', 'Männer'],
+        zeilen: [
+          ['Deutlicher Fettmangel', 'unter 3,5', 'unter 2,0'],
+          ['Mäßiger Fettmangel', '3,5–3,9', '2,0–2,2'],
+          ['Leichter Fettmangel', '4,0–4,9', '2,3–3,0'],
+          ['Normalgewicht', '5–9', '3–6'],
+          ['Übergewicht', '9,1–13,0', '6,1–9,0'],
+          ['Adipositas Grad I', '13,1–17,0', '9,1–12,0'],
+          ['Adipositas Grad II', '17,1–21,0', '12,1–15,0'],
+          ['Adipositas Grad III', 'über 21,0', 'über 15,0'],
+        ],
+      },
+      hinweis:
+        'Die Einteilung stammt aus einer amerikanischen Referenzbevölkerung (NHANES). Laut LEAD-Studie sind Schwellenwerte für den Fettmasse-Index noch nicht validiert.',
+      quellen: [{ id: 'chaves', seiten: '307–308' }, { id: 'ofenheimer', seiten: '1188' }],
+    },
   },
   magermasse: {
     name: 'Magermasse (fettfreie Weichteilmasse)',
@@ -138,6 +185,15 @@ export const DEXA_EXPLANATIONS = {
     einschraenkung:
       'In diesem Befund ist das Verhältnis aus den Fettanteilen der beiden Regionen gebildet (33,5 % zu 39,8 % ergibt 0,84). Die LEAD-Studie berechnet es aus den Fettmassen in Kilogramm – die Zahlen sind daher nicht direkt vergleichbar.',
     quellen: [{ id: 'ofenheimer', seiten: '1182–1183' }],
+    referenz: {
+      punkte: [
+        'Referenzwert: unter 1.',
+        'Über 1 überwiegt das Bauchfett. Das erhöht laut Publikation das Risiko für Herz-Kreislauf-Erkrankungen, Fettstoffwechselstörungen, Insulinresistenz, Typ-2-Diabetes und metabolisches Syndrom.',
+      ],
+      hinweis:
+        'Chaves et al. bilden das Verhältnis wie dieser Befund aus den Fettanteilen (Beispiel in der Publikation: 49,3 % zu 28,7 % = 1,72). Ein Wert über 1 ist ein Risikohinweis, keine Diagnose.',
+      quellen: [{ id: 'chaves', seiten: '308–309' }],
+    },
   },
   vat: {
     name: 'Viszerales Fettgewebe (VAT), geschätzt',
@@ -147,8 +203,30 @@ export const DEXA_EXPLANATIONS = {
       'Volumen, Masse und Fläche des geschätzten viszeralen Fettgewebes. Eine vermehrte Menge davon ist laut Studienlage mit Insulinresistenz, Typ-2-Diabetes, Bluthochdruck und Herz-Kreislauf-Erkrankungen verbunden. „(MwSt.)“ in der Überschrift ist ein Übersetzungsfehler der Gerätesoftware – gemeint ist VAT.',
     einheit: 'Volumen in cm³, Masse in Gramm (g), Fläche in cm²',
     einschraenkung:
-      'Es ist eine Schätzung aus dem DEXA-Bild, keine Schnittbildmessung wie bei CT oder MRT. Die DEXA-Schätzung stimmt laut Studienlage gut mit der CT überein. Laut Befund ist CoreScan für Erwachsene von 18 bis 90 Jahren mit einem BMI von 18,5 bis 40 validiert.',
+      'Es ist eine Schätzung aus dem DEXA-Bild, keine Schnittbildmessung wie bei CT oder MRT. Die DEXA-Schätzung stimmt laut Studienlage gut mit der CT überein. Laut Befund ist CoreScan für Erwachsene von 18 bis 90 Jahren mit einem BMI von 18,5 bis 40 validiert.',
     quellen: [{ id: 'chaves', seiten: '309' }, { id: 'ofenheimer', seiten: '1181–1182' }],
+    referenz: {
+      punkte: [
+        'Fläche (Spalte „Fläche“, cm²): Referenzwert unter 100 cm².',
+        'Ab 100 cm² ist das viszerale Fettgewebe mit einem hohen, ab 160 cm² mit einem sehr hohen Herz-Kreislauf-Risiko verbunden.',
+        'Masse (Spalte „Fett Masse“, g): kein fester Grenzwert. Sie steigt mit dem Alter und ist bei Männern höher. Durchschnittswerte der österreichischen LEAD-Studie, gemessen mit derselben Software (CoreScan):',
+      ],
+      tabelle: {
+        titel: 'Viszerales Fettgewebe, Masse in g – Mittelwert ± Standardabweichung (LEAD-Studie)',
+        kopf: ['Alter', 'Frauen', 'Männer'],
+        zeilen: [
+        ['18–29 Jahre', '236 ± 242', '425 ± 385'],
+        ['30–39 Jahre', '340 ± 313', '767 ± 543'],
+        ['40–49 Jahre', '523 ± 432', '1 243 ± 755'],
+        ['50–59 Jahre', '760 ± 528', '1 613 ± 895'],
+        ['60–69 Jahre', '1 053 ± 628', '1 904 ± 914'],
+        ['70–81 Jahre', '1 147 ± 631', '2 038 ± 888'],
+        ],
+      },
+      hinweis:
+        'Die Grenzen 100 und 160 cm² stammen aus einer Studie an Frauen (Nicklas et al. 2003, zitiert bei Chaves et al.). Im Vergleich zur CT schätzt DEXA das viszerale Fett eher zu niedrig. Ein Wert über der Grenze zeigt ein Risiko an und ist keine Diagnose.',
+      quellen: [{ id: 'chaves', seiten: '308–309' }, { id: 'ofenheimer', seiten: '1185' }, { id: 'ofenheimer', seiten: '1190' }],
+    },
   },
   sat: {
     name: 'Subkutanes Fettgewebe (SAT), geschätzt',
@@ -158,6 +236,15 @@ export const DEXA_EXPLANATIONS = {
     einheit: 'Volumen in cm³, Masse in Gramm (g), Fläche in cm²',
     einschraenkung: 'Ebenfalls eine Schätzung aus dem DEXA-Bild, keine direkte Schnittbildmessung.',
     quellen: [{ id: 'chaves', seiten: '309' }],
+    referenz: {
+      punkte: [
+        'Für das subkutane Fettgewebe allein nennen die Publikationen keinen Grenzwert.',
+        'Verhältnis viszeral zu subkutan (VAT/SAT, aus den beiden Flächen in cm²): Referenzwert unter 0,4.',
+        'Ab 0,4 überwiegt das viszerale Fett. Das ist laut Publikation ein wichtiger Risikofaktor für Störungen des Zucker- und Fettstoffwechsels.',
+      ],
+      hinweis: 'Das Verhältnis ist im Befund nicht ausgedruckt; es ergibt sich aus den Flächen von VAT und SAT. Es ist ein Risikohinweis, keine Diagnose.',
+      quellen: [{ id: 'chaves', seiten: '308–309' }],
+    },
   },
   fettverteilung: {
     name: 'Fettmasse-Verhältnisse',
@@ -187,7 +274,7 @@ export const DEXA_EXPLANATIONS = {
     beschreibt: 'Wo der gemessene Fettanteil im Vergleich zu Gleichaltrigen gleichen Geschlechts in der Referenzbevölkerung liegt.',
     einheit: 'Centile (ohne Einheit)',
     einschraenkung:
-      'Referenzwerte hängen von Alter, Geschlecht, Herkunft, Bevölkerung, Gerät und Software ab. Grenzwerte für auffällige Fett- oder Magermasse-Indizes sind laut LEAD-Studie noch nicht validiert – eine Centile ist keine Diagnose.',
+      'Referenzwerte hängen von Alter, Geschlecht, Herkunft, Bevölkerung, Gerät und Software ab. Schwellenwerte für Fett- und Magermasse-Indizes sind laut LEAD-Studie noch nicht validiert – eine Centile ist keine Diagnose.',
     quellen: [{ id: 'ofenheimer', seiten: '1184, 1188' }],
   },
   bmi: {
@@ -198,6 +285,13 @@ export const DEXA_EXPLANATIONS = {
     einschraenkung:
       'Der BMI beruht auf dem gesamten Körpergewicht und unterscheidet nicht zwischen Fett und Magermasse. Der Fettmasse-Index der DEXA beruht dagegen nur auf dem Fett.',
     quellen: [{ id: 'chaves', seiten: '307' }, { id: 'ofenheimer', seiten: '1188' }],
+    referenz: {
+      punkte: [
+        'Einteilung der Weltgesundheitsorganisation: 18,5 bis unter 25 kg/m² Normalgewicht, 25 bis unter 30 kg/m² Übergewicht, ab 30 kg/m² Adipositas.',
+      ],
+      hinweis: 'Der BMI sagt nichts darüber, woraus das Gewicht besteht. Ein normaler BMI schließt viel Körperfett oder wenig Magermasse nicht aus.',
+      quellen: [{ id: 'ofenheimer', seiten: '1183' }, { id: 'chaves', seiten: '307–308' }],
+    },
   },
   rsmi: {
     name: 'RSMI (relativer Skelettmuskelindex)',
@@ -208,6 +302,27 @@ export const DEXA_EXPLANATIONS = {
     einschraenkung:
       'Der Befund spricht von „Muskelmasse“. Gemessen wird aber die Magermasse der Arme und Beine, nicht die Skelettmuskulatur direkt und nicht die Muskelkraft. Für die Diagnose einer Sarkopenie ist zuerst eine verminderte Muskelkraft entscheidend.',
     quellen: [{ id: 'chaves', seiten: '306, 308, 310' }],
+    referenz: {
+      punkte: [
+        'Unter 5,5 kg/m² bei Frauen bzw. unter 7 kg/m² bei Männern gilt die Magermasse der Arme und Beine als vermindert. Diese Grenzen werden bei der Abklärung einer Sarkopenie (Muskelschwund) verwendet.',
+        'Zur Orientierung: Durchschnittswerte der österreichischen LEAD-Studie für denselben Index (dort „appendikulärer Magermasse-Index“):',
+      ],
+      tabelle: {
+        titel: 'Magermasse-Index der Arme und Beine in kg/m² – Mittelwert ± Standardabweichung (LEAD-Studie)',
+        kopf: ['Alter', 'Frauen', 'Männer'],
+        zeilen: [
+        ['18–29 Jahre', '6,4 ± 0,9', '8,3 ± 1,1'],
+        ['30–39 Jahre', '6,5 ± 0,9', '8,5 ± 1,1'],
+        ['40–49 Jahre', '6,7 ± 1,0', '8,5 ± 1,0'],
+        ['50–59 Jahre', '6,6 ± 0,9', '8,5 ± 1,0'],
+        ['60–69 Jahre', '6,6 ± 0,9', '8,2 ± 1,0'],
+        ['70–81 Jahre', '6,7 ± 0,9', '7,9 ± 0,8'],
+        ],
+      },
+      hinweis:
+        'Ein Wert unter der Grenze allein ist keine Sarkopenie-Diagnose: Entscheidend ist zuerst die Muskelkraft. Die Grenzen wurden für bestimmte Bevölkerungsgruppen vorgeschlagen.',
+      quellen: [{ id: 'chaves', seiten: '308, 310' }, { id: 'ofenheimer', seiten: '1185' }],
+    },
   },
   grundumsatz: {
     name: 'Grundumsatz (RMR) – berechnet, nicht gemessen',

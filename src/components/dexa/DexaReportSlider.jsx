@@ -68,6 +68,40 @@ const HotspotLayer = ({ slide, activeId, previewId, onPreview, onSelect }) => (
   </div>
 );
 
+// Referenztabelle (Werte wörtlich aus den Publikationen, siehe dexaReportExamples.js)
+const ReferenceTable = ({ t }) => (
+  <div className="mt-2 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700">
+    <table className="w-full border-collapse text-left text-sm tabular-nums">
+      <caption className="bg-slate-50 px-2.5 py-1.5 text-left text-xs font-semibold text-slate-700 dark:bg-slate-800 dark:text-slate-200">
+        {t.titel}
+      </caption>
+      <thead>
+        <tr className="border-b border-slate-200 dark:border-slate-700">
+          {t.kopf.map((k) => (
+            <th key={k} scope="col" className="px-2.5 py-1 font-semibold text-slate-900 dark:text-white">
+              {k}
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {t.zeilen.map((z) => (
+          <tr key={z[0]} className="border-b border-slate-100 last:border-0 dark:border-slate-800">
+            <th scope="row" className="whitespace-nowrap px-2.5 py-1 font-normal text-slate-700 dark:text-slate-200">
+              {z[0]}
+            </th>
+            {z.slice(1).map((c, i) => (
+              <td key={i} className="whitespace-nowrap px-2.5 py-1">
+                {c}
+              </td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+);
+
 const Explanation = ({ hotspot, titleId }) => {
   const e = DEXA_EXPLANATIONS[hotspot.key];
   return (
@@ -87,6 +121,37 @@ const Explanation = ({ hotspot, titleId }) => {
           <dt className="font-semibold text-slate-900 dark:text-white">Einheit im Befund</dt>
           <dd>{e.einheit}</dd>
         </div>
+        {e.referenz && (
+          <div data-dexa-referenz="">
+            <dt className="font-semibold text-slate-900 dark:text-white">Referenzwerte laut Fachliteratur</dt>
+            <dd>
+              <ul className="mt-1 list-disc space-y-1 pl-5">
+                {e.referenz.punkte.map((t) => (
+                  <li key={t}>{t}</li>
+                ))}
+              </ul>
+              {e.referenz.tabelle && <ReferenceTable t={e.referenz.tabelle} />}
+              <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
+                {e.referenz.hinweis}{' '}
+                <span>
+                  Quelle:{' '}
+                  {e.referenz.quellen.map((q, i) => (
+                    <span key={q.id + q.seiten}>
+                      {i > 0 && '; '}
+                      {/* je Quelle Name + Seite zusammenhalten, zwischen den Quellen umbrechen (360 px) */}
+                      <span className="whitespace-nowrap">
+                        <a href={`#dexa-quelle-${q.id}`} className="underline underline-offset-2 hover:text-brand dark:hover:text-brand-300">
+                          {DEXA_SOURCES[q.id].short}
+                        </a>
+                        , S. {q.seiten}
+                      </span>
+                    </span>
+                  ))}
+                </span>
+              </p>
+            </dd>
+          </div>
+        )}
         <div className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-amber-950 dark:border-amber-800 dark:bg-amber-950/40 dark:text-amber-50">
           <dt className="font-semibold">Wichtig</dt>
           <dd>{e.einschraenkung}</dd>
@@ -488,6 +553,7 @@ const DexaReportSlider = () => {
                     type="button"
                     aria-pressed={activeId === h.id}
                     aria-controls={`${uid}-panel`}
+                    data-hotspot-btn={h.id}
                     onFocus={() => setPreviewId(h.id)}
                     onBlur={() => setPreviewId(null)}
                     onPointerEnter={(e) => e.pointerType === 'mouse' && setPreviewId(h.id)}
