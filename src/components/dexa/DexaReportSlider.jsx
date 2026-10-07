@@ -348,7 +348,8 @@ const DexaReportSlider = () => {
   const [zoomOpen, setZoomOpen] = useState(false);
   const [loaded, setLoaded] = useState(() => new Set([0, 1]));
   const [dragX, setDragX] = useState(0);
-  const [near, setNear] = useState(false); // Bilder erst laden, wenn der Slider in die Nähe des Bildschirms kommt
+  const [near, setNear] = useState(false);
+  const [more, setMore] = useState(false); // Desktop: Erklärung scrollt im Kasten weiter // Bilder erst laden, wenn der Slider in die Nähe des Bildschirms kommt
   const swipe = useRef(null);
   const viewport = useRef(null);
   const panelRef = useRef(null);
@@ -382,6 +383,20 @@ const DexaReportSlider = () => {
     io.observe(el);
     return () => io.disconnect();
   }, [near]);
+
+  // Neue Erklärung beginnt oben (Desktop: Kasten scrollt in sich)
+  const measureMore = useCallback(() => {
+    const p = panelRef.current;
+    setMore(!!p && p.scrollHeight - p.clientHeight - p.scrollTop > 8);
+  }, []);
+  useEffect(() => {
+    if (panelRef.current) panelRef.current.scrollTop = 0;
+    measureMore();
+  }, [shownId, index, measureMore]);
+  useEffect(() => {
+    window.addEventListener('resize', measureMore);
+    return () => window.removeEventListener('resize', measureMore);
+  }, [measureMore]);
 
   // Am Handy die Erklärung nach dem Antippen ins Bild holen (sie steht unter dem Befund)
   useEffect(() => {
@@ -541,8 +556,14 @@ const DexaReportSlider = () => {
             </div>
           </div>
 
-          {/* Erklärungen: Liste der Messwerte + Erklärung (Desktop rechts, Handy unter dem Bild) */}
-          <div className="min-w-0 lg:sticky lg:top-[calc(var(--header-height)+1rem)] lg:self-start">
+          {/* Erklärungen: Liste der Messwerte + Erklärung (Desktop rechts, Handy unter dem Bild).
+              Desktop: Spalte hat eine FESTE Höhe (Fensterhöhe abzüglich Kopf und Steuerzeile, damit der Kasten schon vor dem Ankleben ganz zu sehen ist; höchstens 48rem), lange Erklärungen scrollen im Kasten. Wächst die
+              mitlaufende Spalte beim Hover, schiebt das Ende des Rasters sie nach oben, der Knopf rutscht unter
+              der Maus weg und Hover/Klick flackern in einer Schleife (Fehler vom 07.10.2026). */}
+          <div
+            className="min-w-0 lg:sticky lg:top-[calc(var(--header-height)+1rem)] lg:flex lg:h-[min(calc(100dvh-var(--header-height)-6rem),48rem)] lg:flex-col lg:self-start"
+            data-dexa-aside=""
+          >
             <h3 id={`${uid}-liste`} className="font-display text-base font-semibold text-slate-900 dark:text-white">
               Messwerte auf dieser Seite
             </h3>
@@ -572,11 +593,13 @@ const DexaReportSlider = () => {
                 </li>
               ))}
             </ul>
+            <div className="relative mt-4 lg:flex lg:min-h-0 lg:flex-1 lg:flex-col">
             <div
               ref={panelRef}
               id={`${uid}-panel`}
+              onScroll={measureMore}
               aria-live="polite"
-              className="mt-4 scroll-mb-24 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-900"
+              className="scroll-mb-24 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-900 lg:min-h-0 lg:flex-1 lg:overflow-y-auto"
               data-dexa-panel=""
             >
               {shown ? (
@@ -587,6 +610,16 @@ const DexaReportSlider = () => {
                   mit der Maus über eine Markierung zu fahren.
                 </p>
               )}
+            </div>
+            {more && (
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-x-px bottom-px hidden h-14 items-end justify-center rounded-b-2xl bg-gradient-to-t from-white via-white/90 to-transparent pb-1.5 text-xs font-semibold text-slate-600 dark:from-slate-900 dark:via-slate-900/90 dark:text-slate-300 lg:flex"
+                data-dexa-more=""
+              >
+                Weiterlesen: im Kasten scrollen
+              </div>
+            )}
             </div>
           </div>
         </div>

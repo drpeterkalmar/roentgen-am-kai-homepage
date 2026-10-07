@@ -190,6 +190,30 @@ with sync_playwright() as p:
     # Quellenlink springt zur Quellenliste
     href = panel.locator("a[href^='#dexa-quelle-']").first.get_attribute("href")
     check(pg.locator(href).count() == 1, f"Quellenverweis {href} hat ein Ziel")
+    # Regression 07.10.: Maus auf einen Messwert mit langer Erklärung (VAT) – die mitlaufende rechte Spalte darf
+    # nicht springen, sonst rutscht der Knopf unter der Maus weg und der Klick hält nichts fest.
+    s2b = next(s for s in slides if s["id"] == "2b")
+    vat = next(h for h in s2b["hotspots"] if h["key"] == "vat" and h["id"].endswith("-vat"))
+    sec.locator(f"[data-dexa-dot='{s2b['id']}']").click(); pg.wait_for_timeout(450)
+    # Lage wie beim Lesen: rechte Spalte klebt oben, darunter noch etwas Platz bis zum Ende des Rasters
+    pg.evaluate("""(() => { const a = document.querySelector('[data-dexa-panel]').closest('[data-dexa-aside]') || document.querySelector('[data-dexa-panel]').parentElement, g = a.parentElement.getBoundingClientRect();
+      const top = parseFloat(getComputedStyle(a).top); scrollBy(0, g.bottom - (top + a.getBoundingClientRect().height + 60)); })()"""); pg.wait_for_timeout(400)
+    vchip = sec.locator(f"[data-dexa-chip='{vat['id']}']")
+    b0 = vchip.bounding_box()
+    pg.mouse.move(b0["x"] + b0["width"] / 2, b0["y"] + b0["height"] / 2, steps=4); pg.wait_for_timeout(400)
+    b1 = vchip.bounding_box()
+    check(abs(b1["y"] - b0["y"]) < 2, f"Hover auf langen Messwert: Knopf bleibt stehen ({round(b0['y'])} → {round(b1['y'])})")
+    pg.mouse.down(); pg.mouse.up(); pg.wait_for_timeout(250)
+    check(vchip.get_attribute("aria-pressed") == "true", "Erster Mausklick auf langen Messwert hält fest")
+    pg.mouse.move(5, 5); pg.wait_for_timeout(250)
+    check(expl[vat["key"]]["name"] in panel.inner_text(), "Lange Erklärung bleibt nach Wegfahren stehen")
+    ah = sec.locator("[data-dexa-panel]").evaluate("e => (e.closest('[data-dexa-aside]') || e.parentElement).getBoundingClientRect().height")
+    check(ah <= pg.viewport_size["height"], f"Rechte Spalte nicht höher als das Fenster ({round(ah)} px)")
+    over = panel.evaluate("e => e.scrollHeight > e.clientHeight + 8")
+    check(not over or sec.locator("[data-dexa-more]").is_visible(), "Lange Erklärung: Hinweis „im Kasten scrollen“ sichtbar")
+    panel.evaluate("e => { e.scrollTop = e.scrollHeight; e.dispatchEvent(new Event('scroll')); }"); pg.wait_for_timeout(200)
+    check(sec.locator("[data-dexa-more]").count() == 0, "Hinweis verschwindet am Ende der Erklärung")
+    sec.locator("[data-dexa-dot='3']").click(); pg.wait_for_timeout(400)
     # Markierungen ausblenden
     sec.locator("[data-dexa-marks]").click(); pg.wait_for_timeout(150)
     check(sec.locator("[data-dexa-slide='3'] [data-hotspot]").count() == 0, "Markierungen ausblendbar")
