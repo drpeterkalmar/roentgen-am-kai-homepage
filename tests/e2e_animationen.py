@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Funktionsprüfung der Animationen (Playwright headless) gegen vite preview :4174."""
 import pathlib
+import sys
 from playwright.sync_api import sync_playwright
 from _paths import shots
 import json
@@ -154,3 +155,4 @@ with sync_playwright() as p:
     b.close()
 
 print("RESULT:", "ALL GREEN" if not fails else f"{len(fails)} FAIL")
+sys.exit(1 if fails else 0)
