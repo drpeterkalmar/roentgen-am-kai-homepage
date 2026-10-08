@@ -8,7 +8,10 @@ import ImagePlaceholder from '../components/ui/ImagePlaceholder';
 import CTASection from '../components/ui/CTASection';
 import Button, { buttonClasses } from '../components/ui/Button';
 import { SectionHeading } from '../components/ui/Heading';
-import { BookingButton } from '../components/ui/BookingButtons';
+import { BookingButton, PhoneButton } from '../components/ui/BookingButtons';
+import Notice from '../components/ui/Notice';
+import DexaReportSlider, { DexaSources } from '../components/dexa/DexaReportSlider';
+import { BONE_REPORT_SET, BONE_SECTION } from '../data/boneDensityReportExamples';
 import FAQ, { useRouteFaq } from '../components/FAQ';
 import DexaScanFigure from '../components/DexaScanFigure';
 import BoneRiskCheck from '../components/BoneRiskCheck';
@@ -382,6 +385,60 @@ const KnochendichtePage = () => {
             ]}
           />
         </Card>
+      </Section>
+
+      {/* So lesen Sie Ihren DEXA-Befund – Befund-Slider mit anonymisierten Praxisbefunden.
+          Folien, Hotspots, Texte und Quellen: src/data/boneDensityReportExamples.js */}
+      <Section tone="muted" id="befund-lesen" labelledBy="befund-lesen-title" className="border-b border-slate-200 dark:border-slate-800">
+        <SectionHeading id="befund-lesen-title" title={BONE_SECTION.title} lead={BONE_SECTION.lead} className="!mb-6" />
+        <DexaReportSlider set={BONE_REPORT_SET} />
+
+        <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
+          <Card as="section" aria-labelledby="kd-tscore-title" data-kd-tscore="">
+            <H3 id="kd-tscore-title" className="!text-lg">{BONE_SECTION.tScoreTitle}</H3>
+            <ul className="mt-3 space-y-2 text-[1.0625rem] leading-relaxed text-slate-700 dark:text-slate-200">
+              {BONE_SECTION.tScoreBands.map((b) => (
+                <li key={b.range} className="flex flex-wrap gap-x-2">
+                  <span className="font-semibold text-slate-900 dark:text-white">T-Wert {b.range}:</span>
+                  <span>{b.text}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-4 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-[0.95rem] leading-relaxed text-amber-950 dark:border-amber-800 dark:bg-amber-950/40 dark:text-amber-50" data-kd-tscore-caveat="">
+              {BONE_SECTION.tScoreCaveat}
+            </p>
+          </Card>
+          <div className="space-y-6">
+            <Card as="section" aria-labelledby="kd-diagnose-title">
+              <H3 id="kd-diagnose-title" className="!text-lg">{BONE_SECTION.diagnosisTitle}</H3>
+              <P className="mt-3" data-kd-diagnose="">{BONE_SECTION.diagnosisText}</P>
+            </Card>
+            <Card as="section" aria-labelledby="kd-unterarm-title">
+              <H3 id="kd-unterarm-title" className="!text-lg">{BONE_SECTION.forearmTitle}</H3>
+              <P className="mt-3">{BONE_SECTION.forearmText}</P>
+            </Card>
+          </div>
+        </div>
+
+        <Notice tone="info" className="mt-6 max-w-3xl">
+          <p data-kd-notice="">{BONE_SECTION.notice}</p>
+        </Notice>
+
+        <DexaSources set={BONE_REPORT_SET} title={BONE_SECTION.sourcesTitle} className="mt-8 max-w-3xl border-t border-slate-200 pt-6 dark:border-slate-700" />
+
+        <div className="mt-8 max-w-3xl">
+          <P data-kd-dexa-text="">{BONE_SECTION.dexaText}</P>
+          <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+            <BookingButton size="lg" label={BONE_SECTION.cta} service="knochendichte" data-kd-cta="" />
+            <PhoneButton service="knochendichte" />
+          </div>
+          <p className="mt-3 text-sm text-slate-600 dark:text-slate-300" data-kd-kombi="">
+            {BONE_SECTION.combinedNote}{' '}
+            <a href="#gemeinsam" className="font-semibold text-slate-900 underline underline-offset-4 hover:text-brand dark:text-white">
+              Mammographie und Knochendichte gemeinsam
+            </a>
+          </p>
+        </div>
       </Section>
 
       {/* FAQ – sichtbar = FAQPage-Schema (inkl. Strahlenbelastung) */}

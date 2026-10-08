@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """DEXA-Beispielbefunde: anonymisierte PDFs (public/assets/dexa/*.pdf) → PNG-Vorlagen (assets-src/dexa/*.png).
 
-Aufruf (lokal, PyMuPDF nötig): python3 scripts/dexa_render_pages.py
-Danach `npm run images:dexa` – erzeugt daraus AVIF/WebP in public/assets/dexa/ (scripts/dexa-images.mjs).
+Aufruf (lokal, PyMuPDF nötig): python3 scripts/dexa_render_pages.py [set]
+  set = dexa (Standard, Körperanalyse) oder knochendichte (Knochendichte-Befunde, public/assets/knochendichte/).
+Danach `npm run images:dexa` bzw. `npm run images:knochendichte` – erzeugt daraus AVIF/WebP (scripts/dexa-images.mjs).
 Die PDFs sind die veröffentlichten, bereits anonymisierten Originale (Schwärzungen siehe Datenstruktur
 src/data/dexaReportExamples.js); die getrennten Roh-Originale liegen NICHT im Repo.
 Jede PDF-Datei hat genau eine Seite; gerendert wird 2400 px breit (≈ 290 dpi), damit Zoom und 2×-Displays scharf bleiben.
@@ -16,8 +17,11 @@ except ImportError:
     sys.exit("PyMuPDF fehlt: pip install pymupdf (oder ~/.hermes/hermes-agent/venv/bin/python verwenden)")
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-SRC = ROOT / "public/assets/dexa"
-OUT = ROOT / "assets-src/dexa"
+SET = sys.argv[1] if len(sys.argv) > 1 else "dexa"
+if SET not in ("dexa", "knochendichte"):
+    sys.exit(f"unbekanntes Set: {SET}")
+SRC = ROOT / "public/assets" / SET
+OUT = ROOT / "assets-src" / SET
 WIDTH = 2400
 
 OUT.mkdir(parents=True, exist_ok=True)

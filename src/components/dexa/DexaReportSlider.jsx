@@ -1,36 +1,42 @@
 import { useCallback, useEffect, useId, useRef, useState } from 'react';
-import { ChevronLeft, ChevronRight, FileText, Maximize2, Minus, Plus, RotateCcw, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Expand, FileText, Maximize2, Minus, Plus, RotateCcw, X } from 'lucide-react';
 import { cx } from '../ui/cx';
-import { DEXA_EXPLANATIONS, DEXA_IMAGE, DEXA_REPORT_EXAMPLES, DEXA_SOURCES } from '../../data/dexaReportExamples';
+import { DEXA_REPORT_SET } from '../../data/dexaReportExamples';
 
-// Befund-Slider der Körperanalyse-Seite: sechs anonymisierte DEXA-Beispielseiten mit erklärten Messwerten.
-// Inhalte, Hotspot-Positionen und Erklärungen kommen ausschließlich aus src/data/dexaReportExamples.js.
+// Befund-Slider für anonymisierte DEXA-Beispielbefunde mit erklärten Messwerten.
+// Ein „Set“ bündelt Folien, Hotspots, Erklärungen und Quellen (Prop set):
+// - Körperanalyse (Standard): src/data/dexaReportExamples.js (DEXA_REPORT_SET)
+// - Knochendichte: src/data/boneDensityReportExamples.js (BONE_REPORT_SET, mit Vorschaubildern)
+// Die Komponente enthält keine medizinischen Texte – alles kommt aus dem Set.
 //
 // Bedienung
 // - Pfeile, Seitenpunkte, „n von 6“, Wischen (Pointer-Events), Pfeiltasten/Pos1/Ende im Slider. Kein Autoplay.
 // - Messwerte: Markierungen im Bild (Maus: Hover zeigt, Klick hält fest; Touch: Antippen) und eine Liste
 //   „Messwerte auf dieser Seite“ (Tastatur: Fokus zeigt, Enter/Leertaste hält fest). Die Markierung ist nur ein
 //   Rahmen ohne Füllung, die Erklärung steht neben (Desktop) bzw. unter dem Bild (Handy) – nichts verdeckt Werte.
-// - Zoom: Vollbild-Dialog (<dialog>), Plus/Minus, Strg+Mausrad, Zwei-Finger-Zoom, Verschieben per Scrollen/Ziehen.
+// - Ein geöffneter Hinweis schließt per Escape, Schließen-Schaltfläche und Klick außerhalb.
+// - Zoom: Dialog über den ganzen Bildschirm (<dialog>), Plus/Minus, Strg+Mausrad, Zwei-Finger-Zoom, Verschieben.
+//   „Vollbild“ öffnet denselben Dialog mit ganzer Seite und nutzt – wo der Browser es kann – den echten Vollbildmodus.
 // - Bilder: AVIF/WebP mit srcset; geladen werden nur die aktuelle und die Nachbarseiten, der Rest bei Bedarf.
+//   Alles liegt auf dieser Website; nichts wird an fremde Dienste übertragen.
 
-const BASE = `${import.meta.env.BASE_URL}assets/dexa/`;
-const srcSet = (file, ext) => DEXA_IMAGE.widths.map((w) => `${BASE}${file}-${w}.${ext} ${w}w`).join(', ');
-const pdfUrl = (file) => `${BASE}${file}.pdf`;
-const N = DEXA_REPORT_EXAMPLES.length;
+const baseOf = (set) => `${import.meta.env.BASE_URL}${set.base}`;
+const srcSet = (set, file, ext) => set.image.widths.map((w) => `${baseOf(set)}${file}-${w}.${ext} ${w}w`).join(', ');
+const pdfUrl = (set, file) => `${baseOf(set)}${file}.pdf`;
+const fundstelle = (q) => (q.seiten ? `, S. ${q.seiten}` : q.stelle ? `, ${q.stelle}` : '');
 const ZOOM_MIN = 1;
 const ZOOM_MAX = 4;
 const clampZoom = (z) => Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, Math.round(z * 100) / 100));
 
-const ReportImage = ({ slide, sizes, eager = false, className }) => (
+const ReportImage = ({ set, slide, sizes, eager = false, className }) => (
   <picture>
-    <source type="image/avif" srcSet={srcSet(slide.file, 'avif')} sizes={sizes} />
-    <source type="image/webp" srcSet={srcSet(slide.file, 'webp')} sizes={sizes} />
+    <source type="image/avif" srcSet={srcSet(set, slide.file, 'avif')} sizes={sizes} />
+    <source type="image/webp" srcSet={srcSet(set, slide.file, 'webp')} sizes={sizes} />
     <img
-      src={`${BASE}${slide.file}-1200.webp`}
+      src={`${baseOf(set)}${slide.file}-1200.webp`}
       alt={slide.alt}
-      width={DEXA_IMAGE.width}
-      height={DEXA_IMAGE.height}
+      width={set.image.width}
+      height={set.image.height}
       loading={eager ? 'eager' : 'lazy'}
       decoding="async"
       draggable={false}
@@ -102,8 +108,10 @@ const ReferenceTable = ({ t }) => (
   </div>
 );
 
-const Explanation = ({ hotspot, titleId }) => {
-  const e = DEXA_EXPLANATIONS[hotspot.key];
+const Explanation = ({ set, hotspot, titleId }) => {
+  const e = set.explanations[hotspot.key];
+  const SOURCES = set.sources;
+  const qHref = (id) => `#${set.idPrefix}-quelle-${id}`;
   return (
     <div>
       <p className="text-xs font-semibold uppercase tracking-wide text-brand-700 dark:text-brand-300">Im Befund markiert</p>
@@ -117,10 +125,12 @@ const Explanation = ({ hotspot, titleId }) => {
           <dt className="font-semibold text-slate-900 dark:text-white">Was der Wert beschreibt</dt>
           <dd>{e.beschreibt}</dd>
         </div>
-        <div>
-          <dt className="font-semibold text-slate-900 dark:text-white">Einheit im Befund</dt>
-          <dd>{e.einheit}</dd>
-        </div>
+        {e.einheit && (
+          <div>
+            <dt className="font-semibold text-slate-900 dark:text-white">Einheit im Befund</dt>
+            <dd>{e.einheit}</dd>
+          </div>
+        )}
         {e.referenz && (
           <div data-dexa-referenz="">
             <dt className="font-semibold text-slate-900 dark:text-white">Referenzwerte laut Fachliteratur</dt>
@@ -140,8 +150,8 @@ const Explanation = ({ hotspot, titleId }) => {
                       {i > 0 && '; '}
                       {/* je Quelle Name + Seite zusammenhalten, zwischen den Quellen umbrechen (360 px) */}
                       <span className="whitespace-nowrap">
-                        <a href={`#dexa-quelle-${q.id}`} className="underline underline-offset-2 hover:text-brand dark:hover:text-brand-300">
-                          {DEXA_SOURCES[q.id].short}
+                        <a href={qHref(q.id)} className="underline underline-offset-2 hover:text-brand dark:hover:text-brand-300">
+                          {SOURCES[q.id].short}
                         </a>
                         , S. {q.seiten}
                       </span>
@@ -160,12 +170,12 @@ const Explanation = ({ hotspot, titleId }) => {
           <dt className="inline font-semibold">Quelle: </dt>
           <dd className="inline">
             {e.quellen.map((q, i) => (
-              <span key={q.id}>
+              <span key={q.id + (q.seiten || q.stelle || '')}>
                 {i > 0 && '; '}
-                <a href={`#dexa-quelle-${q.id}`} className="underline underline-offset-2 hover:text-brand dark:hover:text-brand-300">
-                  {DEXA_SOURCES[q.id].short}
+                <a href={qHref(q.id)} className="underline underline-offset-2 hover:text-brand dark:hover:text-brand-300">
+                  {SOURCES[q.id].short}
                 </a>
-                , S. {q.seiten}
+                {fundstelle(q)}
               </span>
             ))}
           </dd>
@@ -176,7 +186,7 @@ const Explanation = ({ hotspot, titleId }) => {
 };
 
 // Zoom-Dialog: Bild mit Markierungen in wählbarer Vergrößerung. Pinch und Strg+Rad über Pointer-/Wheel-Events.
-const ZoomDialog = ({ slide, open, onClose, activeId, onSelect }) => {
+const ZoomDialog = ({ set, slide, open, startZoom = 2, fullscreen = false, onClose, activeId, onSelect }) => {
   const ref = useRef(null);
   const scroller = useRef(null);
   const pointers = useRef(new Map());
@@ -190,10 +200,15 @@ const ZoomDialog = ({ slide, open, onClose, activeId, onSelect }) => {
     const d = ref.current;
     if (!d) return;
     if (open && !d.open) {
-      setZoom(2);
+      setZoom(startZoom);
       d.showModal();
-    } else if (!open && d.open) d.close();
-  }, [open]);
+      // Echter Vollbildmodus, wo verfügbar (am iPhone nicht – dort deckt der Dialog den Bildschirm ohnehin ab)
+      if (fullscreen && d.requestFullscreen && !document.fullscreenElement) d.requestFullscreen().catch(() => {});
+    } else if (!open && d.open) {
+      if (document.fullscreenElement === d) document.exitFullscreen().catch(() => {});
+      d.close();
+    }
+  }, [open, startZoom, fullscreen]);
 
   // Zoomen um einen Punkt (Bildschirmkoordinaten), damit die Stelle unter Finger/Maus stehen bleibt
   const zoomAt = useCallback((next, cx0, cy0) => {
@@ -292,7 +307,7 @@ const ZoomDialog = ({ slide, open, onClose, activeId, onSelect }) => {
         <div className="flex h-full flex-col">
           <div className="flex flex-wrap items-center gap-2 border-b border-slate-200 px-3 py-2 dark:border-slate-700 sm:px-5">
             <h3 id={titleId} className="mr-auto min-w-0 truncate font-display text-base font-semibold sm:text-lg">
-              Vergrößerung: {slide.title}
+              {fullscreen ? 'Vollbild' : 'Vergrößerung'}: {slide.title}
             </h3>
             <div className="flex items-center gap-1" role="group" aria-label="Vergrößerung einstellen">
               <button type="button" className="dexa-icon-btn" onClick={() => zoomAt(zoom / 1.5)} disabled={zoom <= ZOOM_MIN} aria-label="Verkleinern">
@@ -306,7 +321,7 @@ const ZoomDialog = ({ slide, open, onClose, activeId, onSelect }) => {
                 <RotateCcw size={18} aria-hidden="true" />
               </button>
             </div>
-            <button type="button" className="dexa-icon-btn" onClick={onClose} aria-label="Vergrößerung schließen">
+            <button type="button" className="dexa-icon-btn" onClick={onClose} aria-label={fullscreen ? 'Vollbild schließen' : 'Vergrößerung schließen'} data-dexa-zoom-close="">
               <X size={22} aria-hidden="true" />
             </button>
           </div>
@@ -320,13 +335,13 @@ const ZoomDialog = ({ slide, open, onClose, activeId, onSelect }) => {
             onClickCapture={onClickCapture}
           >
             <div className="relative mx-auto my-3 bg-white shadow-sm" style={{ width: `min(${zoom * 100}%, ${zoom * 1100}px)` }}>
-              <ReportImage slide={slide} sizes={`${Math.round(zoom * 100)}vw`} eager />
+              <ReportImage set={set} slide={slide} sizes={`${Math.round(zoom * 100)}vw`} eager />
               <HotspotLayer slide={slide} activeId={activeId} previewId={null} onPreview={() => {}} onSelect={onSelect} />
             </div>
           </div>
           <div className="max-h-[40dvh] overflow-y-auto border-t border-slate-200 px-4 py-3 dark:border-slate-700 sm:px-6" aria-live="polite">
             {active ? (
-              <Explanation hotspot={active} titleId={`${titleId}-e`} />
+              <Explanation set={set} hotspot={active} titleId={`${titleId}-e`} />
             ) : (
               <p className="text-sm text-slate-600 dark:text-slate-300">
                 Tippen oder klicken Sie auf eine Markierung, um den Messwert erklärt zu bekommen. Zoomen mit Plus/Minus,
@@ -340,12 +355,15 @@ const ZoomDialog = ({ slide, open, onClose, activeId, onSelect }) => {
   );
 };
 
-const DexaReportSlider = () => {
+const DexaReportSlider = ({ set = DEXA_REPORT_SET }) => {
+  const SLIDES = set.slides;
+  const N = SLIDES.length;
   const [index, setIndex] = useState(0);
   const [activeId, setActiveId] = useState(null); // festgehalten (Klick/Tipp/Enter)
   const [previewId, setPreviewId] = useState(null); // Hover/Fokus
   const [showMarks, setShowMarks] = useState(true);
   const [zoomOpen, setZoomOpen] = useState(false);
+  const [zoomMode, setZoomMode] = useState('zoom'); // 'zoom' (Vergrößern) oder 'full' (Vollbild)
   const [loaded, setLoaded] = useState(() => new Set([0, 1]));
   const [dragX, setDragX] = useState(0);
   const [near, setNear] = useState(false);
@@ -353,8 +371,10 @@ const DexaReportSlider = () => {
   const swipe = useRef(null);
   const viewport = useRef(null);
   const panelRef = useRef(null);
+  const rootRef = useRef(null);
+  const thumbsRef = useRef(null);
   const uid = useId();
-  const slide = DEXA_REPORT_EXAMPLES[index];
+  const slide = SLIDES[index];
 
   const go = useCallback((i) => {
     const next = (i + N) % N;
@@ -362,7 +382,7 @@ const DexaReportSlider = () => {
     setActiveId(null);
     setPreviewId(null);
     setLoaded((prev) => new Set([...prev, next, (next + 1) % N, (next - 1 + N) % N]));
-  }, []);
+  }, [N]);
 
   const shownId = previewId ?? activeId;
   const shown = slide.hotspots.find((h) => h.id === shownId);
@@ -370,6 +390,45 @@ const DexaReportSlider = () => {
   const select = (id) => {
     setActiveId((cur) => (cur === id ? null : id));
     setPreviewId(null);
+  };
+  const closeHint = useCallback(() => {
+    setActiveId(null);
+    setPreviewId(null);
+  }, []);
+
+  // Geöffneten Hinweis schließen: Escape (außer im Zoom-Dialog, der schließt selbst) und Klick/Tipp außerhalb
+  useEffect(() => {
+    if (!activeId || zoomOpen) return undefined;
+    const onKey = (e) => {
+      if (e.key === 'Escape') closeHint();
+    };
+    const onDown = (e) => {
+      const t = e.target;
+      if (!(t instanceof Element)) return;
+      if (t.closest('[data-hotspot], [data-hotspot-btn], [data-dexa-panel], dialog')) return;
+      closeHint();
+    };
+    document.addEventListener('keydown', onKey);
+    document.addEventListener('pointerdown', onDown);
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.removeEventListener('pointerdown', onDown);
+    };
+  }, [activeId, zoomOpen, closeHint]);
+
+  // Aktives Vorschaubild in der Leiste sichtbar halten
+  useEffect(() => {
+    const el = thumbsRef.current?.querySelector('[aria-current="true"]');
+    if (el && el.scrollIntoView && thumbsRef.current.scrollWidth > thumbsRef.current.clientWidth) {
+      const box = thumbsRef.current;
+      const left = el.offsetLeft - (box.clientWidth - el.offsetWidth) / 2;
+      box.scrollTo({ left, behavior: 'auto' });
+    }
+  }, [index]);
+
+  const openZoom = (mode) => {
+    setZoomMode(mode);
+    setZoomOpen(true);
   };
 
   useEffect(() => {
@@ -450,8 +509,9 @@ const DexaReportSlider = () => {
     <div>
       {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions -- Pfeiltasten für den Slider (Karussell-Muster) */}
       <section
+        ref={rootRef}
         aria-roledescription="Karussell"
-        aria-label="Anonymisierte DEXA-Beispielbefunde"
+        aria-label={set.label || 'Anonymisierte DEXA-Beispielbefunde'}
         onKeyDown={onKeyDown}
         className="dexa-slider"
         data-dexa-slider=""
@@ -490,7 +550,7 @@ const DexaReportSlider = () => {
                 style={{ transform: `translateX(calc(${-index * 100}% + ${dragX}px))` }}
                 data-dragging={dragX !== 0 ? '' : undefined}
               >
-                {DEXA_REPORT_EXAMPLES.map((s, i) => (
+                {SLIDES.map((s, i) => (
                   <div
                     key={s.id}
                     role="group"
@@ -499,11 +559,11 @@ const DexaReportSlider = () => {
                     aria-hidden={i !== index}
                     inert={i !== index ? '' : undefined}
                     className="relative w-full shrink-0"
-                    style={{ aspectRatio: `${DEXA_IMAGE.width} / ${DEXA_IMAGE.height}` }}
+                    style={{ aspectRatio: `${set.image.width} / ${set.image.height}` }}
                     data-dexa-slide={s.id}
                   >
                     {near && loaded.has(i) && (
-                      <ReportImage slide={s} sizes="(min-width: 1280px) 760px, (min-width: 1024px) 60vw, 100vw" />
+                      <ReportImage set={set} slide={s} sizes="(min-width: 1280px) 760px, (min-width: 1024px) 60vw, 100vw" />
                     )}
                     {i === index && showMarks && (
                       <HotspotLayer slide={s} activeId={activeId} previewId={previewId} onPreview={setPreviewId} onSelect={select} />
@@ -519,7 +579,7 @@ const DexaReportSlider = () => {
 
             {/* Seitenpunkte */}
             <div className="mt-3 flex flex-wrap items-center justify-center gap-1" role="group" aria-label="Befundseite wählen">
-              {DEXA_REPORT_EXAMPLES.map((s, i) => (
+              {SLIDES.map((s, i) => (
                 <button
                   key={s.id}
                   type="button"
@@ -540,16 +600,58 @@ const DexaReportSlider = () => {
               ))}
             </div>
 
+            {/* Vorschaubilder (nur Sets mit thumbs: kleine WebP-Dateien, lazy) */}
+            {set.thumbs && (
+              <div
+                ref={thumbsRef}
+                className="dexa-thumbs mt-1 flex gap-2 overflow-x-auto px-0.5 pb-2 pt-1"
+                role="group"
+                aria-label="Vorschaubilder der Befundseiten"
+                data-dexa-thumbs=""
+              >
+                {SLIDES.map((s, i) => (
+                  <button
+                    key={s.id}
+                    type="button"
+                    onClick={() => go(i)}
+                    aria-label={`Seite ${i + 1}: ${s.title}`}
+                    aria-current={i === index ? 'true' : undefined}
+                    className={cx(
+                      'dexa-thumb w-16 shrink-0 overflow-hidden rounded-md border-2 bg-white sm:w-[4.5rem]',
+                      i === index ? 'border-brand dark:border-brand-300' : 'border-slate-200 hover:border-slate-400 dark:border-slate-700'
+                    )}
+                    data-dexa-thumb={s.id}
+                  >
+                    <img
+                      src={`${baseOf(set)}${s.file}-thumb.webp`}
+                      alt=""
+                      width={160}
+                      height={Math.round((160 * set.image.height) / set.image.width)}
+                      loading="lazy"
+                      decoding="async"
+                      draggable={false}
+                      className="block h-auto w-full"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
+
             {/* Werkzeuge */}
             <div className="mt-2 flex flex-wrap items-center justify-center gap-2 sm:justify-start">
-              <button type="button" className="dexa-tool-btn" onClick={() => setZoomOpen(true)} data-dexa-zoom="">
+              <button type="button" className="dexa-tool-btn" onClick={() => openZoom('zoom')} data-dexa-zoom="">
                 <Maximize2 size={18} aria-hidden="true" /> Vergrößern
               </button>
+              {set.thumbs && (
+                <button type="button" className="dexa-tool-btn" onClick={() => openZoom('full')} data-dexa-full="">
+                  <Expand size={18} aria-hidden="true" /> Vollbild
+                </button>
+              )}
               <button type="button" className="dexa-tool-btn" aria-pressed={showMarks} onClick={() => setShowMarks((v) => !v)} data-dexa-marks="">
                 <span aria-hidden="true" className={cx('dexa-switch', showMarks && 'is-on')} />
                 Markierungen
               </button>
-              <a href={pdfUrl(slide.file)} target="_blank" rel="noopener noreferrer" className="dexa-tool-btn" data-dexa-pdf="">
+              <a href={pdfUrl(set, slide.file)} target="_blank" rel="noopener noreferrer" className="dexa-tool-btn" data-dexa-pdf="">
                 <FileText size={18} aria-hidden="true" /> PDF
                 <span className="sr-only"> (Original) von Seite {index + 1}, öffnet in neuem Fenster</span>
               </a>
@@ -603,7 +705,20 @@ const DexaReportSlider = () => {
               data-dexa-panel=""
             >
               {shown ? (
-                <Explanation hotspot={shown} titleId={`${uid}-e`} />
+                <>
+                  {activeId && (
+                    <button
+                      type="button"
+                      onClick={closeHint}
+                      className="dexa-icon-btn float-right -mr-2 -mt-2 ml-2"
+                      aria-label="Erklärung schließen"
+                      data-dexa-close=""
+                    >
+                      <X size={20} aria-hidden="true" />
+                    </button>
+                  )}
+                  <Explanation set={set} hotspot={shown} titleId={`${uid}-e`} />
+                </>
               ) : (
                 <p className="text-[0.95rem] leading-relaxed text-slate-600 dark:text-slate-300">
                   Wählen Sie einen Messwert aus der Liste oder tippen Sie im Befund auf eine Markierung. Am Computer genügt es,
@@ -625,18 +740,27 @@ const DexaReportSlider = () => {
         </div>
       </section>
 
-      <ZoomDialog slide={slide} open={zoomOpen} onClose={() => setZoomOpen(false)} activeId={activeId} onSelect={select} />
+      <ZoomDialog
+        set={set}
+        slide={slide}
+        open={zoomOpen}
+        startZoom={zoomMode === 'full' ? 1 : 2}
+        fullscreen={zoomMode === 'full'}
+        onClose={() => setZoomOpen(false)}
+        activeId={activeId}
+        onSelect={select}
+      />
     </div>
   );
 };
 
-// Quellenangaben unter dem Slider (Ziele der Verweise #dexa-quelle-…)
-export const DexaSources = ({ className }) => (
-  <div className={className}>
-    <h3 className="font-display text-base font-semibold text-slate-900 dark:text-white">Quellen der Erklärungen</h3>
+// Quellenangaben unter dem Slider (Ziele der Verweise #<idPrefix>-quelle-…)
+export const DexaSources = ({ className, set = DEXA_REPORT_SET, title = 'Quellen der Erklärungen' }) => (
+  <div className={className} data-dexa-sources="">
+    <h3 className="font-display text-base font-semibold text-slate-900 dark:text-white">{title}</h3>
     <ol className="mt-2 space-y-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-      {Object.entries(DEXA_SOURCES).map(([id, s]) => (
-        <li key={id} id={`dexa-quelle-${id}`} className="scroll-mt-28">
+      {Object.entries(set.sources).map(([id, s]) => (
+        <li key={id} id={`${set.idPrefix}-quelle-${id}`} className="scroll-mt-28">
           {s.citation}{' '}
           <a href={s.url} target="_blank" rel="noopener noreferrer" className="break-all underline underline-offset-2 hover:text-brand dark:hover:text-brand-300">
             {s.url.replace('https://', '')}

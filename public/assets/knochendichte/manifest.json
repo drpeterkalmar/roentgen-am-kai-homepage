@@ -1,0 +1,38 @@
+{
+  "knochendichte-beispielbefund-femur-links": {
+    "file": "knochendichte-beispielbefund-femur-links.png",
+    "source": "ca03edf65fe47996c7f0fe6fa2ccc178cee582ffb68d1eb7ccccadd93dd9d153",
+    "width": 2400,
+    "height": 3395
+  },
+  "knochendichte-beispielbefund-femur-rechts": {
+    "file": "knochendichte-beispielbefund-femur-rechts.png",
+    "source": "f613c9ff059b171ecc89b03389d11c571c94b3548b016d13ed154321f3398992",
+    "width": 2400,
+    "height": 3395
+  },
+  "knochendichte-beispielbefund-lws": {
+    "file": "knochendichte-beispielbefund-lws.png",
+    "source": "cff5264f05c6ab5789483d800c3adb54065209766a57c20c6c37d607378dd2a7",
+    "width": 2400,
+    "height": 3395
+  },
+  "knochendichte-beispielbefund-tbs-1": {
+    "file": "knochendichte-beispielbefund-tbs-1.png",
+    "source": "d6d31975e287622e1181ab167ed4c4f864a00f5c5a30334e21c1f4339ac68500",
+    "width": 2400,
+    "height": 3395
+  },
+  "knochendichte-beispielbefund-tbs-2": {
+    "file": "knochendichte-beispielbefund-tbs-2.png",
+    "source": "ccb97f6faf292eb25fb43f0acd04f61241c2ece726e2928d313d89df42d7caa6",
+    "width": 2400,
+    "height": 3395
+  },
+  "knochendichte-beispielbefund-tbs-3": {
+    "file": "knochendichte-beispielbefund-tbs-3.png",
+    "source": "31362c8f9c33795de383460ecbd57112669c8facce839aec80a9ea9b5c08d81b",
+    "width": 2400,
+    "height": 3395
+  }
+}

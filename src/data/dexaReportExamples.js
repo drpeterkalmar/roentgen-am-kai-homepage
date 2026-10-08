@@ -485,3 +485,15 @@ export const DEXA_SECTION = {
     'Die dargestellten Werte dienen als Beispiel. Die individuelle Beurteilung erfolgt im Zusammenhang mit Alter, Geschlecht, Körperbau und medizinischer Fragestellung.',
   cta: 'DEXA-Körperanalyse buchen',
 };
+
+// Komplettes Set für den Slider (Prop „set“ von DexaReportSlider, Standard)
+export const DEXA_REPORT_SET = {
+  idPrefix: 'dexa',
+  base: 'assets/dexa/',
+  label: 'Anonymisierte DEXA-Beispielbefunde',
+  image: DEXA_IMAGE,
+  slides: DEXA_REPORT_EXAMPLES,
+  explanations: DEXA_EXPLANATIONS,
+  sources: DEXA_SOURCES,
+  thumbs: false,
+};
