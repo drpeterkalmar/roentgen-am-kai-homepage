@@ -12,12 +12,10 @@ import Breadcrumbs from './Breadcrumbs';
 //   meta: kleine Zusatzinfos unter den Schaltflächen (z. B. Öffnungszeiten)
 //   facts: kurze Stichpunkte als Chips zwischen Einleitung und Schaltflächen ([string | { text, strong }])
 //   keyMessage: hervorgehobene Kernbotschaft direkt unter der Einleitung
-//   ambient: dezente Hintergrundbewegung – 'glow' (langsam wandernder Farbschimmer) und/oder
-//            'scan' (eine Messlinie fährt einmal über das Foto, wie der Arm des DEXA-Geräts).
+//   ambient: ['glow'] = dezenter, langsam wandernder Farbschimmer im Hintergrund (nur Startseite).
 //            Rein dekorativ (aria-hidden), nur transform/opacity, bei „Bewegung reduzieren“ ruhig.
 const Hero = ({ breadcrumbs, eyebrow, title, highlight, status, lead, keyMessage, facts, actions, meta, image, imageSlot, ambient = [], tone = 'muted', className, children }) => {
   const glow = ambient.includes('glow');
-  const scan = ambient.includes('scan');
   const hasMedia = image || imageSlot;
   return (
     <section
@@ -86,9 +84,6 @@ const Hero = ({ breadcrumbs, eyebrow, title, highlight, status, lead, keyMessage
                 decoding={image.priority ? 'sync' : 'async'}
                 className="h-full w-full object-cover"
               />
-            )}
-            {scan && (
-              <span aria-hidden="true" data-ambient="scan" className="hero-scan pointer-events-none absolute inset-0" />
             )}
           </div>
         )}

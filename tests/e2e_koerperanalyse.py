@@ -159,6 +159,13 @@ with sync_playwright() as p:
     for anchor, target in [("#ablauf", "ablauf"), ("#faq", "faq"), ("#abnehmen", "abnehmen"), ("#training", "training"), ("#sarkopenie", "sarkopenie")]:
         check(pg.locator(f'main a[href="{anchor}"]').count() >= 1 and pg.locator(f"#{target}").count() == 1, f"Anker {anchor} verlinkt und vorhanden")
     pg.click('main a[href="#ablauf"] >> nth=0'); pg.wait_for_timeout(1500)
+    # sanftes Scrollen kann unter Last länger dauern: warten, bis scrollY zwei Messungen lang steht
+    last = None
+    for _ in range(40):
+        y = pg.evaluate("scrollY")
+        if y == last:
+            break
+        last = y; pg.wait_for_timeout(150)
     top = pg.evaluate("document.getElementById('ablauf').getBoundingClientRect().top")
     check(-5 <= top <= 260, f"'So funktioniert die Messung' springt zu #ablauf (top={round(top)})")
     hrefs = sorted(set(pg.eval_on_selector_all("a[href]", "as => as.map(a => a.href)")))

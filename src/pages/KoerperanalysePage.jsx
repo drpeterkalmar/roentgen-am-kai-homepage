@@ -132,7 +132,6 @@ const KoerperanalysePage = () => {
     <div className="[&_:is(h1,h2,h3,h4)]:hyphens-manual">
       {/* 1. Hero – Nutzen zuerst, Termin im ersten Bildschirm */}
       <Hero
-        ambient={['scan']}
         breadcrumbs={[{ name: 'Startseite', href: '/' }, { name: 'Körperanalyse' }]}
         eyebrow="Medizinische Ganzkörperanalyse mit DEXA"
         // weiche Trennstellen nur an Wortfugen (automatische Trennung lieferte „Körpe-ranalyse“)

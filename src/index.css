@@ -284,10 +284,9 @@ body.high-contrast [data-placeholder] { border: 2px dashed #000 !important; }
 .dark .dexa-switch.is-on { background: #F28B82; }
 
 
-/* Hintergrund-Ruhe (Test 10/2026, Branch test/dezente-bewegung):
-   glow = zwei sehr blasse Farbflächen in Markenrot/Grau, die in 30–40 s kaum merklich wandern.
-   scan = eine feine Messlinie fährt nach dem Laden EINMAL über das Hero-Foto (DEXA-Arm).
-   Beides nur transform/opacity (Compositor, kein Layout), nichts verdeckt Inhalt, LCP unberührt. */
+/* Hintergrund-Ruhe (10/2026, nur Startseiten-Hero, Hero ambient={['glow']}):
+   zwei sehr blasse Farbflächen in Markenrot/Grau, die in 30–40 s kaum merklich wandern.
+   Nur transform/opacity (Compositor, kein Layout), nichts verdeckt Inhalt, LCP unberührt. */
 .hero-glow > span {
   position: absolute; border-radius: 9999px; filter: blur(60px); will-change: transform;
 }
@@ -307,37 +306,6 @@ body.high-contrast [data-placeholder] { border: 2px dashed #000 !important; }
 }
 @keyframes hero-drift-a { to { transform: translate(18rem, 6rem) scale(1.15); } }
 @keyframes hero-drift-b { to { transform: translate(-16rem, -5rem) scale(1.1); } }
-
-.hero-scan { overflow: hidden; border-radius: inherit; container-type: inline-size; }
-.hero-scan::before, .hero-scan::after {
-  content: ''; position: absolute; top: 0; bottom: 0; left: 0; opacity: 0;
-}
-/* die Linie selbst */
-.hero-scan::after {
-  width: 2px; background: linear-gradient(to bottom, transparent, rgb(255 255 255 / 0.7) 15%, rgb(255 255 255 / 0.7) 85%, transparent);
-  box-shadow: 0 0 14px 3px rgb(255 255 255 / 0.28);
-}
-/* zarter Schleier hinter der Linie: „schon gemessen“ */
-.hero-scan::before {
-  width: 9rem; transform-origin: right;
-  background: linear-gradient(to right, transparent, rgb(255 255 255 / 0.16));
-}
-@media (prefers-reduced-motion: no-preference) {
-  .hero-scan::after  { animation: hero-scan-line 3.6s cubic-bezier(.45,0,.25,1) 0.9s 1 both; }
-  .hero-scan::before { animation: hero-scan-veil 3.6s cubic-bezier(.45,0,.25,1) 0.9s 1 both; }
-}
-@keyframes hero-scan-line {
-  0%   { transform: translateX(0);  opacity: 0; }
-  8%   { opacity: 1; }
-  88%  { opacity: 1; }
-  100% { transform: translateX(100cqw); opacity: 0; }
-}
-@keyframes hero-scan-veil {
-  0%   { transform: translateX(-9rem); opacity: 0; }
-  8%   { opacity: 1; }
-  88%  { opacity: 1; }
-  100% { transform: translateX(calc(100cqw - 9rem)); opacity: 0; }
-}
 
 /* Nutzer mit „Bewegung reduzieren“ */
 @media (prefers-reduced-motion: reduce) {
