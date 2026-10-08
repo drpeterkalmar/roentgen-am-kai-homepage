@@ -177,7 +177,8 @@ const META = [
     photo: 'scan',
     faq: SARKOPENIE_FAQ,
     sources: SARKOPENIE_SOURCES,
-    review: 'Neu am 07.10.2026 aus EWGSOP2 2019, Chaves 2022 und Ofenheimer 2020 – ärztlich freigeben (Orientierungswerte-Tabelle, Dosisangabe 0,001 mSv laut Chaves).',
+    reviewNote: false, // Prüfvermerk auf Wunsch der Praxis entfernt (07.10.2026)
+    review: 'Tabelle der Orientierungswerte von der Praxis freigegeben (07.10.2026).',
   },
 ];
 

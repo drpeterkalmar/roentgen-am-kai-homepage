@@ -118,10 +118,13 @@ const ArticlePage = () => {
           )}
 
           <footer className="mt-12 space-y-3 border-t border-slate-200 pt-6 text-sm text-slate-600 dark:border-slate-700 dark:text-slate-300">
-            <p className="flex flex-wrap items-center gap-2">
-              <Stethoscope size={16} aria-hidden="true" />
-              Medizinisch geprüft von <Placeholder inline>Dr. [NAME]</Placeholder> – Stand <Placeholder inline>[DATUM]</Placeholder>
-            </p>
+            {/* Prüfvermerk-Platzhalter: je Artikel abschaltbar (reviewNote: false), z. B. Sarkopenie laut Praxis 07.10.2026 */}
+            {a.reviewNote !== false && (
+              <p className="flex flex-wrap items-center gap-2">
+                <Stethoscope size={16} aria-hidden="true" />
+                Medizinisch geprüft von <Placeholder inline>Dr. [NAME]</Placeholder> – Stand <Placeholder inline>[DATUM]</Placeholder>
+              </p>
+            )}
             {!a.author && <Placeholder internal>Autorin/Autor des Artikels bestätigen (derzeit: Praxis als Herausgeberin).</Placeholder>}
             {a.review && <Placeholder internal>Freigabe: {a.review}</Placeholder>}
             <p>Dieser Artikel dient der allgemeinen Information und ersetzt keine ärztliche Beratung.</p>

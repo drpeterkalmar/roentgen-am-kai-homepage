@@ -174,6 +174,7 @@ with sync_playwright() as p:
                 check(BOOK in hrefs, "Sarkopenie: Link zur Terminbuchung im Text")
                 src = pg.locator("section[aria-labelledby=quellen-title] li").all_inner_texts()
                 check(len(src) == 3 and all("doi" in s for s in src), f"Sarkopenie: 3 Quellen mit DOI am Ende ({len(src)})")
+                check("Medizinisch geprüft" not in t, "Sarkopenie: kein Prüfvermerk-Platzhalter (Praxis 07.10.2026)")
                 tbl = pg.locator(".article-table")
                 check(tbl.count() == 1 and tbl.evaluate("e => e.scrollWidth - e.clientWidth") <= 0, "Sarkopenie: Tabelle ohne Überlauf (1440)")
         ctx.close()
