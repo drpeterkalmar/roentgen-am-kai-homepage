@@ -12,13 +12,24 @@ import Breadcrumbs from './Breadcrumbs';
 //   meta: kleine Zusatzinfos unter den Schaltflächen (z. B. Öffnungszeiten)
 //   facts: kurze Stichpunkte als Chips zwischen Einleitung und Schaltflächen ([string | { text, strong }])
 //   keyMessage: hervorgehobene Kernbotschaft direkt unter der Einleitung
-const Hero = ({ breadcrumbs, eyebrow, title, highlight, status, lead, keyMessage, facts, actions, meta, image, imageSlot, tone = 'muted', className, children }) => {
+//   ambient: dezente Hintergrundbewegung – 'glow' (langsam wandernder Farbschimmer) und/oder
+//            'scan' (eine Messlinie fährt einmal über das Foto, wie der Arm des DEXA-Geräts).
+//            Rein dekorativ (aria-hidden), nur transform/opacity, bei „Bewegung reduzieren“ ruhig.
+const Hero = ({ breadcrumbs, eyebrow, title, highlight, status, lead, keyMessage, facts, actions, meta, image, imageSlot, ambient = [], tone = 'muted', className, children }) => {
+  const glow = ambient.includes('glow');
+  const scan = ambient.includes('scan');
   const hasMedia = image || imageSlot;
   return (
     <section
       aria-labelledby="page-title"
-      className={cx(tone === 'muted' ? 'bg-slate-50 dark:bg-slate-900' : 'bg-white dark:bg-slate-950', 'border-b border-slate-200 dark:border-slate-800', className)}
+      className={cx(tone === 'muted' ? 'bg-slate-50 dark:bg-slate-900' : 'bg-white dark:bg-slate-950', 'border-b border-slate-200 dark:border-slate-800', glow && 'relative isolate overflow-hidden', className)}
     >
+      {glow && (
+        <div aria-hidden="true" data-ambient="glow" className="hero-glow pointer-events-none absolute inset-0 -z-10">
+          <span className="hero-glow-a" />
+          <span className="hero-glow-b" />
+        </div>
+      )}
       <Container className={cx('py-8 sm:py-12 lg:py-14', hasMedia && 'grid items-start gap-10 lg:grid-cols-2 lg:gap-16')}>
         <div className={cx(!hasMedia && 'max-w-3xl')}>
           {breadcrumbs && <div className="mb-4 sm:mb-6"><Breadcrumbs items={breadcrumbs} /></div>}
@@ -75,6 +86,9 @@ const Hero = ({ breadcrumbs, eyebrow, title, highlight, status, lead, keyMessage
                 decoding={image.priority ? 'sync' : 'async'}
                 className="h-full w-full object-cover"
               />
+            )}
+            {scan && (
+              <span aria-hidden="true" data-ambient="scan" className="hero-scan pointer-events-none absolute inset-0" />
             )}
           </div>
         )}

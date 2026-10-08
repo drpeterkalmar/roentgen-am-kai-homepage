@@ -73,6 +73,7 @@ const Home = () => (
   <>
     {/* 1. Hero: Angebot + Terminbuchung im ersten Bildschirm */}
     <Hero
+      ambient={['glow']}
       title="Moderne Radiologie in Graz – rasch, persönlich und präzise"
       lead="Mammographie, Knochendichte, DEXA-Körperanalyse, Röntgen und Ultraschall. Alle Kassen und privat."
       actions={

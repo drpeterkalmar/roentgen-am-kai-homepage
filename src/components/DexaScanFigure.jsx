@@ -1,11 +1,14 @@
 import { useEffect, useId, useRef, useState } from 'react';
-import { RotateCcw } from 'lucide-react';
+import { Pause, Play } from 'lucide-react';
 import { cx } from './ui/cx';
 
 // Schematische DEXA-Messung (Draufsicht, Rückenlage, Kopf links → obere Bildhälfte = linke Körperseite).
 // Der Messarm fährt über den Messbereich, der gemessene Bereich färbt sich ein.
-// Reines SVG + CSS (index.css → .dexa-*), keine Bibliothek. Startet einmal, sobald die Grafik ins Bild
-// scrollt; „Erneut abspielen“ startet neu. „Bewegung reduzieren“, Druck, ohne JS: sofort das Endbild.
+// Reines SVG + CSS (index.css → .dexa-*), keine Bibliothek. Läuft in Schleife, solange die Grafik im Bild ist:
+// Messung → kurz stehen lassen → sanft zurücksetzen → von vorn. „Anhalten“ stoppt (WCAG 2.2.2).
+// „Bewegung reduzieren“, Druck, ohne JS: sofort das Endbild, keine Schleife.
+const HOLD_MS = 2600;
+const RESET_MS = 800;
 // Inhaltlich deckungsgleich mit dem Seitentext – keine zusätzlichen medizinischen Aussagen.
 const MODES = {
   body: {
@@ -92,6 +95,9 @@ const DexaScanFigure = ({ mode = 'body', visceral = false, className }) => {
   const legend = mode === 'bone' ? LEGEND_BONE : showVat ? LEGEND_VAT : [];
   const ref = useRef(null);
   const [run, setRun] = useState(0);
+  const [visible, setVisible] = useState(false);
+  const [paused, setPaused] = useState(false);
+  const [resetting, setResetting] = useState(false);
   // eindeutig je Figur (auch mehrere Figuren desselben Modus auf einer Seite); ohne „:“ für url(#…)
   const uid = `dexa-${mode}-${useId().replace(/:/g, '')}`;
 
@@ -104,10 +110,8 @@ const DexaScanFigure = ({ mode = 'body', visceral = false, className }) => {
     }
     const io = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setRun((r) => r || 1);
-          io.disconnect();
-        }
+        setVisible(entry.isIntersecting);
+        if (entry.isIntersecting) setRun((r) => r || 1);
       },
       { threshold: 0.6 }
     );
@@ -115,14 +119,30 @@ const DexaScanFigure = ({ mode = 'body', visceral = false, className }) => {
     return () => io.disconnect();
   }, []);
 
+  // Schleife: nach Messung + Pause sanft zurücksetzen, dann neu starten. Nur sichtbar, nicht angehalten,
+  // nicht bei „Bewegung reduzieren“.
+  useEffect(() => {
+    if (!run || !visible || paused) return undefined;
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return undefined;
+    const t1 = setTimeout(() => setResetting(true), m.dur * 1000 + HOLD_MS);
+    const t2 = setTimeout(() => {
+      setResetting(false);
+      setRun((r) => r + 1);
+    }, m.dur * 1000 + HOLD_MS + RESET_MS);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, [run, visible, paused, m.dur]);
+
   const at = (x) => `${(((x - m.start) / (m.end - m.start)) * m.dur).toFixed(2)}s`;
   const box = 'dexa-hit fill-brand-500/10 stroke-brand dark:fill-white/10 dark:stroke-white';
 
   return (
     <figure
       ref={ref}
-      className={cx('dexa-fig rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-900 sm:p-5', run > 0 && 'is-playing', className)}
-      style={{ '--arm-start': `${m.start}px`, '--arm-end': `${m.end}px`, '--dur': `${m.dur}s` }}
+      className={cx('dexa-fig rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-900 sm:p-5', run > 0 && 'is-playing', resetting && 'is-resetting', paused && 'is-paused', className)}
+      style={{ '--arm-start': `${m.start}px`, '--arm-end': `${m.end}px`, '--dur': `${m.dur}s`, '--reset': `${RESET_MS}ms` }}
       data-dexa-figure={mode}
     >
       <svg key={run} viewBox="0 0 600 220" role="img" aria-labelledby={`${uid}-t ${uid}-d`} className="block h-auto w-full">
@@ -186,10 +206,17 @@ const DexaScanFigure = ({ mode = 'body', visceral = false, className }) => {
           <span className="min-w-0 flex-1 basis-60">{m.caption}</span>
           <button
             type="button"
-            onClick={() => setRun((r) => r + 1)}
+            data-dexa-toggle=""
+            aria-pressed={paused}
+            onClick={() => {
+              setResetting(false);
+              if (paused) setRun((r) => r + 1);
+              setPaused((v) => !v);
+            }}
             className="inline-flex min-h-[44px] shrink-0 items-center gap-2 rounded-lg px-2 font-semibold text-brand hover:bg-brand-50 motion-reduce:hidden dark:text-brand-300 dark:hover:bg-slate-800"
           >
-            <RotateCcw size={16} aria-hidden="true" /> Erneut abspielen
+            {paused ? <Play size={16} aria-hidden="true" /> : <Pause size={16} aria-hidden="true" />}
+            {paused ? 'Abspielen' : 'Anhalten'}
           </button>
         </div>
       </figcaption>

@@ -78,6 +78,7 @@ const KnochendichtePage = () => {
     <div className="[&_:is(h1,h2,h3)]:hyphens-manual">
       {/* Hero – Terminbutton, Kurzfakten und Preis im ersten sichtbaren Bereich */}
       <Hero
+        ambient={['scan']}
         breadcrumbs={[{ name: 'Startseite', href: '/' }, { name: 'Knochendichte' }]}
         title={'Knochen\u00ADdichte\u00ADmessung in Graz mit DEXA'}
         lead={DEXA_HERO_LEAD}

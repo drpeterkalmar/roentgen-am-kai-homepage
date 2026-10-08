@@ -208,7 +208,14 @@ body.high-contrast [data-placeholder] { border: 2px dashed #000 !important; }
   .dexa-fig.is-playing .dexa-arm { animation: rak-dexa-arm var(--dur) linear both; }
   .dexa-fig.is-playing .dexa-hit { animation: rak-dexa-hit 350ms ease-out both; }
   .dexa-fig.is-playing .dexa-tint { animation: rak-dexa-tint var(--dur) linear both; }
+  /* Schleife: Messarm gleitet zurück, Einfärbung und Messrahmen blenden aus, dann startet die Messung neu */
+  .dexa-fig.is-resetting .dexa-arm { animation: rak-dexa-arm var(--reset) ease-in-out reverse both; }
+  .dexa-fig.is-resetting .dexa-tint,
+  .dexa-fig.is-resetting .dexa-hit { animation: rak-dexa-fade var(--reset) ease-in both !important; animation-delay: 0s !important; }
+  /* Angehalten: alles bleibt, wo es gerade ist */
+  .dexa-fig.is-paused .dexa-arm, .dexa-fig.is-paused .dexa-tint, .dexa-fig.is-paused .dexa-hit { animation-play-state: paused; }
 }
+@keyframes rak-dexa-fade { from { opacity: 1; } to { opacity: 0; } }
 
 /* Körpernavigator (Skelett-Schema, /roentgen-graz) – Knochen elfenbein mit Kontur, Kontext hellgrau, Auswahl Markenrot.
    Kontrast Kontur/Hintergrund ≥ 3:1 (WCAG 1.4.11). Striche: .bn-ol = Kontur, .bn-il = Füllung (zweilagig, wirkt wie Knochen). */
@@ -275,6 +282,62 @@ body.high-contrast [data-placeholder] { border: 2px dashed #000 !important; }
 .dexa-switch.is-on { background: #8B2323; }
 .dexa-switch.is-on::after { transform: translateX(0.875rem); }
 .dark .dexa-switch.is-on { background: #F28B82; }
+
+
+/* Hintergrund-Ruhe (Test 10/2026, Branch test/dezente-bewegung):
+   glow = zwei sehr blasse Farbflächen in Markenrot/Grau, die in 30–40 s kaum merklich wandern.
+   scan = eine feine Messlinie fährt nach dem Laden EINMAL über das Hero-Foto (DEXA-Arm).
+   Beides nur transform/opacity (Compositor, kein Layout), nichts verdeckt Inhalt, LCP unberührt. */
+.hero-glow > span {
+  position: absolute; border-radius: 9999px; filter: blur(60px); will-change: transform;
+}
+.hero-glow-a {
+  width: 46rem; height: 46rem; left: -14rem; top: -22rem;
+  background: radial-gradient(closest-side, rgb(139 35 35 / 0.13), transparent);
+}
+.hero-glow-b {
+  width: 40rem; height: 40rem; right: -12rem; bottom: -24rem;
+  background: radial-gradient(closest-side, rgb(100 116 139 / 0.14), transparent);
+}
+.dark .hero-glow-a { background: radial-gradient(closest-side, rgb(242 139 130 / 0.10), transparent); }
+.dark .hero-glow-b { background: radial-gradient(closest-side, rgb(148 163 184 / 0.10), transparent); }
+@media (prefers-reduced-motion: no-preference) {
+  .hero-glow-a { animation: hero-drift-a 34s ease-in-out infinite alternate; }
+  .hero-glow-b { animation: hero-drift-b 41s ease-in-out infinite alternate; }
+}
+@keyframes hero-drift-a { to { transform: translate(18rem, 6rem) scale(1.15); } }
+@keyframes hero-drift-b { to { transform: translate(-16rem, -5rem) scale(1.1); } }
+
+.hero-scan { overflow: hidden; border-radius: inherit; container-type: inline-size; }
+.hero-scan::before, .hero-scan::after {
+  content: ''; position: absolute; top: 0; bottom: 0; left: 0; opacity: 0;
+}
+/* die Linie selbst */
+.hero-scan::after {
+  width: 2px; background: linear-gradient(to bottom, transparent, rgb(255 255 255 / 0.7) 15%, rgb(255 255 255 / 0.7) 85%, transparent);
+  box-shadow: 0 0 14px 3px rgb(255 255 255 / 0.28);
+}
+/* zarter Schleier hinter der Linie: „schon gemessen“ */
+.hero-scan::before {
+  width: 9rem; transform-origin: right;
+  background: linear-gradient(to right, transparent, rgb(255 255 255 / 0.16));
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-scan::after  { animation: hero-scan-line 3.6s cubic-bezier(.45,0,.25,1) 0.9s 1 both; }
+  .hero-scan::before { animation: hero-scan-veil 3.6s cubic-bezier(.45,0,.25,1) 0.9s 1 both; }
+}
+@keyframes hero-scan-line {
+  0%   { transform: translateX(0);  opacity: 0; }
+  8%   { opacity: 1; }
+  88%  { opacity: 1; }
+  100% { transform: translateX(100cqw); opacity: 0; }
+}
+@keyframes hero-scan-veil {
+  0%   { transform: translateX(-9rem); opacity: 0; }
+  8%   { opacity: 1; }
+  88%  { opacity: 1; }
+  100% { transform: translateX(calc(100cqw - 9rem)); opacity: 0; }
+}
 
 /* Nutzer mit „Bewegung reduzieren“ */
 @media (prefers-reduced-motion: reduce) {

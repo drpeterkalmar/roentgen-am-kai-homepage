@@ -73,9 +73,19 @@ with sync_playwright() as p:
     tint = fig.locator(".dexa-tint").evaluate("e => { const r = e.getBoundingClientRect(); return [r.width, getComputedStyle(e).fill]; }")
     clip_ok = fig.evaluate("e => { const c = e.querySelector('clipPath'); return c.children.length > 5 && ![...c.children].some(x => x.tagName === 'g'); }")
     check(tint[0] > 200 and clip_ok, f"gemessener Bereich eingefärbt (Breite {tint[0]:.0f}px, clipPath ohne <g>: {clip_ok})")
-    fig.get_by_role("button", name="Erneut abspielen").click(); pg.wait_for_timeout(300)
+    # Schleife: nach Messung + Pause setzt der Arm zurück und misst erneut (solange sichtbar)
+    pg.wait_for_timeout(2600)
     arm2 = fig.locator(".dexa-arm").evaluate("e => getComputedStyle(e).transform")
-    check(not arm2.endswith("574, 0)"), f"'Erneut abspielen' startet neu ({arm2})")
+    check(not arm2.endswith("574, 0)"), f"Schleife: Messung startet von selbst neu ({arm2})")
+    # Anhalten (WCAG 2.2.2): Arm bleibt stehen, Knopf wird zu „Abspielen“
+    fig.get_by_role("button", name="Anhalten").click(); pg.wait_for_timeout(200)
+    a1 = fig.locator(".dexa-arm").evaluate("e => getComputedStyle(e).transform"); pg.wait_for_timeout(1200)
+    a2 = fig.locator(".dexa-arm").evaluate("e => getComputedStyle(e).transform")
+    check(a1 == a2 and fig.get_by_role("button", name="Abspielen").get_attribute("aria-pressed") == "true", "„Anhalten“ hält den Messarm an")
+    pg.wait_for_timeout(5000)
+    check(fig.locator(".dexa-arm").evaluate("e => getComputedStyle(e).transform") == a2, "angehalten: keine neue Schleife")
+    fig.get_by_role("button", name="Abspielen").click(); pg.wait_for_timeout(400)
+    check(fig.locator(".dexa-arm").evaluate("e => getComputedStyle(e).transform") != a2, "„Abspielen“ startet wieder")
     # 5. FAQ gleitet auf, geschlossen nicht fokussierbar/unsichtbar
     q = pg.locator("#faq button[aria-expanded]").first
     reg = pg.locator('[id="' + q.get_attribute("aria-controls") + '"]')
@@ -143,7 +153,9 @@ with sync_playwright() as p:
     arm = f.locator(".dexa-arm").evaluate("e => getComputedStyle(e).transform")
     hits = f.locator(".dexa-hit").evaluate_all("es => es.map(e => +getComputedStyle(e).opacity)")
     check(arm.endswith("316, 0)") and hits == [1, 1], f"Bewegung reduziert: Endbild sofort ({arm}, {hits})")
-    check(not f.get_by_role("button", name="Erneut abspielen").is_visible(), "Bewegung reduziert: kein Abspiel-Knopf")
+    check(not f.locator("[data-dexa-toggle]").is_visible(), "Bewegung reduziert: kein Abspiel-Knopf")
+    p4.wait_for_timeout(9000)
+    check(f.locator(".dexa-arm").evaluate("e => getComputedStyle(e).transform").endswith("312, 0)") or f.locator(".dexa-arm").evaluate("e => getComputedStyle(e).transform").endswith("316, 0)"), "Bewegung reduziert: keine Schleife, Endbild bleibt")
     q = p4.locator("#faq button[aria-expanded]").first; rid = q.get_attribute("aria-controls")
     p4.evaluate("""(id) => { window.__h = []; const el = document.getElementById(id); const t0 = performance.now();
       const tick = () => { window.__h.push(el.getBoundingClientRect().height); if (performance.now() - t0 < 900) requestAnimationFrame(tick); };
