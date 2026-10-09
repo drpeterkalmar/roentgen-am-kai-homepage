@@ -70,6 +70,12 @@ const grants = [
   { amount: "50.000 €", source: "EU Commission", title: "Generic Open-End Simulation Environment For Minimally Invasive Cancer Treatment (GoSMART)", url: "http://www.gosmart-project.eu/partners.html" }
 ];
 
+const base = import.meta.env.BASE_URL;
+const cv = [
+  { label: 'Lebenslauf herunterladen (PDF)', href: `${base}downloads/Lebenslauf-Peter-Kalmar.pdf`, lang: 'de' },
+  { label: 'Curriculum vitae (English, PDF)', href: `${base}downloads/CV-Peter-Kalmar-en.pdf`, lang: 'en' },
+];
+
 const KalmarPage = () => (
   <TeamProfile
     doctor={TEAM.kalmar}
@@ -83,6 +89,7 @@ const KalmarPage = () => (
     publications={publications}
     publicationsNote="Zahlreiche internationale Kongressbeiträge und Publikationen in internationalen Fachzeitschriften."
     grants={grants}
+    cv={cv}
   />
 );
 

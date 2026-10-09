@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Award, BookOpen, CheckCircle2, FileText } from 'lucide-react';
+import { ArrowLeft, Award, BookOpen, CheckCircle2, Download, FileText } from 'lucide-react';
+import Button from '../ui/Button';
 import Hero from '../ui/Hero';
 import Section from '../ui/Section';
 import Card from '../ui/Card';
@@ -28,7 +29,7 @@ const CardTitle = ({ icon, children }) => (
   </div>
 );
 
-const TeamProfile = ({ doctor, eyebrow, title, lead, philosophy, sections, expertise, diplomas, publications, publicationsNote, grants }) => {
+const TeamProfile = ({ doctor, eyebrow, title, lead, philosophy, sections, expertise, diplomas, publications, publicationsNote, grants, cv }) => {
   const route = findRoute(doctor.path);
   const personSchema = {
     '@context': 'https://schema.org',
@@ -111,6 +112,16 @@ const TeamProfile = ({ doctor, eyebrow, title, lead, philosophy, sections, exper
             </ul>
           </Card>
         </div>
+
+        {cv && (
+          <div className="mt-8 flex flex-wrap gap-3" data-cv-downloads>
+            {cv.map((c) => (
+              <Button key={c.href} href={c.href} external variant="secondary" icon={Download} hrefLang={c.lang} data-cta="cv">
+                {c.label}
+              </Button>
+            ))}
+          </div>
+        )}
       </Section>
 
       <Section tone="muted" labelledBy="publikationen-title">
