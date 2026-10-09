@@ -44,6 +44,7 @@ const expertises = [
 
 const diplomas = [
   "Gültiges DFP Diplom",
+  "ÖÄK Diplom Kur-, Präventivmedizin und Wellness",
   "ÖÄK Zertifikat Mammadiagnostik",
   "ÖÄK Zertifikat Angiologische Basisdiagnostik",
   "ÖÄK Zertifikat Sonographie Arterien",
