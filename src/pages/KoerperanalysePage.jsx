@@ -14,7 +14,7 @@ import Button, { buttonClasses } from '../components/ui/Button';
 import { SectionHeading } from '../components/ui/Heading';
 import { BookingButton, PhoneButton } from '../components/ui/BookingButtons';
 import FAQ, { useRouteFaq } from '../components/FAQ';
-import DexaScanFigure from '../components/DexaScanFigure';
+import DexaScanVideo from '../components/DexaScanVideo';
 import DexaReportSlider, { DexaSources } from '../components/dexa/DexaReportSlider';
 import { DEXA_SECTION } from '../data/dexaReportExamples';
 import { imageUrl, imageSrcSet } from '../components/ui/Picture';
@@ -552,7 +552,8 @@ const KoerperanalysePage = () => {
                     Sie liegen ruhig auf dem Untersuchungstisch, während das Gerät Ihren Körper abtastet. Die Untersuchung ist
                     schmerzfrei. {BODY_DURATION_TEXT}
                   </P>
-                  <DexaScanFigure mode="body" visceral={Boolean(BODY.visceralFat)} className="mt-4" />
+                  {/* Erklärfilm der Praxis (KI-generiert, gekennzeichnet) statt des SVG-Schemas – seit 11.10.2026 */}
+                  <DexaScanVideo className="mt-4" />
                 </div>
               </li>
               <li className="flex gap-4">
