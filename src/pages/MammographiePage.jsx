@@ -12,6 +12,7 @@ import { buttonClasses } from '../components/ui/Button';
 import FAQ, { useRouteFaq } from '../components/FAQ';
 import { H3, P, Bullets, NewWindow, extLink } from '../components/ui/Text';
 import { IMAGE_BRIEFS } from '../data/imageBriefs';
+import { imageUrl, imageSrcSet } from '../components/ui/Picture';
 import { PHONE_HREF, PHONE_DISPLAY, MAPS_ROUTE_URL } from '../data/practice';
 import {
   SCREENING,
@@ -61,7 +62,16 @@ const MammographiePage = () => {
             Telefonisch: {PHONE_DISPLAY}
           </a>
         }
-        imageSlot={<ImagePlaceholder brief={IMAGE_BRIEFS.mammoDevice} className="h-full w-full border-0" />}
+        image={{
+          // Reales Mammographiegerät der Praxis (Foto der Praxis, 11.10.2026)
+          src: imageUrl('mammographie-geraet'),
+          srcSet: imageSrcSet('mammographie-geraet'),
+          sizes: '(max-width: 1023px) 100vw, 50vw',
+          alt: IMAGE_BRIEFS.mammoDevice.alt,
+          width: 1024,
+          height: 768,
+          priority: true,
+        }}
       />
 
       {/* Brustkrebsvorsorge ohne Zuweisung */}

@@ -27,8 +27,8 @@ import { listDE } from '../lib/text';
 const AREA_ICONS = { roentgen: Scan, ultraschall: Waves, spezialroentgen: Monitor, zahn: ToothIcon };
 
 // Vorhandene Praxisfotos (AVIF mit Handy-/Tablet-Varianten aus scripts/optimize-images.js)
-const Photo = ({ name, alt = '', sizes = '(max-width: 767px) 100vw, 400px' }) => (
-  <Picture name={name} sizes={sizes} alt={alt} width="800" height="500" className="aspect-[16/10] w-full object-cover" />
+const Photo = ({ name, alt = '', sizes = '(max-width: 767px) 100vw, 400px', position = '' }) => (
+  <Picture name={name} sizes={sizes} alt={alt} width="800" height="500" className={`aspect-[16/10] w-full object-cover ${position}`.trim()} />
 );
 
 const hours = OPENING_HOURS_SHORT;
@@ -41,8 +41,8 @@ const FEATURED = [
     title: 'Mammographie & Brustgesundheit',
     text: SCREENING_HOME_CARD,
     cta: 'Mammographie-Termin buchen',
-    // Freigegebenes Foto des realen Geräts fehlt noch (bisheriges Bild zeigt vermutlich ein Fremdgerät)
-    media: <ImagePlaceholder brief={IMAGE_BRIEFS.mammoDevice} className="aspect-[16/10] border-0 border-b-2" />,
+    // Reales Mammographiegerät der Praxis (Foto der Praxis, 11.10.2026)
+    media: <Photo name="mammographie-geraet" alt={IMAGE_BRIEFS.mammoDevice.alt} position="object-top" />,
   },
   {
     key: 'knochendichte',

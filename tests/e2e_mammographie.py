@@ -98,7 +98,11 @@ with sync_playwright() as p:
     imgs = pg.eval_on_selector_all("main img", "is => is.map(i => [i.getAttribute('src'), i.getAttribute('alt')])")
     check(all(a is not None for _, a in imgs), f"alle Bilder mit alt-Attribut ({len(imgs)})")
     phs = pg.eval_on_selector_all("[data-placeholder]", "es => es.map(e => e.getAttribute('data-placeholder'))")
-    check(sum(1 for x in phs if x.startswith("Foto:")) == 4, f"4 Bildplatzhalter mit Motiv ({[x[:40] for x in phs if x.startswith('Foto:')]})")
+    check(sum(1 for x in phs if x.startswith("Foto:")) == 3, f"3 Bildplatzhalter mit Motiv ({[x[:40] for x in phs if x.startswith('Foto:')]})")
+    # Gerätefoto der Praxis (seit 11.10.2026) statt Platzhalter im Hero
+    check(not any("reale Mammographiegerät" in x for x in phs), "kein Platzhalter mehr für das Mammographiegerät")
+    hero = [s for s, a in imgs if s and "mammographie-geraet" in s]
+    check(len(hero) == 1 and any(a == "Mammographiegerät im Untersuchungsraum von Röntgen am Kai" for s, a in imgs if s and "mammographie-geraet" in s), f"Gerätefoto im Hero mit Alt-Text ({hero})")
     # interne Links → HTTP 200
     hrefs = sorted(set(pg.eval_on_selector_all("a[href]", "as => as.map(a => a.href)")))
     internal = [h for h in hrefs if h.startswith(BASE)]

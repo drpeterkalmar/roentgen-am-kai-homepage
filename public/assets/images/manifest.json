@@ -35,6 +35,10 @@
     "file": "mammographie.avif",
     "source": "98d5a8827503cc68a72967c653a4f5b3db1ce46e6218046240b10d0fd6fa2bd0"
   },
+  "mammographie-geraet": {
+    "file": "mammographie-geraet.png",
+    "source": "2419a1655118acd5d4d1879d56ea3b4ff9d16156a96e800f87fcd585004d9c99"
+  },
   "mammographie_v2": {
     "file": "mammographie_v2.avif",
     "source": "33936a7c0ca4fc55bb991974ea7784aaa692ad1fd3b05a09cc3d260523bf98cc"
