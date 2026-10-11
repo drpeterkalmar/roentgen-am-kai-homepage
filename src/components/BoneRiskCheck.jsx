@@ -2,22 +2,55 @@ import { useState, useId } from 'react';
 import { ClipboardCheck, Phone } from 'lucide-react';
 import Button from './ui/Button';
 import { BookingButton } from './ui/BookingButtons';
+import { NewWindow, extLink } from './ui/Text';
 import { PHONE_HREF, PHONE_DISPLAY } from '../data/practice';
 
-// Kurzer Risikocheck Osteoporose (Ja/Nein). Rein informativ – KEINE Diagnose, keine Speicherung,
+// Kurzer Risikocheck Osteoporose (Ja/Nein). Rein informativ – KEINE Diagnose, keine Berechnung, keine Speicherung,
 // keine Übertragung: Die Antworten bleiben im Browser und verschwinden beim Neuladen.
-// Fragen orientieren sich an den Risikofaktoren auf gesundheit.gv.at bzw. ISCD (Stand 2023).
+// Fragen angelehnt an die klinischen Risikofaktoren des FRAX-Rechners (fraxplus.org/de/calculation-tool,
+// Länderauswahl Österreich; Wortlaut und Definitionen von dort, Stand 11.10.2026). Altersfrage: ISCD-Indikation.
+// Bewusst KEINE eigene FRAX-Berechnung (Algorithmus nicht öffentlich, Ergebnis gehört in ärztliche Hand) –
+// wer rechnen will, wird zum offiziellen Rechner verlinkt.
 // review: Fragen und Auswertungstexte ärztlich freigeben.
+export const FRAX_URL = 'https://fraxplus.org/de/calculation-tool';
 export const RISK_QUESTIONS = [
-  { id: 'alter', q: 'Sind Sie eine Frau ab 65 Jahren oder ein Mann ab 70 Jahren?' },
-  { id: 'bruch', q: 'Hatten Sie im Erwachsenenalter einen Knochenbruch nach einem geringen Anlass, etwa einem Sturz aus dem Stand?' },
-  { id: 'familie', q: 'Hatten Ihre Eltern oder Geschwister Osteoporose oder einen Hüftbruch?' },
-  { id: 'cortison', q: 'Nehmen oder nahmen Sie über mehrere Monate Cortison-Tabletten ein?' },
-  { id: 'medikamente', q: 'Nehmen Sie andere Medikamente, die den Knochenabbau fördern können – etwa bestimmte Hormon- oder Antihormontherapien?' },
-  { id: 'menopause', q: 'Hatten Sie Ihre letzte Regelblutung vor dem 45. Lebensjahr (frühe Menopause)?' },
-  { id: 'gewicht', q: 'Haben Sie Untergewicht oder hatten Sie eine Essstörung?' },
-  { id: 'immobil', q: 'Waren Sie über längere Zeit bettlägerig oder stark in Ihrer Beweglichkeit eingeschränkt?' },
-  { id: 'erkrankung', q: 'Haben Sie eine chronisch-entzündliche oder eine andere Erkrankung, die den Knochen schwächen kann – etwa rheumatoide Arthritis oder eine chronisch-entzündliche Darmerkrankung?' },
+  {
+    id: 'alter',
+    q: 'Sind Sie eine Frau ab 65 Jahren oder ein Mann ab 70 Jahren?',
+    hint: 'Im FRAX-Rechner werden Alter (40 bis 90 Jahre) und Geschlecht genau eingegeben.',
+  },
+  {
+    id: 'bruch',
+    q: 'Hatten Sie als Erwachsene oder Erwachsener einen Knochenbruch, der ohne erkennbaren Grund oder nach einem geringen Anlass entstanden ist?',
+    hint: 'Gemeint ist ein Bruch, der bei einer gesunden Person nicht aufgetreten wäre, etwa nach einem Sturz aus dem Stand. Auch ein Wirbelbruch, der nur im Röntgenbild entdeckt wurde, zählt.',
+  },
+  { id: 'eltern', q: 'Hatte Ihre Mutter oder Ihr Vater einen Hüftbruch?' },
+  { id: 'rauchen', q: 'Rauchen Sie derzeit?' },
+  {
+    id: 'cortison',
+    q: 'Nehmen Sie derzeit Cortison-Tabletten ein, oder haben Sie diese länger als drei Monate eingenommen?',
+    hint: 'Gemeint sind Glukokortikoide zum Einnehmen ab 5 mg Prednisolon täglich oder eine vergleichbare Dosis eines anderen Wirkstoffs.',
+  },
+  {
+    id: 'rheuma',
+    q: 'Wurde bei Ihnen eine rheumatoide Arthritis ärztlich festgestellt?',
+    hint: 'Gelenksabnützung (Arthrose) zählt hier nicht.',
+  },
+  {
+    id: 'erkrankung',
+    q: 'Haben Sie eine Erkrankung, die eng mit Osteoporose zusammenhängt?',
+    hint: 'Dazu zählen Typ-1-Diabetes, Glasknochenkrankheit (Osteogenesis imperfecta), eine lange unbehandelte Schilddrüsenüberfunktion, ein Mangel an Geschlechtshormonen oder eine Menopause vor dem 45. Lebensjahr, chronische Mangelernährung oder eine gestörte Nährstoffaufnahme im Darm, ein chronisches Nierenversagen ohne Dialyse sowie eine chronische Lebererkrankung.',
+  },
+  {
+    id: 'alkohol',
+    q: 'Trinken Sie täglich drei oder mehr Gläser Alkohol?',
+    hint: 'Ein Glas entspricht etwa 285 ml Bier, 120 ml Wein, 60 ml Aperitif oder 30 ml Spirituosen (8 bis 10 g Alkohol).',
+  },
+  {
+    id: 'gewicht',
+    q: 'Haben Sie Untergewicht?',
+    hint: 'Im FRAX-Rechner werden Körpergewicht und Körpergröße eingegeben.',
+  },
 ];
 
 const RESULT = {
@@ -57,8 +90,9 @@ const BoneRiskCheck = () => {
             Kurzer Risikocheck
           </h3>
           <p className="mt-1 text-slate-600 dark:text-slate-300">
-            {RISK_QUESTIONS.length} Fragen mit Ja oder Nein. Der Check stellt keine Diagnose und ersetzt keine ärztliche Beratung.
-            Ihre Antworten werden nicht gespeichert und nicht übertragen.
+            {RISK_QUESTIONS.length} Fragen mit Ja oder Nein, angelehnt an die Risikofaktoren des FRAX-Rechners. Der Check stellt
+            keine Diagnose, berechnet kein Bruchrisiko und ersetzt keine ärztliche Beratung. Ihre Antworten werden nicht
+            gespeichert und nicht übertragen.
           </p>
         </div>
       </div>
@@ -77,6 +111,11 @@ const BoneRiskCheck = () => {
               <fieldset>
                 <legend className="text-[1.0625rem] leading-relaxed text-slate-800 dark:text-slate-100">
                   <span className="mr-1 font-semibold">{i + 1}.</span> {item.q}
+                  {item.hint && (
+                    <span className="mt-1 block text-sm leading-relaxed text-slate-600 dark:text-slate-300" data-risk-hint="">
+                      {item.hint}
+                    </span>
+                  )}
                 </legend>
                 <div className="mt-3 flex gap-3">
                   {['ja', 'nein'].map((v) => (
@@ -113,6 +152,15 @@ const BoneRiskCheck = () => {
           )}
         </div>
       </form>
+
+      <p className="mt-6 text-sm leading-relaxed text-slate-600 dark:text-slate-300" data-frax-link="">
+        Die Wahrscheinlichkeit eines Knochenbruchs in den nächsten zehn Jahren berechnet der offizielle{' '}
+        <a href={FRAX_URL} target="_blank" rel="noopener noreferrer" className={extLink}>
+          FRAX-Rechner
+          <NewWindow />
+        </a>{' '}
+        (Land „Österreich“ wählen). Besprechen Sie ein Ergebnis bitte mit Ihrer Ärztin oder Ihrem Arzt.
+      </p>
 
       <div aria-live="polite" className="mt-6">
         {shown && (

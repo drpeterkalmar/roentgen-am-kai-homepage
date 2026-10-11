@@ -156,6 +156,12 @@ with sync_playwright() as p:
     rc = pg.locator("form[aria-labelledby]").first
     n_q = rc.locator("fieldset").count()
     check(n_q == 9, f"Risikocheck: {n_q} Fragen")
+    legends = " ".join(rc.locator("legend").all_inner_texts())
+    for frag in ["Hüftbruch", "Rauchen Sie derzeit", "rheumatoide Arthritis", "drei oder mehr Gläser Alkohol", "5 mg Prednisolon", "Typ-1-Diabetes", "Untergewicht"]:
+        check(frag in legends, f"Risikocheck FRAX-Faktor: {frag}")
+    fl = pg.locator("[data-frax-link] a")
+    check(fl.count() == 1 and fl.get_attribute("href") == "https://fraxplus.org/de/calculation-tool" and fl.get_attribute("target") == "_blank" and "noopener" in (fl.get_attribute("rel") or ""),
+          "Link zum offiziellen FRAX-Rechner (neues Fenster, noopener)")
     rc.get_by_role("button", name="Ergebnis anzeigen").click(); pg.wait_for_timeout(150)
     check(pg.locator("[data-risk-result=none]").count() == 1 and "keine Diagnose" in pg.locator("[data-risk-result]").inner_text(), "Risikocheck: 0× Ja → neutraler Hinweis, 'keine Diagnose'")
     fs = rc.locator("fieldset")
