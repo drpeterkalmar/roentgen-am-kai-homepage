@@ -102,7 +102,9 @@ with sync_playwright() as p:
     # Gerätefoto der Praxis (seit 11.10.2026) statt Platzhalter im Hero
     check(not any("reale Mammographiegerät" in x for x in phs), "kein Platzhalter mehr für das Mammographiegerät")
     hero = [s for s, a in imgs if s and "mammographie-geraet" in s]
-    check(len(hero) == 1 and any(a == "Mammographiegerät im Untersuchungsraum von Röntgen am Kai" for s, a in imgs if s and "mammographie-geraet" in s), f"Gerätefoto im Hero mit Alt-Text ({hero})")
+    check(len(hero) == 1 and any(a and a.startswith("KI-generierte Darstellung") for s, a in imgs if s and "mammographie-geraet" in s), f"KI-Bild im Hero mit Alt-Text ({hero})")
+    badge = pg.eval_on_selector_all("main [data-ai-badge]", "es => es.map(e => [e.textContent, getComputedStyle(e).display])")
+    check(badge == [["KI-generiertes Bild", "block"]] or (len(badge) == 1 and badge[0][0] == "KI-generiertes Bild" and badge[0][1] != "none"), f"KI-Kennzeichnung sichtbar ({badge})")
     # interne Links → HTTP 200
     hrefs = sorted(set(pg.eval_on_selector_all("a[href]", "as => as.map(a => a.href)")))
     internal = [h for h in hrefs if h.startswith(BASE)]

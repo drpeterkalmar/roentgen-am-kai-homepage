@@ -7,8 +7,10 @@ export const IMAGE_BRIEFS = {
     ratio: '4:3',
     minSize: '1600 × 1200 px',
     alt: 'Mammographiegerät im Untersuchungsraum von Röntgen am Kai',
-    // Erledigt 11.10.2026: Foto der Praxis eingebaut (assets-src/images/mammographie-geraet.png, 1024 × 768 –
-    // kleiner als 1600 × 1200; bei Vorliegen des Originals einfach die Vorlage ersetzen und npm run images).
+    // 11.10.2026: übergangsweise KI-generiertes Bild eingebaut (assets-src/images/mammographie-geraet.png,
+    // 976 × 732, rechte Wandkante abgeschnitten) – sichtbar gekennzeichnet, Alt-Text siehe aiAlt.
+    // Wird es durch ein echtes Foto ersetzt: Vorlage tauschen, npm run images, Kennzeichnung (ai) entfernen.
+    aiAlt: 'KI-generierte Darstellung eines Mammographiegeräts in einem hellen Untersuchungsraum',
   },
   care: {
     motif: 'Freundliche Betreuungssituation: Radiologietechnologin erklärt einer bekleideten Patientin den Ablauf (Gespräch, keine Untersuchungsszene, keine erkennbaren Gesichter ohne Einwilligung).',

@@ -63,14 +63,15 @@ const MammographiePage = () => {
           </a>
         }
         image={{
-          // Reales Mammographiegerät der Praxis (Foto der Praxis, 11.10.2026)
+          // KI-generiertes Bild (11.10.2026), sichtbar gekennzeichnet
           src: imageUrl('mammographie-geraet'),
           srcSet: imageSrcSet('mammographie-geraet'),
           sizes: '(max-width: 1023px) 100vw, 50vw',
-          alt: IMAGE_BRIEFS.mammoDevice.alt,
-          width: 1024,
-          height: 768,
+          alt: IMAGE_BRIEFS.mammoDevice.aiAlt,
+          width: 976,
+          height: 732,
           priority: true,
+          ai: true,
         }}
       />
 

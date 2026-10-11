@@ -2,9 +2,11 @@ import { cx } from './cx';
 import Container from './Container';
 import { Eyebrow, Heading, Lead } from './Heading';
 import Breadcrumbs from './Breadcrumbs';
+import AiImageBadge from './AiImageBadge';
 
 // Wiederverwendbarer Hero-Bereich für Start- und Unterseiten.
-//   image: { src, srcSet?, sizes?, alt, width?, height? } – optional; ohne Bild einspaltig.
+//   image: { src, srcSet?, sizes?, alt, width?, height?, ai? } – optional; ohne Bild einspaltig.
+//          ai: true = KI-generiertes Bild → sichtbare Kennzeichnung unten links (AiImageBadge).
 //   actions: Schaltflächen (z. B. <BookingButton/>, <PhoneButton/>)
 //   breadcrumbs: [{ name, href? }] – Brotkrumen über der Überschrift
 //   highlight: gut sichtbarer Hinweis direkt unter der H1 (z. B. „Ohne Zuweisung · mit e-card …“)
@@ -85,6 +87,7 @@ const Hero = ({ breadcrumbs, eyebrow, title, highlight, status, lead, keyMessage
                 className="h-full w-full object-cover"
               />
             )}
+            {!imageSlot && image?.ai && <AiImageBadge />}
           </div>
         )}
       </Container>
