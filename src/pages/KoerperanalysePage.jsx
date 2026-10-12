@@ -22,7 +22,7 @@ import { H3, P, Bullets, NewWindow, linkRow, textLink } from '../components/ui/T
 import { IMAGE_BRIEFS } from '../data/imageBriefs';
 import { PHONE_HREF, PHONE_DISPLAY, MAPS_ROUTE_URL, BOOKING_URL, ADDRESS, TRANSPORT } from '../data/practice';
 import {
-  BODY, BODY_H1, BODY_LEAD, BODY_KEY_MESSAGE, BODY_RADIATION_TEXT, BODY_LEAN_MASS_TEXT, BODY_DURATION_TEXT,
+  BODY, BODY_H1, BODY_LEAD, BODY_KEY_MESSAGE, BODY_RADIATION_TEXT, BODY_LEAN_MASS_TEXT, BODY_DURATION_TEXT, BODY_PRICE_TEXT,
 } from '../data/bodyComposition';
 
 // Körperanalyse mit DEXA – /koerperanalyse-graz (ersetzt /unser-angebot/koerperfettmessung, Weiterleitung).
@@ -133,7 +133,10 @@ const KoerperanalysePage = () => {
       {/* 1. Hero – Nutzen zuerst, Termin im ersten Bildschirm */}
       <Hero
         breadcrumbs={[{ name: 'Startseite', href: '/' }, { name: 'Körperanalyse' }]}
+        // Überzeile ist Pflichtsatz aus dem Körperanalyse-Auftrag (Test e2e_koerperanalyse) – bleibt.
         eyebrow="Medizinische Ganzkörperanalyse mit DEXA"
+        // Bedingung und Preis direkt unter der H1 (Audit W1; Preis aus bodyComposition.js)
+        highlight={BODY_PRICE_TEXT ? `Privatleistung ohne Zuweisung · ${BODY_PRICE_TEXT}` : undefined}
         // weiche Trennstellen nur an Wortfugen (automatische Trennung lieferte „Körpe-ranalyse“)
         title={BODY_H1.replace(/Körper(analyse|fett)/g, 'Körper\u00AD$1').replace('Muskelmasse', 'Muskel\u00ADmasse')}
         lead={BODY_LEAD}
@@ -309,7 +312,7 @@ const KoerperanalysePage = () => {
               ))}
             </ol>
             <div className="mt-6 flex flex-col gap-3">
-              <BookingButton size="lg" label="Ausgangsmessung oder Verlaufskontrolle buchen" className="!text-base" />
+              <BookingButton size="lg" variant="secondary" label="Ausgangsmessung oder Verlaufskontrolle buchen" className="!text-base" />
               <Link to="/gesundheitsziele/abnehmspritze-koerperanalyse" className={textLink}>
                 Gesundheitsziel Abnehmspritze und Muskelverlust <ArrowRight size={16} aria-hidden="true" />
               </Link>
@@ -393,7 +396,7 @@ const KoerperanalysePage = () => {
           </P>
         </Card>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-          <BookingButton size="lg" label="Meinen Fortschritt objektiv messen" />
+          <BookingButton size="lg" variant="secondary" label="Meinen Fortschritt objektiv messen" />
           <Link to="/gesundheitsziele/fitness-muskelaufbau" className={buttonClasses({ variant: 'ghost', size: 'lg', className: 'justify-start sm:justify-center' })}>
             Gesundheitsziel Fitness und Muskelaufbau <ArrowRight size={18} aria-hidden="true" />
           </Link>
@@ -436,7 +439,7 @@ const KoerperanalysePage = () => {
                 Diese Beurteilung erfolgt durch Ihre behandelnde Ärztin oder Ihren behandelnden Arzt.
               </p>
             </Notice>
-            <BookingButton size="lg" label="Muskelmasse als Teil der Abklärung messen" className="!text-base" />
+            <BookingButton size="lg" variant="secondary" label="Muskelmasse als Teil der Abklärung messen" className="!text-base" />
           </div>
         </div>
       </Section>

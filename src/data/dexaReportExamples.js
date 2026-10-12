@@ -479,7 +479,7 @@ export const DEXA_REPORT_EXAMPLES = [
 ];
 
 export const DEXA_SECTION = {
-  title: 'Was zeigt eine DEXA-Körperanalyse?',
+  title: 'So sieht ein Messbericht aus',
   lead: 'Blättern Sie durch einen anonymisierten Beispielbefund und erfahren Sie, was die einzelnen Messwerte bedeuten.',
   notice:
     'Die dargestellten Werte dienen als Beispiel. Die individuelle Beurteilung erfolgt im Zusammenhang mit Alter, Geschlecht, Körperbau und medizinischer Fragestellung.',

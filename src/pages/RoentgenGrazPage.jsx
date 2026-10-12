@@ -1,5 +1,7 @@
 import { FileText, Send, Clock, MapPin, Images, Stethoscope } from 'lucide-react';
 import Hero from '../components/ui/Hero';
+import ImagePlaceholder from '../components/ui/ImagePlaceholder';
+import { IMAGE_BRIEFS } from '../data/imageBriefs';
 import Section from '../components/ui/Section';
 import Card from '../components/ui/Card';
 import Placeholder from '../components/ui/Placeholder';
@@ -26,6 +28,7 @@ const RoentgenGrazPage = () => {
     <>
       <Hero
         breadcrumbs={[{ name: 'Startseite', href: '/' }, { name: EXAMS_CRUMB, href: EXAMS_BASE }, { name: 'Röntgen' }]}
+        imageSlot={<ImagePlaceholder brief={IMAGE_BRIEFS.xrayRoom} className="h-full w-full rounded-2xl" />}
         title="Röntgen in Graz – direkt vorbeikommen oder Wunschzeit reservieren"
         status={<StatusBadge area={area} text="Röntgen ohne vorherige Terminvereinbarung möglich" />}
         lead="Benötigen Sie ein Röntgen von Knochen, Gelenken, Wirbelsäule oder Lunge? Mit gültiger ärztlicher Zuweisung und e-card können Sie während unserer Röntgenzeiten ohne vorherige Terminvereinbarung vorbeikommen."

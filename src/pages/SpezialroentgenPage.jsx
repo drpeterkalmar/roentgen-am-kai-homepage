@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowDown } from 'lucide-react';
 import Hero from '../components/ui/Hero';
+import ImagePlaceholder from '../components/ui/ImagePlaceholder';
+import { IMAGE_BRIEFS } from '../data/imageBriefs';
 import Section from '../components/ui/Section';
 import Placeholder from '../components/ui/Placeholder';
 import { SectionHeading } from '../components/ui/Heading';
@@ -17,7 +19,8 @@ const SpezialroentgenPage = () => {
     <>
       <Hero
         breadcrumbs={[{ name: 'Startseite', href: '/' }, { name: EXAMS_CRUMB, href: EXAMS_BASE }, { name: 'Spezialröntgen' }]}
-        title="Spezialröntgen und Kontrastmitteluntersuchungen in Graz"
+        imageSlot={<ImagePlaceholder brief={IMAGE_BRIEFS.fluoroRoom} className="h-full w-full rounded-2xl" />}
+        title={"Spezialröntgen und Kontrastmittel\u00ADuntersuchungen in Graz"}
         status={<StatusBadge area={area} />}
         lead="Bei bestimmten medizinischen Fragestellungen werden Gefäße, Organe oder Bewegungsabläufe mithilfe von Kontrastmittel und dynamischen Röntgenaufnahmen untersucht."
         actions={<AppointmentActions area={area} size="lg" />}

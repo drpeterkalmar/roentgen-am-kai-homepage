@@ -63,10 +63,7 @@ const FEATURED = [
     text: 'Körperfett und Muskelmasse präzise messen – mit regionaler Auswertung und für Verlaufskontrollen.',
     cta: 'Zur Körperanalyse',
     media: (
-      <ImagePlaceholder
-        className="aspect-[16/10] border-0 border-b-2"
-        motif="DEXA-Körperanalyse in der Praxis: Person in Sportkleidung liegt auf dem DEXA-Messtisch, Mitarbeiterin daneben; heller Raum, Querformat 16:10."
-      />
+<ImagePlaceholder brief={IMAGE_BRIEFS.bodyHero} className="aspect-[16/10] border-0 border-b-2" />
     ),
   },
 ];
@@ -165,7 +162,7 @@ const Home = () => (
         title="Was möchten Sie erreichen?"
         lead="Wählen Sie Ihr Anliegen – hier finden Sie die passende Untersuchung."
       />
-      <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      <ul className="grid gap-5 md:grid-cols-2 lg:auto-rows-fr lg:grid-cols-3">
         {goals.map((g) => (
           <li key={g.id}>
             <Card className="flex h-full flex-col">

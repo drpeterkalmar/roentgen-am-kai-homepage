@@ -9,7 +9,9 @@ import Placeholder from '../components/ui/Placeholder';
 import { SectionHeading } from '../components/ui/Heading';
 import { StatusBadge, AppointmentActions, AreaCard, RadiationInfo } from '../components/exams/ExamParts';
 import { AREAS, EXAMS_CRUMB, RADIATION_BY_AREA, XRAY_HOURS_NOTE, WALK_IN, APPOINTMENT_REQUIRED } from '../data/examinations';
-import { OPENING_HOURS_SHORT } from '../data/practice';
+import { OPENING_HOURS_SHORT, PHONE_DISPLAY } from '../data/practice';
+import { PhoneButton } from '../components/ui/BookingButtons';
+import { buttonClasses } from '../components/ui/Button';
 
 // /weitere-untersuchungen – Übersicht, gegliedert nach der Terminlogik:
 //   1. Ohne vorherige Terminvereinbarung (Röntgen – immer mit Zuweisung und e-card)
@@ -28,7 +30,15 @@ const WeitereUntersuchungenPage = () => {
       >
         <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-start sm:gap-8">
           <StatusBadge area={xray} text={`Röntgen: ${WALK_IN.badge.replace(/^O/, 'o')}`} />
-          <StatusBadge area={AREAS.ultraschall} text={`Ultraschall, Spezialröntgen und DVT: ${APPOINTMENT_REQUIRED.badge.replace(/^T/, 't')}`} />
+          <StatusBadge area={AREAS.ultraschall} text={`Ultraschall, Spezialröntgen und DVT: ${APPOINTMENT_REQUIRED.badge}`} />
+        </div>
+        {/* Buchungsweg im ersten Bildschirm (Audit W11) – nach den Statuszeilen, damit „ohne Termin“
+            direkt neben „mit Zuweisung und e-card“ steht */}
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <PhoneButton variant="primary" size="lg" label={`Termin telefonisch: ${PHONE_DISPLAY.replace(/ /g, '\u00A0')}`} />
+          <Link to={AREAS.roentgen.path} className={buttonClasses({ variant: 'secondary', size: 'lg' })}>
+            Röntgen: direkt vorbeikommen <ArrowRight size={18} aria-hidden="true" />
+          </Link>
         </div>
       </Hero>
 

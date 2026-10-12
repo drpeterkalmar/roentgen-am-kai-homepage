@@ -71,6 +71,14 @@
     overflow-wrap: break-word;
     hyphens: auto;
   }
+  /* Ab Desktop-Breite H1 nicht mehr automatisch trennen („vorbeikom-men“); lange Komposita tragen dort
+     weiche Trennstellen (\u00AD) an Wortfugen. Am Handy bleibt die automatische Trennung gegen Überlauf. */
+  @media (min-width: 1024px) {
+    h1 { hyphens: manual; }
+  }
+  /* Lesbare Zeilenlänge für Fließtext (ca. 70 Zeichen), auch in Hinweis-Kästen und breiten Abschnitten.
+     Zentrierte Absätze sind ausgenommen, damit sie mittig bleiben. */
+  main p:not(.text-center):not(.text-center p) { max-width: 70ch; }
   p { text-wrap: pretty; }
   #root { min-height: 100vh; display: flex; flex-direction: column; }
 

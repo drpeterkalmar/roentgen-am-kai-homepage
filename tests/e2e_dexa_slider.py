@@ -22,7 +22,7 @@ PAGE = "/koerperanalyse-graz"
 SHOTS = shots("dexa-befund-slider")
 AXE = (ROOT / "node_modules/axe-core/axe.min.js").read_text()
 BOOK = "https://patient-portal.miranext.ai/patient-booking?c_Id=23"
-H2 = "Was zeigt eine DEXA-Körperanalyse?"
+H2 = "So sieht ein Messbericht aus"
 LEAD = "Blättern Sie durch einen anonymisierten Beispielbefund und erfahren Sie, was die einzelnen Messwerte bedeuten."
 NOTICE = ("Die dargestellten Werte dienen als Beispiel. Die individuelle Beurteilung erfolgt im Zusammenhang mit Alter, "
           "Geschlecht, Körperbau und medizinischer Fragestellung.")

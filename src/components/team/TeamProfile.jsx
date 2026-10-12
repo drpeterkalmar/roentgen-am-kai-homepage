@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Award, BookOpen, CheckCircle2, Download, FileText } from 'lucide-react';
 import Button from '../ui/Button';
+import { BookingButton, PhoneButton } from '../ui/BookingButtons';
 import Hero from '../ui/Hero';
 import Section from '../ui/Section';
 import Card from '../ui/Card';
@@ -175,6 +176,11 @@ const TeamProfile = ({ doctor, eyebrow, title, lead, philosophy, sections, exper
       </Section>
 
       <Section spacing="sm">
+        {/* Weg zur Buchung auch von der Ärzteseite (Audit O5) */}
+        <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap" data-team-cta="">
+          <BookingButton variant="primary" />
+          <PhoneButton />
+        </div>
         <Link to="/" className={textLink}>
           <ArrowLeft size={18} aria-hidden="true" />
           Zurück zur Startseite

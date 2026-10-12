@@ -1,4 +1,6 @@
 import Hero from '../components/ui/Hero';
+import ImagePlaceholder from '../components/ui/ImagePlaceholder';
+import { IMAGE_BRIEFS } from '../data/imageBriefs';
 import Section from '../components/ui/Section';
 import Card from '../components/ui/Card';
 import Notice from '../components/ui/Notice';
@@ -32,6 +34,7 @@ const ZahnroentgenDvtPage = () => {
     <>
       <Hero
         breadcrumbs={[{ name: 'Startseite', href: '/' }, { name: EXAMS_CRUMB, href: EXAMS_BASE }, { name: 'Zahnröntgen und 3D-DVT' }]}
+        imageSlot={<ImagePlaceholder brief={IMAGE_BRIEFS.dentalDevice} className="h-full w-full rounded-2xl" />}
         title="Zahnröntgen und 3D-DVT in Graz"
         status={<StatusBadge area={area} />}
         lead="Zahnröntgen liefert zweidimensionale Übersichts- oder Detailaufnahmen. Die digitale Volumentomographie, kurz DVT, stellt Zähne, Kiefer und angrenzende Strukturen dreidimensional dar."
