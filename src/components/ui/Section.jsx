@@ -2,6 +2,7 @@ import { cx } from './cx';
 import Container from './Container';
 
 // Einheitliche vertikale Abstände und ruhige Hintergrundtöne.
+// section-reveal: sanftes, einmaliges Einblenden beim Hineinscrollen (reines CSS, index.css).
 const tones = {
   white: 'bg-white dark:bg-slate-950',
   muted: 'bg-slate-50 dark:bg-slate-900',
@@ -15,7 +16,7 @@ const spacings = {
 
 const Section = ({ id, tone = 'white', spacing = 'md', size = 'default', labelledBy, className, children }) => (
   <section id={id} aria-labelledby={labelledBy} className={cx(tones[tone], spacings[spacing], className)}>
-    <Container size={size}>{children}</Container>
+    <Container size={size} className="section-reveal">{children}</Container>
   </section>
 );
 

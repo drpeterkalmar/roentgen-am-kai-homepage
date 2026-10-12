@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Scan, Waves, Monitor, ArrowRight } from 'lucide-react';
 import { ToothIcon } from '../components/CustomIcons';
+import AnimationPlaceholder from '../components/ui/AnimationPlaceholder';
 import Hero from '../components/ui/Hero';
 import Section from '../components/ui/Section';
 import Container from '../components/ui/Container';
@@ -98,6 +99,7 @@ const WeitereUntersuchungenPage = () => {
 
       {/* Strahleninformation – auf der Übersicht nur die drei vorgegebenen Beispiele */}
       <Section labelledBy="strahlung-title" spacing="md">
+        <AnimationPlaceholder id="A005" className="!mt-0" />
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
           <RadiationInfo ids={RADIATION_BY_AREA.overview} ultrasound />
           <div id="kein-ct-mrt" className="self-start">

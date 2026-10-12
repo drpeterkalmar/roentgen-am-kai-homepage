@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, ExternalLink, Phone, AlertTriangle, BookOpen, MapPin } from 'lucide-react';
+import AnimationPlaceholder from '../components/ui/AnimationPlaceholder';
 import Hero from '../components/ui/Hero';
 import Section from '../components/ui/Section';
 import Card from '../components/ui/Card';
@@ -128,6 +129,7 @@ const MammographiePage = () => {
       {/* Screening oder diagnostische Abklärung */}
       <Section labelledBy="abklaerung-title">
         <SectionHeading id="abklaerung-title" title="Screening oder diagnostische Abklärung" />
+        <AnimationPlaceholder id="A001" />
         <div className="grid grid-cols-1 items-start gap-6 md:grid-cols-2">
           <Card>
             <H3>Screening-Mammographie</H3>

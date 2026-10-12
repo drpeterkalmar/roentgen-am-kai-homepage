@@ -196,6 +196,26 @@ body.high-contrast [data-placeholder] { border: 2px dashed #000 !important; }
   .anim-page-in { animation: rak-fade-in 200ms ease-out; }
 }
 
+/* Inhaltsabschnitte blenden beim Hineinscrollen sanft ein (Prompt 5): reines CSS über die Scroll-Zeitleiste,
+   ohne JavaScript – Browser ohne Unterstützung und „Bewegung reduzieren“ zeigen den Inhalt sofort.
+   Nur opacity/transform (kein Layoutsprung); nach den ersten 200 px Scrollweg ist der Abschnitt vollständig da. */
+@keyframes rak-reveal { from { opacity: 0; transform: translateY(20px); } }
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .section-reveal {
+      animation-name: rak-reveal;
+      animation-timing-function: ease-out;
+      animation-fill-mode: both;
+      animation-duration: auto;
+      animation-timeline: view();
+      animation-range: entry 0% entry 200px;
+    }
+  }
+}
+/* Der erste Abschnitt nach dem Hero steht oft schon im ersten Bildschirm → nicht halb transparent zeigen */
+[aria-labelledby="page-title"] + section > .section-reveal { animation: none !important; }
+@media print { .section-reveal { animation: none !important; } }
+
 /* Ganze Karte klickbar → hebt sich beim Überfahren mit der Maus leicht an (nur Geräte mit Maus) */
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .card-lift { transition: transform 200ms ease-out, box-shadow 200ms ease-out; }

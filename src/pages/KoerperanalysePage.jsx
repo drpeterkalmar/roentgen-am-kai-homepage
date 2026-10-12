@@ -3,6 +3,7 @@ import {
   ArrowRight, BookOpen, CalendarCheck, CheckCircle2, MapPin, Phone, Scale, Activity, Dumbbell, HeartPulse,
   Syringe, TrendingDown, UserRound, PersonStanding, BarChart3, Bone, Repeat, SplitSquareHorizontal, Info,
 } from 'lucide-react';
+import AnimationPlaceholder from '../components/ui/AnimationPlaceholder';
 import Hero from '../components/ui/Hero';
 import Section from '../components/ui/Section';
 import Card from '../components/ui/Card';
@@ -197,6 +198,7 @@ const KoerperanalysePage = () => {
           lead="Ob Sie Ihr Körperfett messen oder Ihre Muskelmasse messen lassen möchten: Die Körperanalyse zeigt, woraus Ihr Gewicht besteht und wo es sitzt – nicht nur, wie viel Sie wiegen."
           className="!mb-6"
         />
+        <AnimationPlaceholder id="A003" className="max-w-3xl" />
         <P className="max-w-3xl">
           Dafür setzen wir die medizinische DEXA-Methode ein (Dual-Röntgen-Absorptiometrie). Sie liegen dabei ruhig auf dem
           Untersuchungstisch, während das Gerät Ihren Körper mit zwei sehr schwachen Röntgenenergien abtastet. Weil Fett,
