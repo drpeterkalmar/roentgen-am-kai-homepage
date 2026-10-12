@@ -9,7 +9,7 @@ import { BookingButton, PhoneButton } from '../components/ui/BookingButtons';
 import { ContactDetails, OpeningHours, Directions } from '../components/ui/PracticeInfo';
 import ReferralInfo from '../components/ui/ReferralInfo';
 import PatientPortal from '../components/PatientPortal';
-import { MAPS_ROUTE_URL, PLACEHOLDERS } from '../data/practice';
+import { MAPS_ROUTE_URL, PLACEHOLDERS, ACCESSIBILITY } from '../data/practice';
 
 const CardTitle = ({ id, children }) => (
   <h2 id={id} className="mb-5 font-display text-xl font-semibold tracking-tight text-slate-900 dark:text-white">{children}</h2>
@@ -49,7 +49,10 @@ const KontaktPage = () => (
             />
           </a>
           <Directions />
-          <Placeholder className="mt-5">{PLACEHOLDERS.accessibility}</Placeholder>
+          <div className="mt-5 border-t border-slate-200 pt-5 dark:border-slate-700" data-accessibility>
+            <h3 className="mb-2 font-display text-base font-semibold text-slate-900 dark:text-white">{ACCESSIBILITY.title}</h3>
+            <p className="text-slate-700 dark:text-slate-300">{ACCESSIBILITY.text}</p>
+          </div>
         </Card>
       </div>
     </Section>

@@ -48,9 +48,15 @@ export const TRANSPORT = {
   parking: 'Kostenlose Tiefgarage im Haus (Einfahrt über die Körösistraße)',
 };
 
+// Barrierefreiheit vor Ort – Wortlaut von der Praxis freigegeben (Peter, 12.10.2026).
+// Behindertenparkplatz in der Tiefgarage unbestätigt → nicht nennen.
+export const ACCESSIBILITY = {
+  title: 'Barrierefrei',
+  text: 'Der Weg von der Haltestelle Keplerbrücke bis in die Ordination ist barrierefrei, mit Lift. Die Ordination ist rollstuhlgerecht und hat ein barrierefreies Patienten-WC.',
+};
+
 // PLATZHALTER — von der Praxis zu liefern
 export const PLACEHOLDERS = {
-  accessibility: 'Barrierefreiheit vor Ort (Lift, Rollstuhlzugang, Behindertenparkplatz)',
   phoneHours: 'Telefonische Erreichbarkeit, falls abweichend von den Öffnungszeiten',
   holidays: 'Hinweis auf Urlaubs- und Schließzeiten',
   logoSvg: 'Logo als Vektordatei (SVG)',

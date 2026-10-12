@@ -26,7 +26,7 @@ Framework (React 18, Vite, Tailwind), Designsystem (`src/components/ui/*`), Rout
 - **Bestehende echte Fotos bleiben** (DEXA-Raum auf Knochendichte und Körperanalyse, KI-Bild Mammographie mit Kennzeichnung), bis B001/B005/B008 geliefert sind. Für sie gibt es keinen Platzhalter, damit die Seiten nicht schlechter aussehen als heute.
 - **Kopf-Button „Termin online buchen“ bleibt** auf allen Seiten (er gilt für Mammographie, Knochendichte, Körperanalyse und Röntgen-Wunschzeit). Nur die Handy-Leiste wechselt auf telefonische Seiten, weil sie dort den sichtbarsten Weg darstellt.
 - **Lesebreite global statt pro Seite:** eine CSS-Regel für `main p` deckt Hinweis-Kästen, FAQ-Antworten und Karten ab; Karten sind ohnehin schmaler, dort ändert sich nichts.
-- **Nicht umgesetzt (Praxisangaben nötig):** Prüfvermerk-Namen (K4), Fotos (K5, B001–B019), Barrierefreiheit vor Ort (W14), Ausbau älterer Artikel (W15), Startseiten-Claim (O1), Löschen ungenutzter Bilddateien (O4).
+- **Nicht umgesetzt (Praxisangaben nötig):** Prüfvermerk-Namen (K4), Fotos (K5, B001–B019), Urlaubszeiten und Praxisvorstellung (W14; Barrierefreiheit vor Ort seit 12.10.2026 eingetragen), Ausbau älterer Artikel (W15), Startseiten-Claim (O1), Löschen ungenutzter Bilddateien (O4).
 - **Zurückgestellt:** Zusammenführen „Ergebnis“ und „Befund lesen“ auf der Knochendichte-Seite (W4) – betrifft medizinische Texte; ohne ärztliche Durchsicht nur Anordnung, nicht Inhalt. Vorladen des Hero-Bilds je Route (W12) – eigener Schritt mit Lighthouse-Vergleich.
 
 ## Kontrolle
