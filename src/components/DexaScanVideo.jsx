@@ -1,12 +1,11 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import { Pause, Play } from 'lucide-react';
 import { cx } from './ui/cx';
-import AiImageBadge from './ui/AiImageBadge';
 
-// Erklärfilm DEXA-Ganzkörpermessung (Körperanalyse, Ablauf Schritt 3) – von der Praxis geliefert, KI-generiert.
+// Erklärfilm DEXA-Ganzkörpermessung (Körperanalyse, Ablauf Schritt 3) – von der Praxis geliefert.
 // Zwei Fassungen (12.10.2026): „desktop“ (mit Legende, kleinere Schrift) und „mobil“ (große Schrift, ohne Legende).
-// Die Fassung richtet sich nach der Bildschirmbreite (bis 767 px = mobil). Die Kennzeichnung „KI-generiert“ liegt als
-// Schild über dem Film (im Film selbst steht nur „Schema(tische Darstellung) – keine Patientenaufnahme“).
+// Die Fassung richtet sich nach der Bildschirmbreite (bis 767 px = mobil). Keine KI-Kennzeichnung (Wunsch der Praxis,
+// 12.10.2026); im Film selbst steht „Schema(tische Darstellung) – keine Patientenaufnahme“.
 // Vorlagen: assets-src/videos/koerperanalyse-dexa-scan-{desktop,mobil}.mp4 (1920 × 1080, 30 s, ohne Ton)
 // → public/assets/videos/…-desktop-1280.{mp4,webm}, …-mobil-960.{mp4,webm} (H.264 / VP9) + …-poster.webp (bei 26 s).
 // Verhalten:
@@ -84,7 +83,7 @@ const DexaScanVideo = ({ className }) => {
       )}
       data-dexa-video=""
     >
-      <div className="relative">
+      <div>
         <video
           key={variant}
           ref={video}
@@ -96,7 +95,7 @@ const DexaScanVideo = ({ className }) => {
           playsInline
           preload="none"
           poster={`${BASE}${V.file}-poster.webp`}
-          aria-label="Erklärfilm ohne Ton: schematischer Ablauf einer DEXA-Ganzkörpermessung und ihrer Auswertung (KI-generiert)"
+          aria-label="Erklärfilm ohne Ton: schematischer Ablauf einer DEXA-Ganzkörpermessung und ihrer Auswertung"
           aria-describedby={`${uid}-t`}
           data-paused={paused ? 'true' : 'false'}
           data-variant={variant}
@@ -104,16 +103,11 @@ const DexaScanVideo = ({ className }) => {
           <source src={`${BASE}${V.file}-${V.w}.mp4`} type="video/mp4" />
           <source src={`${BASE}${V.file}-${V.w}.webm`} type="video/webm" />
         </video>
-        {/* Handy-Fassung: oben rechts frei; Desktop-Fassung: dort steht die Legende → klein in die Ecke unten rechts */}
-        <AiImageBadge
-          text="KI-generiert"
-          place={small ? 'right-1.5 top-1.5 px-1.5 py-1 text-[0.6875rem]' : 'bottom-1 right-1 px-1.5 py-0.5 text-[0.6875rem]'}
-        />
       </div>
       <figcaption className="mt-3 px-1 text-[0.95rem] sm:px-0 leading-relaxed text-slate-600 dark:text-slate-300">
         <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
           <span className="min-w-0 flex-1 basis-60">
-            Schematische, KI-generierte Darstellung: Der Scanarm fährt über den ganzen Körper. Anschließend werden Knochen,
+            Schematische Darstellung: Der Scanarm fährt über den ganzen Körper. Anschließend werden Knochen,
             Magermasse und Fettgewebe getrennt ausgewertet.
           </span>
           <button
@@ -137,7 +131,7 @@ const DexaScanVideo = ({ className }) => {
                 <span className="font-semibold text-slate-800 dark:text-slate-100">{s.title}:</span> {s.text}
               </p>
             ))}
-            <p>Schematische Darstellung, KI-generiert – keine Patientenaufnahme.</p>
+            <p>Schematische Darstellung – keine Patientenaufnahme.</p>
           </div>
         </details>
       </figcaption>

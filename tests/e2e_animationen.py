@@ -57,7 +57,7 @@ with sync_playwright() as p:
     s1 = vstate()
     check(not s1["paused"] and s1["t"] > 0.5 and s1["muted"] and s1["loop"], f"Körperanalyse-Film spielt im Bild, stumm, in Schleife ({s1})")
     fig.screenshot(path=str(OUT / "dexa-koerperanalyse-film.png"))
-    check("KI-generiert" in fig.inner_text() and fig.locator("[data-ai-badge]").inner_text() == "KI-generiert", "Film: KI-Kennzeichnung (Bildtext + Schild)")
+    check("KI-generiert" not in fig.inner_text() and fig.locator("[data-ai-badge]").count() == 0 and "Schematische Darstellung" in fig.inner_text(), "Film: ohne KI-Kennzeichnung (Wunsch der Praxis), „Schematische Darstellung“")
     check(vid.get_attribute("data-variant") == "desktop" and "desktop-1280" in s1["src"], f"Desktop: Desktop-Fassung ({s1['src']})")
     fig.locator("summary").click(); pg.wait_for_timeout(150)
     tr = fig.locator("[data-dexa-transcript]").inner_text()
