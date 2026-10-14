@@ -54,7 +54,7 @@ export const IMAGE_BRIEFS = {
   dexaDevice: {
     id: 'B005',
     title: 'DEXA-Messplatz',
-    motif: 'Das reale DEXA-Gerät der Praxis (GE Lunar) im Untersuchungsraum, ohne Person. Das bisherige Foto „knochendichte_v3“ zeigt ein GE-Lunar-Gerät – Praxis bitte bestätigen, dass es das eigene Gerät ist.',
+    motif: 'Das reale DEXA-Gerät der Praxis (GE Lunar) im Untersuchungsraum, ohne Person. Übergangsfoto „knochendichte_v3“ zeigt das eigene GE-Lunar-Gerät (von der Praxis bestätigt 14.10.2026); neues Foto erwünscht, weil das bisherige ein Weitwinkelfoto ist.',
     position: 'Knochendichte-Seite, Hero; Startseite, Karte „Knochendichtemessung mit DEXA“',
     ratio: '4:3',
     minSize: '2400 × 1800 px',
