@@ -179,7 +179,7 @@ const BoneRiskCheck = () => {
                   Persönliches Knochenrisiko abklären
                   <span className="sr-only">: Anruf unter {PHONE_DISPLAY}</span>
                 </Button>
-                <BookingButton variant="secondary" label="DEXA-Termin buchen" />
+                <BookingButton variant="secondary" label="DEXA-Termin buchen" service="knochendichte" />
               </div>
             )}
           </div>

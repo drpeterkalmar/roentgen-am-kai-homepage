@@ -8,7 +8,7 @@ import Placeholder from '../components/ui/Placeholder';
 import ImagePlaceholder from '../components/ui/ImagePlaceholder';
 import CTASection from '../components/ui/CTASection';
 import { SectionHeading } from '../components/ui/Heading';
-import { BookingButton } from '../components/ui/BookingButtons';
+import { BookingButton, BookingService } from '../components/ui/BookingButtons';
 import { buttonClasses } from '../components/ui/Button';
 import FAQ, { useRouteFaq } from '../components/FAQ';
 import { H3, P, Bullets, NewWindow, extLink } from '../components/ui/Text';
@@ -42,7 +42,7 @@ const STEPS = [
 const MammographiePage = () => {
   const faq = useRouteFaq(); // FAQ laut Routentabelle (routes.js: faq) = FAQPage-Schema
   return (
-    <>
+    <BookingService service="mammographie">
       {/* Hero – Terminbutton am Handy ohne Scrollen erreichbar */}
       <Hero
         breadcrumbs={[{ name: 'Startseite', href: '/' }, { name: 'Mammographie & Brustgesundheit' }]}
@@ -51,7 +51,7 @@ const MammographiePage = () => {
         lead={SCREENING_LEAD}
         actions={
           <>
-            <BookingButton size="lg" label="Mammographie-Termin buchen" />
+            <BookingButton size="lg" label="Screening-Termin online buchen" />
             <a href="#screening" className={buttonClasses({ variant: 'ghost', size: 'lg', className: 'justify-start sm:justify-center' })}>
               So funktioniert das Screening <ArrowRight size={18} aria-hidden="true" />
             </a>
@@ -83,7 +83,7 @@ const MammographiePage = () => {
             <SectionHeading id="screening-title" eyebrow="Brustkrebs-Früherkennungsprogramm" title="Brustkrebsvorsorge ohne Zuweisung" className="!mb-6" />
             <P>{SCREENING_SECTION_TEXT}</P>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <BookingButton label="Screening-Termin vereinbaren" />
+              <BookingButton label="Screening-Termin online buchen" />
             </div>
             <p className="mt-6 text-sm text-slate-600 dark:text-slate-300">
               Offizielle Informationen zum Programm:{' '}
@@ -300,9 +300,9 @@ const MammographiePage = () => {
         id="mammo-cta-title"
         title="Mammographie-Termin in Graz vereinbaren"
         text={SCREENING_CTA_TEXT}
-        bookingLabel="Mammographie-Termin buchen"
+        bookingLabel="Screening-Termin online buchen"
       />
-    </>
+    </BookingService>
   );
 };
 

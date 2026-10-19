@@ -3,7 +3,7 @@
 // Regel: Nur von der Praxis bestätigte Angaben eintragen. null = offen → wird auf der Seite als
 // gelber Platzhalter gezeigt und NICHT ins FAQPage-Schema übernommen.
 // Stand: Praxisangaben 26.09.2026 (Telegram-Gruppe „Homepage“), MiraNext geprüft 27.09.2026.
-import { BOOKING_URL } from './practice.js';
+import { bookingUrl } from './practice.js';
 
 export const BODY = {
   // ── Bestätigt ─────────────────────────────────────────────────────
@@ -39,7 +39,9 @@ export const BODY = {
 
   // ── Buchung ──────────────────────────────────────────────────────
   booking: {
-    url: BOOKING_URL,
+    // Eigene Online-Buchung der Praxis (ab Oktober 2026): termin.roentgen-am-kai.at, Leistung Körperanalyse
+    url: bookingUrl('koerperanalyse'),
+    online: true,
     // MiraNext geprüft 27.09.2026: „Privattermin“ bietet nur Röntgen, Sonographie, Mammographie –
     // die Körperanalyse ist dort noch NICHT angelegt. Sobald angelegt: true.
     serviceInMiraNext: false,

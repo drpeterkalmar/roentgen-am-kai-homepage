@@ -31,6 +31,20 @@ export const MAPS_ROUTE_URL =
 // Die Seite verbietet das Einbetten (X-Frame-Options: SAMEORIGIN) → Link in neuem Tab.
 export const BOOKING_URL = 'https://patient-portal.miranext.ai/patient-booking?c_Id=23';
 
+// Eigene Online-Terminbuchung der Praxis (Server in Wien, ab Oktober 2026) – Mammographie-Screening und DEXA
+// (Knochendichte, Körperanalyse, beides zusammen). Buchungsknöpfe dieser Leistungen führen direkt dorthin,
+// alle anderen bleiben bei BOOKING_URL. Freie Zeiten kommen aus dem CAS-Kalender der Praxis.
+export const ONLINE_TERMIN_URL = 'https://termin.roentgen-am-kai.at';
+export const ONLINE_TERMIN_LINKS = {
+  mammographie: `${ONLINE_TERMIN_URL}/buchen/mammographie`,
+  knochendichte: `${ONLINE_TERMIN_URL}/buchen/dexa?art=knochendichte`,
+  koerperanalyse: `${ONLINE_TERMIN_URL}/buchen/dexa?art=koerperzusammensetzung`,
+  'knochendichte-koerperanalyse': `${ONLINE_TERMIN_URL}/buchen/dexa?art=knochendichte_koerperanalyse`,
+};
+
+// Buchungsadresse je Leistung (service-Schlüssel aus services.js bzw. data-cta-service)
+export const bookingUrl = (service) => ONLINE_TERMIN_LINKS[service] || BOOKING_URL;
+
 export const PORTAL_URL = 'https://portal.marc.at';
 
 // Öffnungszeiten (von der Praxis bestätigt, 26.09.2026)

@@ -9,7 +9,7 @@ import ImagePlaceholder from '../components/ui/ImagePlaceholder';
 import CTASection from '../components/ui/CTASection';
 import Button, { buttonClasses } from '../components/ui/Button';
 import { SectionHeading } from '../components/ui/Heading';
-import { BookingButton, PhoneButton } from '../components/ui/BookingButtons';
+import { BookingButton, BookingService, PhoneButton } from '../components/ui/BookingButtons';
 import Notice from '../components/ui/Notice';
 import DexaReportSlider, { DexaSources } from '../components/dexa/DexaReportSlider';
 import { BONE_REPORT_SET, BONE_SECTION } from '../data/boneDensityReportExamples';
@@ -19,7 +19,7 @@ import BoneRiskCheck from '../components/BoneRiskCheck';
 import { imageUrl, imageSrcSet } from '../components/ui/Picture';
 import { H3, P, Bullets, NewWindow, linkRow, extLink } from '../components/ui/Text';
 import { IMAGE_BRIEFS } from '../data/imageBriefs';
-import { PHONE_HREF, PHONE_DISPLAY, MAPS_ROUTE_URL, BOOKING_URL } from '../data/practice';
+import { PHONE_HREF, PHONE_DISPLAY, MAPS_ROUTE_URL, bookingUrl } from '../data/practice';
 import { SCREENING_BADGE } from '../data/screening';
 import {
   DEXA,
@@ -76,6 +76,7 @@ const COMBINED_BENEFITS = [
 const KnochendichtePage = () => {
   const faq = useRouteFaq(); // FAQ laut Routentabelle (routes.js: faq) = FAQPage-Schema
   return (
+    <BookingService service="knochendichte">
     <div className="[&_:is(h1,h2,h3)]:hyphens-manual">
       {/* Hero – Terminbutton, Kurzfakten und Preis im ersten sichtbaren Bereich */}
       <Hero
@@ -453,7 +454,7 @@ const KnochendichtePage = () => {
         <SectionHeading id="mehr-title" title="Termin, Praxis und weitere Informationen" />
         <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <li>
-            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" data-cta="booking" className={linkRow}>
+            <a href={bookingUrl('knochendichte')} target="_blank" rel="noopener noreferrer" data-cta="booking" data-cta-service="knochendichte" className={linkRow}>
               <CalendarCheck size={20} aria-hidden="true" className="shrink-0 text-brand dark:text-brand-300" /> Online-Terminbuchung<NewWindow />
             </a>
           </li>
@@ -530,6 +531,7 @@ const KnochendichtePage = () => {
         bookingLabel="DEXA-Termin buchen"
       />
     </div>
+    </BookingService>
   );
 };
 

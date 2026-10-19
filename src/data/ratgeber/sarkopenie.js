@@ -4,7 +4,7 @@
 // Leitplanken: DEXA allein diagnostiziert keine Sarkopenie; Magermasse ≠ Muskelmasse/Muskelqualität/Muskelkraft;
 // Grenzwerte nur aus EWGSOP2 Tabelle 3, als Orientierungswerte gekennzeichnet; keine Heilversprechen,
 // keine pauschalen Protein- oder Trainingsempfehlungen.
-import { BOOKING_URL } from '../practice.js';
+import { bookingUrl } from '../practice.js';
 
 export const SARKOPENIE_TITLE = 'Sarkopenie: Wenn Muskelkraft und Muskelmasse unbemerkt abnehmen';
 export const SARKOPENIE_EXCERPT =
@@ -130,7 +130,7 @@ export const SARKOPENIE_HTML = `
       <h2>Fazit</h2>
       <p>Sarkopenie ist mehr als „ein bisschen schwächer werden“: eine eigenständige Muskelerkrankung, die Stürze, Knochenbrüche, Krankenhausaufenthalte und den Verlust der Selbstständigkeit begünstigt. Wer merkt, dass Kraft, Gehtempo oder das Aufstehen nachlassen, sollte das ärztlich ansprechen.</p>
       <p>Die DEXA-Körperanalyse misst rasch, schonend und gut wiederholbar die Magermasse von Armen und Beinen und liefert damit den Wert, der eine Sarkopenie bestätigen kann. Krafttest und ärztliche Beurteilung ersetzt sie nicht. Mehr zur Vorsorge finden Sie auf unserer Seite <a href="/gesundheitsziele/gesund-aelter-werden">Gesund älter werden</a>.</p>
-      <p>Lassen Sie Ihre Muskelmasse als Teil der Sarkopenie-Abklärung mit einer DEXA-Körperanalyse in Graz messen: Den Termin können Sie <a href="${BOOKING_URL}" target="_blank" data-cta="booking" data-cta-service="koerperanalyse" rel="noopener noreferrer">online buchen<span class="sr-only"> (öffnet in neuem Fenster)</span></a> oder telefonisch vereinbaren.</p>
+      <p>Lassen Sie Ihre Muskelmasse als Teil der Sarkopenie-Abklärung mit einer DEXA-Körperanalyse in Graz messen: Den Termin können Sie <a href="${bookingUrl('koerperanalyse')}" target="_blank" data-cta="booking" data-cta-service="koerperanalyse" rel="noopener noreferrer">online buchen<span class="sr-only"> (öffnet in neuem Fenster)</span></a> oder telefonisch vereinbaren.</p>
 
 `;
 

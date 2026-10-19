@@ -1,7 +1,8 @@
 import { useLocation } from 'react-router-dom';
 import { CalendarCheck, Phone, MapPin } from 'lucide-react';
-import { BOOKING_URL, PHONE_HREF, PHONE_DISPLAY, MAPS_ROUTE_URL } from '../data/practice';
+import { bookingUrl, ONLINE_TERMIN_LINKS, PHONE_HREF, PHONE_DISPLAY, MAPS_ROUTE_URL } from '../data/practice';
 import { AREAS } from '../data/examinations';
+import { services } from '../data/services';
 
 // Feste Aktionsleiste am Handy: Termin buchen · Anrufen · Anfahrt.
 // Auf Seiten von Untersuchungen, die nur telefonisch vereinbart werden (Ultraschall, Spezialröntgen,
@@ -20,9 +21,17 @@ export const isPhoneOnlyPath = (pathname) => {
   return PHONE_ONLY_PATHS.includes(p);
 };
 
+// Seiten mit eigener Online-Buchung (Mammographie-Screening, DEXA): „Termin buchen“ führt direkt dorthin.
+const ONLINE_TERMIN_PATHS = Object.fromEntries(
+  Object.entries(services).filter(([key]) => ONLINE_TERMIN_LINKS[key]).map(([key, s]) => [s.href, key]),
+);
+
+export const bookingServiceForPath = (pathname) => ONLINE_TERMIN_PATHS[pathname.replace(/\/+$/, '') || '/'];
+
 const MobileActions = () => {
   const { pathname } = useLocation();
   const phoneOnly = isPhoneOnlyPath(pathname);
+  const service = bookingServiceForPath(pathname);
   return (
     <nav
       aria-label="Schnellzugriff"
@@ -40,7 +49,7 @@ const MobileActions = () => {
         ) : (
           <>
             <li className="flex flex-[1.4]">
-              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" data-cta="booking" className={`${item} bg-brand text-white`}>
+              <a href={bookingUrl(service)} target="_blank" rel="noopener noreferrer" data-cta="booking" data-cta-service={service} className={`${item} bg-brand text-white`}>
                 <CalendarCheck size={22} aria-hidden="true" />
                 Termin buchen<span className="sr-only"> (öffnet in neuem Fenster)</span>
               </a>
