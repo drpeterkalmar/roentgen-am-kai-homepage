@@ -95,7 +95,7 @@ const DatenschutzPage = () => {
               den Termin und bei der DEXA-Messung die Abrechnungsart. Die gewählte Untersuchung ist eine
               Gesundheitsangabe; ein Freitextfeld für Beschwerden gibt es bewusst nicht.
             </p>
-            <p>
+            <p className="mt-4">
               Wir verwenden die Daten, um Ihren Termin zu vergeben, vorzubereiten und zu bestätigen (Art. 6 Abs. 1
               lit. b DSGVO, für Gesundheitsdaten Art. 9 Abs. 2 lit. h DSGVO – wir unterliegen der ärztlichen
               Verschwiegenheitspflicht). Zum Schutz vor Missbrauch der Buchung verarbeiten wir Ihre IP-Adresse kurz im
@@ -127,7 +127,7 @@ const DatenschutzPage = () => {
               Diese Dienstleister verarbeiten Daten ausschließlich in unserem Auftrag und nach unseren Weisungen
               (Auftragsverarbeitung nach Art. 28 DSGVO); eine Übermittlung in Länder außerhalb der EU findet nicht statt:
             </p>
-            <ul className="list-disc pl-6 space-y-2">
+            <ul className="mt-4 list-disc pl-6 space-y-2">
               <li>Server der Online-Buchung: netcup GmbH, Emmy-Noether-Straße 10, 76131 Karlsruhe, Deutschland – der Server steht im Rechenzentrum in Wien, Österreich. Für den Absage-Link speichert er nur einen Prüfwert des Links, Tag und Uhrzeit, keinen Namen.</li>
               <li>SMS-Versand: Missus GmbH (firmensms.at), Ulrichsweg 53/2, 8045 Graz, Österreich – Verarbeitung in der EU (Frankfurt). Sie erhält nur Ihre Handynummer und den Text der SMS, speichert den Text nicht und kürzt die Nummer sofort um die letzten drei Ziffern.</li>
               <li>E-Mail: über das Postfach der Ordination bei HEROLD Business Data GmbH, Canettistraße 5, 1100 Wien (Rechenzentrum: dogado GmbH, Dortmund, Deutschland).</li>
