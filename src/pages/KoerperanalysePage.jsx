@@ -13,7 +13,7 @@ import ImagePlaceholder from '../components/ui/ImagePlaceholder';
 import CTASection from '../components/ui/CTASection';
 import Button, { buttonClasses } from '../components/ui/Button';
 import { SectionHeading } from '../components/ui/Heading';
-import { BookingButton, PhoneButton } from '../components/ui/BookingButtons';
+import { BookingButton, BookingService, PhoneButton } from '../components/ui/BookingButtons';
 import FAQ, { useRouteFaq } from '../components/FAQ';
 import DexaScanVideo from '../components/DexaScanVideo';
 import DexaReportSlider, { DexaSources } from '../components/dexa/DexaReportSlider';
@@ -146,6 +146,7 @@ const KoerperanalysePage = () => {
   ];
 
   return (
+    <BookingService service="koerperanalyse">
     <div className="[&_:is(h1,h2,h3,h4)]:hyphens-manual">
       {/* 1. Hero – Nutzen zuerst, Termin im ersten Bildschirm */}
       <Hero
@@ -700,6 +701,7 @@ const KoerperanalysePage = () => {
         phoneLabel="Frage zur Untersuchung stellen"
       />
     </div>
+    </BookingService>
   );
 };
 

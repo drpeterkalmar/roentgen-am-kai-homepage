@@ -1,7 +1,7 @@
 import { Lock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { COMPANY_NAME } from '../data/company';
-import { PHONE_HREF, PHONE_DISPLAY, EMAIL } from '../data/practice';
+import { PHONE_HREF, PHONE_DISPLAY, EMAIL, ONLINE_TERMIN_URL } from '../data/practice';
 
 const H2 = ({ children }) => (
   <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">{children}</h2>
@@ -36,6 +36,8 @@ const DatenschutzPage = () => {
             <p>
               Diese Website verwendet keine Cookies, kein Tracking und keine Analyse-Werkzeuge. Beim Aufruf
               werden keine Inhalte von Drittanbietern geladen – auch die Schriften werden vom selben Server wie die Website ausgeliefert.
+              Die Online-Terminbuchung läuft auf einem eigenen Server der Ordination; was dort verarbeitet wird, steht
+              unten unter „Online-Terminbuchung“.
             </p>
           </section>
 
@@ -81,6 +83,56 @@ const DatenschutzPage = () => {
               (§ 51 ÄrzteG 1998, Art. 6 Abs. 1 lit. c DSGVO). Wir geben Ihre Daten nicht ohne Ihre Einwilligung weiter, außer eine
               gesetzliche Verpflichtung besteht.
             </p>
+          </section>
+
+          <section id="online-terminbuchung">
+            <H2>Online-Terminbuchung</H2>
+            <p>
+              Für das Mammographie-Screening und die DEXA-Messung können Sie online einen Termin buchen
+              (<a href={ONLINE_TERMIN_URL} target="_blank" rel="noopener noreferrer" className="text-[#8B2323] hover:underline font-medium">termin.roentgen-am-kai.at<span className="sr-only"> (öffnet in neuem Fenster)</span></a>).
+              Dabei verarbeiten wir Vorname, Nachname und Geburtsdatum (damit wir Sie eindeutig zuordnen können),
+              Handynummer und E-Mail-Adresse (für die Terminbestätigung, Rückfragen und die Erinnerung), freiwillig
+              Ihre Sozialversicherungsnummer (sie erleichtert Anmeldung und Abrechnung), die gewählte Untersuchung,
+              den Termin und bei der DEXA-Messung die Abrechnungsart. Die gewählte Untersuchung ist eine
+              Gesundheitsangabe; ein Freitextfeld für Beschwerden gibt es bewusst nicht.
+            </p>
+            <p>
+              Wir verwenden die Daten, um Ihren Termin zu vergeben, vorzubereiten und zu bestätigen (Art. 6 Abs. 1
+              lit. b DSGVO, für Gesundheitsdaten Art. 9 Abs. 2 lit. h DSGVO – wir unterliegen der ärztlichen
+              Verschwiegenheitspflicht). Zum Schutz vor Missbrauch der Buchung verarbeiten wir Ihre IP-Adresse kurz im
+              Arbeitsspeicher, ohne sie zu speichern (Art. 6 Abs. 1 lit. f DSGVO). Die Buchungsseite setzt nur
+              technisch notwendige Cookies (Schutz der Formulare, im Bereich der Ordination ein Anmelde-Cookie), es gibt
+              keine Analyse-Werkzeuge und keine Inhalte fremder Server. Die Daten der Online-Buchung löschen wir
+              automatisch 90 Tage nach dem Termin, auch bei abgesagten Terminen; Sicherungskopien werden nach 14 Tagen
+              überschrieben. Übernehmen wir den Termin in unser Ordinationssystem, gilt dort die gesetzliche
+              Aufbewahrungspflicht für die ärztliche Dokumentation (10 Jahre, § 51 ÄrzteG 1998).
+            </p>
+          </section>
+
+          <section id="terminerinnerung">
+            <H2>Erinnerung an Ihren Termin per SMS und E-Mail</H2>
+            <p>
+              Haben Sie bei uns einen Termin, erinnern wir Sie zwei Werktage vorher an Tag und Uhrzeit – per SMS,
+              wenn eine Handynummer bei uns gespeichert ist, und per E-Mail, wenn eine E-Mail-Adresse gespeichert ist.
+              Die Erinnerung enthält keine Angaben zur Untersuchung. Sie können den Termin mit der Antwort „ABSAGE“
+              (auf die SMS oder die E-Mail) oder über den Link in der Erinnerung absagen und mit „STOP“ jede weitere
+              Erinnerung abbestellen – oder uns das jederzeit telefonisch sagen. Rechtsgrundlage ist die Durchführung
+              Ihrer Behandlung (Art. 6 Abs. 1 lit. b und Art. 9 Abs. 2 lit. h DSGVO). Die Daten zur Erinnerung löschen
+              wir spätestens 30 Tage nach dem Termin.
+            </p>
+          </section>
+
+          <section id="dienstleister">
+            <H2>Dienstleister für Online-Buchung und Erinnerung</H2>
+            <p>
+              Diese Dienstleister verarbeiten Daten ausschließlich in unserem Auftrag und nach unseren Weisungen
+              (Auftragsverarbeitung nach Art. 28 DSGVO); eine Übermittlung in Länder außerhalb der EU findet nicht statt:
+            </p>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>Server der Online-Buchung: netcup GmbH, Emmy-Noether-Straße 10, 76131 Karlsruhe, Deutschland – der Server steht im Rechenzentrum in Wien, Österreich. Für den Absage-Link speichert er nur einen Prüfwert des Links, Tag und Uhrzeit, keinen Namen.</li>
+              <li>SMS-Versand: Missus GmbH (firmensms.at), Ulrichsweg 53/2, 8045 Graz, Österreich – Verarbeitung in der EU (Frankfurt). Sie erhält nur Ihre Handynummer und den Text der SMS, speichert den Text nicht und kürzt die Nummer sofort um die letzten drei Ziffern.</li>
+              <li>E-Mail: über das Postfach der Ordination bei HEROLD Business Data GmbH, Canettistraße 5, 1100 Wien (Rechenzentrum: dogado GmbH, Dortmund, Deutschland).</li>
+            </ul>
           </section>
 
           <section>
