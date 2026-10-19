@@ -21,7 +21,7 @@ import { DEXA_SECTION } from '../data/dexaReportExamples';
 import { imageUrl, imageSrcSet } from '../components/ui/Picture';
 import { H3, P, Bullets, NewWindow, linkRow, textLink } from '../components/ui/Text';
 import { IMAGE_BRIEFS } from '../data/imageBriefs';
-import { PHONE_HREF, PHONE_DISPLAY, MAPS_ROUTE_URL, BOOKING_URL, ADDRESS, TRANSPORT } from '../data/practice';
+import { PHONE_HREF, PHONE_DISPLAY, MAPS_ROUTE_URL, bookingUrl, ADDRESS, TRANSPORT } from '../data/practice';
 import {
   BODY, BODY_H1, BODY_LEAD, BODY_KEY_MESSAGE, BODY_RADIATION_TEXT, BODY_LEAN_MASS_TEXT, BODY_DURATION_TEXT, BODY_PRICE_TEXT,
 } from '../data/bodyComposition';
@@ -619,7 +619,7 @@ const KoerperanalysePage = () => {
         />
         <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <li>
-            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" data-cta="booking" className={linkRow}>
+            <a href={bookingUrl('koerperanalyse')} target="_blank" rel="noopener noreferrer" data-cta="booking" data-cta-service="koerperanalyse" className={linkRow}>
               <CalendarCheck size={20} aria-hidden="true" className="shrink-0 text-brand dark:text-brand-300" /> Online-Terminbuchung<NewWindow />
             </a>
           </li>

@@ -22,6 +22,10 @@ PAGE = "/koerperanalyse-graz"
 SHOTS = shots("dexa-befund-slider")
 AXE = (ROOT / "node_modules/axe-core/axe.min.js").read_text()
 BOOK = "https://patient-portal.miranext.ai/patient-booking?c_Id=23"
+# Eigene Online-Buchung (ab Oktober 2026) für Mammographie-Screening und DEXA – sonst BOOK
+ONLINE_PREFIX = "https://termin.roentgen-am-kai.at/buchen/"
+def buchungsziel_ok(href):
+    return href == BOOK or (href or "").startswith(ONLINE_PREFIX)
 H2 = "So sieht ein Messbericht aus"
 LEAD = "Blättern Sie durch einen anonymisierten Beispielbefund und erfahren Sie, was die einzelnen Messwerte bedeuten."
 NOTICE = ("Die dargestellten Werte dienen als Beispiel. Die individuelle Beurteilung erfolgt im Zusammenhang mit Alter, "
@@ -92,7 +96,7 @@ for s in slides:
               f"{s['file']}.pdf enthält '{f}' nicht")
 
 with sync_playwright() as p:
-    b = p.chromium.launch()
+    b = p.chromium.launch(args=["--mute-audio"])
 
     # (Die Körperanalyse-Seite ist nicht vorgerendert – routes.js prerender – daher kein Check im statischen HTML.)
 
@@ -110,8 +114,8 @@ with sync_playwright() as p:
     check(LEAD in sec.inner_text(), "Einleitung exakt")
     check(NOTICE in sec.locator("[data-dexa-notice]").inner_text(), "Pflichthinweis exakt")
     cta = sec.locator("a[data-cta=booking]")
-    check(cta.count() == 1 and "DEXA-Körperanalyse buchen" in cta.inner_text() and cta.get_attribute("href") == BOOK
-          and cta.get_attribute("target") == "_blank" and "noopener" in cta.get_attribute("rel"), "CTA „DEXA-Körperanalyse buchen“ → MiraNext, neues Fenster")
+    check(cta.count() == 1 and "DEXA-Körperanalyse buchen" in cta.inner_text() and cta.get_attribute("href") == ONLINE_PREFIX + "dexa?art=koerperzusammensetzung"
+          and cta.get_attribute("target") == "_blank" and "noopener" in cta.get_attribute("rel"), "CTA „DEXA-Körperanalyse buchen“ → eigene Online-Buchung, neues Fenster")
     check(sec.locator("a[data-cta=phone]").count() == 1, "Telefon-Alternative neben dem CTA")
     # CTA liegt unter dem Slider
     check(cta.bounding_box()["y"] > sec.locator("[data-dexa-slider]").bounding_box()["y"] + sec.locator("[data-dexa-slider]").bounding_box()["height"] - 1, "CTA unter dem Slider")

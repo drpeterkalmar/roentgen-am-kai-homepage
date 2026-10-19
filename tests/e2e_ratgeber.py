@@ -17,6 +17,10 @@ BASE = "http://localhost:4174/roentgen-am-kai-homepage"
 SITE = "https://www.xn--rntgen-am-kai-imb.at"
 TEL = "tel:+43" + "3168409050"
 BOOK = "https://patient-portal.miranext.ai/patient-booking?c_Id=23"
+# Eigene Online-Buchung (ab Oktober 2026) für Mammographie-Screening und DEXA – sonst BOOK
+ONLINE_PREFIX = "https://termin.roentgen-am-kai.at/buchen/"
+def buchungsziel_ok(href):
+    return href == BOOK or (href or "").startswith(ONLINE_PREFIX)
 AXE = (ROOT / "node_modules/axe-core/axe.min.js").read_text()
 SHOTS = shots("relaunch-screenshots-ratgeber")
 
@@ -87,7 +91,7 @@ PAGES = [{"path": "/ratgeber", "title": data["hub"], "h1": "Ratgeber"}] + [
     {"path": a["path"], "title": a["seo"], "h1": a["title"], "art": a} for a in ARTS]
 
 with sync_playwright() as p:
-    b = p.chromium.launch()
+    b = p.chromium.launch(args=["--mute-audio"])
     for label, args in VIEWS:
         ctx = b.new_context(**args); pg = ctx.new_page(); errs = []
         pg.on("pageerror", lambda e: errs.append(str(e)))
@@ -152,7 +156,7 @@ with sync_playwright() as p:
             first_link = pg.eval_on_selector("main article header a[data-cta=article-target]", "e => e.getAttribute('href')")
             check(first_link.endswith(a["target"]), f"primärer Link = Zielseite {a['target']} {r['path']}")
             books = pg.eval_on_selector_all('a[data-cta="booking"]', 'as => as.map(a => [a.getAttribute("href"), a.target, a.rel])')
-            check(all(x[0] == BOOK and x[1] == "_blank" and "noopener" in x[2] for x in books), f"Termin-Buttons → MiraNext, neues Fenster {r['path']}")
+            check(all(buchungsziel_ok(x[0]) and x[1] == "_blank" and "noopener" in x[2] for x in books), f"Termin-Buttons → Online-Buchung, neues Fenster {r['path']}")
             text = pg.locator("main article").inner_text()
             check(pg.locator("main article time").count() >= (1 if pub else 0), f"Veröffentlichungsdatum sichtbar {r['path']}")
             check(("Herausgegeben von" in text) or ("Von " in text), f"Autor/Herausgeber sichtbar {r['path']}")
@@ -171,7 +175,7 @@ with sync_playwright() as p:
                 hrefs = pg.eval_on_selector_all(".article-html a", "as => as.map(a => a.getAttribute('href'))")
                 for need in ("/koerperanalyse-graz", "/knochendichtemessung-graz", "/gesundheitsziele/gesund-aelter-werden"):
                     check(base + need in hrefs, f"Sarkopenie: interner Link {need} (mit Basis-URL)")
-                check(BOOK in hrefs, "Sarkopenie: Link zur Terminbuchung im Text")
+                check(ONLINE_PREFIX + "dexa?art=koerperzusammensetzung" in hrefs, "Sarkopenie: Link zur Terminbuchung im Text")
                 src = pg.locator("section[aria-labelledby=quellen-title] li").all_inner_texts()
                 check(len(src) == 3 and all("doi" in s for s in src), f"Sarkopenie: 3 Quellen mit DOI am Ende ({len(src)})")
                 check("Medizinisch geprüft" not in t, "Sarkopenie: kein Prüfvermerk-Platzhalter (Praxis 07.10.2026)")

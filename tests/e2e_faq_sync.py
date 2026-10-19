@@ -36,7 +36,7 @@ ROUTES = {
 
 errors, failures = [], []
 with sync_playwright() as p:
-    b = p.chromium.launch()
+    b = p.chromium.launch(args=["--mute-audio"])
     pg = b.new_page(viewport={"width": 1280, "height": 900})
     pg.on("pageerror", lambda e: errors.append(f"PAGEERROR: {e}"))
     pg.on("console", lambda m: errors.append(f"CONSOLE-ERR: {m.text}") if m.type == "error" else None)

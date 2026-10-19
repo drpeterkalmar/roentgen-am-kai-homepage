@@ -48,7 +48,7 @@ def visible_text(page):
 
 def main():
     with sync_playwright() as p:
-        browser = p.chromium.launch()
+        browser = p.chromium.launch(args=["--mute-audio"])
 
         # ---------- Inhalt ----------
         ctx = browser.new_context(viewport={"width": 1280, "height": 900})

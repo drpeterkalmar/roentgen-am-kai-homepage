@@ -18,6 +18,10 @@ BASE = "http://localhost:4174/roentgen-am-kai-homepage"
 SITE = "https://www.xn--rntgen-am-kai-imb.at"
 TEL = "tel:+43" + "3168409050"
 BOOK = "https://patient-portal.miranext.ai/patient-booking?c_Id=23"
+# Eigene Online-Buchung (ab Oktober 2026) für Mammographie-Screening und DEXA – sonst BOOK
+ONLINE_PREFIX = "https://termin.roentgen-am-kai.at/buchen/"
+def buchungsziel_ok(href):
+    return href == BOOK or (href or "").startswith(ONLINE_PREFIX)
 AXE = (ROOT / "node_modules/axe-core/axe.min.js").read_text()
 SHOTS = shots("relaunch-screenshots-gesundheitsziele")
 FORBIDDEN = ["Terminanfrage", "Online-Terminvergabe", "script.google.com", "Sonografie", "Wahlarzt für",
@@ -72,7 +76,7 @@ VIEWS = [("320", dict(viewport={"width": 320, "height": 640}, is_mobile=True, ha
          ("1440", dict(viewport={"width": 1440, "height": 900}))]
 
 with sync_playwright() as p:
-    b = p.chromium.launch()
+    b = p.chromium.launch(args=["--mute-audio"])
     internal_links = set()
     # --- 2. Laufzeit je Seite und Gerät ---
     for label, args in VIEWS:
@@ -97,7 +101,7 @@ with sync_playwright() as p:
                 bad = [f for f in FORBIDDEN if f.lower() in body.lower()]
                 check(not bad, f"verbotene Aussagen {r['path']}: {bad}")
                 books = pg.eval_on_selector_all('a[data-cta="booking"]', 'as => as.map(a => [a.getAttribute("href"), a.target, a.rel])')
-                check(books and all(x[0] == BOOK and x[1] == "_blank" and "noopener" in x[2] for x in books), f"Termin-Buttons korrekt {r['path']} ({len(books)})")
+                check(books and all(buchungsziel_ok(x[0]) and x[1] == "_blank" and "noopener" in x[2] for x in books), f"Termin-Buttons korrekt {r['path']} ({len(books)})")
                 # Erlaubt neben der Praxisnummer: Notruf 144 und die Hotline von „früh erkennen“ (0800 500 181)
                 tels = pg.eval_on_selector_all('a[href^="tel:"]', 'as => as.map(a => a.getAttribute("href"))')
                 ALLOWED = {TEL, "tel:144", "tel:0800" + "500181"}
