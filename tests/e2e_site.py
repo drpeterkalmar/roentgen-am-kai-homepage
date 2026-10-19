@@ -13,6 +13,10 @@ BASE = "http://localhost:4174/roentgen-am-kai-homepage"
 SHOTS = shots("relaunch-screenshots-site")
 TEL = "tel:+43" + "3168409050"
 BOOK = "https://patient-portal.miranext.ai/patient-booking?c_Id=23"
+# Eigene Online-Buchung (ab Oktober 2026) für Mammographie-Screening und DEXA – sonst BOOK
+ONLINE_PREFIX = "https://termin.roentgen-am-kai.at/buchen/"
+def buchungsziel_ok(href):
+    return href == BOOK or (href or "").startswith(ONLINE_PREFIX)
 ROUTES = {
     "/": ("Radiologie Graz", "Moderne Radiologie in Graz"),
     "/mammographie-graz": ("Mammographie Graz ohne Zuweisung", "Häufige Fragen zur Mammographie"),
@@ -44,7 +48,7 @@ def check(cond, msg):
     if not cond: fails.append(msg)
 
 with sync_playwright() as p:
-    b = p.chromium.launch()
+    b = p.chromium.launch(args=["--mute-audio"])
     for label, ctxargs in [("mobil", dict(viewport={"width": 390, "height": 844}, device_scale_factor=2, is_mobile=True, has_touch=True)),
                            ("desktop", dict(viewport={"width": 1440, "height": 900}))]:
         ctx = b.new_context(**ctxargs)
@@ -64,7 +68,7 @@ with sync_playwright() as p:
             bad = [f for f in FORBIDDEN if f.lower() in body.lower()]
             ok = (resp.status == 200 and tpart in title and bpart.lower() in body.lower() and not errs
                   and canon.endswith(path) and not bad and tels and TEL in tels and all(t in TEL_OK for t in tels)
-                  and books and all(x[0] == BOOK and x[1] == "_blank" and "noopener" in x[2] for x in books) and h1 == 1)
+                  and books and all(buchungsziel_ok(x[0]) and x[1] == "_blank" and "noopener" in x[2] for x in books) and h1 == 1)
             check(ok, f"[{label}] {resp.status} {path} title={title[:45]!r} h1={h1} tel={len(tels)} booking={len(books)} bad={bad} errs={errs[:1]}")
         # horizontal overflow on every page (mobile)
         if label == "mobil":

@@ -14,6 +14,8 @@ PAGE = "/knochendichtemessung-graz"
 OLD = "/unser-angebot/knochendichte"
 TEL = "tel:+43" + "3168409050"
 BOOK = "https://patient-portal.miranext.ai/patient-booking?c_Id=23"
+# Eigene Online-Buchung (ab Oktober 2026): Knöpfe dieser Seite führen dorthin, Kopf/Fuß weiter zu BOOK
+ONLINE = "https://termin.roentgen-am-kai.at/buchen/dexa?art=knochendichte"
 TITLE = "Knochendichtemessung Graz mit DEXA | Röntgen am Kai"
 DESC = "DEXA-Knochendichtemessung in Graz zur Osteoporose-Früherkennung. ÖGK-Privatleistung um 70 Euro, andere Kassen nach den jeweiligen Voraussetzungen."
 H1 = "Knochendichtemessung in Graz mit DEXA"
@@ -39,7 +41,7 @@ def ld(pg):
 
 
 with sync_playwright() as p:
-    b = p.chromium.launch()
+    b = p.chromium.launch(args=["--mute-audio"])
     # --- 1. Statisches HTML: Meta, Canonical, OG, H1, Weiterleitung, Sitemap ---
     html = urllib.request.urlopen(BASE + PAGE).read().decode()
     check(f"<title>{TITLE}</title>" in html, "statisch: <title>")
@@ -122,8 +124,9 @@ with sync_playwright() as p:
     jumps = [(a, b2) for a, b2 in zip(heads, heads[1:]) if b2[0] - a[0] > 1]
     check(sum(1 for h in heads if h[0] == 1) == 1 and heads[0][0] == 1 and not jumps, f"Überschriftenhierarchie ({len(heads)} Überschriften, Sprünge {jumps})")
     print("     H2:", [h[1] for h in heads if h[0] == 2])
-    books = pg.eval_on_selector_all('a[data-cta="booking"]', 'as => as.map(a => [a.textContent.trim(), a.getAttribute("href"), a.target, a.rel])')
-    check(len(books) >= 4 and all(x[1] == BOOK and x[2] == "_blank" and "noopener" in x[3] for x in books), f"Terminbuttons ({len(books)}): {[x[0][:30] for x in books]}")
+    books = pg.eval_on_selector_all('a[data-cta="booking"]', 'as => as.map(a => [a.textContent.trim(), a.getAttribute("href"), a.target, a.rel, !!(a.closest("main") || a.closest("nav[aria-label=Schnellzugriff]"))])')
+    check(len(books) >= 4 and all(x[1] == (ONLINE if x[4] else BOOK) and x[2] == "_blank" and "noopener" in x[3] for x in books)
+          and sum(1 for x in books if x[4]) >= 3, f"Terminbuttons ({len(books)}): {[(x[0][:30], x[1][:40]) for x in books]}")
     tels = pg.eval_on_selector_all('main a[href^="tel:"], footer a[href^="tel:"]', 'as => as.map(a => a.getAttribute("href"))')
     check(len(tels) >= 3 and all(t == TEL for t in tels), f"tel-Links ({len(tels)}) alle = Praxisnummer")
     # Kombibutton führt zu #gemeinsam, dort Telefon-CTA + Link zur Mammographie
@@ -137,7 +140,7 @@ with sync_playwright() as p:
     hrefs = sorted(set(pg.eval_on_selector_all("a[href]", "as => as.map(a => a.href)")))
     for need in ["/mammographie-graz", "/kontakt", "/ratgeber/knochendichtemessung-dexa-vorsorge", "/koerperanalyse-graz"]:
         check(any(h.split("#")[0].endswith(need) for h in hrefs), f"interner Link vorhanden: {need}")
-    check(any("google.com/maps" in h for h in hrefs) and BOOK in hrefs, "Links Anfahrt (Maps) + Online-Buchung")
+    check(any("google.com/maps" in h for h in hrefs) and ONLINE in hrefs, "Links Anfahrt (Maps) + Online-Buchung")
     internal = [h for h in hrefs if h.startswith(BASE)]
     broken = []
     for h in internal:

@@ -47,7 +47,7 @@ CLS_JS = """async () => {
   await new Promise(r => setTimeout(r, 300)); return cls; }"""
 
 with sync_playwright() as p:
-    b = p.chromium.launch()
+    b = p.chromium.launch(args=["--mute-audio"])
     seen_ids = set()
     for vp, tag, mob in [({"width": 1440, "height": 900}, "Desktop", False), ({"width": 390, "height": 844}, "Handy", True)]:
         ctx = b.new_context(viewport=vp, is_mobile=mob, has_touch=mob)

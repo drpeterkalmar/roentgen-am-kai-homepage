@@ -28,7 +28,7 @@ def h1(pg):
 
 
 with sync_playwright() as p:
-    b = p.chromium.launch()
+    b = p.chromium.launch(args=["--mute-audio"])
     errs = []
 
     # --- 1. Zurück behält die Position; neue Seite oben, Fokus auf dem Inhalt ---

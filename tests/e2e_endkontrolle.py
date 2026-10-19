@@ -96,7 +96,7 @@ for f in (ROOT / "public/assets/images").glob("*.avif"):
 note(f"nicht referenzierte Bilddateien in public/ (nur Speicherplatz, werden nicht geladen): {len(unused)}")
 
 with sync_playwright() as p:
-    b = p.chromium.launch()
+    b = p.chromium.launch(args=["--mute-audio"])
     external, internal = set(), set()
 
     # --- 4. Alle Routen: mobil 360 px ---

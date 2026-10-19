@@ -22,6 +22,10 @@ PAGE = "/knochendichtemessung-graz"
 SHOTS = shots("knochendichte-befund-slider")
 AXE = (ROOT / "node_modules/axe-core/axe.min.js").read_text()
 BOOK = "https://patient-portal.miranext.ai/patient-booking?c_Id=23"
+# Eigene Online-Buchung (ab Oktober 2026) für Mammographie-Screening und DEXA – sonst BOOK
+ONLINE_PREFIX = "https://termin.roentgen-am-kai.at/buchen/"
+def buchungsziel_ok(href):
+    return href == BOOK or (href or "").startswith(ONLINE_PREFIX)
 fails = []
 
 
@@ -67,7 +71,7 @@ except ImportError:
     print("INFO PyMuPDF fehlt – PDF-Prüfung übersprungen")
 
 with sync_playwright() as p:
-    b = p.chromium.launch()
+    b = p.chromium.launch(args=["--mute-audio"])
     # --- 1. Desktop ---
     c = b.new_context(viewport={"width": 1280, "height": 900})
     pg = c.new_page()
@@ -87,8 +91,8 @@ with sync_playwright() as p:
     lst = sec.locator("[data-kd-tscore] ul").bounding_box(); cav = sec.locator("[data-kd-tscore-caveat]").bounding_box()
     check(0 <= cav["y"] - (lst["y"] + lst["height"]) < 40, "Altersgruppen-Hinweis direkt unter den T-Wert-Bereichen")
     cta = sec.locator("a[data-cta=booking]")
-    check(cta.count() == 1 and T["cta"] in cta.inner_text() and cta.get_attribute("href") == BOOK
-          and cta.get_attribute("target") == "_blank", "CTA → MiraNext, neues Fenster")
+    check(cta.count() == 1 and T["cta"] in cta.inner_text() and cta.get_attribute("href") == ONLINE_PREFIX + "dexa?art=knochendichte"
+          and cta.get_attribute("target") == "_blank", "CTA → eigene Online-Buchung, neues Fenster")
     check(sec.locator("a[data-cta=phone]").count() == 1, "Telefon neben dem CTA")
     check("telefonisch" in sec.locator("[data-kd-kombi]").inner_text(), "Kombi mit Mammographie: telefonisch")
     for bad in ("Goldstandard", "strahlungsfrei", "beste Methode", "100 %"):

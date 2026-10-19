@@ -19,6 +19,8 @@ PAGE = "/koerperanalyse-graz"
 OLD = "/unser-angebot/koerperfettmessung"
 TEL = "tel:+43" + "3168409050"
 BOOK = "https://patient-portal.miranext.ai/patient-booking?c_Id=23"
+# Eigene Online-Buchung (ab Oktober 2026): Knöpfe dieser Seite führen dorthin, Kopf/Fuß weiter zu BOOK
+ONLINE = "https://termin.roentgen-am-kai.at/buchen/dexa?art=koerperzusammensetzung"
 TITLE = "Körperanalyse Graz: Körperfett & Muskelmasse messen"
 DESC = "Medizinische Körperanalyse mit DEXA in Graz: Körperfett, Muskelmasse und deren Verteilung präzise erfassen und Veränderungen objektiv vergleichen."
 H1 = "Medizinische Körperanalyse in Graz – Körperfett und Muskelmasse präzise messen"
@@ -49,7 +51,7 @@ def clean(t):
 
 
 with sync_playwright() as p:
-    b = p.chromium.launch()
+    b = p.chromium.launch(args=["--mute-audio"])
     # --- 1. Statisches HTML ---
     html = urllib.request.urlopen(BASE + PAGE).read().decode()
     T_HTML = TITLE.replace("&", "&amp;")
@@ -149,8 +151,9 @@ with sync_playwright() as p:
     jumps = [(a, b2) for a, b2 in zip(heads, heads[1:]) if b2[0] - a[0] > 1]
     check(sum(1 for h in heads if h[0] == 1) == 1 and heads[0][0] == 1 and not jumps, f"Überschriftenhierarchie ({len(heads)} Überschriften, Sprünge {jumps})")
     print("     H2:", [clean(h[1]) for h in heads if h[0] == 2])
-    books = pg.eval_on_selector_all('a[data-cta="booking"]', 'as => as.map(a => [a.textContent.trim(), a.getAttribute("href"), a.target, a.rel])')
-    check(len(books) >= 8 and all(x[1] == BOOK and x[2] == "_blank" and "noopener" in x[3] for x in books), f"Buchungsbuttons ({len(books)}) → MiraNext, neues Fenster")
+    books = pg.eval_on_selector_all('a[data-cta="booking"]', 'as => as.map(a => [a.textContent.trim(), a.getAttribute("href"), a.target, a.rel, !!(a.closest("main") || a.closest("nav[aria-label=Schnellzugriff]"))])')
+    check(len(books) >= 8 and all(x[1] == (ONLINE if x[4] else BOOK) and x[2] == "_blank" and "noopener" in x[3] for x in books)
+          and sum(1 for x in books if x[4]) >= 6, f"Buchungsbuttons ({len(books)}) → eigene Online-Buchung (Seite) bzw. MiraNext (Kopf/Fuß), neues Fenster")
     print("     Buchungsbuttons:", sorted({x[0].replace(' (öffnet in neuem Fenster)', '') for x in books}))
     tels = pg.eval_on_selector_all('main a[href^="tel:"]', 'as => as.map(a => a.getAttribute("href"))')
     check(len(tels) >= 4 and all(t == TEL for t in tels), f"tel-Links ({len(tels)}) = Praxisnummer")
@@ -171,7 +174,7 @@ with sync_playwright() as p:
     hrefs = sorted(set(pg.eval_on_selector_all("a[href]", "as => as.map(a => a.href)")))
     for need in ["/knochendichtemessung-graz", "/gesundheitsziele/gesund-abnehmen", "/gesundheitsziele/fitness-muskelaufbau", "/gesundheitsziele/frauengesundheit-wechseljahre", "/kontakt", "/ratgeber/abnehmspritze-muskelmasse-koerperanalyse"]:
         check(any(h.endswith(need) for h in hrefs), f"interner Link: {need}")
-    check(any("google.com/maps" in h for h in hrefs) and BOOK in hrefs, "Links Anfahrt (Maps) + Online-Buchung")
+    check(any("google.com/maps" in h for h in hrefs) and ONLINE in hrefs, "Links Anfahrt (Maps) + Online-Buchung")
     internal = [h for h in hrefs if h.startswith(BASE)]
     broken = []
     for h in internal:
