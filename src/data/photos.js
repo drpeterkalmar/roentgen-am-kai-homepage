@@ -20,3 +20,20 @@ export const PHOTOS = {
     alt: 'DEXA-Messplatz im Untersuchungsraum von Röntgen am Kai in Graz',
   },
 };
+
+// Fotos der Körperanalyse-Seite (von der Praxis geschickt, Telegram 20.10.2026; Vorlage 1280 px, zugeschnitten).
+// Eigene Liste, weil PHOTOS = GOAL_IMAGES der Gesundheitsziele ist (Momentaufnahme im Unit-Test).
+export const BODY_PHOTOS = {
+  scanMonitor: {
+    name: 'koerperanalyse-scan-monitor',
+    width: 1060,
+    height: 795,
+    alt: 'Bildschirm mit der Auswertung einer DEXA-Ganzkörpermessung bei Röntgen am Kai: Knochenbild, Weichteilbild und Tabelle der Körperregionen',
+  },
+  scanDetail: {
+    name: 'koerperanalyse-scan-detail',
+    width: 833,
+    height: 833,
+    alt: 'DEXA-Ganzkörperscan am Bildschirm, schräg fotografiert: Skelett- und Weichteilbild mit eingezeichneten Körperregionen',
+  },
+};

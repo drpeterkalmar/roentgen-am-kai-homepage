@@ -18,7 +18,8 @@ import FAQ, { useRouteFaq } from '../components/FAQ';
 import DexaScanVideo from '../components/DexaScanVideo';
 import DexaReportSlider, { DexaSources } from '../components/dexa/DexaReportSlider';
 import { DEXA_SECTION } from '../data/dexaReportExamples';
-import { imageUrl, imageSrcSet } from '../components/ui/Picture';
+import Picture, { imageUrl, imageSrcSet } from '../components/ui/Picture';
+import { BODY_PHOTOS } from '../data/photos';
 import { H3, P, Bullets, NewWindow, linkRow, textLink } from '../components/ui/Text';
 import { IMAGE_BRIEFS } from '../data/imageBriefs';
 import { PHONE_HREF, PHONE_DISPLAY, MAPS_ROUTE_URL, BOOKING_URL, ADDRESS, TRANSPORT } from '../data/practice';
@@ -31,6 +32,21 @@ import {
 // FAQ: src/data/faqData.js (koerperanalyseFaq). Nur vollständig beantwortete Fragen gehen ins FAQPage-Schema.
 // Leitplanken: „Körperanalyse“ als Hauptbegriff; DEXA misst magere Weichteilmasse (Näherungswert), nicht Kraft;
 // DEXA ist keine alleinige Sarkopenie-Diagnose; keine Abnehm-, Trainings- oder Heilversprechen; BIA nicht abwerten.
+
+// Praxisfoto mit Bildunterschrift (Fotos aus src/data/photos.js)
+const ScanPhoto = ({ photo, caption, sizes, className = '' }) => (
+  <figure className={className} data-photo={photo.name}>
+    <Picture
+      name={photo.name}
+      alt={photo.alt}
+      width={photo.width}
+      height={photo.height}
+      sizes={sizes}
+      className="h-auto w-full rounded-2xl bg-slate-900 shadow-sm"
+    />
+    <figcaption className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">{caption}</figcaption>
+  </figure>
+);
 
 const Val = ({ value, label }) => (value != null ? <>{value}</> : <Placeholder inline>{label}</Placeholder>);
 
@@ -199,11 +215,18 @@ const KoerperanalysePage = () => {
           className="!mb-6"
         />
         <AnimationPlaceholder id="A003" className="max-w-3xl" />
-        <P className="max-w-3xl">
-          Dafür setzen wir die medizinische DEXA-Methode ein (Dual-Röntgen-Absorptiometrie). Sie liegen dabei ruhig auf dem
-          Untersuchungstisch, während das Gerät Ihren Körper mit zwei sehr schwachen Röntgenenergien abtastet. Weil Fett,
-          fettfreies Gewebe und Knochen diese Energien unterschiedlich abschwächen, lassen sie sich voneinander trennen.
-        </P>
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
+          <P>
+            Dafür setzen wir die medizinische DEXA-Methode ein (Dual-Röntgen-Absorptiometrie). Sie liegen dabei ruhig auf dem
+            Untersuchungstisch, während das Gerät Ihren Körper mit zwei sehr schwachen Röntgenenergien abtastet. Weil Fett,
+            fettfreies Gewebe und Knochen diese Energien unterschiedlich abschwächen, lassen sie sich voneinander trennen.
+          </P>
+          <ScanPhoto
+            photo={BODY_PHOTOS.scanMonitor}
+            sizes="(max-width: 1023px) 100vw, 50vw"
+            caption="Auswertung einer Ganzkörpermessung: links das Knochenbild, rechts das Weichteilbild. Die Linien grenzen Arme, Beine und Rumpf voneinander ab."
+          />
+        </div>
         <ul className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {RESULTS.map(({ icon: Icon, t, d }) => (
             <li key={t}>
@@ -335,14 +358,20 @@ const KoerperanalysePage = () => {
           <div className="lg:col-span-3">
             <P>Eine Körperanalyse macht diese Veränderungen messbar – hilfreich bei:</P>
             <div className="mt-4"><Bullets items={TRAINING_USES} cols /></div>
-          </div>
-          <div className="lg:col-span-2">
-            <Notice tone="info" title="Was DEXA nicht misst">
+            <Notice tone="info" title="Was DEXA nicht misst" className="mt-8">
               <p>
                 DEXA dokumentiert die Körperzusammensetzung, misst aber weder Muskelkraft noch Ausdauer oder sportliche
                 Leistungsfähigkeit. Die Untersuchung selbst verbessert keine Leistung.
               </p>
             </Notice>
+          </div>
+          <div className="lg:col-span-2">
+            <ScanPhoto
+              photo={BODY_PHOTOS.scanDetail}
+              sizes="(max-width: 1023px) 100vw, 40vw"
+              caption="Jede Körperregion wird getrennt ausgewertet. So lassen sich Folgemessungen Region für Region vergleichen."
+              className="mx-auto max-w-sm lg:max-w-none"
+            />
           </div>
         </div>
 
