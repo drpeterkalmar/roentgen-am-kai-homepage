@@ -21,19 +21,20 @@ export const PHOTOS = {
   },
 };
 
-// Fotos der Körperanalyse-Seite (von der Praxis geschickt, Telegram 20.10.2026; Vorlage 1280 px, zugeschnitten).
+// Fotos der Körperanalyse-Seite (Fotoshooting 07.07.2025, Originale aus Drive „Röntgen am Kai/Marketing/Fotos Praxis“:
+// scanMonitor = 2025-07-07_19-06-56_Nik_DXO.jpg, scanDetail = 2025-07-07_19-06-07_DXO.jpg; zugeschnitten, Vorlage 2400 px).
 // Eigene Liste, weil PHOTOS = GOAL_IMAGES der Gesundheitsziele ist (Momentaufnahme im Unit-Test).
 export const BODY_PHOTOS = {
   scanMonitor: {
     name: 'koerperanalyse-scan-monitor',
-    width: 1060,
-    height: 795,
+    width: 1920,
+    height: 1440,
     alt: 'Bildschirm mit der Auswertung einer DEXA-Ganzkörpermessung bei Röntgen am Kai: Knochenbild, Weichteilbild und Tabelle der Körperregionen',
   },
   scanDetail: {
     name: 'koerperanalyse-scan-detail',
-    width: 833,
-    height: 833,
+    width: 1920,
+    height: 1920,
     alt: 'DEXA-Ganzkörperscan am Bildschirm, schräg fotografiert: Skelett- und Weichteilbild mit eingezeichneten Körperregionen',
   },
 };
