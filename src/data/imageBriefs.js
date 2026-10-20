@@ -172,6 +172,7 @@ export const IMAGE_BRIEFS = {
     // 20.10.2026: Übergangsfoto eingebaut (GE LOGIQ, Detail Schallköpfe/Bedienpult; Drive „Marketing/Fotos Praxis/
     // Bis 2025/A7306896_openWith_Nik_DxO.jpg“ → 4:3, assets-src/images/ultraschall-geraet.jpg 2400 × 1800).
     // Raumaufnahme mit Liege bleibt erwünscht.
+    // 20.10.2026: Die Praxis bestätigt, dass der GE LOGIQ aktuell ist (mehrere Geräte dieser Reihe im Einsatz).
     alt: 'Ultraschallgerät mit Schallköpfen und Bedienpult bei Röntgen am Kai in Graz',
   },
   fluoroRoom: {
