@@ -64,15 +64,14 @@ const MammographiePage = () => {
           </a>
         }
         image={{
-          // KI-generiertes Bild (11.10.2026), sichtbar gekennzeichnet
-          src: imageUrl('mammographie-geraet'),
-          srcSet: imageSrcSet('mammographie-geraet'),
+          // Praxisfoto: eigener Siemens Mammomat Inspiration (B001, seit 20.10.2026 statt KI-Bild)
+          src: imageUrl('mammographie-mammomat'),
+          srcSet: imageSrcSet('mammographie-mammomat'),
           sizes: '(max-width: 1023px) 100vw, 50vw',
-          alt: IMAGE_BRIEFS.mammoDevice.aiAlt,
-          width: 976,
-          height: 732,
+          alt: IMAGE_BRIEFS.mammoDevice.alt,
+          width: 1920,
+          height: 1440,
           priority: true,
-          ai: true,
         }}
       />
 

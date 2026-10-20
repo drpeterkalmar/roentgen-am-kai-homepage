@@ -5,7 +5,6 @@ import Section from '../components/ui/Section';
 import Card from '../components/ui/Card';
 import ServiceCard from '../components/ui/ServiceCard';
 import ImagePlaceholder from '../components/ui/ImagePlaceholder';
-import AiImageBadge from '../components/ui/AiImageBadge';
 import CTASection from '../components/ui/CTASection';
 import Button, { buttonClasses } from '../components/ui/Button';
 import { SectionHeading } from '../components/ui/Heading';
@@ -42,13 +41,8 @@ const FEATURED = [
     title: 'Mammographie & Brustgesundheit',
     text: SCREENING_HOME_CARD,
     cta: 'Mammographie-Termin buchen',
-    // KI-generiertes Bild (11.10.2026), sichtbar gekennzeichnet
-    media: (
-      <div className="relative">
-        <Photo name="mammographie-geraet" alt={IMAGE_BRIEFS.mammoDevice.aiAlt} position="object-top" />
-        <AiImageBadge />
-      </div>
-    ),
+    // Praxisfoto: eigener Mammomat (B001); Ausschnitt so, dass der Schriftzug MAMMOMAT im 16:10-Feld bleibt
+    media: <Photo name="mammographie-mammomat" alt={IMAGE_BRIEFS.mammoDevice.alt} position="object-[center_25%]" />,
   },
   {
     key: 'knochendichte',

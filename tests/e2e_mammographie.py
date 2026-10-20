@@ -101,10 +101,12 @@ with sync_playwright() as p:
     check(sum(1 for x in phs if x.startswith("Foto:")) == 3, f"3 Bildplatzhalter mit Motiv ({[x[:40] for x in phs if x.startswith('Foto:')]})")
     # Gerätefoto der Praxis (seit 11.10.2026) statt Platzhalter im Hero
     check(not any("reale Mammographiegerät" in x for x in phs), "kein Platzhalter mehr für das Mammographiegerät")
-    hero = [s for s, a in imgs if s and "mammographie-geraet" in s]
-    check(len(hero) == 1 and any(a and a.startswith("KI-generierte Darstellung") for s, a in imgs if s and "mammographie-geraet" in s), f"KI-Bild im Hero mit Alt-Text ({hero})")
-    badge = pg.eval_on_selector_all("main [data-ai-badge]", "es => es.map(e => [e.textContent, getComputedStyle(e).display])")
-    check(badge == [["KI-generiertes Bild", "block"]] or (len(badge) == 1 and badge[0][0] == "KI-generiertes Bild" and badge[0][1] != "none"), f"KI-Kennzeichnung sichtbar ({badge})")
+    # seit 20.10.2026: echtes Praxisfoto (Mammomat) statt KI-Bild – keine KI-Kennzeichnung mehr
+    hero = [(s, a) for s, a in imgs if s and "mammographie-mammomat" in s]
+    check(len(hero) == 1 and hero[0][1] == "Mammographiegerät im Untersuchungsraum von Röntgen am Kai", f"Praxisfoto Mammomat im Hero mit Alt-Text ({hero})")
+    check(not any(s and "mammographie-geraet" in s for s, _ in imgs), "KI-Bild nicht mehr eingebunden")
+    badge = pg.eval_on_selector_all("main [data-ai-badge]", "es => es.length")
+    check(badge == 0, f"keine KI-Kennzeichnung mehr ({badge})")
     # interne Links → HTTP 200
     hrefs = sorted(set(pg.eval_on_selector_all("a[href]", "as => as.map(a => a.href)")))
     internal = [h for h in hrefs if h.startswith(BASE)]

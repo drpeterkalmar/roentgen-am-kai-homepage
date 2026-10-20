@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, ExternalLink } from 'lucide-react';
 import Hero from '../components/ui/Hero';
-import ImagePlaceholder from '../components/ui/ImagePlaceholder';
+import { imageUrl, imageSrcSet } from '../components/ui/Picture';
 import { IMAGE_BRIEFS } from '../data/imageBriefs';
 import Section from '../components/ui/Section';
 import { SectionHeading } from '../components/ui/Heading';
@@ -18,7 +18,16 @@ const UltraschallGrazPage = () => {
     <>
       <Hero
         breadcrumbs={[{ name: 'Startseite', href: '/' }, { name: EXAMS_CRUMB, href: EXAMS_BASE }, { name: 'Ultraschall' }]}
-        imageSlot={<ImagePlaceholder brief={IMAGE_BRIEFS.ultrasoundRoom} className="h-full w-full rounded-2xl" />}
+        // Praxisfoto (B015, Übergang: Gerätedetail statt Raumaufnahme)
+        image={{
+          src: imageUrl('ultraschall-geraet'),
+          srcSet: imageSrcSet('ultraschall-geraet'),
+          sizes: '(max-width: 1023px) 100vw, 50vw',
+          alt: IMAGE_BRIEFS.ultrasoundRoom.alt,
+          width: 1920,
+          height: 1440,
+          priority: true,
+        }}
         title="Ultraschall in Graz"
         status={<StatusBadge area={area} />}
         lead="Ultraschall, medizinisch auch Sonographie genannt, stellt Organe und Gewebe mithilfe von Schallwellen dar und verwendet keine ionisierende Röntgenstrahlung."

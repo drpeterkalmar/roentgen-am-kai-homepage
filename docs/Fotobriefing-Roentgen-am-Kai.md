@@ -4,6 +4,8 @@
 
 Dieses Briefing beschreibt alle noch fehlenden Fotos (**B001–B019**) und Erklärgrafiken (**A001–A006**) der neuen Website. Jede Nummer steht genau einmal; eine Aufnahme, die auf mehreren Seiten verwendet wird, hat eine Nummer. Auf der Website zeigt ein Platzhalter mit derselben Nummer, wo das Bild hinkommt. Wird ein Foto geliefert, ersetzt es den Platzhalter ohne Layoutänderung (feste Seitenverhältnisse).
 
+**Nachtrag 20.10.2026:** Übergangsweise mit vorhandenen Praxisfotos (Drive „Marketing/Fotos Praxis“) belegt: **B001** (Mammomat Inspiration, ersetzt das KI-Bild), **B015** (Ultraschallgerät, Detail) und **B019** (Praxisschild vor dem Haus). Neue Aufnahmen nach diesem Briefing bleiben erwünscht: B001 auf Augenhöhe ohne Weitwinkel, B015 als Raum mit Liege, B019 als Weg vom Hauseingang zur Praxistür.
+
 **Bildsprache:** reale Räume, Geräte und Menschen der Ordination. Keine Stockfotos, keine KI-Bilder, keine Herstellerbilder, keine gestellten „Arzt zeigt auf Bildschirm“-Szenen, keine Vorher-nachher-Darstellung, keine unnötige Dekoration.
 
 ## 1. Shooting-Liste

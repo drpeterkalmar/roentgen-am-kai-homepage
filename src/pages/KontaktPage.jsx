@@ -10,6 +10,8 @@ import { ContactDetails, OpeningHours, Directions } from '../components/ui/Pract
 import ReferralInfo from '../components/ui/ReferralInfo';
 import PatientPortal from '../components/PatientPortal';
 import { MAPS_ROUTE_URL, PLACEHOLDERS, ACCESSIBILITY } from '../data/practice';
+import Picture from '../components/ui/Picture';
+import { IMAGE_BRIEFS } from '../data/imageBriefs';
 
 const CardTitle = ({ id, children }) => (
   <h2 id={id} className="mb-5 font-display text-xl font-semibold tracking-tight text-slate-900 dark:text-white">{children}</h2>
@@ -38,6 +40,18 @@ const KontaktPage = () => (
         </Card>
         <Card as="section" aria-labelledby="k-anfahrt">
           <CardTitle id="k-anfahrt">Anfahrt</CardTitle>
+          {/* Praxisfoto B019 (Übergang: Außenansicht mit Praxisschild) */}
+          <figure className="mb-5" data-photo="aussenansicht-koerosistrasse">
+            <Picture
+              name="aussenansicht-koerosistrasse"
+              alt={IMAGE_BRIEFS.access.alt}
+              width={1920}
+              height={1280}
+              sizes="(max-width: 1023px) 100vw, 400px"
+              className="aspect-[3/2] h-auto w-full rounded-xl object-cover"
+            />
+            <figcaption className="mt-2 text-sm text-slate-600 dark:text-slate-300">Unser Praxisschild vor dem Haus Körösistraße 9</figcaption>
+          </figure>
           <a href={MAPS_ROUTE_URL} target="_blank" rel="noopener noreferrer" className="mb-5 block overflow-hidden rounded-xl border border-slate-200 dark:border-slate-700">
             <img
               src={`${import.meta.env.BASE_URL}assets/images/footer-map.avif`}

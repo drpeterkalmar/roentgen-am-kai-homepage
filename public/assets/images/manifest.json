@@ -1,4 +1,8 @@
 {
+  "aussenansicht-koerosistrasse": {
+    "file": "aussenansicht-koerosistrasse.jpg",
+    "source": "0b22afeb1603ad4f8eb99b462592c2d537e07e2da171653fcd49ce032ddc098a"
+  },
   "dexa-koerperanalyse-ganzkoerperscan": {
     "file": "dexa-koerperanalyse-ganzkoerperscan.avif",
     "source": "2059914225441f0291c6f6cbf93a9cf03845b8a7657d8a4a99fd80196507ee74"
@@ -46,6 +50,10 @@
   "mammographie-geraet": {
     "file": "mammographie-geraet.png",
     "source": "de52535c259de881bc2c394e082ba03c6eb7a190cce960f7299e11980ff337df"
+  },
+  "mammographie-mammomat": {
+    "file": "mammographie-mammomat.jpg",
+    "source": "9991d1b491461f48660b2e28ab1fd2bba5f8472a24801ad6f1dcd72d27d57027"
   },
   "mammographie_v2": {
     "file": "mammographie_v2.avif",
@@ -98,6 +106,10 @@
   "ultraschall": {
     "file": "ultraschall.avif",
     "source": "d06279e04233094af7761cbe475277d086346e15647b59fcbebc634e26960c50"
+  },
+  "ultraschall-geraet": {
+    "file": "ultraschall-geraet.jpg",
+    "source": "7cfeadd1dd0c5936d27bef0f81154f06a39b584d9218e73f7ebec2e767baf11d"
   },
   "wartebereich-mammographie-knochendichte": {
     "file": "wartebereich-mammographie-knochendichte.avif",

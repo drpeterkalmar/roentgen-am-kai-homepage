@@ -9,9 +9,10 @@ export const IMAGE_BRIEFS = {
     ratio: '4:3',
     minSize: '2400 × 1800 px',
     alt: 'Mammographiegerät im Untersuchungsraum von Röntgen am Kai',
-    // 11.10.2026: übergangsweise KI-generiertes Bild eingebaut (assets-src/images/mammographie-geraet.png,
-    // 976 × 732, rechte Wandkante abgeschnitten) – sichtbar gekennzeichnet, Alt-Text siehe aiAlt.
-    // Wird es durch ein echtes Foto ersetzt: Vorlage tauschen, npm run images, Kennzeichnung (ai) entfernen.
+    // 20.10.2026: echtes Praxisfoto eingebaut (Siemens Mammomat Inspiration, Drive „Marketing/Fotos Praxis/Bis 2025/
+    // A7306902_Nik_Nik_DxO.jpg“, 4000 × 6000 → 4:3 oben zugeschnitten, assets-src/images/mammographie-mammomat.jpg
+    // 2400 × 1800). Weitwinkelaufnahme – ein neues Foto auf Augenhöhe bleibt erwünscht.
+    // Das frühere KI-Bild (mammographie-geraet) ist nicht mehr eingebunden; aiAlt nur noch zur Nachvollziehbarkeit.
     aiAlt: 'KI-generierte Darstellung eines Mammographiegeräts in einem hellen Untersuchungsraum',
   },
   care: {
@@ -168,7 +169,10 @@ export const IMAGE_BRIEFS = {
     position: 'Ultraschall-Seite, Hero',
     ratio: '4:3',
     minSize: '1600 × 1200 px',
-    alt: 'Ultraschallplatz von Röntgen am Kai in Graz',
+    // 20.10.2026: Übergangsfoto eingebaut (GE LOGIQ, Detail Schallköpfe/Bedienpult; Drive „Marketing/Fotos Praxis/
+    // Bis 2025/A7306896_openWith_Nik_DxO.jpg“ → 4:3, assets-src/images/ultraschall-geraet.jpg 2400 × 1800).
+    // Raumaufnahme mit Liege bleibt erwünscht.
+    alt: 'Ultraschallgerät mit Schallköpfen und Bedienpult bei Röntgen am Kai in Graz',
   },
   fluoroRoom: {
     id: 'B016',
@@ -205,7 +209,10 @@ export const IMAGE_BRIEFS = {
     position: 'Kontakt-Seite, Abschnitt „Anfahrt“',
     ratio: '3:2',
     minSize: '1800 × 1200 px',
-    alt: 'Zugang zur Ordination Röntgen am Kai',
+    // 20.10.2026: Übergangsfoto eingebaut (Außenansicht mit Praxisschild; Drive „Marketing/Fotos Praxis/
+    // 2025-07-07_19-17-59_openWith_DXO.jpg“, rechtes unteres Bildviertel 3600 × 2400 →
+    // assets-src/images/aussenansicht-koerosistrasse.jpg 2400 × 1600). Weg vom Hauseingang zur Tür fehlt noch.
+    alt: 'Praxisschild von Röntgen am Kai vor dem Gebäude Körösistraße 9 in Graz',
   },
 };
 
