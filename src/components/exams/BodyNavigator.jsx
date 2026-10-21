@@ -40,6 +40,19 @@ const Ell = ({ cx, cy, rx, ry, rot = 0 }) => (
 const Box = ({ x, y, w, h }) => <rect className="bn-zone" data-shape="" x={x} y={y} width={w} height={h} rx={Math.min(w, h) / 4} />;
 // Koordinaten je Bildseite aus der Bildmaske gemessen (die Vorlage ist nicht exakt spiegelsymmetrisch).
 const SHAPES = {
+  schaedel: (
+    <>
+      <Ell cx={F - 2} cy={162} rx={112} ry={58} />
+      <Ell cx={2199} cy={226} rx={138} ry={124} />
+    </>
+  ),
+  nnh: <Ell cx={660} cy={298} rx={58} ry={72} />,
+  kiefergelenk: (
+    <>
+      <Ell cx={560} cy={320} rx={30} ry={36} />
+      <Ell cx={762} cy={320} rx={30} ry={36} />
+    </>
+  ),
   schulter: (
     <>
       <Ell cx={415} cy={655} rx={135} ry={78} rot={8} />
@@ -106,7 +119,7 @@ const SHAPES = {
     </>
   ),
 };
-const SVG_ORDER = ['schulter', 'brustkorb', 'oberarm', 'ellenbogen', 'hand', 'becken', 'oberschenkel', 'knie', 'unterschenkel', 'sprunggelenk', 'fuss', 'hws', 'bws', 'lws', 'fersenbein'];
+const SVG_ORDER = ['schaedel', 'nnh', 'kiefergelenk', 'schulter', 'brustkorb', 'oberarm', 'ellenbogen', 'hand', 'becken', 'oberschenkel', 'knie', 'unterschenkel', 'sprunggelenk', 'fuss', 'hws', 'bws', 'lws', 'fersenbein'];
 
 const InfoCard = ({ region }) => {
   if (!region) {

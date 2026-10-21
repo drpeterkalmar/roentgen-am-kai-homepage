@@ -9,6 +9,9 @@
 
 export const REFERRAL_TERMS = [
   // Röntgen – Regionen (Sprungziele: Körpernavigator-Liste bzw. Gruppen auf /roentgen-graz)
+  { term: 'Schädel', label: 'Schädelröntgen', to: '/roentgen-graz#region-schaedel', aliases: ['Schädelröntgen', 'Cranium', 'Kranium', 'Schädel 2 Ebenen', 'Kopf'] },
+  { term: 'NNH-Röntgen', label: 'Röntgen der Nasennebenhöhlen und Nase', to: '/roentgen-graz#region-nnh', aliases: ['Nasennebenhöhlen Röntgen', 'Nase', 'Nasenbein Röntgen', 'Os nasale', 'Sinus'] },
+  { term: 'Kiefergelenke Röntgen', label: 'Röntgen der Kiefergelenke', to: '/roentgen-graz#region-kiefergelenk', aliases: ['Kiefergelenk Röntgen', 'Kiefergelenksröntgen'] },
   { term: 'Thorax', label: 'Lunge und Brustkorb', to: '/roentgen-graz#lunge-brustkorb', aliases: ['Lungenröntgen', 'Lunge', 'Thoraxröntgen', 'Thorax pa', 'Thorax 2 Ebenen', 'Brustkorb'] },
   { term: 'HWS', label: 'Halswirbelsäule', to: '/roentgen-graz#region-hws', aliases: ['Halswirbelsäule', 'Halswirbel', 'Nacken'] },
   { term: 'BWS', label: 'Brustwirbelsäule', to: '/roentgen-graz#region-bws', aliases: ['Brustwirbelsäule', 'Brustwirbel'] },

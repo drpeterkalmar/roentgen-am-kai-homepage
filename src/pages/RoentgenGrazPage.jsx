@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { FileText, Send, Clock, MapPin, Images, Stethoscope } from 'lucide-react';
 import AnimationPlaceholder from '../components/ui/AnimationPlaceholder';
 import Hero from '../components/ui/Hero';
@@ -122,6 +123,11 @@ const RoentgenGrazPage = () => {
                 {g.items.map((i) => <Bullet key={i}>{i}</Bullet>)}
               </ul>
               {g.note && <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">{g.note}</p>}
+              {g.link && (
+                <Link to={g.link.to} className="mt-2 inline-flex min-h-[44px] items-center text-sm font-semibold text-brand underline-offset-4 hover:underline dark:text-brand-300">
+                  {g.link.label} →
+                </Link>
+              )}
               {g.placeholder && <Placeholder className="mt-3">{g.placeholder}</Placeholder>}
             </li>
           ))}

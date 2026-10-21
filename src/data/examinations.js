@@ -95,6 +95,13 @@ export const areaByPath = (pathname) => {
 // ---------------------------------------------------------------------------
 export const XRAY_GROUPS = [
   {
+    id: 'schaedel-gesicht',
+    title: 'Schädel und Gesicht',
+    items: ['Schädel', 'Nasennebenhöhlen und Nase', 'Kiefergelenke'],
+    note: 'Nasennebenhöhlen, Gesichtsschädel und Kiefergelenke bieten wir auch als dreidimensionale Aufnahme (DVT) an.',
+    link: { to: '/zahnroentgen-dvt-graz#dvt', label: 'Zum 3D-Röntgen (DVT)' },
+  },
+  {
     id: 'lunge-brustkorb',
     title: 'Lunge und Brustkorb',
     items: ['Lungenröntgen (Thorax), üblicherweise in zwei Ebenen', 'Brustkorb und Rippen'],
@@ -120,10 +127,13 @@ export const XRAY_GROUPS = [
 ];
 
 // ---------------------------------------------------------------------------
-// Körpernavigator (Röntgen) – 15 Regionen. view: Vorder- oder Rückansicht im Skelett.
+// Körpernavigator (Röntgen) – 18 Regionen. view: Vorder- oder Rückansicht im Skelett.
 // questions = typische Fragestellungen (neutral, Orientierung – medizinische Freigabe ausstehend).
 // ---------------------------------------------------------------------------
 export const BODY_REGIONS = [
+  { id: 'schaedel', name: 'Schädel', view: 'back', group: 'schaedel-gesicht', questions: ['Knöcherne Veränderungen am Schädel', 'Beschwerden nach Sturz oder Schlag auf den Kopf', 'Verlaufskontrolle eines bekannten Befundes'] },
+  { id: 'nnh', name: 'Nasennebenhöhlen und Nase', view: 'front', group: 'schaedel-gesicht', questions: ['Wiederkehrende oder lang anhaltende Nebenhöhlenentzündung', 'Verletzung der Nase, etwa Verdacht auf Bruch des Nasenbeins', 'Behinderte Nasenatmung'] },
+  { id: 'kiefergelenk', name: 'Kiefergelenke', view: 'front', group: 'schaedel-gesicht', questions: ['Schmerzen oder Knacken beim Kauen', 'Eingeschränkte Mundöffnung', 'Abklärung von Abnützung (Arthrose)'] },
   { id: 'hws', name: 'Halswirbelsäule', view: 'back', group: 'wirbelsaeule', questions: ['Nackenschmerzen', 'Beschwerden nach Sturz oder Unfall', 'Fehlhaltung oder Verlaufskontrolle'] },
   { id: 'bws', name: 'Brustwirbelsäule', view: 'back', group: 'wirbelsaeule', questions: ['Rückenschmerzen im Brustbereich', 'Fehlhaltung, etwa Rundrücken oder Skoliose', 'Beschwerden nach Sturz oder Unfall'] },
   { id: 'lws', name: 'Lendenwirbelsäule', view: 'back', group: 'wirbelsaeule', questions: ['Kreuzschmerzen', 'Abnützung oder Fehlstellung', 'Beschwerden nach Sturz oder Unfall'] },
