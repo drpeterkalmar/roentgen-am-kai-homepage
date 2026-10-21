@@ -1,0 +1,104 @@
+{
+  "frog-dorsoplantar": {
+    "file": "frog-dorsoplantar.png",
+    "source": "f5a2552d2a706906d47f5ebf0eff8846a7b8a3ffff3a87698d2edda3571a6002",
+    "width": 2382,
+    "height": 2899
+  },
+  "frog-seitlich": {
+    "file": "frog-seitlich.png",
+    "source": "4131f52fa6c103e6b68fe55bbd0c2bcf409b20b738f5361e95fc91f778276e97",
+    "width": 2382,
+    "height": 2899
+  },
+  "hippo-nach-op": {
+    "file": "hippo-nach-op.png",
+    "source": "659700b41f8dd2445d69833482fa89e3611cdc7fcbc436e8903df30c8879b628",
+    "width": 2382,
+    "height": 2899
+  },
+  "hippo-vor-op": {
+    "file": "hippo-vor-op.png",
+    "source": "88b8ba0d18d9d5cb75e3bd06cb174f3718d1861534b8f954beb395d2612399fd",
+    "width": 2382,
+    "height": 2899
+  },
+  "lama-ganzbein-1": {
+    "file": "lama-ganzbein-1.png",
+    "source": "67c046dd5ee9e4d1f3f748ba7b7a9e7cb32f5181b5b3532636adfccba0271469",
+    "width": 2382,
+    "height": 2899
+  },
+  "lama-ganzbein-2": {
+    "file": "lama-ganzbein-2.png",
+    "source": "e3041e160e5660ae6952b9343319d2f3721da1b70bcbf106ea402d6c288f6d50",
+    "width": 2382,
+    "height": 2899
+  },
+  "lama-knie-ap": {
+    "file": "lama-knie-ap.png",
+    "source": "4dcc3478230c8dbc1d552a45fd74d94eba9c38eefec06b85ad0c9cdba95d535d",
+    "width": 2382,
+    "height": 2899
+  },
+  "lama-knie-seitlich": {
+    "file": "lama-knie-seitlich.png",
+    "source": "2982ea795f709b4da65fe02bd7427d034ab90a6c80685da2d07f02fa3280b64a",
+    "width": 2382,
+    "height": 2899
+  },
+  "logo-frog": {
+    "file": "logo-frog.png",
+    "source": "b67c6132da68963bedaee1bd4a1b97b7931a8a6e2bc0917e13610ac76f16e9ce",
+    "width": 657,
+    "height": 107
+  },
+  "logo-hippo": {
+    "file": "logo-hippo.png",
+    "source": "5512c36c2e83185bd92fb26e3e90fd7607f76037cfbba0b39e9878b497886aea",
+    "width": 738,
+    "height": 104
+  },
+  "logo-imagebiopsy-lab": {
+    "file": "logo-imagebiopsy-lab.png",
+    "source": "adbdeb665329270ff23ae9ec62a55c28989810463d4212f4ddcdd507cf3d02c5",
+    "width": 356,
+    "height": 165
+  },
+  "logo-koala": {
+    "file": "logo-koala.png",
+    "source": "54a9cb92f79f16a8149873129a266a5d489f5bbfc7c22fb1b903aef428507a13",
+    "width": 717,
+    "height": 87
+  },
+  "logo-lama": {
+    "file": "logo-lama.png",
+    "source": "7c80d8c33c9ce6df155853693ba7a8ce8fd10b2d6a58438a897bc58fec21f77d",
+    "width": 726,
+    "height": 87
+  },
+  "logo-panda": {
+    "file": "logo-panda.png",
+    "source": "1eb315da5f747065f81a562e2f8e1c2adf3542fd65c4482fd28eace6210d2f4a",
+    "width": 767,
+    "height": 87
+  },
+  "logo-squirrel": {
+    "file": "logo-squirrel.png",
+    "source": "a951ec8fdb607d856ac2bf9b269029aa904b4fdb79c8eb4242d594279ecf487d",
+    "width": 831,
+    "height": 106
+  },
+  "panda-knochenalter": {
+    "file": "panda-knochenalter.png",
+    "source": "d407b9194bb9c8810382ef57f2add2eff9a595b53a4bada9582765b458ff02b4",
+    "width": 1648,
+    "height": 2100
+  },
+  "squirrel-wirbelsaeule": {
+    "file": "squirrel-wirbelsaeule.png",
+    "source": "536b85f73159daa93eda22f8495a381a954c085b2af73c62fcad669b94586e78",
+    "width": 2382,
+    "height": 2899
+  }
+}

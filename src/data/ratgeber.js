@@ -15,6 +15,7 @@
 import { SCREENING } from './screening.js';
 import { PHOTOS } from './photos.js';
 import { SARKOPENIE_TITLE, SARKOPENIE_EXCERPT, SARKOPENIE_FAQ, SARKOPENIE_SOURCES } from './ratgeber/sarkopenie.js';
+import { KI_ARTICLE_META, KI_SERIES_PATH, KI_SERIES_CRUMB } from './kiSeries.js';
 
 export const RATGEBER_BASE = '/ratgeber';
 export const PUBLISHER_NAME = 'Röntgen am Kai';
@@ -111,19 +112,8 @@ const META = [
     photo: 'device',
     review: 'Bestehender Artikeltext – ärztliche Freigabe (Altersangaben Frauen ab 65 / Männer ab 70).',
   },
-  {
-    id: 2,
-    title: "KI-Unterstützung in unserer Praxis",
-    excerpt: "Wie künstliche Intelligenz uns hilft, diagnostische Sicherheit zu erhöhen und kleinste Veränderungen früher zu erkennen.",
-    slug: 'ki-unterstuetzung-radiologie',
-    seoTitle: 'KI-Unterstützung in der Radiologie | Röntgen am Kai',
-    description: 'Wie Software mit künstlicher Intelligenz bei der Befundung unterstützen kann – und warum die ärztliche Beurteilung entscheidend bleibt.',
-    category: 'roentgen',
-    target: 'roentgen',
-    datePublished: '2026-04-12',
-    imageBrief: 'ratgeberKi',
-    review: 'Bestehender Artikeltext – bestätigen, welche KI-Software tatsächlich eingesetzt wird (Lungenrundherde?); Aussagen „höhere diagnostische Sicherheit“ und „schnellere und präzisere Diagnose“ belegen oder entschärfen.',
-  },
+  // id 2 „KI-Unterstützung in unserer Praxis“ (ki-unterstuetzung-radiologie) ging am 21.10.2026 in der KI-Serie auf:
+  // Weiterleitung auf die Serienübersicht (routes.js LEGACY_REDIRECTS), damit keine zwei Seiten dieselbe Suchintention bedienen.
   {
     id: 3,
     title: "Mammascreening Österreich: Früherkennung rettet Leben",
@@ -180,6 +170,8 @@ const META = [
     reviewNote: false, // Prüfvermerk auf Wunsch der Praxis entfernt (07.10.2026)
     review: 'Tabelle der Orientierungswerte von der Praxis freigegeben (07.10.2026).',
   },
+  // KI-Serie „Röntgen am K[AI]“ (21.10.2026): Metadaten, Texte und Medien in src/data/kiSeries.js
+  ...KI_ARTICLE_META,
 ];
 
 export const ARTICLES = META.map((m) => {
@@ -222,6 +214,8 @@ export const ARTICLE_ROUTES = ARTICLES.map((a) => ({
   h1: a.title,
   crumb: a.title,
   parent: { name: 'Ratgeber', path: RATGEBER_BASE },
+  // KI-Serie: dritte Ebene „Röntgen am K[AI]“ (sichtbare Brotkrumen == BreadcrumbList)
+  parents: a.series === 'ki' ? [{ name: 'Ratgeber', path: RATGEBER_BASE }, { name: KI_SERIES_CRUMB, path: KI_SERIES_PATH }] : undefined,
   description: a.description,
   priority: '0.6',
   noindex: !isIndexable(a),

@@ -78,15 +78,16 @@ export const schemasFor = (route) => {
   //    sichtbaren Brotkrumen) und MedicalWebPage für Leistungsseiten mit `medicalProcedure`.
   const pageUrl = route ? `${SITE_URL}${route.path === '/' ? '/' : route.path}` : null;
   const extraSchemas = [];
+  const crumbParents = route?.parents || (route?.parent ? [route.parent] : []);
   if (route?.crumb) {
     extraSchemas.push({
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Startseite", "item": `${SITE_URL}/` },
-        // Zielseiten: Elternseite „Gesundheitsziele“ als zweite Ebene (wie die sichtbaren Brotkrumen)
-        ...(route.parent ? [{ "@type": "ListItem", "position": 2, "name": route.parent.name, "item": `${SITE_URL}${route.parent.path}` }] : []),
-        { "@type": "ListItem", "position": route.parent ? 3 : 2, "name": route.crumb, "item": pageUrl }
+        // Zielseiten: Elternseite(n) als weitere Ebenen (wie die sichtbaren Brotkrumen); KI-Serie: parents = [Ratgeber, Serie]
+        ...crumbParents.map((p, i) => ({ "@type": "ListItem", "position": i + 2, "name": p.name, "item": `${SITE_URL}${p.path}` })),
+        { "@type": "ListItem", "position": crumbParents.length + 2, "name": route.crumb, "item": pageUrl }
       ]
     });
   }
@@ -116,6 +117,27 @@ export const schemasFor = (route) => {
       "about": route.medicalPage.about.map((name) => ({ "@type": "Thing", "name": name })),
       "isPartOf": { "@id": `${SITE_URL}${route.parent.path}` },
       "publisher": { "@id": `${SITE_URL}/#praxis` }
+    });
+  }
+  // Serienübersicht (KI-Ratgeber): CollectionPage mit ItemList der Artikel
+  if (route?.collection) {
+    extraSchemas.push({
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "@id": `${pageUrl}#sammlung`,
+      "url": pageUrl,
+      "name": fullTitle(route),
+      "headline": route.h1,
+      "description": route.description,
+      "inLanguage": "de-AT",
+      "isPartOf": { "@id": `${SITE_URL}${route.parent.path}` },
+      "publisher": { "@id": `${SITE_URL}/#praxis` },
+      "mainEntity": {
+        "@type": "ItemList",
+        "name": route.collection.name,
+        "numberOfItems": route.collection.items.length,
+        "itemListElement": route.collection.items.map((it, i) => ({ "@type": "ListItem", "position": i + 1, "name": it.name, "url": `${SITE_URL}${it.path}` }))
+      }
     });
   }
   // Ratgeber-Artikel: Article-Markup (nur veröffentlichte Artikel; Platzhalter-Artikel haben route.article = null)

@@ -4,7 +4,10 @@ import Container from '../components/ui/Container';
 import Breadcrumbs from '../components/ui/Breadcrumbs';
 import Placeholder from '../components/ui/Placeholder';
 import FAQ from '../components/FAQ';
-import { ArticleImage, CategoryBadge, ArticleDate, InlineCTA, EndCTA } from '../components/ratgeber/ArticleParts';
+import { ArticleImage, CategoryBadge, ArticleDate, InlineCTA, EndCTA, KaiWordmark } from '../components/ratgeber/ArticleParts';
+import { KiMedia, ProductLogo } from '../components/ratgeber/KiMedia';
+import { KI_CONTENT } from '../data/kiContent';
+import { KI_SERIES_PATH } from '../data/kiSeries';
 import { articleBySlug, TARGETS, PUBLISHER_NAME, formatDate, ARTICLES } from '../data/ratgeber';
 import { blogPosts } from '../data/blogPosts';
 import NotFoundPage from './NotFoundPage';
@@ -17,6 +20,18 @@ const textById = Object.fromEntries(blogPosts.map((p) => [p.id, p.content]));
 // davorsetzen, damit sie auch ohne JavaScript und beim Öffnen in neuem Tab stimmen.
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, '');
 const withBase = (html) => html.replace(/href="\/(?!\/)/g, `href="${BASE}/`);
+
+// Medienblöcke im Artikeltext: Zeile <!--media:<schlüssel>--> → Komponente (KI-Serie: Galerie oder Platzhalter)
+const ArticleHtml = ({ html, media, title }) => {
+  const parts = html.split(/<!--media:([a-z]+)-->/);
+  return parts.map((part, i) =>
+    i % 2 === 1 ? (
+      <KiMedia key={`m${i}`} block={media?.[part]} title={title} />
+    ) : (
+      part.trim() && <div key={`h${i}`} className="article-html" dangerouslySetInnerHTML={{ __html: part }} />
+    )
+  );
+};
 
 const splitForCTA = (html) => {
   const parts = html.split(/(?=<h2>)/);
@@ -40,7 +55,9 @@ const ArticlePage = () => {
   const a = articleBySlug[slug];
   if (!a) return <NotFoundPage />;
   const t = TARGETS[a.target];
-  const html = a.id ? withBase(textById[a.id]) : null;
+  const ki = a.series === 'ki' ? KI_CONTENT[a.slug] : null;
+  const raw = a.id ? textById[a.id] : ki?.html;
+  const html = raw ? withBase(raw) : null;
   const [before, after] = html ? splitForCTA(html) : ['', ''];
   const others = ARTICLES.filter((x) => x.slug !== a.slug && x.category === a.category && x.status === 'published').slice(0, 2);
 
@@ -49,7 +66,22 @@ const ArticlePage = () => {
       <article aria-labelledby="page-title">
         <header className="border-b border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900">
           <Container size="narrow" className="py-8 sm:py-12">
-            <Breadcrumbs items={[{ name: 'Startseite', href: '/' }, { name: 'Ratgeber', href: '/ratgeber' }, { name: a.title }]} />
+            <Breadcrumbs
+              items={[
+                { name: 'Startseite', href: '/' },
+                { name: 'Ratgeber', href: '/ratgeber' },
+                ...(ki ? [{ name: 'Röntgen am K[AI]', href: KI_SERIES_PATH }] : []),
+                { name: a.title },
+              ]}
+            />
+            {ki && (
+              <p className="mt-4 flex flex-wrap items-center gap-3">
+                <Link to={KI_SERIES_PATH} className="inline-flex min-h-[44px] items-center text-sm font-semibold text-slate-700 underline-offset-4 hover:underline dark:text-slate-200" data-ki-series-link="">
+                  Serie:&nbsp;<KaiWordmark />
+                </Link>
+                {a.logo && <ProductLogo logo={a.logo} />}
+              </p>
+            )}
             <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2">
               <CategoryBadge id={a.category} />
               <ArticleDate article={a} />
@@ -64,6 +96,9 @@ const ArticlePage = () => {
               {a.dateModified && a.dateModified !== a.datePublished && (
                 <> · aktualisiert am <time dateTime={a.dateModified}>{formatDate(a.dateModified)}</time></>
               )}
+              {ki && a.dateModified === a.datePublished && (
+                <> · Stand <time dateTime={a.dateModified}>{formatDate(a.dateModified)}</time></>
+              )}
             </p>
             {/* Primärer Weg: genau eine passende Ziel- bzw. Leistungsseite */}
             <p className="mt-5">
@@ -75,9 +110,11 @@ const ArticlePage = () => {
         </header>
 
         <Container size="narrow" className="py-8 sm:py-12">
-          <div className="overflow-hidden rounded-2xl">
-            <ArticleImage article={a} eager sizes="(max-width: 767px) 100vw, 720px" className="aspect-[16/9] w-full" />
-          </div>
+          {!a.noHeroImage && (
+            <div className="overflow-hidden rounded-2xl">
+              <ArticleImage article={a} eager sizes="(max-width: 767px) 100vw, 720px" className="aspect-[16/9] w-full" />
+            </div>
+          )}
 
           {a.status === 'placeholder' ? (
             <div className="mt-8 space-y-4">
@@ -89,14 +126,14 @@ const ArticlePage = () => {
                 Vor Veröffentlichung: Artikeltext, Autorin/Autor, Veröffentlichungsdatum, Meta-Description, Titelbild. Bis dahin ist die Seite
                 „noindex“, nicht in der Sitemap und ohne Article-Markup.
               </Placeholder>
-              <InlineCTA targetId={a.target} id="artikel-cta-inline" />
+              <InlineCTA targetId={a.target} id="artikel-cta-inline" cta={a.cta} />
             </div>
           ) : (
             // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions -- nur Delegation für echte Links (per Tastatur über Enter auf dem Link)
-            <div className="article-content mt-8" onClick={onTextClick}>
-              <div className="article-html" dangerouslySetInnerHTML={{ __html: before }} />
-              <InlineCTA targetId={a.target} id="artikel-cta-inline" />
-              {after && <div className="article-html" dangerouslySetInnerHTML={{ __html: after }} />}
+            <div className={`article-content ${a.noHeroImage ? '' : 'mt-8'}`} onClick={onTextClick}>
+              <ArticleHtml html={before} media={ki?.media} title={`Beispielbericht ${a.product || ''}`.trim()} />
+              <InlineCTA targetId={a.target} id="artikel-cta-inline" cta={a.cta} />
+              {after && <ArticleHtml html={after} media={ki?.media} title={`Beispielbericht ${a.product || ''}`.trim()} />}
             </div>
           )}
 
@@ -106,11 +143,11 @@ const ArticlePage = () => {
             </div>
           )}
 
-          {a.sources?.length > 0 && (
+          {(ki?.sources || a.sources)?.length > 0 && (
             <section aria-labelledby="quellen-title" className="mt-12">
               <h2 id="quellen-title" className="font-display text-xl font-semibold tracking-tight text-slate-900 dark:text-white">Quellen</h2>
               <ol className="article-html article-sources mt-3">
-                {a.sources.map((src) => (
+                {(ki?.sources || a.sources).map((src) => (
                   <li key={src} dangerouslySetInnerHTML={{ __html: src }} />
                 ))}
               </ol>
@@ -149,7 +186,7 @@ const ArticlePage = () => {
         </Container>
       </article>
 
-      <EndCTA targetId={a.target} />
+      <EndCTA targetId={a.target} cta={a.cta} />
     </>
   );
 };

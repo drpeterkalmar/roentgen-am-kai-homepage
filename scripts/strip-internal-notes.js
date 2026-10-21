@@ -10,6 +10,8 @@ const FIELDS = [
   { file: /\/src\/data\/[^/]+\.js$/, keys: ['review'] },
   { file: /\/src\/data\/bodyComposition\.js$/, keys: ['device'] },
 ];
+// KI-Ratgeberserie: Prüflisten stehen als `export const REVIEW = …` in src/data/ratgeber/ki-*.js
+const EXPORTS = [{ file: /\/src\/data\/ratgeber\/ki-[^/]+\.js$/, names: ['REVIEW'] }];
 
 const walk = (node, visit) => {
   if (!node || typeof node.type !== 'string') return;
@@ -27,9 +29,14 @@ export const stripInternalNotes = ({ enabled }) => ({
     if (!enabled) return null;
     const file = id.split('?')[0].split(path.sep).join('/');
     const keys = FIELDS.filter((f) => f.file.test(file)).flatMap((f) => f.keys);
-    if (!keys.length || !keys.some((k) => code.includes(k))) return null;
+    const names = EXPORTS.filter((f) => f.file.test(file)).flatMap((f) => f.names);
+    if ((!keys.length || !keys.some((k) => code.includes(k))) && !names.some((n) => code.includes(n))) return null;
     const ranges = [];
     walk(this.parse(code), (node) => {
+      if (node.type === 'ExportNamedDeclaration' && node.declaration?.declarations?.some((d) => names.includes(d.id?.name))) {
+        ranges.push([node.start, node.end]);
+        return;
+      }
       if (node.type === 'Property' && !node.computed && keys.includes(node.key.name ?? node.key.value)) {
         let end = node.end;
         let i = end;

@@ -4,7 +4,8 @@ import Hero from '../components/ui/Hero';
 import Section from '../components/ui/Section';
 import CTASection from '../components/ui/CTASection';
 import { cx } from '../components/ui/cx';
-import { ArticleImage, CategoryBadge, ArticleDate } from '../components/ratgeber/ArticleParts';
+import { ArticleImage, CategoryBadge, ArticleDate, KaiWordmark } from '../components/ratgeber/ArticleParts';
+import { KI_SERIES_PATH } from '../data/kiSeries';
 import { ARTICLES, CATEGORIES, byArticleOrder } from '../data/ratgeber';
 
 // Ratgeber-Übersicht: Artikel als echte Links (/ratgeber/<slug>), Filter nach Rubrik (?rubrik=<id>).
@@ -36,6 +37,16 @@ const RatgeberPage = () => {
 
       <Section labelledBy="artikel-title" spacing="md">
         <h2 id="artikel-title" className="sr-only">Artikel</h2>
+        {/* Artikelserie KI (21.10.2026) */}
+        <p className="relative mb-6 flex flex-col gap-1 rounded-2xl border border-slate-200 bg-slate-50 p-5 dark:border-slate-700 dark:bg-slate-900 sm:flex-row sm:items-center sm:justify-between" data-ki-series-teaser="">
+          <span>
+            <span className="block font-display text-lg font-semibold text-slate-900 dark:text-white">Artikelserie: <KaiWordmark /></span>
+            <span className="block text-slate-700 dark:text-slate-300">Künstliche Intelligenz, ärztlich verantwortet – acht Programme verständlich erklärt.</span>
+          </span>
+          <Link to={KI_SERIES_PATH} className="inline-flex min-h-[44px] items-center gap-2 font-semibold text-brand after:absolute after:inset-0 hover:underline dark:text-brand-300">
+            Zur Übersicht <ArrowRight size={16} aria-hidden="true" />
+          </Link>
+        </p>
         <div role="group" aria-label="Artikel nach Rubrik filtern" className="flex flex-wrap gap-2">
           <button type="button" aria-pressed={!active} onClick={() => setParams({}, { replace: true })} className={chip(!active)}>
             Alle <span className="text-xs">({ARTICLES.length})</span>

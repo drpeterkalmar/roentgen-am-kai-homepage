@@ -8,9 +8,40 @@ import { TARGETS, categoryById, formatDate } from '../../data/ratgeber';
 
 // Gemeinsame Bausteine für Ratgeber-Übersicht und Artikelseiten.
 
+// Serienname „Röntgen am K[AI]“: „AI“ dezent hervorgehoben (nur Darstellung; der offizielle Name bleibt „Röntgen am Kai“).
+// Text bleibt „Röntgen am K[AI]“ (so steht es auch in Titel und Brotkrumen); nur die Klammern sind blasser.
+export const KaiWordmark = ({ className = '' }) => (
+  <span className={`whitespace-nowrap ${className}`} data-kai="">
+    Röntgen am K<span className="font-normal text-slate-500 dark:text-slate-400">[</span>
+    <span className="text-brand dark:text-brand-300">AI</span>
+    <span className="font-normal text-slate-500 dark:text-slate-400">]</span>
+  </span>
+);
+
+// Titel mit Serienpräfix „Röntgen am K[AI]: …“ → Präfix als Wortmarke
+export const KaiTitle = ({ text }) => {
+  const m = /^Röntgen am K\[AI\](.*)$/.exec(text);
+  return m ? <><KaiWordmark />{m[1]}</> : text;
+};
+
+// Kachelbild für KI-Artikel ohne Foto: neutrale Fläche mit Produktlogo bzw. Produktname
+const KiTile = ({ article, className }) => (
+  <div className={`flex flex-col items-center justify-center gap-3 bg-slate-100 p-5 text-center dark:bg-slate-800 ${className}`} aria-hidden="true">
+    <span className="text-sm font-semibold text-slate-600 dark:text-slate-300"><KaiWordmark /></span>
+    {article.logo ? (
+      <span className="inline-flex rounded-lg bg-white px-3 py-2">
+        <img src={`${import.meta.env.BASE_URL}assets/ki/${article.logo.key}.png`} width={article.logo.width} height={article.logo.height} alt={article.logo.alt} loading="lazy" decoding="async" className="h-6 w-auto" />
+      </span>
+    ) : (
+      <span className="font-display text-2xl font-semibold text-slate-800 dark:text-slate-100">{article.product}</span>
+    )}
+  </div>
+);
+
 // Echtes Praxisfoto (mit -mobile/-tablet-Varianten) oder Bildplatzhalter mit Motivbeschreibung
 export const ArticleImage = ({ article, sizes, eager = false, className = 'aspect-[4/3] w-full' }) => {
   const p = article.photo;
+  if (!p && article.series === 'ki') return <KiTile article={article} className={className} />;
   if (!p) return <ImagePlaceholder brief={IMAGE_BRIEFS[article.imageBrief]} className={className} />;
   return <Picture name={p.name} sizes={sizes} alt={p.alt} width={p.width} height={p.height} eager={eager} className={`${className} object-cover`} />;
 };
@@ -32,8 +63,8 @@ export const ArticleDate = ({ article }) =>
   );
 
 // Untersuchungsspezifischer CTA-Kasten (im Artikel). Primär: genau EINE passende Ziel-/Leistungsseite.
-export const InlineCTA = ({ targetId, id }) => {
-  const t = TARGETS[targetId];
+export const InlineCTA = ({ targetId, id, cta }) => {
+  const t = { ...TARGETS[targetId], ...(cta?.title ? { ctaTitle: cta.title } : {}) };
   return (
     <aside aria-labelledby={id} className="not-prose my-10 rounded-2xl border border-brand-200 bg-brand-50 p-5 dark:border-brand-800 dark:bg-slate-900 sm:p-6">
       <p id={id} className="font-display text-lg font-semibold text-slate-900 dark:text-white">{t.ctaTitle}</p>
@@ -54,8 +85,8 @@ export const InlineCTA = ({ targetId, id }) => {
 };
 
 // Abschluss-CTA am Artikelende (Buchung + Telefon + Zielseite)
-export const EndCTA = ({ targetId }) => {
-  const t = TARGETS[targetId];
+export const EndCTA = ({ targetId, cta }) => {
+  const t = { ...TARGETS[targetId], ...(cta?.title ? { endTitle: cta.title } : {}) };
   return (
     <section aria-labelledby="artikel-cta-title" className="bg-brand-800 text-white">
       <div className="mx-auto max-w-3xl px-5 py-14 sm:px-6 sm:py-16">

@@ -13,6 +13,7 @@ import { DEXA_META_DESCRIPTION } from './dexa.js';
 import { BODY_SEO_TITLE, BODY_META_DESCRIPTION, BODY_H1 } from './bodyComposition.js';
 import { GOAL_ROUTES } from './healthGoals.js';
 import { ARTICLE_ROUTES } from './ratgeber.js';
+import { KI_SERIES, KI_SERIES_CRUMB, KI_MODULES } from './kiSeries.js';
 
 const EXAMS_PARENT = { name: 'Weitere Untersuchungen', path: '/weitere-untersuchungen' };
 
@@ -165,6 +166,21 @@ export const routes = [
     description: 'Ratgeber von Röntgen am Kai in Graz: verständliche Artikel zu DEXA-Körperanalyse, Knochengesundheit, Mammographie und Röntgen.',
     priority: '0.6',
   },
+  // KI-Serie „Röntgen am K[AI]“: Übersichtsseite (Daten: src/data/kiSeries.js) – statische Route vor /ratgeber/:slug
+  {
+    path: KI_SERIES.path,
+    page: 'KiSeriesPage',
+    fullTitle: KI_SERIES.seoTitle,
+    title: KI_SERIES.title,
+    h1: KI_SERIES.title,
+    crumb: KI_SERIES_CRUMB,
+    parent: { name: 'Ratgeber', path: '/ratgeber' },
+    description: KI_SERIES.description,
+    priority: '0.6',
+    lastmod: KI_SERIES.datePublished,
+    // CollectionPage + ItemList der acht Artikel (schema.js)
+    collection: { name: KI_SERIES.name, items: KI_MODULES.map((m) => ({ name: m.mod.TITLE, path: `/ratgeber/${m.slug}` })) },
+  },
   // Ratgeber-Artikel (Daten: src/data/ratgeber.js; Platzhalter-Artikel sind noindex und nicht in der Sitemap)
   ...ARTICLE_ROUTES,
   {
@@ -231,6 +247,8 @@ export const LEGACY_REDIRECTS = {
   // Körperanalyse-Seite ist nach /koerperanalyse-graz umgezogen (27.09.2026)
   '/unser-angebot/koerperfettmessung': '/koerperanalyse-graz',
   '/datenschutzerklarung': '/datenschutz',
+  // Artikel „KI-Unterstützung in unserer Praxis“ ist in der KI-Serie aufgegangen (21.10.2026)
+  '/ratgeber/ki-unterstuetzung-radiologie': KI_SERIES.path,
   // Auftrag nannte /blog/…; Artikel liegen einheitlich unter /ratgeber/<slug> (07.10.2026)
   '/blog/sarkopenie-muskelverlust-dexa': '/ratgeber/sarkopenie-muskelverlust-dexa',
 };

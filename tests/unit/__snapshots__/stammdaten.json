@@ -152,7 +152,6 @@
       "height": 1200,
       "alt": "DEXA-Messplatz im Untersuchungsraum von Röntgen am Kai in Graz"
     },
-    "ki-unterstuetzung-radiologie": null,
     "mammascreening-oesterreich": {
       "name": "wartebereich-mammographie-knochendichte",
       "width": 1308,
@@ -176,6 +175,14 @@
       "width": 1416,
       "height": 1062,
       "alt": "Bildschirm mit einer DEXA-Ganzkörperaufnahme: Knochenbild und Weichteilbild mit Körperregionen"
-    }
+    },
+    "ki-beinachsenvermessung-lama": null,
+    "ki-hueftvermessung-hippo": null,
+    "kniearthrose-ki-koala": null,
+    "skoliose-cobb-winkel-ki": null,
+    "fussfehlstellung-roentgen-ki": null,
+    "knochenalter-bestimmen-ki": null,
+    "osteoporose-screening-roentgen-ki": null,
+    "ki-mammographie-transpara": null
   }
 }
