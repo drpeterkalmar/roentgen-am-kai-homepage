@@ -4,6 +4,7 @@ import Container from '../components/ui/Container';
 import Breadcrumbs from '../components/ui/Breadcrumbs';
 import Placeholder from '../components/ui/Placeholder';
 import { KaiWordmark, KaiTitle, EndCTA } from '../components/ratgeber/ArticleParts';
+import ReviewedNote from '../components/ratgeber/ReviewedNote';
 import { KI_SERIES, KI_MODULES, KI_SERIES_CRUMB } from '../data/kiSeries';
 import { KI_OVERVIEW_HTML, KI_OVERVIEW_SOURCES } from '../data/kiContent';
 import { PUBLISHER_NAME, formatDate } from '../data/ratgeber';
@@ -156,6 +157,7 @@ const KiSeriesPage = () => {
           )}
 
           <footer className="mt-12 space-y-3 border-t border-slate-200 pt-6 text-sm text-slate-600 dark:border-slate-700 dark:text-slate-300">
+            <ReviewedNote reviewed={S.reviewed || null} />
             {S.review && <Placeholder internal>Freigabe: {S.review}</Placeholder>}
             <p>Diese Seite dient der allgemeinen Information und ersetzt keine ärztliche Beratung.</p>
           </footer>

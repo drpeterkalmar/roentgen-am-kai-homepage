@@ -26,6 +26,17 @@ import * as PANDA from './ratgeber/ki-panda.js';
 import * as RHO from './ratgeber/ki-rho.js';
 import * as TRANSPARA from './ratgeber/ki-transpara.js';
 
+// Prüfvermerk „Medizinisch geprüft von … – Stand …“ (Aufteilung Peter 21.10.2026: Georg Riegler = LAMA/HIPPO/KOALA/
+// SQUIRREL/FROG, Peter Kalmar = Übersicht/RHO/PANDA/Transpara). Erst eintragen, wenn der Arzt „gelesen“ gemeldet hat;
+// ohne Eintrag zeigt die Seite den gelben Platzhalter. at = Tag der Durchsicht (ISO).
+const KALMAR = 'Priv.-Doz. Dr. Peter Kalmar';
+export const KI_REVIEWED = {
+  uebersicht: { by: KALMAR, at: '2026-10-21' },   // Peter „gelesen“ 21.10.2026
+  rho: { by: KALMAR, at: '2026-10-21' },
+  panda: { by: KALMAR, at: '2026-10-21' },
+  transpara: { by: KALMAR, at: '2026-10-21' },
+};
+
 export const KI_SERIES_PATH = '/ratgeber/kuenstliche-intelligenz-radiologie';
 export const KI_SERIES = {
   path: KI_SERIES_PATH,
@@ -38,6 +49,7 @@ export const KI_SERIES = {
   cannot: UE.CANNOT || [],
   trustNote: UE.TRUST_NOTE || null,
   review: UE.REVIEW || null,
+  reviewed: KI_REVIEWED.uebersicht || null,
   datePublished: '2026-10-21',
 };
 
@@ -126,6 +138,7 @@ export const KI_ARTICLE_META = KI_MODULES.map((m) => ({
   series: 'ki',
   product: m.vendor === 'IB Lab' ? `IB Lab ${m.product}` : m.product,
   inUse: m.inUse,
+  reviewed: KI_REVIEWED[m.id] || null,
   logo: m.logo,
   noHeroImage: true,
 }));

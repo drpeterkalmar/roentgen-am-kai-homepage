@@ -58,6 +58,8 @@ check(S["seo"] == "Künstliche Intelligenz in der Radiologie | Graz" and S["titl
 check(145 <= len(S["desc"]) <= 160, f"Übersicht: Description {len(S['desc'])} Zeichen (145–160)")
 check(500 <= S["words"] <= 700, f"Übersicht: {S['words']} Wörter (500–700)")
 check(S["can"] >= 3 and S["cannot"] >= 3, "Übersicht: Listen „Was KI kann“ / „was nicht“")
+REVIEWED = {"uebersicht", "rho", "panda", "transpara"}   # Peter „gelesen“ 21.10.2026
+REVIEW_TXT = "Medizinisch geprüft von Priv.-Doz. Dr. Peter Kalmar – Stand 21.10.2026"
 IN_USE = ["lama", "hippo", "koala", "squirrel", "frog", "panda", "rho"]   # Praxis: Rho 26.09., IB Lab 21.10.2026
 check(sorted(m["id"] for m in MODS if m["inUse"]) == sorted(IN_USE), "„bei uns im Einsatz“ nur für bestätigten Einsatz (Rho + IB Lab, nicht Transpara)")
 for m in MODS:
@@ -126,6 +128,7 @@ with sync_playwright() as pw:
     items = cp[0]["mainEntity"]["itemListElement"] if cp else []
     check(len(cp) == 1 and cp[0]["mainEntity"]["@type"] == "ItemList" and len(items) == 8
           and all(i["url"].startswith(SITE + "/ratgeber/") for i in items), "Übersicht: CollectionPage + ItemList (8)")
+    check(pg.locator("[data-reviewed]").count() == 1 and REVIEW_TXT in pg.locator("[data-reviewed]").inner_text(), "Übersicht: Prüfvermerk Kalmar 21.10.2026")
     tiles = pg.locator("[data-ki-tile]")
     check(tiles.count() == 8, f"Übersicht: {tiles.count()} Kacheln")
     check(pg.locator("[data-ki-tile] [data-in-use]").count() == len(IN_USE) and all(pg.locator(f'[data-ki-tile="{i}"] [data-in-use]').count() == 1 for i in IN_USE), "Kachel-Hinweis „bei uns im Einsatz“ nur bei bestätigten Modulen")
@@ -162,6 +165,10 @@ with sync_playwright() as pw:
         check(any(target in h for h in hrefs), f"{m['id']}: Link {target}")
         bad = [w for w in FORBIDDEN if w.lower() in body.lower()] + re.findall(r"(?<!keine )(?<!keinen )garantiert\w*", body, re.I)
         check(not bad, f"{m['id']}: keine verbotenen Aussagen {bad}")
+        if m["id"] in REVIEWED:
+            check(pg.locator("[data-reviewed]").count() == 1 and REVIEW_TXT in body, f"{m['id']}: Prüfvermerk Kalmar 21.10.2026")
+        else:
+            check(pg.locator("[data-reviewed]").count() == 0, f"{m['id']}: Prüfvermerk noch Platzhalter (wartet auf Durchsicht)")
         if m["id"] == "transpara":
             check(not re.search(r"tomosynth|\b3D\b|3-D", body, re.I), "transpara: keine Tomosynthese/3D")
             check("bei uns im Einsatz" not in body, "transpara: kein Einsatz behauptet")
