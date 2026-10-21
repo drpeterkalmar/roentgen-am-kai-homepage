@@ -1,0 +1,19 @@
+Skelett-Illustration für die Homepage Röntgen am Kai (Vorder- und Rückansicht)
+
+Dateien
+- skelett-vorne-hinten.svg / -transparent.png / -weiss.png  → beide Ansichten nebeneinander, gleich groß
+- skelett-vorne.*  und  skelett-hinten.*                      → Einzelansichten
+- PNG: 3000 px hoch. SVG: beliebig skalierbar (empfohlen für die Website)
+
+Quelle und Lizenz
+Vorlage: "Human skeleton front/back no-text no-color" von Mariana Ruiz Villarreal (LadyofHats),
+Wikimedia Commons – gemeinfrei (Public Domain), keine Namensnennung erforderlich.
+
+Bearbeitung
+- Linke Hand in beiden Ansichten gespiegelt (in der Vorlage zeigte der Daumen zur Körpermitte;
+  in Normalstellung mit Handflächen nach vorn liegt er außen)
+- Farben: Knochen elfenbein, Konturen dunkelgrau, gelbe Knorpel- und schwarze Wirbelkanal-Akzente neutralisiert
+- Körperumriss (Haut) der Vorderansicht entfernt, damit beide Ansichten einheitlich sind
+
+Interaktive Version (Hover-Regionen) für die Röntgen-Seite liegt bereits fertig im Projekt:
+scripts/skelett.mjs, public/assets/skelett/, src/data/skeletonMap.js, src/components/exams/BodyNavigator.jsx

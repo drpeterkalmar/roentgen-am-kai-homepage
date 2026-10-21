@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ArrowDown, CheckCircle2 } from 'lucide-react';
 import { BODY_REGIONS, XRAY_GROUPS, WALK_IN } from '../../data/examinations';
 import Placeholder from '../ui/Placeholder';
 
 // Körpernavigator „Welche Körperregion soll geröntgt werden?“
-// Leichtes Inline-SVG (schematisches Skelett, Vorder- und Rückansicht) – keine Bibliothek.
+// Skelett-Illustration (Bild) in einem SVG mit anklickbaren Regionen – keine Bibliothek.
 //  * Jede Region ist ein echter Link (<a href="#region-…">) → per Tastatur (Tab/Enter), Maus und Touch bedienbar.
 //  * Ohne JavaScript springt der Link zum passenden Eintrag der Textliste darunter (vollständige Information).
 //  * Mit JavaScript: Hervorhebung bei Hover/Fokus/Auswahl, Infokarte daneben (aria-live).
@@ -14,297 +14,99 @@ import Placeholder from '../ui/Placeholder';
 const groupById = Object.fromEntries(XRAY_GROUPS.map((g) => [g.id, g]));
 const regionById = Object.fromEntries(BODY_REGIONS.map((r) => [r.id, r]));
 
-// ---- Geometrie -------------------------------------------------------------
-// Anatomisch vereinfachtes Skelett: Röhrenknochen mit Gelenkenden, einzelne Rippen,
-// Becken mit Foramina, Hand-/Fußstrahlen. Farben kommen ausschließlich aus CSS (.bn-*).
-const F = 105; // Mitte Vorderansicht
-const B = 315; // Mitte Rückansicht
-const both = (fn) => [fn(-1), fn(1)];
-const r1 = (v) => Math.round(v * 10) / 10;
-const pt = (x, y) => `${r1(x)},${r1(y)}`;
+// ---- Grafik ---------------------------------------------------------------
+// Skelett-Illustration (Vorder- und Rückansicht) als Bild, darüber anklickbare Regionen.
+// Vorlage: „Human skeleton front/back no-text no-color“ von Mariana Ruiz Villarreal (LadyofHats),
+// Wikimedia Commons, gemeinfrei; bearbeitet von der Praxis (assets-src/skelett/LIESMICH.txt).
+// Koordinaten = Pixel der Vorlage (2845 × 3000); ausgeliefert wird eine WebP mit 1140 px Breite.
+const IMG = { src: `${import.meta.env.BASE_URL}assets/skelett/skelett-vorne-hinten.webp`, w: 2845, h: 3000 };
+const VIEW = { x: 40, y: 40, w: 2765, h: 3010 }; // Ränder knapp, darunter Platz für die Beschriftung
+const F = 662; // Körpermitte Vorderansicht
+const B = 2190; // Körpermitte Rückansicht
 
-// Röhrenknochen: schlanker Schaft, verbreiterte Gelenkenden, runde Kappen
-const bone = (x1, y1, x2, y2, ws, w1 = ws * 1.7, w2 = ws * 1.7) => {
+const r1 = (v) => Math.round(v);
+// Kapsel (Stadion) zwischen zwei Punkten – für Röhrenknochen
+const capsule = (x1, y1, x2, y2, w) => {
   const L = Math.hypot(x2 - x1, y2 - y1);
-  const ux = (x2 - x1) / L;
-  const uy = (y2 - y1) / L;
-  const P = (t, w) => pt(x1 + ux * t - uy * w, y1 + uy * t + ux * w);
-  const a = Math.min(L * 0.3, w1 * 1.4);
-  const b = Math.min(L * 0.3, w2 * 1.4);
-  const h1 = w1 / 2;
-  const h2 = w2 / 2;
-  const hs = ws / 2;
-  return [
-    `M${P(0, -h1)}`,
-    `C${P(a * 0.45, -h1)} ${P(a * 0.6, -hs)} ${P(a, -hs)}`,
-    `L${P(L - b, -hs)}`,
-    `C${P(L - b * 0.6, -hs)} ${P(L - b * 0.45, -h2)} ${P(L, -h2)}`,
-    `C${P(L + h2 * 0.75, -h2)} ${P(L + h2 * 0.75, h2)} ${P(L, h2)}`,
-    `C${P(L - b * 0.45, h2)} ${P(L - b * 0.6, hs)} ${P(L - b, hs)}`,
-    `L${P(a, hs)}`,
-    `C${P(a * 0.6, hs)} ${P(a * 0.45, h1)} ${P(0, h1)}`,
-    `C${P(-h1 * 0.75, h1)} ${P(-h1 * 0.75, -h1)} ${P(0, -h1)} Z`,
-  ].join(' ');
+  const nx = (-(y2 - y1) / L) * (w / 2);
+  const ny = ((x2 - x1) / L) * (w / 2);
+  const r = w / 2;
+  return `M${r1(x1 + nx)},${r1(y1 + ny)} L${r1(x2 + nx)},${r1(y2 + ny)} A${r},${r} 0 0 0 ${r1(x2 - nx)},${r1(y2 - ny)} L${r1(x1 - nx)},${r1(y1 - ny)} A${r},${r} 0 0 0 ${r1(x1 + nx)},${r1(y1 + ny)} Z`;
 };
-// Symmetrische Kontur: linke Hälfte als Kurven (dx < 0), rechte Hälfte gespiegelt
-const sym = (C, start, segs) => {
-  const pts = [start, ...segs.map((s) => [s[4], s[5]])];
-  const left = segs.map(([a, b, c, d, e, f]) => `C${pt(C + a, b)} ${pt(C + c, d)} ${pt(C + e, f)}`);
-  const right = segs.map((s, i) => `C${pt(C - s[2], s[3])} ${pt(C - s[0], s[1])} ${pt(C - pts[i][0], pts[i][1])}`).reverse();
-  return `M${pt(C + start[0], start[1])} ${left.join(' ')} ${right.join(' ')} Z`;
-};
-const hole = (cx, cy, rx, ry) => `M${pt(cx - rx, cy)} a${rx},${ry} 0 1,0 ${r1(2 * rx)},0 a${rx},${ry} 0 1,0 ${r1(-2 * rx)},0 Z`;
-
-const Strut = ({ d, w, e = 1.6 }) => (
-  <>
-    <path className="bn-ol" d={d} strokeWidth={w + e} />
-    <path className="bn-il" d={d} strokeWidth={w} />
-  </>
+const Cap = (p) => <path className="bn-zone" data-shape="" d={capsule(p.x1, p.y1, p.x2, p.y2, p.w)} />;
+const Ell = ({ cx, cy, rx, ry, rot = 0 }) => (
+  <ellipse className="bn-zone" data-shape="" cx={cx} cy={cy} rx={rx} ry={ry} transform={rot ? `rotate(${rot} ${cx} ${cy})` : undefined} />
 );
-const Bone = (p) => <path className="bn-shape" d={bone(p.x1, p.y1, p.x2, p.y2, p.ws, p.w1, p.w2)} />;
-const HitLine = ({ x1, y1, x2, y2, w }) => <line className="bn-hit" x1={x1} y1={y1} x2={x2} y2={y2} strokeWidth={w} />;
-
-// -- Schädel, Wirbelsäule, Rumpf
-const skullFront = (C) =>
-  sym(C, [0, 7], [[-9, 7, -17, 15, -14.5, 31], [-14, 37, -10.5, 40.5, -7, 41.5], [-4, 42, -2, 42, 0, 42]]) +
-  hole(C - 6, 27, 4.3, 3.5) + hole(C + 6, 27, 4.3, 3.5) +
-  `M${pt(C, 31)} L${pt(C - 2.5, 36.5)} Q${pt(C, 38.2)} ${pt(C + 2.5, 36.5)} Z`;
-const jaw = (C) =>
-  `M${pt(C - 12.5, 35.5)} C${pt(C - 12.5, 45)} ${pt(C - 7, 50.5)} ${pt(C, 50.5)} C${pt(C + 7, 50.5)} ${pt(C + 12.5, 45)} ${pt(C + 12.5, 35.5)} ` +
-  `L${pt(C + 9.5, 38.5)} C${pt(C + 9, 44)} ${pt(C + 5, 47)} ${pt(C, 47)} C${pt(C - 5, 47)} ${pt(C - 9, 44)} ${pt(C - 9.5, 38.5)} Z`;
-const skullBack = (C) => sym(C, [0, 7], [[-9, 7, -16.5, 14, -16, 27], [-15.5, 37, -11, 43, -5, 44.5], [-3, 45, -1.5, 45, 0, 45]]);
-const Column = ({ cx, y0, n, step, h, w, mark = false }) => (
-  <>
-    {Array.from({ length: n }, (_, i) => (
-      <React.Fragment key={i}>
-        <rect className="bn-shape" x={r1(cx - w / 2)} y={r1(y0 + i * step)} width={w} height={h} rx="1.4" />
-        {mark && <path className="bn-ol" d={`M${pt(cx, y0 + i * step + 1)} V${r1(y0 + i * step + h - 1)}`} strokeWidth="1.3" />}
-      </React.Fragment>
-    ))}
-  </>
-);
-const ribcageHit = (C) => `M${pt(C - 25, 62)} C${pt(C - 37, 82)} ${pt(C - 37, 114)} ${pt(C - 29, 134)} L${pt(C + 29, 134)} C${pt(C + 37, 114)} ${pt(C + 37, 82)} ${pt(C + 25, 62)} Z`;
-const RIB_W = [21, 26, 29.5, 31.5, 32.5, 33, 33, 32];
-const frontRib = (C, s, i) => {
-  const y = 69 + i * 6.4;
-  const w = RIB_W[i];
-  return `M${pt(C + s * 4, y)} C${pt(C + s * w * 0.55, y - 5)} ${pt(C + s * (w - 2), y - 8)} ${pt(C + s * w, y - 4)} C${pt(C + s * (w + 1.5), y - 1)} ${pt(C + s * (w + 1.5), y + 4)} ${pt(C + s * (w + 0.5), y + 8)}`;
-};
-const backRib = (C, s, i) => {
-  const y = 66 + i * 4.85;
-  const w = [17, 22, 26, 29, 30.5, 31.5, 32, 31.5, 30, 27.5, 22, 16][i];
-  return `M${pt(C + s * 5.5, y)} C${pt(C + s * w * 0.45, y - 0.5)} ${pt(C + s * w * 0.9, y + 2.5)} ${pt(C + s * w, y + 9)}`;
-};
-const sternum = (C) => `M${pt(C - 4.5, 63.5)} L${pt(C + 4.5, 63.5)} L${pt(C + 3.6, 71)} L${pt(C + 3.2, 106)} L${pt(C, 113)} L${pt(C - 3.2, 106)} L${pt(C - 3.6, 71)} Z`;
-const scapula = (C, s) =>
-  `M${pt(C + s * 13, 69)} C${pt(C + s * 20, 66)} ${pt(C + s * 28, 65)} ${pt(C + s * 33, 66.5)} C${pt(C + s * 33, 72)} ${pt(C + s * 30, 78)} ${pt(C + s * 27, 86)} ` +
-  `C${pt(C + s * 24.5, 94)} ${pt(C + s * 21.5, 100)} ${pt(C + s * 19.5, 104)} C${pt(C + s * 16, 96)} ${pt(C + s * 13, 82)} ${pt(C + s * 13, 69)} Z`;
-const pelvisOuter = (C) =>
-  sym(C, [0, 151], [[-6, 148, -15, 139, -26, 141.5], [-33, 143, -33, 153, -28.5, 163], [-26.5, 167, -26, 170, -26.5, 173], [-26, 179, -22, 186, -16.5, 187.5], [-11.5, 189, -7, 186, -4.5, 183], [-2.5, 181.5, -1.5, 181, 0, 181]]);
-const pelvis = (C) => pelvisOuter(C) + hole(C, 164, 11, 8.5) + hole(C - 11.5, 181.5, 3.4, 3) + hole(C + 11.5, 181.5, 3.4, 3);
-const sacrum = (C) => sym(C, [0, 150], [[-5, 150, -10, 150.5, -10.5, 152.5], [-9.5, 160, -5.5, 169, -2, 174], [-1, 175.5, -0.5, 176, 0, 176]]);
-const knee = (cx) => `M${pt(cx - 6.2, 241)} L${pt(cx - 6.6, 247.5)} Q${pt(cx - 6.4, 250.4)} ${pt(cx - 3.4, 250.4)} Q${pt(cx - 1, 250.4)} ${pt(cx, 248.6)} Q${pt(cx + 1, 250.4)} ${pt(cx + 3.4, 250.4)} Q${pt(cx + 6.4, 250.4)} ${pt(cx + 6.6, 247.5)} L${pt(cx + 6.2, 241)} Z`;
-const heel = (cx) => sym(cx, [0, 306.6], [[-2.5, 306.6, -4.3, 307.2, -4.5, 309.4], [-4.8, 312, -6.2, 315.5, -5.8, 318.5], [-5.2, 321.5, -2.6, 322.3, 0, 322.3]]);
-
-// -- Gliedmaßen (Teile werden in Vorderansicht als Regionen und in der Rückansicht als Kontext genutzt)
-const Clavicle = ({ C, s }) => <Strut d={`M${pt(C + s * 4, 61.5)} C${pt(C + s * 13, 57.5)} ${pt(C + s * 22, 64)} ${pt(C + s * 34, 60.5)}`} w={3} />;
-const Humerus = ({ C, s }) => <Bone x1={C + s * 38.5} y1={73.5} x2={C + s * 43.6} y2={133} ws={5} w1={7} w2={10} />;
-const Elbow = () => null;
-const Forearm = ({ C, s }) => (
-  <>
-    <Bone x1={C + s * 41.6} y1={136.5} x2={C + s * 45.5} y2={190} ws={2.6} w1={4.8} w2={3.4} />
-    <Bone x1={C + s * 46.8} y1={137} x2={C + s * 52.5} y2={190} ws={2.6} w1={3.6} w2={5.2} />
-  </>
-);
-const Hand = ({ C, s }) => {
-  const hc = C + s * 49.5;
-  const fingers = [[-4.2, 220.5], [-1.4, 223.5], [1.4, 225], [4.2, 223.5]];
-  return (
-    <>
-      <rect className="bn-shape" x={hc - 6} y={193} width={12} height={8} rx={3} />
-      {fingers.map(([dx, end]) => (
-        <React.Fragment key={dx}>
-          <Strut d={`M${pt(hc + s * dx * 0.9, 203)} L${pt(hc + s * dx * 1.12, 212.5)}`} w={2} />
-          <Strut d={`M${pt(hc + s * dx * 1.16, 214.6)} L${pt(hc + s * dx * 1.3, end)}`} w={1.7} />
-        </React.Fragment>
-      ))}
-      <Strut d={`M${pt(hc + s * 5.6, 200)} L${pt(hc + s * 9, 207.5)}`} w={2.2} />
-      <Strut d={`M${pt(hc + s * 9.8, 209.6)} L${pt(hc + s * 12, 215.5)}`} w={1.9} />
-    </>
-  );
-};
-const Femur = ({ C, s }) => (
-  <>
-    <Bone x1={C + s * 26.5} y1={179} x2={C + s * 17} y2={243} ws={6} w1={8} w2={11.5} />
-    <Bone x1={C + s * 20.5} y1={172.5} x2={C + s * 26.5} y2={181} ws={4.2} w1={8.6} w2={6.5} />
-  </>
-);
-const Leg = ({ C, s }) => (
-  <>
-    <Bone x1={C + s * 16.4} y1={254.5} x2={C + s * 15} y2={300} ws={4.6} w1={10.5} w2={7} />
-    <Bone x1={C + s * 22.2} y1={257} x2={C + s * 20.8} y2={303} ws={1.9} w1={3.2} w2={3.8} />
-  </>
-);
-const Talus = ({ C, s }) => <ellipse className="bn-shape" cx={C + s * 16.2} cy={304.6} rx={4.4} ry={2.6} />;
-const FootFront = ({ C, s }) => {
-  // Von vorn verkürzt: Fußrücken als Trapez, Zehen als kurze Reihe; Großzehe medial
-  const cx = C + s * 16;
-  return (
-    <>
-      <path className="bn-shape" d={`M${pt(cx - 5, 307.4)} L${pt(cx + 5, 307.4)} L${pt(cx + 8.4, 314.6)} L${pt(cx - 8.4, 314.6)} Z`} strokeLinejoin="round" />
-      {[-6.2, -2.9, 0, 2.7, 5.3].map((dx) => {
-        const isBig = dx < -6; // Versatz s*dx < 0 → zur Körpermitte (medial)
-        return <ellipse key={dx} className="bn-shape" cx={cx + s * dx} cy={317.6} rx={isBig ? 2.1 : 1.35} ry={isBig ? 2.5 : 2} />;
-      })}
-    </>
-  );
-};
-
-// Regionen: Zeichnung je Region (Reihenfolge = Tabulator-Reihenfolge: Vorderansicht oben → unten, dann Rückansicht).
-// Jede Region hat eine großzügige, unsichtbare Trefferfläche (.bn-hit) für Touch.
+const Box = ({ x, y, w, h }) => <rect className="bn-zone" data-shape="" x={x} y={y} width={w} height={h} rx={Math.min(w, h) / 4} />;
+// Koordinaten je Bildseite aus der Bildmaske gemessen (die Vorlage ist nicht exakt spiegelsymmetrisch).
 const SHAPES = {
   schulter: (
     <>
-      {both((s) => <HitLine key={`h${s}`} x1={F + s * 6} y1={61} x2={F + s * 39} y2={66} w={16} />)}
-      {both((s) => (
-        <React.Fragment key={s}>
-          <Clavicle C={F} s={s} />
-          <circle className="bn-shape" cx={F + s * 38} cy={67} r={6} />
-        </React.Fragment>
-      ))}
+      <Ell cx={415} cy={655} rx={135} ry={78} rot={8} />
+      <Ell cx={909} cy={655} rx={135} ry={78} rot={-8} />
     </>
   ),
-  brustkorb: (
-    <>
-      <path className="bn-hit" d={ribcageHit(F)} />
-      {both((s) => RIB_W.map((_, i) => <Strut key={`${s}${i}`} d={frontRib(F, s, i)} w={2.3} />))}
-      {both((s) => <Strut key={`a${s}`} d={`M${pt(F + s * 3, 111)} C${pt(F + s * 10, 116)} ${pt(F + s * 20, 122)} ${pt(F + s * 29.5, 125)}`} w={2.6} />)}
-      <path className="bn-shape" d={sternum(F)} strokeLinejoin="round" />
-    </>
-  ),
+  brustkorb: <Ell cx={F} cy={895} rx={232} ry={245} />,
   oberarm: (
     <>
-      {both((s) => <HitLine key={`h${s}`} x1={F + s * 39} y1={76} x2={F + s * 43} y2={127} w={18} />)}
-      {both((s) => <Humerus key={s} C={F} s={s} />)}
+      <Cap x1={352} y1={765} x2={262} y2={1085} w={115} />
+      <Cap x1={972} y1={765} x2={1028} y2={1085} w={115} />
     </>
   ),
   ellenbogen: (
     <>
-      {both((s) => <HitLine key={`h${s}`} x1={F + s * 44} y1={134} x2={F + s * 49} y2={189} w={20} />)}
-      {both((s) => (
-        <React.Fragment key={s}>
-          <Elbow C={F} s={s} />
-          <Forearm C={F} s={s} />
-        </React.Fragment>
-      ))}
+      <Cap x1={250} y1={1140} x2={232} y2={1490} w={125} />
+      <Cap x1={1040} y1={1140} x2={1168} y2={1490} w={125} />
     </>
   ),
   hand: (
     <>
-      {both((s) => <ellipse key={`h${s}`} className="bn-hit" cx={F + s * 50.5} cy={209} rx={15} ry={20} />)}
-      {both((s) => <Hand key={s} C={F} s={s} />)}
+      <Ell cx={205} cy={1660} rx={105} ry={148} />
+      <Ell cx={1232} cy={1640} rx={118} ry={138} />
     </>
   ),
-  becken: (
-    <>
-      <path className="bn-hit" d={`M${F - 38},140 H${F + 38} V192 H${F - 38} Z`} />
-      <path className="bn-shape" d={pelvis(F)} fillRule="evenodd" />
-    </>
-  ),
+  becken: <Ell cx={F} cy={1365} rx={268} ry={172} />,
   oberschenkel: (
     <>
-      {both((s) => <HitLine key={`h${s}`} x1={F + s * 25} y1={182} x2={F + s * 17.5} y2={236} w={20} />)}
-      {both((s) => <Femur key={s} C={F} s={s} />)}
+      <Cap x1={455} y1={1550} x2={550} y2={1995} w={130} />
+      <Cap x1={858} y1={1550} x2={758} y2={1995} w={130} />
     </>
   ),
   knie: (
     <>
-      {both((s) => <circle key={`h${s}`} className="bn-hit" cx={F + s * 17} cy={247.5} r={11} />)}
-      {both((s) => (
-        <React.Fragment key={s}>
-          <path className="bn-shape" d={knee(F + s * 17)} strokeLinejoin="round" />
-          <rect className="bn-shape" x={F + s * 16.5 - 5.6} y={251.3} width={11.2} height={3.2} rx={1.2} />
-          <ellipse className="bn-shape" cx={F + s * 17} cy={243.5} rx={3.3} ry={4.2} />
-        </React.Fragment>
-      ))}
+      <Ell cx={558} cy={2115} rx={80} ry={85} />
+      <Ell cx={748} cy={2115} rx={80} ry={85} />
     </>
   ),
   unterschenkel: (
     <>
-      {both((s) => <HitLine key={`h${s}`} x1={F + s * 17.5} y1={258} x2={F + s * 17} y2={296} w={20} />)}
-      {both((s) => <Leg key={s} C={F} s={s} />)}
+      <Cap x1={556} y1={2225} x2={583} y2={2615} w={130} />
+      <Cap x1={748} y1={2225} x2={716} y2={2615} w={130} />
     </>
   ),
   sprunggelenk: (
     <>
-      {both((s) => <circle key={`h${s}`} className="bn-hit" cx={F + s * 15.5} cy={303} r={8} />)}
-      {both((s) => <Talus key={s} C={F} s={s} />)}
+      <Ell cx={590} cy={2700} rx={70} ry={50} />
+      <Ell cx={706} cy={2700} rx={70} ry={50} />
     </>
   ),
   fuss: (
     <>
-      {both((s) => <rect key={`h${s}`} className="bn-hit" x={F + s * 16 - 11} y={307} width={22} height={17} rx={5} />)}
-      {both((s) => <FootFront key={s} C={F} s={s} />)}
+      <Ell cx={525} cy={2812} rx={118} ry={72} rot={-35} />
+      <Ell cx={782} cy={2812} rx={118} ry={72} rot={35} />
     </>
   ),
-  hws: (
-    <>
-      <rect className="bn-hit" x={B - 12} y={44} width={24} height={17} rx={5} />
-      <Column cx={B} y0={46} n={5} step={3.3} h={2.6} w={8} mark />
-    </>
-  ),
-  bws: (
-    <>
-      <rect className="bn-hit" x={B - 12} y={63} width={24} height={60} rx={5} />
-      <Column cx={B} y0={63.5} n={12} step={4.85} h={3.8} w={9} mark />
-    </>
-  ),
-  lws: (
-    <>
-      <rect className="bn-hit" x={B - 13} y={122.5} width={26} height={28} rx={5} />
-      <Column cx={B} y0={123} n={5} step={5.4} h={4.5} w={12} mark />
-    </>
-  ),
+  hws: <Box x={B - 62} y={352} w={124} h={168} />,
+  bws: <Box x={B - 78} y={524} w={156} h={471} />,
+  lws: <Box x={B - 95} y={1000} w={190} h={255} />,
   fersenbein: (
     <>
-      {both((s) => <rect key={`h${s}`} className="bn-hit" x={B + s * 15.5 - 11} y={300} width={22} height={27} rx={6} />)}
-      {both((s) => <path key={s} className="bn-shape" d={heel(B + s * 15.5)} />)}
+      <Ell cx={2113} cy={2845} rx={70} ry={55} />
+      <Ell cx={2292} cy={2845} rx={70} ry={55} />
     </>
   ),
 };
 const SVG_ORDER = ['schulter', 'brustkorb', 'oberarm', 'ellenbogen', 'hand', 'becken', 'oberschenkel', 'knie', 'unterschenkel', 'sprunggelenk', 'fuss', 'hws', 'bws', 'lws', 'fersenbein'];
-
-// Nicht anklickbare Grundzeichnung (Kontext): Vorderansicht Schädel/HWS/LWS, Rückansicht alles außer Wirbelsäule/Fersenbein
-const Base = () => (
-  <g className="bn-base" aria-hidden="true">
-    {/* Vorderansicht */}
-    <path d={skullFront(F)} fillRule="evenodd" />
-    <path d={jaw(F)} />
-    <Column cx={F} y0={51} n={3} step={3.6} h={2.8} w={7} />
-    <Column cx={F} y0={124} n={5} step={5.4} h={4.5} w={12} />
-    <path d={sacrum(F)} />
-    {/* Rückansicht */}
-    <path d={skullBack(B)} />
-    <path d={pelvis(B)} fillRule="evenodd" />
-    <path d={sacrum(B)} />
-    {both((s) => (
-      <g key={`b${s}`}>
-        {Array.from({ length: 12 }, (_, i) => <Strut key={i} d={backRib(B, s, i)} w={2} e={1.4} />)}
-        <path d={scapula(B, s)} strokeLinejoin="round" />
-        <circle cx={B + s * 38} cy={67} r={6} />
-        <Humerus C={B} s={s} />
-        <Elbow C={B} s={s} />
-        <Forearm C={B} s={s} />
-        <Hand C={B} s={s} />
-        <Femur C={B} s={s} />
-        <path d={knee(B + s * 17)} strokeLinejoin="round" />
-        <rect x={B + s * 16.5 - 5.6} y={251.3} width={11.2} height={3.2} rx={1.2} />
-        <Leg C={B} s={s} />
-        <Talus C={B} s={s} />
-      </g>
-    ))}
-  </g>
-);
 
 const InfoCard = ({ region }) => {
   if (!region) {
@@ -364,13 +166,14 @@ const BodyNavigator = ({ headingLevel = 2 }) => {
       <div className="mt-6 grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:items-stretch">
         <figure className="m-0 rounded-2xl border border-slate-200 bg-white p-3 dark:border-slate-700 dark:bg-slate-950 sm:p-5">
           <svg
-            viewBox="0 0 420 346"
+            viewBox={`${VIEW.x} ${VIEW.y} ${VIEW.w} ${VIEW.h}`}
             className="bn-svg mx-auto block h-auto w-full max-w-[560px]"
             role="group"
-            aria-label={`Schematisches Skelett in Vorder- und Rückansicht mit ${SVG_ORDER.length} auswählbaren Körperregionen`}
+            aria-label={`Skelett in Vorder- und Rückansicht mit ${SVG_ORDER.length} auswählbaren Körperregionen`}
             onMouseLeave={() => setPreview(null)}
           >
-            <Base />
+            <rect className="bn-bg" x={VIEW.x} y={VIEW.y} width={VIEW.w} height={VIEW.h} rx="60" />
+            <image href={IMG.src} x="0" y="0" width={IMG.w} height={IMG.h} aria-hidden="true" />
             {SVG_ORDER.map((id) => {
               const r = regionById[id];
               const isActive = active === id;
@@ -396,12 +199,12 @@ const BodyNavigator = ({ headingLevel = 2 }) => {
                 </a>
               );
             })}
-            <text x={F} y={341} textAnchor="middle" className="bn-label">Vorderansicht</text>
-            <text x={B} y={341} textAnchor="middle" className="bn-label">Rückansicht</text>
+            <text x={F} y={3005} textAnchor="middle" className="bn-label">Vorderansicht</text>
+            <text x={B} y={3005} textAnchor="middle" className="bn-label">Rückansicht</text>
           </svg>
           <figcaption id="navigator-hinweis" className="mt-3 border-t border-slate-200 pt-3 text-sm text-slate-700 dark:border-slate-700 dark:text-slate-200">
             Die Auswahl dient Ihrer Orientierung. Welche Aufnahmen erforderlich sind, richtet sich nach Ihrer ärztlichen Zuweisung.
-            <span className="mt-1 block text-slate-600 dark:text-slate-300">Kräftig gezeichnete Knochen sind auswählbar; blasse Teile dienen nur der Orientierung.</span>
+            <span className="mt-1 block text-slate-600 dark:text-slate-300">Auswählbare Regionen sind zart markiert; die gewählte Region wird rot hervorgehoben.</span>
           </figcaption>
         </figure>
 
