@@ -14,7 +14,7 @@ import Notice from '../components/ui/Notice';
 import DexaReportSlider, { DexaSources } from '../components/dexa/DexaReportSlider';
 import { BONE_REPORT_SET, BONE_SECTION } from '../data/boneDensityReportExamples';
 import FAQ, { useRouteFaq } from '../components/FAQ';
-import DexaScanFigure from '../components/DexaScanFigure';
+import DexaScanVideo from '../components/DexaScanVideo';
 import BoneRiskCheck from '../components/BoneRiskCheck';
 import { imageUrl, imageSrcSet } from '../components/ui/Picture';
 import { H3, P, Bullets, NewWindow, linkRow, extLink } from '../components/ui/Text';
@@ -331,7 +331,7 @@ const KnochendichtePage = () => {
                   <div>
                     <H3 className="!text-lg">{step.t}</H3>
                     <P className="mt-1">{step.d}</P>
-                    {step.figure && <DexaScanFigure mode={step.figure} className="mt-4" />}
+                    {step.figure && <DexaScanVideo film="knochendichte" className="mt-4" />}
                   </div>
                 </li>
               ))}

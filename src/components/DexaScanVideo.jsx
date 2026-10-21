@@ -2,7 +2,10 @@ import { useEffect, useId, useRef, useState } from 'react';
 import { Pause, Play } from 'lucide-react';
 import { cx } from './ui/cx';
 
-// Erklärfilm DEXA-Ganzkörpermessung (Körperanalyse, Ablauf Schritt 3) – von der Praxis geliefert.
+// Erklärfilme der Praxis zur DEXA (Prop film): „koerperanalyse“ = Ganzkörpermessung (Körperanalyse, Ablauf Schritt 3),
+// „knochendichte“ = Knochendichtemessung an Lendenwirbelsäule und Hüfte (Knochendichte, Ablauf Schritt 2, seit
+// 21.10.2026 statt des SVG-Schemas DexaScanFigure; Vorlagen assets-src/videos/knochendichte-dexa-scan-*.mp4, 21 s,
+// Poster bei 12,5 s = beide Messbereiche markiert).
 // Zwei Fassungen (12.10.2026): „desktop“ (mit Legende, kleinere Schrift) und „mobil“ (große Schrift, ohne Legende).
 // Die Fassung richtet sich nach der Bildschirmbreite (bis 767 px = mobil). Keine KI-Kennzeichnung (Wunsch der Praxis,
 // 12.10.2026); im Film selbst steht „Schema(tische Darstellung) – keine Patientenaufnahme“.
@@ -13,10 +16,10 @@ import { cx } from './ui/cx';
 // - „Anhalten“/„Abspielen“ (WCAG 2.2.2); bei „Bewegung reduzieren“ startet nichts von selbst (Standbild = Gesamtansicht);
 // - alle Texte des Films stehen zusätzlich als Text darunter (aufklappbar) – Screenreader und Suchmaschinen.
 const BASE = `${import.meta.env.BASE_URL}assets/videos/`;
-const VARIANTS = {
-  desktop: { file: 'koerperanalyse-dexa-scan-desktop', w: 1280, h: 720 },
-  mobil: { file: 'koerperanalyse-dexa-scan-mobil', w: 960, h: 540 },
-};
+const variants = (name) => ({
+  desktop: { file: `${name}-desktop`, w: 1280, h: 720 },
+  mobil: { file: `${name}-mobil`, w: 960, h: 540 },
+});
 const SMALL = '(max-width: 767px)';
 
 // Wortlaut der Einblendungen im Film (Reihenfolge wie im Film)
@@ -28,7 +31,32 @@ export const DEXA_VIDEO_TRANSCRIPT = [
   },
 ];
 
-const DexaScanVideo = ({ className }) => {
+// Wortlaut der Einblendungen im Knochendichte-Film
+export const BONE_VIDEO_TRANSCRIPT = [
+  {
+    title: 'Knochendichtemessung mit DEXA',
+    text: 'Lendenwirbelsäule · Hüfte · alternativ Unterarm. Der Detektor befindet sich über der Liege, die Röntgenquelle darunter; beide fahren gemeinsam in Scanrichtung über den Körper.',
+  },
+  { title: 'Der Scan', text: 'Messung an der Lendenwirbelsäule … und an der Hüfte – mit sehr geringer Strahlendosis.' },
+];
+
+const FILMS = {
+  koerperanalyse: {
+    variants: variants('koerperanalyse-dexa-scan'),
+    label: 'Erklärfilm ohne Ton: schematischer Ablauf einer DEXA-Ganzkörpermessung und ihrer Auswertung',
+    caption: 'Schematische Darstellung: Der Scanarm fährt über den ganzen Körper. Anschließend werden Knochen, Magermasse und Fettgewebe getrennt ausgewertet.',
+    transcript: DEXA_VIDEO_TRANSCRIPT,
+  },
+  knochendichte: {
+    variants: variants('knochendichte-dexa-scan'),
+    label: 'Erklärfilm ohne Ton: schematischer Ablauf einer DEXA-Knochendichtemessung an Lendenwirbelsäule und Hüfte',
+    caption: 'Schematische Darstellung: Der Messarm fährt über Lendenwirbelsäule und Hüfte und misst dort die Knochendichte – mit sehr geringer Strahlendosis.',
+    transcript: BONE_VIDEO_TRANSCRIPT,
+  },
+};
+
+const DexaScanVideo = ({ film = 'koerperanalyse', className }) => {
+  const F = FILMS[film];
   const ref = useRef(null);
   const video = useRef(null);
   const uid = useId();
@@ -46,7 +74,7 @@ const DexaScanVideo = ({ className }) => {
     return () => mq.removeEventListener?.('change', on);
   }, []);
   const variant = small ? 'mobil' : 'desktop';
-  const V = VARIANTS[variant];
+  const V = F.variants[variant];
 
   useEffect(() => {
     const mq = window.matchMedia?.('(prefers-reduced-motion: reduce)');
@@ -82,6 +110,7 @@ const DexaScanVideo = ({ className }) => {
         className
       )}
       data-dexa-video=""
+      data-film={film}
     >
       <div>
         <video
@@ -95,7 +124,7 @@ const DexaScanVideo = ({ className }) => {
           playsInline
           preload="none"
           poster={`${BASE}${V.file}-poster.webp`}
-          aria-label="Erklärfilm ohne Ton: schematischer Ablauf einer DEXA-Ganzkörpermessung und ihrer Auswertung"
+          aria-label={F.label}
           aria-describedby={`${uid}-t`}
           data-paused={paused ? 'true' : 'false'}
           data-variant={variant}
@@ -106,10 +135,7 @@ const DexaScanVideo = ({ className }) => {
       </div>
       <figcaption className="mt-3 px-1 text-[0.95rem] sm:px-0 leading-relaxed text-slate-600 dark:text-slate-300">
         <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
-          <span className="min-w-0 flex-1 basis-60">
-            Schematische Darstellung: Der Scanarm fährt über den ganzen Körper. Anschließend werden Knochen,
-            Magermasse und Fettgewebe getrennt ausgewertet.
-          </span>
+          <span className="min-w-0 flex-1 basis-60">{F.caption}</span>
           <button
             type="button"
             data-dexa-toggle=""
@@ -126,7 +152,7 @@ const DexaScanVideo = ({ className }) => {
             Inhalt des Films als Text
           </summary>
           <div id={`${uid}-t`} className="mt-1 space-y-2">
-            {DEXA_VIDEO_TRANSCRIPT.map((s) => (
+            {F.transcript.map((s) => (
               <p key={s.title}>
                 <span className="font-semibold text-slate-800 dark:text-slate-100">{s.title}:</span> {s.text}
               </p>
