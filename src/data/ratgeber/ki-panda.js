@@ -12,6 +12,9 @@
 // Leitplanken: keine Zeit-/Genauigkeitszahlen aus Herstellerwerbung („6,2 Sekunden“, „±4,2 Monate“ bewusst NICHT übernommen);
 // KI misst und standardisiert, stellt keine Diagnose; Größenschätzung = Schätzung mit Unsicherheit, keine individuelle Prognose;
 // Beispielbericht = Demo-Datensatz des Herstellers, Werte werden nicht bewertet; Strahlenschutz ohne Dosiszahlen.
+// Praxis (Peter 21.10.2026 abends): PANDA wertet alle Knochenalter-Aufnahmen aus; sitzend, linke Hand flach, Finger leicht
+// gespreizt; Eltern können mit Schutzschürze im Raum bleiben; Körpergröße wird erfragt oder gemessen und steht mit der
+// Größenschätzung im Befund. Altersbereich bleibt allgemein (IFU-Bereich bei IB Lab angefragt).
 // [geteilt] Metadaten; Text und Bildtexte: ki-panda.content.js
 
 export const DESCRIPTION = "Knochenalter bestimmen in Graz: Röntgen der linken Hand, Auswertung nach Greulich und Pyle mit KI-Unterstützung und ärztlichem Befund. Ablauf und Grenzen.";
@@ -25,7 +28,7 @@ export const FAQ = [
   },
   {
     "question": "Muss sich mein Kind vorbereiten, und tut die Untersuchung weh?",
-    "answer": "Eine Vorbereitung ist nicht nötig, Schmuck und Uhr an der linken Hand werden vorher abgenommen. Die Hand liegt flach auf der Bildplatte und muss nur für einen kurzen Moment stillgehalten werden. Die Aufnahme tut nicht weh."
+    "answer": "Eine Vorbereitung ist nicht nötig, Schmuck und Uhr an der linken Hand werden vorher abgenommen. Ihr Kind sitzt, die linke Hand liegt flach auf der Bildplatte und muss nur für einen kurzen Moment stillgehalten werden. Die Aufnahme tut nicht weh. Eltern können mit einer Schutzschürze im Raum bleiben."
   },
   {
     "question": "Kann man aus dem Knochenalter genau sagen, wie groß mein Kind wird?",
@@ -41,7 +44,7 @@ export const FAQ = [
   }
 ];
 
-export const REVIEW = "BEANTWORTET (Peter, 21.10.2026): IB-Lab-Module im Einsatz; Fuß, Knie und Becken bei diesen Fragestellungen im Stehen; Kalibrierkugel wird verwendet; Ganzbeinaufnahmen werden gemacht; keine schriftliche IB-Lab-Freigabe für Berichte/Logos nötig. Text entsprechend angepasst. Übrige Punkte weiter offen: Vor Veröffentlichung durch die Praxis bestätigen: (1) IB Lab PANDA ist ab Oktober 2026 im Einsatz und wird für alle Knochenalter-Aufnahmen verwendet (oder nur auf Anforderung?). (2) Lagerung: sitzend, linke Hand dorsopalmar flach auf dem Detektor, Finger leicht gespreizt – stimmt das so im Ablauf der Praxis? (3) Begleitung: dürfen Eltern während der Aufnahme im Raum bleiben (ggf. mit Schutzschürze)? Text bewusst offen formuliert („erklärt das Team vor Ort“). (4) Körpergröße für die Bayley-Pinneau-Schätzung: Wird sie in der Praxis gemessen, von der Zuweisung übernommen oder erfragt? Wird die Größenschätzung im Befund überhaupt ausgegeben/übernommen? Text formuliert allgemein. (5) Altersbereich der Software: laut Gräfe et al. 2024 Zweckbestimmung 36–192 Monate (Mädchen) bzw. 36–204 Monate (Buben); im Text nur „etwa vom dritten Lebensjahr bis ins Jugendalter“ – aktuelle Version/IFU bei IB Lab prüfen. Wie wird außerhalb des Bereichs vorgegangen (rein manuelle Auswertung)? (6) Keine Zeit- oder Genauigkeitszahlen übernommen (PUCmed „6,2 Sekunden“, Herstellerseite „5 Sekunden“, „±4,2 Monate“, Umfragewerte). Studie Gräfe et al. nur qualitativ zitiert; Hinweis auf zwei IB-Lab-Mitautoren steht in der Quelle. (7) Gibt es eine Mindestaltersgrenze oder besondere Regeln für Kinder bei „ohne Termin“ (z. B. Wartezeiten, Begleitperson unter 14 Jahren)? (8) Bildfreigabe: Beispielbericht des Herstellers (Demo-Datensatz, ohne Namen/Datum; enthält Alter 14 J., Geschlecht, Größe 165 cm als Demowerte) – Nutzungsrecht von IB Lab bestätigen lassen. (9) Kein eigener Kinder-Zielbereich auf der Website; Ratgeber-target daher Röntgen (/roentgen-graz). (10) Medizinische Freigabe (Name, Datum) durch Dr. Kalmar oder Dr. Riegler.";
+export const REVIEW = "BEANTWORTET (Peter, 21.10.2026 abends): PANDA wertet alle Knochenalter-Aufnahmen aus; Lagerung sitzend, linke Hand dorsopalmar flach, Finger leicht gespreizt; Eltern können mit Schutzschürze im Raum bleiben; Körpergröße wird erfragt oder gemessen und steht mit der Größenschätzung im Befund; Altersbereich bleibt allgemein; keine Zeit-/Genauigkeitszahlen; Bildfreigabe IB Lab nicht nötig; target Röntgen ok; Autor und Prüfvermerk Priv.-Doz. Dr. Peter Kalmar. Text entsprechend angepasst.\nOffen:\n1. (7) Kinder ohne Termin: Mindestalter, Wartezeiten, Begleitperson – unbeantwortet, Text bleibt allgemein.\n2. Herstellerunterlagen (IFU inkl. Altersbereich, Version, CE) bei IB Lab angefragt; Vorgehen außerhalb des Altersbereichs nicht auf der Seite.\n3. CE-Kennzeichnung auf der Seite erwähnen? – Georg fragen.";
 
 
 export const TITLE = "Knochenalter bestimmen: Wie KI die Auswertung unterstützt";

@@ -1,4 +1,5 @@
 import { Lock } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { COMPANY_NAME } from '../data/company';
 import { PHONE_HREF, PHONE_DISPLAY, EMAIL } from '../data/practice';
 
@@ -83,6 +84,16 @@ const DatenschutzPage = () => {
           </section>
 
           <section>
+            <H2>Auswertung von Röntgenbildern mit KI-Software</H2>
+            <p>
+              Zur Auswertung von Röntgenbildern setzen wir KI-Software ein, die ausschließlich lokal in der Praxis läuft.
+              Die Bilder werden dafür nicht an die Hersteller der Software oder an andere Dritte übertragen. Mehr dazu
+              in unserem Ratgeber{' '}
+              <Link to="/ratgeber/kuenstliche-intelligenz-radiologie" className="text-[#8B2323] hover:underline font-medium">Künstliche Intelligenz in der Radiologie</Link>.
+            </p>
+          </section>
+
+          <section>
             <H2>Ihre Rechte</H2>
             <p>
               Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung,
@@ -93,7 +104,7 @@ const DatenschutzPage = () => {
             </p>
           </section>
 
-          <p className="text-sm text-gray-500 dark:text-gray-400">Stand: September 2026</p>
+          <p className="text-sm text-gray-500 dark:text-gray-400">Stand: Oktober 2026</p>
         </div>
       </div>
     </div>

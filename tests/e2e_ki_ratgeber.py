@@ -38,7 +38,7 @@ fails = []
 WORDS = {"lama": (900, 1150), "hippo": (900, 1150), "koala": (900, 1100), "squirrel": (900, 1150), "frog": (900, 1150),
          "panda": (900, 1100), "rho": (950, 1200), "transpara": (1000, 1250)}
 FAQ_N = {"rho": 6, "transpara": 6}
-PLACEHOLDERS = {"koala": {"report": "KI-KOALA-01"}, "rho": {"ablauf": "KI-RHO-01", "report": "KI-RHO-02"},
+PLACEHOLDERS = {"koala": {"report": "KI-KOALA-01"}, "rho": {"ablauf": "KI-RHO-01"},   # KI-RHO-02: Demo-Bericht angefragt, Bildplatz vorerst raus
                 "transpara": {"report": "KI-TRANSPARA-01", "ablauf": "KI-TRANSPARA-02"}}
 SLIDES = {"lama": 4, "hippo": 2, "squirrel": 1, "frog": 2, "panda": 1}
 HOTSPOTS = {"squirrel": 4, "panda": 4}
@@ -60,8 +60,11 @@ check(500 <= S["words"] <= 700, f"Übersicht: {S['words']} Wörter (500–700)")
 check(S["can"] >= 3 and S["cannot"] >= 3, "Übersicht: Listen „Was KI kann“ / „was nicht“")
 REVIEWED = {"uebersicht", "rho", "panda", "transpara"}   # Peter „gelesen“ 21.10.2026
 REVIEW_TXT = "Medizinisch geprüft von Priv.-Doz. Dr. Peter Kalmar – Stand 21.10.2026"
-IN_USE = ["lama", "hippo", "koala", "squirrel", "frog", "panda", "rho"]   # Praxis: Rho 26.09., IB Lab 21.10.2026
-check(sorted(m["id"] for m in MODS if m["inUse"]) == sorted(IN_USE), "„bei uns im Einsatz“ nur für bestätigten Einsatz (Rho + IB Lab, nicht Transpara)")
+IN_USE = ["lama", "hippo", "koala", "squirrel", "frog", "panda", "rho", "transpara"]   # Praxis: Rho 26.09., IB Lab 21.10., Transpara 21.10.2026 abends
+check(sorted(m["id"] for m in MODS if m["inUse"]) == sorted(IN_USE), "„bei uns im Einsatz“ nur für bestätigten Einsatz (Rho, IB Lab, Transpara)")
+AUTHOR = "Priv.-Doz. Dr. Peter Kalmar"
+AUTHORED = {"uebersicht", "rho", "panda", "transpara"}   # Peter = Autor seiner Artikel; Georgs fünf: Praxis als Herausgeberin
+check("report" not in next(m for m in MODS if m["id"] == "rho")["markers"], "rho: Bildplatz KI-RHO-02 (Beispielreport) nicht im Text")
 for m in MODS:
     lo, hi = WORDS[m["id"]]
     check(lo <= m["words"] <= hi, f"{m['id']}: {m['words']} Wörter ({lo}–{hi})")
@@ -129,6 +132,9 @@ with sync_playwright() as pw:
     check(len(cp) == 1 and cp[0]["mainEntity"]["@type"] == "ItemList" and len(items) == 8
           and all(i["url"].startswith(SITE + "/ratgeber/") for i in items), "Übersicht: CollectionPage + ItemList (8)")
     check(pg.locator("[data-reviewed]").count() == 1 and REVIEW_TXT in pg.locator("[data-reviewed]").inner_text(), "Übersicht: Prüfvermerk Kalmar 21.10.2026")
+    check(f"Von {AUTHOR}" in pg.locator("main header").first.inner_text(), "Übersicht: Autor sichtbar")
+    cps = [s for s in schemas() if s.get("@type") == "CollectionPage"]
+    check(cps and cps[0].get("author") == {"@type": "Person", "name": AUTHOR}, "Übersicht: CollectionPage author = Person")
     tiles = pg.locator("[data-ki-tile]")
     check(tiles.count() == 8, f"Übersicht: {tiles.count()} Kacheln")
     check(pg.locator("[data-ki-tile] [data-in-use]").count() == len(IN_USE) and all(pg.locator(f'[data-ki-tile="{i}"] [data-in-use]').count() == 1 for i in IN_USE), "Kachel-Hinweis „bei uns im Einsatz“ nur bei bestätigten Modulen")
@@ -154,6 +160,12 @@ with sync_playwright() as pw:
         check(c == ["Startseite", "Ratgeber", "Röntgen am K[AI]", m["title"]], f"{m['id']}: BreadcrumbList 4 Ebenen")
         sc = schemas()
         check(any(s.get("@type") == "Article" for s in sc), f"{m['id']}: Article-Schema")
+        art = next((s for s in sc if s.get("@type") == "Article"), {})
+        head = pg.locator("main header").first.inner_text()
+        if m["id"] in AUTHORED:
+            check(art.get("author") == {"@type": "Person", "name": AUTHOR} and f"Von {AUTHOR}" in head, f"{m['id']}: Autor {AUTHOR} (sichtbar + Schema Person)")
+        else:
+            check(art.get("author", {}).get("@type") != "Person" and "Herausgegeben von Röntgen am Kai" in head, f"{m['id']}: Praxis als Herausgeberin")
         fq = [s for s in sc if s.get("@type") == "FAQPage"]
         check(len(fq) == 1 and len(fq[0]["mainEntity"]) == m["faq"], f"{m['id']}: FAQPage mit {m['faq']} Fragen")
         # Patiententext ohne Platzhalter/Briefings (interne Prüflisten zitieren verbotene Begriffe bewusst)
@@ -171,9 +183,11 @@ with sync_playwright() as pw:
             check(pg.locator("[data-reviewed]").count() == 0, f"{m['id']}: Prüfvermerk noch Platzhalter (wartet auf Durchsicht)")
         if m["id"] == "transpara":
             check(not re.search(r"tomosynth|\b3D\b|3-D", body, re.I), "transpara: keine Tomosynthese/3D")
-            check("bei uns im Einsatz" not in body, "transpara: kein Einsatz behauptet")
+            check("Transpara bei Röntgen am Kai" in body and "Rechnern in unserer Praxis" in body, "transpara: Einsatz in der Praxis beschrieben (lokal)")
+            check(not re.search(r"temporal comparison|density|\d+\s?%", body, re.I), "transpara: kein Temporal Comparison/Density/Prozentwerte")
         if m["id"] == "rho":
             low = body.lower()
+            check(not re.search(r"(?<!KI-)RHO", body) and "Rho™" not in body and "kostenlos" in low and "in einer anderen einrichtung" in low, "rho: Schreibweise „Rho“, kostenlos, externe DEXA-Hinweis")
             check(not re.search(r"(?<!nicht, dass )jedes röntgen\w* (wird|werden) (untersucht|ausgewertet)", low) and "keine osteoporosediagnose" in low and "kein frakturrisiko-rechner" in low and "kein ersatz für dexa" in low,
                   "rho: kein „jedes Röntgen“; keine Osteoporosediagnose / kein Frakturrisiko-Rechner / kein Ersatz für DEXA")
         if m["logo"]:

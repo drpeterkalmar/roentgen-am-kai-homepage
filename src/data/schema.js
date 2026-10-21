@@ -132,6 +132,7 @@ export const schemasFor = (route) => {
       "inLanguage": "de-AT",
       "isPartOf": { "@id": `${SITE_URL}${route.parent.path}` },
       "publisher": { "@id": `${SITE_URL}/#praxis` },
+      ...(route.collection.author ? { "author": { "@type": "Person", "name": route.collection.author } } : {}),
       "mainEntity": {
         "@type": "ItemList",
         "name": route.collection.name,

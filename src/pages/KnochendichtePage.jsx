@@ -310,9 +310,9 @@ const KnochendichtePage = () => {
             </div>
           </Card>
           <p className="mt-4 text-sm text-slate-600 dark:text-slate-300">
-            Produktinformation des Herstellers:{' '}
+            Produktinformation:{' '}
             <a href={DEXA.rho.productUrl} target="_blank" rel="noopener noreferrer" className={extLink}>
-              {DEXA.rho.vendor} – {DEXA.rho.product}<NewWindow />
+              {DEXA.rho.product} – {DEXA.rho.vendor} ({DEXA.rho.vendorCity}), Vertrieb {DEXA.rho.distributor}<NewWindow />
             </a>
           </p>
         </div>

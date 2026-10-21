@@ -12,11 +12,14 @@
 // Leitplanken: keine Zeit-/Genauigkeitszahlen aus Herstellerwerbung („6,2 Sekunden“, „±4,2 Monate“ bewusst NICHT übernommen);
 // KI misst und standardisiert, stellt keine Diagnose; Größenschätzung = Schätzung mit Unsicherheit, keine individuelle Prognose;
 // Beispielbericht = Demo-Datensatz des Herstellers, Werte werden nicht bewertet; Strahlenschutz ohne Dosiszahlen.
+// Praxis (Peter 21.10.2026 abends): PANDA wertet alle Knochenalter-Aufnahmen aus; sitzend, linke Hand flach, Finger leicht
+// gespreizt; Eltern können mit Schutzschürze im Raum bleiben; Körpergröße wird erfragt oder gemessen und steht mit der
+// Größenschätzung im Befund. Altersbereich bleibt allgemein (IFU-Bereich bei IB Lab angefragt).
 // [geteilt] Inhalte (nur Artikel-/Übersichtsseite). Metadaten: ki-panda.js
 
 export const HTML = `
 <p>Kinder wachsen nicht alle im gleichen Tempo. Manche sind früh groß, andere holen erst später auf. Ob das Skelett eines Kindes seinem Alter etwas voraus ist oder ein wenig nachhinkt, zeigt das <strong>Knochenalter</strong>. Sichtbar wird es auf einer Röntgenaufnahme der linken Hand. Wenn Ihre Kinderärztin oder Ihr Kinderarzt das Knochenalter bestimmen lassen möchte, ist das in Graz bei Röntgen am Kai mit Zuweisung möglich.</p>
-<p>Seit Oktober 2026 unterstützt dabei eine Software mit künstlicher Intelligenz (KI) die Auswertung: IB Lab PANDA von ImageBiopsy Lab aus Wien. Hier lesen Eltern und Jugendliche, wie die Untersuchung abläuft und was die KI dabei tut – und was nicht.</p>
+<p>Seit Oktober 2026 unterstützt dabei eine Software mit künstlicher Intelligenz (KI) die Auswertung: IB Lab PANDA von ImageBiopsy Lab aus Wien. Wir setzen sie bei allen Knochenalter-Aufnahmen ein. Hier lesen Eltern und Jugendliche, wie die Untersuchung abläuft und was die KI dabei tut – und was nicht.</p>
 
 <h2>Anlass: Wann wird das Knochenalter bestimmt?</h2>
 <p>Das <strong>kalendarische Alter</strong> zählt die Jahre seit der Geburt. Das <strong>Knochenalter</strong> beschreibt dagegen, wie weit die Knochen in ihrer Entwicklung sind. An den Enden der Finger- und Mittelhandknochen liegen die Wachstumsfugen. Das sind knorpelige Zonen, von denen das Längenwachstum ausgeht. Im Lauf der Kindheit erscheinen die Handwurzelknochen nacheinander, die Knochenkerne werden größer und verändern ihre Form. Gegen Ende der Pubertät schließen sich die Wachstumsfugen.</p>
@@ -32,9 +35,9 @@ export const HTML = `
 
 <h2>Ablauf: So läuft das Knochenalter-Röntgen der Hand ab</h2>
 <p>Um das Knochenalter in Graz bei Röntgen am Kai bestimmen zu lassen, braucht es eine ärztliche <strong>Zuweisung</strong> und die e-card. Das ist während der Röntgenzeiten ohne Termin möglich, eine Wunschzeit kann reserviert werden. Allgemeine Informationen stehen auf der Seite <a href="/roentgen-graz">Röntgen in Graz</a>, Hinweise zur Hand im Abschnitt <a href="/roentgen-graz#region-hand">Hand und Handgelenk</a>.</p>
-<p>Eine besondere Vorbereitung ist nicht nötig. Ringe, Uhren und Armbänder an der linken Hand werden vorher abgenommen. Die linke Hand liegt flach mit der Handfläche nach unten auf der Bildplatte, die Finger sind leicht gespreizt. Wichtig ist, für den kurzen Moment der Aufnahme stillzuhalten. Die Untersuchung tut nicht weh. Eltern können ihr Kind begleiten.</p>
+<p>Eine besondere Vorbereitung ist nicht nötig. Ringe, Uhren und Armbänder an der linken Hand werden vorher abgenommen. Ihr Kind sitzt, die linke Hand liegt flach mit der Handfläche nach unten auf der Bildplatte, die Finger sind leicht gespreizt. Wichtig ist, für den kurzen Moment der Aufnahme stillzuhalten. Die Untersuchung tut nicht weh. Eltern können dabei mit Schutzschürze im Raum bleiben.</p>
 <p>Geröntgt wird die linke Hand, weil auch die Referenzbilder linke Hände zeigen – egal, ob ein Kind Rechts- oder Linkshänder ist.</p>
-<p>Für eine Schätzung der Erwachsenengröße ist zusätzlich die aktuelle Körpergröße nötig. Wie sie erfasst wird, hängt von der Fragestellung auf der Zuweisung ab.</p>
+<p>Für eine Schätzung der Erwachsenengröße ist zusätzlich die aktuelle Körpergröße nötig. Wir erfragen oder messen sie. Sie steht mit der Größenschätzung im Befund.</p>
 
 <h2>Ergebnis: Was steht im Befund?</h2>
 <h3>Die Methode nach Greulich und Pyle</h3>

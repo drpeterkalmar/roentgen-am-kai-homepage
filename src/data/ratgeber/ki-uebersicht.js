@@ -4,8 +4,9 @@
 // Quellen: Herstellerseiten imagebiopsy.com (IB Lab ZOO, Module LAMA/HIPPO/KOALA/SQUIRREL/FROG/PANDA), 16bit.ai (Rho),
 // screenpoint-medical.com (Transpara); Funktionsumfang laut PUCmed-Produktbeschreibung – ohne Werbezahlen.
 // Leitplanken: KI misst, markiert, dokumentiert; keine Diagnose, keine Therapieentscheidung; jede Messung wird ärztlich
-// geprüft. IB Lab-Module werden gerade eingeführt (nicht „seit Jahren“). Rho: Einsatz bestätigt. Transpara: Einsatz
-// NICHT bestätigt – die Kachel beschreibt nur, wie KI in der Mammographie unterstützen kann. Keine Tomosynthese/3D-Mammographie.
+// geprüft. Im Einsatz (Praxis bestätigt): IB-Lab-Module seit Oktober 2026 (nicht „seit Jahren“), Rho, Transpara (Peter
+// 21.10.2026 abends). KI-Auswertung läuft lokal in der Praxis, keine Übertragung an Hersteller/Dritte. Geschlechtergerecht
+// („Fachärztin oder Facharzt“ – Praxis hat auch Vertretungsärztinnen). Keine Tomosynthese/3D-Mammographie.
 // „[AI]“ im Titel/Seriennamen wird vom Code typografisch hervorgehoben; im HTML-Fließtext steht der Serienname bewusst nicht.
 // [geteilt] Metadaten; Text und Bildtexte: ki-uebersicht.content.js
 
@@ -18,7 +19,7 @@ export const CAN = [
 ];
 
 export const CANNOT = [
-  "KI stellt keine Diagnose – den Befund erstellt der Radiologe.",
+  "KI stellt keine Diagnose – den Befund erstellt die Radiologin oder der Radiologe.",
   "KI entscheidet nicht über Therapie oder Operation.",
   "KI kennt Ihre Beschwerden und Ihre Krankengeschichte nicht.",
   "KI ersetzt nicht das Gespräch und die Untersuchung bei Ihrer Ärztin oder Ihrem Arzt.",
@@ -29,7 +30,7 @@ export const DESCRIPTION = "Künstliche Intelligenz in der Radiologie in Graz: w
 
 export const EXCERPT = "KI kann Röntgenbilder vermessen und auffällige Bereiche markieren. Wie wir sie einsetzen, wo ihre Grenzen liegen und warum die ärztliche Beurteilung entscheidend bleibt.";
 
-export const REVIEW = "BEANTWORTET (Peter, 21.10.2026): IB-Lab-Module im Einsatz; Fuß, Knie und Becken bei diesen Fragestellungen im Stehen; Kalibrierkugel wird verwendet; Ganzbeinaufnahmen werden gemacht; keine schriftliche IB-Lab-Freigabe für Berichte/Logos nötig. Text entsprechend angepasst. Übrige Punkte weiter offen: Vor Veröffentlichung von der Praxis zu bestätigen:\n1. Einführung der IB Lab-Module: Formulierung „Derzeit führen wir schrittweise … ein“ – stimmt der Stand (welche Module sind bei Veröffentlichung schon aktiv)? Text später aktualisieren, sobald alle laufen.\n2. Transpara: Einsatz NICHT bestätigt. Text und Kachel behaupten keinen Einsatz in der Praxis. Externe Quelle screenpoint-medical.com prüfen (Herstellerseite erwähnt auch DBT/Tomosynthese, die die Praxis nicht anbietet) – ggf. Quelle streichen. Falls die Praxis Transpara nicht einführt: Kachel ggf. neutral „KI – Mammographie“ benennen.\n3. „Am Ablauf ändert sich nichts“ / „Die Software wertet die Aufnahmen aus, die ohnehin angefertigt werden“: Bestätigen, dass für die KI keine zusätzlichen Aufnahmen gemacht werden (z. B. keine zusätzliche Ganzbein- oder Wirbelsäulenaufnahme, keine Kalibrierkugel nötig).\n4. KOALA-Kachel nennt „Knieaufnahmen im Stehen“ (laut Produktbeschreibung). Bestätigen, dass die Praxis Knieaufnahmen für diese Fragestellung im Stehen anfertigt.\n5. Rho: Altersgrenze 50 und Formulierung aus dexa.js übernommen. Klären, wie ein Rho-Hinweis an die Zuweiserin bzw. den Zuweiser kommuniziert wird (im Befund?).\n6. PANDA: Bestätigen, dass Knochenalter-Aufnahmen (linke Hand) bei Kindern in der Praxis angefertigt werden.\n7. Datenschutz bewusst nur allgemein formuliert. Klären: Wo läuft die KI-Auswertung (lokal oder Cloud), Auftragsverarbeitungsvertrag mit IB Lab/16 Bit, Datenschutzerklärung um KI-Verarbeitung ergänzen?\n8. „Ein Facharzt für Radiologie sieht sich jede Aufnahme selbst an“ – Praxis hat zwei Radiologen (männliche Form daher bewusst). Bestätigen.\n9. Serienname mit „K[AI]“ steht nur in TITLE/SERIES_NAME (Code hebt „AI“ hervor); im HTML-Fließtext nicht verwendet, damit keine Klammern sichtbar werden.\n10. Zulassungsstatus (CE-Kennzeichnung als Medizinprodukt) bewusst nicht erwähnt – bei Wunsch je Modul belegen.\n11. „Medizinisch geprüft von Dr. [NAME] – Stand [DATUM]“ ergänzen, sobald freigegeben.";
+export const REVIEW = "BEANTWORTET (Peter, 21.10.2026 abends): IB-Lab-Module seit Oktober 2026 im Einsatz; Transpara im Einsatz (Kachel „bei uns im Einsatz“, Name „Transpara – Mammographie“ bleibt, Quelle screenpoint-medical.com bleibt); keine zusätzlichen Aufnahmen für die KI; Knie im Stehen; Rho-Hinweis steht im Befund, wenn auffällig; Knochenalter-Aufnahmen bei Kindern ja; KI-Auswertung läuft lokal in der Praxis (Satz auch in der Datenschutzerklärung); geschlechtergerecht formuliert (Vertretungsärztinnen); Serienname K[AI] ok; Autor und Prüfvermerk Priv.-Doz. Dr. Peter Kalmar. Text entsprechend angepasst.\nOffen:\n1. CE-Kennzeichnung auf der Seite erwähnen? – Georg fragen.\n2. Herstellerunterlagen (IFU, Version, CE) angefragt: IB Lab (Module, Rho) bzw. über Siemens (Transpara).";
 
 export const SERIES_NAME = "Röntgen am K[AI] – Künstliche Intelligenz, ärztlich verantwortet";
 
@@ -60,15 +61,15 @@ export const TILES = {
     "text": "Bei Kindern und Jugendlichen schätzt PANDA anhand eines Röntgenbilds der linken Hand das Knochenalter. Das gibt der behandelnden Ärztin oder dem Arzt eine zusätzliche Grundlage, um das Wachstum einzuschätzen."
   },
   "rho": {
-    "title": "RHO – Knochengesundheit",
-    "text": "RHO prüft geeignete Röntgenaufnahmen von Personen ab 50 Jahren zusätzlich auf Hinweise für eine möglicherweise niedrige Knochendichte. Ob eine Knochendichtemessung sinnvoll ist, klärt die ärztliche Beurteilung."
+    "title": "Rho – Knochengesundheit",
+    "text": "Rho prüft geeignete Röntgenaufnahmen von Personen ab 50 Jahren zusätzlich auf Hinweise für eine möglicherweise niedrige Knochendichte. Ob eine Knochendichtemessung sinnvoll ist, klärt die ärztliche Beurteilung."
   },
   "transpara": {
     "title": "Transpara – Mammographie",
-    "text": "KI-Programme wie Transpara können Mammographiebilder zusätzlich auswerten und Bereiche markieren, die genauer angesehen werden sollten. Die Beurteilung jeder Aufnahme bleibt Aufgabe der Radiologin oder des Radiologen."
+    "text": "Bei der Mammographie wertet Transpara die Bilder zusätzlich aus und markiert Bereiche, die genauer angesehen werden sollten. Jede Aufnahme beurteilt die Radiologin oder der Radiologe selbst."
   }
 };
 
 export const TITLE = "Röntgen am K[AI]: Wie KI unsere Radiologie unterstützt";
 
-export const TRUST_NOTE = "Jede KI-Auswertung wird von unseren Fachärzten für Radiologie geprüft, bei Bedarf korrigiert und fließt erst dann in den ärztlichen Befund ein.";
+export const TRUST_NOTE = "Jede KI-Auswertung wird von unseren Fachärztinnen und Fachärzten für Radiologie geprüft, bei Bedarf korrigiert und fließt erst dann in den ärztlichen Befund ein.";

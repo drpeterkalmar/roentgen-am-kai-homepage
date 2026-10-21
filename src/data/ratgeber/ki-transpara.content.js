@@ -1,5 +1,5 @@
 // KI-Ratgeberserie – Artikel „Transpara“ (ScreenPoint Medical), URL /ratgeber/ki-mammographie-transpara.
-// VORLÄUFIGE FASSUNG bis zum Erhalt der Unterlagen der Praxis. Stand: 21.10.2026.
+// Stand: 21.10.2026 (Praxisantworten abends eingearbeitet). Abgleich mit den Herstellerunterlagen folgt nach Eingang.
 // Quellen (alle am 21.10.2026 selbst geprüft, DOIs über Crossref/PubMed verifiziert):
 //   * Lång K et al., Lancet Oncol 2023 (MASAI, Sicherheitsanalyse) – doi:10.1016/S1470-2045(23)00298-X
 //   * Hernström V et al., Lancet Digit Health 2025 (MASAI, Screening-Ergebnisse) – doi:10.1016/S2589-7500(24)00267-X
@@ -8,8 +8,9 @@
 //   * Herstellerseite screenpoint-medical.com (nur Produktbeschreibung, keine Werbezahlen)
 //   * frueh-erkennen.at (Startseite, /fuer-wen-ist-das-programm/, /so-koennen-sie-teilnehmen/, /faqs/) – Programmregeln
 // Leitplanken:
-//   * Einsatz von Transpara bei Röntgen am Kai ist NICHT bestätigt (Gespräche Jänner 2026) → der Text erklärt nur,
-//     wie Transpara grundsätzlich arbeitet; nirgends „bei uns“ oder „wir setzen ein“.
+//   * Transpara ist bei Röntgen am Kai im Einsatz (Peter 21.10.2026 abends): läuft lokal in der Praxis, keine
+//     zusätzlichen Aufnahmen, jede Aufnahme ärztlich beurteilt, Markierungen ärztlich geprüft. NICHT nennen: Vertragsdauer/
+//     Lizenz, Früherkennungsprogramm/Doppelbefundung mit KI (offen), Temporal Comparison (Beta), Density, Prozentwerte.
 //   * Nur 2D-Mammographie, Markierung von Bereichen, Score. Keine Module Density/Temporal Comparison, keine
 //     Tomosynthese/3D (Röntgen am Kai bietet sie nicht an).
 //   * KI stellt keine Diagnose, ersetzt weder Radiologin/Radiologen noch Abklärung; „zweites Paar Augen“ nur als Metapher.
@@ -18,12 +19,14 @@
 // [geteilt] Inhalte (nur Artikel-/Übersichtsseite). Metadaten: ki-transpara.js
 
 export const HTML = `
-<p>Bei einer Mammographie entstehen Röntgenbilder der Brust, die eine Radiologin oder ein Radiologe genau durchsieht. Seit einigen Jahren gibt es Computerprogramme, die diese Bilder zusätzlich auswerten. Eines davon ist Transpara des niederländischen Herstellers ScreenPoint Medical. Wer sich über KI-Mammographie in Graz informiert, findet hier eine verständliche Erklärung: wie solche Programme arbeiten, was sie leisten können und wo ihre Grenzen liegen. Gerne wird die Software als „zweites Paar Augen“ beschrieben. Das ist ein anschauliches Bild, mehr nicht. Die Verantwortung für die Beurteilung liegt immer bei Ärztinnen und Ärzten.</p>
+<p>Bei einer Mammographie entstehen Röntgenbilder der Brust, die eine Radiologin oder ein Radiologe genau durchsieht. Seit einigen Jahren gibt es Computerprogramme, die diese Bilder zusätzlich auswerten. Eines davon ist Transpara des niederländischen Herstellers ScreenPoint Medical. Bei Röntgen am Kai setzen wir Transpara bei der Mammographie ein. Wer sich über KI-Mammographie in Graz informiert, findet hier eine verständliche Erklärung: wie solche Programme arbeiten, was sie leisten können und wo ihre Grenzen liegen. Gerne wird die Software als „zweites Paar Augen“ beschrieben. Das ist ein anschauliches Bild, mehr nicht. Die Verantwortung für die Beurteilung liegt immer bei Ärztinnen und Ärzten.</p>
 
 <h2>Was ist Transpara?</h2>
-<p>Transpara ist eine Software mit künstlicher Intelligenz (KI) für die Auswertung von Mammographieaufnahmen. KI bedeutet hier: Ein Computerprogramm hat anhand sehr vieler Mammographien gelernt, Bildmuster zu erkennen, die bei Brustkrebs häufiger vorkommen. Programme wie Transpara sind als Unterstützung für Radiologinnen und Radiologen gedacht. Sie arbeiten im Hintergrund am Befundungsplatz. Die Patientin merkt davon bei der Untersuchung nichts.</p>
+<p>Transpara ist eine Software mit künstlicher Intelligenz (KI) für die Auswertung von Mammographieaufnahmen. KI bedeutet hier: Ein Computerprogramm hat anhand sehr vieler Mammographien gelernt, Bildmuster zu erkennen, die bei Brustkrebs häufiger vorkommen. Transpara ist als Unterstützung für Radiologinnen und Radiologen gedacht. Die Software arbeitet im Hintergrund am Befundungsplatz. Die Patientin merkt davon bei der Untersuchung nichts.</p>
 <p>Warum überhaupt KI? In der Früherkennung werden sehr viele Mammographien von Frauen ohne Beschwerden beurteilt. Bei den allermeisten ist alles in Ordnung. Gerade deshalb ist es anspruchsvoll, die wenigen auffälligen Bilder zuverlässig herauszufinden. Hier setzen KI-Programme an: Sie sollen helfen, dass kleine Veränderungen nicht übersehen werden.</p>
-<p>Zur Einordnung: Dieser Beitrag beschreibt, wie Transpara grundsätzlich arbeitet. Er ist keine Aussage darüber, welche Software bei einer bestimmten Untersuchung verwendet wird.</p>
+
+<h2>Transpara bei Röntgen am Kai</h2>
+<p>Bei uns unterstützt Transpara die Auswertung der Mammographieaufnahmen. Die Software läuft auf Rechnern in unserer Praxis. Die Bilder werden dafür nicht an den Hersteller oder an andere Dritte übertragen. Für die KI-Auswertung sind keine zusätzlichen Aufnahmen nötig. Jede Aufnahme wird von einer Radiologin oder einem Radiologen beurteilt, und jede Markierung der Software wird ärztlich geprüft, bevor der Befund entsteht.</p>
 
 <h2>Wie KI Mammographieaufnahmen analysiert</h2>
 <p>Bei der üblichen Mammographie werden von jeder Brust in der Regel zwei Röntgenbilder aus unterschiedlichen Richtungen angefertigt: eines von oben und eines schräg von der Seite. Es handelt sich um zweidimensionale Aufnahmen, kurz 2D-Mammographie. Die KI wertet genau diese Bilder aus. Für die Auswertung sind keine zusätzlichen Aufnahmen und damit auch keine zusätzliche Strahlung nötig.</p>
@@ -67,7 +70,7 @@ export const HTML = `
 <p>Das Screening ist für Frauen ohne Beschwerden gedacht. Wenn Sie einen Knoten tasten, Hautveränderungen wie Dellen oder Verhärtungen bemerken, sich die Brustwarze einzieht oder Flüssigkeit aus der Brustwarze austritt, warten Sie bitte nicht auf den nächsten Screening-Termin. Lassen Sie die Beschwerden ärztlich abklären. Für eine diagnostische Mammographie erhalten Sie in jedem Alter eine ärztliche Zuweisung. Mehr dazu lesen Sie im Abschnitt <a href="/mammographie-graz#beschwerden">Brustgesundheit und Beschwerden</a>.</p>
 
 <h2>KI als Unterstützung, Verantwortung beim Menschen</h2>
-<p>Brustkrebsvorsorge mit KI bedeutet nicht, dass ein Computer entscheidet. Programme wie Transpara können Mammographiebilder zusätzlich durchsehen, auffällige Bereiche markieren und eine Gesamteinschätzung abgeben. Die Studien deuten darauf hin, dass diese Unterstützung Radiologinnen und Radiologen helfen kann. Die Beurteilung der Bilder, die Entscheidung über weitere Untersuchungen und der Befund bleiben ärztliche Aufgaben. Für Frauen, die sich über KI-Mammographie in Graz informieren, heißt das: Der wichtigste Schritt bleibt die regelmäßige Teilnahme an der Früherkennung und die rasche Abklärung bei Beschwerden. Wie KI in anderen Bereichen der Radiologie eingesetzt wird, erklärt unsere <a href="/ratgeber/kuenstliche-intelligenz-radiologie">Übersicht zur künstlichen Intelligenz in der Radiologie</a>.</p>
+<p>Brustkrebsvorsorge mit KI bedeutet nicht, dass ein Computer entscheidet. Transpara kann Mammographiebilder zusätzlich durchsehen, auffällige Bereiche markieren und eine Gesamteinschätzung abgeben. Die Studien deuten darauf hin, dass diese Unterstützung Radiologinnen und Radiologen helfen kann. Die Beurteilung der Bilder, die Entscheidung über weitere Untersuchungen und der Befund bleiben ärztliche Aufgaben. Für Frauen, die sich über KI-Mammographie in Graz informieren, heißt das: Der wichtigste Schritt bleibt die regelmäßige Teilnahme an der Früherkennung und die rasche Abklärung bei Beschwerden. Wie KI in anderen Bereichen der Radiologie eingesetzt wird, erklärt unsere <a href="/ratgeber/kuenstliche-intelligenz-radiologie">Übersicht zur künstlichen Intelligenz in der Radiologie</a>.</p>
 `;
 
 export const MEDIA = {
@@ -93,9 +96,10 @@ export const MEDIA = {
       "1. Mammographie: zwei 2D-Aufnahmen je Brust",
       "2. Die Bilder werden gespeichert und für die Befundung bereitgestellt",
       "3. Die KI-Software wertet die Bilder aus, markiert auffällige Bereiche und berechnet eine Gesamteinschätzung (1–10)",
-      "4. Radiologin oder Radiologe beurteilt alle Bilder und prüft die Markierungen (im Früherkennungsprogramm: Vier-Augen-Prinzip)",
+      "4. Radiologin oder Radiologe beurteilt alle Bilder und prüft die Markierungen",
       "5. Ärztlicher Befund; bei Auffälligkeiten entscheiden Ärztinnen und Ärzte über weitere Abklärung",
-      "Hinweis in der Grafik: „Allgemeiner Ablauf – kein Hinweis auf den Einsatz in einer bestimmten Einrichtung“",
+      "Hinweis in der Grafik: „Ablauf bei Röntgen am Kai – die KI-Auswertung läuft lokal in der Praxis und stellt keine Diagnose“",
+      "Keine Aussage zum Früherkennungsprogramm/Doppelbefundung mit KI (bei der Praxis noch offen)",
       "Keine Tomosynthese/3D, keine Herstellerbilder oder Logos"
     ]
   }

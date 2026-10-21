@@ -44,11 +44,13 @@ export const DEXA = {
     },
   ],
 
-  // ── KI-gestütztes opportunistisches Screening (Rho, ImageBiopsy Lab) ──
+  // ── KI-gestütztes opportunistisches Screening (Rho; Hersteller 16 Bit, Toronto; Vertrieb IB Lab) ──
   // Angaben lt. Herstellerseite (geprüft 26.09.2026). Einsatz in der Praxis bestätigt (Praxis, 26.09.2026).
   rho: {
     product: 'Rho',
-    vendor: 'ImageBiopsy Lab',
+    vendor: '16 Bit',            // Hersteller (Toronto); Schreibweise „Rho“ ohne ™ (Praxis 21.10.2026)
+    vendorCity: 'Toronto',
+    distributor: 'IB Lab',       // Vertrieb in Europa; productUrl = Produktseite von IB Lab
     minAge: 50,
     regions: ['Lendenwirbelsäule', 'Brustwirbelsäule', 'Brustkorb', 'Becken', 'Knie', 'Hand bzw. Handgelenk'],
     productUrl: 'https://www.imagebiopsy.com/de-product/rho',

@@ -79,7 +79,7 @@ const KiSeriesPage = () => {
             </h1>
             <p className="mt-4 text-lg leading-relaxed text-slate-600 dark:text-slate-300">{S.excerpt}</p>
             <p className="mt-4 flex flex-wrap items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
-              <UserRound size={16} aria-hidden="true" /> Herausgegeben von {PUBLISHER_NAME} · Stand <time dateTime={S.datePublished}>{formatDate(S.datePublished)}</time>
+              <UserRound size={16} aria-hidden="true" /> {S.author ? <>Von {S.author}</> : <>Herausgegeben von {PUBLISHER_NAME}</>} · Stand <time dateTime={S.datePublished}>{formatDate(S.datePublished)}</time>
             </p>
           </Container>
         </header>

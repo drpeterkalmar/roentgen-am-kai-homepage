@@ -179,7 +179,7 @@ export const routes = [
     priority: '0.6',
     lastmod: KI_SERIES.datePublished,
     // CollectionPage + ItemList der acht Artikel (schema.js)
-    collection: { name: KI_SERIES.name, items: KI_MODULES.map((m) => ({ name: m.mod.TITLE, path: `/ratgeber/${m.slug}` })) },
+    collection: { name: KI_SERIES.name, author: KI_SERIES.author || null, items: KI_MODULES.map((m) => ({ name: m.mod.TITLE, path: `/ratgeber/${m.slug}` })) },
   },
   // Ratgeber-Artikel (Daten: src/data/ratgeber.js; Platzhalter-Artikel sind noindex und nicht in der Sitemap)
   ...ARTICLE_ROUTES,

@@ -7,7 +7,7 @@
 // Regeln (Aufträge 21.10.2026):
 // * „bei uns im Einsatz“ NUR, wenn in diesem Projekt ausdrücklich bestätigt (inUse: true). Bestätigt: Rho (Praxis, 26.09.2026,
 //   siehe dexa.js). IB-Lab-Module LAMA/HIPPO/KOALA/SQUIRREL/FROG/PANDA: von der Praxis bestätigt (Peter 21.10.2026)
-//   → „bei uns im Einsatz“. Transpara: nicht bestätigt (Gespräche Jänner 2026).
+//   → „bei uns im Einsatz“. Transpara: im Einsatz (Peter 21.10.2026 abends) → inUse: true.
 // * Beispielberichte = Demo-Datensätze von IB Lab (keine Patientinnen/Patienten der Praxis). Kopfblock mit Name, ID,
 //   Geburtsdatum, Untersuchungs- und Analysedatum vor der Veröffentlichung abgeschnitten (scratch/ibl/crop.py: oberste
 //   470 px der 2382 × 3369-Seiten; HIPPO-postop hatte eine echt wirkende Patienten-ID + Geburtsdatum). Danach je Bild
@@ -27,7 +27,7 @@ import * as RHO from './ratgeber/ki-rho.js';
 import * as TRANSPARA from './ratgeber/ki-transpara.js';
 
 // Prüfvermerk „Medizinisch geprüft von … – Stand …“ (Aufteilung Peter 21.10.2026: Georg Riegler = LAMA/HIPPO/KOALA/
-// SQUIRREL/FROG, Peter Kalmar = Übersicht/RHO/PANDA/Transpara). Erst eintragen, wenn der Arzt „gelesen“ gemeldet hat;
+// SQUIRREL/FROG, Peter Kalmar = Übersicht/Rho/PANDA/Transpara). Erst eintragen, wenn der Arzt „gelesen“ gemeldet hat;
 // ohne Eintrag zeigt die Seite den gelben Platzhalter. at = Tag der Durchsicht (ISO).
 const KALMAR = 'Priv.-Doz. Dr. Peter Kalmar';
 export const KI_REVIEWED = {
@@ -35,6 +35,15 @@ export const KI_REVIEWED = {
   rho: { by: KALMAR, at: '2026-10-21' },
   panda: { by: KALMAR, at: '2026-10-21' },
   transpara: { by: KALMAR, at: '2026-10-21' },
+};
+
+// Autor (sichtbar „Von …“, Article-Schema author = Person): Peter Kalmar für seine Artikel (Peter 21.10.2026 abends).
+// Georgs fünf (LAMA, HIPPO, KOALA, SQUIRREL, FROG) bleiben „Herausgegeben von Röntgen am Kai“ (author: null).
+export const KI_AUTHORS = {
+  uebersicht: KALMAR,
+  rho: KALMAR,
+  panda: KALMAR,
+  transpara: KALMAR,
 };
 
 export const KI_SERIES_PATH = '/ratgeber/kuenstliche-intelligenz-radiologie';
@@ -50,6 +59,7 @@ export const KI_SERIES = {
   trustNote: UE.TRUST_NOTE || null,
   review: UE.REVIEW || null,
   reviewed: KI_REVIEWED.uebersicht || null,
+  author: KI_AUTHORS.uebersicht || null,
   datePublished: '2026-10-21',
 };
 
@@ -104,14 +114,14 @@ export const KI_MODULES = [
     logo: { ...LOGOS.panda, alt: 'Logo IB Lab PANDA' },
   },
   {
-    id: 'rho', product: 'RHO', vendor: '16 Bit', topic: 'Knochengesundheit', slug: 'osteoporose-screening-roentgen-ki', mod: RHO, inUse: true,
+    id: 'rho', product: 'Rho', vendor: '16 Bit', topic: 'Knochengesundheit', slug: 'osteoporose-screening-roentgen-ki', mod: RHO, inUse: true,
     seoTitle: 'Osteoporose-Risiko im Röntgen erkennen | Graz', target: 'knochendichte', category: 'knochengesundheit',
     cta: { title: 'Knochendichtemessung in Graz vereinbaren' },
     logo: null,
     dateModified: RHO.UPDATED || '2026-10-21',
   },
   {
-    id: 'transpara', product: 'Transpara', vendor: 'ScreenPoint Medical', topic: 'Mammographie', slug: 'ki-mammographie-transpara', mod: TRANSPARA, inUse: false,
+    id: 'transpara', product: 'Transpara', vendor: 'ScreenPoint Medical', topic: 'Mammographie', slug: 'ki-mammographie-transpara', mod: TRANSPARA, inUse: true,
     seoTitle: 'KI bei der Mammographie in Graz | Transpara', target: 'mammographie', category: 'mammographie',
     cta: { title: 'Screening-Mammographie in Graz vereinbaren' },
     logo: null,
@@ -139,6 +149,7 @@ export const KI_ARTICLE_META = KI_MODULES.map((m) => ({
   product: m.vendor === 'IB Lab' ? `IB Lab ${m.product}` : m.product,
   inUse: m.inUse,
   reviewed: KI_REVIEWED[m.id] || null,
+  author: KI_AUTHORS[m.id] || null,
   logo: m.logo,
   noHeroImage: true,
 }));
