@@ -58,7 +58,8 @@ check(S["seo"] == "Künstliche Intelligenz in der Radiologie | Graz" and S["titl
 check(145 <= len(S["desc"]) <= 160, f"Übersicht: Description {len(S['desc'])} Zeichen (145–160)")
 check(500 <= S["words"] <= 700, f"Übersicht: {S['words']} Wörter (500–700)")
 check(S["can"] >= 3 and S["cannot"] >= 3, "Übersicht: Listen „Was KI kann“ / „was nicht“")
-check([m["id"] for m in MODS if m["inUse"]] == ["rho"], "„bei uns im Einsatz“ nur für bestätigten Einsatz (Rho)")
+IN_USE = ["lama", "hippo", "koala", "squirrel", "frog", "panda", "rho"]   # Praxis: Rho 26.09., IB Lab 21.10.2026
+check(sorted(m["id"] for m in MODS if m["inUse"]) == sorted(IN_USE), "„bei uns im Einsatz“ nur für bestätigten Einsatz (Rho + IB Lab, nicht Transpara)")
 for m in MODS:
     lo, hi = WORDS[m["id"]]
     check(lo <= m["words"] <= hi, f"{m['id']}: {m['words']} Wörter ({lo}–{hi})")
@@ -127,7 +128,7 @@ with sync_playwright() as pw:
           and all(i["url"].startswith(SITE + "/ratgeber/") for i in items), "Übersicht: CollectionPage + ItemList (8)")
     tiles = pg.locator("[data-ki-tile]")
     check(tiles.count() == 8, f"Übersicht: {tiles.count()} Kacheln")
-    check(pg.locator("[data-ki-tile] [data-in-use]").count() == 1 and pg.locator('[data-ki-tile="rho"] [data-in-use]').count() == 1, "Kachel-Hinweis „bei uns im Einsatz“ nur bei Rho")
+    check(pg.locator("[data-ki-tile] [data-in-use]").count() == len(IN_USE) and all(pg.locator(f'[data-ki-tile="{i}"] [data-in-use]').count() == 1 for i in IN_USE), "Kachel-Hinweis „bei uns im Einsatz“ nur bei bestätigten Modulen")
     hrefs = pg.eval_on_selector_all("main a[href]", "els => els.map(a => a.getAttribute('href'))")
     for need in ["/roentgen-graz", "/mammographie-graz", "/knochendichtemessung-graz"]:
         check(any(h.endswith(need) or (need + "#") in h for h in hrefs), f"Übersicht: Link {need}")

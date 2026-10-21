@@ -16,7 +16,7 @@
 
 export const HTML = `
 <p>Kinder wachsen nicht alle im gleichen Tempo. Manche sind früh groß, andere holen erst später auf. Ob das Skelett eines Kindes seinem Alter etwas voraus ist oder ein wenig nachhinkt, zeigt das <strong>Knochenalter</strong>. Sichtbar wird es auf einer Röntgenaufnahme der linken Hand. Wenn Ihre Kinderärztin oder Ihr Kinderarzt das Knochenalter bestimmen lassen möchte, ist das in Graz bei Röntgen am Kai mit Zuweisung möglich.</p>
-<p>Ab Oktober 2026 unterstützt dabei eine Software mit künstlicher Intelligenz (KI) die Auswertung: IB Lab PANDA von ImageBiopsy Lab aus Wien. Hier lesen Eltern und Jugendliche, wie die Untersuchung abläuft und was die KI dabei tut – und was nicht.</p>
+<p>Seit Oktober 2026 unterstützt dabei eine Software mit künstlicher Intelligenz (KI) die Auswertung: IB Lab PANDA von ImageBiopsy Lab aus Wien. Hier lesen Eltern und Jugendliche, wie die Untersuchung abläuft und was die KI dabei tut – und was nicht.</p>
 
 <h2>Anlass: Wann wird das Knochenalter bestimmt?</h2>
 <p>Das <strong>kalendarische Alter</strong> zählt die Jahre seit der Geburt. Das <strong>Knochenalter</strong> beschreibt dagegen, wie weit die Knochen in ihrer Entwicklung sind. An den Enden der Finger- und Mittelhandknochen liegen die Wachstumsfugen. Das sind knorpelige Zonen, von denen das Längenwachstum ausgeht. Im Lauf der Kindheit erscheinen die Handwurzelknochen nacheinander, die Knochenkerne werden größer und verändern ihre Form. Gegen Ende der Pubertät schließen sich die Wachstumsfugen.</p>

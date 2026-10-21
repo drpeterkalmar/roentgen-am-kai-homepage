@@ -16,7 +16,7 @@
 // [geteilt] Inhalte (nur Artikel-/Übersichtsseite). Metadaten: ki-koala.js
 
 export const HTML = `
-<p>Das Knie schmerzt beim Stiegensteigen, morgens ist es steif, nach einem langen Spaziergang wird es dick. Viele Menschen denken dann an Arthrose. Ob und wie stark sich das Gelenk verändert hat, zeigt oft ein Röntgenbild. Wer ein <strong>Kniearthrose-Röntgen in Graz</strong> bei Röntgen am Kai machen lässt, profitiert ab Oktober 2026 zusätzlich von einer Software: IB Lab KOALA. Hier lesen Sie, was sie misst, was die Fachbegriffe im Befund bedeuten und wo die Grenzen liegen.</p>
+<p>Das Knie schmerzt beim Stiegensteigen, morgens ist es steif, nach einem langen Spaziergang wird es dick. Viele Menschen denken dann an Arthrose. Ob und wie stark sich das Gelenk verändert hat, zeigt oft ein Röntgenbild. Wer ein <strong>Kniearthrose-Röntgen in Graz</strong> bei Röntgen am Kai machen lässt, profitiert seit Oktober 2026 zusätzlich von einer Software: IB Lab KOALA. Hier lesen Sie, was sie misst, was die Fachbegriffe im Befund bedeuten und wo die Grenzen liegen.</p>
 
 <h2>Was ist Kniearthrose?</h2>
 <p>Arthrose ist ein Verschleiß des Gelenks. Am Anfang steht meist der <strong>Gelenkknorpel</strong>, die glatte Schutzschicht auf den Knochenenden. Er wird dünner und rauer. Der Knochen darunter reagiert: Er verdichtet sich und bildet an den Rändern knöcherne Anbauten. Das Knie ist eines der am häufigsten betroffenen Gelenke.</p>
@@ -24,7 +24,7 @@ export const HTML = `
 
 <h2>Wann ist ein Knie-Röntgen sinnvoll?</h2>
 <p>Ob ein Röntgen nötig ist, entscheidet Ihre Ärztin oder Ihr Arzt nach Gespräch und Untersuchung. Bei einem typischen Beschwerdebild lässt sich Kniearthrose erkennen, oft schon durch Gespräch und Untersuchung. Ein Röntgen hilft, wenn die Beschwerden ungewöhnlich sind, sich rasch ändern, andere Ursachen ausgeschlossen werden sollen oder eine Behandlung geplant wird.</p>
-<p>Bei Arthrose-Fragestellungen wird das Knie üblicherweise <strong>im Stehen</strong> geröntgt, also unter Belastung durch das Körpergewicht. Das empfehlen auch europäische Fachleute. Der Grund: Im Liegen kann der Gelenkspalt breiter wirken, als er im Alltag ist. Bei Röntgen am Kai richtet sich die Aufnahmetechnik nach der Fragestellung und danach, was auf der Zuweisung angegeben ist. Mehr zu den Knieaufnahmen finden Sie unter <a href="/roentgen-graz#region-knie">Röntgen des Knies</a>.</p>
+<p>Bei Arthrose-Fragestellungen röntgen wir das Knie <strong>im Stehen</strong>, also unter Belastung durch das Körpergewicht. Das empfehlen auch europäische Fachleute. Der Grund: Im Liegen kann der Gelenkspalt breiter wirken, als er im Alltag ist. Mehr zu den Knieaufnahmen finden Sie unter <a href="/roentgen-graz#region-knie">Röntgen des Knies</a>.</p>
 
 <h2>Was IB Lab KOALA macht</h2>
 <p>KOALA ist eine Software der IB Lab GmbH aus Wien. Der Name steht für „Knee Osteoarthritis Labeling Assistant“, also Assistent zur Einstufung der Kniearthrose. Sie arbeitet mit <strong>künstlicher Intelligenz (KI)</strong>: Ein Rechenmodell hat an einer großen Zahl von Knie-Röntgenbildern gelernt, typische Merkmale zu erkennen.</p>
@@ -60,7 +60,7 @@ export const HTML = `
 <h2>Ablauf bei Röntgen am Kai</h2>
 <ol>
 <li>Sie kommen mit gültiger ärztlicher Zuweisung und e-card während der Röntgenzeiten, ohne Termin. Eine Wunschzeit kann reserviert werden.</li>
-<li>Die Radiologietechnologin bzw. der Radiologietechnologe fertigt die Aufnahmen an, die auf der Zuweisung angegeben sind, bei Arthrose-Fragestellungen üblicherweise im Stehen. Es werden nur so viele Aufnahmen wie nötig gemacht; die Strahlenbelastung ist gering.</li>
+<li>Die Radiologietechnologin bzw. der Radiologietechnologe fertigt die Aufnahmen an, die auf der Zuweisung angegeben sind, bei Arthrose-Fragestellungen im Stehen. Es werden nur so viele Aufnahmen wie nötig gemacht; die Strahlenbelastung ist gering.</li>
 <li>Bei passenden Aufnahmen läuft die KOALA-Auswertung im Hintergrund.</li>
 <li>Die Radiologin bzw. der Radiologe beurteilt das Bild, prüft die KI-Messungen und erstellt den Befund.</li>
 <li>Befund und Bilder gehen an die zuweisende Ärztin bzw. den Arzt. Sie sind zusätzlich über ELGA und das Patientenportal portal.marc.at verfügbar.</li>

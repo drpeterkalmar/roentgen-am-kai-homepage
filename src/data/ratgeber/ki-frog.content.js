@@ -26,7 +26,7 @@ export const HTML = `
 <li><strong>Dorsoplantare Aufnahme</strong> („von oben“): Die Strahlen gehen vom Fußrücken zur Fußsohle. Sie zeigt Zehen, Mittelfuß und Fußwurzel von oben und ist die Grundlage für das Röntgen bei Hallux valgus.</li>
 <li><strong>Seitliche Aufnahme</strong>: Sie zeigt den Fuß von der Seite. Hier werden das Längsgewölbe, das Fersenbein und die Achse vom Sprungbein zum Mittelfuß beurteilt.</li>
 </ul>
-<p>Bei Fehlstellungen wird häufig im Stehen geröntgt. Ein <strong>belastetes Fußröntgen</strong> zeigt den Fuß so, wie er unter dem eigenen Körpergewicht im Alltag steht. Ob das im Einzelfall nötig ist, hängt von der Fragestellung ab. Mehr zu den Aufnahmen von Sprunggelenk und Fuß finden Sie auf der Seite <a href="/roentgen-graz#region-fuss">Röntgen des Fußes</a>.</p>
+<p>Bei Fehlstellungen röntgen wir den Fuß im Stehen. Ein <strong>belastetes Fußröntgen</strong> zeigt den Fuß so, wie er unter dem eigenen Körpergewicht im Alltag steht. Mehr zu den Aufnahmen von Sprunggelenk und Fuß finden Sie auf der Seite <a href="/roentgen-graz#region-fuss">Röntgen des Fußes</a>.</p>
 
 <h2>Was die wichtigsten Messwerte bedeuten</h2>
 <p>Um eine Fußfehlstellung zu vermessen, werden Achsen durch einzelne Knochen gelegt. Der Winkel zwischen zwei Achsen beschreibt dann, wie stark ein Knochen von seiner üblichen Richtung abweicht. Fünf Werte sind besonders häufig:</p>
@@ -80,7 +80,7 @@ export const HTML = `
 <h2>Ablauf beim Fußröntgen in Graz</h2>
 <ol>
 <li><strong>Zuweisung und e-card:</strong> Mit einer gültigen ärztlichen Zuweisung können Sie während der Röntgenzeiten ohne Termin kommen. Eine Wunschzeit lässt sich auch reservieren.</li>
-<li><strong>Aufnahmen:</strong> Schuhe und Socken werden ausgezogen. Je nach Fragestellung entstehen Aufnahmen von oben und von der Seite, bei Fehlstellungen häufig im Stehen. Die Strahlenbelastung ist gering, und es werden nur so viele Aufnahmen gemacht wie nötig.</li>
+<li><strong>Aufnahmen:</strong> Schuhe und Socken werden ausgezogen. Je nach Fragestellung entstehen Aufnahmen von oben und von der Seite, bei Fehlstellungen im Stehen. Die Strahlenbelastung ist gering, und es werden nur so viele Aufnahmen gemacht wie nötig.</li>
 <li><strong>Messung und Befund:</strong> Die Winkel werden gemessen und ärztlich geprüft. Danach erstellt die Radiologin oder der Radiologe den Befund.</li>
 <li><strong>Ergebnis:</strong> Befund und Bilder gehen an die zuweisende Ärztin oder den zuweisenden Arzt. Sie sind zusätzlich über ELGA und das Patientenportal portal.marc.at verfügbar.</li>
 </ol>
@@ -97,7 +97,7 @@ export const HTML = `
 <h3>Wo die Grenzen liegen</h3>
 <ul>
 <li>Die Messung ist nur so gut wie die Aufnahme. Ist der Fuß anders gelagert oder unbelastet, verändern sich die Winkel.</li>
-<li>Längen in Millimetern hängen von der Vergrößerung im Bild ab. Winkel sind davon nicht betroffen.</li>
+<li>Längen in Millimetern hängen von der Vergrößerung im Bild ab. Eine Kalibrierkugel im Bild hilft, sie umzurechnen. Winkel sind davon nicht betroffen.</li>
 <li>Überlagerte Knochen, Implantate oder ungewöhnliche Formen können Messpunkte verfälschen. Deshalb prüft immer eine Ärztin oder ein Arzt.</li>
 <li>Laut Hersteller ist die Software nur für Erwachsene ab 18 Jahren vorgesehen.</li>
 <li>Beschwerden, Beweglichkeit und Gangbild zeigt kein Röntgenbild. Diese beurteilt die klinische Untersuchung.</li>

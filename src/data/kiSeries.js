@@ -6,15 +6,15 @@
 //
 // Regeln (Aufträge 21.10.2026):
 // * „bei uns im Einsatz“ NUR, wenn in diesem Projekt ausdrücklich bestätigt (inUse: true). Bestätigt: Rho (Praxis, 26.09.2026,
-//   siehe dexa.js). IB-Lab-Module LAMA/HIPPO/KOALA/SQUIRREL/FROG/PANDA: Installation Oktober 2026 laut Mailverkehr, auf der
-//   Website noch nicht bestätigt → kein Hinweis. Transpara: nicht bestätigt (Gespräche Jänner 2026).
+//   siehe dexa.js). IB-Lab-Module LAMA/HIPPO/KOALA/SQUIRREL/FROG/PANDA: von der Praxis bestätigt (Peter 21.10.2026)
+//   → „bei uns im Einsatz“. Transpara: nicht bestätigt (Gespräche Jänner 2026).
 // * Beispielberichte = Demo-Datensätze von IB Lab (keine Patientinnen/Patienten der Praxis). Kopfblock mit Name, ID,
 //   Geburtsdatum, Untersuchungs- und Analysedatum vor der Veröffentlichung abgeschnitten (scratch/ibl/crop.py: oberste
 //   470 px der 2382 × 3369-Seiten; HIPPO-postop hatte eine echt wirkende Patienten-ID + Geburtsdatum). Danach je Bild
 //   geprüft: keine Personendaten, nur Seitenmarker (R/L, STEHEND) und Herstellerangaben. PANDA: kein Kopfblock, nur
 //   Demo-Alter/Geschlecht/Größe. Bilder: assets-src/ki → npm run images:ki → public/assets/ki.
-// * Nutzungsrechte der Berichte und Logos: von der Praxis zur Verfügung gestellt (Hersteller/Vertrieb) – schriftliche
-//   Freigabe von IB Lab ist im review-Feld jedes Artikels als offen vermerkt.
+// * Nutzungsrechte der Berichte und Logos: von der Praxis zur Verfügung gestellt (Hersteller/Vertrieb); eine schriftliche
+//   Freigabe von IB Lab ist laut Praxis nicht nötig (Peter 21.10.2026).
 // * Hotspots: x/y in Prozent des (zugeschnittenen) Bildes, Mittelpunkt des Markers; nur für sichtbare Elemente.
 import * as UE from './ratgeber/ki-uebersicht.js';
 import * as LAMA from './ratgeber/ki-lama.js';
@@ -56,37 +56,37 @@ const LOGOS = {
 // Reihenfolge = Reihenfolge der Kacheln laut Auftrag
 export const KI_MODULES = [
   {
-    id: 'lama', product: 'LAMA', vendor: 'IB Lab', topic: 'Beinachsen', slug: 'ki-beinachsenvermessung-lama', mod: LAMA, inUse: false,
+    id: 'lama', product: 'LAMA', vendor: 'IB Lab', topic: 'Beinachsen', slug: 'ki-beinachsenvermessung-lama', mod: LAMA, inUse: true,
     seoTitle: 'KI-Beinachsenvermessung in Graz | IB Lab LAMA', target: 'roentgen', category: 'roentgen',
     cta: { title: 'Röntgenuntersuchung in Graz – mit Zuweisung direkt vorbeikommen oder Termin vereinbaren.' },
     logo: { ...LOGOS.lama, alt: 'Logo IB Lab LAMA' },
   },
   {
-    id: 'hippo', product: 'HIPPO', vendor: 'IB Lab', topic: 'Hüftvermessung', slug: 'ki-hueftvermessung-hippo', mod: HIPPO, inUse: false,
+    id: 'hippo', product: 'HIPPO', vendor: 'IB Lab', topic: 'Hüftvermessung', slug: 'ki-hueftvermessung-hippo', mod: HIPPO, inUse: true,
     seoTitle: 'KI-Hüftvermessung und Hüftprothese | Graz', target: 'roentgen', category: 'roentgen',
     cta: { title: 'Hüft- oder Beckenröntgen in Graz' },
     logo: { ...LOGOS.hippo, alt: 'Logo IB Lab HIPPO' },
   },
   {
-    id: 'koala', product: 'KOALA', vendor: 'IB Lab', topic: 'Kniearthrose', slug: 'kniearthrose-ki-koala', mod: KOALA, inUse: false,
+    id: 'koala', product: 'KOALA', vendor: 'IB Lab', topic: 'Kniearthrose', slug: 'kniearthrose-ki-koala', mod: KOALA, inUse: true,
     seoTitle: 'Kniearthrose im Röntgen erkennen | KI in Graz', target: 'roentgen', category: 'roentgen',
     cta: { title: 'Knieschmerzen abklären – Röntgen mit Zuweisung' },
     logo: { ...LOGOS.koala, alt: 'Logo IB Lab KOALA' },
   },
   {
-    id: 'squirrel', product: 'SQUIRREL', vendor: 'IB Lab', topic: 'Skoliose', slug: 'skoliose-cobb-winkel-ki', mod: SQUIRREL, inUse: false,
+    id: 'squirrel', product: 'SQUIRREL', vendor: 'IB Lab', topic: 'Skoliose', slug: 'skoliose-cobb-winkel-ki', mod: SQUIRREL, inUse: true,
     seoTitle: 'Skoliose und Cobb-Winkel mit KI vermessen | Graz', target: 'roentgen', category: 'roentgen',
     cta: { title: 'Wirbelsäulenröntgen in Graz anfragen' },
     logo: { ...LOGOS.squirrel, alt: 'Logo IB Lab SQUIRREL' },
   },
   {
-    id: 'frog', product: 'FROG', vendor: 'IB Lab', topic: 'Fußfehlstellungen', slug: 'fussfehlstellung-roentgen-ki', mod: FROG, inUse: false,
+    id: 'frog', product: 'FROG', vendor: 'IB Lab', topic: 'Fußfehlstellungen', slug: 'fussfehlstellung-roentgen-ki', mod: FROG, inUse: true,
     seoTitle: 'Fußfehlstellungen im Röntgen vermessen | Graz', target: 'roentgen', category: 'roentgen',
     cta: { title: 'Fußröntgen in Graz – mit Zuweisung direkt vorbeikommen oder Termin vereinbaren.' },
     logo: { ...LOGOS.frog, alt: 'Logo IB Lab FROG' },
   },
   {
-    id: 'panda', product: 'PANDA', vendor: 'IB Lab', topic: 'Knochenalter', slug: 'knochenalter-bestimmen-ki', mod: PANDA, inUse: false,
+    id: 'panda', product: 'PANDA', vendor: 'IB Lab', topic: 'Knochenalter', slug: 'knochenalter-bestimmen-ki', mod: PANDA, inUse: true,
     seoTitle: 'Knochenalter bei Kindern bestimmen | Röntgen Graz', target: 'roentgen', category: 'roentgen',
     cta: { title: 'Knochenalter-Röntgen in Graz anfragen' },
     logo: { ...LOGOS.panda, alt: 'Logo IB Lab PANDA' },
@@ -122,7 +122,7 @@ export const KI_ARTICLE_META = KI_MODULES.map((m) => ({
   datePublished: '2026-10-21',
   dateModified: m.dateModified,
   faq: m.mod.FAQ,
-  review: [m.mod.REVIEW, m.logo && 'Bildrechte: schriftliche Freigabe von IB Lab für Beispielberichte und Logo einholen.'].filter(Boolean).join(' '),
+  review: m.mod.REVIEW || '',   // IB-Lab-Freigabe für Berichte/Logos laut Praxis nicht nötig (Peter 21.10.2026)
   series: 'ki',
   product: m.vendor === 'IB Lab' ? `IB Lab ${m.product}` : m.product,
   inUse: m.inUse,

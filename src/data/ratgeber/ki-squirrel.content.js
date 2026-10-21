@@ -10,7 +10,7 @@
 // [geteilt] Inhalte (nur Artikel-/Übersichtsseite). Metadaten: ki-squirrel.js
 
 export const HTML = `
-      <p>Bei einer Skoliose ist die Wirbelsäule seitlich verkrümmt. Wird sie festgestellt, folgt meist eine Röntgenaufnahme der gesamten Wirbelsäule. Sie zeigt, wie stark die Krümmung ist und ob sie sich mit der Zeit verändert. Für das Skoliose-Röntgen in Graz setzt Röntgen am Kai ab Oktober 2026 eine Software mit künstlicher Intelligenz (KI) ein: IB Lab SQUIRREL. Sie misst Winkel und Abstände auf der Aufnahme und stellt sie einheitlich dar. Die Beurteilung bleibt ärztlich.</p>
+      <p>Bei einer Skoliose ist die Wirbelsäule seitlich verkrümmt. Wird sie festgestellt, folgt meist eine Röntgenaufnahme der gesamten Wirbelsäule. Sie zeigt, wie stark die Krümmung ist und ob sie sich mit der Zeit verändert. Für das Skoliose-Röntgen in Graz setzt Röntgen am Kai seit Oktober 2026 eine Software mit künstlicher Intelligenz (KI) ein: IB Lab SQUIRREL. Sie misst Winkel und Abstände auf der Aufnahme und stellt sie einheitlich dar. Die Beurteilung bleibt ärztlich.</p>
 
       <h2>Anlass: Was ist eine Skoliose und wozu dient die Ganzaufnahme?</h2>
       <p>Eine Skoliose ist eine seitliche Verkrümmung der Wirbelsäule, bei der die Wirbel zusätzlich etwas verdreht sind. Von vorne betrachtet verläuft die Wirbelsäule dann nicht gerade, sondern in einem oder mehreren Bögen. Meist lässt sich keine eigene Ursache finden, Fachleute sprechen dann von einer idiopathischen Skoliose. Sie tritt bei sonst gesunden Kindern und Jugendlichen auf und kann sich vor allem in Wachstumsphasen verändern.</p>
