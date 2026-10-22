@@ -1,7 +1,14 @@
 // Ratgeber-Artikel „Knochengesundheit im Blick: KI-Screening mit Rho“
 // URL: /ratgeber/osteoporose-screening-roentgen-ki · SEO-Titel: „Osteoporose-Risiko im Röntgen erkennen | Graz“
-// Stand: 21.10.2026 – VORLÄUFIGE Fassung bis zum Erhalt der Originalunterlagen (Gebrauchsanweisung/IFU,
-// Konformitätsunterlagen, Konfiguration der Praxis).
+// Stand: 22.10.2026. Abgleich mit den Herstellerunterlagen von IB Lab (Salzer, 22.10.2026): Rho 3.5.0 (bei uns installiert),
+// Produktschulungsmaterial 1000.20AE_2 V3.5.0 (30.09.2026), EU-Konformitätserklärung RHO-REP-195 Rev. 4.0 (09.04.2026):
+// MDR 2017/745, Klasse IIa (Regel 11), Benannte Stelle Intertek Medical Notified Body AB (2862) – CE/Klasse/Version NICHT
+// auf der Seite, bis Georg zustimmt. Zweckbestimmung laut DoC: Frontalaufnahmen von LWS, BWS, Thorax, Becken, Knie oder
+// Hand, beliebige klinische Indikation, ab 50 Jahren; Score korreliert mit niedriger Knochendichte (niedrigerer T-Wert
+// Schenkelhals bzw. LWS L1–L4). Seitliche/schräge Aufnahmen und Alter < 50 nicht unterstützt; Alter + Geschlecht nötig.
+// Beispielberichte (KI-RHO-02): Demo-PNGs von IB Lab (Mail 22.10.2026), ohne Personendaten; Zuschnitt = Kopf + Score-Karte
+// + „Über Rho“ + Fußnote, Studienkarte (Prozentzahlen, Diagramm) und Fußzeile (Version, CE) entfernt; chest1 (Score 6,
+// eingebrannte MTRA-Notiz) nicht verwendet.
 //
 // Quellen (alle am 21.10.2026 selbst gelesen, DOIs über PubMed/Crossref geprüft):
 //   - ImageBiopsy Lab, Produktseite Rho (imagebiopsy.com/de-product/rho): Score 1–10 = Wahrscheinlichkeit einer
@@ -40,7 +47,7 @@ export const HTML = `
         <li>Brustkorb,</li>
         <li>Becken,</li>
         <li>Knie,</li>
-        <li>Hand bzw. Handgelenk.</li>
+        <li>Hand.</li>
       </ul>
       <p>Das heißt nicht, dass jedes Röntgenbild untersucht wird. Ausgewertet werden nur geeignete Aufnahmen nach den Kriterien der Praxis. Seitliche Aufnahmen, andere Körperregionen oder Bilder, die sich technisch nicht eignen, bleiben außen vor. Die Software prüft vorab selbst, ob eine passende Aufnahme vorliegt. Laut Hersteller ist die Analyse außerdem für Menschen gedacht, bei denen nicht vor Kurzem eine Knochendichtemessung gemacht wurde. Dann ist der Zustand der Knochen ja bereits bekannt. Rho berücksichtigt dabei nur Knochendichtemessungen, die bei uns gemacht wurden. Eine Messung in einer anderen Einrichtung kennt die Software nicht. Hatten Sie dort bereits eine Knochendichtemessung, bringen Sie den Befund bitte mit oder erwähnen Sie die Messung.</p>
 
@@ -56,10 +63,11 @@ export const HTML = `
       <p>Ab welchem Score ein Ergebnis als auffällig gilt, legt laut Hersteller jede Einrichtung selbst fest. Eine kurze Zusammenfassung finden Sie auch auf unserer Seite zur <a href="/knochendichtemessung-graz#rho-title">Knochendichtemessung im Abschnitt zu Rho</a>.</p>
 
       <h2>Was der Rho-Score von 1 bis 10 aussagt</h2>
-      <p>Rho gibt einen Wert zwischen 1 und 10 aus. Laut Hersteller beschreibt er, wie wahrscheinlich eine niedrige Knochenmineraldichte ist. Je höher der Wert, desto wahrscheinlicher. Gemeint ist ein T-Wert unter −1 in einer DEXA-Messung.</p>
+      <p>Rho gibt einen Wert zwischen 1 und 10 aus. Laut Hersteller beschreibt er, wie wahrscheinlich eine niedrige Knochenmineraldichte ist. Je höher der Wert, desto wahrscheinlicher. Gemeint ist ein T-Wert unter −1 in einer DEXA-Messung, und zwar der niedrigere Wert von Schenkelhals oder Lendenwirbelsäule.</p>
       <p>Der <strong>T-Wert</strong> vergleicht die gemessene Knochendichte mit dem Durchschnitt junger, gesunder Erwachsener. Ein Wert unter −1 umfasst zwei Bereiche: eine leicht verminderte Knochendichte (Osteopenie) zwischen −1 und −2,5 und eine Osteoporose ab −2,5 oder darunter. Ein hoher Score sagt also nicht, welcher der beiden Bereiche zutreffen könnte.</p>
       <p>Die Knochendichte lässt sich auf einem gewöhnlichen Röntgenbild nicht direkt messen. Der Score ist deshalb eine Wahrscheinlichkeitsangabe, keine Messung. Er nennt keinen T-Wert und keinen Grad der Verminderung. Ein niedriger Score schließt eine Osteoporose nicht aus.</p>
-      <p>Im Rho-Bericht stehen neben dem Score ein kleines Vorschaubild der ausgewerteten Aufnahme und die erkannte Körperregion. Daran prüft die Radiologin bzw. der Radiologe, ob das richtige Bild analysiert wurde.</p>
+      <p>Im Rho-Bericht stehen neben dem Score ein kleines Vorschaubild der ausgewerteten Aufnahme und die erkannte Körperregion. Daran prüft die Radiologin bzw. der Radiologe, ob das richtige Bild analysiert wurde. Passt die Körperregion nicht oder ist die Aufnahme keine Frontalaufnahme in ausreichender Qualität, wird das Ergebnis verworfen. Die Beispiele zeigen Berichte zu einer Aufnahme des Brustkorbs, der Brustwirbelsäule und der Hände.</p>
+<!--media:report-->
 
       <h2>Was Rho nicht ist</h2>
       <ul>
@@ -99,26 +107,33 @@ export const MEDIA = {
       "Alt-Text-Vorschlag: „Schema: Röntgenaufnahme, Prüfung auf Eignung, Rho-Score 1 bis 10, ärztliche Beurteilung und gegebenenfalls Knochendichtemessung.“"
     ]
   },
-  "report": {
-    // Derzeit NICHT im Text (kein <!--media:report-->): Demo-Bericht bei IB Lab angefragt (Peter 21.10.2026 abends).
-    "id": "KI-RHO-02",
-    "title": "KI-RHO-02 – anonymisierter Beispielreport",
-    "format": "Bildschirmfoto bzw. Export des Hersteller-Beispielberichts (Demo-Datensatz, Beckenaufnahme), Hochformat, mind. 1600 px Höhe; Originaldatei von 16 Bit/IB Lab anfordern statt der Website-Grafik; bei Bedarf mit 2–3 nummerierten Markierungen, die nur erklären, wo was steht.",
-    "inhalte": [
-      "Markierung 1 – Score-Feld „Patient Rho Score“ (Wert 1–10) mit Erklärtext des Herstellers zur Skala.",
-      "Markierung 2 – Vorschaubild der ausgewerteten Aufnahme mit erkannter Körperregion („Pelvis“ = Becken): Hier prüft die Radiologin bzw. der Radiologe, ob das richtige Bild analysiert wurde.",
-      "Markierung 3 – Abschnitt „About Rho“: Hinweis des Herstellers, dass Rho keine Osteoporose diagnostiziert.",
-      "Bildunterschrift: „Beispielbericht des Herstellers (Demo-Datensatz, Personendaten entfernt)“.",
-      "Den Beispielwert NICHT medizinisch bewerten (kein „bei dieser Person liegt … vor“), nur erklären, wo was steht.",
-      "Alt-Text-Vorschlag: „Beispielbericht der Software Rho mit Score-Feld, Vorschaubild einer Beckenaufnahme und Herstellerhinweisen (Demo-Datensatz).“"
-    ],
-    "zuschnitt": "Oben Kopfzeile, darunter Score-Feld und Vorschaubild mit Körperregion, unten Abschnitt „About Rho“; das Feld „Clinical Study Results“ (Herstellerstatistik mit Prozentangabe und Balkendiagramm) wegschneiden oder abdecken; angeschnittene Beschriftung am oberen Rand des Vorschaubilds auf Restdaten prüfen und ggf. abdecken; Fußzeile mit Versionsnummer optional."
-  }
+  "slides": [
+    {
+      "key": "rho-thorax",
+      "label": "Brustkorb",
+      "caption": "Rho-Bericht zu einer Aufnahme des Brustkorbs von vorn. Links das Vorschaubild mit der erkannten Körperregion, rechts der Score auf der Skala von 1 bis 10.",
+      "alt": "Beispielbericht der Software Rho auf dunklem Hintergrund: links Vorschaubild einer Brustkorb-Röntgenaufnahme mit dem Vermerk „klassifiziert als: Thorax“, rechts ein Score-Feld mit der Skala 1 bis 10, darunter der Abschnitt „Über Rho“ und ein Hinweis an die Radiologin bzw. den Radiologen."
+    },
+    {
+      "key": "rho-brustwirbelsaeule",
+      "label": "Brustwirbelsäule",
+      "caption": "Derselbe Bericht zu einer Aufnahme der Brustwirbelsäule von vorn. Die Software hat die Körperregion als Brustwirbelsäule (BWS) erkannt.",
+      "alt": "Beispielbericht der Software Rho: Vorschaubild einer Röntgenaufnahme der Brustwirbelsäule von vorn mit dem Vermerk „klassifiziert als: BWS“, daneben das Score-Feld und unten die Herstellerhinweise."
+    },
+    {
+      "key": "rho-hand",
+      "label": "Hände",
+      "caption": "Rho-Bericht zu einer Aufnahme beider Hände. Auch Handaufnahmen von vorn kann die Software auswerten, wenn die Person 50 Jahre oder älter ist.",
+      "alt": "Beispielbericht der Software Rho: Vorschaubild einer Röntgenaufnahme beider Hände mit dem Vermerk „klassifiziert als: Hand“, daneben das Score-Feld und unten die Herstellerhinweise."
+    }
+  ],
+  "note": "Beispielberichte des Herstellers (Demo-Datensätze, keine Patientinnen oder Patienten der Praxis), Ausschnitt. Die Werte im Beispiel werden hier nicht bewertet."
 };
 
 export const SOURCES = [
   "ImageBiopsy Lab: Rho – Produktbeschreibung und vorgesehene Verwendung. <a href=\"https://www.imagebiopsy.com/de-product/rho\" target=\"_blank\" rel=\"noopener noreferrer\">imagebiopsy.com/de-product/rho<span class=\"sr-only\"> (öffnet in neuem Fenster)</span></a> (abgerufen am 21.10.2026)",
   "16 Bit Inc. (Toronto): Rho – AI-driven opportunistic screening. <a href=\"https://www.16bit.ai/\" target=\"_blank\" rel=\"noopener noreferrer\">16bit.ai<span class=\"sr-only\"> (öffnet in neuem Fenster)</span></a> (abgerufen am 21.10.2026)",
+  "IB Lab GmbH. Rho by 16 Bit – Produktschulungsmaterial (deutsch), September 2026. Vom Hersteller zur Verfügung gestellt.",
   "Bilbily A, Syme CA, Adachi JD, Berger C, Morin SN, Goltzman D, Cicero MD. Opportunistic Screening of Low Bone Mineral Density From Standard X-Rays. J Am Coll Radiol. 2024;21(4):633–639. <a href=\"https://doi.org/10.1016/j.jacr.2023.07.024\" target=\"_blank\" rel=\"noopener noreferrer\">doi:10.1016/j.jacr.2023.07.024<span class=\"sr-only\"> (öffnet in neuem Fenster)</span></a>",
   "Jayarajah AN, Atinga A, Probyn L, Sivakumaran T, Christakis M, Oikonomou A. AI Screening Tool Based on X-Rays Improves Early Detection of Decreased Bone Density in a Clinical Setting. Can Assoc Radiol J. 2026;77(2):348–353. <a href=\"https://doi.org/10.1177/08465371251380240\" target=\"_blank\" rel=\"noopener noreferrer\">doi:10.1177/08465371251380240<span class=\"sr-only\"> (öffnet in neuem Fenster)</span></a>",
   "Syme CA, Lopes M, Bilbily A, Cicero MD. Clinical impact of adopting an AI-driven opportunistic bone health screening software using routine X-ray. Skeletal Radiol. 2026;55(6):1321–1327. <a href=\"https://doi.org/10.1007/s00256-026-05148-9\" target=\"_blank\" rel=\"noopener noreferrer\">doi:10.1007/s00256-026-05148-9<span class=\"sr-only\"> (öffnet in neuem Fenster)</span></a>",

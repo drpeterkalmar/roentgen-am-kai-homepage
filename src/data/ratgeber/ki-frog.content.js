@@ -1,6 +1,15 @@
-// KI-Ratgeberserie – Artikel „IB Lab FROG“ (Fußfehlstellungen, Hallux valgus). Stand 21.10.2026.
+// KI-Ratgeberserie – Artikel „IB Lab FROG“ (Fußfehlstellungen, Hallux valgus). Stand: 22.10.2026.
+// Abgleich mit IFU FROG 1.1 (Gebrauchsanweisung DE, Dokument V1.1.1 vom 10.09.2026) + DoC (MDR 2017/745, Klasse IIa,
+//   Regel 11, Benannte Stelle 0123 TÜV SÜD; DoC V1.1.0 vom 20.11.2025, Erst-CE 05.11.2024) vom 22.10.2026.
+//   IFU-Kernpunkte: Zweckbestimmung = vollautomatische Vermessung der Fußgeometrie auf Fußröntgen (DP/AP/PA inkl. Vorfuß,
+//   lateral ganzer Fuß), Aufnahmen im Stehen; nur ab 18 J. (<18 kontraindiziert); Kontraindikationen: Trauma/Fraktur,
+//   Implantate/Metall im Bildbereich, fehlende Knochen; Schrägaufnahmen abgelehnt; Kalibrierkugel wird von FROG NICHT
+//   genutzt (Längen nur über DICOM-Pixelabstand; Kalibriervorrichtungen sollen den Fuß nicht überlagern); Feature-Set SI =
+//   17 Messungen (9 DP, 8 lateral), „Lite“ = 7; Normbereichs-Hervorhebung im Bericht; Ungenauigkeit bei ausgeprägtem
+//   Hallux valgus/Pes planus/Spreizfuß/Pes cavus und geriatrischen Patienten. CE/Klasse/Version NICHT auf die Seite (Georg).
 // URL /ratgeber/fussfehlstellung-roentgen-ki, SEO-Titel in kiSeries.js („Fußfehlstellungen im Röntgen vermessen | Graz“).
 // Quellen (alle selbst geprüft, Titel/Autoren/Jahr/DOI über PubMed/Europe PMC/Crossref):
+//   * IB Lab FROG, Gebrauchsanweisung DE (vertraulich, ohne Link; nur in eigenen Worten wiedergegeben)
 //   * IB Lab FROG, Herstellerseite imagebiopsy.com (Funktionsumfang, 17 Messungen, vorgesehene Verwendung, ab 18 Jahren)
 //   * Saltzman CL et al., Foot Ankle Int 1994 (Messwerte schwanken zwischen Untersuchern; feste Messregeln zuverlässiger)
 //   * Coughlin MJ et al., Foot Ankle Int 2002 (AOFAS-Kommission: Messmethode bei Hallux valgus festlegen und angeben)
@@ -8,9 +17,9 @@
 //   * Carrara C et al., Foot Ankle Surg 2020 (Übersicht der Winkel im belasteten Röntgen; uneinheitliche Begriffe)
 // Leitplanken: keine Herstellerzahlen („auf ExpertInnen-Niveau“, „100 % wiederholbar“ NICHT übernommen), keine Normbereiche
 // (keine im Original gelesene Quelle mit Normwerten → weggelassen), Beispielwerte im Bericht nicht bewerten, KI stellt keine
-// Diagnose und ersetzt weder Befund noch orthopädische Untersuchung oder Therapieentscheidung. FROG ist laut kiSeries.js
-// (inUse: false) auf der Website noch nicht als „bei uns im Einsatz“ bestätigt → neutral formuliert.
-// Aufnahme im Stehen in dieser Praxis NICHT bestätigt → „je nach Fragestellung, bei Fehlstellungen häufig im Stehen“ (REVIEW).
+// Diagnose und ersetzt weder Befund noch orthopädische Untersuchung oder Therapieentscheidung. Einsatz in der Praxis seit
+// Oktober 2026, Auswertung lokal, keine Zusatzaufnahmen, Fuß bei Fehlstellung im Stehen: bestätigt (Peter, 21.10.2026).
+// Kalibrierkugel bewusst NICHT im Text (FROG nutzt sie laut IFU nicht) → Rückfrage in REVIEW.
 // [geteilt] Inhalte (nur Artikel-/Übersichtsseite). Metadaten: ki-frog.js
 
 export const HTML = `
@@ -65,16 +74,16 @@ export const HTML = `
 <li>Neigungswinkel des Sprungbeins (TDA)</li>
 <li>Neigungswinkel des 1. Mittelfußknochens (MDA)</li>
 <li>Höhe des Würfelbeins (CH)</li>
-<li>Länge des ersten Strahls in der Seitenansicht (FRL)</li>
+<li>Länge des ersten Strahls bzw. des 1. Mittelfußknochens (FRL)</li>
 </ul>
 </li>
 </ul>
 </details>
 
 <h2>Wie IB Lab FROG die Messung unterstützt</h2>
-<p>IB Lab FROG ist eine zertifizierte Medizinprodukt-Software der Wiener Firma IB Lab. Sie wertet dorsoplantare und seitliche Fußröntgenaufnahmen von Erwachsenen aus. Die Software erkennt die Knochen, setzt die Messpunkte, zeichnet die Achsen ein und berechnet daraus die Winkel. Das Ergebnis ist ein Bericht mit nummerierten, farbigen Linien im Bild und einer Tabelle der Werte.</p>
+<p>IB Lab FROG ist eine Medizinprodukt-Software der Wiener Firma IB Lab. Bei Röntgen am Kai ist sie seit Oktober 2026 im Einsatz. Sie wertet im Stehen angefertigte Fußröntgenaufnahmen von Erwachsenen aus: die Aufnahme von oben und die seitliche Aufnahme, die dafür den ganzen Fuß zeigen muss. Schrägaufnahmen misst sie nicht. Sie erkennt die Knochen, setzt die Messpunkte, zeichnet die Achsen ein und berechnet daraus Winkel und Längen. Das Ergebnis ist ein Bericht mit nummerierten, farbigen Linien im Bild und einer Tabelle der Werte.</p>
 <!--media:report-->
-<p>Der Vorteil liegt in der Einheitlichkeit. Die Software setzt die Messpunkte jedes Mal nach denselben Regeln. Das macht Messungen nachvollziehbar und erleichtert <strong>Verlaufskontrollen</strong>: Wird der Fuß nach Monaten oder Jahren erneut vergleichbar geröntgt, lassen sich die Werte nebeneinanderstellen, etwa vor und nach einer Behandlung. Mehr zum Einsatz von KI in der Radiologie lesen Sie in unserer <a href="/ratgeber/kuenstliche-intelligenz-radiologie">Übersicht zu künstlicher Intelligenz</a>.</p>
+<p>Der Vorteil liegt in der Einheitlichkeit. Die Software setzt die Messpunkte jedes Mal nach denselben Regeln. Das macht Messungen nachvollziehbar und erleichtert <strong>Verlaufskontrollen</strong>: Wird der Fuß nach Monaten oder Jahren erneut vergleichbar geröntgt, lassen sich die Werte nebeneinanderstellen, etwa im Verlauf einer Behandlung. Mehr zum Einsatz von KI in der Radiologie lesen Sie in unserer <a href="/ratgeber/kuenstliche-intelligenz-radiologie">Übersicht zu künstlicher Intelligenz</a>.</p>
 <p>Wichtig: Die Software misst, markiert und dokumentiert. Sie stellt keine Diagnose. Die Radiologin oder der Radiologe prüft jede Messung am Bild und korrigiert sie, wenn ein Punkt nicht richtig sitzt. Der Befund ist ärztlich. Er ersetzt auch nicht die orthopädische Untersuchung, und über eine Einlage, Physiotherapie oder Operation entscheidet die behandelnde Ärztin oder der behandelnde Arzt.</p>
 
 <h2>Ablauf beim Fußröntgen in Graz</h2>
@@ -96,9 +105,10 @@ export const HTML = `
 </ul>
 <h3>Wo die Grenzen liegen</h3>
 <ul>
-<li>Die Messung ist nur so gut wie die Aufnahme. Ist der Fuß anders gelagert oder unbelastet, verändern sich die Winkel.</li>
-<li>Längen in Millimetern hängen von der Vergrößerung im Bild ab. Eine Kalibrierkugel im Bild hilft, sie umzurechnen. Winkel sind davon nicht betroffen.</li>
-<li>Überlagerte Knochen, Implantate oder ungewöhnliche Formen können Messpunkte verfälschen. Deshalb prüft immer eine Ärztin oder ein Arzt.</li>
+<li>Die Messung ist nur so gut wie die Aufnahme. Lagerung, Belastung, Bildqualität und Gegenstände, die den Fuß überdecken, beeinflussen die Werte.</li>
+<li>Längen in Millimetern berechnet die Software aus Größenangaben, die das Röntgengerät im Bild mitspeichert. Fehlen diese, gibt sie keine kalibrierten Längen aus. Winkel betrifft das nicht.</li>
+<li>Nicht vorgesehen ist die Software bei Metallimplantaten im Bild, nach Knochenbrüchen oder wenn ein Knochen fehlt. Dann wird ohne die Software ausgewertet.</li>
+<li>Bei sehr ausgeprägten Fehlstellungen und bei älteren Menschen können laut Hersteller einzelne Werte ungenau sein. Deshalb prüft immer eine Fachärztin oder ein Facharzt für Radiologie.</li>
 <li>Laut Hersteller ist die Software nur für Erwachsene ab 18 Jahren vorgesehen.</li>
 <li>Beschwerden, Beweglichkeit und Gangbild zeigt kein Röntgenbild. Diese beurteilt die klinische Untersuchung.</li>
 </ul>
@@ -123,6 +133,7 @@ export const MEDIA = {
 };
 
 export const SOURCES = [
+  "IB Lab GmbH. IB Lab FROG – Gebrauchsanweisung (deutsch), Stand September 2026. Vom Hersteller zur Verfügung gestellt.",
   "IB Lab GmbH: IB Lab FROG – Produktbeschreibung, Messparameter und vorgesehene Verwendung. <a href=\"https://www.imagebiopsy.com/de-product/ib-lab-frog\" target=\"_blank\" rel=\"noopener noreferrer\">imagebiopsy.com<span class=\"sr-only\"> (öffnet in neuem Fenster)</span></a> (abgerufen am 21.10.2026)",
   "Saltzman CL, Brandser EA, Berbaum KS, DeGnore L, Holmes JR, Katcherian DA, Teasdall RD, Alexander IJ. Reliability of standard foot radiographic measurements. Foot Ankle Int. 1994;15(12):661–665. <a href=\"https://doi.org/10.1177/107110079401501206\" target=\"_blank\" rel=\"noopener noreferrer\">doi:10.1177/107110079401501206<span class=\"sr-only\"> (öffnet in neuem Fenster)</span></a>",
   "Coughlin MJ, Saltzman CL, Nunley JA. Angular measurements in the evaluation of hallux valgus deformities: a report of the ad hoc committee of the American Orthopaedic Foot &amp; Ankle Society on angular measurements. Foot Ankle Int. 2002;23(1):68–74. <a href=\"https://doi.org/10.1177/107110070202300114\" target=\"_blank\" rel=\"noopener noreferrer\">doi:10.1177/107110070202300114<span class=\"sr-only\"> (öffnet in neuem Fenster)</span></a>",

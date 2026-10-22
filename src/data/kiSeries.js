@@ -78,37 +78,37 @@ const LOGOS = {
 // Reihenfolge = Reihenfolge der Kacheln laut Auftrag
 export const KI_MODULES = [
   {
-    id: 'lama', product: 'LAMA', vendor: 'IB Lab', topic: 'Beinachsen', slug: 'ki-beinachsenvermessung-lama', mod: LAMA, inUse: true,
+    id: 'lama', product: 'LAMA', vendor: 'IB Lab', topic: 'Beinachsen', slug: 'ki-beinachsenvermessung-lama', mod: LAMA, inUse: true, dateModified: '2026-10-22',
     seoTitle: 'KI-Beinachsenvermessung in Graz | IB Lab LAMA', target: 'roentgen', category: 'roentgen',
     cta: { title: 'Röntgenuntersuchung in Graz – mit Zuweisung direkt vorbeikommen oder Termin vereinbaren.' },
     logo: { ...LOGOS.lama, alt: 'Logo IB Lab LAMA' },
   },
   {
-    id: 'hippo', product: 'HIPPO', vendor: 'IB Lab', topic: 'Hüftvermessung', slug: 'ki-hueftvermessung-hippo', mod: HIPPO, inUse: true,
+    id: 'hippo', product: 'HIPPO', vendor: 'IB Lab', topic: 'Hüftvermessung', slug: 'ki-hueftvermessung-hippo', mod: HIPPO, inUse: true, dateModified: '2026-10-22',
     seoTitle: 'KI-Hüftvermessung und Hüftprothese | Graz', target: 'roentgen', category: 'roentgen',
     cta: { title: 'Hüft- oder Beckenröntgen in Graz' },
     logo: { ...LOGOS.hippo, alt: 'Logo IB Lab HIPPO' },
   },
   {
-    id: 'koala', product: 'KOALA', vendor: 'IB Lab', topic: 'Kniearthrose', slug: 'kniearthrose-ki-koala', mod: KOALA, inUse: true,
+    id: 'koala', product: 'KOALA', vendor: 'IB Lab', topic: 'Kniearthrose', slug: 'kniearthrose-ki-koala', mod: KOALA, inUse: true, dateModified: '2026-10-22',
     seoTitle: 'Kniearthrose im Röntgen erkennen | KI in Graz', target: 'roentgen', category: 'roentgen',
     cta: { title: 'Knieschmerzen abklären – Röntgen mit Zuweisung' },
     logo: { ...LOGOS.koala, alt: 'Logo IB Lab KOALA' },
   },
   {
-    id: 'squirrel', product: 'SQUIRREL', vendor: 'IB Lab', topic: 'Skoliose', slug: 'skoliose-cobb-winkel-ki', mod: SQUIRREL, inUse: true,
+    id: 'squirrel', product: 'SQUIRREL', vendor: 'IB Lab', topic: 'Skoliose', slug: 'skoliose-cobb-winkel-ki', mod: SQUIRREL, inUse: true, dateModified: '2026-10-22',
     seoTitle: 'Skoliose und Cobb-Winkel mit KI vermessen | Graz', target: 'roentgen', category: 'roentgen',
     cta: { title: 'Wirbelsäulenröntgen in Graz anfragen' },
     logo: { ...LOGOS.squirrel, alt: 'Logo IB Lab SQUIRREL' },
   },
   {
-    id: 'frog', product: 'FROG', vendor: 'IB Lab', topic: 'Fußfehlstellungen', slug: 'fussfehlstellung-roentgen-ki', mod: FROG, inUse: true,
+    id: 'frog', product: 'FROG', vendor: 'IB Lab', topic: 'Fußfehlstellungen', slug: 'fussfehlstellung-roentgen-ki', mod: FROG, inUse: true, dateModified: '2026-10-22',
     seoTitle: 'Fußfehlstellungen im Röntgen vermessen | Graz', target: 'roentgen', category: 'roentgen',
     cta: { title: 'Fußröntgen in Graz – mit Zuweisung direkt vorbeikommen oder Termin vereinbaren.' },
     logo: { ...LOGOS.frog, alt: 'Logo IB Lab FROG' },
   },
   {
-    id: 'panda', product: 'PANDA', vendor: 'IB Lab', topic: 'Knochenalter', slug: 'knochenalter-bestimmen-ki', mod: PANDA, inUse: true,
+    id: 'panda', product: 'PANDA', vendor: 'IB Lab', topic: 'Knochenalter', slug: 'knochenalter-bestimmen-ki', mod: PANDA, inUse: true, dateModified: '2026-10-22',
     seoTitle: 'Knochenalter bei Kindern bestimmen | Röntgen Graz', target: 'roentgen', category: 'roentgen',
     cta: { title: 'Knochenalter-Röntgen in Graz anfragen' },
     logo: { ...LOGOS.panda, alt: 'Logo IB Lab PANDA' },

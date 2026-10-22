@@ -52,7 +52,7 @@ export const DEXA = {
     vendorCity: 'Toronto',
     distributor: 'IB Lab',       // Vertrieb in Europa; productUrl = Produktseite von IB Lab
     minAge: 50,
-    regions: ['Lendenwirbelsäule', 'Brustwirbelsäule', 'Brustkorb', 'Becken', 'Knie', 'Hand bzw. Handgelenk'],
+    regions: ['Lendenwirbelsäule', 'Brustwirbelsäule', 'Brustkorb', 'Becken', 'Knie', 'Hand'],
     productUrl: 'https://www.imagebiopsy.com/de-product/rho',
   },
 };

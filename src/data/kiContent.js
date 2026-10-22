@@ -13,6 +13,7 @@ import * as TRANSPARA from './ratgeber/ki-transpara.content.js';
 // Bildmaße der zugeschnittenen Vorlagen (public/assets/ki/manifest.json)
 const REPORT = { width: 2382, height: 2899 };
 const PANDA_IMG = { width: 1648, height: 2100 };
+const RHO_IMG = { width: 1700, height: 1399 };   // Demo-PNGs IB Lab, Studienkarte + Fußzeile weggeschnitten
 
 // Hotspots: Mittelpunkt des Markers in Prozent des Bildes; nur sichtbare Elemente (geprüft per Screenshot)
 const SQUIRREL_POS = { 1: { x: 8, y: 6.5 }, 2: { x: 65, y: 9.5 }, 3: { x: 64.5, y: 34 }, 4: { x: 69, y: 49 } };
@@ -33,6 +34,6 @@ export const KI_CONTENT = {
   'skoliose-cobb-winkel-ki': { html: SQUIRREL.HTML, sources: SQUIRREL.SOURCES || [], media: { report: gallery('squirrel', SQUIRREL, REPORT, SQUIRREL_POS) } },
   'fussfehlstellung-roentgen-ki': { html: FROG.HTML, sources: FROG.SOURCES || [], media: { report: gallery('frog', FROG) } },
   'knochenalter-bestimmen-ki': { html: PANDA.HTML, sources: PANDA.SOURCES || [], media: { report: gallery('panda', PANDA, PANDA_IMG, PANDA_POS) } },
-  'osteoporose-screening-roentgen-ki': { html: RHO.HTML, sources: RHO.SOURCES || [], media: { ablauf: RHO.MEDIA?.ablauf || null, report: RHO.MEDIA?.report || null } },
+  'osteoporose-screening-roentgen-ki': { html: RHO.HTML, sources: RHO.SOURCES || [], media: { ablauf: RHO.MEDIA?.ablauf || null, report: gallery('rho', RHO, RHO_IMG) } },
   'ki-mammographie-transpara': { html: TRANSPARA.HTML, sources: TRANSPARA.SOURCES || [], media: { ablauf: TRANSPARA.MEDIA?.ablauf || null, report: TRANSPARA.MEDIA?.report || null } },
 };

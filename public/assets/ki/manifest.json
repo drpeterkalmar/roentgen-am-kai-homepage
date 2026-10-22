@@ -100,5 +100,23 @@
     "source": "536b85f73159daa93eda22f8495a381a954c085b2af73c62fcad669b94586e78",
     "width": 2382,
     "height": 2899
+  },
+  "rho-brustwirbelsaeule": {
+    "file": "rho-brustwirbelsaeule.png",
+    "source": "0c9620af1374f625ec03df283bc6207538093f5190cdfdd817f2ac3a1eb44007",
+    "width": 1700,
+    "height": 1399
+  },
+  "rho-hand": {
+    "file": "rho-hand.png",
+    "source": "b428b457e61b4cc13df105ac9b465735c2f4d75ab74c7c60ffa75550beaf53e5",
+    "width": 1700,
+    "height": 1399
+  },
+  "rho-thorax": {
+    "file": "rho-thorax.png",
+    "source": "0e8ef9be5d316651e293eb5c93c5f2e3520c5dd943baa8160361bd077dddc403",
+    "width": 1700,
+    "height": 1399
   }
 }

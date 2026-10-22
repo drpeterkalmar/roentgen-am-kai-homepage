@@ -6,7 +6,7 @@
 // Quellen (alle am 21.10.2026 selbst gelesen, DOIs über PubMed/Crossref geprüft):
 //   - ImageBiopsy Lab, Produktseite Rho (imagebiopsy.com/de-product/rho): Score 1–10 = Wahrscheinlichkeit einer
 //     niedrigen Knochenmineraldichte (DXA-T-Score < −1); Frontalaufnahmen LWS, BWS, Brustkorb, Becken, Knie,
-//     Hand/Handgelenk; ab 50; Schwellenwert und DXA-Zeitraum legt die Einrichtung fest; „kein diagnostisches Hilfsmittel“.
+//     Hand (laut EU-Konformitätserklärung „hand“, nicht Handgelenk); ab 50; Schwellenwert und DXA-Zeitraum legt die Einrichtung fest; „kein diagnostisches Hilfsmittel“.
 //   - 16 Bit Inc. (16bit.ai): Hersteller, Toronto.
 //   - Bilbily et al., J Am Coll Radiol 2024;21(4):633–639, doi:10.1016/j.jacr.2023.07.024 (Entwicklung/Validierung;
 //     Eingaben: Röntgenbild, Alter, Geschlecht).
@@ -56,9 +56,9 @@ export const FAQ = [
   }
 ];
 
-export const REVIEW = "BEANTWORTET (Peter, 21.10.2026 abends): ausgewertet wird, was die Software als geeignet annimmt (Text bleibt „geeignete Aufnahmen“); Rho kennt nur DEXA-Messungen im eigenen Haus → Satz „Befund mitbringen oder erwähnen“ ergänzt (interne Schwelle bleibt unveröffentlicht); Rho-Bericht sieht nur die Radiologin/der Radiologe, Hinweis steht nur bei auffälligem Wert im Befund; Altersgrenze „ab 50“ laut IFU Rev. 1.0 (17.08.2026); Auswertung lokal, keine Übertragung an Hersteller/Dritte; Zusatzanalyse kostenlos; Schreibweise „Rho“, Hersteller 16 Bit (Toronto), Vertrieb IB Lab (auch dexa.js); Studienaussagen freigegeben; keine zusätzliche Strahlenbelastung bestätigt; Bildplatz KI-RHO-02 vorerst aus dem Text genommen; Autor und Prüfvermerk Priv.-Doz. Dr. Peter Kalmar.\nOffen:\n1. Herstellerunterlagen (IFU, Softwareversion, CE/MDR) bei IB Lab angefragt.\n2. Demo-Bericht (KI-RHO-02) bei IB Lab angefragt – nach Eingang Bildplatz `<!--media:report-->` wieder einsetzen (Briefing unten in MEDIA.report).\n3. CE-Kennzeichnung auf der Seite erwähnen? – Georg fragen.";
+export const REVIEW = "BEANTWORTET (Herstellerunterlagen IB Lab, 22.10.2026): Rho 3.5.0 installiert; Zweckbestimmung laut EU-Konformitätserklärung (MDR, Klasse IIa) = Frontalaufnahmen von LWS, BWS, Brustkorb, Becken, Knie oder Hand ab 50 Jahren → Liste angepasst („Hand“ statt „Hand bzw. Handgelenk“, auch dexa.js); Score bezieht sich auf den niedrigeren T-Wert von Schenkelhals oder LWS (Bericht); Ergebnis wird verworfen, wenn Region/Projektion nicht passt (Bericht) → Satz ergänzt; Demo-Berichte von IB Lab eingebaut (KI-RHO-02, drei Beispiele Brustkorb/BWS/Hände, Studienkarte mit Prozentzahlen sowie Fußzeile mit Version/CE weggeschnitten).\nBEANTWORTET (Peter, 21.10.2026 abends): ausgewertet wird, was die Software als geeignet annimmt (Text bleibt „geeignete Aufnahmen“); Rho kennt nur DEXA-Messungen im eigenen Haus → Satz „Befund mitbringen oder erwähnen“ ergänzt (interne Schwelle bleibt unveröffentlicht); Rho-Bericht sieht nur die Radiologin/der Radiologe, Hinweis steht nur bei auffälligem Wert im Befund; Altersgrenze „ab 50“ laut IFU Rev. 1.0 (17.08.2026); Auswertung lokal, keine Übertragung an Hersteller/Dritte; Zusatzanalyse kostenlos; Schreibweise „Rho“, Hersteller 16 Bit (Toronto), Vertrieb IB Lab (auch dexa.js); Studienaussagen freigegeben; keine zusätzliche Strahlenbelastung bestätigt; Bildplatz KI-RHO-02 vorerst aus dem Text genommen; Autor und Prüfvermerk Priv.-Doz. Dr. Peter Kalmar.\nOffen:\n1. CE-Kennzeichnung auf der Seite erwähnen? – Georg gefragt (21.10.2026), Antwort ausständig. Nachweis liegt vor: MDR, Klasse IIa, Benannte Stelle 2862.";
 
 
 export const TITLE = "Knochengesundheit im Blick: KI-Screening mit Rho";
 
-export const UPDATED = "2026-10-21";
+export const UPDATED = "2026-10-22";

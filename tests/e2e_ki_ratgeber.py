@@ -38,9 +38,9 @@ fails = []
 WORDS = {"lama": (900, 1150), "hippo": (900, 1150), "koala": (900, 1100), "squirrel": (900, 1150), "frog": (900, 1150),
          "panda": (900, 1100), "rho": (950, 1200), "transpara": (1000, 1250)}
 FAQ_N = {"rho": 6, "transpara": 6}
-PLACEHOLDERS = {"koala": {"report": "KI-KOALA-01"}, "rho": {"ablauf": "KI-RHO-01"},   # KI-RHO-02: Demo-Bericht angefragt, Bildplatz vorerst raus
+PLACEHOLDERS = {"koala": {"report": "KI-KOALA-01"}, "rho": {"ablauf": "KI-RHO-01"},   # KI-RHO-02: Demo-Berichte IB Lab seit 22.10.2026 als Galerie
                 "transpara": {"report": "KI-TRANSPARA-01", "ablauf": "KI-TRANSPARA-02"}}
-SLIDES = {"lama": 4, "hippo": 2, "squirrel": 1, "frog": 2, "panda": 1}
+SLIDES = {"lama": 4, "hippo": 2, "squirrel": 1, "frog": 2, "panda": 1, "rho": 3}
 HOTSPOTS = {"squirrel": 4, "panda": 4}
 FORBIDDEN = ["Goldstandard", "100 %", "strahlungsfrei", "revolution", "modernste", "auf Expertenniveau",
              "ExpertInnen-Niveau", "15,8 Sekunden", "ICC 0,97", "300 %", "ersetzt die Radiologin nicht nur"]
@@ -64,7 +64,7 @@ IN_USE = ["lama", "hippo", "koala", "squirrel", "frog", "panda", "rho", "transpa
 check(sorted(m["id"] for m in MODS if m["inUse"]) == sorted(IN_USE), "„bei uns im Einsatz“ nur für bestätigten Einsatz (Rho, IB Lab, Transpara)")
 AUTHOR = "Priv.-Doz. Dr. Peter Kalmar"
 AUTHORED = {"uebersicht", "rho", "panda", "transpara"}   # Peter = Autor seiner Artikel; Georgs fünf: Praxis als Herausgeberin
-check("report" not in next(m for m in MODS if m["id"] == "rho")["markers"], "rho: Bildplatz KI-RHO-02 (Beispielreport) nicht im Text")
+check("report" in next(m for m in MODS if m["id"] == "rho")["markers"], "rho: Beispielberichte (KI-RHO-02) im Text")
 for m in MODS:
     lo, hi = WORDS[m["id"]]
     check(lo <= m["words"] <= hi, f"{m['id']}: {m['words']} Wörter ({lo}–{hi})")

@@ -1,7 +1,16 @@
 // Ratgeber-Artikel „Kniearthrose objektiv beurteilen: Wie IB Lab KOALA hilft“ – URL /ratgeber/kniearthrose-ki-koala
 // SEO-Titel (für ratgeber.js): „Kniearthrose im Röntgen erkennen | KI in Graz“
 // Hauptkeyword: Kniearthrose Röntgen Graz; Nebenkeywords: Kniearthrose erkennen, Gelenkspalt Knie, Kellgren-Lawrence, KI Röntgen.
-// Stand: 21.10.2026 (Entwurf, Freigabe durch die Praxis offen – siehe REVIEW).
+// Stand: 22.10.2026 (Entwurf, Freigabe durch die Praxis offen – siehe REVIEW).
+// Abgleich mit IFU KOALA 2.11 + DoC (MDD Klasse I) vom 22.10.2026
+//   (Gebrauchsanweisung KOALA-02-01 User Manual CE (DE), Dokumentversion 1.15, signiert 21.07.2022; DoC: MDD 93/42/EWG, Klasse I nach Regel 12,
+//   Selbsterklärung ohne Benannte Stelle, erste CE 11/2019, ausgestellt 20.09.2023 – NICHT MDR. CE/Klasse/Version NICHT auf die Seite, Entscheidung Georg.)
+//   IFU-Fakten: vollautomatisch, für AP/PA-Knieaufnahmen im Stehen mit gebeugtem Knie (Einzel- oder Doppelknie); Erwachsene mit Arthrose oder erhöhtem
+//   Risiko; Ausgaben je Knie: KL-Grad 0–4, OARSI-Grade 0–3 für Gelenkspaltverengung, Sklerose, Osteophyten (jeweils Maximalgrad), minimale
+//   Gelenkspaltbreite medial/lateral in mm, standardisierte Werte (auf einheitliche Tibiabreite), prozentuales Ungleichgewicht medial/lateral;
+//   Implantat/Gelenkersatz erkannt → keine Analyse, Hinweis im Bericht; Ergebnisse in der Software nicht editierbar, müssen ärztlich geprüft werden;
+//   Ergebnis hängt von Lagerung/Strahlrichtung ab (Positionierungshilfe empfohlen); trainiert an Daten einer US-Multicenter-Arthrosestudie.
+//   IFU vertraulich: nur in eigenen Worten, ohne Link; Genauigkeits-/Zeitangaben aus Anhang F/C bewusst NICHT übernommen.
 // Quellen (alle selbst geprüft, DOI per Crossref verifiziert):
 //   - Kellgren JH, Lawrence JS. Ann Rheum Dis 1957;16(4):494–502. doi:10.1136/ard.16.4.494 (Gradeinteilung 0–4)
 //   - Sakellariou G et al. EULAR-Empfehlungen Bildgebung bei Arthrose. Ann Rheum Dis 2017;76(9):1484–1494. doi:10.1136/annrheumdis-2016-210815
@@ -9,9 +18,10 @@
 //   - Nehrer S et al. Cartilage 2021;13(1 Suppl):957S–965S. doi:10.1177/1947603519888793 (Leserstudie mit KOALA, 124 Bilder aus der OAI-Datenbank;
 //     nur qualitativ zitiert, keine Prozentwerte)
 //   - Hersteller: imagebiopsy.com/product/koala-ce (Funktionsumfang, Zweckbestimmung: Stehendaufnahmen, ersetzt keine Patientenbeurteilung)
+//   - Hersteller-Gebrauchsanweisung KOALA (deutsch, Stand Juli 2022), von IB Lab am 22.10.2026 zur Verfügung gestellt (ohne Link)
 // Bewusst NICHT übernommen: „300 % höhere Übereinstimmung“, „Goldstandard“, Sensitivitäts-/Spezifitäts- und Zeitangaben des Herstellers.
 // Leitplanken: KI misst/markiert/standardisiert, stellt keine Diagnose; KL-Grad ≠ Schmerzstärke, OP-Notwendigkeit oder Prognose;
-// ärztlicher Befund entscheidet. Aufnahme im Stehen nur vorsichtig („wenn auf der Zuweisung angegeben bzw. üblicherweise“).
+// ärztlicher Befund entscheidet. Aufnahme im Stehen von der Praxis bestätigt (21.10.2026); ob gebeugt (Zweckbestimmung IFU) offen – siehe REVIEW.
 // Brief-Hinweis: Die Studie Brejnebøl 2022 (Eur J Radiol) betrifft ein anderes Produkt (Radiobotics) und wurde deshalb nicht verwendet.
 // [geteilt] Inhalte (nur Artikel-/Übersichtsseite). Metadaten: ki-koala.js
 
@@ -19,7 +29,7 @@ export const HTML = `
 <p>Das Knie schmerzt beim Stiegensteigen, morgens ist es steif, nach einem langen Spaziergang wird es dick. Viele Menschen denken dann an Arthrose. Ob und wie stark sich das Gelenk verändert hat, zeigt oft ein Röntgenbild. Wer ein <strong>Kniearthrose-Röntgen in Graz</strong> bei Röntgen am Kai machen lässt, profitiert seit Oktober 2026 zusätzlich von einer Software: IB Lab KOALA. Hier lesen Sie, was sie misst, was die Fachbegriffe im Befund bedeuten und wo die Grenzen liegen.</p>
 
 <h2>Was ist Kniearthrose?</h2>
-<p>Arthrose ist ein Verschleiß des Gelenks. Am Anfang steht meist der <strong>Gelenkknorpel</strong>, die glatte Schutzschicht auf den Knochenenden. Er wird dünner und rauer. Der Knochen darunter reagiert: Er verdichtet sich und bildet an den Rändern knöcherne Anbauten. Das Knie ist eines der am häufigsten betroffenen Gelenke.</p>
+<p>Arthrose ist ein Verschleiß des Gelenks. Am Anfang steht meist der <strong>Gelenkknorpel</strong>, die glatte Schutzschicht auf den Knochenenden. Er wird dünner und rauer. Der Knochen darunter reagiert: Er verdichtet sich und bildet an den Rändern knöcherne Anbauten.</p>
 <p>Typische Beschwerden sind Anlaufschmerzen, Schmerzen bei Belastung, Steifheit und manchmal Schwellungen. Arthrose entwickelt sich meist langsam, über Jahre. Alter, Übergewicht, frühere Verletzungen und eine ungünstige Beinachse können dazu beitragen.</p>
 
 <h2>Wann ist ein Knie-Röntgen sinnvoll?</h2>
@@ -27,15 +37,15 @@ export const HTML = `
 <p>Bei Arthrose-Fragestellungen röntgen wir das Knie <strong>im Stehen</strong>, also unter Belastung durch das Körpergewicht. Das empfehlen auch europäische Fachleute. Der Grund: Im Liegen kann der Gelenkspalt breiter wirken, als er im Alltag ist. Mehr zu den Knieaufnahmen finden Sie unter <a href="/roentgen-graz#region-knie">Röntgen des Knies</a>.</p>
 
 <h2>Was IB Lab KOALA macht</h2>
-<p>KOALA ist eine Software der IB Lab GmbH aus Wien. Der Name steht für „Knee Osteoarthritis Labeling Assistant“, also Assistent zur Einstufung der Kniearthrose. Sie arbeitet mit <strong>künstlicher Intelligenz (KI)</strong>: Ein Rechenmodell hat an einer großen Zahl von Knie-Röntgenbildern gelernt, typische Merkmale zu erkennen.</p>
-<p>Bei passenden Aufnahmen im Stehen wertet KOALA das Bild nach festen Regeln aus. Sie misst den Gelenkspalt, schätzt Osteophyten und Sklerose nach den Kriterien der Osteoarthritis Research Society International (OARSI) ein und schlägt einen Kellgren-Lawrence-Grad vor. Die Ergebnisse erscheinen in einem Bericht mit Markierungen im Bild.</p>
-<p>Die Radiologin bzw. der Radiologe prüft jede Messung, vergleicht sie mit dem eigenen Eindruck und korrigiert sie, wenn nötig. Der Befund bleibt eine ärztliche Leistung. KI im Röntgen ist hier ein Messwerkzeug, keine Diagnose.</p>
+<p>KOALA ist eine Software der IB Lab GmbH aus Wien. Der Name steht für „Knee Osteoarthritis Labeling Assistant“, also Assistent zur Einstufung der Kniearthrose. Sie arbeitet mit <strong>künstlicher Intelligenz (KI)</strong>: Ein Rechenmodell hat an einer großen Zahl von Knie-Röntgenbildern aus einer US-amerikanischen Arthrose-Studie gelernt, typische Merkmale zu erkennen.</p>
+<p>Laut Hersteller ist KOALA für Erwachsene gedacht, und zwar für Knieaufnahmen von vorne oder hinten im Stehen. Ein Bild kann ein oder beide Knie zeigen; jedes wird getrennt nach festen Regeln ausgewertet. Die Software misst den Gelenkspalt, stuft Gelenkspaltverschmälerung, Osteophyten und Sklerose nach den Kriterien der Osteoarthritis Research Society International (OARSI) von 0 bis 3 ein und schlägt einen Kellgren-Lawrence-Grad von 0 bis 4 vor. Die Ergebnisse erscheinen in einem Bericht, die Messstellen werden im Bild markiert.</p>
+<p>Die Radiologin bzw. der Radiologe prüft jedes Ergebnis. Die Software-Werte selbst lassen sich nicht verändern. Weicht die ärztliche Einschätzung ab, gilt sie im Befund. KI im Röntgen ist hier ein Messwerkzeug, keine Diagnose.</p>
 <p>In einer Studie mit 124 Knie-Röntgenbildern aus einer US-Forschungsdatenbank stimmten Ärztinnen und Ärzte mit KOALA-Bericht in ihrer Einstufung besser untereinander überein als ohne. Die Studie lief an ausgewählten Studienbildern, nicht im Praxisalltag. Über Schmerzen oder Behandlungserfolge sagt sie nichts aus.</p>
 <!--media:report-->
 
 <h2>Die Fachbegriffe im Befund einfach erklärt</h2>
 <h3>Gelenkspaltbreite und Gelenkspaltverschmälerung</h3>
-<p>Knorpel ist im Röntgenbild nicht direkt sichtbar. Man sieht aber den Abstand zwischen Oberschenkel- und Schienbeinknochen, den <strong>Gelenkspalt</strong>. Beim Gelenkspalt am Knie wird die Innenseite (medial) von der Außenseite (lateral) unterschieden. Wird der Knorpel dünner, wird der Spalt schmäler. Fachleute sprechen von Gelenkspaltverschmälerung. KOALA misst die engste Stelle, die minimale Gelenkspaltbreite, in Millimetern.</p>
+<p>Knorpel ist im Röntgenbild nicht direkt sichtbar. Man sieht aber den Abstand zwischen Oberschenkel- und Schienbeinknochen, den <strong>Gelenkspalt</strong>. Beim Gelenkspalt am Knie wird die Innenseite (medial) von der Außenseite (lateral) unterschieden. Wird der Knorpel dünner, wird der Spalt schmäler. Fachleute sprechen von Gelenkspaltverschmälerung. KOALA misst die engste Stelle, die minimale Gelenkspaltbreite, in Millimetern, getrennt für innen und außen. Dazu kommen auf eine einheitliche Knochenbreite umgerechnete Vergleichswerte und der Unterschied zwischen beiden Seiten.</p>
 <h3>Osteophyten</h3>
 <p>Osteophyten sind knöcherne Randzacken. Der Körper bildet sie an den Gelenkrändern, wenn das Gelenk stärker beansprucht wird. Kleine Osteophyten sind im Alter häufig und verursachen nicht unbedingt Beschwerden.</p>
 <h3>Subchondrale Sklerose</h3>
@@ -55,20 +65,20 @@ export const HTML = `
 <p>Ein KI-Wert ist deshalb kein Maß für die Schmerzstärke. Er sagt nicht, ob eine Operation nötig ist, und er ist keine persönliche Prognose. Über die Behandlung entscheiden Sie gemeinsam mit Ihrer behandelnden Ärztin oder Ihrem Arzt, auf Basis von Beschwerden, Untersuchung und Befund.</p>
 
 <h2>Warum Verlaufskontrollen gleich gemessen werden sollten</h2>
-<p>Ein Routine-Röntgen in festen Abständen ist bei Arthrose meist nicht nötig. Sinnvoll kann ein neues Bild sein, wenn sich die Beschwerden deutlich ändern oder eine Behandlung geplant wird. Dann ist entscheidend, dass alte und neue Aufnahme vergleichbar ausgewertet werden. Eine Software misst jedes Mal nach denselben Regeln. Das kann helfen, echte Veränderungen von Messunterschieden zu trennen. Gleiche Aufnahmebedingungen bleiben dabei wichtig.</p>
+<p>Ein Routine-Röntgen in festen Abständen ist bei Arthrose meist nicht nötig. Sinnvoll kann ein neues Bild sein, wenn sich die Beschwerden deutlich ändern oder eine Behandlung geplant wird. Dann ist entscheidend, dass alte und neue Aufnahme vergleichbar ausgewertet werden. KOALA misst jedes Mal nach denselben Regeln an denselben Stellen. Das kann helfen, echte Veränderungen von Messunterschieden zu trennen. Gleiche Aufnahmebedingungen bleiben wichtig, denn auch die Lagerung beeinflusst die Messwerte.</p>
 
 <h2>Ablauf bei Röntgen am Kai</h2>
 <ol>
 <li>Sie kommen mit gültiger ärztlicher Zuweisung und e-card während der Röntgenzeiten, ohne Termin. Eine Wunschzeit kann reserviert werden.</li>
 <li>Die Radiologietechnologin bzw. der Radiologietechnologe fertigt die Aufnahmen an, die auf der Zuweisung angegeben sind, bei Arthrose-Fragestellungen im Stehen. Es werden nur so viele Aufnahmen wie nötig gemacht; die Strahlenbelastung ist gering.</li>
-<li>Bei passenden Aufnahmen läuft die KOALA-Auswertung im Hintergrund.</li>
+<li>Bei passenden Aufnahmen läuft die KOALA-Auswertung automatisch auf einem Rechner in der Praxis.</li>
 <li>Die Radiologin bzw. der Radiologe beurteilt das Bild, prüft die KI-Messungen und erstellt den Befund.</li>
 <li>Befund und Bilder gehen an die zuweisende Ärztin bzw. den Arzt. Sie sind zusätzlich über ELGA und das Patientenportal portal.marc.at verfügbar.</li>
 </ol>
 
 <h2>Nutzen und Grenzen</h2>
 <p><strong>Nutzen:</strong> KOALA misst nach festen Regeln und dokumentiert die Ergebnisse nachvollziehbar. Das macht die Beurteilung einheitlicher und Verlaufskontrollen besser vergleichbar.</p>
-<p><strong>Grenzen:</strong> Die Software beurteilt nur, was im Röntgenbild sichtbar ist. Knorpel, Menisken und Bänder zeigt erst eine andere Untersuchung, etwa eine Magnetresonanztomographie (MRT), die Röntgen am Kai nicht anbietet. Ungewöhnliche Lagerung, Implantate oder andere Erkrankungen können Messungen erschweren. Deshalb gibt es keinen Befund ohne ärztliche Kontrolle.</p>
+<p><strong>Grenzen:</strong> Die Software beurteilt nur, was im Röntgenbild sichtbar ist. Knorpel, Menisken und Bänder zeigt erst eine andere Untersuchung, etwa eine Magnetresonanztomographie (MRT), die Röntgen am Kai nicht anbietet. Ungewöhnliche Lagerung oder eingeschränkte Bildqualität können Messungen verfälschen. Erkennt die Software eine Knieprothese oder ein anderes Implantat, wertet sie dieses Knie nicht aus und vermerkt das im Bericht. Bei Kindern und Jugendlichen ist KOALA nicht vorgesehen. Deshalb gibt es keinen Befund ohne ärztliche Kontrolle.</p>
 <p>Wenn Ihr Knie auch durch eine X- oder O-Bein-Stellung belastet wird, lesen Sie mehr über die <a href="/ratgeber/ki-beinachsenvermessung-lama">KI-Vermessung der Beinachse</a>. Einen Überblick über alle Programme gibt der Artikel <a href="/ratgeber/kuenstliche-intelligenz-radiologie">Künstliche Intelligenz in der Radiologie</a>. Alles Wichtige zum Röntgen bei Kniearthrose in Graz, etwa zu den Röntgenzeiten, finden Sie auf der Seite <a href="/roentgen-graz">Röntgen in Graz</a>.</p>
 `;
 
@@ -93,5 +103,6 @@ export const SOURCES = [
   "Kellgren JH, Lawrence JS. Radiological assessment of osteo-arthrosis. Annals of the Rheumatic Diseases. 1957;16(4):494–502. <a href=\"https://doi.org/10.1136/ard.16.4.494\" target=\"_blank\" rel=\"noopener noreferrer\">doi:10.1136/ard.16.4.494<span class=\"sr-only\"> (öffnet in neuem Fenster)</span></a>",
   "Sakellariou G, Conaghan PG, Zhang W, et al. EULAR recommendations for the use of imaging in the clinical management of peripheral joint osteoarthritis. Annals of the Rheumatic Diseases. 2017;76(9):1484–1494. <a href=\"https://doi.org/10.1136/annrheumdis-2016-210815\" target=\"_blank\" rel=\"noopener noreferrer\">doi:10.1136/annrheumdis-2016-210815<span class=\"sr-only\"> (öffnet in neuem Fenster)</span></a>",
   "Nehrer S, Ljuhar R, Steindl P, et al. Automated knee osteoarthritis assessment increases physicians’ agreement rate and accuracy: data from the Osteoarthritis Initiative. Cartilage. 2021;13(1 Suppl):957S–965S. <a href=\"https://doi.org/10.1177/1947603519888793\" target=\"_blank\" rel=\"noopener noreferrer\">doi:10.1177/1947603519888793<span class=\"sr-only\"> (öffnet in neuem Fenster)</span></a>",
-  "IB Lab GmbH (ImageBiopsy Lab). IB Lab KOALA – Produktinformation und Zweckbestimmung. <a href=\"https://www.imagebiopsy.com/product/koala-ce\" target=\"_blank\" rel=\"noopener noreferrer\">imagebiopsy.com/product/koala-ce<span class=\"sr-only\"> (öffnet in neuem Fenster)</span></a>"
+  "IB Lab GmbH (ImageBiopsy Lab). IB Lab KOALA – Produktinformation und Zweckbestimmung. <a href=\"https://www.imagebiopsy.com/product/koala-ce\" target=\"_blank\" rel=\"noopener noreferrer\">imagebiopsy.com/product/koala-ce<span class=\"sr-only\"> (öffnet in neuem Fenster)</span></a>",
+  "IB Lab GmbH. IB Lab KOALA – Gebrauchsanweisung (deutsch), Stand Juli 2022. Vom Hersteller zur Verfügung gestellt."
 ];

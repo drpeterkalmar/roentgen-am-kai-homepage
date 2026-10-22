@@ -1,4 +1,11 @@
-// Ratgeber-Artikel „Knochenalter bestimmen: Wie KI die Auswertung unterstützt“ (IB Lab PANDA). Stand 21.10.2026.
+// Ratgeber-Artikel „Knochenalter bestimmen: Wie KI die Auswertung unterstützt“ (IB Lab PANDA). Stand: 22.10.2026.
+// Abgleich mit IFU PANDA 1.06 + DoC (MDD 93/42/EWG Klasse I, Regel 12, Selbsterklärung ohne Benannte Stelle, ausgestellt 20.09.2023 – NICHT MDR) vom 22.10.2026.
+//   IFU = PANDA-02-01 User Manual CE (DE), Produkt-Erscheinungsdatum 26.09.2022; dazu PANDA-02-02 User Training CE (DE). Vertraulich: nur in eigenen Worten.
+//   Zweckbestimmung: Knochenalter nach Greulich & Pyle auf Handröntgen, 36–192 Monate (Mädchen) bzw. 36–204 Monate (Buben), chronologisches Alter.
+//   Größenschätzung nach Bayley & Pinneau nur, wenn das Knochenalter in den Prognosetabellen liegt (je nach Geschlecht und Status
+//   verzögert/normal/akzeleriert frühestens ab 6–7 J. Knochenalter, obere Grenze 13 J. bis 18 J. 6 M.), und nur mit Körpergröße.
+//   PANDA-Ergebnisse sind nicht editierbar (Ärztin/Arzt weicht ggf. im Befund ab). PA-Aufnahme einer Hand; IFU nennt die nicht dominante Hand.
+//   Keine CE/Klasse/MDD/Version auf der Seite (Entscheidung Georg offen).
 // URL: /ratgeber/knochenalter-bestimmen-ki · SEO-Titel: „Knochenalter bei Kindern bestimmen | Röntgen Graz“
 // Hauptkeyword: Knochenalter bestimmen Graz; Nebenkeywords: Knochenalter Röntgen Hand, Wachstumspotenzial Kind,
 // Greulich Pyle, KI Radiologie.
@@ -9,22 +16,23 @@
 //   - Gräfe et al., Eur Radiol 2024;34(7):4407–4413, doi:10.1007/s00330-023-10543-0 (Validierung IB Lab PANDA, 306 Kinder, Leipzig;
 //     Interessenkonflikt: Chung und DiFranco bei IB Lab angestellt). Nur qualitativ zitiert, keine Kennzahlen übernommen.
 //   - Herstellerseite IB Lab PANDA CE (imagebiopsy.com/product/panda-ce): Funktionsumfang, Zweckbestimmung.
-// Leitplanken: keine Zeit-/Genauigkeitszahlen aus Herstellerwerbung („6,2 Sekunden“, „±4,2 Monate“ bewusst NICHT übernommen);
+//   - Gebrauchsanweisung IB Lab PANDA (deutsch), Stand September 2022 (vom Hersteller 22.10.2026 zur Verfügung gestellt, ohne Link).
+// Leitplanken: keine Zeit-/Genauigkeitszahlen aus Herstellerwerbung/IFU („6,2 Sekunden“, „±4,2 Monate“, „±2,5 cm“ bewusst NICHT übernommen);
 // KI misst und standardisiert, stellt keine Diagnose; Größenschätzung = Schätzung mit Unsicherheit, keine individuelle Prognose;
 // Beispielbericht = Demo-Datensatz des Herstellers, Werte werden nicht bewertet; Strahlenschutz ohne Dosiszahlen.
 // Praxis (Peter 21.10.2026 abends): PANDA wertet alle Knochenalter-Aufnahmen aus; sitzend, linke Hand flach, Finger leicht
 // gespreizt; Eltern können mit Schutzschürze im Raum bleiben; Körpergröße wird erfragt oder gemessen und steht mit der
-// Größenschätzung im Befund. Altersbereich bleibt allgemein (IFU-Bereich bei IB Lab angefragt).
+// Größenschätzung im Befund. Altersbereich seit 22.10.2026 konkret laut IFU (Mädchen 3–16, Buben 3–17 Jahre).
 // [geteilt] Inhalte (nur Artikel-/Übersichtsseite). Metadaten: ki-panda.js
 
 export const HTML = `
 <p>Kinder wachsen nicht alle im gleichen Tempo. Manche sind früh groß, andere holen erst später auf. Ob das Skelett eines Kindes seinem Alter etwas voraus ist oder ein wenig nachhinkt, zeigt das <strong>Knochenalter</strong>. Sichtbar wird es auf einer Röntgenaufnahme der linken Hand. Wenn Ihre Kinderärztin oder Ihr Kinderarzt das Knochenalter bestimmen lassen möchte, ist das in Graz bei Röntgen am Kai mit Zuweisung möglich.</p>
-<p>Seit Oktober 2026 unterstützt dabei eine Software mit künstlicher Intelligenz (KI) die Auswertung: IB Lab PANDA von ImageBiopsy Lab aus Wien. Wir setzen sie bei allen Knochenalter-Aufnahmen ein. Hier lesen Eltern und Jugendliche, wie die Untersuchung abläuft und was die KI dabei tut – und was nicht.</p>
+<p>Seit Oktober 2026 unterstützt dabei eine Software mit künstlicher Intelligenz (KI) die Auswertung: IB Lab PANDA von ImageBiopsy Lab aus Wien. Wir setzen sie bei Knochenalter-Aufnahmen ein. Hier lesen Eltern und Jugendliche, wie die Untersuchung abläuft und was die KI dabei tut – und was nicht.</p>
 
 <h2>Anlass: Wann wird das Knochenalter bestimmt?</h2>
 <p>Das <strong>kalendarische Alter</strong> zählt die Jahre seit der Geburt. Das <strong>Knochenalter</strong> beschreibt dagegen, wie weit die Knochen in ihrer Entwicklung sind. An den Enden der Finger- und Mittelhandknochen liegen die Wachstumsfugen. Das sind knorpelige Zonen, von denen das Längenwachstum ausgeht. Im Lauf der Kindheit erscheinen die Handwurzelknochen nacheinander, die Knochenkerne werden größer und verändern ihre Form. Gegen Ende der Pubertät schließen sich die Wachstumsfugen.</p>
 <h3>Warum Knochenalter und Lebensalter voneinander abweichen</h3>
-<p>Eine Abweichung um einige Monate ist häufig und meist ohne besondere Bedeutung. Wie schnell das Skelett reift, hängt unter anderem vom Geschlecht, von der Veranlagung in der Familie, von der Ernährung und vom Zeitpunkt der Pubertät ab. Auch Hormone und länger dauernde Erkrankungen können die Reifung beschleunigen oder verlangsamen. Viele Kinder, die als „Spätentwickler“ gelten, haben ein etwas jüngeres Knochenalter und wachsen dafür oft länger.</p>
+<p>Eine Abweichung um einige Monate ist häufig und meist ohne besondere Bedeutung. Wie schnell das Skelett reift, hängt unter anderem vom Geschlecht, von der familiären Veranlagung, von der Ernährung und vom Zeitpunkt der Pubertät ab. Auch Hormone und länger dauernde Erkrankungen können die Reifung beschleunigen oder verlangsamen. Viele Kinder, die als „Spätentwickler“ gelten, haben ein etwas jüngeres Knochenalter und wachsen dafür oft länger.</p>
 <p>Veranlasst wird die Untersuchung meist von der Kinderheilkunde oder von Fachleuten für Hormonerkrankungen (Endokrinologie), zum Beispiel</p>
 <ul>
 <li>wenn ein Kind deutlich kleiner oder größer ist als Gleichaltrige oder sich sein Wachstumstempo verändert,</li>
@@ -34,34 +42,34 @@ export const HTML = `
 </ul>
 
 <h2>Ablauf: So läuft das Knochenalter-Röntgen der Hand ab</h2>
-<p>Um das Knochenalter in Graz bei Röntgen am Kai bestimmen zu lassen, braucht es eine ärztliche <strong>Zuweisung</strong> und die e-card. Das ist während der Röntgenzeiten ohne Termin möglich, eine Wunschzeit kann reserviert werden. Allgemeine Informationen stehen auf der Seite <a href="/roentgen-graz">Röntgen in Graz</a>, Hinweise zur Hand im Abschnitt <a href="/roentgen-graz#region-hand">Hand und Handgelenk</a>.</p>
-<p>Eine besondere Vorbereitung ist nicht nötig. Ringe, Uhren und Armbänder an der linken Hand werden vorher abgenommen. Ihr Kind sitzt, die linke Hand liegt flach mit der Handfläche nach unten auf der Bildplatte, die Finger sind leicht gespreizt. Wichtig ist, für den kurzen Moment der Aufnahme stillzuhalten. Die Untersuchung tut nicht weh. Eltern können dabei mit Schutzschürze im Raum bleiben.</p>
-<p>Geröntgt wird die linke Hand, weil auch die Referenzbilder linke Hände zeigen – egal, ob ein Kind Rechts- oder Linkshänder ist.</p>
-<p>Für eine Schätzung der Erwachsenengröße ist zusätzlich die aktuelle Körpergröße nötig. Wir erfragen oder messen sie. Sie steht mit der Größenschätzung im Befund.</p>
+<p>Um das Knochenalter in Graz bei Röntgen am Kai bestimmen zu lassen, braucht es eine ärztliche <strong>Zuweisung</strong> und die e-card. Das ist während der Röntgenzeiten ohne Termin möglich, eine Wunschzeit kann reserviert werden. Mehr dazu auf der Seite <a href="/roentgen-graz">Röntgen in Graz</a> und im Abschnitt <a href="/roentgen-graz#region-hand">Hand und Handgelenk</a>.</p>
+<p>Eine besondere Vorbereitung ist nicht nötig. Schmuck und Uhr an der linken Hand werden vorher abgenommen. Ihr Kind sitzt, die linke Hand liegt flach mit der Handfläche nach unten auf der Bildplatte, die Finger sind leicht gespreizt. Wichtig ist, für den kurzen Moment der Aufnahme stillzuhalten. Die Untersuchung tut nicht weh. Eltern können dabei mit Schutzschürze im Raum bleiben.</p>
+<p>Geröntgt wird die linke Hand, weil auch die Referenzbilder linke Hände zeigen.</p>
+<p>Für die Größenschätzung braucht es zusätzlich die aktuelle Körpergröße. Wir erfragen oder messen sie; sie steht mit der Schätzung im Befund.</p>
 
 <h2>Ergebnis: Was steht im Befund?</h2>
 <h3>Die Methode nach Greulich und Pyle</h3>
-<p>Die verbreitetste Methode stammt von William Greulich und Idell Pyle. Ihr Atlas der Skelettentwicklung von Hand und Handgelenk erschien 1959 in zweiter Auflage. Er enthält Referenzaufnahmen von Buben und Mädchen in vielen Altersstufen. Bei der Auswertung wird die Aufnahme des Kindes mit diesen Referenzbildern verglichen. Das Knochenalter entspricht der Altersstufe, deren Bild am besten passt. Ein neueres Handbuch von Gaskin und Kollegen ergänzt Tabellen zur üblichen Streuung.</p>
+<p>Die verbreitetste Methode stammt von William Greulich und Idell Pyle. Ihr Atlas von 1959 enthält Referenzaufnahmen von Buben und Mädchen in vielen Altersstufen. Bei der Auswertung wird die Aufnahme des Kindes mit diesen Referenzbildern verglichen. Das Knochenalter entspricht der Altersstufe, deren Bild am besten passt. Ein neueres Handbuch von Gaskin und Kollegen ergänzt Tabellen zur üblichen Streuung.</p>
 <h3>Der übliche Streubereich</h3>
 <p>Weil Kinder unterschiedlich schnell reifen, gibt es für jedes Alter einen üblichen Streubereich. Er wird als <strong>Standardabweichung</strong> angegeben, ein statistisches Maß für die normale Schwankung. Liegt das Knochenalter innerhalb von zwei Standardabweichungen um das kalendarische Alter, gilt es als altersentsprechend. Liegt es darüber, spricht man von einem beschleunigten, darunter von einem verzögerten Knochenalter. Das ist zunächst eine Beschreibung und keine Diagnose.</p>
 <h3>Wachstumspotenzial und Größenschätzung</h3>
-<p>Aus dem Knochenalter lässt sich abschätzen, welcher Anteil der Erwachsenengröße schon erreicht ist. Der Rest ist das verbleibende <strong>Wachstumspotenzial</strong> eines Kindes. Nancy Bayley und Samuel Pinneau haben dafür 1952 Tabellen veröffentlicht, die auf den Standards von Greulich und Pyle beruhen. Teilt man die aktuelle Körpergröße durch den erreichten Anteil, ergibt sich eine geschätzte Erwachsenengröße.</p>
-<p>Diese Zahl ist eine <strong>Schätzung mit Unsicherheit</strong> und keine garantierte Vorhersage. Die Tabellen beruhen auf Messungen von rund 200 gesunden Kindern aus Kalifornien aus der Mitte des 20. Jahrhunderts. Bei Erkrankungen, Behandlungen oder einem ungewöhnlichen Pubertätsverlauf kann die tatsächliche Größe abweichen. Deshalb nennt der Bericht einen Schwankungsbereich. Beurteilt wird die Zahl immer gemeinsam mit dem bisherigen Wachstumsverlauf, der Größe der Eltern und der ärztlichen Untersuchung.</p>
+<p>Aus dem Knochenalter lässt sich abschätzen, welcher Anteil der Erwachsenengröße schon erreicht ist. Der Rest ist das verbleibende <strong>Wachstumspotenzial</strong> eines Kindes. Nancy Bayley und Samuel Pinneau haben dafür 1952 Tabellen veröffentlicht, die auf den Standards von Greulich und Pyle beruhen – getrennt für Mädchen und Buben sowie für verzögerte, altersentsprechende und beschleunigte Reifung. Teilt man die aktuelle Körpergröße durch den erreichten Anteil, ergibt sich eine geschätzte Erwachsenengröße.</p>
+<p>Diese Zahl ist eine <strong>Schätzung mit Unsicherheit</strong> und keine sichere Vorhersage. Die Tabellen beruhen auf Messungen von rund 200 gesunden Kindern aus Kalifornien aus der Mitte des 20. Jahrhunderts. Bei Erkrankungen, Behandlungen oder einem ungewöhnlichen Pubertätsverlauf kann die tatsächliche Größe abweichen. Deshalb nennt der Bericht einen Schwankungsbereich. Beurteilt wird die Zahl immer gemeinsam mit dem bisherigen Wachstumsverlauf, der Größe der Eltern und der ärztlichen Untersuchung.</p>
+<p>Die Software berechnet eine Größenschätzung nur, wenn das Knochenalter in diesen Tabellen vorkommt: etwa ab 6 bis 7 Jahren bis ins Jugendalter. Die genauen Grenzen hängen von Geschlecht und Reifung ab.</p>
 
 <!--media:report-->
 
 <h2>Rolle der KI: Was die Software übernimmt</h2>
-<p>IB Lab PANDA beruht auf maschinellem Lernen (Deep Learning). Die Software wertet die digitale Handaufnahme nach dem Schema von Greulich und Pyle aus und erstellt einen einheitlichen Bericht: Knochenalter, Streubereich, Einordnung als verzögert, altersentsprechend oder beschleunigt, erreichter Anteil der Erwachsenengröße und eine Größenschätzung nach Bayley und Pinneau.</p>
-<p>Der Nutzen liegt vor allem in der Standardisierung. Beim Vergleich mit dem Atlas schätzen verschiedene Fachleute mitunter leicht unterschiedlich, manchmal sogar dieselbe Person an verschiedenen Tagen. Die Software wendet bei jeder Aufnahme dieselben Kriterien an.</p>
-<p>Eine Studie aus Leipzig verglich die Software an Handaufnahmen von 306 Kindern mit der Einschätzung von drei erfahrenen Fachleuten aus Kinderradiologie und Endokrinologie. Im Mittel stimmten die Ergebnisse gut überein, im Einzelfall gab es Abweichungen von einigen Monaten.</p>
-<p>Die Software stellt keine Diagnose. Die Radiologin bzw. der Radiologe sieht sich jede Aufnahme selbst an, prüft das Ergebnis auf Plausibilität und kann es korrigieren. Der Befund ist ärztlich. Mehr dazu in der <a href="/ratgeber/kuenstliche-intelligenz-radiologie">Übersicht zu KI in der Radiologie</a>.</p>
+<p>IB Lab PANDA beruht auf maschinellem Lernen (Deep Learning). Die Software wertet die Handaufnahme vollautomatisch nach Greulich und Pyle aus und erstellt einen einheitlichen Bericht: Knochenalter, Streubereich, Einordnung als verzögert, altersentsprechend oder beschleunigt, erreichter Anteil der Erwachsenengröße und, wenn möglich, eine Größenschätzung nach Bayley und Pinneau.</p>
+<p>Der Nutzen liegt vor allem in der Standardisierung. Beim Vergleich mit dem Atlas schätzen Fachleute mitunter leicht unterschiedlich. Die Software wendet bei jeder Aufnahme dieselben Kriterien an.</p>
+<p>Eine Studie aus Leipzig verglich die Software an Handaufnahmen von 306 Kindern mit drei erfahrenen Fachleuten. Im Mittel stimmten die Ergebnisse gut überein, im Einzelfall gab es Abweichungen von einigen Monaten.</p>
+<p>Die Software stellt keine Diagnose. Die Radiologin bzw. der Radiologe sieht sich jede Aufnahme selbst an, prüft das Ergebnis auf Plausibilität und kann im Befund davon abweichen. Der Befund ist ärztlich. Mehr dazu in der <a href="/ratgeber/kuenstliche-intelligenz-radiologie">Übersicht zu KI in der Radiologie</a>.</p>
 
 <h2>Grenzen: Was das Knochenalter nicht verrät</h2>
 <p>Das Knochenalter ist ein Baustein, kein fertiges Urteil. Es erklärt für sich allein nicht, warum ein Kind früher oder später wächst.</p>
 <ul>
 <li>Die Referenzbilder des Atlas stammen aus einer amerikanischen Studie aus der Mitte des 20. Jahrhunderts. Heutige Kinder unterschiedlicher Herkunft reifen teils etwas anders.</li>
-<li>Die Software ist für einen festgelegten Altersbereich vorgesehen, etwa vom dritten Lebensjahr bis ins Jugendalter. Bei Verletzungen, Fehlbildungen oder eingeschränkter Bildqualität beurteilt die Radiologin bzw. der Radiologe die Aufnahme besonders sorgfältig selbst.</li>
-<li>Eine einzelne Größenschätzung ist eine Momentaufnahme. Aussagekräftiger ist der Verlauf mehrerer Messungen der Körpergröße.</li>
+<li>Die Software ist für Kinder ab 3 Jahren vorgesehen, bei Mädchen bis 16 und bei Buben bis 17 Jahre. Schlechte Bildqualität, ungünstige Lagerung, Verletzungs- oder Operationsfolgen und Fehlbildungen gleicht sie nicht aus. Solche Aufnahmen beurteilt die Radiologin bzw. der Radiologe besonders sorgfältig.</li>
 </ul>
 <p>Wie es nach dem Befund weitergeht, entscheidet die zuweisende Ärztin bzw. der zuweisende Arzt, bei Bedarf gemeinsam mit der Kinderheilkunde oder der Endokrinologie.</p>
 
@@ -96,7 +104,7 @@ export const MEDIA = {
     {
       "n": 4,
       "label": "Wachstumspotenzial und Größenschätzung",
-      "text": "Hier steht, welcher Anteil der Erwachsenengröße laut den Tabellen nach Bayley und Pinneau schon erreicht ist, und die daraus berechnete Erwachsenengröße. Das ist eine Schätzung mit Unsicherheit und keine garantierte Vorhersage, deshalb ist ein Schwankungsbereich angegeben."
+      "text": "Hier steht, welcher Anteil der Erwachsenengröße laut den Tabellen nach Bayley und Pinneau schon erreicht ist, und die daraus berechnete Erwachsenengröße. Das ist eine Schätzung mit Unsicherheit und keine sichere Vorhersage, deshalb ist ein Schwankungsbereich angegeben."
     }
   ]
 };
@@ -106,5 +114,6 @@ export const SOURCES = [
   "Bayley N, Pinneau SR. Tables for predicting adult height from skeletal age: revised for use with the Greulich-Pyle hand standards. J Pediatr. 1952;40(4):423–441. <a href=\"https://doi.org/10.1016/S0022-3476(52)80205-7\" target=\"_blank\" rel=\"noopener noreferrer\">doi:10.1016/S0022-3476(52)80205-7<span class=\"sr-only\"> (öffnet in neuem Fenster)</span></a>",
   "Gaskin CM, Kahn SL, Bertozzi JC, Bunch PM. Skeletal Development of the Hand and Wrist: A Radiographic Atlas and Digital Bone Age Companion. New York: Oxford University Press; 2011. <a href=\"https://doi.org/10.1093/med/9780199782055.001.0001\" target=\"_blank\" rel=\"noopener noreferrer\">doi:10.1093/med/9780199782055.001.0001<span class=\"sr-only\"> (öffnet in neuem Fenster)</span></a>",
   "Gräfe D, Beeskow AB, Pfäffle R, Rosolowski M, Chung TS, DiFranco MD. Automated bone age assessment in a German pediatric cohort: agreement between an artificial intelligence software and the manual Greulich and Pyle method. Eur Radiol. 2024;34(7):4407–4413. Zwei Mitautoren sind bei IB Lab angestellt. <a href=\"https://doi.org/10.1007/s00330-023-10543-0\" target=\"_blank\" rel=\"noopener noreferrer\">doi:10.1007/s00330-023-10543-0<span class=\"sr-only\"> (öffnet in neuem Fenster)</span></a>",
-  "ImageBiopsy Lab. IB Lab PANDA CE – Produktbeschreibung und Zweckbestimmung. <a href=\"https://www.imagebiopsy.com/product/panda-ce\" target=\"_blank\" rel=\"noopener noreferrer\">imagebiopsy.com/product/panda-ce<span class=\"sr-only\"> (öffnet in neuem Fenster)</span></a> (abgerufen am 21.10.2026)"
+  "ImageBiopsy Lab. IB Lab PANDA – Produktbeschreibung und Zweckbestimmung. <a href=\"https://www.imagebiopsy.com/product/panda-ce\" target=\"_blank\" rel=\"noopener noreferrer\">imagebiopsy.com/product/panda-ce<span class=\"sr-only\"> (öffnet in neuem Fenster)</span></a> (abgerufen am 21.10.2026)",
+  "IB Lab GmbH. IB Lab PANDA – Gebrauchsanweisung (deutsch), Stand September 2022. Vom Hersteller zur Verfügung gestellt."
 ];
