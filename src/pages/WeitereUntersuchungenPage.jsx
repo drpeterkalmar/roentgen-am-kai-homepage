@@ -3,6 +3,7 @@ import { Scan, Waves, Monitor, ArrowRight } from 'lucide-react';
 import { ToothIcon } from '../components/CustomIcons';
 import AnimationPlaceholder from '../components/ui/AnimationPlaceholder';
 import Hero from '../components/ui/Hero';
+import { imageUrl, imageSrcSet } from '../components/ui/Picture';
 import Section from '../components/ui/Section';
 import Container from '../components/ui/Container';
 import Notice from '../components/ui/Notice';
@@ -26,6 +27,18 @@ const WeitereUntersuchungenPage = () => {
     <>
       <Hero
         breadcrumbs={[{ name: 'Startseite', href: '/' }, { name: EXAMS_CRUMB }]}
+        // Echtes Praxisfoto (B015 Ultraschallgerät). Röntgenraum (B014) und Durchleuchtung (B016) gibt es noch nicht als
+        // Foto – sobald vorhanden, hier das passendere Motiv (oder eine ruhige Collage) einsetzen.
+        image={{
+          src: imageUrl('ultraschall-geraet'),
+          srcSet: imageSrcSet('ultraschall-geraet'),
+          sizes: '(max-width: 1023px) 100vw, 50vw',
+          alt: 'Ultraschallgerät mit Schallköpfen und Bedienpult in einem Untersuchungsraum von Röntgen am Kai in Graz',
+          width: 1920,
+          height: 1440,
+          priority: true,
+        }}
+        mobileEarly
         title="Weitere radiologische Untersuchungen in Graz"
         lead="Vom unkomplizierten Röntgen ohne vorherige Terminvereinbarung bis zu Ultraschall, Spezialröntgen und 3D-Aufnahmen von Zähnen und Kiefer: Hier finden Sie die passende Untersuchung und den richtigen Buchungsweg."
       >

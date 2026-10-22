@@ -37,6 +37,33 @@ const ReportPicture = ({ slide, sizes, className = '', eager = false }) => (
   </picture>
 );
 
+// Titelbild am Artikel- bzw. Übersichtsanfang (16:9 wie die Titelbilder der übrigen Ratgeber-Artikel): Ausschnitt aus einem
+// Hersteller-Beispielbericht oder eigene Schemagrafik (Daten: KI_HEROES in kiSeries.js). Sofort laden (LCP), Maße gesetzt.
+// hero.light = Grafik auf weißem Grund (heller Rahmen statt Schwarz, auch im Dunkelmodus).
+const HERO_SIZES = '(max-width: 767px) calc(100vw - 2.5rem), 720px';
+export const KiHeroImage = ({ hero }) => (
+  <figure data-ki-hero={hero.key}>
+    <div className={`overflow-hidden rounded-2xl ${hero.light ? 'bg-white ring-1 ring-slate-200 dark:ring-slate-600' : 'bg-black'}`}>
+      <picture>
+        <source type="image/avif" srcSet={srcSet(hero.key, 'avif')} sizes={HERO_SIZES} />
+        <img
+          src={`${BASE}${hero.key}-1200.webp`}
+          srcSet={srcSet(hero.key, 'webp')}
+          sizes={HERO_SIZES}
+          width={hero.width}
+          height={hero.height}
+          alt={hero.alt}
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          className="block aspect-[16/9] h-auto w-full object-cover"
+        />
+      </picture>
+    </div>
+    <figcaption className="mt-2 text-sm leading-snug text-slate-600 dark:text-slate-300">{hero.caption}</figcaption>
+  </figure>
+);
+
 export const ProductLogo = ({ logo, className = '' }) => (
   <span className={`inline-flex items-center rounded-lg bg-white px-3 py-2 ring-1 ring-slate-200 dark:ring-slate-600 ${className}`}>
     <picture>

@@ -28,6 +28,7 @@ const UltraschallGrazPage = () => {
           height: 1440,
           priority: true,
         }}
+        mobileEarly
         title="Ultraschall in Graz"
         status={<StatusBadge area={area} />}
         lead="Ultraschall, medizinisch auch Sonographie genannt, stellt Organe und Gewebe mithilfe von Schallwellen dar und verwendet keine ionisierende Röntgenstrahlung."

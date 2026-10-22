@@ -5,7 +5,7 @@ import Breadcrumbs from '../components/ui/Breadcrumbs';
 import Placeholder from '../components/ui/Placeholder';
 import FAQ from '../components/FAQ';
 import { ArticleImage, CategoryBadge, ArticleDate, InlineCTA, EndCTA, KaiWordmark } from '../components/ratgeber/ArticleParts';
-import { KiMedia, ProductLogo } from '../components/ratgeber/KiMedia';
+import { KiMedia, KiHeroImage, ProductLogo } from '../components/ratgeber/KiMedia';
 import ReviewedNote from '../components/ratgeber/ReviewedNote';
 import { KI_CONTENT } from '../data/kiContent';
 import { KI_SERIES_PATH } from '../data/kiSeries';
@@ -114,10 +114,15 @@ const ArticlePage = () => {
         </header>
 
         <Container size="narrow" className="py-8 sm:py-12">
-          {!a.noHeroImage && (
-            <div className="overflow-hidden rounded-2xl">
-              <ArticleImage article={a} eager sizes="(max-width: 767px) 100vw, 720px" className="aspect-[16/9] w-full" />
-            </div>
+          {/* Titelbild: KI-Serie = Ausschnitt aus dem Beispielbericht (kiHero), sonst Praxisfoto bzw. Bildplatzhalter */}
+          {a.kiHero ? (
+            <KiHeroImage hero={a.kiHero} />
+          ) : (
+            !a.noHeroImage && (
+              <div className="overflow-hidden rounded-2xl">
+                <ArticleImage article={a} eager sizes="(max-width: 767px) 100vw, 720px" className="aspect-[16/9] w-full" />
+              </div>
+            )
           )}
 
           {a.status === 'placeholder' ? (
@@ -134,7 +139,7 @@ const ArticlePage = () => {
             </div>
           ) : (
             // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions -- nur Delegation für echte Links (per Tastatur über Enter auf dem Link)
-            <div className={`article-content ${a.noHeroImage ? '' : 'mt-8'}`} onClick={onTextClick}>
+            <div className={`article-content ${a.noHeroImage && !a.kiHero ? '' : 'mt-8'}`} onClick={onTextClick}>
               <ArticleHtml html={before} media={ki?.media} title={`Beispielbericht ${a.product || ''}`.trim()} />
               <InlineCTA targetId={a.target} id="artikel-cta-inline" cta={a.cta} />
               {after && <ArticleHtml html={after} media={ki?.media} title={`Beispielbericht ${a.product || ''}`.trim()} />}

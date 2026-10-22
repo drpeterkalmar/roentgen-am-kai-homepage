@@ -4,12 +4,14 @@
 KI-RHO-01        rho-ablauf.png (16:9) + rho-ablauf-mobil.png (Hochformat)
 KI-TRANSPARA-02  transpara-ablauf.png (16:9) + transpara-ablauf-mobil.png (Hochformat)
 KI-TRANSPARA-01  transpara-auswertung.png (4:3) + transpara-auswertung-mobil.png (Hochformat)
+Titelbild KOALA  titel-koala.png (16:9) – Kniegelenk von vorne mit markiertem Gelenkspalt (kein Beispielbericht vorhanden)
 
 Stil: Linien-Piktogramme in Markenrot #8B2323 und Grau auf Weiß, Schrift Inter/Outfit aus src/assets/fonts.
 Keine Personenfotos, keine echten Röntgenbilder, keine Herstellerbilder, keine Prozentzahlen oder Schwellenwerte.
 Oben rechts bleibt Platz für den Knopf „Vergrößern“ der Galerie.
 
-Aufruf (Playwright nötig):  /opt/homebrew/bin/python3 assets-src/ki/quellen/render_ki_grafiken.py
+Aufruf (Playwright nötig):  /opt/homebrew/bin/python3 assets-src/ki/quellen/render_ki_grafiken.py [name …]
+                            (ohne Namen alle Grafiken; mit Namen nur diese, z. B. titel-koala)
 danach:                     npm run images:ki
 """
 import pathlib
@@ -373,20 +375,69 @@ def report_mobile():
     return page(1000, None, inner)
 
 
+# ---------- Titelbild KOALA: Kniegelenk von vorne (Schema) ----------
+def knee_svg():
+    """Rechtes Knie von vorne (Wadenbein links im Bild = außen), Gelenkspalt innen und außen rot markiert."""
+    fill = 'fill="#F1F5F9"'
+    st = f'stroke="{GRAY}" stroke-width="5" stroke-linejoin="round"'
+    femur = ("M715 -20 L715 230 C715 290 610 310 600 380 C592 440 620 478 680 482 C730 485 765 465 785 440 "
+             "Q800 425 815 440 C835 465 870 485 920 482 C980 478 1008 440 1000 380 C990 310 885 290 885 230 L885 -20 Z")
+    tibia = ("M585 532 C600 522 700 526 760 530 C772 530 776 512 787 510 C794 509 797 519 800 519 C803 519 806 509 813 510 "
+             "C824 512 828 530 840 530 C900 526 1000 522 1015 532 "
+             "C1022 560 1000 600 950 625 C905 648 895 680 893 720 L893 920 L707 920 L707 720 C705 680 695 648 650 625 "
+             "C600 600 578 560 585 532 Z")
+    fibula = ("M600 586 C584 582 560 598 562 628 C564 660 590 690 606 712 L612 920 L648 920 L646 712 "
+              "C652 690 668 660 664 630 C660 602 628 584 600 586 Z")
+
+    def gap(x, y0, y1):  # „Messbalken“ für die Gelenkspaltbreite
+        return (f'<g stroke="{RED}" stroke-width="7" stroke-linecap="round"><path d="M{x} {y0} V{y1}"/>'
+                f'<path d="M{x - 22} {y0} H{x + 22} M{x - 22} {y1} H{x + 22}"/></g>')
+
+    def lead(x0, x1, y):
+        return f'<path d="M{x0} {y} H{x1}" stroke="#94A3B8" stroke-width="4" stroke-dasharray="2 10" stroke-linecap="round"/>'
+
+    body = f"""
+<path d="{fibula}" {fill} {st}/>
+<path d="{tibia}" {fill} {st}/>
+<path d="{femur}" {fill} {st}/>
+<path d="M722 252 C722 216 760 200 800 200 C840 200 878 216 878 252 C878 302 840 358 800 392 C760 358 722 302 722 252 Z" fill="none" stroke="#94A3B8" stroke-width="5" stroke-dasharray="14 11"/>
+{gap(668, 487, 526)}{gap(932, 487, 526)}
+{lead(470, 630, 506)}{lead(970, 1130, 506)}"""
+    return svg(1600, 900, body, 1600)
+
+
+def koala_title():
+    inner = f"""<div style="position:relative;width:1600px;height:900px;">
+<div style="position:absolute;inset:0;">{knee_svg()}</div>
+<p style="position:absolute;left:60px;top:446px;width:400px;text-align:right;font-size:52px;line-height:1.12;color:{INK};font-weight:500;">Gelenkspalt<br>außen</p>
+<p style="position:absolute;left:1140px;top:446px;width:400px;font-size:52px;line-height:1.12;color:{INK};font-weight:500;">Gelenkspalt<br>innen</p>
+<div style="position:absolute;left:56px;top:48px;">
+  <h1 style="font-size:58px;line-height:1.1;">Kniegelenk von vorne</h1>
+  <p style="font-size:44px;color:{TXT};margin-top:8px;">Schema, rechtes Knie</p>
+</div>
+</div>"""
+    return page(1600, 900, inner)
+
+
 JOBS = [
     ("rho-ablauf", rho_desktop, 2400), ("rho-ablauf-mobil", rho_mobile, 1800),
     ("transpara-ablauf", tp_desktop, 2400), ("transpara-ablauf-mobil", tp_mobile, 1800),
     ("transpara-auswertung", report_desktop, 2400), ("transpara-auswertung-mobil", report_mobile, 1800),
+    ("titel-koala", koala_title, 1920),
 ]
 
 if __name__ == "__main__":
+    import sys
+    only = set(sys.argv[1:])
     with sync_playwright() as pw:
         br = pw.chromium.launch()
         for name, fn, target in JOBS:
+            if only and name not in only:
+                continue
             html = fn()
             tmp = pathlib.Path(tempfile.mkdtemp()) / f"{name}.html"   # Zwischen-HTML (enthält lokale Schriftpfade) nicht ins Repo
             tmp.write_text(html, encoding="utf-8")
-            w = 1600 if target == 2400 else 1000
+            w = 1600 if target in (2400, 1920) else 1000
             pg = br.new_page(viewport={"width": w, "height": 900}, device_scale_factor=target / w)
             pg.goto(tmp.as_uri())
             pg.evaluate("document.fonts.ready")

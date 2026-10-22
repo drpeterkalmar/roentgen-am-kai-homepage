@@ -41,6 +41,19 @@ const REQUIREMENTS = [
 // Terminlogik wie Spezialröntgen; Telefonhinweis für die Phlebographie
 const area = { ...AREAS.spezialroentgen, key: 'phlebographie', phoneHint: '„Phlebographie“ bzw. „Venenröntgen“' };
 
+// Drei Phlebographie-Aufnahmen nebeneinander. Am Handy/Tablet schon im Hero (mobileMedia), ab lg wie bisher im Inhalt.
+// Gleiche sizes in beiden Fassungen → dieselbe Datei, kein doppelter Download.
+const LEG_SIZES = '(max-width: 1023px) 33vw, 240px';
+const LegImages = ({ eager = false, className = '' }) => (
+  <ul className={`grid grid-cols-3 gap-2 md:gap-6 ${className}`}>
+    {LEGS.map((l) => (
+      <li key={l.name} className="overflow-hidden rounded-xl bg-slate-950">
+        <Picture name={l.name} sizes={LEG_SIZES} alt={l.alt} width={1352} height={2827} eager={eager} className="h-auto w-full" />
+      </li>
+    ))}
+  </ul>
+);
+
 const H2 = ({ id, children }) => (
   <h2 id={id} className="font-display text-2xl font-semibold tracking-tight text-slate-900 dark:text-white">{children}</h2>
 );
@@ -59,18 +72,13 @@ const PhlebographiePage = () => {
         title="Venenröntgen (Phlebographie)"
         status={<StatusBadge area={AREAS.spezialroentgen} />}
         lead='Die Phlebographie ist eine Venenuntersuchung, bei der ein Kontrastmittel in eine Vene der zu untersuchenden Region gespritzt wird, um deren Beschaffenheit und Lage zu beurteilen.'
+        mobileMedia={<LegImages eager />}
       />
 
       <Section>
         <div className="grid gap-10 lg:grid-cols-3 lg:gap-14">
           <div className="min-w-0 space-y-12 lg:col-span-2">
-            <ul className="grid grid-cols-3 gap-2 md:gap-6">
-              {LEGS.map((l) => (
-                <li key={l.name} className="overflow-hidden rounded-xl bg-slate-950">
-                  <Picture name={l.name} sizes="(max-width: 1023px) 33vw, 240px" alt={l.alt} width={1352} height={2827} className="h-auto w-full" />
-                </li>
-              ))}
-            </ul>
+            <LegImages className="hidden lg:grid" />
 
             <Notice tone="important">
               <p><strong>Wichtig:</strong> Diese Untersuchung kann nicht durchgeführt werden, wenn bei Ihnen eine Kontrastmittelallergie vorliegt oder wenn Sie schwanger sind.</p>

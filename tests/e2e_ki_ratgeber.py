@@ -50,6 +50,25 @@ FORBIDDEN = ["Goldstandard", "100 %", "strahlungsfrei", "revolution", "modernste
              "ExpertInnen-Niveau", "15,8 Sekunden", "ICC 0,97", "300 %", "ersetzt die Radiologin nicht nur"]
 
 
+# Titelbild am Seitenanfang (Auftrag 22.10.2026): geladen, Alt-Text, Bildunterschrift mit Herkunft, sofort geladen
+HERO_JS = """() => { const f = document.querySelector('main [data-ki-hero]'); if (!f) return null; const i = f.querySelector('img');
+  return { key: f.dataset.kiHero, ok: i.complete && i.naturalWidth > 0, alt: i.getAttribute('alt') || '', w: i.getAttribute('width'),
+           h: i.getAttribute('height'), eager: i.getAttribute('loading') === 'eager', srcset: !!i.getAttribute('srcset') && !!i.getAttribute('sizes'),
+           cap: f.querySelector('figcaption').innerText, top: f.getBoundingClientRect().top + scrollY }; }"""
+
+
+def check_hero(pg, name, key):
+    h = pg.evaluate(HERO_JS)
+    check(h is not None and h["key"] == key, f"{name}: Titelbild {key} vorhanden")
+    if not h:
+        return
+    check(h["ok"] and len(h["alt"]) > 30 and h["w"] == "1920" and h["h"] == "1080" and h["eager"] and h["srcset"],
+          f"{name}: Titelbild geladen, Alt-Text, width/height, eager, srcset+sizes")
+    check(h["cap"].startswith(("Ausschnitt", "Röntgen-Vorschaubilder", "Schematische Darstellung")) and "KI-generiert" not in h["cap"],
+          f"{name}: Bildunterschrift nennt Herkunft ({h['cap'][:40]})")
+    check(h["top"] < pg.viewport_size["height"] * 1.5, f"{name}: Titelbild im oberen Seitenbereich (top {h['top']:.0f})")
+
+
 def check(cond, msg):
     print(("OK   " if cond else "FAIL ") + msg)
     if not cond:
@@ -135,6 +154,7 @@ with sync_playwright() as pw:
     check(pg.locator("h1").count() == 1 and "Wie KI unsere Radiologie unterstützt" in pg.locator("h1").inner_text(), "Übersicht: eine H1")
     h1 = pg.locator("h1").inner_text()
     check(h1.strip() == S["title"], f"Übersicht: H1 = {h1[:50]}")
+    check_hero(pg, "Übersicht", "titel-ki")
     check("Röntgen am K[AI] – Künstliche Intelligenz, ärztlich verantwortet" in pg.locator("[data-ki-series-name]").inner_text(), "Serienname mit [AI] sichtbar")
     check(crumbs() == ["Startseite", "Ratgeber", "Röntgen am K[AI]"], f"Übersicht: BreadcrumbList {crumbs()}")
     cp = [s for s in schemas() if s.get("@type") == "CollectionPage"]
@@ -201,6 +221,7 @@ with sync_playwright() as pw:
             check(not re.search(r"(?<!KI-)RHO", body) and "Rho™" not in body and "kostenlos" in low and "in einer anderen einrichtung" in low, "rho: Schreibweise „Rho“, kostenlos, externe DEXA-Hinweis")
             check(not re.search(r"(?<!nicht, dass )jedes röntgen\w* (wird|werden) (untersucht|ausgewertet)", low) and "keine osteoporosediagnose" in low and "kein frakturrisiko-rechner" in low and "kein ersatz für dexa" in low,
                   "rho: kein „jedes Röntgen“; keine Osteoporosediagnose / kein Frakturrisiko-Rechner / kein Ersatz für DEXA")
+        check_hero(pg, m["id"], f"titel-{m['id']}")
         if m["logo"]:
             lg = pg.locator("header img[alt^='Logo IB Lab']")
             check(lg.count() == 1 and lg.evaluate("i => i.complete && i.naturalWidth > 0"), f"{m['id']}: Produktlogo geladen")

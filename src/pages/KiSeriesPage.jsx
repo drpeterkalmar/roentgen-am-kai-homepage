@@ -5,7 +5,8 @@ import Breadcrumbs from '../components/ui/Breadcrumbs';
 import Placeholder from '../components/ui/Placeholder';
 import { KaiWordmark, KaiTitle, EndCTA } from '../components/ratgeber/ArticleParts';
 import ReviewedNote from '../components/ratgeber/ReviewedNote';
-import { KI_SERIES, KI_MODULES, KI_SERIES_CRUMB } from '../data/kiSeries';
+import { KI_SERIES, KI_MODULES, KI_SERIES_CRUMB, KI_HEROES } from '../data/kiSeries';
+import { KiHeroImage } from '../components/ratgeber/KiMedia';
 import { KI_OVERVIEW_HTML, KI_OVERVIEW_SOURCES } from '../data/kiContent';
 import { PUBLISHER_NAME, formatDate } from '../data/ratgeber';
 
@@ -85,8 +86,9 @@ const KiSeriesPage = () => {
         </header>
 
         <Container size="narrow" className="py-8 sm:py-12">
+          <KiHeroImage hero={KI_HEROES.uebersicht} />
           {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions -- nur Delegation für echte Links */}
-          <div className="article-content" onClick={onTextClick}>
+          <div className="article-content mt-8" onClick={onTextClick}>
             <div className="article-html" dangerouslySetInnerHTML={{ __html: withBase(KI_OVERVIEW_HTML) }} />
           </div>
         </Container>

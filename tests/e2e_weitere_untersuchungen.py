@@ -65,6 +65,23 @@ def main():
         for name in ["Röntgen", "Ultraschall", "Spezialröntgen mit Kontrastmittel", "Zahnröntgen und 3D-DVT"]:
             check(name in header_links, f"Header-Menü ohne Hauptbereich „{name}“")
 
+
+        # ---------- Bild am Seitenanfang (Auftrag 22.10.2026), Handy und Desktop ----------
+        # Einzelbild ≥ 120 × 80 px – oder Bildgruppe im Hero (Phlebographie: drei schmale Aufnahmen nebeneinander)
+        top_img_js = """() => [...document.querySelectorAll('main img')].filter(i => { const r = (i.closest('[data-hero-mobile-media]') || i).getBoundingClientRect();
+            return r.width >= 120 && r.height >= 80 && r.top + scrollY < innerHeight * 1.5 && getComputedStyle(i).visibility !== 'hidden'; })
+            .map(i => ({ ok: i.complete && i.naturalWidth > 0, alt: i.getAttribute('alt') || '' }))"""
+        for vw, vh in [(390, 844), (1440, 900)]:
+            vctx = browser.new_context(viewport={"width": vw, "height": vh}, device_scale_factor=2 if vw < 500 else 1)
+            vp = vctx.new_page()
+            for slug in ["weitere-untersuchungen", "ultraschall-graz", "unser-angebot/phlebographie"]:
+                vp.goto(BASE + slug, wait_until="networkidle")
+                imgs = vp.evaluate(top_img_js)
+                check(len(imgs) >= 1 and all(i["ok"] and i["alt"] for i in imgs), f"{slug} @{vw}px: Bild oben geladen, mit alt ({imgs})")
+                over = vp.evaluate("Math.max(document.documentElement.scrollWidth, innerWidth) - innerWidth")
+                check(over <= 1, f"{slug} @{vw}px: kein waagrechter Überlauf ({over}px)")
+            vctx.close()
+
         for slug in PAGES:
             page.goto(BASE + slug, wait_until="networkidle")
             txt = visible_text(page)

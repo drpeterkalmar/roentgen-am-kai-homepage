@@ -154,5 +154,59 @@
     "source": "ccef9b1b4cbb886ea83141aa6fe799e5e762bb124cc42b43be6d4a43a8e44782",
     "width": 2400,
     "height": 1800
+  },
+  "titel-frog": {
+    "file": "titel-frog.png",
+    "source": "131e317fe003d7604c6a734f5eca7e3b88406e3d7397b561ed42061ef5902e2c",
+    "width": 1920,
+    "height": 1080
+  },
+  "titel-hippo": {
+    "file": "titel-hippo.png",
+    "source": "8c720049ab4c98e17c3b3419ee79a977367c860ca84c76c41d0a12ec7b367e32",
+    "width": 1920,
+    "height": 1080
+  },
+  "titel-ki": {
+    "file": "titel-ki.png",
+    "source": "d4fe85ce968c0b3d963086edb3c3759d7be6ac7bcc58f08529521643ff23525f",
+    "width": 1920,
+    "height": 1080
+  },
+  "titel-koala": {
+    "file": "titel-koala.png",
+    "source": "2d4e7f97ef15bebca95e373ffb4d4e15de94648a0a7940944c0590e97c2c3db2",
+    "width": 1920,
+    "height": 1080
+  },
+  "titel-lama": {
+    "file": "titel-lama.png",
+    "source": "7f2fbfe61770467ddea34e455099e7c6f3e81e2a5cd2077aa0a5950c776374a0",
+    "width": 1920,
+    "height": 1080
+  },
+  "titel-panda": {
+    "file": "titel-panda.png",
+    "source": "b15dc48aa38b4d0227ce0165eeb4081a469accaa0d66661bee1c1134156d521b",
+    "width": 1920,
+    "height": 1080
+  },
+  "titel-rho": {
+    "file": "titel-rho.png",
+    "source": "6d592a8f62d7db2c8b3974bff8d138a99385dec20a383fb453c57aec14403153",
+    "width": 1920,
+    "height": 1080
+  },
+  "titel-squirrel": {
+    "file": "titel-squirrel.png",
+    "source": "2fe1b29df1bdd304ac2f6746a4b2d1c640d79899a21511b024583504e2ec530b",
+    "width": 1920,
+    "height": 1080
+  },
+  "titel-transpara": {
+    "file": "titel-transpara.png",
+    "source": "0b06bfa16de334444d17025241677ade2da0472e38437f002d6e59fef8338197",
+    "width": 1920,
+    "height": 1080
   }
 }

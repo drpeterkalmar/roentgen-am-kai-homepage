@@ -14,11 +14,34 @@ import AiImageBadge from './AiImageBadge';
 //   meta: kleine Zusatzinfos unter den Schaltflächen (z. B. Öffnungszeiten)
 //   facts: kurze Stichpunkte als Chips zwischen Einleitung und Schaltflächen ([string | { text, strong }])
 //   keyMessage: hervorgehobene Kernbotschaft direkt unter der Einleitung
+//   mobileEarly: Bild auf Handy/Tablet (< lg) direkt unter Überschrift/Einleitung statt nach allen Inhalten
+//                (Desktop unverändert rechts). Gleiche srcset/sizes → der Browser lädt die Datei nur einmal.
+//   mobileMedia: eigenes Bild nur für < lg unter der Einleitung (Seiten ohne Hero-Bild am Desktop)
 //   ambient: ['glow'] = dezenter, langsam wandernder Farbschimmer im Hintergrund (nur Startseite).
 //            Rein dekorativ (aria-hidden), nur transform/opacity, bei „Bewegung reduzieren“ ruhig.
-const Hero = ({ breadcrumbs, eyebrow, title, highlight, status, lead, keyMessage, facts, actions, meta, image, imageSlot, ambient = [], tone = 'muted', className, children }) => {
+const Hero = ({ breadcrumbs, eyebrow, title, highlight, status, lead, keyMessage, facts, actions, meta, image, imageSlot, mobileEarly = false, mobileMedia, ambient = [], tone = 'muted', className, children }) => {
   const glow = ambient.includes('glow');
   const hasMedia = image || imageSlot;
+  const media = hasMedia && (
+    <div className="relative overflow-hidden rounded-2xl bg-slate-200 dark:bg-slate-800 aspect-[4/3] lg:aspect-[5/4]">
+      {imageSlot || (
+        <img
+          src={image.src}
+          srcSet={image.srcSet}
+          sizes={image.sizes}
+          alt={image.alt}
+          width={image.width}
+          height={image.height}
+          fetchPriority={image.priority ? 'high' : undefined}
+          loading={image.priority ? 'eager' : 'lazy'}
+          decoding={image.priority ? 'sync' : 'async'}
+          className="h-full w-full object-cover"
+        />
+      )}
+      {!imageSlot && image?.ai && <AiImageBadge />}
+    </div>
+  );
+  const early = (mobileEarly && media) || mobileMedia;
   return (
     <section
       aria-labelledby="page-title"
@@ -42,6 +65,7 @@ const Hero = ({ breadcrumbs, eyebrow, title, highlight, status, lead, keyMessage
           )}
           {status && <div className="mt-4 sm:mt-5">{status}</div>}
           {lead && <Lead className="mt-4 max-w-2xl text-base sm:mt-5 sm:text-lg">{lead}</Lead>}
+          {early && <div className="mt-6 lg:hidden" data-hero-mobile-media="">{early}</div>}
           {keyMessage && (
             <p className="mt-4 max-w-2xl border-l-4 border-brand pl-4 text-lg font-semibold leading-snug text-slate-900 sm:mt-5 sm:text-xl dark:border-brand-300 dark:text-white">
               {keyMessage}
@@ -71,25 +95,7 @@ const Hero = ({ breadcrumbs, eyebrow, title, highlight, status, lead, keyMessage
           {meta && <div className="mt-6 text-sm text-slate-600 dark:text-slate-300">{meta}</div>}
           {children}
         </div>
-        {hasMedia && (
-          <div className="relative overflow-hidden rounded-2xl bg-slate-200 dark:bg-slate-800 aspect-[4/3] lg:aspect-[5/4]">
-            {imageSlot || (
-              <img
-                src={image.src}
-                srcSet={image.srcSet}
-                sizes={image.sizes}
-                alt={image.alt}
-                width={image.width}
-                height={image.height}
-                fetchPriority={image.priority ? 'high' : undefined}
-                loading={image.priority ? 'eager' : 'lazy'}
-                decoding={image.priority ? 'sync' : 'async'}
-                className="h-full w-full object-cover"
-              />
-            )}
-            {!imageSlot && image?.ai && <AiImageBadge />}
-          </div>
-        )}
+        {hasMedia && (mobileEarly ? <div className="hidden lg:block">{media}</div> : media)}
       </Container>
     </section>
   );

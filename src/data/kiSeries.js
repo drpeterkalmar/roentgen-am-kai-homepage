@@ -81,6 +81,54 @@ const LOGOS = {
   panda: { key: 'logo-panda', width: 767, height: 87 },
 };
 
+// Titelbilder (16:9) am Artikelanfang: Ausschnitt aus dem Beispielbericht, der im Artikel steht – nur das Röntgenbild mit
+// den eingezeichneten Messlinien, ohne Tabellen, Textspalten und Personenangaben (Auftrag Peter + Georg 22.10.2026:
+// „mehr Bilder am Seitenanfang“). Erzeugt mit assets-src/ki/quellen/render_ki_titelbilder.py (KOALA: eigene
+// Schemagrafik, render_ki_grafiken.py titel-koala, weil es noch keinen KOALA-Beispielbericht gibt) → npm run images:ki.
+// Keine KI-generierten Bilder. Bildunterschrift = Herkunft, Alt-Text = Bildinhalt.
+const HERO_SIZE = { width: 1920, height: 1080 };
+const CAP_REPORT = 'Ausschnitt aus einem Beispielbericht des Herstellers (Demo-Datensatz)';
+const CAP_SCHEMA = 'Schematische Darstellung';
+export const KI_HEROES = {
+  lama: {
+    key: 'titel-lama', caption: CAP_REPORT,
+    alt: 'Röntgenaufnahme beider Beine von der Hüfte bis zum Sprunggelenk mit farbig eingezeichneten Beinachsen und Gelenklinien, daneben vergrößert die beiden Kniegelenke, eines davon mit Knieprothese',
+  },
+  hippo: {
+    key: 'titel-hippo', caption: CAP_REPORT,
+    alt: 'Beckenröntgen mit eingezeichneter Bezugslinie, Messpunkten und Winkeln an beiden Hüftgelenken',
+  },
+  koala: {
+    key: 'titel-koala', caption: `${CAP_SCHEMA} (kein Röntgenbild)`, light: true,
+    alt: 'Zeichnung eines rechten Kniegelenks von vorne mit Oberschenkelknochen, Kniescheibe, Schienbein und Wadenbein; der Gelenkspalt innen und außen ist rot markiert',
+  },
+  squirrel: {
+    key: 'titel-squirrel', caption: CAP_REPORT,
+    alt: 'Röntgenaufnahme der ganzen Wirbelsäule von vorne mit beschrifteten Wirbeln und drei eingezeichneten Cobb-Winkeln (21°, 45° und 31°), daneben vergrößert die Brust- und Lendenwirbelsäule',
+  },
+  frog: {
+    key: 'titel-frog', caption: 'Ausschnitte aus zwei Beispielberichten des Herstellers (Demo-Datensätze)',
+    alt: 'Fußröntgen von oben und von der Seite mit farbig eingezeichneten, nummerierten Messlinien und Winkeln',
+  },
+  panda: {
+    key: 'titel-panda', caption: CAP_REPORT,
+    alt: 'Röntgenaufnahme der linken Hand eines Jugendlichen mit noch offenen Wachstumsfugen, wie sie für die Bestimmung des Knochenalters verwendet wird',
+  },
+  rho: {
+    key: 'titel-rho', caption: 'Röntgen-Vorschaubilder aus drei Beispielberichten des Herstellers (Demo-Datensätze)',
+    alt: 'Drei Röntgen-Vorschaubilder nebeneinander: Brustkorb, Brustwirbelsäule und beide Hände',
+  },
+  transpara: {
+    key: 'titel-transpara', caption: `${CAP_SCHEMA} einer KI-Auswertungsansicht (Ausschnitt)`, light: true,
+    alt: 'Schema einer Auswertungsansicht: vier Mammographie-Ansichten, in einer ein rot markierter Bereich mit dem Wert 58, darunter die Skala von 1 bis 10 mit hervorgehobenem Wert 7',
+  },
+  uebersicht: {
+    key: 'titel-ki', caption: 'Ausschnitte aus Beispielberichten der Hersteller (Demo-Datensätze)',
+    alt: 'Collage aus vier Röntgenbildern mit eingezeichneten Messlinien: Becken mit Hüftwinkeln, Fuß von der Seite, beide Kniegelenke mit Beinachsen und Wirbelsäule mit Cobb-Winkeln',
+  },
+};
+for (const h of Object.values(KI_HEROES)) Object.assign(h, HERO_SIZE);
+
 // Reihenfolge = Reihenfolge der Kacheln laut Auftrag
 export const KI_MODULES = [
   {
@@ -158,5 +206,5 @@ export const KI_ARTICLE_META = KI_MODULES.map((m) => ({
   author: KI_AUTHORS[m.id] || null,
   logo: m.logo,
   ce: true,   // CE-gekennzeichnetes Medizinprodukt (Nachweise IB Lab 22.10.2026, Transpara laut ScreenPoint CE 0344); Peter 22.10.2026: erwähnen
-  noHeroImage: true,
+  kiHero: KI_HEROES[m.id],   // Titelbild am Artikelanfang (statt früher noHeroImage)
 }));
