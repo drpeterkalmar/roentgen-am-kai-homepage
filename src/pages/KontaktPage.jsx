@@ -9,7 +9,7 @@ import { BookingButton, PhoneButton } from '../components/ui/BookingButtons';
 import { ContactDetails, OpeningHours, Directions } from '../components/ui/PracticeInfo';
 import ReferralInfo from '../components/ui/ReferralInfo';
 import PatientPortal from '../components/PatientPortal';
-import { MAPS_ROUTE_URL, PLACEHOLDERS, ACCESSIBILITY } from '../data/practice';
+import { MAPS_ROUTE_URL, PLACEHOLDERS, ACCESSIBILITY, CANCELLATION, PHONE_DISPLAY, PHONE_HREF } from '../data/practice';
 import Picture from '../components/ui/Picture';
 import { IMAGE_BRIEFS } from '../data/imageBriefs';
 
@@ -69,6 +69,14 @@ const KontaktPage = () => (
           </div>
         </Card>
       </div>
+      <Card as="section" aria-labelledby="k-absage" className="mt-5" data-cancellation>
+        <CardTitle id="k-absage">{CANCELLATION.title}</CardTitle>
+        <p className="max-w-3xl text-slate-700 dark:text-slate-300">
+          {CANCELLATION.beforePhone}{' '}
+          <a href={PHONE_HREF} className="whitespace-nowrap font-semibold text-brand underline underline-offset-4 dark:text-brand-300">{PHONE_DISPLAY}</a>{' '}
+          {CANCELLATION.afterPhone}
+        </p>
+      </Card>
     </Section>
 
     <Section tone="muted" labelledBy="kasse-title">

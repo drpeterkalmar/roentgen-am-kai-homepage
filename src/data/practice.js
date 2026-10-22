@@ -55,6 +55,18 @@ export const ACCESSIBILITY = {
   text: 'Der Weg von der Haltestelle Keplerbrücke bis in die Ordination ist barrierefrei, mit Lift. Die Ordination ist rollstuhlgerecht und hat ein barrierefreies Patienten-WC.',
 };
 
+// Terminabsage und Ausfallgebühr – Wortlaut laut Entscheidung der Praxis vom 22.10.2026.
+// Die Telefonnummer steht zwischen beforePhone und afterPhone (auf der Seite als tel:-Link).
+// Zahl und Einheit mit geschütztem Leerzeichen, damit „24 Stunden“ / „50 Euro“ nicht umbrechen.
+export const CANCELLATION = {
+  title: 'Termin absagen',
+  beforePhone: 'Sie können einen Termin nicht wahrnehmen? Bitte sagen Sie spätestens 24\u00A0Stunden vorher ab – telefonisch unter',
+  afterPhone:
+    'oder mit der Antwort ABSAGE auf unsere Erinnerungs-SMS. So können wir den Termin an andere Patientinnen und Patienten weitergeben. Für Termine, die ohne rechtzeitige Absage nicht wahrgenommen werden, verrechnen wir eine Ausfallgebühr von 50\u00A0Euro.',
+};
+// Derselbe Hinweis als reiner Text (z. B. für FAQ oder Prüfungen)
+export const CANCELLATION_TEXT = `${CANCELLATION.beforePhone} ${PHONE_DISPLAY} ${CANCELLATION.afterPhone}`;
+
 // PLATZHALTER — von der Praxis zu liefern
 export const PLACEHOLDERS = {
   phoneHours: 'Telefonische Erreichbarkeit, falls abweichend von den Öffnungszeiten',
