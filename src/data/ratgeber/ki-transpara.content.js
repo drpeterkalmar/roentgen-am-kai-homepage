@@ -86,7 +86,17 @@ export const MEDIA = {
       "Keine Namen, Geburtsdaten, Untersuchungsdaten, IDs, Gerätebezeichnungen oder Herstellerlogos",
       "Bildunterschrift-Vorschlag: „Schematische Darstellung einer KI-Auswertungsansicht (keine Patientendaten). Markierungen und Werte sind Beispiele und werden ärztlich geprüft.“"
     ],
-    "zuschnitt": "Alle wichtigen Elemente (Markierung, Skala, Hinweis) im mittleren Bereich von 80 % der Breite; Text ab 390 px Breite noch lesbar; Ränder ohne Inhalt, damit Abrundung und Zuschnitt nichts abschneiden"
+    "zuschnitt": "Alle wichtigen Elemente (Markierung, Skala, Hinweis) im mittleren Bereich von 80 % der Breite; Text ab 390 px Breite noch lesbar; Ränder ohne Inhalt, damit Abrundung und Zuschnitt nichts abschneiden",
+    "erledigt": "Grafik selbst gezeichnet (keine KI, keine Herstellerbilder) am 22.10.2026: assets-src/ki/quellen/render_ki_grafiken.py → npm run images:ki; Desktop 4:3 + Hochformat für Handys (mobile)",
+    "slides": [
+      {
+        "key": "transpara-auswertung",
+        "mobile": "transpara-auswertung-mobil",
+        "label": "Auswertungsansicht",
+        "caption": "Schematische Darstellung einer KI-Auswertungsansicht (keine Patientendaten). Markierungen und Werte sind Beispiele und werden ärztlich geprüft.",
+        "alt": "Schematische Auswertungsansicht: vier gezeichnete Mammographieansichten (rechts und links, jeweils schräg und von oben), in einer davon ein rot markierter Bereich mit einem Beispielwert, darunter die Gesamteinschätzung als Skala von 1 bis 10 mit hervorgehobenem Beispielwert und der Hinweis „Markierung = Hinweis zur ärztlichen Prüfung, keine Diagnose“."
+      }
+    ]
   },
   "ablauf": {
     "id": "KI-TRANSPARA-02",
@@ -101,6 +111,16 @@ export const MEDIA = {
       "Hinweis in der Grafik: „Ablauf bei Röntgen am Kai – die KI-Auswertung läuft lokal in der Praxis und stellt keine Diagnose“",
       "Keine Aussage zum Früherkennungsprogramm/Doppelbefundung mit KI (bei der Praxis noch offen)",
       "Keine Tomosynthese/3D, keine Herstellerbilder oder Logos"
+    ],
+    "erledigt": "Grafik selbst gezeichnet (keine KI, keine Herstellerbilder) am 22.10.2026: assets-src/ki/quellen/render_ki_grafiken.py → npm run images:ki; Desktop 16:9 + Hochformat für Handys (mobile)",
+    "slides": [
+      {
+        "key": "transpara-ablauf",
+        "mobile": "transpara-ablauf-mobil",
+        "label": "Ablauf",
+        "caption": "Schematische Darstellung: Ablauf der Mammographie mit KI-Unterstützung bei Röntgen am Kai.",
+        "alt": "Schema in fünf Schritten: Mammographie mit zwei 2D-Aufnahmen je Brust, Bereitstellung der Bilder, KI-Auswertung mit Markierungen und Gesamteinschätzung von 1 bis 10, ärztliche Beurteilung aller Bilder, ärztlicher Befund. Hinweis: Die KI-Auswertung läuft lokal in der Praxis und stellt keine Diagnose."
+      }
     ]
   }
 };

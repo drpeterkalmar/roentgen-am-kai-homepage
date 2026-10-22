@@ -35,6 +35,12 @@ export const KI_REVIEWED = {
   rho: { by: KALMAR, at: '2026-10-21' },
   panda: { by: KALMAR, at: '2026-10-21' },
   transpara: { by: KALMAR, at: '2026-10-21' },
+  // Georgs fünf: Peter hat die Durchsicht übernommen und „gelesen“ gemeldet (22.10.2026, nach Herstellerabgleich)
+  lama: { by: KALMAR, at: '2026-10-22' },
+  hippo: { by: KALMAR, at: '2026-10-22' },
+  koala: { by: KALMAR, at: '2026-10-22' },
+  squirrel: { by: KALMAR, at: '2026-10-22' },
+  frog: { by: KALMAR, at: '2026-10-22' },
 };
 
 // Autor (sichtbar „Von …“, Article-Schema author = Person): Peter Kalmar für seine Artikel (Peter 21.10.2026 abends).

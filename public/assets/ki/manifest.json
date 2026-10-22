@@ -118,5 +118,41 @@
     "source": "0e8ef9be5d316651e293eb5c93c5f2e3520c5dd943baa8160361bd077dddc403",
     "width": 1700,
     "height": 1399
+  },
+  "rho-ablauf-mobil": {
+    "file": "rho-ablauf-mobil.png",
+    "source": "9428161e097a7a0dd370b40189bdde3e31c4188053c98100326383f5206be921",
+    "width": 1800,
+    "height": 3416
+  },
+  "rho-ablauf": {
+    "file": "rho-ablauf.png",
+    "source": "f62cec7fe69c4dab670663c07a456e35e8897d7f6f5f413c1aac4ad83f9d2700",
+    "width": 2400,
+    "height": 1350
+  },
+  "transpara-ablauf-mobil": {
+    "file": "transpara-ablauf-mobil.png",
+    "source": "f5dd6fe2fc7506458e59d5bb0d800a422950caf7af0bb5b01ec259ff931ed20b",
+    "width": 1800,
+    "height": 3532
+  },
+  "transpara-ablauf": {
+    "file": "transpara-ablauf.png",
+    "source": "4fa067f37fbe2c9cd44f60edde38329cef7aa465dac9a05866e7dcae9d315899",
+    "width": 2400,
+    "height": 1350
+  },
+  "transpara-auswertung-mobil": {
+    "file": "transpara-auswertung-mobil.png",
+    "source": "0136c173a99e4e2b02ac814c7188dcb6e12c6643520d9751c033d76f06457a4c",
+    "width": 1800,
+    "height": 3224
+  },
+  "transpara-auswertung": {
+    "file": "transpara-auswertung.png",
+    "source": "ccef9b1b4cbb886ea83141aa6fe799e5e762bb124cc42b43be6d4a43a8e44782",
+    "width": 2400,
+    "height": 1800
   }
 }

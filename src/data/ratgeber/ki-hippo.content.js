@@ -82,7 +82,7 @@ export const MEDIA = {
     {
       "key": "hippo-vor-op",
       "label": "Vor einer Operation",
-      "caption": "Beispielbericht des Herstellers (Demo-Datensatz, Personendaten entfernt): Beckenübersicht im Stehen, beide Hüften ohne Prothese. Eingezeichnet sind eine waagrechte Bezugslinie, Messpunkte und Winkel. Die Tabelle nennt für rechts und links Beckenschiefstand, CCD-, LCE- und Sharp-Winkel, Acetabulum-Index, Extrusionsindex und Kopfüberdachung, jeweils mit Referenzbereich in eckigen Klammern. Farbig gesetzte Zahlen liegen außerhalb dieses Bereichs.",
+      "caption": "Beispielbericht des Herstellers (Demo-Datensatz, Personendaten entfernt): Beckenübersicht, beide Hüften ohne Prothese. Eingezeichnet sind eine waagrechte Bezugslinie, Messpunkte und Winkel. Die Tabelle nennt für rechts und links Beckenschiefstand, CCD-, LCE- und Sharp-Winkel, Acetabulum-Index, Extrusionsindex und Kopfüberdachung, jeweils mit Referenzbereich in eckigen Klammern. Farbig gesetzte Zahlen liegen außerhalb dieses Bereichs.",
       "alt": "KI-Messbericht IB Lab HIPPO: Beckenröntgen im Stehen mit eingezeichneten Hüftwinkeln und Tabelle der Messwerte für rechte und linke Hüfte"
     },
     {

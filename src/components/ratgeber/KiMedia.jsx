@@ -7,6 +7,8 @@ import { SHOW_INTERNAL } from '../ui/Placeholder';
 //   nummerierte Hotspots (nur bei einer Folie) mit immer sichtbarer Legende.
 // * MediaPlaceholder – deutlich markierter Platzhalter: Nummer, Titel, Format; im Staging zusätzlich das Briefing
 //   (gewünschte Inhalte, sicherer Zuschnitt), im Release-Build nicht.
+//   frame: 'light' = heller Rahmen für die selbst gezeichneten schematischen Grafiken (weißer Grund);
+//   slide.mobile = Hochformat-Fassung für Handys (eigene Bilddatei, per <source media>).
 // * ProductLogo – Produktlogo des Herstellers (auf hellem Grund, auch im Dunkelmodus lesbar).
 // Daten (Bildgrößen, Hotspot-Positionen, Texte) kommen aus src/data/kiSeries.js.
 
@@ -14,8 +16,12 @@ const BASE = `${import.meta.env.BASE_URL}assets/ki/`;
 const WIDTHS = [800, 1200, 1800];
 const srcSet = (name, ext) => WIDTHS.map((w) => `${BASE}${name}-${w}.${ext} ${w}w`).join(', ');
 
+// slide.mobile ({ key, width, height }): eigene Hochformat-Fassung für schmale Bildschirme (Art Direction)
+const MOBILE = '(max-width: 639px)';
 const ReportPicture = ({ slide, sizes, className = '', eager = false }) => (
   <picture>
+    {slide.mobile && <source media={MOBILE} type="image/avif" srcSet={srcSet(slide.mobile.key, 'avif')} sizes={sizes} width={slide.mobile.width} height={slide.mobile.height} />}
+    {slide.mobile && <source media={MOBILE} type="image/webp" srcSet={srcSet(slide.mobile.key, 'webp')} sizes={sizes} width={slide.mobile.width} height={slide.mobile.height} />}
     <source type="image/avif" srcSet={srcSet(slide.key, 'avif')} sizes={sizes} />
     <img
       src={`${BASE}${slide.key}-1200.webp`}
@@ -170,7 +176,7 @@ export const ReportGallery = ({ media, title = 'Beispielbericht' }) => {
         aria-roledescription={many ? 'Karussell' : undefined}
         aria-label={many ? `${title}: ${slides.length} Bilder` : title}
         onKeyDown={onKey}
-        className="rounded-2xl border border-slate-200 bg-slate-950 p-2 dark:border-slate-700 sm:p-3"
+        className={`rounded-2xl border p-2 sm:p-3 ${media.frame === 'light' ? 'border-slate-200 bg-white dark:border-slate-600' : 'border-slate-200 bg-slate-950 dark:border-slate-700'}`}
       >
         {many && (
           <div className="mb-2 flex flex-wrap gap-2" role="group" aria-label="Bild auswählen">

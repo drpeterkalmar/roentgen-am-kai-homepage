@@ -105,6 +105,16 @@ export const MEDIA = {
       "Fußzeile in zwei Kästchen: „Keine zusätzliche Röntgenaufnahme“ und „Keine Diagnose – kein Ersatz für DEXA“.",
       "NICHT darstellen: Schwellenwert, DEXA-Zeitraum, Prozentzahlen, Aussage „jedes Röntgen wird untersucht“.",
       "Alt-Text-Vorschlag: „Schema: Röntgenaufnahme, Prüfung auf Eignung, Rho-Score 1 bis 10, ärztliche Beurteilung und gegebenenfalls Knochendichtemessung.“"
+    ],
+    "erledigt": "Grafik selbst gezeichnet (keine KI, keine Herstellerbilder) am 22.10.2026: assets-src/ki/quellen/render_ki_grafiken.py → npm run images:ki; Desktop 16:9 + Hochformat für Handys (mobile)",
+    "slides": [
+      {
+        "key": "rho-ablauf",
+        "mobile": "rho-ablauf-mobil",
+        "label": "Ablauf",
+        "caption": "Schematische Darstellung: So läuft die Zusatzanalyse mit Rho ab – von der Röntgenaufnahme bis zur ärztlichen Beurteilung.",
+        "alt": "Schema: Röntgenaufnahme, Prüfung auf Eignung, Rho-Score 1 bis 10, ärztliche Beurteilung und gegebenenfalls Knochendichtemessung."
+      }
     ]
   },
   "slides": [

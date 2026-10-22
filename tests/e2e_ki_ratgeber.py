@@ -29,7 +29,8 @@ data = json.loads(subprocess.run(
      " desc: m.mod.DESCRIPTION, faq: m.mod.FAQ.length, inUse: m.inUse, cta: m.cta.title, logo: !!m.logo, tile: m.tile.title,"
      " words: words(k.html), markers: [...k.html.matchAll(/<!--media:([a-z]+)-->/g)].map(x => x[1]),"
      " media: Object.fromEntries(Object.entries(k.media).filter(([, v]) => v).map(([key, v]) => [key, v.slides ? {slides: v.slides.length,"
-     " alts: v.slides.map(x => x.alt), hotspots: (v.hotspots || []).length} : {placeholder: v.id}]))}; })}))"],
+     " alts: v.slides.map(x => x.alt), captions: v.slides.map(x => x.caption), mobile: v.slides.filter(x => x.mobile && x.mobile.key && x.mobile.width).length,"
+     " gid: v.id, hotspots: (v.hotspots || []).length} : {placeholder: v.id}]))}; })}))"],
     cwd=ROOT, capture_output=True, text=True, check=True).stdout)
 S, MODS = data["series"], data["mods"]
 fails = []
@@ -38,9 +39,12 @@ fails = []
 WORDS = {"lama": (900, 1150), "hippo": (900, 1150), "koala": (900, 1100), "squirrel": (900, 1150), "frog": (900, 1150),
          "panda": (900, 1100), "rho": (950, 1200), "transpara": (1000, 1250)}
 FAQ_N = {"rho": 6, "transpara": 6}
-PLACEHOLDERS = {"koala": {"report": "KI-KOALA-01"}, "rho": {"ablauf": "KI-RHO-01"},   # KI-RHO-02: Demo-Berichte IB Lab seit 22.10.2026 als Galerie
-                "transpara": {"report": "KI-TRANSPARA-01", "ablauf": "KI-TRANSPARA-02"}}
-SLIDES = {"lama": 4, "hippo": 2, "squirrel": 1, "frog": 2, "panda": 1, "rho": 3}
+PLACEHOLDERS = {"koala": {"report": "KI-KOALA-01"}}   # KI-RHO-02: Demo-Berichte IB Lab seit 22.10.2026 als Galerie
+# Bildblöcke als Galerie: Modul → {Block: Anzahl Bilder}. Schematische Grafiken der Praxis (22.10.2026, selbst gezeichnet):
+# KI-RHO-01 (rho/ablauf), KI-TRANSPARA-01 (transpara/report), KI-TRANSPARA-02 (transpara/ablauf) – je mit Hochformat fürs Handy.
+SLIDES = {"lama": {"report": 4}, "hippo": {"report": 2}, "squirrel": {"report": 1}, "frog": {"report": 2}, "panda": {"report": 1},
+          "rho": {"report": 3, "ablauf": 1}, "transpara": {"report": 1, "ablauf": 1}}
+DIAGRAMS = {("rho", "ablauf"), ("transpara", "report"), ("transpara", "ablauf")}
 HOTSPOTS = {"squirrel": 4, "panda": 4}
 FORBIDDEN = ["Goldstandard", "100 %", "strahlungsfrei", "revolution", "modernste", "auf Expertenniveau",
              "ExpertInnen-Niveau", "15,8 Sekunden", "ICC 0,97", "300 %", "ersetzt die Radiologin nicht nur"]
@@ -58,8 +62,9 @@ check(S["seo"] == "Künstliche Intelligenz in der Radiologie | Graz" and S["titl
 check(145 <= len(S["desc"]) <= 160, f"Übersicht: Description {len(S['desc'])} Zeichen (145–160)")
 check(500 <= S["words"] <= 700, f"Übersicht: {S['words']} Wörter (500–700)")
 check(S["can"] >= 3 and S["cannot"] >= 3, "Übersicht: Listen „Was KI kann“ / „was nicht“")
-REVIEWED = {"uebersicht", "rho", "panda", "transpara"}   # Peter „gelesen“ 21.10.2026
+REVIEWED = {"uebersicht", "rho", "panda", "transpara", "lama", "hippo", "koala", "squirrel", "frog"}   # Peter „gelesen“ 21.10. bzw. 22.10.2026 (Georgs fünf)
 REVIEW_TXT = "Medizinisch geprüft von Priv.-Doz. Dr. Peter Kalmar – Stand 21.10.2026"
+REVIEW_AT = {"lama": "22.10.2026", "hippo": "22.10.2026", "koala": "22.10.2026", "squirrel": "22.10.2026", "frog": "22.10.2026"}
 IN_USE = ["lama", "hippo", "koala", "squirrel", "frog", "panda", "rho", "transpara"]   # Praxis: Rho 26.09., IB Lab 21.10., Transpara 21.10.2026 abends
 check(sorted(m["id"] for m in MODS if m["inUse"]) == sorted(IN_USE), "„bei uns im Einsatz“ nur für bestätigten Einsatz (Rho, IB Lab, Transpara)")
 AUTHOR = "Priv.-Doz. Dr. Peter Kalmar"
@@ -73,12 +78,17 @@ for m in MODS:
     check(m["faq"] == FAQ_N.get(m["id"], 5), f"{m['id']}: {m['faq']} FAQ (Soll {FAQ_N.get(m['id'], 5)})")
     for key, pid in PLACEHOLDERS.get(m["id"], {}).items():
         check(m["media"].get(key, {}).get("placeholder") == pid and key in m["markers"], f"{m['id']}: Platzhalter {pid} im Text")
-    if m["id"] in SLIDES:
-        r = m["media"].get("report", {})
-        check(r.get("slides") == SLIDES[m["id"]] and "report" in m["markers"], f"{m['id']}: {r.get('slides')} Bild(er) im Bildblock")
+    for key, n in SLIDES.get(m["id"], {}).items():
+        r = m["media"].get(key, {})
+        check(r.get("slides") == n and key in m["markers"], f"{m['id']}/{key}: {r.get('slides')} Bild(er) im Bildblock")
         alts = r.get("alts", [])
-        check(all(alts) and len(set(alts)) == len(alts) and all(len(a) >= 40 for a in alts), f"{m['id']}: individuelle Alt-Texte")
-        check(r.get("hotspots", 0) == HOTSPOTS.get(m["id"], 0), f"{m['id']}: {r.get('hotspots', 0)} Hotspots")
+        check(all(alts) and len(set(alts)) == len(alts) and all(len(a) >= 40 for a in alts), f"{m['id']}/{key}: individuelle Alt-Texte")
+        check(r.get("hotspots", 0) == (HOTSPOTS.get(m["id"], 0) if key == "report" else 0), f"{m['id']}/{key}: {r.get('hotspots', 0)} Hotspots")
+        if (m["id"], key) in DIAGRAMS:
+            check(r.get("mobile") == n and all(c.startswith("Schematische Darstellung") for c in r.get("captions", [])),
+                  f"{m['id']}/{key}: Hochformat fürs Handy + Bildunterschrift „Schematische Darstellung …“")
+    alls = [a for v in m["media"].values() for a in v.get("alts", [])]
+    check(len(set(alls)) == len(alls), f"{m['id']}: Alt-Texte über alle Bildblöcke eindeutig")
 check(len({m["seo"] for m in MODS}) == 8 and len({m["desc"] for m in MODS}) == 8, "SEO-Titel und Descriptions eindeutig")
 
 # --- 1. statisches HTML, Sitemap, Weiterleitung ---
@@ -178,7 +188,8 @@ with sync_playwright() as pw:
         bad = [w for w in FORBIDDEN if w.lower() in body.lower()] + re.findall(r"(?<!keine )(?<!keinen )garantiert\w*", body, re.I)
         check(not bad, f"{m['id']}: keine verbotenen Aussagen {bad}")
         if m["id"] in REVIEWED:
-            check(pg.locator("[data-reviewed]").count() == 1 and REVIEW_TXT in body, f"{m['id']}: Prüfvermerk Kalmar 21.10.2026")
+            txt = REVIEW_TXT.replace("21.10.2026", REVIEW_AT.get(m["id"], "21.10.2026"))
+            check(pg.locator("[data-reviewed]").count() == 1 and txt in body, f"{m['id']}: Prüfvermerk Kalmar {REVIEW_AT.get(m['id'], '21.10.2026')}")
         else:
             check(pg.locator("[data-reviewed]").count() == 0, f"{m['id']}: Prüfvermerk noch Platzhalter (wartet auf Durchsicht)")
         if m["id"] == "transpara":
@@ -195,14 +206,22 @@ with sync_playwright() as pw:
             check(lg.count() == 1 and lg.evaluate("i => i.complete && i.naturalWidth > 0"), f"{m['id']}: Produktlogo geladen")
         for key, pid in PLACEHOLDERS.get(m["id"], {}).items():
             check(pg.locator(f'[data-ki-media-id="{pid}"]').count() == 1, f"{m['id']}: Platzhalter {pid} sichtbar")
-        if m["id"] in SLIDES:
-            g = pg.locator("[data-ki-gallery]").first
+        for key, n in SLIDES.get(m["id"], {}).items():
+            g = pg.locator(f'[data-ki-gallery="{m["media"][key]["gid"]}"]')
+            check(g.count() == 1, f"{m['id']}/{key}: Galerie im Text")
+            if not g.count():
+                continue
             g.scroll_into_view_if_needed()
             pg.wait_for_timeout(400)
             img = g.locator("img").first
-            check(img.evaluate("i => i.complete && i.naturalWidth > 0"), f"{m['id']}: Berichtsbild geladen")
+            check(img.evaluate("i => i.complete && i.naturalWidth > 0"), f"{m['id']}/{key}: Bild geladen")
             alt0 = img.get_attribute("alt")
-            if SLIDES[m["id"]] > 1:
+            if (m["id"], key) in DIAGRAMS:
+                cap = g.locator("figcaption").inner_text()
+                check(cap.startswith("Schematische Darstellung") and "-mobil-" not in img.evaluate("i => i.currentSrc")
+                      and g.locator("[data-ai-badge], [data-ai-image]").count() == 0 and "KI-generiert" not in g.inner_text(),
+                      f"{m['id']}/{key}: Desktop-Fassung, Bildunterschrift, kein KI-Bild-Hinweis")
+            if n > 1:
                 g.get_by_role("button", name="Nächstes Bild").click()
                 pg.wait_for_timeout(200)
                 alt1 = g.locator("img").first.get_attribute("alt")
@@ -211,15 +230,15 @@ with sync_playwright() as pw:
                 pg.keyboard.press("ArrowLeft")
                 pg.wait_for_timeout(200)
                 check(g.locator("img").first.get_attribute("alt") == alt0, f"{m['id']}: Slider per Pfeiltaste")
-                check(g.locator("[data-slide-tab]").count() == SLIDES[m["id"]], f"{m['id']}: Auswahlknöpfe je Bild")
+                check(g.locator("[data-slide-tab]").count() == n, f"{m['id']}: Auswahlknöpfe je Bild")
             g.locator("[data-ki-zoom-open]").click()
             pg.wait_for_timeout(400)
-            dlg = pg.locator("dialog[data-ki-zoom]")
+            dlg = g.locator("dialog[data-ki-zoom]")   # je Galerie ein eigener Dialog
             check(dlg.evaluate("d => d.open") and dlg.locator("img").evaluate("i => i.complete && i.naturalWidth > 0"), f"{m['id']}: Vergrößern öffnet Dialog mit Bild")
             pg.keyboard.press("Escape")
             pg.wait_for_timeout(200)
             check(not dlg.evaluate("d => d.open"), f"{m['id']}: Esc schließt Vergrößerung")
-            if m["id"] in HOTSPOTS:
+            if m["id"] in HOTSPOTS and key == "report":
                 hs = g.locator("[data-hotspot]")
                 check(hs.count() == HOTSPOTS[m["id"]] and g.locator("ol li").count() == HOTSPOTS[m["id"]], f"{m['id']}: Hotspots + Legende")
                 hs.first.click()
@@ -245,7 +264,13 @@ with sync_playwright() as pw:
             p2.add_script_tag(content=AXE)
             res = p2.evaluate("async () => { const r = await axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21aa'] } }); return r.violations.map(v => [v.id, v.impact, v.nodes.length, v.nodes.slice(0,3).map(n => n.target.join(' '))]); }")
             check(not res, f"axe WCAG AA ({scheme}) {p['path']}: {res}")
-            if p["id"] in ("uebersicht", "squirrel", "lama") and scheme == "light":
+            for key in [k for (i, k) in sorted(DIAGRAMS) if i == p["id"]]:
+                g2 = p2.locator(f'[data-ki-gallery="{p["m"]["media"][key]["gid"]}"] img').first
+                g2.scroll_into_view_if_needed()
+                p2.wait_for_timeout(400)
+                src = g2.evaluate("i => i.complete && i.naturalWidth > 0 ? i.currentSrc : ''")
+                check("-mobil-" in src and g2.evaluate("i => i.naturalHeight > i.naturalWidth"), f"360 px {scheme}: {p['id']}/{key} lädt die Hochformat-Fassung ({src.rsplit('/', 1)[-1]})")
+            if p["id"] in ("uebersicht", "squirrel", "lama", "rho", "transpara") and scheme == "light":
                 p2.screenshot(path=f"{SHOTS}/ki-{p['id']}-360.png", full_page=True)
         c2.close()
     br.close()
