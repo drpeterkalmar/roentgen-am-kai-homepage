@@ -16,8 +16,8 @@ export const SCREENING = {
   ecardAutoEnabled: true, // e-card automatisch freigeschaltet
   // Anmeldung außerhalb der Kernzielgruppe – Details regelt das Programm, nicht die Praxis
   optIn: [
-    { id: 'jung', label: 'Frauen zwischen 40 und 44 Jahren' },
-    { id: 'alt', label: 'Frauen ab 75 Jahren' },
+    { id: 'jung', label: 'Frauen zwischen 40 und 44 Jahren', from: 40, to: 44 }, // from/to: Zeitstrahl A001
+    { id: 'alt', label: 'Frauen ab 75 Jahren', from: 75, to: null },
   ],
   officialUrl: 'https://www.frueh-erkennen.at/',
   officialUrlLabel: 'www.frueh-erkennen.at',

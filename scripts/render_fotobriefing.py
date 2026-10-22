@@ -87,7 +87,7 @@ with sync_playwright() as p:
     pg.goto(HTML.as_uri(), wait_until="load")
     pg.pdf(path=str(PDF), format="A4", print_background=True, display_header_footer=True,
            header_template="<span></span>",
-           footer_template="<div style='font-family:-apple-system,Helvetica Neue,Arial,sans-serif;font-size:8.5pt;color:#475569;width:100%;padding:0 15mm;display:flex;justify-content:space-between'><span>Foto- und Medienbriefing Röntgen am Kai · Stand 12.10.2026</span><span>Seite <span class='pageNumber'></span> / <span class='totalPages'></span></span></div>",
+           footer_template="<div style='font-family:-apple-system,Helvetica Neue,Arial,sans-serif;font-size:8.5pt;color:#475569;width:100%;padding:0 15mm;display:flex;justify-content:space-between'><span>Foto- und Medienbriefing Röntgen am Kai · Stand 22.10.2026</span><span>Seite <span class='pageNumber'></span> / <span class='totalPages'></span></span></div>",
            margin={"top": "16mm", "bottom": "18mm", "left": "15mm", "right": "15mm"})
     b.close()
 print("PDF:", PDF, PDF.stat().st_size // 1024, "KB")

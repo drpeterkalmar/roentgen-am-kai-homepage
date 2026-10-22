@@ -62,8 +62,17 @@ with sync_playwright() as p:
             seen_ids.update(ids)
             for a in EXPECT_A.get(r, []):
                 check(a in ids, f"[{tag}] {r}: {a} platziert")
-            aph = pg.evaluate("""[...document.querySelectorAll('[data-animation-placeholder]')].map(e => ({ t: e.innerText, h: e.getBoundingClientRect().height }))""")
-            check(all("Format:" in x["t"] and x["h"] >= 200 for x in aph), f"[{tag}] {r}: A-Platzhalter mit Titel/Funktion/Format und fester Fläche")
+            # A001–A006 sind seit 22.10.2026 echte Grafiken (src/components/explainers): kein gelber Kasten mehr,
+            # Grafik sichtbar, Text als HTML, kein seitliches Überlaufen
+            aph = pg.evaluate("document.querySelectorAll('[data-animation-placeholder]').length")
+            check(aph == 0, f"[{tag}] {r}: keine A-Platzhalter mehr ({aph})")
+            exp = pg.evaluate("""[...document.querySelectorAll('[data-explainer]')].map(e => { const b = e.getBoundingClientRect();
+              return { id: e.dataset.explainer, w: b.width, h: b.height, txt: e.innerText.length, over: e.scrollWidth - e.clientWidth,
+                       wide: [...e.querySelectorAll('*')].filter(c => c.getBoundingClientRect().right > b.right + 1).length }; })""")
+            for x in exp:
+                check(x["h"] >= 150 and x["txt"] > 80 and x["over"] <= 1 and x["wide"] == 0,
+                      f"[{tag}] {r}: Grafik {x['id']} sichtbar, mit Text, ohne Überlauf ({x['w']:.0f}×{x['h']:.0f}, über Rand: {x['wide']})")
+            check(sorted({x["id"] for x in exp}) == sorted(EXPECT_A.get(r, [])), f"[{tag}] {r}: Grafiken {sorted({x['id'] for x in exp})}")
             cls = pg.evaluate(CLS_JS)
             check(cls < 0.02, f"[{tag}] {r}: CLS beim Scrollen {cls:.4f}")
             bad = pg.evaluate("""[...document.querySelectorAll('a[href*="miranext"]')].filter(a => a.target !== '_blank' || !/noopener/.test(a.rel)).length""")

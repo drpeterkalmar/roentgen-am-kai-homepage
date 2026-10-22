@@ -291,10 +291,11 @@ export const confirmedDental = DENTAL_SERVICES.filter((s) => s.confirmed);
 // ---------------------------------------------------------------------------
 // Strahleninformation – typische Orientierungswerte (Vorgabe der Praxis)
 // ---------------------------------------------------------------------------
+// mSv/days/below = dieselben Zahlen wie in text, für die Grafik A005 (Unit-Test prüft die Übereinstimmung).
 export const RADIATION_EXAMPLES = [
-  { id: 'peripher', label: 'Röntgen von Hand, Fuß oder einem peripheren Gelenk', text: 'typischerweise unter 0,01 mSv, entsprechend weniger als etwa 1,5 Tagen natürlicher Hintergrundstrahlung.' },
-  { id: 'panorama', label: 'Panoramaröntgen der Zähne', text: 'typischerweise etwa 0,01 mSv, entsprechend ungefähr 1,5 Tagen natürlicher Hintergrundstrahlung.' },
-  { id: 'lunge', label: 'Einzelne Lungenröntgenaufnahme', text: 'typischerweise etwa 0,02 mSv, entsprechend ungefähr 3 Tagen natürlicher Hintergrundstrahlung.' },
+  { id: 'peripher', label: 'Röntgen von Hand, Fuß oder einem peripheren Gelenk', text: 'typischerweise unter 0,01 mSv, entsprechend weniger als etwa 1,5 Tagen natürlicher Hintergrundstrahlung.', mSv: 0.01, days: 1.5, below: true },
+  { id: 'panorama', label: 'Panoramaröntgen der Zähne', text: 'typischerweise etwa 0,01 mSv, entsprechend ungefähr 1,5 Tagen natürlicher Hintergrundstrahlung.', mSv: 0.01, days: 1.5 },
+  { id: 'lunge', label: 'Einzelne Lungenröntgenaufnahme', text: 'typischerweise etwa 0,02 mSv, entsprechend ungefähr 3 Tagen natürlicher Hintergrundstrahlung.', mSv: 0.02, days: 3 },
 ];
 export const RADIATION_DISCLAIMER =
   'Dabei handelt es sich um typische Orientierungswerte. Die tatsächliche Dosis hängt unter anderem von Untersuchungsregion, Anzahl der Aufnahmen, Körperbau, Gerät und Untersuchungsprotokoll ab.';

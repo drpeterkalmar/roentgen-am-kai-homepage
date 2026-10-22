@@ -1,10 +1,13 @@
-// Noch nicht produzierte Animationen und Erklärgrafiken (A-Nummern) – identisch mit
+// Animationen und Erklärgrafiken (A-Nummern) – identisch mit
 // docs/seiten-und-medienkonzept.md (Teil 3) und dem Fotobriefing. Eine Grafik = eine Nummer, auch wenn sie
 // auf mehreren Seiten erscheint (A005). Inhalte dürfen nur aus bestehenden, geprüften Seitentexten bzw.
 // den genannten Datendateien stammen.
+// `done` = umgesetzt: selbst gezeichnete HTML/SVG-Komponente in src/components/explainers/ (ersetzt den
+// AnimationPlaceholder; data-media-id bleibt als Test-Hook). Noch offene Nummern zeigt weiter AnimationPlaceholder.
 export const ANIMATIONS = {
   A001: {
     id: 'A001',
+    done: 'ScreeningTimeline.jsx (22.10.2026)',
     title: 'Wer kann wann zur Mammographie?',
     purpose: 'Zeitstrahl der Altersgruppen und Zugangswege (e-card, Selbstanmeldung) im Brustkrebs-Früherkennungsprogramm – Werte ausschließlich aus src/data/screening.js.',
     format: 'SVG, responsiv: Desktop 16:6, Handy gestapelt; Text als HTML',
@@ -13,6 +16,7 @@ export const ANIMATIONS = {
   },
   A002: {
     id: 'A002',
+    done: 'TScoreScale.jsx (22.10.2026)',
     title: 'T-Wert-Skala',
     purpose: 'Die WHO-Bereiche des T-Werts (normal / verminderte Knochendichte / Osteoporose) als Skala, auf der man einen Beispielwert einordnen kann – nur die auf der Seite genannten Grenzwerte.',
     format: 'HTML/CSS oder SVG, volle Breite, max. 120 px hoch',
@@ -21,6 +25,7 @@ export const ANIMATIONS = {
   },
   A003: {
     id: 'A003',
+    done: 'BodyComponents.jsx (22.10.2026)',
     title: 'Drei Bestandteile des Körpers',
     purpose: 'Fettmasse, magere Weichteilmasse und Knochenmineral als schematische Aufteilung – mit dem Hinweis, dass Magermasse nicht gleich Muskelmasse ist.',
     format: 'SVG 4:3, Beschriftung als HTML',
@@ -29,6 +34,7 @@ export const ANIMATIONS = {
   },
   A004: {
     id: 'A004',
+    done: 'XrayWay.jsx (22.10.2026)',
     title: 'Ihr Weg zum Röntgen ohne Termin',
     purpose: 'Vier Schritte: Zuweisung und e-card → Anmeldung → Aufnahme → Befund und Bilder; nur Schritte, die im Seitentext stehen.',
     format: 'SVG/Icons, 4 Schritte; Desktop in einer Reihe, Handy senkrecht',
@@ -37,6 +43,7 @@ export const ANIMATIONS = {
   },
   A005: {
     id: 'A005',
+    done: 'RadiationComparison.jsx (22.10.2026)',
     title: 'Strahlenbelastung im Vergleich',
     purpose: 'Orientierungswerte aus src/data/examinations.js als Balken mit Bezug zur natürlichen Strahlung (logarithmische Skala, Werte zusätzlich als Text).',
     format: 'SVG, volle Breite, 16:7; Werte als HTML-Text daneben',
@@ -45,6 +52,7 @@ export const ANIMATIONS = {
   },
   A006: {
     id: 'A006',
+    done: 'DentalDimensions.jsx (22.10.2026)',
     title: '2D-Zahnröntgen oder 3D-DVT?',
     purpose: 'Schematischer Vergleich: Panoramaaufnahme als Fläche, DVT als Volumen – zeigt, wann welche Aufnahme gebraucht wird, ohne neue Indikationen zu nennen.',
     format: 'SVG 16:9, Beschriftung als HTML',

@@ -4,6 +4,8 @@
 
 Dieses Briefing beschreibt alle noch fehlenden Fotos (**B001–B019**) und Erklärgrafiken (**A001–A006**) der neuen Website. Jede Nummer steht genau einmal; eine Aufnahme, die auf mehreren Seiten verwendet wird, hat eine Nummer. Auf der Website zeigt ein Platzhalter mit derselben Nummer, wo das Bild hinkommt. Wird ein Foto geliefert, ersetzt es den Platzhalter ohne Layoutänderung (feste Seitenverhältnisse).
 
+**Nachtrag 22.10.2026:** Die Erklärgrafiken **A001–A006** sind umgesetzt – selbst gezeichnet als HTML/SVG-Bausteine der Website (`src/components/explainers/`), Beschriftung als Text, Hell- und Dunkelmodus, am Handy eine eigene gestapelte bzw. Hochformat-Fassung. Für A001–A006 wird nichts mehr produziert; die Einträge in Teil 3 bleiben als Beschreibung stehen.
+
 **Nachtrag 20.10.2026:** Übergangsweise mit vorhandenen Praxisfotos (Drive „Marketing/Fotos Praxis“) belegt: **B001** (Mammomat Inspiration, ersetzt das KI-Bild), **B015** (Ultraschallgerät GE LOGIQ, Detail; laut Praxis aktuelles Gerät, mehrere davon im Einsatz) und **B019** (Praxisschild vor dem Haus). Neue Aufnahmen nach diesem Briefing bleiben erwünscht: B001 auf Augenhöhe ohne Weitwinkel, B015 als Raum mit Liege, B019 als Weg vom Hauseingang zur Praxistür.
 
 **Bildsprache:** reale Räume, Geräte und Menschen der Ordination. Keine Stockfotos, keine KI-Bilder, keine Herstellerbilder, keine gestellten „Arzt zeigt auf Bildschirm“-Szenen, keine Vorher-nachher-Darstellung, keine unnötige Dekoration.
@@ -429,12 +431,15 @@ Ziel: möglichst alle Motive an **einem Fototermin** (ca. ein Arbeitstag, außer
 
 Bereits umgesetzt (ohne Nummer): Erklärfilm Körperanalyse (Handy- und Desktop-Fassung), DEXA-Messschema, Befund-Slider Knochendichte und Körperanalyse, Körpernavigator Röntgen.
 
+**Stand 22.10.2026: A001–A006 erledigt** – selbst gezeichnet (keine KI-, Stock- oder Herstellerbilder), Werte nur aus den genannten Datendateien bzw. dem Seitentext. Ärztliche Durchsicht der Grafiken auf der Website steht noch aus.
+
 Für alle A-Nummern gilt: Inhalte ausschließlich aus geprüften Seitentexten und Datendateien; Text als HTML (barrierefrei, nicht im Bild); keine Dauerbewegung, höchstens ein einmaliger, anhaltbarer Aufbau; mit „Bewegung reduzieren“ statisch; Farben aus dem Designsystem (Dunkelrot #8B2323, Grautöne); ärztliche Freigabe vor Veröffentlichung.
 
 ### A001 – Wer kann wann zur Mammographie?
 
 | | |
 |---|---|
+| **Status** | Erledigt 22.10.2026 – `ScreeningTimeline.jsx`: drei Altersabschnitte (40–44 auf Wunsch, 45–74 im Programm mit einem Punkt je möglichem Termin, ab 75 auf Wunsch); Handy senkrecht gestapelt. |
 | **Seite und Position** | Mammographie, Abschnitt „Screening oder diagnostische Abklärung“ |
 | **Inhalt** | Zeitstrahl der Altersgruppen und Zugangswege im Brustkrebs-Früherkennungsprogramm (mit e-card ohne Zuweisung, Selbstanmeldung für weitere Altersgruppen). Werte ausschließlich aus `src/data/screening.js`. |
 | **Funktion** | Orientierung: „Gehöre ich dazu, und wie komme ich zum Termin?“ |
@@ -444,6 +449,7 @@ Für alle A-Nummern gilt: Inhalte ausschließlich aus geprüften Seitentexten un
 
 | | |
 |---|---|
+| **Status** | Erledigt 22.10.2026 – `TScoreScale.jsx`: Farbband mit den Grenzmarken −1 und −2,5, Legende in denselben Spalten; Handy: Band + gestapelte Legende. |
 | **Seite und Position** | Knochendichte, Abschnitt „Ergebnis: T-Score und Z-Score verständlich erklärt“ |
 | **Inhalt** | Skala mit den drei WHO-Bereichen (bis −1 normal, −1 bis −2,5 verminderte Knochendichte, ab −2,5 Hinweis auf Osteoporose) – genau die Grenzwerte, die auf der Seite stehen. |
 | **Funktion** | Untersuchung erklären: Wo liegt ein Wert im Befund? |
@@ -453,6 +459,7 @@ Für alle A-Nummern gilt: Inhalte ausschließlich aus geprüften Seitentexten un
 
 | | |
 |---|---|
+| **Status** | Erledigt 22.10.2026 – `BodyComponents.jsx`: drei schematische Figuren (Fett, magere Weichteilmasse, Knochenmineral) mit „+“, Hinweis „Magermasse ist nicht gleich Muskelmasse“; Handy gestapelt. |
 | **Seite und Position** | Körperanalyse, Abschnitt „Was zeigt eine medizinische Körperanalyse?“ |
 | **Inhalt** | Schematische Aufteilung in Fettmasse, magere Weichteilmasse und Knochenmineral, mit dem Hinweis „Magermasse ist nicht gleich Muskelmasse“. |
 | **Funktion** | Untersuchung erklären: was DEXA trennt – und was nicht. |
@@ -462,6 +469,7 @@ Für alle A-Nummern gilt: Inhalte ausschließlich aus geprüften Seitentexten un
 
 | | |
 |---|---|
+| **Status** | Erledigt 22.10.2026 – `XrayWay.jsx`: vier Schritte mit Symbolen, Desktop in einer Reihe, Handy senkrecht mit Verbindungslinie. |
 | **Seite und Position** | Röntgen, Abschnitt „So läuft Ihr Röntgen ab“ |
 | **Inhalt** | Vier Schritte: Zuweisung und e-card → Anmeldung → Aufnahme → Befund und Bilder; nur Schritte aus dem bestehenden Seitentext. |
 | **Funktion** | Zur Handlung führen: „Ich kann direkt kommen – das brauche ich.“ |
@@ -471,6 +479,7 @@ Für alle A-Nummern gilt: Inhalte ausschließlich aus geprüften Seitentexten un
 
 | | |
 |---|---|
+| **Status** | Erledigt 22.10.2026 – `RadiationComparison.jsx`: Balken auf logarithmischer Skala (0,001–0,1 mSv), Werte und Tage natürlicher Hintergrundstrahlung als Text; Röntgen mit 2, Weitere Untersuchungen mit 3 Beispielen. |
 | **Seite und Position** | Röntgen und Weitere Untersuchungen, jeweils Abschnitt „Wie hoch ist die Strahlenbelastung?“ (eine Grafik, zwei Stellen) |
 | **Inhalt** | Orientierungswerte aus `src/data/examinations.js` als Balken mit Bezug zur natürlichen Strahlenbelastung; logarithmische Skala, Werte zusätzlich als Text. |
 | **Funktion** | Untersuchung erklären und beruhigen, ohne zu verharmlosen. |
@@ -480,6 +489,7 @@ Für alle A-Nummern gilt: Inhalte ausschließlich aus geprüften Seitentexten un
 
 | | |
 |---|---|
+| **Status** | Erledigt 22.10.2026 – `DentalDimensions.jsx`: Panoramabild als Fläche (2D) neben Würfel mit Zahnbogen (3D); Handy gestapelt. |
 | **Seite und Position** | Zahnröntgen und 3D-DVT, Abschnitt „Unser Leistungsspektrum“ |
 | **Inhalt** | Schematischer Vergleich: Panoramaaufnahme als Fläche, DVT als Volumen – ohne neue Indikationen. |
 | **Funktion** | Orientierung: Unterschied der beiden Aufnahmearten. |

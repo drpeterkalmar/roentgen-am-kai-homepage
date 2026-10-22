@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, BookOpen, MapPin, Phone, CalendarCheck, Scale, ExternalLink } from 'lucide-react';
-import AnimationPlaceholder from '../components/ui/AnimationPlaceholder';
+import TScoreScale from '../components/explainers/TScoreScale';
 import Hero from '../components/ui/Hero';
 import Section from '../components/ui/Section';
 import Card from '../components/ui/Card';
@@ -338,7 +338,7 @@ const KnochendichtePage = () => {
 
       <Section labelledBy="ergebnis-title">
         <SectionHeading id="ergebnis-title" title={'Ergebnis: T\u2011Score und Z\u2011Score verständlich erklärt'} className="!mb-6" />
-        <AnimationPlaceholder id="A002" />
+        <TScoreScale className="!mt-0" />
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           <Card as="section" aria-labelledby="t-score">
             <H3 id="t-score">T-Score</H3>

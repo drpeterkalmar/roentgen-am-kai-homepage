@@ -1,4 +1,4 @@
-import AnimationPlaceholder from '../components/ui/AnimationPlaceholder';
+import DentalDimensions from '../components/explainers/DentalDimensions';
 import Hero from '../components/ui/Hero';
 import ImagePlaceholder from '../components/ui/ImagePlaceholder';
 import { IMAGE_BRIEFS } from '../data/imageBriefs';
@@ -44,7 +44,7 @@ const ZahnroentgenDvtPage = () => {
 
       <Section labelledBy="zahn-title">
         <SectionHeading id="zahn-title" title="Unser Leistungsspektrum" />
-        <AnimationPlaceholder id="A006" />
+        <DentalDimensions className="!mt-0 mb-10" />
         <Notice tone="info" title="Welche Aufnahme brauche ich?" className="mb-10 max-w-3xl">
           Art und Aufnahmebereich hängen von der zahnärztlichen beziehungsweise fachärztlichen Fragestellung ab. Bitte bringen Sie
           Ihre Zuweisung mit – sie legt fest, welche Aufnahme gemacht wird.

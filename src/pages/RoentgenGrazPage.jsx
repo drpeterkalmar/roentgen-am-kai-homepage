@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { FileText, Send, Clock, MapPin, Images, Stethoscope } from 'lucide-react';
-import AnimationPlaceholder from '../components/ui/AnimationPlaceholder';
+import XrayWay from '../components/explainers/XrayWay';
+import RadiationComparison from '../components/explainers/RadiationComparison';
 import Hero from '../components/ui/Hero';
 import ImagePlaceholder from '../components/ui/ImagePlaceholder';
 import { IMAGE_BRIEFS } from '../data/imageBriefs';
@@ -40,7 +41,7 @@ const RoentgenGrazPage = () => {
       {/* Kurz erklärt: digital als Qualitätsmerkmal */}
       <Section spacing="sm" labelledBy="ablauf-kurz-title">
         <h2 id="ablauf-kurz-title" className="sr-only">So läuft Ihr Röntgen ab</h2>
-        <AnimationPlaceholder id="A004" className="!mt-0" />
+        <XrayWay className="!mt-0" />
         <ul className="grid gap-4 md:grid-cols-3">
           {[
             { icon: Images, title: 'Digital aufgenommen', text: 'Die Aufnahmen werden digital erstellt und in unserem Bildarchiv gespeichert.' },
@@ -133,7 +134,7 @@ const RoentgenGrazPage = () => {
       </Section>
 
       <Section labelledBy="strahlung-title" spacing="md">
-        <AnimationPlaceholder id="A005" className="!mt-0" />
+        <RadiationComparison ids={RADIATION_BY_AREA.roentgen} className="!mt-0" />
         <RadiationInfo
           ids={RADIATION_BY_AREA.roentgen}
           lead="Zur Orientierung einige typische Werte:"
