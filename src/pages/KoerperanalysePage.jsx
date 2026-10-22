@@ -196,14 +196,6 @@ const KoerperanalysePage = () => {
             </li>
           ))}
         </ul>
-        {!BODY.booking.serviceInMiraNext && (
-          <Placeholder internal className="mt-5">
-            Konfiguration Buchung: Die Körperanalyse ist in MiraNext noch nicht als Untersuchung angelegt (geprüft 27.09.2026).
-            Die Buchungsbuttons führen bis dahin zur allgemeinen Online-Buchung; das Paket wird telefonisch angefragt, bis
-            geklärt ist, ob MiraNext es abbilden kann. Nach dem Anlegen in src/data/bodyComposition.js
-            „serviceInMiraNext: true“ setzen.
-          </Placeholder>
-        )}
       </Hero>
 
       {/* 2. Was zeigt eine medizinische Körperanalyse? */}

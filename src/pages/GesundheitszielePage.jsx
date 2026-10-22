@@ -5,7 +5,6 @@ import Hero from '../components/ui/Hero';
 import Section from '../components/ui/Section';
 import Card from '../components/ui/Card';
 import Notice from '../components/ui/Notice';
-import Placeholder from '../components/ui/Placeholder';
 import { SectionHeading } from '../components/ui/Heading';
 import { GoalImage, MultiCTA, SourcesSection, NewWindow } from '../components/goals/GoalParts';
 import { HUB, HUB_GOALS, goalById, LEGACY_GOAL_ANCHORS } from '../data/healthGoals';
@@ -130,10 +129,6 @@ const GesundheitszielePage = () => {
                 </a>
               </li>
             </ul>
-            <Placeholder internal className="mt-5">
-              Eine eigene Terminübersicht (welche Untersuchung online, welche telefonisch buchbar) gibt es noch nicht – bis
-              dahin führen die Links zur Online-Buchung und zum Telefon.
-            </Placeholder>
           </div>
           <div className="flex flex-col gap-5 self-start">
             <Notice tone="important" title="Bei akuten oder unklaren Beschwerden" headingLevel={3}>

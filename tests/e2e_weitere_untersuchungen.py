@@ -215,8 +215,9 @@ def main():
         # Spezialröntgen: Doppelbezeichnungen
         page.goto(BASE + "spezialroentgen", wait_until="networkidle")
         sp = page.locator("[data-special]")
-        check(sp.count() == 4, f"Spezialröntgen: {sp.count()} statt 4 Karten")
+        check(sp.count() == 5, f"Spezialröntgen: {sp.count()} statt 5 Karten")
         pairs = [("Schluckröntgen und Videoschluckakt", "Videokinematographie des Schluckaktes"),
+                 ("Magenröntgen und Dünndarmpassage", "Magen-Darm-Passage"),
                  ("Venenröntgen", "Phlebographie"),
                  ("Eileiterdurchgängigkeit mit Röntgen", "Hysterosalpingographie, HSG"),
                  ("Nierenröntgen mit Kontrastmittel", "Ausscheidungsurographie, IVP oder IVU")]
@@ -224,6 +225,11 @@ def main():
             t = sp.nth(i).inner_text()
             check(lay in t and med in t, f"Spezialröntgen Karte {i+1}: Doppelbezeichnung fehlt")
             check("Termin erforderlich" in t and "Untersuchung ansehen" in t, f"Spezialröntgen Karte {i+1}: Label/Button fehlt")
+        # Magen/Dünndarm (Praxis 22.10.2026): keine erfundenen Vorbereitungsdetails, kein Platzhalter
+        md = page.locator("#details-magen-duenndarm").inner_text()
+        check("Wie Sie sich vorbereiten, besprechen wir bei der Terminvereinbarung." in md
+              and page.locator("#details-magen-duenndarm [data-placeholder]").count() == 0, "Magen/Dünndarm: Vorbereitungshinweis ohne Platzhalter")
+        check("Hysterosalpingographie" in visible_text(page) and "Bitte bestätigen, ob weiterhin angeboten" not in visible_text(page), "Spezialröntgen: Platzhalter Magenröntgen entfernt")
         h = " ".join(page.evaluate("() => [...document.querySelectorAll('h1,h2')].map(e => e.textContent)"))
         check(not re.search(r"^\s*Durchleuchtung\s*$", h), "Spezialröntgen heißt nur „Durchleuchtung“")
 

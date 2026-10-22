@@ -5,6 +5,14 @@
 // Stand: Praxisangaben 26.09.2026 (Telegram-Gruppe „Homepage“), MiraNext geprüft 27.09.2026.
 import { BOOKING_URL } from './practice.js';
 
+// Höchstes Patientengewicht des Messtisches (GE Lunar Prodigy, auch Prodigy Primo): 159 kg (350 lb).
+// Quellen: GE HealthCare, Pre-installation Manual and Checklist for Prodigy and Lunar iDXA, LU46003EN Rev. 2 (10/2023),
+// Tabelle 2 „Maximum patient weight supported: 159 kg (350 lb)“ (Full Size und Compact Table); GE Lunar enCORE Safety and
+// Specification Manual LU43618EN Rev. 3 (05/2009): „Weight applied to the Lunar PRODIGY, PRODIGY Advance, PRODIGY Primo …
+// scan table bed … must not exceed 159kg (350 pounds)“. Breite: Messfeld Ganzkörper 60 cm nur beim großen Tisch –
+// welche Tischgröße die Praxis hat, ist nicht belegt → Breite ohne Zahl.
+export const DEXA_MAX_PATIENT_KG = 159;
+
 export const BODY = {
   // ── Bestätigt ─────────────────────────────────────────────────────
   durationMinutes: 20, // Praxis 27.09.2026: TERMINDAUER 20 Minuten; reine Messdauer bewusst nicht nennen

@@ -10,7 +10,7 @@ import Container from '../ui/Container';
 import { SectionHeading } from '../ui/Heading';
 import { BookingButton, PhoneButton } from '../ui/BookingButtons';
 import { IMAGE_BRIEFS } from '../../data/imageBriefs';
-import { GOAL_IMAGES, SOURCES, goalById, HUB } from '../../data/healthGoals';
+import { GOAL_IMAGES, SOURCES, goalById, HUB, GOALS_REVIEWED } from '../../data/healthGoals';
 import { BODY, BODY_PRICE_TEXT, BODY_PACKAGE_TEXT } from '../../data/bodyComposition';
 import { OPENING_HOURS_SHORT } from '../../data/practice';
 import Picture, { imageUrl, imageSrcSet } from '../ui/Picture';
@@ -156,7 +156,7 @@ export const SourcesSection = ({ keys }) => (
     </ol>
     <p className="mt-5 flex flex-wrap items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
       <Stethoscope size={16} aria-hidden="true" />
-      Medizinisch geprüft von <Placeholder inline>Dr. [NAME]</Placeholder> – Stand <Placeholder inline>[DATUM]</Placeholder>
+      <span data-reviewed="ja">Medizinisch geprüft von {GOALS_REVIEWED.by} – Stand {GOALS_REVIEWED.at.split('-').reverse().join('.')}</span>
     </p>
     <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
       Diese Seite dient der allgemeinen Information und ersetzt keine ärztliche Beratung.

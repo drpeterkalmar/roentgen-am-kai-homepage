@@ -7,7 +7,6 @@ import { imageUrl, imageSrcSet } from '../components/ui/Picture';
 import Section from '../components/ui/Section';
 import Container from '../components/ui/Container';
 import Notice from '../components/ui/Notice';
-import Placeholder from '../components/ui/Placeholder';
 import { SectionHeading } from '../components/ui/Heading';
 import { StatusBadge, AppointmentActions, AreaCard, RadiationInfo } from '../components/exams/ExamParts';
 import { AREAS, EXAMS_CRUMB, RADIATION_BY_AREA, XRAY_HOURS_NOTE, WALK_IN, APPOINTMENT_REQUIRED } from '../data/examinations';
@@ -77,9 +76,7 @@ const WeitereUntersuchungenPage = () => {
               <StatusBadge area={xray} className="mt-5" />
               <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate-700 dark:text-slate-200">{xray.overviewText}</p>
               <p className="mt-3 text-sm text-slate-700 dark:text-slate-200">Röntgenzeiten: {hours}</p>
-              {XRAY_HOURS_NOTE ? <p className="mt-1 text-sm">{XRAY_HOURS_NOTE}</p> : (
-                <Placeholder inline className="mt-2">Röntgenzeiten, falls abweichend von den Öffnungszeiten (z. B. letzte Annahme)</Placeholder>
-              )}
+              <p className="mt-1 text-sm text-slate-700 dark:text-slate-200" data-xray-hours>{XRAY_HOURS_NOTE}</p>
             </div>
             <div className="lg:justify-self-end">
               <AppointmentActions area={xray} size="lg" />

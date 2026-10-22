@@ -9,8 +9,10 @@
 //   nicht im Haupt-Bundle). Titel und Kurzfassung stehen HIER (Test prüft Gleichheit mit blogPosts.js).
 //   Fehlt der endgültige Text → status 'placeholder':
 //   Seite zeigt einen deutlich markierten Platzhalter, ist noindex, nicht in der Sitemap, ohne Article-Schema.
-// * Autor: Solange keine Ärztin/kein Arzt als Autor bestätigt ist, erscheint die Praxis als Herausgeberin
-//   (author: null) plus interner Platzhalter. Keine Namen erfinden.
+// * Autor: Ohne bestätigte Ärztin/bestätigten Arzt erscheint die Praxis als Herausgeberin (author: null,
+//   „Herausgegeben von Röntgen am Kai“ – Entscheidung der Praxis 22.10.2026). Keine Namen erfinden.
+// * Prüfvermerk: Priv.-Doz. Dr. Peter Kalmar, Stand 22.10.2026, für alle veröffentlichten Artikel ohne eigenen
+//   Vermerk (Entscheidung der Praxis 22.10.2026); Platzhalter-Artikel ohne Text bleiben ohne Vermerk.
 // * FAQPage-Schema nur, wenn der Artikel ein sichtbares `faq`-Array hat (wird als FAQ-Block angezeigt).
 import { SCREENING } from './screening.js';
 import { PHOTOS } from './photos.js';
@@ -174,12 +176,16 @@ const META = [
   ...KI_ARTICLE_META,
 ];
 
+export const ARTICLES_REVIEWED = { by: 'Priv.-Doz. Dr. Peter Kalmar', at: '2026-10-22' };
+
 export const ARTICLES = META.map((m) => {
+  const status = m.status || 'published';
   return {
     status: 'published',
     author: null,
     faq: null,
     ...m,
+    reviewed: m.reviewed || (status === 'published' ? ARTICLES_REVIEWED : null),
     dateModified: m.dateModified || m.datePublished,
     photo: m.photo ? PHOTOS[m.photo] : null,
     path: `${RATGEBER_BASE}/${m.slug}`,

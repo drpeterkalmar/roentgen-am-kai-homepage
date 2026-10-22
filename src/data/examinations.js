@@ -9,6 +9,7 @@
 //   * Offene Praxisangaben = null → sichtbarer redaktioneller Platzhalter.
 
 import { services } from './services.js';
+import { OPENING_HOURS } from './practice.js';
 
 export const EXAMS_BASE = '/weitere-untersuchungen';
 export const EXAMS_CRUMB = 'Weitere Untersuchungen';
@@ -34,8 +35,10 @@ export const APPOINTMENT_REQUIRED = {
 // Rückrufservice: nur anzeigen, wenn die Praxis ihn bestätigt (bisher nicht bestätigt → null)
 export const CALLBACK = null;
 
-// Röntgenzeiten: falls abweichend von den Öffnungszeiten (z. B. letzte Annahme) – PLATZHALTER
-export const XRAY_HOURS_NOTE = null;
+// Röntgenzeiten = Öffnungszeiten: Annahme ohne Termin bis Ordinationsschluss (Praxis, 22.10.2026).
+// Zeiten aus practice.js → „Mo – Do bis 17:00 Uhr, Fr bis 13:00 Uhr“
+const CLOSING_TEXT = OPENING_HOURS.map((h) => `${h.short} bis ${h.closes}\u00A0Uhr`).join(', ');
+export const XRAY_HOURS_NOTE = `Röntgen ohne Termin ist während der gesamten Öffnungszeiten möglich, bis Ordinationsschluss (${CLOSING_TEXT}).`;
 
 // Sprungziel „Direkt vorbeikommen“ (Öffnungszeiten, Unterlagen, Anfahrt)
 export const WALK_IN_HREF = '/roentgen-graz#direkt-vorbeikommen';
@@ -184,7 +187,7 @@ export const PUCMED = {
 };
 
 // ---------------------------------------------------------------------------
-// Spezialröntgen mit Kontrastmittel – vier Untersuchungen.
+// Spezialröntgen mit Kontrastmittel – fünf Untersuchungen.
 // Vorbereitung, Kontrastmittel, Laborwerte, Medikamente, Schwangerschaft und Dauer werden je
 // Untersuchung gepflegt. null = von der Praxis noch zu liefern (sichtbarer Platzhalter).
 // ---------------------------------------------------------------------------
@@ -202,6 +205,16 @@ export const SPECIAL_EXAMS = [
       pregnancy: 'Bei bestehender oder möglicher Schwangerschaft wird die Untersuchung nur in begründeten Ausnahmefällen gemacht – bitte informieren Sie uns vorher.',
       duration: 'Die Untersuchung selbst dauert meist 5 bis 10 Minuten.',
     },
+  },
+  {
+    // Weiter im Angebot (Praxis 20./22.10.2026: Durchleuchtung u. a. Ösophagus, Magen, Darmpassage).
+    // Vorbereitung NICHT veröffentlicht – wird bei der Terminvereinbarung besprochen (keine Details erfinden).
+    id: 'magen-duenndarm',
+    name: 'Magenröntgen und Dünndarmpassage',
+    term: 'Magen-Darm-Passage',
+    purpose: 'Stellt Magen und Dünndarm mit Kontrastmittel im Röntgenbild dar. Welche Abschnitte untersucht werden, steht auf Ihrer Zuweisung.',
+    detailsNote: 'Wie Sie sich vorbereiten, besprechen wir bei der Terminvereinbarung.',
+    details: {},
   },
   {
     id: 'venenroentgen',
@@ -257,8 +270,6 @@ export const SPECIAL_DETAIL_LABELS = {
   duration: 'Untersuchungsdauer',
 };
 
-// Bisher auf der Website genannt, aber nicht unter den vier Untersuchungen – Praxis entscheidet
-export const SPECIAL_OPEN = 'Bisher auf der Website genannt: Magenröntgen und Magen-/Dünndarmpassage. Bitte bestätigen, ob weiterhin angeboten – dann als eigene Karte ergänzen, sonst streichen.';
 
 // ---------------------------------------------------------------------------
 // Zahnröntgen und 3D-DVT – nur bestätigte Leistungen werden angezeigt

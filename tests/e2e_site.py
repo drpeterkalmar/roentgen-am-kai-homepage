@@ -181,6 +181,35 @@ with sync_playwright() as p:
             check("Radiologie" in q.title() and "Graz" in q.title() and 50 <= len(desc) <= 160, f"SEO: title={q.title()!r} ({len(q.title())}) desc={len(desc)} Zeichen")
         c.close()
 
+    # Praxisantworten 22.10.2026: Platzhalter ersetzt (Röntgenzeiten, Schließzeiten, Prüfvermerk, Beschwerden, DEXA-Gewicht)
+    ctx = b.new_context(viewport={"width": 1280, "height": 900}); pg = ctx.new_page()
+    def body_ph(path):
+        pg.goto(BASE + path, wait_until="networkidle"); pg.wait_for_timeout(200)
+        return pg.inner_text("main"), pg.eval_on_selector_all("[data-placeholder]", "es => es.map(e => e.getAttribute('data-placeholder'))")
+    XRAY = "Röntgen ohne Termin ist während der gesamten Öffnungszeiten möglich, bis Ordinationsschluss"
+    for path in ["/roentgen-graz", "/weitere-untersuchungen"]:
+        t, ph = body_ph(path)
+        check(XRAY in t and "17:00" in t and "13:00" in t and not any("Röntgenzeiten, falls" in x for x in ph), f"{path}: Röntgenzeiten bis Ordinationsschluss, kein Platzhalter")
+    t, ph = body_ph("/kontakt")
+    hol = pg.locator("[data-holidays] a")
+    check("Google-Unternehmensprofil" in t and hol.count() == 1 and hol.get_attribute("href").startswith("https://www.google.com/maps/")
+          and hol.get_attribute("target") == "_blank" and not any("Urlaubs" in x for x in ph), "Kontakt: Schließzeiten mit Link zum Google-Profil, kein Platzhalter")
+    check(any("Kurzvorstellung der Praxis" in x for x in ph), "Kontakt: Praxisvorstellung bleibt Platzhalter (Freigabe ausstehend)")
+    REV = "Medizinisch geprüft von Priv.-Doz. Dr. Peter Kalmar – Stand 22.10.2026"
+    for path in ["/gesundheitsziele", "/gesundheitsziele/gesund-abnehmen", "/gesundheitsziele/dexa-sportler-red-s",
+                 "/ratgeber/knochendichtemessung-dexa-vorsorge", "/ratgeber/mammascreening-oesterreich",
+                 "/ratgeber/abnehmspritze-muskelmasse-koerperanalyse", "/ratgeber/brustkrebs-frueherkennung-mammographie"]:
+        t, ph = body_ph(path)
+        check(REV in t and not any(x in ("Dr. [NAME]", "[DATUM]") for x in ph) and not any("Autorin/Autor" in x for x in ph), f"{path}: Prüfvermerk Kalmar 22.10.2026, kein Namens-/Autor-Platzhalter")
+    t, ph = body_ph("/gesundheitsziele/gesund-abnehmen")
+    check("159\u00a0kg" in t or "159 kg" in t, "Abnehmen: Gewichtsgrenze 159 kg (GE-Herstellerangabe)")
+    t, ph = body_ph("/mammographie-graz")
+    check("Den Termin vereinbaren Sie bitte telefonisch, nicht über die Online-Buchung" in t.replace("\n", " ") and "Screening-Mammographie ist in ELGA abrufbar" in t
+          and not any("Geplant:" in x or "Befundweg" in x or "Ablauf für Patientinnen" in x for x in ph), "Mammographie: Beschwerden telefonisch mit Zuweisung, Screening-Befund in ELGA")
+    t, ph = body_ph("/knochendichtemessung-graz")
+    check("auch ohne Zuweisung buchen" in t and not any("Online-Kombibuchung" in x or "bisherigen Website" in x or "Unterlagen benötigt die ÖGK" in x for x in ph), "Knochendichte: privat ohne Zuweisung, Platzhalter entfernt")
+    ctx.close()
+
     # Dark mode desktop
     ctx = b.new_context(viewport={"width": 1440, "height": 900}, color_scheme="dark"); pg = ctx.new_page()
     pg.goto(BASE + "/", wait_until="networkidle"); pg.wait_for_timeout(400)

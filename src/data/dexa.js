@@ -23,7 +23,9 @@ export const DEXA = {
 
   // ── Ablauf ─────────────────────────────────────────────────────────
   durationMinutes: null, // PLATZHALTER: Untersuchungsdauer von der Praxis NICHT bestätigt → nirgends anzeigen
-  noSpecialPreparation: true, // lt. bisheriger Website („Keine spezielle Vorbereitung“, nicht nüchtern) – Praxis bitte bestätigen
+  noSpecialPreparation: true, // „Keine besondere Vorbereitung, nicht nüchtern“ – von der Praxis bestätigt (22.10.2026)
+  // Privat bezahlt ist die Messung ohne Zuweisung buchbar (Praxis, 22.10.2026)
+  privateWithoutReferralText: 'Wenn Sie die Messung privat bezahlen, können Sie sie auch ohne Zuweisung buchen.',
 
   // ── Online-Buchung / Kombitermin ───────────────────────────────────
   // MiraNext geprüft am 26.09.2026: „Weitere Untersuchung hinzufügen“ (Termine am selben Tag werden verknüpft)

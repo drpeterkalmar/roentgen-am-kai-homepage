@@ -71,9 +71,7 @@ const RoentgenGrazPage = () => {
               <Clock size={20} aria-hidden="true" className="text-brand dark:text-brand-300" /> Röntgenzeiten
             </h3>
             <OpeningHours withIcon={false} />
-            {XRAY_HOURS_NOTE ? <p className="mt-3 text-sm">{XRAY_HOURS_NOTE}</p> : (
-              <Placeholder className="mt-4">Röntgenzeiten, falls abweichend von den Öffnungszeiten (z. B. letzte Annahme vor Ordinationsschluss)</Placeholder>
-            )}
+            <p className="mt-3 text-sm text-slate-700 dark:text-slate-200" data-xray-hours>{XRAY_HOURS_NOTE}</p>
           </Card>
           <Card as="section" aria-labelledby="mitbringen-title">
             <h3 id="mitbringen-title" className="mb-4 flex items-center gap-2 font-display text-xl font-semibold text-slate-900 dark:text-white">

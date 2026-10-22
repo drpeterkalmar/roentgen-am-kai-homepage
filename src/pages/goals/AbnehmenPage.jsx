@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Scale, Info } from 'lucide-react';
 import {
-  GoalPage, GoalHero, OnThisPage, Section, Card, Notice, Placeholder, SectionHeading, BookingButton, PhoneButton,
+  GoalPage, GoalHero, OnThisPage, Section, Card, Notice, SectionHeading, BookingButton, PhoneButton,
   P, H3, Bullets, textLink, RelatedGoals, SourcesSection, BodyPriceNote, goalById,
 } from '../../components/goals/GoalParts';
-import { BODY_DURATION_TEXT } from '../../data/bodyComposition';
+import { BODY_DURATION_TEXT, DEXA_MAX_PATIENT_KG } from '../../data/bodyComposition';
 
 // /gesundheitsziele/gesund-abnehmen – Suchintention „gesund abnehmen Graz“ (allgemeine Gewichtsabnahme:
 // Ernährung, Training, Operation). Medikamente nur als Querverweis auf die Abnehmspritze-Seite.
@@ -117,10 +117,10 @@ const AbnehmenPage = () => (
         </div>
         <Notice tone="info" title="Bei sehr hohem Körpergewicht" headingLevel={3} className="self-start">
           <p>
-            Messtische haben eine Gewichts- und Breitengrenze. Bitte klären Sie bei sehr hohem Körpergewicht vorab telefonisch,
-            ob die Messung möglich ist.
+            Unser Messtisch ist laut Hersteller für ein Körpergewicht bis {DEXA_MAX_PATIENT_KG}{'\u00A0'}kg ausgelegt, und auch das
+            Messfeld ist nur begrenzt breit. Bitte klären Sie bei sehr hohem Körpergewicht vorab telefonisch, ob die Messung
+            möglich ist.
           </p>
-          <Placeholder internal className="mt-3">Gewichts- und Breitengrenze des DEXA-Geräts (Praxis bitte angeben)</Placeholder>
         </Notice>
       </div>
     </Section>

@@ -166,7 +166,6 @@ const ArticlePage = () => {
           <footer className="mt-12 space-y-3 border-t border-slate-200 pt-6 text-sm text-slate-600 dark:border-slate-700 dark:text-slate-300">
             {/* Prüfvermerk-Platzhalter: je Artikel abschaltbar (reviewNote: false), z. B. Sarkopenie laut Praxis 07.10.2026 */}
             {a.reviewNote !== false && <ReviewedNote reviewed={a.reviewed || null} />}
-            {!a.author && <Placeholder internal>Autorin/Autor des Artikels bestätigen (derzeit: Praxis als Herausgeberin).</Placeholder>}
             {a.review && <Placeholder internal>Freigabe: {a.review}</Placeholder>}
             <p>Dieser Artikel dient der allgemeinen Information und ersetzt keine ärztliche Beratung.</p>
           </footer>

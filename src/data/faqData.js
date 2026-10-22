@@ -1,6 +1,6 @@
 import { SCREENING, AGE_RANGE, INTERVAL_TEXT } from './screening.js';
 import { BODY, BODY_RADIATION_TEXT, BODY_LEAN_MASS_TEXT } from './bodyComposition.js';
-import { DEXA_PRICE_TEXT, DEXA_OTHER_CARRIERS, DEXA_RADIATION_TEXT, DEXA_RHO_SENTENCE } from './dexa.js';
+import { DEXA, DEXA_PRICE_TEXT, DEXA_OTHER_CARRIERS, DEXA_RADIATION_TEXT, DEXA_RHO_SENTENCE } from './dexa.js';
 import { PHONE_DISPLAY_INTL } from './practice.js';
 
 // FAQ Mammographie & Brustgesundheit (26.09.2026). Programmregeln aus src/data/screening.js.
@@ -9,7 +9,7 @@ const sl = SCREENING.serviceline;
 export const mammographieFaq = [
   {
     question: 'Brauche ich eine Überweisung?',
-    answer: `Für die Screening-Mammographie im Früherkennungsprogramm nicht: Frauen zwischen ${AGE_RANGE} ohne Beschwerden kommen ohne ärztliche Zuweisung. Bei Beschwerden oder zur Abklärung eines auffälligen Befundes ist in der Regel eine ärztliche Zuweisung nötig.`,
+    answer: `Für die Screening-Mammographie im Früherkennungsprogramm nicht: Frauen zwischen ${AGE_RANGE} ohne Beschwerden kommen ohne ärztliche Zuweisung. Bei Beschwerden oder zur Abklärung eines auffälligen Befundes ist eine ärztliche Zuweisung nötig; den Termin vereinbaren Sie bitte telefonisch.`,
   },
   {
     question: 'Reicht meine e-card für das Screening?',
@@ -60,8 +60,7 @@ export const mammographieFaq = [
   },
   {
     question: 'Wie erhalte ich meinen Befund?',
-    answer: 'Ihre Aufnahmen werden digital befundet und archiviert und stehen Ihrem Haus- oder Facharzt rasch zur Verfügung. Ihre Bilder und Befunde sind zusätzlich über ELGA sowie online unter portal.marc.at verfügbar.',
-    review: 'Praxis bestätigen: Befundweg im Screening (z. B. Befundbrief, Befundbesprechung) – nicht erfinden.',
+    answer: 'Ihre Aufnahmen werden digital befundet und archiviert und stehen Ihrem Haus- oder Facharzt rasch zur Verfügung. Ihre Bilder und Befunde sind zusätzlich über ELGA sowie online unter portal.marc.at verfügbar. Auch der Befund der Screening-Mammographie ist in ELGA abrufbar.',
   },
 ];
 
@@ -91,8 +90,7 @@ export const dexaFaq = [
   },
   {
     question: 'Brauche ich eine ärztliche Zuweisung?',
-    answer: `Für die Abrechnung als Kassenleistung bei ${DEXA_OTHER_CARRIERS} ist eine ärztliche Zuweisung erforderlich. Für ÖGK-Versicherte ist die Messung eine Privatleistung. Ob Sie für eine mögliche Kostenerstattung durch die ÖGK eine Zuweisung benötigen, klären Sie bitte vorab mit der ÖGK oder mit uns.`,
-    review: 'Praxis bestätigen: ÖGK-Privatleistung auch ohne Zuweisung buchbar? Welche Unterlagen braucht die ÖGK für eine Erstattung (Zuweisung, Honorarnote)?',
+    answer: `Für die Abrechnung als Kassenleistung bei ${DEXA_OTHER_CARRIERS} ist eine ärztliche Zuweisung erforderlich. Für ÖGK-Versicherte ist die Messung eine Privatleistung. ${DEXA.privateWithoutReferralText} Ob Sie für eine mögliche Kostenerstattung durch die ÖGK eine Zuweisung benötigen, klären Sie bitte vorab mit der ÖGK oder mit uns.`,
   },
   {
     question: 'Was kostet die Untersuchung bei der ÖGK?',
@@ -109,7 +107,6 @@ export const dexaFaq = [
   {
     question: 'Wie läuft die Messung ab?',
     answer: 'Sie liegen ruhig auf dem Rücken auf einer Untersuchungsliege, während ein Messarm über Lendenwirbelsäule und Hüfte fährt. Metallteile im Messbereich – etwa Gürtelschnallen, Knöpfe oder Reißverschlüsse – müssen gegebenenfalls abgelegt werden. Eine besondere Vorbereitung ist nicht nötig; Sie müssen nicht nüchtern sein.',
-    review: 'Praxis bestätigen: keine besondere Vorbereitung / nicht nüchtern (lt. bisheriger Website).',
   },
   {
     question: 'Tut die Untersuchung weh?',

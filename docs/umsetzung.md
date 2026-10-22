@@ -1,6 +1,6 @@
 # Umsetzung (Prompt 4)
 
-Stand: 12.10.2026 · Grundlage: `design-grundlagen.md`, `website-audit.md`, `seiten-und-medienkonzept.md`
+Stand: 22.10.2026 · Grundlage: `design-grundlagen.md`, `website-audit.md`, `seiten-und-medienkonzept.md`
 
 Framework (React 18, Vite, Tailwind), Designsystem (`src/components/ui/*`), Routing (`src/data/routes.js`) und alle Funktionen (Befund-Slider, Erklärfilm, Risikocheck, Körpernavigator, Zuweisungssuche, FAQ) bleiben unverändert. **Keine** medizinischen Aussagen, Preise, Kassenregeln, Kontaktdaten oder Buchungslinks wurden neu formuliert oder erfunden. Wo neue Angaben stehen, stammen sie aus den bestehenden zentralen Datendateien.
 
@@ -26,8 +26,22 @@ Framework (React 18, Vite, Tailwind), Designsystem (`src/components/ui/*`), Rout
 - **Bestehende echte Fotos bleiben** (DEXA-Raum auf Knochendichte und Körperanalyse, KI-Bild Mammographie mit Kennzeichnung), bis B001/B005/B008 geliefert sind. Für sie gibt es keinen Platzhalter, damit die Seiten nicht schlechter aussehen als heute.
 - **Kopf-Button „Termin online buchen“ bleibt** auf allen Seiten (er gilt für Mammographie, Knochendichte, Körperanalyse und Röntgen-Wunschzeit). Nur die Handy-Leiste wechselt auf telefonische Seiten, weil sie dort den sichtbarsten Weg darstellt.
 - **Lesebreite global statt pro Seite:** eine CSS-Regel für `main p` deckt Hinweis-Kästen, FAQ-Antworten und Karten ab; Karten sind ohnehin schmaler, dort ändert sich nichts.
-- **Nicht umgesetzt (Praxisangaben nötig):** Prüfvermerk-Namen (K4), Fotos (K5, B001–B019), Urlaubszeiten und Praxisvorstellung (W14; Barrierefreiheit vor Ort seit 12.10.2026 eingetragen), Ausbau älterer Artikel (W15), Startseiten-Claim (O1), Löschen ungenutzter Bilddateien (O4).
+- **Nicht umgesetzt (Praxisangaben nötig):** Fotos (K5, B001–B019), Praxisvorstellung (W14; Entwurf liegt der Praxis zur Freigabe vor; Barrierefreiheit seit 12.10.2026, Urlaubs-/Schließzeiten und Prüfvermerk seit 22.10.2026 eingetragen), Ausbau älterer Artikel (W15), Startseiten-Claim (O1), Löschen ungenutzter Bilddateien (O4).
 - **Zurückgestellt:** Zusammenführen „Ergebnis“ und „Befund lesen“ auf der Knochendichte-Seite (W4) – betrifft medizinische Texte; ohne ärztliche Durchsicht nur Anordnung, nicht Inhalt. Vorladen des Hero-Bilds je Route (W12) – eigener Schritt mit Lighthouse-Vergleich.
+
+## Praxisantworten 22.10.2026
+
+| Thema | Umsetzung |
+|---|---|
+| Röntgen ohne Termin | `XRAY_HOURS_NOTE` in `examinations.js`: während der gesamten Öffnungszeiten bis Ordinationsschluss, Zeiten aus `OPENING_HOURS` (`/roentgen-graz`, `/weitere-untersuchungen`). |
+| Urlaubs- und Schließzeiten | `HOLIDAYS` + `MAPS_PLACE_URL` in `practice.js` (Kontakt): wechseln, etwa an Fenstertagen; Link auf das Google-Unternehmensprofil (Maps-Suche Praxisname + Adresse, kein eigener Profil-Link bekannt). |
+| Mammographie bei Beschwerden | Zuweisung nötig, Termin telefonisch (nicht online): Karte „Kontakt bei Beschwerden“, Karte „Diagnostische Mammographie“, FAQ, `services.js`. Screening-Befund in ELGA abrufbar (Ablauf, FAQ). |
+| Knochendichte | Privat bezahlt ohne Zuweisung buchbar (`DEXA.privateWithoutReferralText`, Liste + FAQ). Vorbereitung bestätigt, Hinweis entfernt; Dauer weiter nicht genannt. ÖGK-Unterlagen: nichts ergänzt. Offen: Zahlungsarten vor Ort (interner Hinweis). |
+| DEXA-Gewichtsgrenze | `DEXA_MAX_PATIENT_KG = 159` (`bodyComposition.js`), Quelle GE Pre-installation Manual LU46003EN Rev. 2 und enCORE Safety and Specification Manual LU43618EN (Prodigy Primo: 159 kg / 350 lb). Breite ohne Zahl (Messfeld 60 cm nur beim großen Tisch, Tischgröße der Praxis nicht belegt). |
+| Prüfvermerk | Überall „Priv.-Doz. Dr. Peter Kalmar – Stand 22.10.2026“: `GOALS_REVIEWED` (Hub + 8 Zielseiten), `ARTICLES_REVIEWED` (alle veröffentlichten Ratgeber-Artikel ohne eigenen Vermerk; Platzhalter-Artikel ohne Text ausgenommen). |
+| Ratgeber-Autor | Bleibt „Herausgegeben von Röntgen am Kai“; Autor-Platzhalter entfernt. |
+| Entfernt | Kasten Sportmedizin-Kooperationen (RED-S), „Geplant: eigene Seite Brustultraschall“, MiraNext-Kästen (Knochendichte-Kombibuchung, Körperanalyse-Konfiguration, Terminübersicht Gesundheitsziele); Buchungs-URLs und -Logik unverändert. |
+| Spezialröntgen | Neue Karte „Magenröntgen und Dünndarmpassage“ (Magen-Darm-Passage, Termin erforderlich, Zuweisung); Vorbereitung „besprechen wir bei der Terminvereinbarung“, keine Detailangaben. |
 
 ## Kontrolle
 

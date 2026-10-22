@@ -8,7 +8,7 @@ import Placeholder from '../components/ui/Placeholder';
 import { SectionHeading } from '../components/ui/Heading';
 import { buttonClasses } from '../components/ui/Button';
 import { StatusBadge, AppointmentActions, RadiationInfo, ExamCTA } from '../components/exams/ExamParts';
-import { AREAS, EXAMS_BASE, EXAMS_CRUMB, SPECIAL_EXAMS, SPECIAL_DETAIL_LABELS, SPECIAL_OPEN } from '../data/examinations';
+import { AREAS, EXAMS_BASE, EXAMS_CRUMB, SPECIAL_EXAMS, SPECIAL_DETAIL_LABELS } from '../data/examinations';
 
 // /spezialroentgen – Spezialröntgen und Kontrastmitteluntersuchungen (Termin erforderlich).
 // Jede Untersuchung hat eigene Angaben (Vorbereitung, Kontrastmittel, Laborwerte, Medikamente, Schwangerschaft, Dauer);
@@ -55,7 +55,6 @@ const SpezialroentgenPage = () => {
             );
           })}
         </ul>
-        <Placeholder internal className="mt-8">{SPECIAL_OPEN}</Placeholder>
       </Section>
 
       {/* Untersuchungsspezifische Angaben – je Untersuchung getrennt gepflegt */}
@@ -71,6 +70,9 @@ const SpezialroentgenPage = () => {
               <h3 id={`details-${e.id}-title`} className="font-display text-xl font-semibold text-slate-900 dark:text-white">
                 {e.name} <span className="font-sans text-base font-medium text-slate-600 dark:text-slate-300">({e.term})</span>
               </h3>
+              {e.detailsNote ? (
+                <p className="mt-4 text-[0.95rem] leading-relaxed text-slate-700 dark:text-slate-200">{e.detailsNote}</p>
+              ) : (
               <dl className="mt-5 grid gap-x-8 gap-y-4 md:grid-cols-2">
                 {Object.entries(SPECIAL_DETAIL_LABELS).map(([key, label]) => (
                   <div key={key}>
@@ -81,6 +83,7 @@ const SpezialroentgenPage = () => {
                   </div>
                 ))}
               </dl>
+              )}
               {e.detailPage && (
                 <p className="mt-5">
                   <Link to={e.detailPage} className="inline-flex min-h-[44px] items-center gap-2 font-semibold text-brand underline-offset-4 hover:underline dark:text-brand-300">

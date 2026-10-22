@@ -21,10 +21,10 @@ export const services = {
     priority: 1,
     onlineBooking: true,
     referral: {
-      summary: 'Im Brustkrebs-Früherkennungsprogramm ohne Zuweisung, sonst in der Regel mit Zuweisung.',
+      summary: 'Im Brustkrebs-Früherkennungsprogramm ohne Zuweisung, bei Beschwerden mit Zuweisung.',
       items: [
         `Früherkennungsprogramm (Frauen zwischen ${AGE_RANGE}, ${INTERVAL_TEXT}): e-card genügt, keine Zuweisung nötig.`,
-        'Abklärung von Beschwerden oder Befunden: mit Überweisung.',
+        'Abklärung von Beschwerden oder Befunden: mit Zuweisung, Termin bitte telefonisch.',
       ],
     },
     billing: 'Kassenleistung mit e-card.',

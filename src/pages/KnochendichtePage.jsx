@@ -196,16 +196,13 @@ const KnochendichtePage = () => {
               items={[
                 `${DEXA_OTHER_CARRIERS}: Kassenleistung nur mit der erforderlichen ärztlichen Zuweisung. Bitte bringen Sie die Zuweisung und Ihre e-card mit.`,
                 `ÖGK: Privatleistung um ${DEXA_PRICE_TEXT}. Ob und in welchem Umfang die ÖGK Kosten erstattet, hängt von Ihren individuellen Voraussetzungen ab.`,
+                DEXA.privateWithoutReferralText,
                 'Bringen Sie Voraufnahmen bzw. frühere Knochendichte-Befunde mit, sofern sie uns nicht vorliegen – sie sind für Verlaufsvergleiche wichtig.',
               ]}
             />
           </div>
           <P className="mt-4 font-semibold">{DEXA.askFirstText}</P>
-          <Placeholder internal className="mt-4">
-            Praxis bestätigen: Welche Unterlagen benötigt die ÖGK für eine Kostenerstattung (Zuweisung, Honorarnote)? Ist die
-            ÖGK-Privatleistung auch ohne Zuweisung buchbar? Zahlungsarten vor Ort? Preis von {DEXA_PRICE_TEXT} auch in MiraNext vor
-            Abschluss der Buchung anzeigen.
-          </Placeholder>
+          <Placeholder internal className="mt-4">Praxis bestätigen: Zahlungsarten vor Ort?</Placeholder>
         </Card>
       </Section>
 
@@ -239,13 +236,6 @@ const KnochendichtePage = () => {
               Gemeinsame Termine vereinbaren Sie derzeit telefonisch unter{' '}
               <a href={PHONE_HREF} className="whitespace-nowrap font-semibold text-slate-900 underline underline-offset-4 dark:text-white">{PHONE_DISPLAY}</a>.
             </p>
-            {!DEXA.combinedOnline && (
-              <Placeholder internal className="mt-4">
-                Online-Kombibuchung noch nicht möglich: In MiraNext (geprüft 26.09.2026) lassen sich zwar mehrere Untersuchungen
-                an einem Tag verknüpfen, DEXA ist dort aber noch nicht als Untersuchung angelegt. Bis dahin gemeinsame Termine
-                telefonisch; danach auf Online-Buchung umstellen.
-              </Placeholder>
-            )}
           </div>
           <div className="space-y-6">
             <Card as="section" aria-labelledby="gemeinsam-vorteile">
@@ -339,12 +329,6 @@ const KnochendichtePage = () => {
             <Card className="mt-6">
               <P><strong className="font-semibold">Schwangerschaft:</strong> Bitte teilen Sie uns eine mögliche Schwangerschaft vor der Untersuchung mit.</P>
             </Card>
-            {DEXA.noSpecialPreparation && (
-              <Placeholder internal className="mt-4">
-                „Keine besondere Vorbereitung / nicht nüchtern“ stammt von der bisherigen Website – Praxis bitte bestätigen.
-                Untersuchungsdauer ist nicht bestätigt und wird deshalb nicht genannt.
-              </Placeholder>
-            )}
           </div>
           <div className="lg:col-span-2">
             <ImagePlaceholder brief={IMAGE_BRIEFS.dexaExam} className="aspect-[3/2] rounded-2xl lg:sticky lg:top-[calc(var(--header-height)+24px)]" />

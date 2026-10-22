@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Bone, Activity, Repeat } from 'lucide-react';
 import {
   GoalPage, GoalHero, Section, Card, Notice, SectionHeading, P, H3, Bullets, textLink,
-  RelatedGoals, SourcesSection, SeeDoctor, MultiCTA, Placeholder,
+  RelatedGoals, SourcesSection, SeeDoctor, MultiCTA,
 } from '../../components/goals/GoalParts';
 
 // /gesundheitsziele/dexa-sportler-red-s – Spezialthema, NICHT im Hauptmenü (Auftrag 27.09.2026).
@@ -89,9 +89,6 @@ const SportPage = () => (
           oder Aussehen erzeugen.
         </p>
       </Notice>
-      <Placeholder internal className="mt-6 max-w-4xl">
-        Spezialthema für spätere Kooperationen mit Sportmedizin und Vereinen (Ansprechpartner, Zuweisungsweg) – noch offen.
-      </Placeholder>
       <p className="mt-6 flex flex-col gap-1 sm:flex-row sm:gap-6">
         <Link to="/gesundheitsziele/fitness-muskelaufbau" className={textLink}>
           Körperanalyse für Fitness und Training <ArrowRight size={16} aria-hidden="true" />

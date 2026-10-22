@@ -14,6 +14,9 @@ import { PHOTOS } from './photos.js';
 export const GOALS_BASE = '/gesundheitsziele';
 
 // ── Medizinische Quellen (geprüft 27.09.2026) ─────────────────────────────────────────
+// Prüfvermerk aller Gesundheitsziel-Seiten (Hub + Zielseiten): Entscheidung der Praxis 22.10.2026
+export const GOALS_REVIEWED = { by: 'Priv.-Doz. Dr. Peter Kalmar', at: '2026-10-22' };
+
 export const SOURCES = {
   ewgsop2: {
     label: 'Cruz-Jentoft AJ, Bahat G, Bauer J, et al. Sarcopenia: revised European consensus on definition and diagnosis (EWGSOP2). Age and Ageing 2019;48(1):16–31.',

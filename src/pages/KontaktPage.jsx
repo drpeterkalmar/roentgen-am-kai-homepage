@@ -9,7 +9,7 @@ import { BookingButton, PhoneButton } from '../components/ui/BookingButtons';
 import { ContactDetails, OpeningHours, Directions } from '../components/ui/PracticeInfo';
 import ReferralInfo from '../components/ui/ReferralInfo';
 import PatientPortal from '../components/PatientPortal';
-import { MAPS_ROUTE_URL, PLACEHOLDERS, ACCESSIBILITY, CANCELLATION, PHONE_DISPLAY, PHONE_HREF } from '../data/practice';
+import { MAPS_ROUTE_URL, MAPS_PLACE_URL, HOLIDAYS, ACCESSIBILITY, CANCELLATION, PHONE_DISPLAY, PHONE_HREF } from '../data/practice';
 import Picture from '../components/ui/Picture';
 import { IMAGE_BRIEFS } from '../data/imageBriefs';
 
@@ -36,7 +36,15 @@ const KontaktPage = () => (
         <Card as="section" aria-labelledby="k-zeiten">
           <CardTitle id="k-zeiten">Öffnungszeiten</CardTitle>
           <OpeningHours />
-          <Placeholder className="mt-5">{PLACEHOLDERS.holidays}</Placeholder>
+          <div className="mt-5 border-t border-slate-200 pt-5 dark:border-slate-700" data-holidays>
+            <h3 className="mb-2 font-display text-base font-semibold text-slate-900 dark:text-white">{HOLIDAYS.title}</h3>
+            <p className="text-slate-700 dark:text-slate-300">{HOLIDAYS.text}</p>
+            <p className="mt-2">
+              <a href={MAPS_PLACE_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center font-semibold text-brand underline underline-offset-4 dark:text-brand-300">
+                {HOLIDAYS.linkLabel}<span className="sr-only"> (öffnet in neuem Fenster)</span>
+              </a>
+            </p>
+          </div>
         </Card>
         <Card as="section" aria-labelledby="k-anfahrt">
           <CardTitle id="k-anfahrt">Anfahrt</CardTitle>

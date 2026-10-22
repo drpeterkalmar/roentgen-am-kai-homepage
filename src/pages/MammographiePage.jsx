@@ -4,7 +4,6 @@ import AnimationPlaceholder from '../components/ui/AnimationPlaceholder';
 import Hero from '../components/ui/Hero';
 import Section from '../components/ui/Section';
 import Card from '../components/ui/Card';
-import Placeholder from '../components/ui/Placeholder';
 import ImagePlaceholder from '../components/ui/ImagePlaceholder';
 import CTASection from '../components/ui/CTASection';
 import { SectionHeading } from '../components/ui/Heading';
@@ -36,7 +35,7 @@ const STEPS = [
   { t: 'Positionierung der Brust', d: 'Die Brust wird auf einer Auflageplatte ausgerichtet – jede Seite in der Regel aus zwei Richtungen.' },
   { t: 'Kurze Kompression', d: 'Während der Aufnahme wird die Brust kurz zwischen zwei Platten zusammengedrückt. Das sorgt für aussagekräftige Bilder und hält die Strahlendosis gering.' },
   { t: 'Befundung', d: 'Die Aufnahmen werden von Fachärzten für Radiologie beurteilt. Im Früherkennungsprogramm wird jede Mammographie von zwei Radiologinnen oder Radiologen unabhängig befundet.' },
-  { t: 'Befundübermittlung', d: 'Ihre Aufnahmen werden digital archiviert und stehen Ihrem Haus- oder Facharzt rasch zur Verfügung. Ihre Bilder und Befunde sind zusätzlich über ELGA sowie online unter portal.marc.at verfügbar.' },
+  { t: 'Befundübermittlung', d: 'Ihre Aufnahmen werden digital archiviert und stehen Ihrem Haus- oder Facharzt rasch zur Verfügung. Ihre Bilder und Befunde sind zusätzlich über ELGA sowie online unter portal.marc.at verfügbar. Auch der Befund der Screening-Mammographie ist in ELGA abrufbar.' },
 ];
 
 const MammographiePage = () => {
@@ -141,7 +140,8 @@ const MammographiePage = () => {
             <H3>Diagnostische Mammographie</H3>
             <P className="mt-3">
               Bei Beschwerden, einem auffälligen Befund oder einer besonderen Risikosituation, etwa einer familiären
-              Vorbelastung, ist ein anderer Weg nötig: eine gezielte Abklärung, in der Regel mit ärztlicher Zuweisung.
+              Vorbelastung, ist ein anderer Weg nötig: eine gezielte Abklärung mit ärztlicher Zuweisung. Den Termin dafür
+              vereinbaren Sie telefonisch.
               Dafür wird manchmal auch der Begriff „kurative Mammographie“ verwendet – gemeint ist die Mammographie zur
               Abklärung, nicht zur Vorsorge.
             </P>
@@ -165,14 +165,11 @@ const MammographiePage = () => {
         </div>
         <Card className="mt-6" as="section" aria-labelledby="kontakt-beschwerden">
           <H3><span id="kontakt-beschwerden">Kontakt bei Beschwerden</span></H3>
-          <P className="mt-3">
-            Rufen Sie uns an – wir besprechen mit Ihnen das weitere Vorgehen:{' '}
+          <P className="mt-3" data-complaints-booking>
+            Für eine Mammographie bei Beschwerden brauchen Sie eine ärztliche Zuweisung. Den Termin vereinbaren Sie bitte
+            telefonisch, nicht über die Online-Buchung:{' '}
             <a href={PHONE_HREF} className="whitespace-nowrap font-semibold text-brand underline underline-offset-4 dark:text-brand-300">{PHONE_DISPLAY}</a>
           </P>
-          <Placeholder internal className="mt-4">
-            Ablauf für Patientinnen mit Beschwerden von der Praxis bestätigen (z. B. Zuweisung erforderlich? eigene
-            Terminschiene? online buchbar?) – bis dahin nur telefonischer Kontakt.
-          </Placeholder>
         </Card>
       </Section>
 
@@ -192,7 +189,6 @@ const MammographiePage = () => {
                 </li>
               ))}
             </ol>
-            <Placeholder internal className="mt-6">Befundweg im Screening (Befundbrief, Befundbesprechung) von der Praxis bestätigen.</Placeholder>
           </div>
           <div className="lg:col-span-2">
             <ImagePlaceholder brief={IMAGE_BRIEFS.care} className="aspect-[3/2] rounded-2xl lg:sticky lg:top-[calc(var(--header-height)+24px)]" />
@@ -285,9 +281,6 @@ const MammographiePage = () => {
             <ArrowRight size={20} aria-hidden="true" className="shrink-0 text-brand dark:text-brand-300" /> Gesundheitsziel: Frauengesundheit und Wechseljahre
           </Link>
         </p>
-        <Placeholder internal className="mt-6">
-          Geplant: eigene Seite „Brustultraschall“ und eigene Ratgeber-Artikel mit URL zur Brustgesundheit – dann hier verlinken.
-        </Placeholder>
         <p className="mt-6 text-sm text-slate-600 dark:text-slate-300">
           Programminformationen: <a href={SCREENING.officialUrl} target="_blank" rel="noopener noreferrer" className={extLink}>{SCREENING.officialUrlLabel}<NewWindow /></a>
           <ExternalLink size={14} aria-hidden="true" className="ml-1 inline" />

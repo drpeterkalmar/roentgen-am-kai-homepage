@@ -33,6 +33,11 @@ export const BOOKING_URL = 'https://patient-portal.miranext.ai/patient-booking?c
 
 export const PORTAL_URL = 'https://portal.marc.at';
 
+// Praxis in Google Maps (Unternehmensprofil mit den aktuellen Zeiten). Kein eigener Profil-Link bekannt →
+// Suche nach Praxisname + Adresse, führt auf das Unternehmensprofil.
+export const MAPS_PLACE_URL =
+  'https://www.google.com/maps/search/?api=1&query=R%C3%B6ntgen+am+Kai%2C+K%C3%B6r%C3%B6sistra%C3%9Fe+9%2C+8010+Graz';
+
 // Öffnungszeiten (von der Praxis bestätigt, 26.09.2026)
 export const OPENING_HOURS = [
   { days: 'Montag – Donnerstag', short: 'Mo – Do', opens: '08:00', closes: '17:00', schema: ['Monday', 'Tuesday', 'Wednesday', 'Thursday'] },
@@ -67,9 +72,15 @@ export const CANCELLATION = {
 // Derselbe Hinweis als reiner Text (z. B. für FAQ oder Prüfungen)
 export const CANCELLATION_TEXT = `${CANCELLATION.beforePhone} ${PHONE_DISPLAY} ${CANCELLATION.afterPhone}`;
 
+// Urlaubs- und Schließzeiten (Praxis, 22.10.2026): wechseln, etwa an Fenstertagen; aktuell im Google-Unternehmensprofil.
+export const HOLIDAYS = {
+  title: 'Urlaubs- und Schließzeiten',
+  text: 'Unsere Urlaubs- und Schließzeiten ändern sich, etwa an Fenstertagen. Die aktuellen Zeiten finden Sie in unserem Google-Unternehmensprofil.',
+  linkLabel: 'Aktuelle Zeiten in Google Maps',
+};
+
 // PLATZHALTER — von der Praxis zu liefern
 export const PLACEHOLDERS = {
   phoneHours: 'Telefonische Erreichbarkeit, falls abweichend von den Öffnungszeiten',
-  holidays: 'Hinweis auf Urlaubs- und Schließzeiten',
   logoSvg: 'Logo als Vektordatei (SVG)',
 };
