@@ -81,6 +81,9 @@ const ArticlePage = () => {
                   Serie:&nbsp;<KaiWordmark />
                 </Link>
                 {a.logo && <ProductLogo logo={a.logo} />}
+                {a.ce && (
+                  <span className="text-sm text-slate-600 dark:text-slate-300" data-ce="">CE-gekennzeichnetes Medizinprodukt</span>
+                )}
               </p>
             )}
             <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2">

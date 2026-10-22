@@ -151,5 +151,6 @@ export const KI_ARTICLE_META = KI_MODULES.map((m) => ({
   reviewed: KI_REVIEWED[m.id] || null,
   author: KI_AUTHORS[m.id] || null,
   logo: m.logo,
+  ce: true,   // CE-gekennzeichnetes Medizinprodukt (Nachweise IB Lab 22.10.2026, Transpara laut ScreenPoint CE 0344); Peter 22.10.2026: erwähnen
   noHeroImage: true,
 }));
