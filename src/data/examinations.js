@@ -107,25 +107,24 @@ export const XRAY_GROUPS = [
   {
     id: 'lunge-brustkorb',
     title: 'Lunge und Brustkorb',
-    items: ['Lungenröntgen (Thorax), üblicherweise in zwei Ebenen', 'Brustkorb und Rippen'],
+    items: ['Lungenröntgen (Thorax), üblicherweise in zwei Ebenen', 'Brustkorb und Rippen', 'Brustbein'],
     note: 'Für eine Narkosetauglichkeitsprüfung vor einer Operation sollte das Lungenröntgen nicht älter als 14 Tage sein.',
   },
   {
     id: 'wirbelsaeule',
     title: 'Wirbelsäule',
-    items: ['Halswirbelsäule (HWS)', 'Brustwirbelsäule (BWS)', 'Lendenwirbelsäule (LWS)', 'Wirbelsäulenganzaufnahmen', 'Funktionsaufnahmen in Beugung und Streckung'],
+    items: ['Halswirbelsäule (HWS)', 'Brustwirbelsäule (BWS)', 'Lendenwirbelsäule (LWS)', 'Kreuzbein', 'Wirbelsäulenganzaufnahmen', 'Funktionsaufnahmen in Beugung und Streckung'],
     note: 'Die Wirbelsäule wird im Stehen geröntgt – so lassen sich Haltung und Fehlstellungen besser beurteilen.',
   },
-  { id: 'becken-huefte', title: 'Becken und Hüfte', items: ['Beckenübersicht', 'Hüftgelenk'] },
+  { id: 'becken-huefte', title: 'Becken und Hüfte', items: ['Beckenübersicht', 'Hüftgelenk', 'Hüfte mit Gelenkersatz', 'Kreuz-Darmbein-Gelenke (ISG)'] },
   { id: 'schulter-arm', title: 'Schulter und Arm', items: ['Schulter und Schlüsselbein', 'Oberarm', 'Ellenbogen und Unterarm'] },
-  { id: 'hand-handgelenk', title: 'Hand und Handgelenk', items: ['Handgelenk', 'Hand', 'Finger'] },
-  { id: 'knie-unterschenkel', title: 'Knie und Unterschenkel', items: ['Knie', 'Unterschenkel'] },
+  { id: 'hand-handgelenk', title: 'Hand und Handgelenk', items: ['Handgelenk', 'Kahnbein', 'Hand', 'Finger'] },
+  { id: 'knie-unterschenkel', title: 'Knie und Unterschenkel', items: ['Knie', 'Kniescheibe', 'Unterschenkel'] },
   { id: 'sprunggelenk-fuss', title: 'Sprunggelenk und Fuß', items: ['Sprunggelenk', 'Fersenbein', 'Fuß und Zehen'] },
   {
     id: 'weitere-regionen',
-    title: 'Weitere angebotene Körperregionen',
-    items: ['Oberschenkel'],
-    placeholder: 'Weitere angebotene Körperregionen – von der Praxis zu bestätigen (nur tatsächlich angebotene Aufnahmen ergänzen)',
+    title: 'Weitere Körperregionen',
+    items: ['Oberschenkel', 'Ganzbeinaufnahmen (Beinachse)', 'Bauch (Abdomen-Übersicht)'],
   },
 ];
 
@@ -174,8 +173,8 @@ export const ULTRASOUND_AREAS = [
 export const ULTRASOUND_FACTS = {
   appointment: 'Termin erforderlich – Ultraschall nur mit Voranmeldung.',
   referral: 'Als Kassenleistung mit ärztlicher Zuweisung und e-card.',
-  billing: 'Kassenleistung mit ärztlicher Zuweisung und e-card – Verträge mit allen Kassen. Ohne Zuweisung auf Wunsch auch privat.',
-  billingOpen: 'Preis für Ultraschall als Privatleistung',
+  billing: 'Kassenleistung mit ärztlicher Zuweisung und e-card – Verträge mit allen Kassen. Ohne Zuweisung auf Wunsch auch privat; die Kosten richten sich nach der untersuchten Region, wir nennen sie Ihnen bei der Terminvereinbarung.',
+  billingOpen: null,
   preparation: 'Oberbauch: nüchtern (6 Stunden nichts essen, nicht rauchen, kein Kaffee; stilles Wasser erlaubt). Unterbauch: mit gefüllter Harnblase. Schilddrüse, Hals, Brust und Gelenke: keine spezielle Vorbereitung.',
 };
 

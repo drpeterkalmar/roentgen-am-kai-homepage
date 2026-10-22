@@ -104,7 +104,7 @@ export const services = {
     description: 'Panoramaröntgen, Einzelzahn- und Fernröntgen sowie 3D-DVT von Kiefer, Nasennebenhöhlen, Gesichtsschädel und Kiefergelenken.',
     onlineBooking: false,
     selfPay: true,
-    priceIds: ['dvt', 'zahnroentgen'],
+    priceIds: ['dvt', 'dvt-beide', 'zahnroentgen', 'fernroentgen'],
     referral: { summary: 'Mit Zuweisung.' },
   },
 };
@@ -114,6 +114,8 @@ export const selfPayPrices = [
   { id: 'knochendichte', label: 'DEXA-Knochendichtemessung', price: DEXA.priceEUR, note: 'Privatleistung für ÖGK-Versicherte; Kostenerstattung je nach Voraussetzungen möglich, nicht garantiert.' },
   { id: 'koerperanalyse', label: 'Körperanalyse mit DEXA', price: BODY.prices.start, note: 'Termin etwa 20 Minuten.' },
   { id: 'koerperanalyse-paket', label: 'Körperanalyse Start- und Re-Check-Paket', price: BODY.prices.package, note: 'Zwei Messungen innerhalb von 2 Jahren.' },
-  { id: 'dvt', label: 'DVT (digitale Volumentomographie)', price: null },
-  { id: 'zahnroentgen', label: 'Zahnröntgen', price: null },
+  { id: 'dvt', label: 'DVT eines Kiefers (Ober- oder Unterkiefer)', price: 130 },
+  { id: 'dvt-beide', label: 'DVT Ober- und Unterkiefer', price: 260 },
+  { id: 'zahnroentgen', label: 'Panoramaröntgen', price: 60.03 },
+  { id: 'fernroentgen', label: 'Fernröntgen', price: 60 },
 ];
