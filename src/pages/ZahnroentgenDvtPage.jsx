@@ -69,7 +69,7 @@ const ZahnroentgenDvtPage = () => {
           <Card className="self-start">
             <h2 id="zahn-kosten-title" className="font-display text-xl font-semibold text-slate-900 dark:text-white sm:text-2xl">Zuweisung und Kosten</h2>
             <p className="mt-3 text-slate-700 dark:text-slate-200">Bitte bringen Sie Ihre zahnärztliche oder fachärztliche Zuweisung mit.</p>
-            <div className="mt-5"><PriceList ids={['dvt', 'zahnroentgen']} headingLevel={3} /></div>
+            <div className="mt-5"><PriceList ids={['dvt', 'dvt-beide', 'zahnroentgen', 'fernroentgen']} headingLevel={3} /></div>
           </Card>
         </div>
       </Section>
