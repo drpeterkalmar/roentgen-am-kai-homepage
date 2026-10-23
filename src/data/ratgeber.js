@@ -185,7 +185,8 @@ export const ARTICLES = META.map((m) => {
     author: null,
     faq: null,
     ...m,
-    reviewed: m.reviewed || (status === 'published' ? ARTICLES_REVIEWED : null),
+    // reviewNote: false = Seite zeigt keinen Vermerk → auch kein Fallback auf ARTICLES_REVIEWED
+    reviewed: m.reviewNote === false ? null : (m.reviewed || (status === 'published' ? ARTICLES_REVIEWED : null)),
     dateModified: m.dateModified || m.datePublished,
     photo: m.photo ? PHOTOS[m.photo] : null,
     path: `${RATGEBER_BASE}/${m.slug}`,

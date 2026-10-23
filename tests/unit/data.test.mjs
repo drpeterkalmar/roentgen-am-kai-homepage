@@ -145,3 +145,20 @@ test('FAQ-Set mammascreening: Alter und Serviceline aus screening.js', async () 
   assert.ok(a.includes(AGE_RANGE) && a.includes(SCREENING.serviceline.display));
   for (const o of SCREENING.optIn) assert.ok(a.includes(o.label), o.label);
 });
+
+// --- KI-Serie: Prüfvermerk (Georg Riegler 23.10.2026: „Entferne das medizinisch geprüft.“) ---
+test('KI-Serie: Georgs fünf Artikel ohne Prüfvermerk, Peters vier mit Vermerk, alle mit CE', async () => {
+  const { KI_ARTICLE_META, KI_NO_REVIEW_NOTE, KI_REVIEWED } = await import('../../src/data/kiSeries.js');
+  const { ARTICLES } = await import('../../src/data/ratgeber.js');
+  assert.deepEqual([...KI_NO_REVIEW_NOTE].sort(), ['frog', 'hippo', 'koala', 'lama', 'squirrel']);
+  assert.deepEqual(Object.keys(KI_REVIEWED).sort(), ['panda', 'rho', 'transpara', 'uebersicht']);
+  const ki = ARTICLES.filter((a) => a.series === 'ki');
+  assert.equal(ki.length, KI_ARTICLE_META.length);
+  const off = ki.filter((a) => a.reviewNote === false).map((a) => a.slug).sort();
+  assert.deepEqual(off, ['fussfehlstellung-roentgen-ki', 'ki-beinachsenvermessung-lama', 'ki-hueftvermessung-hippo', 'kniearthrose-ki-koala', 'skoliose-cobb-winkel-ki']);
+  for (const a of ki) {
+    assert.equal(a.ce, true, a.slug);
+    if (a.reviewNote === false) assert.equal(a.reviewed, null, `${a.slug}: kein Fallback-Vermerk`);
+    else assert.equal(a.reviewed?.by, 'Priv.-Doz. Dr. Peter Kalmar', a.slug);
+  }
+});

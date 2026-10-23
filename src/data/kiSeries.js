@@ -29,19 +29,18 @@ import * as TRANSPARA from './ratgeber/ki-transpara.js';
 // Prüfvermerk „Medizinisch geprüft von … – Stand …“ (Aufteilung Peter 21.10.2026: Georg Riegler = LAMA/HIPPO/KOALA/
 // SQUIRREL/FROG, Peter Kalmar = Übersicht/Rho/PANDA/Transpara). Erst eintragen, wenn der Arzt „gelesen“ gemeldet hat;
 // ohne Eintrag zeigt die Seite den gelben Platzhalter. at = Tag der Durchsicht (ISO).
+// Artikel in KI_NO_REVIEW_NOTE zeigen gar keinen Vermerk (kein Name, kein Platzhalter).
 const KALMAR = 'Priv.-Doz. Dr. Peter Kalmar';
 export const KI_REVIEWED = {
   uebersicht: { by: KALMAR, at: '2026-10-21' },   // Peter „gelesen“ 21.10.2026
   rho: { by: KALMAR, at: '2026-10-21' },
   panda: { by: KALMAR, at: '2026-10-21' },
   transpara: { by: KALMAR, at: '2026-10-21' },
-  // Georgs fünf: Peter hat die Durchsicht übernommen und „gelesen“ gemeldet (22.10.2026, nach Herstellerabgleich)
-  lama: { by: KALMAR, at: '2026-10-22' },
-  hippo: { by: KALMAR, at: '2026-10-22' },
-  koala: { by: KALMAR, at: '2026-10-22' },
-  squirrel: { by: KALMAR, at: '2026-10-22' },
-  frog: { by: KALMAR, at: '2026-10-22' },
 };
+
+// Georgs fünf: Georg Riegler hat die Texte durchgesehen („Texte passen. Entferne das medizinisch geprüft.“, Mail 23.10.2026)
+// → kein Prüfvermerk auf diesen Seiten (ArticlePage: reviewNote: false).
+export const KI_NO_REVIEW_NOTE = ['lama', 'hippo', 'koala', 'squirrel', 'frog'];
 
 // Autor (sichtbar „Von …“, Article-Schema author = Person): Peter Kalmar für seine Artikel (Peter 21.10.2026 abends).
 // Georgs fünf (LAMA, HIPPO, KOALA, SQUIRREL, FROG) bleiben „Herausgegeben von Röntgen am Kai“ (author: null).
@@ -203,8 +202,9 @@ export const KI_ARTICLE_META = KI_MODULES.map((m) => ({
   product: m.vendor === 'IB Lab' ? `IB Lab ${m.product}` : m.product,
   inUse: m.inUse,
   reviewed: KI_REVIEWED[m.id] || null,
+  ...(KI_NO_REVIEW_NOTE.includes(m.id) ? { reviewNote: false } : {}),   // Georg 23.10.2026: Vermerk entfernen
   author: KI_AUTHORS[m.id] || null,
   logo: m.logo,
-  ce: true,   // CE-gekennzeichnetes Medizinprodukt (Nachweise IB Lab 22.10.2026, Transpara 2.1.1 laut Handbuch Rev. B: MDR IIb, CE 0344, 23.10.2026); Peter 22.10.2026: erwähnen
+  ce: true,   // CE-gekennzeichnetes Medizinprodukt (Nachweise IB Lab 22.10.2026, Transpara 2.1.1 laut Handbuch Rev. B: MDR IIb, CE 0344, 23.10.2026); Peter 22.10.2026 und Georg 23.10.2026: erwähnen (ohne Version/Klasse/Prüfstelle)
   kiHero: KI_HEROES[m.id],   // Titelbild am Artikelanfang (statt früher noHeroImage)
 }));

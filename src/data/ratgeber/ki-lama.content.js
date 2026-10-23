@@ -26,7 +26,7 @@ export const HTML = `
         <li>die Planung einer Knieoperation, zum Beispiel einer Knieprothese oder einer Operation, die die Beinachse korrigiert,</li>
         <li>die Kontrolle nach dem Einsetzen einer Knieprothese,</li>
         <li>ein Beckenschiefstand oder ein auffälliges Gangbild, bei dem ein Längenunterschied der Beine vermutet wird,</li>
-        <li>bei Kindern ab acht Jahren und Jugendlichen Fragen zu Beinstellung oder Beinlänge, ausgewertet an der Ganzbeinaufnahme.</li>
+        <li>bei Kindern ab acht Jahren und Jugendlichen Fragen zu Beinstellung oder Beinlänge. Auch bei ihnen setzen wir LAMA ein, ausgewertet wird die Ganzbeinaufnahme.</li>
       </ul>
       <p>Kleine Unterschiede sind normal. Laut einer Übersichtsarbeit haben nur etwa zehn Prozent der Menschen exakt gleich lange Beine. Ob ein Messwert Bedeutung hat, hängt von Beschwerden und Untersuchung ab.</p>
 

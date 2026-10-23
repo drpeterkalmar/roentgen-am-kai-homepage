@@ -73,7 +73,7 @@ export const HTML = `
 <li>Die Radiologietechnologin bzw. der Radiologietechnologe fertigt die Aufnahmen an, die auf der Zuweisung angegeben sind, bei Arthrose-Fragestellungen im Stehen. Es werden nur so viele Aufnahmen wie nötig gemacht; die Strahlenbelastung ist gering.</li>
 <li>Die Software wertet jede passende Aufnahme automatisch aus, auf einem Rechner in der Praxis.</li>
 <li>Die Radiologin bzw. der Radiologe beurteilt das Bild, prüft die KI-Messungen und erstellt den Befund.</li>
-<li>Befund und Bilder gehen an die zuweisende Ärztin bzw. den Arzt. Sie sind zusätzlich über ELGA und portal.marc.at verfügbar. Der Messbericht wird mit den Bildern archiviert und steht der zuweisenden Ärztin bzw. dem zuweisenden Arzt zur Verfügung, ebenso über ELGA.</li>
+<li>Befund und Bilder gehen an die zuweisende Ärztin bzw. den Arzt. Sie sind zusätzlich über ELGA und portal.marc.at verfügbar. Den KOALA-Messbericht mit dem vorgeschlagenen Kellgren-Lawrence-Grad sehen auch Sie, gemeinsam mit Ihrem Befund. Er wird mit den Bildern archiviert und steht der zuweisenden Ärztin bzw. dem zuweisenden Arzt zur Verfügung, ebenso über ELGA.</li>
 </ol>
 
 <h2>Nutzen und Grenzen</h2>
