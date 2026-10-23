@@ -133,25 +133,25 @@
   },
   "transpara-ablauf-mobil": {
     "file": "transpara-ablauf-mobil.png",
-    "source": "f5dd6fe2fc7506458e59d5bb0d800a422950caf7af0bb5b01ec259ff931ed20b",
+    "source": "d111ac28a0a0828c8b8660a04aeca3ecb8a7642bea96fd25fb236c7ba20e7bc2",
     "width": 1800,
     "height": 3532
   },
   "transpara-ablauf": {
     "file": "transpara-ablauf.png",
-    "source": "4fa067f37fbe2c9cd44f60edde38329cef7aa465dac9a05866e7dcae9d315899",
+    "source": "6c35d248cbc25cf78959760baabe2a3a66834efda49bcb151f5cb58ae7fa2fe0",
     "width": 2400,
     "height": 1350
   },
   "transpara-auswertung-mobil": {
     "file": "transpara-auswertung-mobil.png",
-    "source": "0136c173a99e4e2b02ac814c7188dcb6e12c6643520d9751c033d76f06457a4c",
+    "source": "a292b0a9f1e8889db9ea03ca7e85350a6148aa8313cda8aeb849f32659761221",
     "width": 1800,
     "height": 3224
   },
   "transpara-auswertung": {
     "file": "transpara-auswertung.png",
-    "source": "ccef9b1b4cbb886ea83141aa6fe799e5e762bb124cc42b43be6d4a43a8e44782",
+    "source": "7925beb8cf2ebffd9c41bfcf51b45ae74bb04a5b2c363c6b8873d2ce33044895",
     "width": 2400,
     "height": 1800
   },
@@ -205,7 +205,7 @@
   },
   "titel-transpara": {
     "file": "titel-transpara.png",
-    "source": "0b06bfa16de334444d17025241677ade2da0472e38437f002d6e59fef8338197",
+    "source": "d0a9197422898b3c571dc76aef0f2c2e4fc037dec366b5388e47ea70b65f4d77",
     "width": 1920,
     "height": 1080
   }

@@ -2,8 +2,10 @@
 // Stand: 23.10.2026 – Abgleich mit dem Handbuch der installierten Version erledigt (Unterlagen von Lackner/Siemens,
 //   gmail 23.10.2026): Transpara 2.1.1 (Release Notes 2.1.1+sp4), Handbuch ANC3-MGR-009-014 Rev. B vom 03.04.2026,
 //   MDR Klasse IIb (Regel 11), Benannte Stelle 0344. Klasse/Version/Stelle NIE in den Patiententext (nur hier + REVIEW).
-//   Übernommen: Raute = Mikrokalk, Kontur = Weichteilbefund; nur Befunde über Schwelle sichtbar; Skala 1–10 kalibriert
-//   auf gleichmäßige Verteilung unauffälliger Screening-Untersuchungen; Wirksamkeit nicht belegt nach Brustkrebs,
+//   Übernommen: Raute = Mikrokalk, Kontur = Weichteilbefund; nur Befunde über Schwelle sichtbar;
+//   Peter 23.10.2026: am Befundplatz sehen wir den Wert je Markierung (Region Score, „Zahl bis 99“), keinen Gesamtwert
+//   1–10 → Text und Grafiken auf Markierungswert 1–99 umgestellt. Praxisinterne Schwelle („ab 60 wird's ernst“) NIE
+//   veröffentlichen (Patientinnen würden Werte selbst deuten); Wirksamkeit nicht belegt nach Brustkrebs,
 //   nach OP, Schwangerschaft/Stillzeit, Männer (Warnhinweise 5.7).
 // Quellen (alle am 21.10.2026 selbst geprüft, DOIs über Crossref/PubMed verifiziert):
 //   * Lång K et al., Lancet Oncol 2023 (MASAI, Sicherheitsanalyse) – doi:10.1016/S1470-2045(23)00298-X
@@ -38,10 +40,10 @@ export const HTML = `
 <p>Die Software arbeitet in mehreren Schritten:</p>
 <ol>
 <li><strong>Bilder durchsuchen:</strong> Das Programm sucht in jedem Bild nach Auffälligkeiten, etwa nach feinen Kalkablagerungen (Mikrokalk) oder nach Verdichtungen im Brustgewebe.</li>
-<li><strong>Bereiche markieren:</strong> Stellen, die genauer angesehen werden sollten, werden im Bild markiert: Mikrokalk mit einer kleinen Raute, Verdichtungen mit einer Linie um den Bereich. Zu jeder Markierung gibt das Programm einen Wert an, wie auffällig der Bereich aus seiner Sicht ist. Angezeigt werden nur Bereiche, deren Wert eine eingestellte Schwelle überschreitet.</li>
-<li><strong>Gesamteinschätzung:</strong> Aus allen Bildern einer Untersuchung berechnet die Software einen Wert auf einer Skala von 1 bis 10. Ein höherer Wert bedeutet, dass das Programm mehr Merkmale gefunden hat, die bei Brustkrebs häufiger vorkommen.</li>
+<li><strong>Bereiche markieren:</strong> Stellen, die genauer angesehen werden sollten, werden im Bild markiert: Mikrokalk mit einer kleinen Raute, Verdichtungen mit einer Linie um den Bereich. Zu jeder Markierung gibt das Programm einen Wert zwischen 1 und 99 an. Je höher der Wert, desto auffälliger ist der Bereich aus Sicht der Software. Angezeigt werden nur Bereiche, deren Wert eine eingestellte Schwelle überschreitet.</li>
+<li><strong>Werte ärztlich einordnen:</strong> Die Radiologin oder der Radiologe sieht die Markierungen mit ihren Werten am Befundungsplatz. Ein hoher Wert ist ein Grund, die Stelle besonders genau anzusehen. Niedrige Werte betreffen meist Stellen, die sich als unauffällig erweisen.</li>
 </ol>
-<p>Dieser Gesamtwert ist keine Diagnose und keine persönliche Krebswahrscheinlichkeit. Er hilft, die Aufmerksamkeit gezielt zu lenken. Die Skala ist so eingestellt, dass sich unauffällige Untersuchungen aus der Früherkennung etwa gleichmäßig auf die zehn Stufen verteilen. Den höchsten Wert erhalten daher auch viele Frauen, die keinen Brustkrebs haben.</p>
+<p>Der Wert einer Markierung ist keine Diagnose und keine persönliche Krebswahrscheinlichkeit. Er hilft, die Aufmerksamkeit gezielt zu lenken. Weil Brustkrebs in der Früherkennung selten ist, haben auch viele Frauen mit einem hohen Wert keinen Brustkrebs.</p>
 <!--media:ablauf-->
 
 <h2>Was die Markierungen bedeuten – und was nicht</h2>
@@ -75,7 +77,7 @@ export const HTML = `
 <p>Das Screening ist für Frauen ohne Beschwerden gedacht. Wenn Sie einen Knoten tasten, Hautveränderungen wie Dellen oder Verhärtungen bemerken, sich die Brustwarze einzieht oder Flüssigkeit aus der Brustwarze austritt, warten Sie bitte nicht auf den nächsten Screening-Termin. Lassen Sie die Beschwerden ärztlich abklären. Für eine diagnostische Mammographie erhalten Sie in jedem Alter eine ärztliche Zuweisung. Mehr dazu lesen Sie im Abschnitt <a href="/mammographie-graz#beschwerden">Brustgesundheit und Beschwerden</a>.</p>
 
 <h2>KI als Unterstützung, Verantwortung beim Menschen</h2>
-<p>Brustkrebsvorsorge mit KI bedeutet nicht, dass ein Computer entscheidet. Transpara kann Mammographiebilder zusätzlich durchsehen, auffällige Bereiche markieren und eine Gesamteinschätzung abgeben. Die Studien deuten darauf hin, dass diese Unterstützung Radiologinnen und Radiologen helfen kann. Die Beurteilung der Bilder, die Entscheidung über weitere Untersuchungen und der Befund bleiben ärztliche Aufgaben. Für Frauen, die sich über KI-Mammographie in Graz informieren, heißt das: Der wichtigste Schritt bleibt die regelmäßige Teilnahme an der Früherkennung und die rasche Abklärung bei Beschwerden. Wie KI in anderen Bereichen der Radiologie eingesetzt wird, erklärt unsere <a href="/ratgeber/kuenstliche-intelligenz-radiologie">Übersicht zur künstlichen Intelligenz in der Radiologie</a>.</p>
+<p>Brustkrebsvorsorge mit KI bedeutet nicht, dass ein Computer entscheidet. Transpara kann Mammographiebilder zusätzlich durchsehen, auffällige Bereiche markieren und mit einem Wert versehen. Die Studien deuten darauf hin, dass diese Unterstützung Radiologinnen und Radiologen helfen kann. Die Beurteilung der Bilder, die Entscheidung über weitere Untersuchungen und der Befund bleiben ärztliche Aufgaben. Für Frauen, die sich über KI-Mammographie in Graz informieren, heißt das: Der wichtigste Schritt bleibt die regelmäßige Teilnahme an der Früherkennung und die rasche Abklärung bei Beschwerden. Wie KI in anderen Bereichen der Radiologie eingesetzt wird, erklärt unsere <a href="/ratgeber/kuenstliche-intelligenz-radiologie">Übersicht zur künstlichen Intelligenz in der Radiologie</a>.</p>
 `;
 
 export const MEDIA = {
@@ -86,7 +88,7 @@ export const MEDIA = {
     "inhalte": [
       "Vier 2D-Mammographieansichten (rechts/links, jeweils von oben und schräg) als neutrale, schematische Graustufenbilder",
       "In einer Ansicht eine Markierung (Kreis oder Rahmen) mit einem regionalen Wert als Beispiel",
-      "Gesamteinschätzung als Skala 1 bis 10 mit hervorgehobenem Beispielwert",
+      "Wert der Markierung als Skala 1 bis 99 mit hervorgehobenem Beispielwert (Praxis: am Befundplatz wird der Wert je Markierung bis 99 angezeigt)",
       "Gut lesbarer Hinweis im Bild: „Markierung = Hinweis zur ärztlichen Prüfung, keine Diagnose“",
       "Keine Namen, Geburtsdaten, Untersuchungsdaten, IDs, Gerätebezeichnungen oder Herstellerlogos",
       "Bildunterschrift-Vorschlag: „Schematische Darstellung einer KI-Auswertungsansicht (keine Patientendaten). Markierungen und Werte sind Beispiele und werden ärztlich geprüft.“"
@@ -99,7 +101,7 @@ export const MEDIA = {
         "mobile": "transpara-auswertung-mobil",
         "label": "Auswertungsansicht",
         "caption": "Schematische Darstellung einer KI-Auswertungsansicht (keine Patientendaten). Markierungen und Werte sind Beispiele und werden ärztlich geprüft.",
-        "alt": "Schematische Auswertungsansicht: vier gezeichnete Mammographieansichten (rechts und links, jeweils schräg und von oben), in einer davon ein rot markierter Bereich mit einem Beispielwert, darunter die Gesamteinschätzung als Skala von 1 bis 10 mit hervorgehobenem Beispielwert und der Hinweis „Markierung = Hinweis zur ärztlichen Prüfung, keine Diagnose“."
+        "alt": "Schematische Auswertungsansicht: vier gezeichnete Mammographieansichten (rechts und links, jeweils schräg und von oben), in einer davon ein rot markierter Bereich mit dem Beispielwert 72, darunter eine Skala von 1 bis 99, auf der dieser Wert hervorgehoben ist, und der Hinweis „Markierung = Hinweis zur ärztlichen Prüfung, keine Diagnose“."
       }
     ]
   },
@@ -110,7 +112,7 @@ export const MEDIA = {
     "inhalte": [
       "1. Mammographie: zwei 2D-Aufnahmen je Brust",
       "2. Die Bilder werden gespeichert und für die Befundung bereitgestellt",
-      "3. Die KI-Software wertet die Bilder aus, markiert auffällige Bereiche und berechnet eine Gesamteinschätzung (1–10)",
+      "3. Die KI-Software wertet die Bilder aus, markiert auffällige Bereiche und gibt je Markierung einen Wert (1–99) an",
       "4. Radiologin oder Radiologe beurteilt alle Bilder und prüft die Markierungen",
       "5. Ärztlicher Befund; bei Auffälligkeiten entscheiden Ärztinnen und Ärzte über weitere Abklärung",
       "Hinweis in der Grafik: „Ablauf bei Röntgen am Kai – die KI-Auswertung läuft lokal in der Praxis und stellt keine Diagnose“",
@@ -124,7 +126,7 @@ export const MEDIA = {
         "mobile": "transpara-ablauf-mobil",
         "label": "Ablauf",
         "caption": "Schematische Darstellung: Ablauf der Mammographie mit KI-Unterstützung bei Röntgen am Kai.",
-        "alt": "Schema in fünf Schritten: Mammographie mit zwei 2D-Aufnahmen je Brust, Bereitstellung der Bilder, KI-Auswertung mit Markierungen und Gesamteinschätzung von 1 bis 10, ärztliche Beurteilung aller Bilder, ärztlicher Befund. Hinweis: Die KI-Auswertung läuft lokal in der Praxis und stellt keine Diagnose."
+        "alt": "Schema in fünf Schritten: Mammographie mit zwei 2D-Aufnahmen je Brust, Bereitstellung der Bilder, KI-Auswertung mit Markierungen und einem Wert von 1 bis 99 je Markierung, ärztliche Beurteilung aller Bilder, ärztlicher Befund. Hinweis: Die KI-Auswertung läuft lokal in der Praxis und stellt keine Diagnose."
       }
     ]
   }

@@ -183,7 +183,7 @@ def ico_ki():
 <path d="{a[0]}" fill="none" stroke="{GRAY}" stroke-width="3"/>
 <circle cx="70" cy="62" r="15" fill="none" stroke="{RED}" stroke-width="4" stroke-dasharray="7 5"/>
 <g {SW} stroke="{RED}" stroke-width="3.5"><rect x="94" y="66" width="64" height="36" rx="6" fill="#fff"/></g>
-<text x="126" y="92" font-size="22" font-weight="700" fill="{RED}" text-anchor="middle" font-family="InterL">1–10</text>""")
+<text x="126" y="92" font-size="22" font-weight="700" fill="{RED}" text-anchor="middle" font-family="InterL">1–99</text>""")
 
 
 def ico_report():
@@ -298,7 +298,7 @@ TP_TITLE = "KI-unterstützte Mammographie – der Ablauf"
 TP_STEPS = [
     (ico_mammo_2d(), "Mammographie", "Zwei <span style='white-space:nowrap'>2D-Aufnahmen</span> je Brust"),
     (ico_store(), "Bilder bereitstellen", "Die Bilder werden gespeichert und für die Befundung bereitgestellt"),
-    (ico_ki(), "KI-Auswertung", "Die Software markiert auffällige Bereiche und berechnet eine Gesamt&shy;einschätzung <span style='white-space:nowrap'>(1–10)</span>"),
+    (ico_ki(), "KI-Auswertung", "Die Software markiert auffällige Bereiche und gibt je Markierung einen Wert <span style='white-space:nowrap'>(1–99)</span> an"),
     (ico_doctor_monitor(), "Ärztliche Beurteilung", "Radiologin oder Radiologe beurteilt alle Bilder und prüft die Markierungen"),
     (ico_report(), "Ärztlicher Befund", "Bei Auffälligkeiten entscheiden Ärztinnen und Ärzte über die weitere Abklärung"),
 ]
@@ -325,14 +325,19 @@ VIEWS = [("rechts, schräg", "mlo", False), ("links, schräg", "mlo", True), ("r
 HINT = "Markierung = Hinweis zur ärztlichen Prüfung, keine Diagnose"
 
 
-def scale_row(cell, fs, hi=7):
-    boxes = "".join(
-        f'<div style="flex:1;height:{cell}px;border-radius:12px;display:flex;align-items:center;justify-content:center;'
-        f'font-size:{fs}px;font-weight:700;' + (f'background:{RED};color:#fff;border:3px solid {RED};' if i == hi else f'border:3px solid {LIGHT};color:{GRAY};') +
-        f'">{i}</div>' for i in range(1, 11))
-    return (f'<div style="display:flex;gap:10px;">{boxes}</div>'
-            f'<div style="display:flex;justify-content:space-between;margin-top:10px;font-size:{fs * .8:.0f}px;color:{GRAY};">'
-            f'<span>← weniger auffällig</span><span>auffälliger →</span></div>')
+def scale_row(cell, fs, hi=72):
+    """Wert der Markierung als Balken 1–99 (Praxis: Region Score am Befundplatz), Beispielwert hervorgehoben.
+    Bewusst ohne Schwellen-/Ampelzonen: die praxisinterne Schwelle wird nicht veröffentlicht."""
+    pos = (hi - 1) / 98 * 100
+    bar = (f'<div style="position:relative;height:{cell}px;">'
+           f'<div style="position:absolute;left:0;right:0;top:{cell * .3:.0f}px;height:{cell * .4:.0f}px;border-radius:999px;'
+           f'border:3px solid {LIGHT};background:linear-gradient(90deg,#F8FAFC,#E2E8F0);"></div>'
+           f'<div style="position:absolute;left:{pos:.1f}%;top:0;transform:translateX(-50%);height:{cell}px;min-width:{cell * 1.25:.0f}px;'
+           f'padding:0 14px;border-radius:12px;background:{RED};color:#fff;display:flex;align-items:center;justify-content:center;'
+           f'font-size:{fs}px;font-weight:700;">{hi}</div></div>')
+    ends = (f'<div style="display:flex;justify-content:space-between;margin-top:10px;font-size:{fs * .8:.0f}px;color:{GRAY};">'
+            f'<span><strong style="color:{TXT}">1</strong>&nbsp; ← weniger auffällig</span><span>auffälliger → &nbsp;<strong style="color:{TXT}">99</strong></span></div>')
+    return bar + ends
 
 
 def view_cell(label, view, flip, marker, fs, w=300, h=440):
@@ -347,13 +352,13 @@ def legend(fs):
 
 
 def report_desktop():
-    mk = (.62, .42, 36, "58", 34)
+    mk = (.62, .42, 36, "72", 34)
     views = "".join(view_cell(l, v, f, mk if i == 1 else None, 30) for i, (l, v, f) in enumerate(VIEWS))
     inner = f"""<div style="padding:44px 56px;height:100%;display:flex;flex-direction:column;">
 <h1 style="font-size:50px;line-height:1.1;max-width:1100px;">KI-Auswertungsansicht – Schema</h1>
 <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:30px;">{views}</div>
 <div style="margin-top:22px;">{legend(30)}</div>
-<div style="margin-top:30px;"><p class="t" style="font-size:36px;">Gesamteinschätzung <span style="font-weight:500;color:{GRAY}">(Skala 1–10, Beispielwert hervorgehoben)</span></p>
+<div style="margin-top:30px;"><p class="t" style="font-size:36px;">Wert der Markierung <span style="font-weight:500;color:{GRAY}">(Skala 1–99, Beispielwert hervorgehoben)</span></p>
 <div style="margin-top:16px;">{scale_row(78, 38)}</div></div>
 <div class="dash" style="margin-top:auto;display:flex;align-items:center;gap:20px;padding:22px 28px;">{info_icon(56)}
 <p style="font-size:36px;line-height:1.25;font-weight:600;color:{INK}">{HINT}</p></div></div>"""
@@ -361,14 +366,14 @@ def report_desktop():
 
 
 def report_mobile():
-    mk = (.62, .42, 38, "58", 44)
+    mk = (.62, .42, 38, "72", 44)
     views = "".join(view_cell(l, v, f, mk if i == 1 else None, 34, h=340) for i, (l, v, f) in enumerate(VIEWS))
     inner = f"""<div style="padding:40px 40px 44px;">
 <h1 style="font-size:54px;line-height:1.12;max-width:540px;">KI-Auswertungs-<br>ansicht&nbsp;– Schema</h1>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px 28px;margin-top:30px;padding:0 70px;">{views}</div>
 <div style="margin-top:20px;">{legend(36)}</div>
-<p class="t" style="font-size:44px;margin-top:34px;">Gesamteinschätzung</p>
-<p style="font-size:34px;color:{GRAY};margin-top:4px;">Skala 1–10, Beispielwert hervorgehoben</p>
+<p class="t" style="font-size:44px;margin-top:34px;">Wert der Markierung</p>
+<p style="font-size:34px;color:{GRAY};margin-top:4px;">Skala 1–99, Beispielwert hervorgehoben</p>
 <div style="margin-top:16px;">{scale_row(84, 40)}</div>
 <div class="dash" style="margin-top:34px;display:flex;align-items:center;gap:20px;padding:24px 26px;">{info_icon(60)}
 <p style="font-size:40px;line-height:1.25;font-weight:600;color:{INK}">{HINT}</p></div></div>"""

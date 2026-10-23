@@ -120,7 +120,7 @@ export const KI_HEROES = {
   },
   transpara: {
     key: 'titel-transpara', caption: `${CAP_SCHEMA} einer KI-Auswertungsansicht (Ausschnitt)`, light: true,
-    alt: 'Schema einer Auswertungsansicht: vier Mammographie-Ansichten, in einer ein rot markierter Bereich mit dem Wert 58, darunter die Skala von 1 bis 10 mit hervorgehobenem Wert 7',
+    alt: 'Schema einer Auswertungsansicht: vier Mammographie-Ansichten, in einer ein rot markierter Bereich mit dem Wert 72, darunter eine Skala von 1 bis 99, auf der dieser Wert hervorgehoben ist',
   },
   uebersicht: {
     key: 'titel-ki', caption: 'Ausschnitte aus Beispielberichten der Hersteller (Demo-Datensätze)',
