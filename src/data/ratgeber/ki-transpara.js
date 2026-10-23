@@ -1,5 +1,5 @@
 // KI-Ratgeberserie – Artikel „Transpara“ (ScreenPoint Medical), URL /ratgeber/ki-mammographie-transpara.
-// Stand: 21.10.2026 (Praxisantworten abends eingearbeitet). Abgleich mit den Herstellerunterlagen folgt nach Eingang.
+// Stand: 23.10.2026 – Abgleich mit Handbuch Transpara 2.1.1 (Rev. B, 04/2026) erledigt; Details im Kopf von ki-transpara.content.js.
 // Quellen (alle am 21.10.2026 selbst geprüft, DOIs über Crossref/PubMed verifiziert):
 //   * Lång K et al., Lancet Oncol 2023 (MASAI, Sicherheitsanalyse) – doi:10.1016/S1470-2045(23)00298-X
 //   * Hernström V et al., Lancet Digit Health 2025 (MASAI, Screening-Ergebnisse) – doi:10.1016/S2589-7500(24)00267-X
@@ -49,9 +49,9 @@ export const FAQ = [
   }
 ];
 
-export const REVIEW = "BEANTWORTET (Peter, 21.10.2026 abends): Transpara ist bei uns im Einsatz → Absatz „Transpara bei Röntgen am Kai“ (lokal in der Praxis, keine zusätzlichen Aufnahmen, jede Aufnahme ärztlich beurteilt, Markierungen ärztlich geprüft), Distanzierungen entfernt, Kachel „bei uns im Einsatz“; kein Temporal Comparison, keine Tomosynthese, Density nicht erwähnt; Früherkennungsprogramm/KI: Artikel sagt nichts; „ab 75“ korrekt; Studien ohne Prozentwerte; „zweites Paar Augen“ so ok; Medien als eigene schematische Zeichnung; Autor und Prüfvermerk Priv.-Doz. Dr. Peter Kalmar.\nOffen:\n1. Herstellerunterlagen (IFU aktuelle Version, Versionsnummer, CE) über Siemens angefragt.\n2. Nach Eingang: Abgleich Skala (1–10), Darstellung und Schwelle der Markierungen mit der aktuellen Version (Text beruht auf Studien mit älteren Versionen).\n3. CE-Kennzeichnung auf der Seite erwähnen? – Georg fragen.\n4. Ob/wie KI im Früherkennungsprogramm (Doppelbefundung) eingesetzt werden darf, ist nicht geprüft – Artikel sagt dazu bewusst nichts.\n5. Bildplätze KI-TRANSPARA-01/-02 (eigene schematische Zeichnungen) noch offen.";
+export const REVIEW = "BEANTWORTET (Herstellerunterlagen 23.10.2026, Lackner/Siemens): installierte Version Transpara 2.1.1, Handbuch (deutsch) Rev. B vom April 2026, MDR Klasse IIb, Benannte Stelle 0344 – nur hier, nicht im Patiententext; auf der Seite steht zentral „CE-gekennzeichnetes Medizinprodukt“ (Peter 22.10.2026). Text abgeglichen: Skala 1–10 und gleichmäßige Kalibrierung bestätigt; Markierungsart (Raute = Mikrokalk, Linie = Verdichtung), Anzeige nur über Schwelle und die Warnhinweise (nicht belegt nach Brustkrebs, nach Brust-OP, Schwangerschaft/Stillzeit, Männer) ergänzt; Handbuch als Quelle ohne Link. Davor (Peter, 21.10.2026 abends): im Einsatz, lokal, keine Zusatzaufnahmen, kein Temporal Comparison, keine Tomosynthese, Density nicht erwähnt, Studien ohne Prozentwerte, Autor Priv.-Doz. Dr. Peter Kalmar.\nOffen:\n1. Welche Anzeige ist an unseren Befundplätzen eingestellt: Wert 1–10 oder drei Stufen (niedrig/mittel/erhöht, vom Hersteller empfohlen)? Der Text beschreibt 1–10; bei drei Stufen anpassen.\n2. Ob/wie KI im Früherkennungsprogramm (Doppelbefundung) eingesetzt werden darf, ist nicht geprüft – Artikel sagt dazu bewusst nichts.";
 
 
 export const TITLE = "Mammographie mit KI-Unterstützung: Wie Transpara hilft";
 
-export const UPDATED = "2026-10-21";
+export const UPDATED = "2026-10-23";

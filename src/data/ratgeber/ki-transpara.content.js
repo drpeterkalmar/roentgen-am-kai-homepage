@@ -1,5 +1,10 @@
 // KI-Ratgeberserie – Artikel „Transpara“ (ScreenPoint Medical), URL /ratgeber/ki-mammographie-transpara.
-// Stand: 21.10.2026 (Praxisantworten abends eingearbeitet). Abgleich mit den Herstellerunterlagen folgt nach Eingang.
+// Stand: 23.10.2026 – Abgleich mit dem Handbuch der installierten Version erledigt (Unterlagen von Lackner/Siemens,
+//   gmail 23.10.2026): Transpara 2.1.1 (Release Notes 2.1.1+sp4), Handbuch ANC3-MGR-009-014 Rev. B vom 03.04.2026,
+//   MDR Klasse IIb (Regel 11), Benannte Stelle 0344. Klasse/Version/Stelle NIE in den Patiententext (nur hier + REVIEW).
+//   Übernommen: Raute = Mikrokalk, Kontur = Weichteilbefund; nur Befunde über Schwelle sichtbar; Skala 1–10 kalibriert
+//   auf gleichmäßige Verteilung unauffälliger Screening-Untersuchungen; Wirksamkeit nicht belegt nach Brustkrebs,
+//   nach OP, Schwangerschaft/Stillzeit, Männer (Warnhinweise 5.7).
 // Quellen (alle am 21.10.2026 selbst geprüft, DOIs über Crossref/PubMed verifiziert):
 //   * Lång K et al., Lancet Oncol 2023 (MASAI, Sicherheitsanalyse) – doi:10.1016/S1470-2045(23)00298-X
 //   * Hernström V et al., Lancet Digit Health 2025 (MASAI, Screening-Ergebnisse) – doi:10.1016/S2589-7500(24)00267-X
@@ -33,14 +38,14 @@ export const HTML = `
 <p>Die Software arbeitet in mehreren Schritten:</p>
 <ol>
 <li><strong>Bilder durchsuchen:</strong> Das Programm sucht in jedem Bild nach Auffälligkeiten, etwa nach feinen Kalkablagerungen (Mikrokalk) oder nach Verdichtungen im Brustgewebe.</li>
-<li><strong>Bereiche markieren:</strong> Stellen, die genauer angesehen werden sollten, werden im Bild markiert. Zu jeder Markierung gibt das Programm einen Wert an, wie auffällig der Bereich aus seiner Sicht ist.</li>
+<li><strong>Bereiche markieren:</strong> Stellen, die genauer angesehen werden sollten, werden im Bild markiert: Mikrokalk mit einer kleinen Raute, Verdichtungen mit einer Linie um den Bereich. Zu jeder Markierung gibt das Programm einen Wert an, wie auffällig der Bereich aus seiner Sicht ist. Angezeigt werden nur Bereiche, deren Wert eine eingestellte Schwelle überschreitet.</li>
 <li><strong>Gesamteinschätzung:</strong> Aus allen Bildern einer Untersuchung berechnet die Software einen Wert auf einer Skala von 1 bis 10. Ein höherer Wert bedeutet, dass das Programm mehr Merkmale gefunden hat, die bei Brustkrebs häufiger vorkommen.</li>
 </ol>
-<p>Dieser Gesamtwert ist keine Diagnose und keine persönliche Krebswahrscheinlichkeit. Er hilft, die Aufmerksamkeit gezielt zu lenken. In den Studien war die Skala so eingestellt, dass sich die Untersuchungen eines Screeningprogramms etwa gleichmäßig auf die zehn Stufen verteilen. Den höchsten Wert erhalten daher auch viele Frauen, die keinen Brustkrebs haben.</p>
+<p>Dieser Gesamtwert ist keine Diagnose und keine persönliche Krebswahrscheinlichkeit. Er hilft, die Aufmerksamkeit gezielt zu lenken. Die Skala ist so eingestellt, dass sich unauffällige Untersuchungen aus der Früherkennung etwa gleichmäßig auf die zehn Stufen verteilen. Den höchsten Wert erhalten daher auch viele Frauen, die keinen Brustkrebs haben.</p>
 <!--media:ablauf-->
 
 <h2>Was die Markierungen bedeuten – und was nicht</h2>
-<p>Eine Markierung ist ein Hinweis, genauer hinzusehen. Sie bedeutet nicht, dass Krebs vorliegt. Viele markierte Stellen erweisen sich bei der ärztlichen Beurteilung als harmlos, zum Beispiel als gutartige Verkalkung oder als Überlagerung von Gewebe. Umgekehrt heißt eine fehlende Markierung nicht, dass sicher alles in Ordnung ist. Auch eine KI kann Veränderungen übersehen.</p>
+<p>Eine Markierung ist ein Hinweis, genauer hinzusehen. Sie bedeutet nicht, dass Krebs vorliegt. Viele markierte Stellen erweisen sich bei der ärztlichen Beurteilung als harmlos, zum Beispiel als gutartige Verkalkung oder als Überlagerung von Gewebe. Umgekehrt heißt eine fehlende Markierung nicht, dass sicher alles in Ordnung ist. Auch eine KI kann Veränderungen übersehen. Für manche Situationen ist laut Hersteller nicht belegt, wie gut die Software arbeitet: nach einer Brustkrebserkrankung oder einer Operation an der Brust, in Schwangerschaft und Stillzeit sowie bei Männern. Dann stützt sich die Beurteilung ganz auf die Radiologin oder den Radiologen.</p>
 <p>Deshalb gilt:</p>
 <ul>
 <li>Die Radiologin oder der Radiologe sieht sich alle Bilder selbst an und beurteilt sie.</li>
@@ -130,6 +135,7 @@ export const SOURCES = [
   "Hernström V, Josefsson V, Sartor H, Schmidt D, Larsson AM, Hofvind S, Andersson I, Rosso A, Hagberg O, Lång K. Screening performance and characteristics of breast cancer detected in the Mammography Screening with Artificial Intelligence trial (MASAI): a randomised, controlled, parallel-group, non-inferiority, single-blinded, screening accuracy study. Lancet Digit Health. 2025;7(3):e175–e183. <a href=\"https://doi.org/10.1016/S2589-7500(24)00267-X\" target=\"_blank\" rel=\"noopener noreferrer\">doi:10.1016/S2589-7500(24)00267-X<span class=\"sr-only\"> (öffnet in neuem Fenster)</span></a>",
   "Gommers J, Hernström V, Josefsson V, Sartor H, Schmidt D, Hjelmgren A, Larsson AM, Hofvind S, Andersson I, Rosso A, Hagberg O, Lång K. Interval cancer, sensitivity, and specificity comparing AI-supported mammography screening with standard double reading without AI in the MASAI study: a randomised, controlled, non-inferiority, single-blinded, population-based, screening-accuracy trial. Lancet. 2026;407(10527):505–514. <a href=\"https://doi.org/10.1016/S0140-6736(25)02464-X\" target=\"_blank\" rel=\"noopener noreferrer\">doi:10.1016/S0140-6736(25)02464-X<span class=\"sr-only\"> (öffnet in neuem Fenster)</span></a>",
   "Rodríguez-Ruiz A, Krupinski E, Mordang JJ, Schilling K, Heywang-Köbrunner SH, Sechopoulos I, Mann RM. Detection of breast cancer with mammography: effect of an artificial intelligence support system. Radiology. 2019;290(2):305–314. <a href=\"https://doi.org/10.1148/radiol.2018181371\" target=\"_blank\" rel=\"noopener noreferrer\">doi:10.1148/radiol.2018181371<span class=\"sr-only\"> (öffnet in neuem Fenster)</span></a>",
+  "ScreenPoint Medical. Transpara – Handbuch (deutsch), Version B, April 2026. Vom Hersteller zur Verfügung gestellt.",
   "ScreenPoint Medical (Nijmegen, Niederlande): Herstellerinformation zu Transpara, einer KI-Software zur Unterstützung der Mammographie-Auswertung (abgerufen am 21.10.2026). <a href=\"https://screenpoint-medical.com/\" target=\"_blank\" rel=\"noopener noreferrer\">screenpoint-medical.com<span class=\"sr-only\"> (öffnet in neuem Fenster)</span></a>",
   "Österreichisches Brustkrebs-Früherkennungsprogramm „früh erkennen“: Für wen ist das Programm?, So können Sie teilnehmen, FAQs (abgerufen am 21.10.2026). <a href=\"https://www.frueh-erkennen.at/fuer-wen-ist-das-programm/\" target=\"_blank\" rel=\"noopener noreferrer\">frueh-erkennen.at<span class=\"sr-only\"> (öffnet in neuem Fenster)</span></a>"
 ];
