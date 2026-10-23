@@ -5,8 +5,12 @@ import { preloadPrerenderedPage } from './routes'
 import './index.css'
 import { installCtaTracking } from './lib/ctaTracking'
 import { installChunkReload } from './lib/chunkReload'
+import { installQuelleDurchreichen } from './lib/quelleDurchreichen'
 
 installCtaTracking()
+
+// ?quelle=gads-… (Google-Anzeige) beim Klick an Links zur Online-Buchung hängen – ohne Speicher (lib/quelleDurchreichen.js)
+installQuelleDurchreichen()
 
 // Seiten-Code nach einem Deploy nicht mehr vorhanden → einmal neu laden, sonst Fehlergrenze (lib/chunkReload.js)
 installChunkReload()

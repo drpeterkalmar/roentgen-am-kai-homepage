@@ -15,6 +15,9 @@ Moderne, responsive Homepage für die Radiologie-Ordination "Röntgen am Kai" in
 - Keine Tracker, keine Cookies; im Browser gespeichert wird nur die Dunkelmodus-Wahl nach Klick und – nur wenn
   Seiten-Code nach einem Deploy fehlt – ein technischer Zeitstempel in `sessionStorage` (Schutz vor Endlos-Neuladen,
   `src/lib/chunkReload.js`). Schriften selbst gehostet; Online-Terminbuchung per Link ins MiraNext-Patientenportal.
+  Steht `?quelle=gads-…` (Google-Anzeige) in der Adresse, hängt ein Klick auf einen Link zur eigenen Online-Buchung
+  (`termin.roentgen-am-kai.at`) das Kennzeichen an – nichts gespeichert, gezählt wird am Termin-Server
+  (`src/lib/quelleDurchreichen.js`).
 
 ## Aufbau
 - `src/data/` – alle Fakten an einer Stelle: Routentabelle (`routes.js`), Leistungen (`services.js`), weitere
