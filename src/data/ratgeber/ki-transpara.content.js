@@ -2,6 +2,10 @@
 // Stand: 23.10.2026 – Abgleich mit dem Handbuch der installierten Version erledigt (Unterlagen von Lackner/Siemens,
 //   gmail 23.10.2026): Transpara 2.1.1 (Release Notes 2.1.1+sp4), Handbuch ANC3-MGR-009-014 Rev. B vom 03.04.2026,
 //   MDR Klasse IIb (Regel 11), Benannte Stelle 0344. Klasse/Version/Stelle NIE in den Patiententext (nur hier + REVIEW).
+//   CE-Nachweis (Lackner, gmail 23.10.2026 11:50): DEKRA Certification B.V. (Benannte Stelle 0344), EU-QM-Zertifikat
+//   Nr. 2248965CE01 nach MDR 2017/745 Anhang IX Kap. I + III, Hersteller ScreenPoint Medical B.V., gilt für „Transpara 2.Y.Z“
+//   (Klasse IIb) → deckt 2.1.1; ausgestellt 01.06.2026, gültig bis 01.12.2030. Deckt „CE-gekennzeichnetes Medizinprodukt“
+//   im Artikelkopf. Die Konformitätserklärung des Herstellers selbst liegt weiterhin nicht vor (für die Seite nicht nötig).
 //   Übernommen: Raute = Mikrokalk, Kontur = Weichteilbefund; nur Befunde über Schwelle sichtbar;
 //   Peter 23.10.2026: am Befundplatz sehen wir den Wert je Markierung (Region Score, „Zahl bis 99“), keinen Gesamtwert
 //   1–10 → Text und Grafiken auf Markierungswert 1–99 umgestellt. Praxisinterne Schwelle („ab 60 wird's ernst“) NIE

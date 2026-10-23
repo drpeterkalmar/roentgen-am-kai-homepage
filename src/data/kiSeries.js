@@ -205,6 +205,6 @@ export const KI_ARTICLE_META = KI_MODULES.map((m) => ({
   ...(KI_NO_REVIEW_NOTE.includes(m.id) ? { reviewNote: false } : {}),   // Georg 23.10.2026: Vermerk entfernen
   author: KI_AUTHORS[m.id] || null,
   logo: m.logo,
-  ce: true,   // CE-gekennzeichnetes Medizinprodukt (Nachweise IB Lab 22.10.2026, Transpara 2.1.1 laut Handbuch Rev. B: MDR IIb, CE 0344, 23.10.2026); Peter 22.10.2026 und Georg 23.10.2026: erwähnen (ohne Version/Klasse/Prüfstelle)
+  ce: true,   // CE-gekennzeichnetes Medizinprodukt (Nachweise IB Lab 22.10.2026, Transpara 2.1.1 laut Handbuch Rev. B: MDR IIb, CE 0344, DEKRA-Zertifikat 2248965CE01 bis 01.12.2030, 23.10.2026); Peter 22.10.2026 und Georg 23.10.2026: erwähnen (ohne Version/Klasse/Prüfstelle)
   kiHero: KI_HEROES[m.id],   // Titelbild am Artikelanfang (statt früher noHeroImage)
 }));
