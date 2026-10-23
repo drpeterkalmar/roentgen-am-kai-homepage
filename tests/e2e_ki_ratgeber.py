@@ -26,7 +26,7 @@ data = json.loads(subprocess.run(
      "console.log(JSON.stringify({series: {path: s.KI_SERIES.path, title: s.KI_SERIES.title, seo: s.KI_SERIES.seoTitle,"
      " desc: s.KI_SERIES.description, words: words(c.KI_OVERVIEW_HTML), can: s.KI_SERIES.can.length, cannot: s.KI_SERIES.cannot.length},"
      " mods: s.KI_MODULES.map(m => { const k = c.KI_CONTENT[m.slug]; return {id: m.id, slug: m.slug, title: m.mod.TITLE, seo: m.seoTitle,"
-     " desc: m.mod.DESCRIPTION, faq: m.mod.FAQ.length, inUse: m.inUse, reviewNote: (s.KI_ARTICLE_META.find(a => a.slug === m.slug) || {}).reviewNote ?? null, cta: m.cta.title, logo: !!m.logo, tile: m.tile.title,"
+     " desc: m.mod.DESCRIPTION, faq: m.mod.FAQ.length, inUse: m.inUse, cta: m.cta.title, logo: !!m.logo, tile: m.tile.title,"
      " words: words(k.html), markers: [...k.html.matchAll(/<!--media:([a-z]+)-->/g)].map(x => x[1]),"
      " media: Object.fromEntries(Object.entries(k.media).filter(([, v]) => v).map(([key, v]) => [key, v.slides ? {slides: v.slides.length,"
      " alts: v.slides.map(x => x.alt), captions: v.slides.map(x => x.caption), mobile: v.slides.filter(x => x.mobile && x.mobile.key && x.mobile.width).length,"
@@ -81,11 +81,8 @@ check(S["seo"] == "Künstliche Intelligenz in der Radiologie | Graz" and S["titl
 check(145 <= len(S["desc"]) <= 160, f"Übersicht: Description {len(S['desc'])} Zeichen (145–160)")
 check(500 <= S["words"] <= 700, f"Übersicht: {S['words']} Wörter (500–700)")
 check(S["can"] >= 3 and S["cannot"] >= 3, "Übersicht: Listen „Was KI kann“ / „was nicht“")
-REVIEWED = {"uebersicht", "rho", "panda", "transpara"}   # Peter „gelesen“ 21.10.2026
-NO_REVIEW_NOTE = {"lama", "hippo", "koala", "squirrel", "frog"}   # Georg 23.10.2026: „Entferne das medizinisch geprüft.“ → gar kein Vermerk
-REVIEW_TXT = "Medizinisch geprüft von Priv.-Doz. Dr. Peter Kalmar – Stand 21.10.2026"
-REVIEW_AT = {}
-check(sorted(m["id"] for m in MODS if m["reviewNote"] is False) == sorted(NO_REVIEW_NOTE), "Daten: reviewNote false genau für Georgs fünf Artikel")
+GEORG = {"lama", "hippo", "koala", "squirrel", "frog"}   # CE-Hinweis im Artikelkopf (Georg 23.10.2026)
+# Kein Prüfvermerk „Medizinisch geprüft“ auf keiner Seite (Georg 23.10.2026 für seine fünf, Peter 23.10.2026 für alle)
 IN_USE = ["lama", "hippo", "koala", "squirrel", "frog", "panda", "rho", "transpara"]   # Praxis: Rho 26.09., IB Lab 21.10., Transpara 21.10.2026 abends
 check(sorted(m["id"] for m in MODS if m["inUse"]) == sorted(IN_USE), "„bei uns im Einsatz“ nur für bestätigten Einsatz (Rho, IB Lab, Transpara)")
 AUTHOR = "Priv.-Doz. Dr. Peter Kalmar"
@@ -163,7 +160,7 @@ with sync_playwright() as pw:
     items = cp[0]["mainEntity"]["itemListElement"] if cp else []
     check(len(cp) == 1 and cp[0]["mainEntity"]["@type"] == "ItemList" and len(items) == 8
           and all(i["url"].startswith(SITE + "/ratgeber/") for i in items), "Übersicht: CollectionPage + ItemList (8)")
-    check(pg.locator("[data-reviewed]").count() == 1 and REVIEW_TXT in pg.locator("[data-reviewed]").inner_text(), "Übersicht: Prüfvermerk Kalmar 21.10.2026")
+    check(pg.locator("[data-reviewed]").count() == 0 and "Medizinisch geprüft" not in pg.inner_text("main"), "Übersicht: kein Prüfvermerk (Peter 23.10.2026)")
     check(f"Von {AUTHOR}" in pg.locator("main header").first.inner_text(), "Übersicht: Autor sichtbar")
     cps = [s for s in schemas() if s.get("@type") == "CollectionPage"]
     check(cps and cps[0].get("author") == {"@type": "Person", "name": AUTHOR}, "Übersicht: CollectionPage author = Person")
@@ -209,18 +206,13 @@ with sync_playwright() as pw:
         check(any(target in h for h in hrefs), f"{m['id']}: Link {target}")
         bad = [w for w in FORBIDDEN if w.lower() in body.lower()] + re.findall(r"(?<!keine )(?<!keinen )garantiert\w*", body, re.I)
         check(not bad, f"{m['id']}: keine verbotenen Aussagen {bad}")
-        if m["id"] in REVIEWED:
-            txt = REVIEW_TXT.replace("21.10.2026", REVIEW_AT.get(m["id"], "21.10.2026"))
-            check(pg.locator("[data-reviewed]").count() == 1 and txt in body, f"{m['id']}: Prüfvermerk Kalmar {REVIEW_AT.get(m['id'], '21.10.2026')}")
-        elif m["id"] in NO_REVIEW_NOTE:
-            full = pg.inner_text("main")
-            check(pg.locator("[data-reviewed]").count() == 0 and "Medizinisch geprüft" not in full and "[NAME]" not in full and "[DATUM]" not in full,
-                  f"{m['id']}: kein Prüfvermerk, kein Platzhalter (Georg 23.10.2026)")
+        full = pg.inner_text("main")
+        check(pg.locator("[data-reviewed]").count() == 0 and "Medizinisch geprüft" not in full and "[NAME]" not in full and "[DATUM]" not in full,
+              f"{m['id']}: kein Prüfvermerk, kein Platzhalter (Peter 23.10.2026)")
+        if m["id"] in GEORG:
             ce = pg.locator("[data-ce]")
             check(ce.count() == 1 and "CE-gekennzeichnetes Medizinprodukt" in ce.inner_text()
                   and not re.search(r"\bMDR\b|\bMDD\b|Klasse I|Benannte Stelle|TÜV|Version \d", full), f"{m['id']}: CE im Artikelkopf, ohne Klasse/Version/Prüfstelle")
-        else:
-            check(pg.locator("[data-reviewed]").count() == 0, f"{m['id']}: Prüfvermerk noch Platzhalter (wartet auf Durchsicht)")
         if m["id"] == "koala":
             check("Den KOALA-Messbericht mit dem vorgeschlagenen Kellgren-Lawrence-Grad sehen auch Sie, gemeinsam mit Ihrem Befund." in body, "koala: Patientinnen/Patienten sehen den Bericht mit dem Befund (Georg 23.10.2026)")
         if m["id"] == "lama":

@@ -195,12 +195,11 @@ with sync_playwright() as p:
     check("Google-Unternehmensprofil" in t and hol.count() == 1 and hol.get_attribute("href").startswith("https://www.google.com/maps/")
           and hol.get_attribute("target") == "_blank" and not any("Urlaubs" in x for x in ph), "Kontakt: Schließzeiten mit Link zum Google-Profil, kein Platzhalter")
     check(any("Kurzvorstellung der Praxis" in x for x in ph), "Kontakt: Praxisvorstellung bleibt Platzhalter (Freigabe ausstehend)")
-    REV = "Medizinisch geprüft von Priv.-Doz. Dr. Peter Kalmar – Stand 22.10.2026"
     for path in ["/gesundheitsziele", "/gesundheitsziele/gesund-abnehmen", "/gesundheitsziele/dexa-sportler-red-s",
                  "/ratgeber/knochendichtemessung-dexa-vorsorge", "/ratgeber/mammascreening-oesterreich",
                  "/ratgeber/abnehmspritze-muskelmasse-koerperanalyse", "/ratgeber/brustkrebs-frueherkennung-mammographie"]:
         t, ph = body_ph(path)
-        check(REV in t and not any(x in ("Dr. [NAME]", "[DATUM]") for x in ph) and not any("Autorin/Autor" in x for x in ph), f"{path}: Prüfvermerk Kalmar 22.10.2026, kein Namens-/Autor-Platzhalter")
+        check("Medizinisch geprüft" not in t and not any(x in ("Dr. [NAME]", "[DATUM]") for x in ph) and not any("Autorin/Autor" in x for x in ph), f"{path}: kein Prüfvermerk (Peter 23.10.2026), kein Namens-/Autor-Platzhalter")
     t, ph = body_ph("/gesundheitsziele/gesund-abnehmen")
     check("159\u00a0kg" in t or "159 kg" in t, "Abnehmen: Gewichtsgrenze 159 kg (GE-Herstellerangabe)")
     t, ph = body_ph("/mammographie-graz")

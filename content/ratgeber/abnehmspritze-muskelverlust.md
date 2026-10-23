@@ -12,7 +12,6 @@ Diese Datei ist die Inhaltsvorlage. Hier stehen bewusst **keine** selbst formuli
 ## Vor der Veröffentlichung auszufüllen
 
 - Autorin/Autor (Name, Titel): [NAME]
-- Medizinisch geprüft von: Dr. [NAME], Stand [DATUM]
 - Veröffentlichungsdatum: [DATUM]
 - SEO-Titel (max. 60 Zeichen): derzeit „Abnehmspritze und Muskelverlust | Röntgen am Kai“
 - Meta-Description (max. 155 Zeichen): [TEXT]

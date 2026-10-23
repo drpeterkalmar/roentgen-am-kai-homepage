@@ -169,29 +169,21 @@ const META = [
     photo: 'scan',
     faq: SARKOPENIE_FAQ,
     sources: SARKOPENIE_SOURCES,
-    reviewNote: false, // Prüfvermerk auf Wunsch der Praxis entfernt (07.10.2026)
     review: 'Tabelle der Orientierungswerte von der Praxis freigegeben (07.10.2026).',
   },
   // KI-Serie „Röntgen am K[AI]“ (21.10.2026): Metadaten, Texte und Medien in src/data/kiSeries.js
   ...KI_ARTICLE_META,
 ];
 
-export const ARTICLES_REVIEWED = { by: 'Priv.-Doz. Dr. Peter Kalmar', at: '2026-10-22' };
-
-export const ARTICLES = META.map((m) => {
-  const status = m.status || 'published';
-  return {
-    status: 'published',
-    author: null,
-    faq: null,
-    ...m,
-    // reviewNote: false = Seite zeigt keinen Vermerk → auch kein Fallback auf ARTICLES_REVIEWED
-    reviewed: m.reviewNote === false ? null : (m.reviewed || (status === 'published' ? ARTICLES_REVIEWED : null)),
-    dateModified: m.dateModified || m.datePublished,
-    photo: m.photo ? PHOTOS[m.photo] : null,
-    path: `${RATGEBER_BASE}/${m.slug}`,
-  };
-});
+export const ARTICLES = META.map((m) => ({
+  status: 'published',
+  author: null,
+  faq: null,
+  ...m,
+  dateModified: m.dateModified || m.datePublished,
+  photo: m.photo ? PHOTOS[m.photo] : null,
+  path: `${RATGEBER_BASE}/${m.slug}`,
+}));
 
 export const articleBySlug = Object.fromEntries(ARTICLES.map((a) => [a.slug, a]));
 export const isIndexable = (a) => a.status === 'published';

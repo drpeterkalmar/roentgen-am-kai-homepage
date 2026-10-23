@@ -123,6 +123,8 @@ with sync_playwright() as p:
         levels = pg.eval_on_selector_all("main h1, main h2, main h3, main h4, main h5", "hs => hs.map(h => +h.tagName[1])")
         jumps = [(x, y) for x, y in zip(levels, levels[1:]) if y > x + 1]
         check(levels[:1] == [1] and not jumps, f"Überschriftenfolge {r['path']} {jumps}")
+        check("Medizinisch geprüft" not in pg.inner_text("body") and pg.locator("[data-reviewed]").count() == 0,
+              f"kein Prüfvermerk „Medizinisch geprüft“ {r['path']} (Peter 23.10.2026)")
         # JSON-LD
         lds = []
         for raw in pg.eval_on_selector_all('script[type="application/ld+json"]', "s => s.map(x => x.textContent)"):
