@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowDown } from 'lucide-react';
 import Hero from '../components/ui/Hero';
-import ImagePlaceholder from '../components/ui/ImagePlaceholder';
+import { imageUrl, imageSrcSet } from '../components/ui/Picture';
 import { IMAGE_BRIEFS } from '../data/imageBriefs';
 import Section from '../components/ui/Section';
 import Placeholder from '../components/ui/Placeholder';
@@ -19,7 +19,16 @@ const SpezialroentgenPage = () => {
     <>
       <Hero
         breadcrumbs={[{ name: 'Startseite', href: '/' }, { name: EXAMS_CRUMB, href: EXAMS_BASE }, { name: 'Spezialröntgen' }]}
-        imageSlot={<ImagePlaceholder brief={IMAGE_BRIEFS.fluoroRoom} className="h-full w-full rounded-2xl" />}
+        // Praxisfoto (B016, Team-Fotosession 23.10.2026)
+        image={{
+          src: imageUrl('durchleuchtung-luminos'),
+          srcSet: imageSrcSet('durchleuchtung-luminos'),
+          sizes: '(max-width: 1023px) 100vw, 50vw',
+          alt: IMAGE_BRIEFS.fluoroRoom.alt,
+          width: 1920,
+          height: 1440,
+          priority: true,
+        }}
         title={"Spezialröntgen und Kontrastmittel\u00ADuntersuchungen in Graz"}
         status={<StatusBadge area={area} />}
         lead="Bei bestimmten medizinischen Fragestellungen werden Gefäße, Organe oder Bewegungsabläufe mithilfe von Kontrastmittel und dynamischen Röntgenaufnahmen untersucht."

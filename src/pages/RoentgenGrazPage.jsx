@@ -3,7 +3,7 @@ import { FileText, Send, Clock, MapPin, Images, Stethoscope } from 'lucide-react
 import XrayWay from '../components/explainers/XrayWay';
 import RadiationComparison from '../components/explainers/RadiationComparison';
 import Hero from '../components/ui/Hero';
-import ImagePlaceholder from '../components/ui/ImagePlaceholder';
+import { imageUrl, imageSrcSet } from '../components/ui/Picture';
 import { IMAGE_BRIEFS } from '../data/imageBriefs';
 import Section from '../components/ui/Section';
 import Card from '../components/ui/Card';
@@ -31,7 +31,16 @@ const RoentgenGrazPage = () => {
     <>
       <Hero
         breadcrumbs={[{ name: 'Startseite', href: '/' }, { name: EXAMS_CRUMB, href: EXAMS_BASE }, { name: 'Röntgen' }]}
-        imageSlot={<ImagePlaceholder brief={IMAGE_BRIEFS.xrayRoom} className="h-full w-full rounded-2xl" />}
+        // Praxisfoto (B014, Team-Fotosession 23.10.2026)
+        image={{
+          src: imageUrl('roentgenraum'),
+          srcSet: imageSrcSet('roentgenraum'),
+          sizes: '(max-width: 1023px) 100vw, 50vw',
+          alt: IMAGE_BRIEFS.xrayRoom.alt,
+          width: 1920,
+          height: 1440,
+          priority: true,
+        }}
         title="Röntgen in Graz – direkt vorbeikommen oder Wunschzeit reservieren"
         status={<StatusBadge area={area} text="Röntgen ohne vorherige Terminvereinbarung möglich" />}
         lead="Benötigen Sie ein Röntgen von Knochen, Gelenken, Wirbelsäule oder Lunge? Mit gültiger ärztlicher Zuweisung und e-card können Sie während unserer Röntgenzeiten ohne vorherige Terminvereinbarung vorbeikommen."

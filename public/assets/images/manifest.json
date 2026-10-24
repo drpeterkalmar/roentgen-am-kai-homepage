@@ -11,9 +11,17 @@
     "file": "dexa-messplatz-knochendichte.avif",
     "source": "098f0894ca2eaa4880ffacaf055bce86fe810f8f4f98a4baa19bfe32bfbcca76"
   },
+  "durchleuchtung-luminos": {
+    "file": "durchleuchtung-luminos.jpg",
+    "source": "efce564c44a5c397a8315f0a178811e2a89f64fc7195f13f274387fe7e88ca6b"
+  },
   "dvt": {
     "file": "dvt.avif",
     "source": "ad3f04d485b3ab4c2a5f14e599340037082b387f879eba4a4191d04a8183e114"
+  },
+  "dvt-geraet": {
+    "file": "dvt-geraet.jpg",
+    "source": "8cd2fb7c6e27c4182aff1c2a900291450e1a91d1803e8aec528b4bf45877bc0b"
   },
   "footer-map": {
     "file": "footer-map.avif",
@@ -90,6 +98,10 @@
   "roentgen": {
     "file": "roentgen.avif",
     "source": "db2a1cec343848614d38642fa6c7ce549450ce12f301d0bc42de113762bf9cee"
+  },
+  "roentgenraum": {
+    "file": "roentgenraum.jpg",
+    "source": "4bb4fc92f0243824080d1587d1852f033f11de710161b4d4a185303c1d0baa52"
   },
   "service_densitometry": {
     "file": "service_densitometry.avif",

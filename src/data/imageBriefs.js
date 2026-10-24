@@ -160,6 +160,8 @@ export const IMAGE_BRIEFS = {
     position: 'Röntgen-Seite, Hero',
     ratio: '4:3',
     minSize: '1600 × 1200 px',
+    // 24.10.2026: Foto der Team-Fotosession (Mail Sarah & Dani 23.10.) eingebaut: assets-src/images/roentgenraum.jpg (Röntgenraum A1, iPhone 15 Pro 5712 × 4284)
+    // → 4:3, 2400 × 1800, Weißabgleich leicht neutralisiert. Ein Profi-Foto bleibt erwünscht.
     alt: 'Röntgenraum von Röntgen am Kai in Graz',
   },
   ultrasoundRoom: {
@@ -182,6 +184,8 @@ export const IMAGE_BRIEFS = {
     position: 'Spezialröntgen-Seite, Hero',
     ratio: '4:3',
     minSize: '1600 × 1200 px',
+    // 24.10.2026: Foto der Team-Fotosession (Mail Sarah & Dani 23.10.) eingebaut: assets-src/images/durchleuchtung-luminos.jpg (Durchleuchtung A2, Luminos dRF Max, iPhone 15 Pro 5712 × 4284)
+    // → 4:3, 2400 × 1800, Weißabgleich leicht neutralisiert. Ein Profi-Foto bleibt erwünscht.
     alt: 'Durchleuchtungsraum für Spezialröntgen bei Röntgen am Kai',
   },
   dentalDevice: {
@@ -191,6 +195,8 @@ export const IMAGE_BRIEFS = {
     position: 'Zahnröntgen/DVT-Seite, Hero',
     ratio: '4:3',
     minSize: '1600 × 1200 px',
+    // 24.10.2026: Foto der Team-Fotosession (Mail Sarah & Dani 23.10.) eingebaut: assets-src/images/dvt-geraet.jpg (DVT, iPhone 15 Pro 4000 × 3000)
+    // → 4:3, 2400 × 1800, Weißabgleich leicht neutralisiert. Ein Profi-Foto bleibt erwünscht.
     alt: 'Gerät für Zahnröntgen und 3D-DVT bei Röntgen am Kai',
   },
   // ── Kontakt ──
