@@ -1,80 +1,137 @@
 import ExplainerFigure from './ExplainerFigure';
+import {
+  CANAL, FORAMEN, FOSSA, MANDIBLE_FILL, MANDIBLE_OUTLINE, MENTAL, NASAL, PALATE, PANO, PANO_TEETH, SEPTUM, SINUS, TURBINATES, VOL,
+  VOLUME, ZYGOMA,
+} from './dentalArt';
 
-// A006 – 2D-Zahnröntgen oder 3D-DVT? Panoramaaufnahme als Fläche, DVT als Volumen.
+// A006 – 2D-Zahnröntgen oder 3D-DVT? Panoramaaufnahme als Fläche, DVT als Volumen (Neuzeichnung 25.10.2026).
 // Texte aus dem bestehenden Seitentext von /zahnroentgen-dvt-graz (Hero, Gruppen-Leads, DENTAL_SERVICES, Hinweis
 // „Welche Aufnahme brauche ich?“) – keine neuen Indikationen. Desktop: zwei Felder nebeneinander; Handy: gestapelt.
+// Beide Zeichnungen im Röntgen-Look (helle Strukturen auf dunklem Grund, in hellem wie dunklem Seitenmodus gleich),
+// je Kiefer 16 Zähne inklusive Weisheitszähne. Geometrie in ./dentalArt.js.
 
-// Gemeinsamer Strich für beide Zeichnungen (Grautöne), Markenrot nur als Akzent der Zähne
-const LINE = 'fill-none stroke-slate-500 dark:stroke-slate-400';
-const TOOTH = 'fill-white stroke-slate-500 dark:fill-slate-200 dark:stroke-slate-400';
+const BONE = 'rgba(226,232,240,0.62)'; // Kortikalis-Linie
+const SOFT = 'rgba(148,163,184,0.32)';
+const NERVE = '#F28B82'; // brand-300: Nervenkanal als einziger Farbakzent
+const BG = (id) => (
+  <radialGradient id={id} cx="50%" cy="50%" r="70%">
+    <stop offset="0%" stopColor="#1e293b" />
+    <stop offset="100%" stopColor="#020617" />
+  </radialGradient>
+);
 
-// Panoramabild: Zähne entlang der Kauebene (Lächelkurve), außen breitere Backenzähne, durchgehender Unterkiefer
-const N = 14;
-const GAP = 1.6;
-const widths = Array.from({ length: N }, (_, i) => {
-  const t = Math.abs((i - (N - 1) / 2) / ((N - 1) / 2));
-  return 8 + 5 * t * t;
-});
-const total = widths.reduce((a, b) => a + b, 0) + GAP * (N - 1);
-const TEETH = widths.map((w, i) => {
-  const x = 120 - total / 2 + widths.slice(0, i).reduce((a, b) => a + b, 0) + GAP * i;
-  const t = (x + w / 2 - 120) / (total / 2);
-  return { x, w, y: 62 + 7 * (1 - t * t) };
-});
-
+// 2D: Panoramaschichtaufnahme (OPG)
 const Panorama = () => (
-  <svg viewBox="0 0 240 130" className="h-full w-auto max-w-full" aria-hidden="true" focusable="false">
-    <rect x="4" y="4" width="232" height="122" rx="10" className="fill-slate-100 stroke-slate-300 dark:fill-slate-900 dark:stroke-slate-600" strokeWidth="1.5" />
-    {/* Oberkiefer */}
-    <path d="M36 42 Q120 22 204 42" className={LINE} strokeWidth="2" />
-    {/* Unterkiefer: Gelenkfortsatz – Ast – Körper – Ast – Gelenkfortsatz */}
-    <path d="M24 24 Q20 62 28 90 Q44 112 120 113 Q196 112 212 90 Q220 62 216 24" className={LINE} strokeWidth="2" />
-    <ellipse cx="24" cy="21" rx="6" ry="4" className={LINE} strokeWidth="2" />
-    <ellipse cx="216" cy="21" rx="6" ry="4" className={LINE} strokeWidth="2" />
-    {TEETH.map(({ x, w, y }) => (
-      <g key={x} className={TOOTH} strokeWidth="1.2">
-        <rect x={x} y={y - 21} width={w} height="20" rx="3" />
-        <rect x={x} y={y + 1} width={w} height="20" rx="3" />
+  <svg viewBox={`0 0 ${PANO.w} ${PANO.h}`} className="h-full w-full" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+    <defs>
+      {BG('a006-pano-bg')}
+      <linearGradient id="a006-enamel-upper" x1="0" y1="1" x2="0" y2="0">
+        <stop offset="0%" stopColor="#ffffff" />
+        <stop offset="100%" stopColor="#cbd5e1" />
+      </linearGradient>
+      <linearGradient id="a006-enamel-lower" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#ffffff" />
+        <stop offset="100%" stopColor="#cbd5e1" />
+      </linearGradient>
+      <filter id="a006-glow" x="-10%" y="-10%" width="120%" height="120%">
+        <feGaussianBlur stdDeviation="1.6" />
+      </filter>
+    </defs>
+    <rect width={PANO.w} height={PANO.h} fill="url(#a006-pano-bg)" />
+    {/* Mittelgesicht: Nasenhöhle, Kieferhöhlen, Jochbogen, Gaumen, Gelenkgruben – zarte Schatten */}
+    <path d={NASAL} fill="rgba(2,6,23,0.35)" stroke={SOFT} strokeWidth="1" />
+    {TURBINATES.map((d) => <path key={d} d={d} fill="none" stroke={SOFT} strokeWidth="1" strokeLinecap="round" />)}
+    <path d={SEPTUM} stroke={SOFT} strokeWidth="1.2" />
+    {SINUS.map((d) => <path key={d} d={d} fill="rgba(2,6,23,0.3)" stroke={SOFT} strokeWidth="1" />)}
+    {ZYGOMA.map((d) => <path key={d} d={d} fill="none" stroke="rgba(203,213,225,0.3)" strokeWidth="2.2" strokeLinecap="round" />)}
+    <path d={PALATE} fill="none" stroke="rgba(203,213,225,0.38)" strokeWidth="1.8" strokeLinecap="round" />
+    {FOSSA.map((d) => <path key={d} d={d} fill="none" stroke={SOFT} strokeWidth="1.3" strokeLinecap="round" />)}
+    {/* Unterkiefer */}
+    <path d={MANDIBLE_FILL} fill="rgba(148,163,184,0.11)" />
+    {MANDIBLE_OUTLINE.map((d) => (
+      <g key={d}>
+        <path d={d} fill="none" stroke="rgba(226,232,240,0.16)" strokeWidth="3.5" filter="url(#a006-glow)" />
+        <path d={d} fill="none" stroke={BONE} strokeWidth="1.7" />
+      </g>
+    ))}
+    {/* Nervenkanal: Band mit zwei feinen Rändern */}
+    {CANAL.map((d) => (
+      <g key={d}>
+        <path d={d} fill="none" stroke={NERVE} strokeOpacity="0.75" strokeWidth="4" strokeLinecap="round" />
+        <path d={d} fill="none" stroke="#0f172a" strokeWidth="2" strokeLinecap="round" />
+      </g>
+    ))}
+    {FORAMEN.map(({ cx, cy }) => <ellipse key={cx} cx={cx} cy={cy} rx="2" ry="2.8" fill="#0f172a" stroke={NERVE} strokeOpacity="0.85" strokeWidth="1.1" />)}
+    {MENTAL.map(({ cx, cy }) => <circle key={cx} cx={cx} cy={cy} r="2.3" fill="#0f172a" stroke={NERVE} strokeOpacity="0.85" strokeWidth="1.1" />)}
+    {/* Zähne: Wurzeln (Dentin), Kronen (Schmelz, heller), Pulpa (dunkel) */}
+    {PANO_TEETH.map(({ key, jaw, crown, roots, back, pulp, chamber, rot }) => (
+      <g key={key} transform={rot}>
+        {back.map((d) => <path key={d} d={d} fill="rgba(203,213,225,0.3)" />)}
+        {roots.map((d) => <path key={d} d={d} fill="rgba(203,213,225,0.66)" stroke="rgba(241,245,249,0.45)" strokeWidth="0.5" />)}
+        <path d={crown} fill={`url(#a006-enamel-${jaw})`} stroke="#ffffff" strokeWidth="0.4" />
+        {chamber && <path d={chamber} fill="rgba(15,23,42,0.28)" />}
+        <path d={pulp} fill="none" stroke="rgba(15,23,42,0.5)" strokeWidth="1.2" strokeLinecap="round" />
       </g>
     ))}
   </svg>
 );
 
-// Volumen: Würfel in Schrägansicht; Zahnbogen als Hufeisen auf einer waagrechten Ebene im Inneren
-const D = { x: 45, y: -38 }; // Tiefe
-const F = { l: 40, r: 150, t: 60, b: 160 }; // Vorderfläche
-const P = (u, y, z) => [u + D.x * z, y + D.y * z]; // Punkt (Breite u, Höhe y, Tiefe z 0…1)
-const ARCH = Array.from({ length: 13 }, (_, i) => {
-  const a = Math.PI * (i / 12);
-  return P(95 - 34 * Math.cos(a), 118, 0.78 - 0.56 * Math.sin(a));
-});
-const archPath = ARCH.map(([x, y], i) => `${i ? 'L' : 'M'}${x.toFixed(1)} ${y.toFixed(1)}`).join(' ');
-const B = { l: F.l + D.x, r: F.r + D.x, t: F.t + D.y, b: F.b + D.y }; // Rückfläche
+// 3D: DVT-Volumen des Unterkiefers mit Nervenkanal und Messfeld-Würfel (Übergang, bis die Blender-Fassung fertig ist)
+const toothFill = (kind, jaw, light) => {
+  const k = 0.45 + 0.55 * light;
+  if (kind === 'root') return `rgba(${Math.round(150 + 70 * k)},${Math.round(165 + 62 * k)},${Math.round(185 + 50 * k)},0.42)`;
+  // Oberkiefer etwas kühler, Unterkiefer etwas wärmer – so bleiben die beiden Zahnreihen unterscheidbar
+  const [r, g, b] = jaw === 'upper' ? [138, 154, 178] : [160, 156, 150];
+  return `rgb(${Math.round(r + (255 - r) * k)},${Math.round(g + (255 - g) * k)},${Math.round(b + (255 - b) * k)})`;
+};
+const Teeth = ({ jaw }) =>
+  VOLUME[jaw].map(({ key, kind, faces }) => (
+    <g key={key}>
+      {faces.map(({ key: k, points, light }) => (
+        <polygon
+          key={k}
+          points={points}
+          fill={toothFill(kind, jaw, light)}
+          stroke={kind === 'root' ? 'none' : 'rgba(15,23,42,0.3)'}
+          strokeWidth="0.3"
+          strokeLinejoin="round"
+        />
+      ))}
+    </g>
+  ));
 
 const Volume = () => (
-  <svg viewBox="0 0 240 170" className="h-full w-auto max-w-full" aria-hidden="true" focusable="false">
-    {/* Flächen */}
-    <path d={`M${F.l} ${F.t} L${F.r} ${F.t} L${B.r} ${B.t} L${B.l} ${B.t} Z`} className="fill-slate-100 dark:fill-slate-900" />
-    <path d={`M${F.r} ${F.t} L${B.r} ${B.t} L${B.r} ${B.b} L${F.r} ${F.b} Z`} className="fill-slate-200/70 dark:fill-slate-900/70" />
-    {/* verdeckte Kanten */}
-    <path
-      d={`M${B.l} ${B.t} L${B.l} ${B.b} L${B.r} ${B.b} M${B.l} ${B.b} L${F.l} ${F.b}`}
-      className="fill-none stroke-slate-400 dark:stroke-slate-500"
-      strokeWidth="1.5"
-      strokeDasharray="4 4"
-    />
-    {/* Zahnbogen */}
-    <path d={archPath} className="fill-none stroke-brand-200 dark:stroke-brand-800" strokeWidth="13" strokeLinecap="round" strokeLinejoin="round" />
-    {ARCH.map(([x, y]) => (
-      <rect key={`${x}-${y}`} x={x - 3.5} y={y - 3.5} width="7" height="7" rx="2" className="fill-white stroke-brand-600 dark:fill-slate-200 dark:stroke-brand-400" strokeWidth="1.2" />
+  <svg viewBox={`0 0 ${VOL.w} ${VOL.h}`} className="h-full w-full" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+    <defs>
+      {BG('a006-vol-bg')}
+      <filter id="a006-nerve" x="-10%" y="-10%" width="120%" height="120%">
+        <feGaussianBlur stdDeviation="1.5" />
+      </filter>
+    </defs>
+    <rect width={VOL.w} height={VOL.h} fill="url(#a006-vol-bg)" />
+    {/* Messfeld: verdeckte Kanten gestrichelt */}
+    {VOLUME.edges.filter((e) => e.hidden).map((e) => (
+      <path key={e.d} d={e.d} stroke="rgba(148,163,184,0.35)" strokeWidth="0.9" strokeDasharray="3 3" />
     ))}
-    {/* sichtbare Kanten */}
-    <path
-      d={`M${F.l} ${F.t} L${F.r} ${F.t} L${F.r} ${F.b} L${F.l} ${F.b} Z M${F.l} ${F.t} L${B.l} ${B.t} L${B.r} ${B.t} L${F.r} ${F.t} M${B.r} ${B.t} L${B.r} ${B.b} L${F.r} ${F.b}`}
-      className={LINE}
-      strokeWidth="2"
-      strokeLinejoin="round"
-    />
+    {/* Unterkiefer, durchscheinend: Äste, Unterrand, Außenwand */}
+    {VOLUME.mandible.rami.map((p) => <polygon key={p} points={p} fill="rgba(148,163,184,0.1)" stroke={BONE} strokeWidth="1" strokeLinejoin="round" />)}
+    <polygon points={VOLUME.mandible.base} fill="rgba(148,163,184,0.08)" />
+    {VOLUME.mandible.walls.map((p) => <polygon key={p} points={p} fill="rgba(148,163,184,0.06)" />)}
+    <polyline points={VOLUME.mandible.baseLine} fill="none" stroke={BONE} strokeWidth="1.1" strokeLinejoin="round" />
+    {/* Nervenkanal */}
+    {VOLUME.canal.map((p) => (
+      <g key={p}>
+        <polyline points={p} fill="none" stroke={NERVE} strokeOpacity="0.55" strokeWidth="3.5" filter="url(#a006-nerve)" strokeLinejoin="round" />
+        <polyline points={p} fill="none" stroke={NERVE} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+      </g>
+    ))}
+    <Teeth jaw="lower" />
+    <polyline points={VOLUME.mandible.crest} fill="none" stroke="rgba(203,213,225,0.3)" strokeWidth="0.8" strokeLinejoin="round" />
+    {/* Nur der Unterkiefer (Weisheitszahn und Nervenkanal); beide Zahnbögen würden sich in der Schrägansicht überlagern */}
+    {/* Messfeld: sichtbare Kanten */}
+    {VOLUME.edges.filter((e) => !e.hidden).map((e) => (
+      <path key={e.d} d={e.d} stroke="rgba(203,213,225,0.5)" strokeWidth="1.1" strokeLinecap="round" />
+    ))}
   </svg>
 );
 
@@ -106,10 +163,10 @@ const DentalDimensions = ({ className }) => (
     <ul className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6" data-dental-compare="">
       {PANELS.map(({ key, badge, title, kind, text, Art }) => (
         <li key={key} className="flex min-w-0 flex-col rounded-xl bg-slate-50 p-5 dark:bg-slate-800/60" data-panel={key}>
-          <div className="flex h-36 items-center justify-center sm:h-44">
+          <div className="aspect-[16/9] w-full overflow-hidden rounded-lg bg-slate-950 ring-1 ring-slate-900/10 dark:ring-white/10">
             <Art />
           </div>
-          <p className="mt-3 flex flex-wrap items-center gap-2">
+          <p className="mt-4 flex flex-wrap items-center gap-2">
             <span className="inline-flex h-7 min-w-[2.5rem] items-center justify-center rounded-full bg-brand-600 px-2 text-sm font-semibold text-white dark:bg-brand-300 dark:text-slate-900">
               {badge}
             </span>
