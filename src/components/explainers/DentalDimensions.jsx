@@ -76,29 +76,19 @@ const Panorama = () => (
   </svg>
 );
 
-// 3D: DVT-Volumen des Unterkiefers mit Nervenkanal und Messfeld-Würfel (Übergang, bis die Blender-Fassung fertig ist)
-const toothFill = (kind, jaw, light) => {
-  const k = 0.45 + 0.55 * light;
-  if (kind === 'root') return `rgba(${Math.round(150 + 70 * k)},${Math.round(165 + 62 * k)},${Math.round(185 + 50 * k)},0.42)`;
-  // Oberkiefer etwas kühler, Unterkiefer etwas wärmer – so bleiben die beiden Zahnreihen unterscheidbar
-  const [r, g, b] = jaw === 'upper' ? [138, 154, 178] : [160, 156, 150];
-  return `rgb(${Math.round(r + (255 - r) * k)},${Math.round(g + (255 - g) * k)},${Math.round(b + (255 - b) * k)})`;
-};
+// 3D: DVT-Volumen des Unterkiefers mit Nervenkanal und Messfeld-Würfel (Übergang, bis die Blender-Fassung fertig ist).
+// Zähne als weich gerundete Formen mit Kugel-Schattierung (Licht von links oben) statt kantiger Flächen.
 const Teeth = ({ jaw }) =>
-  VOLUME[jaw].map(({ key, kind, faces }) => (
-    <g key={key}>
-      {faces.map(({ key: k, points, light }) => (
-        <polygon
-          key={k}
-          points={points}
-          fill={toothFill(kind, jaw, light)}
-          stroke={kind === 'root' ? 'none' : 'rgba(15,23,42,0.3)'}
-          strokeWidth="0.3"
-          strokeLinejoin="round"
-        />
-      ))}
-    </g>
-  ));
+  VOLUME[jaw].map(({ key, kind, d, occ }) =>
+    kind === 'root' ? (
+      <path key={key} d={d} fill="url(#a006-root)" />
+    ) : (
+      <g key={key}>
+        <path d={d} fill="url(#a006-crown)" stroke="rgba(15,23,42,0.35)" strokeWidth="0.35" />
+        {occ && <path d={occ} fill="url(#a006-occ)" />}
+      </g>
+    )
+  );
 
 const Volume = () => (
   <svg viewBox={`0 0 ${VOL.w} ${VOL.h}`} className="h-full w-full" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
@@ -107,6 +97,19 @@ const Volume = () => (
       <filter id="a006-nerve" x="-10%" y="-10%" width="120%" height="120%">
         <feGaussianBlur stdDeviation="1.5" />
       </filter>
+      <radialGradient id="a006-crown" cx="38%" cy="32%" r="75%">
+        <stop offset="0%" stopColor="#ffffff" />
+        <stop offset="55%" stopColor="#e7e2d8" />
+        <stop offset="100%" stopColor="#9aa3b2" />
+      </radialGradient>
+      <radialGradient id="a006-occ" cx="50%" cy="50%" r="60%">
+        <stop offset="0%" stopColor="#8f97a6" stopOpacity="0.55" />
+        <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
+      </radialGradient>
+      <linearGradient id="a006-root" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#e2e8f0" stopOpacity="0.6" />
+        <stop offset="100%" stopColor="#94a3b8" stopOpacity="0.15" />
+      </linearGradient>
     </defs>
     <rect width={VOL.w} height={VOL.h} fill="url(#a006-vol-bg)" />
     {/* Messfeld: verdeckte Kanten gestrichelt */}

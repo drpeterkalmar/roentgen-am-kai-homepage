@@ -169,12 +169,6 @@ export const PANO_TEETH = [...row2d('lower'), ...row2d('upper')];
 export const VOL = { w: 320, h: 180 };
 const YAW = (-30 * Math.PI) / 180;
 const PITCH = (30 * Math.PI) / 180;
-const LIGHT = (() => {
-  const v = [-0.4, 0.8, 0.45];
-  const n = Math.hypot(...v);
-  return v.map((c) => c / n);
-})();
-
 const rot = ([x, y, z]) => {
   const cy = Math.cos(YAW);
   const sy = Math.sin(YAW);
@@ -231,19 +225,6 @@ const frustum = (c, wA, dA, yA, wB, dB, yB) => {
 };
 
 const centroid = (poly) => poly.reduce((a, p) => [a[0] + p[0] / poly.length, a[1] + p[1] / poly.length, a[2] + p[2] / poly.length], [0, 0, 0]);
-// Sichtbarkeit und Helligkeit einer Fläche (konvexer Körper: Normale zeigt vom Körperschwerpunkt weg)
-const shade = (poly, bodyCenter) => {
-  const c = centroid(poly);
-  const e1 = poly[1].map((v, i) => v - poly[0][i]);
-  const e2 = poly[poly.length - 1].map((v, i) => v - poly[0][i]);
-  let nrm = [e1[1] * e2[2] - e1[2] * e2[1], e1[2] * e2[0] - e1[0] * e2[2], e1[0] * e2[1] - e1[1] * e2[0]];
-  const out = c.map((v, i) => v - bodyCenter[i]);
-  if (nrm[0] * out[0] + nrm[1] * out[1] + nrm[2] * out[2] < 0) nrm = nrm.map((v) => -v);
-  const len = Math.hypot(...nrm) || 1;
-  const nr = rot(nrm.map((v) => v / len));
-  return { facing: nr[2], light: Math.max(0, nr[0] * LIGHT[0] + nr[1] * LIGHT[1] + nr[2] * LIGHT[2]) };
-};
-
 // Kronenform je Zahntyp: Okklusalfläche/Schneidekante, Bauch, Hals (Breite, Tiefe relativ zum Zahn)
 const CROWN_SHAPE = {
   i: { occ: [0.96, 0.22], belly: [0.98, 0.8], neck: [0.7, 0.72] }, // Schneidekante schmal
@@ -279,15 +260,12 @@ const teeth3d = (jaw) => {
         { kind: 'crown', faces: frustum(c, w * sh.belly[0], d * sh.belly[1], yb, w * sh.neck[0], d * sh.neck[1], yc) },
         { kind: 'root', faces: frustum(c, w * sh.neck[0] * 0.95, d * sh.neck[1] * 0.95, yc, w * 0.2, d * 0.28, yr) },
       ];
-      for (const part of parts) {
-        const bc = centroid(part.faces.flat());
-        const faces = [];
-        part.faces.forEach((poly) => {
-          const sd = shade(poly, bc);
-          if (sd.facing > 0.01) faces.push({ poly, light: sd.light });
-        });
-        bodies.push({ key: `${jaw}${side}${i}${part.kind}${bodies.length}`, kind: part.kind, z: raw(bc)[2], faces });
-      }
+      // Je Zahn zwei weiche Körper: Krone (beide Kronen-Stümpfe) und Wurzel; dazu die Kaufläche für die Höcker-Andeutung
+      const crownPts = [...parts[0].faces.flat(), ...parts[1].faces.flat()];
+      const rootPts = parts[2].faces.flat();
+      const occ = parts[0].faces[0];
+      bodies.push({ key: `${jaw}${side}${i}r`, kind: 'root', z: raw(centroid(rootPts))[2], pts: rootPts });
+      bodies.push({ key: `${jaw}${side}${i}c`, kind: 'crown', type, z: raw(centroid(crownPts))[2], pts: crownPts, occ });
     });
   }
   return bodies.sort((a, b) => a.z - b.z);
@@ -349,6 +327,31 @@ const canal3d = () => {
 const BOX = { x: 40, y0: -34, y1: 30, z0: -76, z1: 9 };
 const EDGES = [[0, 1], [1, 2], [2, 3], [3, 0], [4, 5], [5, 6], [6, 7], [7, 4], [0, 4], [1, 5], [2, 6], [3, 7]];
 
+// Konvexe Hülle (Andrew) und weich gerundeter geschlossener Pfad durch die Hüllpunkte (Kanten-Mittelpunkte als
+// Ankerpunkte, Ecken als Kontrollpunkte) – macht aus den kantigen Zahnkörpern runde Formen
+const hull = (pts) => {
+  const p = [...pts].sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+  const cross = (o, a, b) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
+  const lower = [];
+  for (const q of p) {
+    while (lower.length >= 2 && cross(lower[lower.length - 2], lower[lower.length - 1], q) <= 0) lower.pop();
+    lower.push(q);
+  }
+  const upper = [];
+  for (const q of p.slice().reverse()) {
+    while (upper.length >= 2 && cross(upper[upper.length - 2], upper[upper.length - 1], q) <= 0) upper.pop();
+    upper.push(q);
+  }
+  return [...lower.slice(0, -1), ...upper.slice(0, -1)];
+};
+const smooth = (h) => {
+  const n = h.length;
+  const mid = (a, b) => [f((a[0] + b[0]) / 2), f((a[1] + b[1]) / 2)];
+  let d = `M${mid(h[n - 1], h[0]).join(' ')}`;
+  for (let i = 0; i < n; i += 1) d += ` Q${f(h[i][0])} ${f(h[i][1])} ${mid(h[i], h[(i + 1) % n]).join(' ')}`;
+  return `${d} Z`;
+};
+
 export const VOLUME = (() => {
   const { x, y0, y1, z0, z1 } = BOX;
   const P = [
@@ -384,7 +387,9 @@ export const VOLUME = (() => {
     teeth3d(jaw).map((b) => ({
       key: b.key,
       kind: b.kind,
-      faces: b.faces.map((fc, j) => ({ key: j, points: str(fc.poly), light: fc.light })),
+      d: smooth(hull(b.pts.map(xy))),
+      // Kaufläche nur bei Prämolaren/Molaren als zarte Mulde (Höcker-Andeutung)
+      occ: b.kind === 'crown' && (b.type === 'm' || b.type === 'p') ? smooth(hull(b.occ.map(xy))) : null,
     }));
   const mand = mandible3d();
   const mandible = {
