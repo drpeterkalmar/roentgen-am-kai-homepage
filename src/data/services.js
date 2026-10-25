@@ -116,6 +116,6 @@ export const selfPayPrices = [
   { id: 'koerperanalyse-paket', label: 'Körperanalyse Start- und Re-Check-Paket', price: BODY.prices.package, note: 'Zwei Messungen innerhalb von 2 Jahren.' },
   { id: 'dvt', label: 'DVT eines Kiefers (Ober- oder Unterkiefer)', price: 130 },
   { id: 'dvt-beide', label: 'DVT Ober- und Unterkiefer', price: 260 },
-  { id: 'zahnroentgen', label: 'Panoramaröntgen', price: 60.03 },
+  { id: 'zahnroentgen', label: 'Panoramaröntgen', price: 60 },
   { id: 'fernroentgen', label: 'Fernröntgen', price: 60 },
 ];
