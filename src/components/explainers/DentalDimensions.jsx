@@ -1,7 +1,6 @@
 import ExplainerFigure from './ExplainerFigure';
 import {
-  CANAL, FORAMEN, FOSSA, MANDIBLE_FILL, MANDIBLE_OUTLINE, MENTAL, NASAL, PALATE, PANO, PANO_TEETH, SEPTUM, SINUS, TURBINATES, VOL,
-  VOLUME, ZYGOMA,
+  CANAL, FORAMEN, FOSSA, MANDIBLE_FILL, MANDIBLE_OUTLINE, MENTAL, NASAL, PALATE, PANO, PANO_TEETH, SEPTUM, SINUS, TURBINATES, ZYGOMA,
 } from './dentalArt';
 
 // A006 – 2D-Zahnröntgen oder 3D-DVT? Panoramaaufnahme als Fläche, DVT als Volumen (Neuzeichnung 25.10.2026).
@@ -76,66 +75,27 @@ const Panorama = () => (
   </svg>
 );
 
-// 3D: DVT-Volumen des Unterkiefers mit Nervenkanal und Messfeld-Würfel (Übergang, bis die Blender-Fassung fertig ist).
-// Zähne als weich gerundete Formen mit Kugel-Schattierung (Licht von links oben) statt kantiger Flächen.
-const Teeth = ({ jaw }) =>
-  VOLUME[jaw].map(({ key, kind, d, occ }) =>
-    kind === 'root' ? (
-      <path key={key} d={d} fill="url(#a006-root)" />
-    ) : (
-      <g key={key}>
-        <path d={d} fill="url(#a006-crown)" stroke="rgba(15,23,42,0.35)" strokeWidth="0.35" />
-        {occ && <path d={occ} fill="url(#a006-occ)" />}
-      </g>
-    )
-  );
-
+// 3D: Blender-Render (assets-src/zahn/render_dvt.py → npm run images:zahn): Unterkiefer aus „Glas“ mit 16 Zähnen
+// inkl. Weisheitszähnen, Nervenkanal und zylindrischem DVT-Aufnahmefeld. Hintergrund im Bild = Verlauf der SVG-Felder.
+const ZAHN = `${import.meta.env?.BASE_URL ?? '/'}assets/zahn/`;
+const set = (ext) => [800, 1200, 1600].map((w) => `${ZAHN}dvt-volumen-${w}.${ext} ${w}w`).join(', ');
+const SIZES = '(min-width: 1280px) 560px, (min-width: 768px) 45vw, 90vw';
 const Volume = () => (
-  <svg viewBox={`0 0 ${VOL.w} ${VOL.h}`} className="h-full w-full" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
-    <defs>
-      {BG('a006-vol-bg')}
-      <filter id="a006-nerve" x="-10%" y="-10%" width="120%" height="120%">
-        <feGaussianBlur stdDeviation="1.5" />
-      </filter>
-      <radialGradient id="a006-crown" cx="38%" cy="32%" r="75%">
-        <stop offset="0%" stopColor="#ffffff" />
-        <stop offset="55%" stopColor="#e7e2d8" />
-        <stop offset="100%" stopColor="#9aa3b2" />
-      </radialGradient>
-      <radialGradient id="a006-occ" cx="50%" cy="50%" r="60%">
-        <stop offset="0%" stopColor="#8f97a6" stopOpacity="0.55" />
-        <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
-      </radialGradient>
-      <linearGradient id="a006-root" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor="#e2e8f0" stopOpacity="0.6" />
-        <stop offset="100%" stopColor="#94a3b8" stopOpacity="0.15" />
-      </linearGradient>
-    </defs>
-    <rect width={VOL.w} height={VOL.h} fill="url(#a006-vol-bg)" />
-    {/* Messfeld: verdeckte Kanten gestrichelt */}
-    {VOLUME.edges.filter((e) => e.hidden).map((e) => (
-      <path key={e.d} d={e.d} stroke="rgba(148,163,184,0.35)" strokeWidth="0.9" strokeDasharray="3 3" />
-    ))}
-    {/* Unterkiefer, durchscheinend: Äste, Unterrand, Außenwand */}
-    {VOLUME.mandible.rami.map((p) => <polygon key={p} points={p} fill="rgba(148,163,184,0.1)" stroke={BONE} strokeWidth="1" strokeLinejoin="round" />)}
-    <polygon points={VOLUME.mandible.base} fill="rgba(148,163,184,0.08)" />
-    {VOLUME.mandible.walls.map((p) => <polygon key={p} points={p} fill="rgba(148,163,184,0.06)" />)}
-    <polyline points={VOLUME.mandible.baseLine} fill="none" stroke={BONE} strokeWidth="1.1" strokeLinejoin="round" />
-    {/* Nervenkanal */}
-    {VOLUME.canal.map((p) => (
-      <g key={p}>
-        <polyline points={p} fill="none" stroke={NERVE} strokeOpacity="0.55" strokeWidth="3.5" filter="url(#a006-nerve)" strokeLinejoin="round" />
-        <polyline points={p} fill="none" stroke={NERVE} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-      </g>
-    ))}
-    <Teeth jaw="lower" />
-    <polyline points={VOLUME.mandible.crest} fill="none" stroke="rgba(203,213,225,0.3)" strokeWidth="0.8" strokeLinejoin="round" />
-    {/* Nur der Unterkiefer (Weisheitszahn und Nervenkanal); beide Zahnbögen würden sich in der Schrägansicht überlagern */}
-    {/* Messfeld: sichtbare Kanten */}
-    {VOLUME.edges.filter((e) => !e.hidden).map((e) => (
-      <path key={e.d} d={e.d} stroke="rgba(203,213,225,0.5)" strokeWidth="1.1" strokeLinecap="round" />
-    ))}
-  </svg>
+  <picture>
+    <source type="image/avif" srcSet={set('avif')} sizes={SIZES} />
+    <img
+      src={`${ZAHN}dvt-volumen-1200.webp`}
+      srcSet={set('webp')}
+      sizes={SIZES}
+      width="1600"
+      height="900"
+      loading="lazy"
+      decoding="async"
+      alt="Schematische 3D-Darstellung: Unterkiefer mit Zähnen und Nervenkanal im zylindrischen Aufnahmefeld der DVT"
+      className="h-full w-full object-cover"
+      data-dvt-render=""
+    />
+  </picture>
 );
 
 const PANELS = [

@@ -456,7 +456,7 @@ scene.render.resolution_x, scene.render.resolution_y = RES
 # Kamera auf einer Kugel um das Ziel: Azimut (von vorn nach rechts), Höhe; Abstand so, dass der Würfel mit Rand passt
 from bpy_extras.object_utils import world_to_camera_view  # noqa: E402
 
-AZ, EL = math.radians(0), math.radians(42)
+AZ, EL = math.radians(40), math.radians(34)
 corners = [Vector((FOV['r'] * math.cos(a), FOV['cy'] + FOV['r'] * math.sin(a), z)) * MM
            for a in [k * math.pi / 18 for k in range(36)] for z in (FOV['z0'], FOV['z1'])]
 
