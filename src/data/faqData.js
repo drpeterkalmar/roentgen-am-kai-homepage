@@ -245,7 +245,7 @@ export const faqData = {
     },
     {
       question: "Brauche ich für das Röntgen einen Termin?",
-      answer: "Nein, eine vorherige Terminvereinbarung ist nicht nötig: Mit gültiger ärztlicher Zuweisung und e-card können Sie während unserer Röntgenzeiten direkt vorbeikommen. Alternativ können Sie online eine Wunschzeit reservieren."
+      answer: "Nein, eine vorherige Terminvereinbarung ist nicht nötig: Mit gültiger ärztlicher Zuweisung und e-card können Sie während unserer Röntgenzeiten direkt vorbeikommen. Alternativ können Sie telefonisch eine Wunschzeit vereinbaren."
     }
   ],
   ultraschall: [

@@ -2,6 +2,7 @@ import { createContext, useContext } from 'react';
 import { CalendarCheck, Phone } from 'lucide-react';
 import Button from './Button';
 import { bookingUrl, PHONE_HREF, PHONE_DISPLAY } from '../../data/practice';
+import { services } from '../../data/services';
 
 // Leistung der Seite (z. B. 'knochendichte'): Buchungsknöpfe ohne eigenes service-Prop übernehmen sie.
 // Mammographie-Screening und DEXA führen so zur eigenen Online-Buchung (ONLINE_TERMIN_LINKS), der Rest zu BOOKING_URL.
@@ -17,6 +18,8 @@ export const useBookingService = () => useContext(BookingServiceContext);
 export const BookingButton = ({ label, service, ...rest }) => {
   const seite = useBookingService();
   const key = service || seite;
+  // Leistungen, die online nicht buchbar sind (z. B. Röntgen): kein Online-Knopf – daneben steht immer das Telefon
+  if (key && services[key] && !services[key].onlineBooking) return null;
   return (
     <Button href={bookingUrl(key)} external icon={CalendarCheck} data-cta="booking" data-cta-service={key} {...rest}>
       {label || 'Termin online buchen'}

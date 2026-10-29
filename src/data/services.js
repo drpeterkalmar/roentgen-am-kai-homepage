@@ -6,8 +6,8 @@ import { BODY } from './bodyComposition.js';
 // Nur Angaben, die auf der bisherigen Website stehen oder von der Praxis bestätigt wurden.
 // Offene Punkte sind als PLATZHALTER (null) markiert.
 //
-// onlineBooking: über MiraNext online buchbar (Praxis-Entscheidung 26.09.2026:
-//   Mammographie, DEXA-Knochendichte, DEXA-Körperanalyse, Röntgen)
+// onlineBooking: online buchbar über termin.roentgen-am-kai.at (ab 29.10.2026: Mammographie-Screening,
+//   DEXA-Knochendichte, DEXA-Körperanalyse; Röntgen nur telefonisch)
 // Nervenultraschall: Buchung und Abrechnung über PUCmed (externe Weiterleitung) – kein Preis hier.
 // selfPay: Selbstzahler-Preis wird online angezeigt (Praxis-Entscheidung 26.09.2026)
 
@@ -70,7 +70,7 @@ export const services = {
     short: 'Röntgen',
     href: '/roentgen-graz',
     description: 'Röntgen von Knochen, Gelenken, Wirbelsäule und Lunge – ohne vorherige Terminvereinbarung, mit Zuweisung und e-card.',
-    onlineBooking: true,
+    onlineBooking: false,
     referral: { summary: 'Mit gültiger ärztlicher Zuweisung und e-card, Kassenleistung.' },
   },
   ultraschall: {

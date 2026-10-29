@@ -27,14 +27,13 @@ export const ADDRESS = {
 export const MAPS_ROUTE_URL =
   'https://www.google.com/maps/dir/?api=1&destination=K%C3%B6r%C3%B6sistra%C3%9Fe+9%2C+8010+Graz';
 
-// Online-Terminbuchung über MiraNext (Patientenportal der Praxis).
-// Die Seite verbietet das Einbetten (X-Frame-Options: SAMEORIGIN) → Link in neuem Tab.
-export const BOOKING_URL = 'https://patient-portal.miranext.ai/patient-booking?c_Id=23';
-
 // Eigene Online-Terminbuchung der Praxis (Server in Wien, ab Oktober 2026) – Mammographie-Screening und DEXA
-// (Knochendichte, Körperanalyse, beides zusammen). Buchungsknöpfe dieser Leistungen führen direkt dorthin,
-// alle anderen bleiben bei BOOKING_URL. Freie Zeiten kommen aus dem CAS-Kalender der Praxis.
+// (Knochendichte, Körperanalyse, beides zusammen). Freie Zeiten kommen aus dem CAS-Kalender der Praxis.
+// Buchungsknöpfe dieser Leistungen führen direkt zur Terminauswahl, alle allgemeinen Knöpfe („Termin online
+// buchen“ in Kopf, Fuß, Handyleiste) auf die Startseite der Buchung; andere Untersuchungen dort per Telefon.
+// (Das MiraNext-Portal ist für Patient/innen nie live gegangen – Peter 29.10.2026: Link korrigieren.)
 export const ONLINE_TERMIN_URL = 'https://termin.roentgen-am-kai.at';
+export const BOOKING_URL = `${ONLINE_TERMIN_URL}/`;
 export const ONLINE_TERMIN_LINKS = {
   mammographie: `${ONLINE_TERMIN_URL}/buchen/mammographie`,
   knochendichte: `${ONLINE_TERMIN_URL}/buchen/dexa?art=knochendichte`,

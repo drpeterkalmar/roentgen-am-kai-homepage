@@ -53,7 +53,7 @@ const fromService = (s) => ({ title: s.title, path: s.href, onlineBooking: s.onl
 export const AREAS = {
   roentgen: {
     key: 'roentgen',
-    ...fromService(services.roentgen), // onlineBooking: „Wunschzeit reservieren“ über MiraNext (Praxis-Entscheidung 26.09.2026)
+    ...fromService(services.roentgen), // Röntgen: ohne Termin oder Wunschzeit telefonisch (online nicht buchbar)
     walkIn: true,
     short: 'Röntgen von Knochen, Gelenken, Wirbelsäule und Lunge.',
     overviewText:

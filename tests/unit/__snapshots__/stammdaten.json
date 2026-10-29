@@ -5,7 +5,7 @@
       "title": "Röntgen",
       "path": "/roentgen-graz",
       "walkIn": true,
-      "onlineBooking": true,
+      "onlineBooking": false,
       "short": "Röntgen von Knochen, Gelenken, Wirbelsäule und Lunge.",
       "overviewText": "Röntgen von Knochen, Gelenken, Wirbelsäule und Lunge. Mit gültiger ärztlicher Zuweisung und e-card können Sie während unserer Röntgenzeiten direkt vorbeikommen. Alternativ können Sie eine Wunschzeit reservieren."
     },
