@@ -35,7 +35,6 @@ export const MAPS_ROUTE_URL =
 export const ONLINE_TERMIN_URL = 'https://termin.roentgen-am-kai.at';
 export const BOOKING_URL = `${ONLINE_TERMIN_URL}/`;
 export const ONLINE_TERMIN_LINKS = {
-  mammographie: `${ONLINE_TERMIN_URL}/buchen/mammographie`,
   knochendichte: `${ONLINE_TERMIN_URL}/buchen/dexa?art=knochendichte`,
   koerperanalyse: `${ONLINE_TERMIN_URL}/buchen/dexa?art=koerperzusammensetzung`,
   'knochendichte-koerperanalyse': `${ONLINE_TERMIN_URL}/buchen/dexa?art=knochendichte_koerperanalyse`,

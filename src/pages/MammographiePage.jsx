@@ -7,7 +7,7 @@ import Card from '../components/ui/Card';
 import ImagePlaceholder from '../components/ui/ImagePlaceholder';
 import CTASection from '../components/ui/CTASection';
 import { SectionHeading } from '../components/ui/Heading';
-import { BookingButton, BookingService } from '../components/ui/BookingButtons';
+import { BookingService, PhoneButton } from '../components/ui/BookingButtons';
 import { buttonClasses } from '../components/ui/Button';
 import FAQ, { useRouteFaq } from '../components/FAQ';
 import { H3, P, Bullets, NewWindow, extLink } from '../components/ui/Text';
@@ -50,7 +50,7 @@ const MammographiePage = () => {
         lead={SCREENING_LEAD}
         actions={
           <>
-            <BookingButton size="lg" label="Screening-Termin online buchen" />
+            <PhoneButton size="lg" variant="primary" label="Screening-Termin vereinbaren" service="mammographie" />
             <a href="#screening" className={buttonClasses({ variant: 'ghost', size: 'lg', className: 'justify-start sm:justify-center' })}>
               So funktioniert das Screening <ArrowRight size={18} aria-hidden="true" />
             </a>
@@ -81,7 +81,7 @@ const MammographiePage = () => {
             <SectionHeading id="screening-title" eyebrow="Brustkrebs-Früherkennungsprogramm" title="Brustkrebsvorsorge ohne Zuweisung" className="!mb-6" />
             <P>{SCREENING_SECTION_TEXT}</P>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <BookingButton label="Screening-Termin online buchen" />
+              <PhoneButton variant="primary" label="Screening-Termin vereinbaren" service="mammographie" />
             </div>
             <p className="mt-6 text-sm text-slate-600 dark:text-slate-300">
               Offizielle Informationen zum Programm:{' '}

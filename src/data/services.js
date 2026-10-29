@@ -6,8 +6,8 @@ import { BODY } from './bodyComposition.js';
 // Nur Angaben, die auf der bisherigen Website stehen oder von der Praxis bestätigt wurden.
 // Offene Punkte sind als PLATZHALTER (null) markiert.
 //
-// onlineBooking: online buchbar über termin.roentgen-am-kai.at (ab 29.10.2026: Mammographie-Screening,
-//   DEXA-Knochendichte, DEXA-Körperanalyse; Röntgen nur telefonisch)
+// onlineBooking: online buchbar über termin.roentgen-am-kai.at (ab 29.10.2026: DEXA-Knochendichte und
+//   DEXA-Körperanalyse; Mammographie vorerst und Röntgen telefonisch)
 // Nervenultraschall: Buchung und Abrechnung über PUCmed (externe Weiterleitung) – kein Preis hier.
 // selfPay: Selbstzahler-Preis wird online angezeigt (Praxis-Entscheidung 26.09.2026)
 
@@ -19,7 +19,7 @@ export const services = {
     description:
       'Screening-Mammographie im Brustkrebs-Früherkennungsprogramm, diagnostische Mammographie und Brustultraschall.',
     priority: 1,
-    onlineBooking: true,
+    onlineBooking: false, // Peter 29.10.2026: Mammographie ausgebucht → vorerst telefonisch
     referral: {
       summary: 'Im Brustkrebs-Früherkennungsprogramm ohne Zuweisung, bei Beschwerden mit Zuweisung.',
       items: [
