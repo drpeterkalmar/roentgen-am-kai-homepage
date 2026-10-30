@@ -70,7 +70,7 @@ export const HTML = `
 <h2>Ablauf bei Röntgen am Kai</h2>
 <ol>
 <li>Sie kommen mit gültiger ärztlicher Zuweisung und e-card während der Röntgenzeiten, ohne Termin. Eine Wunschzeit kann reserviert werden.</li>
-<li>Die Radiologietechnologin bzw. der Radiologietechnologe fertigt die Aufnahmen an, die auf der Zuweisung angegeben sind, bei Arthrose-Fragestellungen im Stehen. Es werden nur so viele Aufnahmen wie nötig gemacht; die Strahlenbelastung ist gering.</li>
+<li>Die Röntgenassistentin bzw. der Röntgenassistent fertigt die Aufnahmen an, die auf der Zuweisung angegeben sind, bei Arthrose-Fragestellungen im Stehen. Es werden nur so viele Aufnahmen wie nötig gemacht; die Strahlenbelastung ist gering.</li>
 <li>Die Software wertet jede passende Aufnahme automatisch aus, auf einem Rechner in der Praxis.</li>
 <li>Die Radiologin bzw. der Radiologe beurteilt das Bild, prüft die KI-Messungen und erstellt den Befund.</li>
 <li>Befund und Bilder gehen an die zuweisende Ärztin bzw. den Arzt. Sie sind zusätzlich über ELGA und portal.marc.at verfügbar. Den KOALA-Messbericht mit dem vorgeschlagenen Kellgren-Lawrence-Grad sehen auch Sie, gemeinsam mit Ihrem Befund. Er wird mit den Bildern archiviert und steht der zuweisenden Ärztin bzw. dem zuweisenden Arzt zur Verfügung, ebenso über ELGA.</li>

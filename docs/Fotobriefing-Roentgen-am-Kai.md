@@ -19,9 +19,9 @@ Ziel: möglichst alle Motive an **einem Fototermin** (ca. ein Arbeitstag, außer
 | Block | Raum | Motive | Personen | Gerät | Dauer (ca.) |
 |---|---|---|---|---|---|
 | 1 | Zugang, Empfang, Gang/Wartebereich | B019, B004, B018 | Empfangsmitarbeiterin; gesamtes Team für B018 | – | 75 min |
-| 2 | Mammographie-Raum | B001, B002, B003 | Radiologietechnologin, Darstellerin 50–65 J. (B003) | Mammographiegerät | 60 min |
+| 2 | Mammographie-Raum | B001, B002, B003 | Röntgenassistentin, Darstellerin 50–65 J. (B003) | Mammographiegerät | 60 min |
 | 3 | DEXA-Raum (leer) | B005, B006 | – | DEXA-Gerät | 30 min |
-| 4 | DEXA-Raum (mit Personen) | B007, B008, B009, B010, B011, B012 | Radiologietechnologin; 4 Darstellerinnen/Darsteller (55–75 J.; 35–60 J.; 25–45 J. sportlich; 70–80 J.) | DEXA | 120 min |
+| 4 | DEXA-Raum (mit Personen) | B007, B008, B009, B010, B011, B012 | Röntgenassistentin; 4 Darstellerinnen/Darsteller (55–75 J.; 35–60 J.; 25–45 J. sportlich; 70–80 J.) | DEXA | 120 min |
 | 5 | Röntgenraum | B014 | – (optional RT) | Röntgenanlage | 20 min |
 | 6 | Durchleuchtungsraum | B016 | – | Durchleuchtung | 20 min |
 | 7 | Ultraschallraum | B015 | – | Ultraschallgerät | 20 min |
@@ -32,7 +32,7 @@ Ziel: möglichst alle Motive an **einem Fototermin** (ca. ein Arbeitstag, außer
 
 | Person | Motive | Hinweis |
 |---|---|---|
-| Radiologietechnologin (dieselbe für Kontinuität) | B003, B007, B008, B009, B010, B011, B012 (optional B014) | Arbeitskleidung, Namensschild abnehmen oder unlesbar |
+| Röntgenassistentin (dieselbe für Kontinuität) | B003, B007, B008, B009, B010, B011, B012 (optional B014) | Arbeitskleidung, Namensschild abnehmen oder unlesbar |
 | Empfangsmitarbeiterin | B004, B018 | |
 | Ärzte | B018 (optional B013) | |
 | Darstellerin 50–65 J. | B003 | Alltagskleidung |
@@ -128,8 +128,8 @@ Ziel: möglichst alle Motive an **einem Fototermin** (ca. ein Arbeitstag, außer
 | **Bildnummer** | B003 |
 | **Seite und Position** | Mammographie: Abschnitt „Ablauf der Mammographie“, Bild neben der Schrittliste (Desktop mitlaufend), darunter am Handy. |
 | **Zweck** | Vertrauen schaffen: zeigt Betreuung und Erklärung vor der Untersuchung. |
-| **Motiv und Handlung** | Radiologietechnologin erklärt einer bekleideten Frau im Sitzen den Ablauf; ruhiges Gespräch. Keine Untersuchungsszene, kein entblößter Oberkörper, kein Zeigen auf Monitore. |
-| **Personen** | 2: Radiologietechnologin (Arbeitskleidung der Praxis), Frau ca. 50–65 Jahre (Darstellerin, Alltagskleidung). |
+| **Motiv und Handlung** | Röntgenassistentin erklärt einer bekleideten Frau im Sitzen den Ablauf; ruhiges Gespräch. Keine Untersuchungsszene, kein entblößter Oberkörper, kein Zeigen auf Monitore. |
+| **Personen** | 2: Röntgenassistentin (Arbeitskleidung der Praxis), Frau ca. 50–65 Jahre (Darstellerin, Alltagskleidung). |
 | **Raum, Gerät, Vorbereitung** | Mammographie-Raum (Sitzplatz/Umkleidebereich) oder ruhiger Besprechungsplatz. Vorbereitung: zwei Stühle, Gerät unscharf im Hintergrund erlaubt. |
 | **Perspektive und Ausschnitt** | Seitlich, Augenhöhe sitzend; Gesichter im Profil oder unscharf, Hände und Gestik im Fokus. |
 | **Hoch- oder Querformat** | Querformat |
@@ -200,8 +200,8 @@ Ziel: möglichst alle Motive an **einem Fototermin** (ca. ein Arbeitstag, außer
 | **Bildnummer** | B007 |
 | **Seite und Position** | Knochendichte: Abschnitt „Ablauf der Knochendichtemessung“, Bild neben der Schrittliste. |
 | **Zweck** | Untersuchung erklären: so liegt man bei der Messung. |
-| **Motiv und Handlung** | Bekleidete Person liegt entspannt auf dem Rücken, Messarm über Hüfte bzw. Wirbelsäule; Radiologietechnologin am Bedienplatz. Lagerungshilfen nur so, wie in der Praxis tatsächlich verwendet. |
-| **Personen** | 2: Radiologietechnologin; Darstellerin/Darsteller ca. 55–75 Jahre, Kleidung ohne Metall. |
+| **Motiv und Handlung** | Bekleidete Person liegt entspannt auf dem Rücken, Messarm über Hüfte bzw. Wirbelsäule; Röntgenassistentin am Bedienplatz. Lagerungshilfen nur so, wie in der Praxis tatsächlich verwendet. |
+| **Personen** | 2: Röntgenassistentin; Darstellerin/Darsteller ca. 55–75 Jahre, Kleidung ohne Metall. |
 | **Raum, Gerät, Vorbereitung** | DEXA-Raum, Vorbereitung wie B005; Monitor mit Testbild oder aus (keine Patientendaten). |
 | **Perspektive und Ausschnitt** | Seitlich, leicht erhöht (ca. 1,70 m); Gesicht der liegenden Person nicht erkennbar. |
 | **Hoch- oder Querformat** | Querformat |
@@ -218,8 +218,8 @@ Ziel: möglichst alle Motive an **einem Fototermin** (ca. ein Arbeitstag, außer
 | **Bildnummer** | B008 |
 | **Seite und Position** | Körperanalyse (`/koerperanalyse-graz`): Hero (ersetzt das DEXA-Raumfoto). Startseite: Karte „Körperanalyse mit DEXA“ (Zuschnitt 16:10). |
 | **Zweck** | Untersuchung erklären und zur Handlung führen: Ganzkörpermessung ist ruhig und unkompliziert. |
-| **Motiv und Handlung** | Bekleidete erwachsene Person (normale Statur) liegt ruhig auf dem Rücken, Messarm über dem Körper; Radiologietechnologin am Bedienplatz. |
-| **Personen** | 2: Radiologietechnologin; Darstellerin/Darsteller ca. 35–60 Jahre, kein Fitnessmodel. |
+| **Motiv und Handlung** | Bekleidete erwachsene Person (normale Statur) liegt ruhig auf dem Rücken, Messarm über dem Körper; Röntgenassistentin am Bedienplatz. |
+| **Personen** | 2: Röntgenassistentin; Darstellerin/Darsteller ca. 35–60 Jahre, kein Fitnessmodel. |
 | **Raum, Gerät, Vorbereitung** | DEXA-Raum, Vorbereitung wie B005. |
 | **Perspektive und Ausschnitt** | Von der Fußseite schräg, Augenhöhe. |
 | **Hoch- oder Querformat** | Querformat |
@@ -236,7 +236,7 @@ Ziel: möglichst alle Motive an **einem Fototermin** (ca. ein Arbeitstag, außer
 | **Bildnummer** | B009 |
 | **Seite und Position** | Körperanalyse: Abschnitt „So läuft Ihre Körperanalyse ab“, Bild neben den Schritten (ergänzt den Erklärfilm). |
 | **Zweck** | Untersuchung erklären: mittige Lagerung vor der Messung. |
-| **Motiv und Handlung** | Radiologietechnologin richtet die liegende Person mittig aus (Hände an Schulter oder Arm), Detailaufnahme. |
+| **Motiv und Handlung** | Röntgenassistentin richtet die liegende Person mittig aus (Hände an Schulter oder Arm), Detailaufnahme. |
 | **Personen** | 2 (wie B008, gleiche Session); Gesichter nicht im Bild. |
 | **Raum, Gerät, Vorbereitung** | DEXA-Raum. |
 | **Perspektive und Ausschnitt** | Halbnah, leicht erhöht. |
@@ -254,8 +254,8 @@ Ziel: möglichst alle Motive an **einem Fototermin** (ca. ein Arbeitstag, außer
 | **Bildnummer** | B010 |
 | **Seite und Position** | Gesundheitsziel „Gesund abnehmen“ (`/gesundheitsziele/gesund-abnehmen`): Hero und Karte auf der Übersicht. Ratgeber „Abnehmspritze und Muskelverlust“: Titelbild und Karte. |
 | **Zweck** | Vertrauen schaffen: ruhige Begleitung statt Diätbildsprache. |
-| **Motiv und Handlung** | Radiologietechnologin und bekleidete erwachsene Person sitzen am Messplatz oder Bedienplatz und sprechen über die Messung. |
-| **Personen** | 2: Radiologietechnologin; Darstellerin/Darsteller ca. 35–60 Jahre, normale Statur. |
+| **Motiv und Handlung** | Röntgenassistentin und bekleidete erwachsene Person sitzen am Messplatz oder Bedienplatz und sprechen über die Messung. |
+| **Personen** | 2: Röntgenassistentin; Darstellerin/Darsteller ca. 35–60 Jahre, normale Statur. |
 | **Raum, Gerät, Vorbereitung** | DEXA-Raum, Sitzplatz. |
 | **Perspektive und Ausschnitt** | Seitlich, Augenhöhe sitzend; Gesichter im Profil. |
 | **Hoch- oder Querformat** | Querformat |
@@ -272,8 +272,8 @@ Ziel: möglichst alle Motive an **einem Fototermin** (ca. ein Arbeitstag, außer
 | **Bildnummer** | B011 |
 | **Seite und Position** | Gesundheitsziel „Fitness und Muskelaufbau“: Hero und Karte auf der Übersicht. |
 | **Zweck** | Orientierung für die Zielgruppe Training: Körperanalyse als Verlaufskontrolle. |
-| **Motiv und Handlung** | Sportlich gekleidete erwachsene Person liegt zur Ganzkörpermessung auf der Liege, Radiologietechnologin daneben. |
-| **Personen** | 2: Radiologietechnologin; Darstellerin/Darsteller ca. 25–45 Jahre, sportlich, **kein Fitnessmodel**. |
+| **Motiv und Handlung** | Sportlich gekleidete erwachsene Person liegt zur Ganzkörpermessung auf der Liege, Röntgenassistentin daneben. |
+| **Personen** | 2: Röntgenassistentin; Darstellerin/Darsteller ca. 25–45 Jahre, sportlich, **kein Fitnessmodel**. |
 | **Raum, Gerät, Vorbereitung** | DEXA-Raum. |
 | **Perspektive und Ausschnitt** | Wie B008, aber andere Person und Kleidung. |
 | **Hoch- oder Querformat** | Querformat |
@@ -290,8 +290,8 @@ Ziel: möglichst alle Motive an **einem Fototermin** (ca. ein Arbeitstag, außer
 | **Bildnummer** | B012 |
 | **Seite und Position** | Gesundheitsziel „Muskelverlust und Sarkopenie“: Hero und Karte auf der Übersicht. |
 | **Zweck** | Vertrauen schaffen für ältere Menschen und Angehörige. |
-| **Motiv und Handlung** | Ältere Person (bekleidet, würdevoll, nicht gebrechlich) im ruhigen Gespräch mit einer Radiologietechnologin, sitzend. |
-| **Personen** | 2: Radiologietechnologin; Darstellerin/Darsteller ca. 70–80 Jahre. |
+| **Motiv und Handlung** | Ältere Person (bekleidet, würdevoll, nicht gebrechlich) im ruhigen Gespräch mit einer Röntgenassistentin, sitzend. |
+| **Personen** | 2: Röntgenassistentin; Darstellerin/Darsteller ca. 70–80 Jahre. |
 | **Raum, Gerät, Vorbereitung** | DEXA-Raum oder Wartebereich. |
 | **Perspektive und Ausschnitt** | Augenhöhe, halbnah. |
 | **Hoch- oder Querformat** | Querformat |
@@ -327,7 +327,7 @@ Ziel: möglichst alle Motive an **einem Fototermin** (ca. ein Arbeitstag, außer
 | **Seite und Position** | Röntgen (`/roentgen-graz`): Hero rechts bzw. unter den Buttons. |
 | **Zweck** | Orientierung und Vertrauen: der Raum, in den man ohne Termin kommt. |
 | **Motiv und Handlung** | Röntgenraum mit Rasterwand bzw. Aufnahmetisch und Röhre, aufgeräumt. |
-| **Personen** | Keine (optional Radiologietechnologin bei der Vorbereitung, dann mit Einwilligung). |
+| **Personen** | Keine (optional Röntgenassistentin bei der Vorbereitung, dann mit Einwilligung). |
 | **Raum, Gerät, Vorbereitung** | Röntgenraum. Vorbereitung: Tisch frei, Lagerungshilfen ordentlich, Schutzkleidung aufgehängt. |
 | **Perspektive und Ausschnitt** | Augenhöhe, Raumecke. |
 | **Hoch- oder Querformat** | Querformat |
@@ -398,7 +398,7 @@ Ziel: möglichst alle Motive an **einem Fototermin** (ca. ein Arbeitstag, außer
 | **Bildnummer** | B018 |
 | **Seite und Position** | Kontakt: Abschnitt „Unsere Praxis“ (ersetzt den Text-Platzhalter „Praxisteam und Praxisfotos“). |
 | **Zweck** | Vertrauen schaffen: das Team, das man vor Ort trifft. |
-| **Motiv und Handlung** | Gruppenaufnahme des Teams (Ärzte, Radiologietechnologinnen, Empfang) im Gang oder Wartebereich, natürlich, nicht steif. |
+| **Motiv und Handlung** | Gruppenaufnahme des Teams (Ärzte, Röntgenassistentinnen, Empfang) im Gang oder Wartebereich, natürlich, nicht steif. |
 | **Personen** | Gesamtes Team, alle mit Einwilligung; Namen nur mit Zustimmung. |
 | **Raum, Gerät, Vorbereitung** | Gang/Wartebereich. |
 | **Perspektive und Ausschnitt** | Augenhöhe, leicht seitlich, mehrere Reihen vermeiden. |

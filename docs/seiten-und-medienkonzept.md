@@ -209,7 +209,7 @@ Allgemein für alle Aufnahmen: reale Räume, Geräte und Menschen der Ordination
 
 **B002 – Mammographie-Untersuchungsraum.** Motiv: Raumüberblick mit Gerät im Hintergrund, Umkleide oder Sichtschutz sichtbar, ruhige Atmosphäre. Personen: keine. Perspektive: aus der Tür bzw. Raumecke, Augenhöhe, kein extremer Weitwinkel (≥ 24 mm KB). Format: Querformat 3:2, mind. 1800 × 1200 px. Freiraum: Bildmitte frei von angeschnittenen Möbeln. Einsatz: zeigt, wie der Raum aussieht, nimmt Unsicherheit vor dem ersten Besuch.
 
-**B003 – Erklärung vor der Mammographie.** Motiv: Radiologietechnologin erklärt einer bekleideten Patientin (Model oder Mitarbeiterin mit Einwilligung) im Sitzen den Ablauf; keine Untersuchungsszene, kein entblößter Oberkörper. Personen: 2. Perspektive: seitlich, Gesichter höchstens im Profil oder unscharf, Hände und Gestik im Fokus. Format: Querformat 3:2, mind. 1800 × 1200 px. Freiraum: Personen im linken oder rechten Drittel. Einsatz: Abschnitt „Ablauf“, vermittelt Betreuung.
+**B003 – Erklärung vor der Mammographie.** Motiv: Röntgenassistentin erklärt einer bekleideten Patientin (Model oder Mitarbeiterin mit Einwilligung) im Sitzen den Ablauf; keine Untersuchungsszene, kein entblößter Oberkörper. Personen: 2. Perspektive: seitlich, Gesichter höchstens im Profil oder unscharf, Hände und Gestik im Fokus. Format: Querformat 3:2, mind. 1800 × 1200 px. Freiraum: Personen im linken oder rechten Drittel. Einsatz: Abschnitt „Ablauf“, vermittelt Betreuung.
 
 **B004 – Empfang der Ordination.** Motiv: Empfangstheke mit einer Mitarbeiterin bei der Arbeit, Wartebereich im Anschnitt. Personen: 1 Mitarbeiterin (Einwilligung), keine Patientinnen. Umgebung: Bildschirme ohne lesbare Daten, keine Zettel mit Namen. Perspektive: Augenhöhe aus Patientensicht. Format: Querformat 16:9, mind. 1920 × 1080 px. Freiraum: obere Bildhälfte ruhig. Einsatz: Mammographie „Praxis“ und Kontakt „Unsere Praxis“.
 
@@ -217,21 +217,21 @@ Allgemein für alle Aufnahmen: reale Räume, Geräte und Menschen der Ordination
 
 **B006 – DEXA-Untersuchungsraum.** Motiv: Raumüberblick mit Liege, Ablage für Kleidung, Sitzgelegenheit. Personen: keine. Perspektive: aus der Tür. Format: Querformat 3:2, mind. 1800 × 1200 px. Einsatz: Knochendichte „Warum DEXA?“.
 
-**B007 – Knochendichtemessung.** Motiv: bekleidete Person liegt entspannt auf dem Rücken auf der DEXA-Liege, Messarm über der Hüfte bzw. Wirbelsäule, Radiologietechnologin daneben am Bedienplatz. Lagerungshilfen nur so, wie sie in der Praxis tatsächlich verwendet werden. Personen: 2 (Einwilligung). Perspektive: seitlich, leicht erhöht; Gesicht der liegenden Person nicht erkennbar. Format: Querformat 3:2, mind. 1800 × 1200 px. Einsatz: Knochendichte „Ablauf“.
+**B007 – Knochendichtemessung.** Motiv: bekleidete Person liegt entspannt auf dem Rücken auf der DEXA-Liege, Messarm über der Hüfte bzw. Wirbelsäule, Röntgenassistentin daneben am Bedienplatz. Lagerungshilfen nur so, wie sie in der Praxis tatsächlich verwendet werden. Personen: 2 (Einwilligung). Perspektive: seitlich, leicht erhöht; Gesicht der liegenden Person nicht erkennbar. Format: Querformat 3:2, mind. 1800 × 1200 px. Einsatz: Knochendichte „Ablauf“.
 
-**B008 – Körperanalyse: Ganzkörpermessung.** Motiv: bekleidete erwachsene Person (normale Statur, Alltagskleidung ohne Metall) liegt ruhig auf dem Rücken, Messarm über dem Körper, Radiologietechnologin am Bedienplatz. Personen: 2 (Einwilligung); kein Fitnessmodel, keine Vorher-nachher-Darstellung. Perspektive: von der Fußseite schräg, Augenhöhe. Format: Querformat 4:3, mind. 2000 × 1500 px. Freiraum: Person liegt diagonal durchs Bild, für 16:10 und 1:1 zuschneidbar. Einsatz: Körperanalyse Hero, Startseite Karte.
+**B008 – Körperanalyse: Ganzkörpermessung.** Motiv: bekleidete erwachsene Person (normale Statur, Alltagskleidung ohne Metall) liegt ruhig auf dem Rücken, Messarm über dem Körper, Röntgenassistentin am Bedienplatz. Personen: 2 (Einwilligung); kein Fitnessmodel, keine Vorher-nachher-Darstellung. Perspektive: von der Fußseite schräg, Augenhöhe. Format: Querformat 4:3, mind. 2000 × 1500 px. Freiraum: Person liegt diagonal durchs Bild, für 16:10 und 1:1 zuschneidbar. Einsatz: Körperanalyse Hero, Startseite Karte.
 
-**B009 – Körperanalyse: Lagerung.** Motiv: Radiologietechnologin richtet die liegende Person mittig aus (Hände an Schulter oder Arm), Detailaufnahme. Personen: 2, Gesichter nicht im Bild. Perspektive: halbnah, leicht erhöht. Format: Querformat 3:2, mind. 1800 × 1200 px. Einsatz: Körperanalyse „Ablauf“ (ergänzt den Erklärfilm).
+**B009 – Körperanalyse: Lagerung.** Motiv: Röntgenassistentin richtet die liegende Person mittig aus (Hände an Schulter oder Arm), Detailaufnahme. Personen: 2, Gesichter nicht im Bild. Perspektive: halbnah, leicht erhöht. Format: Querformat 3:2, mind. 1800 × 1200 px. Einsatz: Körperanalyse „Ablauf“ (ergänzt den Erklärfilm).
 
-**B010 – Gespräch vor der Körperanalyse.** Motiv: Radiologietechnologin und bekleidete erwachsene Person sitzen am Messplatz oder Bedienplatz und sprechen über die Messung; keine Spritzen, Medikamente, Waagen oder Maßbänder. Personen: 2 (Einwilligung), Gesichter im Profil. Perspektive: seitlich, Augenhöhe. Format: Querformat 4:3, mind. 1600 × 1200 px. Einsatz: Gesundheitsziel „Gesund abnehmen“, Ratgeber „Abnehmspritze“.
+**B010 – Gespräch vor der Körperanalyse.** Motiv: Röntgenassistentin und bekleidete erwachsene Person sitzen am Messplatz oder Bedienplatz und sprechen über die Messung; keine Spritzen, Medikamente, Waagen oder Maßbänder. Personen: 2 (Einwilligung), Gesichter im Profil. Perspektive: seitlich, Augenhöhe. Format: Querformat 4:3, mind. 1600 × 1200 px. Einsatz: Gesundheitsziel „Gesund abnehmen“, Ratgeber „Abnehmspritze“.
 
-**B011 – Messung nach dem Training.** Motiv: sportlich gekleidete erwachsene Person (kein Fitnessmodel, kein Metall) liegt zur Ganzkörpermessung auf der Liege, Radiologietechnologin daneben. Personen: 2 (Einwilligung). Perspektive: wie B008, aber andere Person und Kleidung. Format: Querformat 4:3, mind. 1600 × 1200 px. Einsatz: Gesundheitsziel „Fitness und Muskelaufbau“.
+**B011 – Messung nach dem Training.** Motiv: sportlich gekleidete erwachsene Person (kein Fitnessmodel, kein Metall) liegt zur Ganzkörpermessung auf der Liege, Röntgenassistentin daneben. Personen: 2 (Einwilligung). Perspektive: wie B008, aber andere Person und Kleidung. Format: Querformat 4:3, mind. 1600 × 1200 px. Einsatz: Gesundheitsziel „Fitness und Muskelaufbau“.
 
-**B012 – Gespräch vor der Muskelmessung.** Motiv: ältere Person (bekleidet, würdevoll, nicht gebrechlich) im ruhigen Gespräch mit einer Radiologietechnologin, sitzend. Personen: 2 (Einwilligung). Perspektive: Augenhöhe, halbnah. Format: Querformat 4:3, mind. 1600 × 1200 px. Einsatz: Gesundheitsziel „Muskelverlust und Sarkopenie“.
+**B012 – Gespräch vor der Muskelmessung.** Motiv: ältere Person (bekleidet, würdevoll, nicht gebrechlich) im ruhigen Gespräch mit einer Röntgenassistentin, sitzend. Personen: 2 (Einwilligung). Perspektive: Augenhöhe, halbnah. Format: Querformat 4:3, mind. 1600 × 1200 px. Einsatz: Gesundheitsziel „Muskelverlust und Sarkopenie“.
 
 **B013 – Befundarbeitsplatz.** Motiv: Befundmonitore mit einem anonymisierten Röntgenbild, Arbeitsplatz im Halbdunkel; keine Namen, keine Patientendaten, kein KI-Werbelogo. Personen: optional ein Radiologe von hinten. Format: Querformat 4:3, mind. 1600 × 1200 px. Einsatz: Ratgeber „KI-Unterstützung“.
 
-**B014 – Röntgenraum.** Motiv: Röntgenraum mit Rasterwand bzw. Aufnahmetisch und Röhre, aufgeräumt. Personen: keine (optional Radiologietechnologin bei der Vorbereitung). Perspektive: Augenhöhe, Raumecke. Format: Querformat 4:3, mind. 1600 × 1200 px. Einsatz: Röntgen Hero.
+**B014 – Röntgenraum.** Motiv: Röntgenraum mit Rasterwand bzw. Aufnahmetisch und Röhre, aufgeräumt. Personen: keine (optional Röntgenassistentin bei der Vorbereitung). Perspektive: Augenhöhe, Raumecke. Format: Querformat 4:3, mind. 1600 × 1200 px. Einsatz: Röntgen Hero.
 
 **B015 – Ultraschallplatz.** Motiv: Ultraschallgerät mit Liege, abgedunkelter Raum, Papier auf der Liege. Personen: keine. Format: Querformat 4:3, mind. 1600 × 1200 px. Einsatz: Ultraschall Hero.
 
@@ -239,7 +239,7 @@ Allgemein für alle Aufnahmen: reale Räume, Geräte und Menschen der Ordination
 
 **B017 – Zahnröntgen und DVT.** Motiv: Panorama- bzw. DVT-Gerät der Praxis mit Kinnstütze, frontal-schräg. Personen: keine. Format: Querformat 4:3, mind. 1600 × 1200 px. Einsatz: Zahnröntgen/DVT Hero.
 
-**B018 – Praxisteam.** Motiv: Gruppenaufnahme des Teams (Ärzte, Radiologietechnologinnen, Empfang) im Gang oder Wartebereich, natürlich, nicht gestellt-steif. Personen: alle mit Einwilligung, Namen nur mit Zustimmung. Format: Querformat 3:2, mind. 2400 × 1600 px. Freiraum: oben ruhig. Einsatz: Kontakt „Unsere Praxis“.
+**B018 – Praxisteam.** Motiv: Gruppenaufnahme des Teams (Ärzte, Röntgenassistentinnen, Empfang) im Gang oder Wartebereich, natürlich, nicht gestellt-steif. Personen: alle mit Einwilligung, Namen nur mit Zustimmung. Format: Querformat 3:2, mind. 2400 × 1600 px. Freiraum: oben ruhig. Einsatz: Kontakt „Unsere Praxis“.
 
 **B019 – Zugang zur Praxis.** Motiv: Weg vom Hauseingang zur Praxistür (Beschilderung, Tür, Lift nur falls vorhanden). Personen: keine. Format: Querformat 3:2, mind. 1800 × 1200 px. Einsatz: Kontakt „Anfahrt“, Wiedererkennen vor Ort.
 

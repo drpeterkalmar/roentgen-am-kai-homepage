@@ -18,7 +18,7 @@ export const IMAGE_BRIEFS = {
   care: {
     id: 'B003',
     title: 'Erklärung vor der Mammographie',
-    motif: 'Freundliche Betreuungssituation: Radiologietechnologin erklärt einer bekleideten Patientin den Ablauf (Gespräch, keine Untersuchungsszene, keine erkennbaren Gesichter ohne Einwilligung).',
+    motif: 'Freundliche Betreuungssituation: Röntgenassistentin erklärt einer bekleideten Patientin den Ablauf (Gespräch, keine Untersuchungsszene, keine erkennbaren Gesichter ohne Einwilligung).',
     position: 'Mammographie-Seite, Abschnitt „Ablauf“',
     ratio: '3:2',
     minSize: '1800 × 1200 px',
@@ -73,7 +73,7 @@ export const IMAGE_BRIEFS = {
   dexaExam: {
     id: 'B007',
     title: 'Knochendichtemessung',
-    motif: 'Untersuchungssituation: bekleidete Person liegt entspannt auf dem Rücken auf der DEXA-Liege, Radiologietechnologin daneben erklärt; keine erkennbaren Gesichter ohne Einwilligung.',
+    motif: 'Untersuchungssituation: bekleidete Person liegt entspannt auf dem Rücken auf der DEXA-Liege, Röntgenassistentin daneben erklärt; keine erkennbaren Gesichter ohne Einwilligung.',
     position: 'Knochendichte-Seite, Abschnitt „Ablauf“',
     ratio: '3:2',
     minSize: '1800 × 1200 px',
@@ -83,7 +83,7 @@ export const IMAGE_BRIEFS = {
   bodyHero: {
     id: 'B008',
     title: 'Körperanalyse: Ganzkörpermessung',
-    motif: 'Reale Praxisaufnahme: DEXA-Messplatz von Röntgen am Kai (Übergangslösung: Foto „knochendichte_v3“ – GE-Lunar-Gerät ohne Person, identisch mit Knochendichte-Hero; „service_densitometry“ zeigt v. a. Tür und Schreibtisch und ist als Hero ungeeignet). Wunschmotiv: bekleidete Person liegt ruhig auf dem Rücken zur Ganzkörpermessung, Radiologietechnologin daneben; kein Fitnessmodel, keine Vorher-nachher-Darstellung.',
+    motif: 'Reale Praxisaufnahme: DEXA-Messplatz von Röntgen am Kai (Übergangslösung: Foto „knochendichte_v3“ – GE-Lunar-Gerät ohne Person, identisch mit Knochendichte-Hero; „service_densitometry“ zeigt v. a. Tür und Schreibtisch und ist als Hero ungeeignet). Wunschmotiv: bekleidete Person liegt ruhig auf dem Rücken zur Ganzkörpermessung, Röntgenassistentin daneben; kein Fitnessmodel, keine Vorher-nachher-Darstellung.',
     position: 'Körperanalyse-Seite, Hero; Startseite, Karte „Körperanalyse“',
     ratio: '4:3',
     minSize: '2000 × 1500 px',
@@ -92,7 +92,7 @@ export const IMAGE_BRIEFS = {
   bodyExam: {
     id: 'B009',
     title: 'Körperanalyse: Lagerung',
-    motif: 'Ganzkörpermessung: bekleidete Person (Alltagskleidung ohne Metall, kein Fitnessmodel) liegt ruhig auf dem Rücken auf der DEXA-Liege, Messarm über dem Körper, Radiologietechnologin daneben; keine erkennbaren Gesichter ohne Einwilligung.',
+    motif: 'Ganzkörpermessung: bekleidete Person (Alltagskleidung ohne Metall, kein Fitnessmodel) liegt ruhig auf dem Rücken auf der DEXA-Liege, Messarm über dem Körper, Röntgenassistentin daneben; keine erkennbaren Gesichter ohne Einwilligung.',
     position: 'Körperanalyse-Seite, Abschnitt „So läuft Ihre Körperanalyse ab“',
     ratio: '3:2',
     minSize: '1800 × 1200 px',
@@ -119,7 +119,7 @@ export const IMAGE_BRIEFS = {
   goalWeight: {
     id: 'B010',
     title: 'Gespräch vor der Körperanalyse',
-    motif: 'Ruhiges Gespräch vor der DEXA-Körperanalyse: Radiologietechnologin und bekleidete erwachsene Person (normale Statur, Alltagskleidung) sitzen am Messplatz; keine Spritzen, Medikamente, Waagen oder Maßbänder, kein Vorher-nachher, keine erkennbaren Gesichter ohne Einwilligung.',
+    motif: 'Ruhiges Gespräch vor der DEXA-Körperanalyse: Röntgenassistentin und bekleidete erwachsene Person (normale Statur, Alltagskleidung) sitzen am Messplatz; keine Spritzen, Medikamente, Waagen oder Maßbänder, kein Vorher-nachher, keine erkennbaren Gesichter ohne Einwilligung.',
     position: 'Gesundheitsziele: Karte und Seite „Gesund abnehmen“; Ratgeber: Artikel „Abnehmspritze und Muskelverlust“ (Titelbild und Übersichtskarte)',
     ratio: '4:3',
     minSize: '1600 × 1200 px',
@@ -128,7 +128,7 @@ export const IMAGE_BRIEFS = {
   goalFitness: {
     id: 'B011',
     title: 'Messung nach dem Training',
-    motif: 'Sportlich gekleidete, erwachsene Person (kein Fitnessmodel) liegt zur Ganzkörpermessung ruhig auf der DEXA-Liege, Radiologietechnologin daneben; natürliche Praxissituation.',
+    motif: 'Sportlich gekleidete, erwachsene Person (kein Fitnessmodel) liegt zur Ganzkörpermessung ruhig auf der DEXA-Liege, Röntgenassistentin daneben; natürliche Praxissituation.',
     position: 'Gesundheitsziele: Karte und Seite „Fitness und Muskelaufbau“',
     ratio: '4:3',
     minSize: '1600 × 1200 px',
@@ -137,7 +137,7 @@ export const IMAGE_BRIEFS = {
   goalSarcopenia: {
     id: 'B012',
     title: 'Gespräch vor der Muskelmessung',
-    motif: 'Ältere Person (bekleidet, würdevoll dargestellt) im ruhigen Gespräch mit einer Radiologietechnologin vor der Messung; keine gebrechliche Darstellung, keine erkennbaren Gesichter ohne Einwilligung.',
+    motif: 'Ältere Person (bekleidet, würdevoll dargestellt) im ruhigen Gespräch mit einer Röntgenassistentin vor der Messung; keine gebrechliche Darstellung, keine erkennbaren Gesichter ohne Einwilligung.',
     position: 'Gesundheitsziele: Karte und Seite „Muskelverlust und Sarkopenie“',
     ratio: '4:3',
     minSize: '1600 × 1200 px',
@@ -203,7 +203,7 @@ export const IMAGE_BRIEFS = {
   team: {
     id: 'B018',
     title: 'Praxisteam',
-    motif: 'Gruppenaufnahme des Praxisteams (Ärzte, Radiologietechnologinnen, Empfang) im Gang oder Wartebereich, natürlich; alle mit Einwilligung.',
+    motif: 'Gruppenaufnahme des Praxisteams (Ärzte, Röntgenassistentinnen, Empfang) im Gang oder Wartebereich, natürlich; alle mit Einwilligung.',
     position: 'Kontakt-Seite, Abschnitt „Unsere Praxis“',
     ratio: '3:2',
     minSize: '2400 × 1600 px',
