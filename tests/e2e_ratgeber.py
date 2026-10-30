@@ -16,11 +16,11 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = "http://localhost:4174/roentgen-am-kai-homepage"
 SITE = "https://www.xn--rntgen-am-kai-imb.at"
 TEL = "tel:+43" + "3168409050"
-BOOK = "https://patient-portal.miranext.ai/patient-booking?c_Id=23"
-# Eigene Online-Buchung (ab Oktober 2026) für Mammographie-Screening und DEXA – sonst BOOK
+# Eigene Online-Buchung: seit 29.10.2026 nur DEXA (Knochendichte, Körperanalyse) online, alles andere telefonisch.
 ONLINE_PREFIX = "https://termin.roentgen-am-kai.at/buchen/"
+ONLINE_SERVICES = {"knochendichte", "koerperanalyse", "knochendichte-koerperanalyse"}
 def buchungsziel_ok(href):
-    return href == BOOK or (href or "").startswith(ONLINE_PREFIX)
+    return (href or "").startswith("https://termin.roentgen-am-kai.at/") and "miranext" not in href
 AXE = (ROOT / "node_modules/axe-core/axe.min.js").read_text()
 SHOTS = shots("relaunch-screenshots-ratgeber")
 
@@ -149,10 +149,12 @@ with sync_playwright() as p:
             # CTA im Artikel und am Ende; Zielseite zuerst
             inline = pg.locator("aside[aria-labelledby=artikel-cta-inline]")
             end = pg.locator("section[aria-labelledby=artikel-cta-title]")
-            check(inline.count() == 1 and inline.locator(f'a[href$="{a["target"]}"]').count() == 1 and inline.locator('a[data-cta="booking"]').count() == 1,
-                  f"CTA im Artikel (Zielseite + Buchung) {r['path']}")
-            check(end.locator('a[data-cta="booking"]').count() == 1 and end.locator(f'a[href="{TEL}"]').count() == 1 and end.locator(f'a[href$="{a["target"]}"]').count() == 1,
-                  f"CTA am Ende (Buchung + Telefon + Zielseite) {r['path']}")
+            svc = pg.eval_on_selector("main article header a[data-cta=article-target]", "e => e.dataset.ctaService || ''")
+            n_book = 1 if svc in ONLINE_SERVICES else 0   # Online-Knopf nur bei online buchbarer Zielleistung
+            check(inline.count() == 1 and inline.locator(f'a[href$="{a["target"]}"]').count() == 1 and inline.locator('a[data-cta="booking"]').count() == n_book,
+                  f"CTA im Artikel (Zielseite + {'Buchung' if n_book else 'kein Online-Knopf'}) {r['path']}")
+            check(end.locator('a[data-cta="booking"]').count() == n_book and end.locator(f'a[href="{TEL}"]').count() == 1 and end.locator(f'a[href$="{a["target"]}"]').count() == 1,
+                  f"CTA am Ende ({'Buchung + ' if n_book else ''}Telefon + Zielseite) {r['path']}")
             first_link = pg.eval_on_selector("main article header a[data-cta=article-target]", "e => e.getAttribute('href')")
             check(first_link.endswith(a["target"]), f"primärer Link = Zielseite {a['target']} {r['path']}")
             books = pg.eval_on_selector_all('a[data-cta="booking"]', 'as => as.map(a => [a.getAttribute("href"), a.target, a.rel])')

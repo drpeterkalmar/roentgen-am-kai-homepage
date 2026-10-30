@@ -17,11 +17,10 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = "http://localhost:4174/roentgen-am-kai-homepage"
 SITE = "https://www.xn--rntgen-am-kai-imb.at"
 TEL = "tel:+43" + "3168409050"
-BOOK = "https://patient-portal.miranext.ai/patient-booking?c_Id=23"
-# Eigene Online-Buchung (ab Oktober 2026) für Mammographie-Screening und DEXA – sonst BOOK
+# Eigene Online-Buchung termin.roentgen-am-kai.at (seit 29.10.2026 nur DEXA online); MiraNext nirgends mehr.
 ONLINE_PREFIX = "https://termin.roentgen-am-kai.at/buchen/"
 def buchungsziel_ok(href):
-    return href == BOOK or (href or "").startswith(ONLINE_PREFIX)
+    return (href or "").startswith("https://termin.roentgen-am-kai.at/") and "miranext" not in href
 AXE = (ROOT / "node_modules/axe-core/axe.min.js").read_text()
 SHOTS = shots("relaunch-screenshots-gesundheitsziele")
 FORBIDDEN = ["Terminanfrage", "Online-Terminvergabe", "script.google.com", "Sonografie", "Wahlarzt für",

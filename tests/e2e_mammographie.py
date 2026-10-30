@@ -12,9 +12,9 @@ SHOTS = shots("relaunch-screenshots-mammographie")
 SITE = "https://www.xn--rntgen-am-kai-imb.at"
 PAGE = "/mammographie-graz"
 TEL = "tel:+43" + "3168409050"
-BOOK = "https://patient-portal.miranext.ai/patient-booking?c_Id=23"
-# Eigene Online-Buchung (ab Oktober 2026): Knöpfe dieser Seite führen dorthin, Kopf/Fuß weiter zu BOOK
-ONLINE = "https://termin.roentgen-am-kai.at/buchen/mammographie"
+# Mammographie ist seit 29.10.2026 nur telefonisch buchbar (online nur DEXA). Kopf/Fuß/Handyleiste führen zur
+# Startseite der eigenen Online-Buchung; auf der Seite selbst stehen Telefon-Knöpfe, kein Online-Knopf.
+BOOKING_START = "https://termin.roentgen-am-kai.at/"
 TITLE = "Mammographie Graz ohne Zuweisung | Röntgen am Kai"
 DESC = "Mammographie in Graz: Frauen von 45 bis 74 Jahren können alle zwei Jahre ohne Zuweisung mit ihrer freigeschalteten e-card zum Screening kommen."
 H1 = "Mammographie in Graz – für Ihre Brustgesundheit"
@@ -65,7 +65,7 @@ with sync_playwright() as p:
         first = pg.evaluate("""(lim) => { const inV = e => { if (!e) return false; const r = e.getBoundingClientRect(); return r.width > 0 && r.top >= 0 && r.bottom <= lim; };
           const m = document.querySelector('main');
           return { h1: inV(m.querySelector('h1')), hinweis: [...m.querySelectorAll('p')].some(p => p.textContent.includes('Ohne Zuweisung · mit e-card · alle 2 Jahre') && inV(p)),
-                   termin: [...m.querySelectorAll('a[data-cta=booking]')].some(a => a.textContent.includes('Screening-Termin online buchen') && inV(a)) }; }""", vh - bar)
+                   termin: [...m.querySelectorAll('a[data-cta=phone]')].some(a => a.textContent.includes('Screening-Termin vereinbaren') && inV(a)) }; }""", vh - bar)
         check(all(first.values()), f"[{label}] erster Bildschirm (H1, Hinweis, Terminbutton): {first}")
         ow = pg.evaluate(f"Math.max(document.documentElement.scrollWidth, window.innerWidth) - {vw}")
         check(ow <= 0, f"[{label}] kein horizontales Scrollen ({ow}px)")
@@ -82,7 +82,7 @@ with sync_playwright() as p:
     body = pg.locator("body").inner_text()
     bad = [w for w in ["Tomosynth", "3D-Mammo", "3D Mammo", "dreidimensionale Mammo", "Mammomat", "Siemens", "50 %"] if w.lower() in body.lower()]
     check(not bad, f"keine Tomosynthese/3D/Geräte-/Dosisversprechen im Text {bad}")
-    must = ["Ohne Zuweisung · mit e-card · alle 2 Jahre", "Brustkrebsvorsorge ohne Zuweisung", "Screening-Termin online buchen",
+    must = ["Ohne Zuweisung · mit e-card · alle 2 Jahre", "Brustkrebsvorsorge ohne Zuweisung", "Screening-Termin vereinbaren",
             "Was ist eine Mammographie?", "Screening oder diagnostische Abklärung", "Beschwerden rasch abklären",
             "neu tastbaren Knoten", "Das Brustkrebs-Screening ist für Frauen ohne Beschwerden vorgesehen.", "Kontakt bei Beschwerden",
             "Ablauf der Mammographie", "Vorbereitung", "Brustultraschall", "Dichtes Brustgewebe", "Häufige Fragen zur Mammographie",
@@ -93,9 +93,12 @@ with sync_playwright() as p:
     jumps = [(a, b2) for a, b2 in zip(heads, heads[1:]) if b2[0] - a[0] > 1]
     check(sum(1 for h in heads if h[0] == 1) == 1 and heads[0][0] == 1 and not jumps, f"Überschriftenhierarchie ({len(heads)} Überschriften, Sprünge {jumps})")
     print("     H2:", [h[1] for h in heads if h[0] == 2])
-    books = pg.eval_on_selector_all('a[data-cta="booking"]', 'as => as.map(a => [a.textContent.trim(), a.getAttribute("href"), a.target, a.rel, !!(a.closest("main") || a.closest("nav[aria-label=Schnellzugriff]"))])')
-    check(len(books) >= 4 and all(x[1] == (ONLINE if x[4] else BOOK) and x[2] == "_blank" and "noopener" in x[3] for x in books)
-          and sum(1 for x in books if x[4]) >= 3, f"Terminbuttons ({len(books)}): {[(x[0][:30], x[1][:40]) for x in books]}")
+    books = pg.eval_on_selector_all('a[data-cta="booking"]', 'as => as.map(a => [a.textContent.trim(), a.getAttribute("href"), a.target, a.rel, !!a.closest("main")])')
+    check(all(x[1] == BOOKING_START and x[2] == "_blank" and "noopener" in x[3] for x in books) and not any(x[4] for x in books),
+          f"Online-Knöpfe nur in Kopf/Fuß zur Buchungs-Startseite, keiner im Inhalt ({len(books)}): {[(x[0][:30], x[1][:40]) for x in books]}")
+    phones = pg.eval_on_selector_all('main a[data-cta="phone"]', 'as => as.map(a => [a.textContent.trim(), a.getAttribute("href")])')
+    check(sum(1 for x in phones if "Screening-Termin vereinbaren" in x[0] and x[1] == TEL) >= 2, f"Telefon-Knöpfe „Screening-Termin vereinbaren“ ({len(phones)})")
+    check(pg.locator('a[href*="miranext"]').count() == 0, "kein MiraNext-Link")
     tels = pg.eval_on_selector_all('main a[href^="tel:"], footer a[href^="tel:"]', 'as => as.map(a => a.getAttribute("href"))')
     check(TEL in tels and all(t in (TEL, "tel:0800" + "500181") for t in tels), f"tel-Links ({len(tels)}) nur Praxis + Serviceline")
     imgs = pg.eval_on_selector_all("main img", "is => is.map(i => [i.getAttribute('src'), i.getAttribute('alt')])")
@@ -159,7 +162,7 @@ with sync_playwright() as p:
         if info[1] == "none" or info[2] == "0px":
             ok_ring = False
     check(ok_ring, "Fokusrahmen sichtbar bei 25 Tab-Stopps")
-    check(any("Screening-Termin online buch" in s for s in seen), f"Terminbutton per Tastatur erreichbar ({seen})")
+    check(any("Screening-Termin vereinbaren" in s for s in seen), f"Terminbutton per Tastatur erreichbar ({seen})")
     q = pg.locator("#faq button[aria-expanded]").first
     q.focus(); pg.keyboard.press("Enter"); pg.wait_for_timeout(150)
     check(q.get_attribute("aria-expanded") == "true", "FAQ per Tastatur (Enter) aufklappbar")

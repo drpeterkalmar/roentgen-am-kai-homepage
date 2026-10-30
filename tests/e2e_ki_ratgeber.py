@@ -208,12 +208,16 @@ with sync_playwright() as pw:
         bad = [w for w in FORBIDDEN if w.lower() in body.lower()] + re.findall(r"(?<!keine )(?<!keinen )garantiert\w*", body, re.I)
         check(not bad, f"{m['id']}: keine verbotenen Aussagen {bad}")
         full = pg.inner_text("main")
+        # Öffentlicher Text ohne interne Notizen (nur im Staging-Build sichtbar, im Live-Build entfernt)
+        public = pg.evaluate("""() => { const m = document.querySelector('main').cloneNode(true);
+          m.querySelectorAll('[data-placeholder]').forEach(e => { if (e.textContent.includes('Interner Platzhalter')) e.remove(); });
+          return m.innerText; }""")
         check(pg.locator("[data-reviewed]").count() == 0 and "Medizinisch geprüft" not in full and "[NAME]" not in full and "[DATUM]" not in full,
               f"{m['id']}: kein Prüfvermerk, kein Platzhalter (Peter 23.10.2026)")
         if m["id"] in GEORG:
             ce = pg.locator("[data-ce]")
             check(ce.count() == 1 and "CE-gekennzeichnetes Medizinprodukt" in ce.inner_text()
-                  and not re.search(r"\bMDR\b|\bMDD\b|Klasse I|Benannte Stelle|TÜV|Version \d", full), f"{m['id']}: CE im Artikelkopf, ohne Klasse/Version/Prüfstelle")
+                  and not re.search(r"\bMDR\b|\bMDD\b|Klasse I|Benannte Stelle|TÜV|Version \d", public), f"{m['id']}: CE im Artikelkopf, ohne Klasse/Version/Prüfstelle")
         if m["id"] == "koala":
             check("Den KOALA-Messbericht mit dem vorgeschlagenen Kellgren-Lawrence-Grad sehen auch Sie, gemeinsam mit Ihrem Befund." in body, "koala: Patientinnen/Patienten sehen den Bericht mit dem Befund (Georg 23.10.2026)")
         if m["id"] == "lama":

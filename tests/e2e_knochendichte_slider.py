@@ -21,11 +21,10 @@ BASE = "http://localhost:4174/roentgen-am-kai-homepage"
 PAGE = "/knochendichtemessung-graz"
 SHOTS = shots("knochendichte-befund-slider")
 AXE = (ROOT / "node_modules/axe-core/axe.min.js").read_text()
-BOOK = "https://patient-portal.miranext.ai/patient-booking?c_Id=23"
-# Eigene Online-Buchung (ab Oktober 2026) für Mammographie-Screening und DEXA – sonst BOOK
+# Eigene Online-Buchung termin.roentgen-am-kai.at (seit 29.10.2026 nur DEXA online); MiraNext nirgends mehr.
 ONLINE_PREFIX = "https://termin.roentgen-am-kai.at/buchen/"
 def buchungsziel_ok(href):
-    return href == BOOK or (href or "").startswith(ONLINE_PREFIX)
+    return (href or "").startswith("https://termin.roentgen-am-kai.at/") and "miranext" not in href
 fails = []
 
 

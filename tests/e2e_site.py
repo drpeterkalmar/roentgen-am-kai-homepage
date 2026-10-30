@@ -12,11 +12,10 @@ from _paths import shots
 BASE = "http://localhost:4174/roentgen-am-kai-homepage"
 SHOTS = shots("relaunch-screenshots-site")
 TEL = "tel:+43" + "3168409050"
-BOOK = "https://patient-portal.miranext.ai/patient-booking?c_Id=23"
-# Eigene Online-Buchung (ab Oktober 2026) für Mammographie-Screening und DEXA – sonst BOOK
+# Eigene Online-Buchung termin.roentgen-am-kai.at (seit 29.10.2026 nur DEXA online); MiraNext nirgends mehr.
 ONLINE_PREFIX = "https://termin.roentgen-am-kai.at/buchen/"
 def buchungsziel_ok(href):
-    return href == BOOK or (href or "").startswith(ONLINE_PREFIX)
+    return (href or "").startswith("https://termin.roentgen-am-kai.at/") and "miranext" not in href
 ROUTES = {
     "/": ("Radiologie Graz", "Moderne Radiologie in Graz"),
     "/mammographie-graz": ("Mammographie Graz ohne Zuweisung", "Häufige Fragen zur Mammographie"),
@@ -198,7 +197,8 @@ with sync_playwright() as p:
     hol = pg.locator("[data-holidays] a")
     check("Google-Unternehmensprofil" in t and hol.count() == 1 and hol.get_attribute("href").startswith("https://www.google.com/maps/")
           and hol.get_attribute("target") == "_blank" and not any("Urlaubs" in x for x in ph), "Kontakt: Schließzeiten mit Link zum Google-Profil, kein Platzhalter")
-    check(any("Kurzvorstellung der Praxis" in x for x in ph), "Kontakt: Praxisvorstellung bleibt Platzhalter (Freigabe ausstehend)")
+    check(not any("Kurzvorstellung der Praxis" in x for x in ph) and "radiologische Fachordination in Graz" in t and "mit allen Kassen und privat" in t,
+          "Kontakt: Praxisvorstellung freigegeben und sichtbar (Peter 30.10.2026), kein Platzhalter")
     for path in ["/gesundheitsziele", "/gesundheitsziele/gesund-abnehmen", "/gesundheitsziele/dexa-sportler-red-s",
                  "/ratgeber/knochendichtemessung-dexa-vorsorge", "/ratgeber/mammascreening-oesterreich",
                  "/ratgeber/abnehmspritze-muskelmasse-koerperanalyse", "/ratgeber/brustkrebs-frueherkennung-mammographie"]:
