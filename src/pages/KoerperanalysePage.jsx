@@ -22,7 +22,7 @@ import Picture, { imageUrl, imageSrcSet } from '../components/ui/Picture';
 import { BODY_PHOTOS } from '../data/photos';
 import { H3, P, Bullets, NewWindow, linkRow, textLink } from '../components/ui/Text';
 import { IMAGE_BRIEFS } from '../data/imageBriefs';
-import { PHONE_HREF, PHONE_DISPLAY, MAPS_ROUTE_URL, bookingUrl, ADDRESS, TRANSPORT } from '../data/practice';
+import { PHONE_HREF, PHONE_DISPLAY, MAPS_ROUTE_URL, bookingUrl, ADDRESS, TRANSPORT, PAYMENT_TEXT } from '../data/practice';
 import {
   BODY, BODY_H1, BODY_LEAD, BODY_KEY_MESSAGE, BODY_RADIATION_TEXT, BODY_LEAN_MASS_TEXT, BODY_DURATION_TEXT, BODY_PRICE_TEXT,
 } from '../data/bodyComposition';
@@ -406,6 +406,7 @@ const KoerperanalysePage = () => {
             </li>
           ))}
         </ul>
+        <P className="mt-5">{PAYMENT_TEXT}</P>
         {(BODY.packageConditions == null || BODY.prices.start == null) && (
           <Placeholder internal className="mt-5">
             Praxis liefern: Preise für Startmessung, Verlaufskontrolle und Paket, Messintervall und Paketbedingungen (Gültigkeit,

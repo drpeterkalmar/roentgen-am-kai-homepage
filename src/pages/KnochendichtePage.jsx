@@ -4,7 +4,6 @@ import TScoreScale from '../components/explainers/TScoreScale';
 import Hero from '../components/ui/Hero';
 import Section from '../components/ui/Section';
 import Card from '../components/ui/Card';
-import Placeholder from '../components/ui/Placeholder';
 import ImagePlaceholder from '../components/ui/ImagePlaceholder';
 import CTASection from '../components/ui/CTASection';
 import Button, { buttonClasses } from '../components/ui/Button';
@@ -19,7 +18,7 @@ import BoneRiskCheck from '../components/BoneRiskCheck';
 import { imageUrl, imageSrcSet } from '../components/ui/Picture';
 import { H3, P, Bullets, NewWindow, linkRow, extLink } from '../components/ui/Text';
 import { IMAGE_BRIEFS } from '../data/imageBriefs';
-import { PHONE_HREF, PHONE_DISPLAY, MAPS_ROUTE_URL, bookingUrl } from '../data/practice';
+import { PHONE_HREF, PHONE_DISPLAY, MAPS_ROUTE_URL, bookingUrl, PAYMENT_TEXT } from '../data/practice';
 import { SCREENING_BADGE } from '../data/screening';
 import {
   DEXA,
@@ -203,7 +202,7 @@ const KnochendichtePage = () => {
             />
           </div>
           <P className="mt-4 font-semibold">{DEXA.askFirstText}</P>
-          <Placeholder internal className="mt-4">Praxis bestätigen: Zahlungsarten vor Ort?</Placeholder>
+          <P className="mt-4">{PAYMENT_TEXT}</P>
         </Card>
       </Section>
 

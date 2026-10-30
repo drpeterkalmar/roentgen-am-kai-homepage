@@ -92,6 +92,9 @@ export const HOLIDAYS = {
 };
 
 // PLATZHALTER — von der Praxis zu liefern
+// Zahlungsarten (Peter 30.10.2026: bar, Karte, Rechnung)
+export const PAYMENT_TEXT = 'Bezahlen können Sie bar, mit Karte oder auf Rechnung.';
+
 export const PLACEHOLDERS = {
   phoneHours: 'Telefonische Erreichbarkeit, falls abweichend von den Öffnungszeiten',
   logoSvg: 'Logo als Vektordatei (SVG)',

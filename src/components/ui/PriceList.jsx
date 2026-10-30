@@ -1,4 +1,5 @@
 import { selfPayPrices } from '../../data/services';
+import { PAYMENT_TEXT } from '../../data/practice';
 import Placeholder from './Placeholder';
 import { cx } from './cx';
 
@@ -26,6 +27,7 @@ const PriceList = ({ ids, title = 'Preise für Selbstzahler', headingLevel = 3, 
           </div>
         ))}
       </dl>
+      {!compact && <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">{PAYMENT_TEXT}</p>}
     </div>
   );
 };
