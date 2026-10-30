@@ -9,6 +9,8 @@
 //   Risiko; Ausgaben je Knie: KL-Grad 0–4, OARSI-Grade 0–3 für Gelenkspaltverengung, Sklerose, Osteophyten (jeweils Maximalgrad), minimale
 //   Gelenkspaltbreite medial/lateral in mm, standardisierte Werte (auf einheitliche Tibiabreite), prozentuales Ungleichgewicht medial/lateral;
 //   Implantat/Gelenkersatz erkannt → keine Analyse, Hinweis im Bericht; Ergebnisse in der Software nicht editierbar, müssen ärztlich geprüft werden;
+// KI-KOALA-01: Demo-Bericht IB Lab (SC-PNG beider Knie, Salzer 30.10.2026, roentgen #613) – leere Kopfreiter, Ränder und ein
+//   eingebranntes Kürzel im Übersichtsbild entfernt (assets-src/ki/koala-knie-beidseits.png).
 //   Ergebnis hängt von Lagerung/Strahlrichtung ab (Positionierungshilfe empfohlen); trainiert an Daten einer US-Multicenter-Arthrosestudie.
 //   IFU vertraulich: nur in eigenen Worten, ohne Link; Genauigkeits-/Zeitangaben aus Anhang F/C bewusst NICHT übernommen.
 // Quellen (alle selbst geprüft, DOI per Crossref verifiziert):
@@ -83,20 +85,14 @@ export const HTML = `
 `;
 
 export const MEDIA = {
-  "placeholder": {
-    "id": "KI-KOALA-01",
-    "title": "KI-KOALA-01 – anonymisiertes Beispiel einer Kniearthrose-Auswertung",
-    "format": "Hochformat (z. B. 3:4 oder DIN A4), mind. 1600 px breit, PNG",
-    "inhalte": [
-      "Knie a.p. (von vorne) im Stand als Röntgenaufnahme, eine Seite oder beide Knie",
-      "Eingezeichnete Gelenkspaltbreite medial und lateral (minimale Gelenkspaltbreite in mm)",
-      "Markierte Osteophyten und subchondrale Sklerose im Bild",
-      "Vorgeschlagener Kellgren-Lawrence-Grad (0–4) gut lesbar",
-      "Messwert-Tabelle (Gelenkspaltbreite, OARSI-Grade für Gelenkspaltverschmälerung, Osteophyten, Sklerose)",
-      "Hinweis im Bericht: KI-Ergebnis muss ärztlich geprüft und bestätigt werden"
-    ],
-    "zuschnitt": "Beispielbericht des Herstellers (Demo-Datensatz), kein Patient der Praxis. Sicherer Zuschnitt: Kopfbereich mit Name, ID, Geburtsdatum, Datum und Institution vollständig abschneiden, keine eingebrannten Personendaten im Röntgenbild (Ecken der Aufnahme prüfen), keine Metadaten im PNG. Bildunterschrift: „Beispielbericht des Herstellers (Demo-Datensatz, Personendaten entfernt)“."
-  }
+  "slides": [
+    {
+      "key": "koala-knie-beidseits",
+      "caption": "Beispielbericht des Herstellers (Demo-Datensatz, Personendaten entfernt): Röntgen beider Knie von vorne, die Knie sind mit A und B bezeichnet. Oben stehen der vorgeschlagene Kellgren-Lawrence-Grad (hier 2 und 1) und die OARSI-Grade für Gelenkspaltverschmälerung, Sklerose und Osteophyten. Darunter folgen die engste Gelenkspaltbreite innen (medial) und außen (lateral) in Millimetern mit vergrößerten Ausschnitten des Gelenkspalts, die auf eine einheitliche Knochenbreite umgerechneten Werte und die Verteilung zwischen Innen- und Außenseite. Unten die Übersichtsaufnahme mit den ausgewerteten Bereichen.",
+      "alt": "KI-Messbericht IB Lab KOALA für zwei Knie: Tabellen mit Kellgren-Lawrence-Grad, OARSI-Graden und Gelenkspaltbreiten in Millimetern, vergrößerte Gelenkspalten mit Messmarken und darunter die Röntgenübersicht beider Knie"
+    }
+  ],
+  "note": "Beispielbericht des Herstellers (Demo-Datensatz, Personendaten entfernt), Ausschnitt."
 };
 
 export const SOURCES = [

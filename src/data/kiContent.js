@@ -12,7 +12,8 @@ import * as RHO from './ratgeber/ki-rho.content.js';
 // Bildmaße der zugeschnittenen Vorlagen (public/assets/ki/manifest.json)
 const REPORT = { width: 2382, height: 2899 };
 const PANDA_IMG = { width: 1648, height: 2100 };
-const RHO_IMG = { width: 1700, height: 1399 };   // Demo-PNGs IB Lab, Studienkarte + Fußzeile weggeschnitten
+const RHO_IMG = { width: 1700, height: 1399 };
+const KOALA_IMG = { width: 1893, height: 2499 }; // Demo-PNG IB Lab (Salzer 30.10.2026), leere Kopfreiter + Ränder weggeschnitten   // Demo-PNGs IB Lab, Studienkarte + Fußzeile weggeschnitten
 // Schematische Grafiken der Praxis (selbst gezeichnet, assets-src/ki/quellen/render_ki_grafiken.py): Desktop + Hochformat fürs Handy
 const DIAGRAM_DIMS = {
   'rho-ablauf': { width: 2400, height: 1350 }, 'rho-ablauf-mobil': { width: 1800, height: 3416 },
@@ -41,7 +42,7 @@ export const KI_OVERVIEW_SOURCES = UE.SOURCES || [];
 export const KI_CONTENT = {
   'ki-beinachsenvermessung-lama': { html: LAMA.HTML, sources: LAMA.SOURCES || [], media: { report: gallery('lama', LAMA) } },
   'ki-hueftvermessung-hippo': { html: HIPPO.HTML, sources: HIPPO.SOURCES || [], media: { report: gallery('hippo', HIPPO) } },
-  'kniearthrose-ki-koala': { html: KOALA.HTML, sources: KOALA.SOURCES || [], media: { report: KOALA.MEDIA?.placeholder || KOALA.MEDIA?.report || null } },
+  'kniearthrose-ki-koala': { html: KOALA.HTML, sources: KOALA.SOURCES || [], media: { report: gallery('koala', KOALA, KOALA_IMG) } },
   'skoliose-cobb-winkel-ki': { html: SQUIRREL.HTML, sources: SQUIRREL.SOURCES || [], media: { report: gallery('squirrel', SQUIRREL, REPORT, SQUIRREL_POS) } },
   'fussfehlstellung-roentgen-ki': { html: FROG.HTML, sources: FROG.SOURCES || [], media: { report: gallery('frog', FROG) } },
   'knochenalter-bestimmen-ki': { html: PANDA.HTML, sources: PANDA.SOURCES || [], media: { report: gallery('panda', PANDA, PANDA_IMG, PANDA_POS) } },

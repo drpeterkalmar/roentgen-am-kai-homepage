@@ -39,10 +39,10 @@ fails = []
 WORDS = {"lama": (900, 1150), "hippo": (900, 1150), "koala": (900, 1100), "squirrel": (900, 1150), "frog": (900, 1150),
          "panda": (900, 1100), "rho": (950, 1200)}
 FAQ_N = {"rho": 6}
-PLACEHOLDERS = {"koala": {"report": "KI-KOALA-01"}}   # KI-RHO-02: Demo-Berichte IB Lab seit 22.10.2026 als Galerie
+PLACEHOLDERS = {}   # KI-RHO-02: Demo-Berichte IB Lab seit 22.10.2026, KI-KOALA-01 seit 30.10.2026 als Galerie
 # Bildblöcke als Galerie: Modul → {Block: Anzahl Bilder}. Schematische Grafiken der Praxis (22.10.2026, selbst gezeichnet):
 # KI-RHO-01 (rho/ablauf), KI-TRANSPARA-01 (transpara/report), KI-TRANSPARA-02 (transpara/ablauf) – je mit Hochformat fürs Handy.
-SLIDES = {"lama": {"report": 4}, "hippo": {"report": 2}, "squirrel": {"report": 1}, "frog": {"report": 2}, "panda": {"report": 1},
+SLIDES = {"lama": {"report": 4}, "hippo": {"report": 2}, "koala": {"report": 1}, "squirrel": {"report": 1}, "frog": {"report": 2}, "panda": {"report": 1},
           "rho": {"report": 3, "ablauf": 1}}
 DIAGRAMS = {("rho", "ablauf")}
 HOTSPOTS = {"squirrel": 4, "panda": 4}

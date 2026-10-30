@@ -67,7 +67,7 @@ const LOGOS = {
 // Titelbilder (16:9) am Artikelanfang: Ausschnitt aus dem Beispielbericht, der im Artikel steht – nur das Röntgenbild mit
 // den eingezeichneten Messlinien, ohne Tabellen, Textspalten und Personenangaben (Auftrag Peter + Georg 22.10.2026:
 // „mehr Bilder am Seitenanfang“). Erzeugt mit assets-src/ki/quellen/render_ki_titelbilder.py (KOALA: eigene
-// Schemagrafik, render_ki_grafiken.py titel-koala, weil es noch keinen KOALA-Beispielbericht gibt) → npm run images:ki.
+// Schemagrafik, render_ki_grafiken.py titel-koala – das Übersichtsröntgen im Demo-Bericht ist für 16:9 zu klein) → npm run images:ki.
 // Keine KI-generierten Bilder. Bildunterschrift = Herkunft, Alt-Text = Bildinhalt.
 const HERO_SIZE = { width: 1920, height: 1080 };
 const CAP_REPORT = 'Ausschnitt aus einem Beispielbericht des Herstellers (Demo-Datensatz)';
@@ -123,7 +123,7 @@ export const KI_MODULES = [
     logo: { ...LOGOS.hippo, alt: 'Logo IB Lab HIPPO' },
   },
   {
-    id: 'koala', product: 'KOALA', vendor: 'IB Lab', topic: 'Kniearthrose', slug: 'kniearthrose-ki-koala', mod: KOALA, inUse: true, dateModified: '2026-10-22',
+    id: 'koala', product: 'KOALA', vendor: 'IB Lab', topic: 'Kniearthrose', slug: 'kniearthrose-ki-koala', mod: KOALA, inUse: true, dateModified: '2026-10-30',
     seoTitle: 'Kniearthrose im Röntgen erkennen | KI in Graz', target: 'roentgen', category: 'roentgen',
     cta: { title: 'Knieschmerzen abklären – Röntgen mit Zuweisung' },
     logo: { ...LOGOS.koala, alt: 'Logo IB Lab KOALA' },
