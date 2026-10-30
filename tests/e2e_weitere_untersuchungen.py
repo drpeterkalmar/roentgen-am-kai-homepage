@@ -131,12 +131,9 @@ def main():
         dvt = page.locator("#direkt-vorbeikommen").inner_text()
         for w in ["Röntgenzeiten", "Zuweisung", "e-card", "Anfahrt"]:
             check(w in dvt, f"#direkt-vorbeikommen ohne „{w}“")
-        wz = page.get_by_role("link", name=re.compile("^Wunschzeit reservieren"))
-        check(wz.count() >= 1 and "miranext" in (wz.first.get_attribute("href") or ""), "„Wunschzeit reservieren“ nicht MiraNext")
-        # Optik: Direkt vorbeikommen != Buchungsbutton (unterschiedliche Klassen / Hintergründe)
-        bg1 = dv.first.evaluate("e => getComputedStyle(e).backgroundColor")
-        bg2 = wz.first.evaluate("e => getComputedStyle(e).backgroundColor")
-        check(bg1 != bg2, "„Direkt vorbeikommen“ sieht aus wie der Buchungsbutton")
+        # Röntgen ist nicht online buchbar (Peter 29.10.2026): kein Online-Buchungsknopf auf der Röntgen-Seite
+        wz = page.locator('main a[data-cta="booking"]')
+        check(wz.count() == 0, f"Röntgen ohne Online-Buchungsknopf ({wz.count()})")
 
         # Zuweisungssuche
         inp = page.locator("#zuweisung-suche input[role=combobox]")

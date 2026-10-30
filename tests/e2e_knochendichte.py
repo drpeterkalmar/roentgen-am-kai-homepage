@@ -13,7 +13,7 @@ SITE = "https://www.xn--rntgen-am-kai-imb.at"
 PAGE = "/knochendichtemessung-graz"
 OLD = "/unser-angebot/knochendichte"
 TEL = "tel:+43" + "3168409050"
-BOOK = "https://patient-portal.miranext.ai/patient-booking?c_Id=23"
+BOOK = "https://termin.roentgen-am-kai.at/"  # Kopf/Fuß: Startseite der eigenen Online-Buchung (MiraNext nie live, 29.10.2026)
 # Eigene Online-Buchung (ab Oktober 2026): Knöpfe dieser Seite führen dorthin, Kopf/Fuß weiter zu BOOK
 ONLINE = "https://termin.roentgen-am-kai.at/buchen/dexa?art=knochendichte"
 TITLE = "Knochendichtemessung Graz mit DEXA | Röntgen am Kai"

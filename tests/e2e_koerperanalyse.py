@@ -18,7 +18,7 @@ SITE = "https://www.xn--rntgen-am-kai-imb.at"
 PAGE = "/koerperanalyse-graz"
 OLD = "/unser-angebot/koerperfettmessung"
 TEL = "tel:+43" + "3168409050"
-BOOK = "https://patient-portal.miranext.ai/patient-booking?c_Id=23"
+BOOK = "https://termin.roentgen-am-kai.at/"  # Kopf/Fuß: Startseite der eigenen Online-Buchung (MiraNext nie live, 29.10.2026)
 # Eigene Online-Buchung (ab Oktober 2026): Knöpfe dieser Seite führen dorthin, Kopf/Fuß weiter zu BOOK
 ONLINE = "https://termin.roentgen-am-kai.at/buchen/dexa?art=koerperzusammensetzung"
 TITLE = "Körperanalyse Graz: Körperfett & Muskelmasse messen"
@@ -153,7 +153,7 @@ with sync_playwright() as p:
     print("     H2:", [clean(h[1]) for h in heads if h[0] == 2])
     books = pg.eval_on_selector_all('a[data-cta="booking"]', 'as => as.map(a => [a.textContent.trim(), a.getAttribute("href"), a.target, a.rel, !!(a.closest("main") || a.closest("nav[aria-label=Schnellzugriff]"))])')
     check(len(books) >= 8 and all(x[1] == (ONLINE if x[4] else BOOK) and x[2] == "_blank" and "noopener" in x[3] for x in books)
-          and sum(1 for x in books if x[4]) >= 6, f"Buchungsbuttons ({len(books)}) → eigene Online-Buchung (Seite) bzw. MiraNext (Kopf/Fuß), neues Fenster")
+          and sum(1 for x in books if x[4]) >= 6, f"Buchungsbuttons ({len(books)}) → eigene Online-Buchung (Seite) bzw. Buchungs-Startseite (Kopf/Fuß), neues Fenster")
     print("     Buchungsbuttons:", sorted({x[0].replace(' (öffnet in neuem Fenster)', '') for x in books}))
     tels = pg.eval_on_selector_all('main a[href^="tel:"]', 'as => as.map(a => a.getAttribute("href"))')
     check(len(tels) >= 4 and all(t == TEL for t in tels), f"tel-Links ({len(tels)}) = Praxisnummer")

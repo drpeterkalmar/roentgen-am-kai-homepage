@@ -20,7 +20,7 @@ SITE = "https://www.xn--rntgen-am-kai-imb.at"
 TEL = "tel:+43" + "3168409050"
 TEL_OK = {TEL, "tel:0800" + "500181", "tel:144"}
 MAIL = "mailto:office@roentgen-am-kai.at"
-BOOK = "https://patient-portal.miranext.ai/patient-booking?c_Id=23"
+BOOK = "https://termin.roentgen-am-kai.at/"  # Kopf/Fuß: Startseite der eigenen Online-Buchung (MiraNext nie live, 29.10.2026)
 AXE = (ROOT / "node_modules/axe-core/axe.min.js").read_text()
 REPORT = REPORTS / "relaunch-endkontrolle.txt"
 
@@ -158,11 +158,13 @@ with sync_playwright() as p:
         # Termin-, Telefon-, Mail-Links
         tels = pg.eval_on_selector_all('a[href^="tel:"]', 'as => as.map(a => a.getAttribute("href"))')
         mails = pg.eval_on_selector_all('a[href^="mailto:"]', 'as => as.map(a => a.getAttribute("href"))')
-        books = pg.eval_on_selector_all('a[href*="miranext"]', 'as => as.map(a => [a.getAttribute("href"), a.target, a.rel, a.dataset.cta || ""])')
+        books = pg.eval_on_selector_all('a[data-cta="booking"], a[href*="miranext"]', 'as => as.map(a => [a.getAttribute("href"), a.target, a.rel, a.dataset.cta || ""])')
         check(TEL in tels and all(t in TEL_OK for t in tels) and all(m.split("?")[0] == MAIL for m in mails),
               f"Telefon/Mail {r['path']} (tel {len(tels)}, mail {len(mails)})")
-        check(books and all(x[0] == BOOK and x[1] == "_blank" and "noopener" in x[2] and x[3] == "booking" for x in books),
-              f"Terminbuttons → MiraNext, neues Fenster, data-cta=booking {r['path']} ({len(books)})")
+        # Online buchbar ist nur DEXA (Peter 29.10.2026); Mammographie/Röntgen telefonisch → dort darf es keinen Knopf geben
+        need = r['path'] in ("/knochendichtemessung-graz", "/koerperanalyse-graz")
+        check((books or not need) and all(x[0].startswith(BOOK) and "miranext" not in x[0] and x[1] == "_blank" and "noopener" in x[2] and x[3] == "booking" for x in books),
+              f"Terminbuttons → termin.roentgen-am-kai.at, neues Fenster, data-cta=booking {r['path']} ({len(books)})")
         for h in pg.eval_on_selector_all("a[href]", "as => as.map(a => new URL(a.getAttribute('href'), location.href).href)"):
             if h.startswith(BASE):
                 internal.add(h.split("#")[0].split("?")[0])
@@ -194,7 +196,7 @@ with sync_playwright() as p:
     ctx = b.new_context(viewport={"width": 1440, "height": 900}); pg = ctx.new_page()
     sent = []
     pg.on("request", lambda q: sent.append(q.url) if not q.url.startswith(("http://localhost", "data:", "blob:")) else None)
-    for pth in ["/", "/knochendichtemessung-graz", "/ratgeber/mammascreening-oesterreich"]:
+    for pth in ["/", "/ratgeber/mammascreening-oesterreich", "/knochendichtemessung-graz"]:
         pg.goto(BASE + pth, wait_until="networkidle")
     check(ctx.cookies() == [] and pg.evaluate("localStorage.length + sessionStorage.length") == 0, "keine Cookies, kein Web-Speicher ohne Nutzeraktion")
     pg.evaluate("window.__cta = []; window.addEventListener('rak:cta', e => window.__cta.push(e.detail))")
@@ -202,8 +204,8 @@ with sync_playwright() as p:
         pg.locator('main a[data-cta="booking"]').first.click()
     popup.value.close()
     ev = pg.evaluate("window.__cta")
-    check(len(ev) == 1 and ev[0]["event"] == "booking_start" and ev[0]["service"] == "mammographie", f"CTA-Ereignis Buchungsbeginn mit Untersuchung: {ev}")
-    check(not [u for u in sent if "miranext" not in u], f"kein Datenversand an Dritte (außer Absprung ins Buchungsportal): {sent[:3]}")
+    check(len(ev) == 1 and ev[0]["event"] == "booking_start" and ev[0]["service"] == "knochendichte", f"CTA-Ereignis Buchungsbeginn mit Untersuchung: {ev}")
+    check(not [u for u in sent if "termin.roentgen-am-kai.at" not in u], f"kein Datenversand an Dritte (außer Absprung ins Buchungsportal): {sent[:3]}")
     check(pg.evaluate("typeof window.dataLayer") == "undefined" and pg.locator('script[src*="gtag"], script[src*="googletagmanager"], script[src*="matomo"], script[src*="facebook"]').count() == 0,
           "kein Analyse-/Werbe-Tracker eingebunden (kein dataLayer, kein gtag/Matomo/Pixel)")
     # --- 7. Formular: Risikocheck (einziges Formular) – Validierung + nichts wird gesendet ---
