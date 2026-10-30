@@ -99,7 +99,6 @@ const KontaktPage = () => (
             <li><Link className="font-semibold text-brand underline underline-offset-4 dark:text-brand-300" to="/unser-team/dr-georg-riegler">Priv. Doz. Dr. Georg Riegler</Link> – Facharzt für Radiologie</li>
             <li><Link className="font-semibold text-brand underline underline-offset-4 dark:text-brand-300" to="/unser-team/dr-peter-kalmar">Priv. Doz. Dr. Peter Kalmar</Link> – Facharzt für Radiologie</li>
           </ul>
-          <Placeholder className="mt-5">Praxisteam und Praxisfotos (Empfang, Wartebereich, Untersuchungsräume)</Placeholder>
         </Card>
       </div>
     </Section>
