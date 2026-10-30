@@ -131,30 +131,6 @@
     "width": 2400,
     "height": 1350
   },
-  "transpara-ablauf-mobil": {
-    "file": "transpara-ablauf-mobil.png",
-    "source": "d111ac28a0a0828c8b8660a04aeca3ecb8a7642bea96fd25fb236c7ba20e7bc2",
-    "width": 1800,
-    "height": 3532
-  },
-  "transpara-ablauf": {
-    "file": "transpara-ablauf.png",
-    "source": "6c35d248cbc25cf78959760baabe2a3a66834efda49bcb151f5cb58ae7fa2fe0",
-    "width": 2400,
-    "height": 1350
-  },
-  "transpara-auswertung-mobil": {
-    "file": "transpara-auswertung-mobil.png",
-    "source": "a292b0a9f1e8889db9ea03ca7e85350a6148aa8313cda8aeb849f32659761221",
-    "width": 1800,
-    "height": 3224
-  },
-  "transpara-auswertung": {
-    "file": "transpara-auswertung.png",
-    "source": "7925beb8cf2ebffd9c41bfcf51b45ae74bb04a5b2c363c6b8873d2ce33044895",
-    "width": 2400,
-    "height": 1800
-  },
   "titel-frog": {
     "file": "titel-frog.png",
     "source": "131e317fe003d7604c6a734f5eca7e3b88406e3d7397b561ed42061ef5902e2c",
@@ -200,12 +176,6 @@
   "titel-squirrel": {
     "file": "titel-squirrel.png",
     "source": "2fe1b29df1bdd304ac2f6746a4b2d1c640d79899a21511b024583504e2ec530b",
-    "width": 1920,
-    "height": 1080
-  },
-  "titel-transpara": {
-    "file": "titel-transpara.png",
-    "source": "d0a9197422898b3c571dc76aef0f2c2e4fc037dec366b5388e47ea70b65f4d77",
     "width": 1920,
     "height": 1080
   }

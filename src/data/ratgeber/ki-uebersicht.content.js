@@ -1,11 +1,11 @@
 // Übersichtsseite der KI-Artikelserie „Röntgen am K[AI] – Künstliche Intelligenz, ärztlich verantwortet“.
 // URL: /ratgeber/kuenstliche-intelligenz-radiologie · SEO-Titel: „Künstliche Intelligenz in der Radiologie | Graz“
 // Stand: 21.10.2026
-// Quellen: Herstellerseiten imagebiopsy.com (IB Lab ZOO, Module LAMA/HIPPO/KOALA/SQUIRREL/FROG/PANDA), 16bit.ai (Rho),
-// screenpoint-medical.com (Transpara); Funktionsumfang laut PUCmed-Produktbeschreibung – ohne Werbezahlen.
+// Quellen: Herstellerseiten imagebiopsy.com (IB Lab ZOO, Module LAMA/HIPPO/KOALA/SQUIRREL/FROG/PANDA), 16bit.ai (Rho);
+// Funktionsumfang laut PUCmed-Produktbeschreibung – ohne Werbezahlen.
 // Leitplanken: KI misst, markiert, dokumentiert; keine Diagnose, keine Therapieentscheidung; jede Messung wird ärztlich
-// geprüft. Im Einsatz (Praxis bestätigt): IB-Lab-Module seit Oktober 2026 (nicht „seit Jahren“), Rho, Transpara (Peter
-// 21.10.2026 abends). KI-Auswertung läuft lokal in der Praxis, keine Übertragung an Hersteller/Dritte. Geschlechtergerecht
+// geprüft. Im Einsatz (Praxis bestätigt): IB-Lab-Module seit Oktober 2026 (nicht „seit Jahren“), Rho. Transpara nicht auf der Website (Peter
+// 30.10.2026). KI-Auswertung läuft lokal in der Praxis, keine Übertragung an Hersteller/Dritte. Geschlechtergerecht
 // („Fachärztin oder Facharzt“ – Praxis hat auch Vertretungsärztinnen). Keine Tomosynthese/3D-Mammographie.
 // „[AI]“ im Titel/Seriennamen wird vom Code typografisch hervorgehoben; im HTML-Fließtext steht der Serienname bewusst nicht.
 // [geteilt] Inhalte (nur Artikel-/Übersichtsseite). Metadaten: ki-uebersicht.js
@@ -22,7 +22,6 @@ export const HTML = `
       <p>Seit Oktober 2026 setzen wir KI-Programme der Wiener Firma ImageBiopsy Lab ein. Sie unterstützen die Auswertung von Röntgenaufnahmen des Bewegungsapparats: Beinachsen und Beinlängen, das Hüftgelenk, Kniearthrose, Skoliose der Wirbelsäule, Fußfehlstellungen und die Bestimmung des Knochenalters bei Kindern. Welche Auswertung sinnvoll ist, richtet sich nach der Fragestellung auf Ihrer Zuweisung. Die Software zeigt ihre Messpunkte und Linien direkt im Bild. So ist für die Radiologin oder den Radiologen nachvollziehbar, woher jeder Wert stammt, und eine Messung lässt sich gezielt überprüfen.</p>
       <p>Am Ablauf Ihrer Untersuchung ändert sich dadurch nichts. Die Software wertet die Aufnahmen aus, die für Ihre Untersuchung ohnehin angefertigt werden. Für ein <a href="/roentgen-graz">Röntgen bei uns in Graz</a> genügen wie bisher eine gültige ärztliche Zuweisung und Ihre e-card. Während der Röntgenzeiten ist kein Termin nötig, eine Wunschzeit kann aber reserviert werden.</p>
       <p>Ein weiteres Programm heißt Rho. Es prüft geeignete Röntgenaufnahmen von Personen ab 50 Jahren zusätzlich auf Hinweise für eine möglicherweise niedrige Knochendichte. Ein solcher Hinweis ist keine Osteoporose-Diagnose. Ob eine <a href="/knochendichtemessung-graz">Knochendichtemessung mit DEXA</a> zur Abklärung sinnvoll ist, beurteilen Ärztinnen und Ärzte. DEXA ist eine Messmethode mit geringer Strahlenbelastung, die die Knochendichte direkt bestimmt.</p>
-      <p>Bei der Mammographie, der Röntgenuntersuchung der Brust, setzen wir zusätzlich die KI-Software Transpara ein. Sie wertet die Aufnahmen ergänzend aus und markiert Bereiche, die genauer angesehen werden sollten. Wie das funktioniert, erklären wir im Beitrag <a href="/ratgeber/ki-mammographie-transpara">Mammographie mit KI-Unterstützung</a>. Informationen zur Untersuchung selbst finden Sie auf unserer Seite <a href="/mammographie-graz">Mammographie und Brustgesundheit</a>.</p>
 
       <h2>Ihre Daten und die ärztliche Verantwortung</h2>
       <p>Röntgenbilder sind Gesundheitsdaten und besonders schützenswert. Die KI-Auswertung läuft auf Rechnern in unserer Praxis. Die Bilder werden dafür nicht an die Hersteller der Software oder an andere Dritte übertragen. Auch bei der Auswertung mit KI gelten die Regeln des Datenschutzes und der ärztlichen Verschwiegenheit.</p>
@@ -32,6 +31,5 @@ export const HTML = `
 
 export const SOURCES = [
   "ImageBiopsy Lab (IB Lab GmbH, Wien): Herstellerinformation zur KI-Plattform IB Lab ZOO und ihren Modulen für Röntgenaufnahmen des Bewegungsapparats (abgerufen am 21.10.2026). <a href=\"https://www.imagebiopsy.com/\" target=\"_blank\" rel=\"noopener noreferrer\">imagebiopsy.com<span class=\"sr-only\"> (öffnet in neuem Fenster)</span></a>",
-  "16 Bit Inc. (Toronto): Herstellerinformation zu Rho, einer KI-Software zur opportunistischen Erkennung eines möglichen Osteoporoserisikos auf Röntgenaufnahmen (abgerufen am 21.10.2026). <a href=\"https://16bit.ai/\" target=\"_blank\" rel=\"noopener noreferrer\">16bit.ai<span class=\"sr-only\"> (öffnet in neuem Fenster)</span></a>",
-  "ScreenPoint Medical: Herstellerinformation zu Transpara, einer KI-Software zur Unterstützung der Mammographie-Auswertung (abgerufen am 21.10.2026). <a href=\"https://screenpoint-medical.com/\" target=\"_blank\" rel=\"noopener noreferrer\">screenpoint-medical.com<span class=\"sr-only\"> (öffnet in neuem Fenster)</span></a>"
+  "16 Bit Inc. (Toronto): Herstellerinformation zu Rho, einer KI-Software zur opportunistischen Erkennung eines möglichen Osteoporoserisikos auf Röntgenaufnahmen (abgerufen am 21.10.2026). <a href=\"https://16bit.ai/\" target=\"_blank\" rel=\"noopener noreferrer\">16bit.ai<span class=\"sr-only\"> (öffnet in neuem Fenster)</span></a>"
 ];

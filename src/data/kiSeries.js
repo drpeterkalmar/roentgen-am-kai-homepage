@@ -7,7 +7,7 @@
 // Regeln (Aufträge 21.10.2026):
 // * „bei uns im Einsatz“ NUR, wenn in diesem Projekt ausdrücklich bestätigt (inUse: true). Bestätigt: Rho (Praxis, 26.09.2026,
 //   siehe dexa.js). IB-Lab-Module LAMA/HIPPO/KOALA/SQUIRREL/FROG/PANDA: von der Praxis bestätigt (Peter 21.10.2026)
-//   → „bei uns im Einsatz“. Transpara: im Einsatz (Peter 21.10.2026 abends) → inUse: true.
+//   → „bei uns im Einsatz“. Transpara: von der Website entfernt (Peter 30.10.2026: „transpara fliegt raus“).
 // * Beispielberichte = Demo-Datensätze von IB Lab (keine Patientinnen/Patienten der Praxis). Kopfblock mit Name, ID,
 //   Geburtsdatum, Untersuchungs- und Analysedatum vor der Veröffentlichung abgeschnitten (scratch/ibl/crop.py: oberste
 //   470 px der 2382 × 3369-Seiten; HIPPO-postop hatte eine echt wirkende Patienten-ID + Geburtsdatum). Danach je Bild
@@ -24,7 +24,6 @@ import * as SQUIRREL from './ratgeber/ki-squirrel.js';
 import * as FROG from './ratgeber/ki-frog.js';
 import * as PANDA from './ratgeber/ki-panda.js';
 import * as RHO from './ratgeber/ki-rho.js';
-import * as TRANSPARA from './ratgeber/ki-transpara.js';
 
 // Kein Prüfvermerk „Medizinisch geprüft von …“ auf der Website (Georg 23.10.2026 für seine fünf, Peter 23.10.2026 für alle).
 const KALMAR = 'Priv.-Doz. Dr. Peter Kalmar';
@@ -35,7 +34,6 @@ export const KI_AUTHORS = {
   uebersicht: KALMAR,
   rho: KALMAR,
   panda: KALMAR,
-  transpara: KALMAR,
 };
 
 export const KI_SERIES_PATH = '/ratgeber/kuenstliche-intelligenz-radiologie';
@@ -103,10 +101,6 @@ export const KI_HEROES = {
     key: 'titel-rho', caption: 'Röntgen-Vorschaubilder aus drei Beispielberichten des Herstellers (Demo-Datensätze)',
     alt: 'Drei Röntgen-Vorschaubilder nebeneinander: Brustkorb, Brustwirbelsäule und beide Hände',
   },
-  transpara: {
-    key: 'titel-transpara', caption: `${CAP_SCHEMA} einer KI-Auswertungsansicht (Ausschnitt)`, light: true,
-    alt: 'Schema einer Auswertungsansicht: vier Mammographie-Ansichten, in einer ein rot markierter Bereich mit dem Wert 72, darunter eine Skala von 1 bis 99, auf der dieser Wert hervorgehoben ist',
-  },
   uebersicht: {
     key: 'titel-ki', caption: 'Ausschnitte aus Beispielberichten der Hersteller (Demo-Datensätze)',
     alt: 'Collage aus vier Röntgenbildern mit eingezeichneten Messlinien: Becken mit Hüftwinkeln, Fuß von der Seite, beide Kniegelenke mit Beinachsen und Wirbelsäule mit Cobb-Winkeln',
@@ -158,13 +152,6 @@ export const KI_MODULES = [
     cta: { title: 'Knochendichtemessung in Graz vereinbaren' },
     logo: null,
     dateModified: RHO.UPDATED || '2026-10-21',
-  },
-  {
-    id: 'transpara', product: 'Transpara', vendor: 'ScreenPoint Medical', topic: 'Mammographie', slug: 'ki-mammographie-transpara', mod: TRANSPARA, inUse: true,
-    seoTitle: 'KI bei der Mammographie in Graz | Transpara', target: 'mammographie', category: 'mammographie',
-    cta: { title: 'Screening-Mammographie in Graz vereinbaren' },
-    logo: null,
-    dateModified: TRANSPARA.UPDATED || '2026-10-21',
   },
 ].map((m) => ({ ...m, tile: UE.TILES?.[m.id] || { title: `${m.product} – ${m.topic}`, text: m.mod.EXCERPT } }));
 

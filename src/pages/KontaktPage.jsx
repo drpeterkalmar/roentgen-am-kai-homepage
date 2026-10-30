@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom';
 import Hero from '../components/ui/Hero';
 import Section from '../components/ui/Section';
 import Card from '../components/ui/Card';
-import Placeholder from '../components/ui/Placeholder';
 import CTASection from '../components/ui/CTASection';
 import { SectionHeading } from '../components/ui/Heading';
+import { P } from '../components/ui/Text';
 import { BookingButton, PhoneButton } from '../components/ui/BookingButtons';
 import { ContactDetails, OpeningHours, Directions } from '../components/ui/PracticeInfo';
 import ReferralInfo from '../components/ui/ReferralInfo';
@@ -107,7 +107,10 @@ const KontaktPage = () => (
 
     <Section labelledBy="praxis-title">
       <SectionHeading id="praxis-title" title="Unsere Praxis" />
-      <Placeholder>Kurzvorstellung der Praxis (Text von der Praxis)</Placeholder>
+      {/* Praxisvorstellung: Text von Peter freigegeben (30.10.2026) */}
+      <P className="mt-4 max-w-3xl">
+        Röntgen am Kai ist eine radiologische Fachordination in Graz, geführt von Priv. Doz. Dr. Peter Kalmar und Priv. Doz. Dr. Georg Riegler. Wir bieten Röntgen, Mammographie, Ultraschall, Knochendichtemessung (DEXA), Durchleuchtung sowie Zahnröntgen und DVT an. Röntgen ist während der Öffnungszeiten ohne Termin möglich. Wir arbeiten mit allen Kassen und privat.
+      </P>
     </Section>
 
     <CTASection />

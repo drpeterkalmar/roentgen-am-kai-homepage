@@ -8,7 +8,6 @@ import * as SQUIRREL from './ratgeber/ki-squirrel.content.js';
 import * as FROG from './ratgeber/ki-frog.content.js';
 import * as PANDA from './ratgeber/ki-panda.content.js';
 import * as RHO from './ratgeber/ki-rho.content.js';
-import * as TRANSPARA from './ratgeber/ki-transpara.content.js';
 
 // Bildmaße der zugeschnittenen Vorlagen (public/assets/ki/manifest.json)
 const REPORT = { width: 2382, height: 2899 };
@@ -17,8 +16,6 @@ const RHO_IMG = { width: 1700, height: 1399 };   // Demo-PNGs IB Lab, Studienkar
 // Schematische Grafiken der Praxis (selbst gezeichnet, assets-src/ki/quellen/render_ki_grafiken.py): Desktop + Hochformat fürs Handy
 const DIAGRAM_DIMS = {
   'rho-ablauf': { width: 2400, height: 1350 }, 'rho-ablauf-mobil': { width: 1800, height: 3416 },
-  'transpara-ablauf': { width: 2400, height: 1350 }, 'transpara-ablauf-mobil': { width: 1800, height: 3532 },
-  'transpara-auswertung': { width: 2400, height: 1800 }, 'transpara-auswertung-mobil': { width: 1800, height: 3224 },
 };
 
 // Hotspots: Mittelpunkt des Markers in Prozent des Bildes; nur sichtbare Elemente (geprüft per Screenshot)
@@ -49,5 +46,4 @@ export const KI_CONTENT = {
   'fussfehlstellung-roentgen-ki': { html: FROG.HTML, sources: FROG.SOURCES || [], media: { report: gallery('frog', FROG) } },
   'knochenalter-bestimmen-ki': { html: PANDA.HTML, sources: PANDA.SOURCES || [], media: { report: gallery('panda', PANDA, PANDA_IMG, PANDA_POS) } },
   'osteoporose-screening-roentgen-ki': { html: RHO.HTML, sources: RHO.SOURCES || [], media: { ablauf: diagram('rho-ablauf', RHO.MEDIA?.ablauf), report: gallery('rho', RHO, RHO_IMG) } },
-  'ki-mammographie-transpara': { html: TRANSPARA.HTML, sources: TRANSPARA.SOURCES || [], media: { ablauf: diagram('transpara-ablauf', TRANSPARA.MEDIA?.ablauf), report: diagram('transpara', TRANSPARA.MEDIA?.report) } },
 };

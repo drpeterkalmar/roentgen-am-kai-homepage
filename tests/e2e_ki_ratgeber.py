@@ -4,7 +4,7 @@ Voraussetzung: `npm run build` und `npx vite preview --port 4174 --strictPort`.
 Soll-Daten direkt aus src/data/kiSeries.js und kiContent.js (node-Import).
 Prüft: statisches HTML (title, description 145–160, canonical, noindex nicht gesetzt), Sitemap, Weiterleitung des alten
 KI-Artikels, Wortzahlen laut Auftrag, Laufzeit (eine H1, Serienname mit [AI], Brotkrumen 3/4 Ebenen = BreadcrumbList,
-CollectionPage + ItemList (8), Article + FAQPage mit Sollzahl, Kacheln + „bei uns im Einsatz“ nur bei bestätigtem
+CollectionPage + ItemList (7), Article + FAQPage mit Sollzahl, Kacheln + „bei uns im Einsatz“ nur bei bestätigtem
 Einsatz, Pflichtlinks, CTA-Texte laut Auftrag), Bildblöcke (Folien laden, Alt-Texte individuell, Slider per Knopf und
 Pfeiltaste, Vergrößern-Dialog mit Esc, Hotspots + Legende, Platzhalter-IDs), verbotene Aussagen, kein Header-/Footer-
 Namenswechsel, 360 px ohne Überlauf, axe WCAG AA hell + dunkel.
@@ -37,14 +37,14 @@ fails = []
 
 # Wortspannen laut Auftrag (Fließtext ohne FAQ)
 WORDS = {"lama": (900, 1150), "hippo": (900, 1150), "koala": (900, 1100), "squirrel": (900, 1150), "frog": (900, 1150),
-         "panda": (900, 1100), "rho": (950, 1200), "transpara": (1000, 1250)}
-FAQ_N = {"rho": 6, "transpara": 6}
+         "panda": (900, 1100), "rho": (950, 1200)}
+FAQ_N = {"rho": 6}
 PLACEHOLDERS = {"koala": {"report": "KI-KOALA-01"}}   # KI-RHO-02: Demo-Berichte IB Lab seit 22.10.2026 als Galerie
 # Bildblöcke als Galerie: Modul → {Block: Anzahl Bilder}. Schematische Grafiken der Praxis (22.10.2026, selbst gezeichnet):
 # KI-RHO-01 (rho/ablauf), KI-TRANSPARA-01 (transpara/report), KI-TRANSPARA-02 (transpara/ablauf) – je mit Hochformat fürs Handy.
 SLIDES = {"lama": {"report": 4}, "hippo": {"report": 2}, "squirrel": {"report": 1}, "frog": {"report": 2}, "panda": {"report": 1},
-          "rho": {"report": 3, "ablauf": 1}, "transpara": {"report": 1, "ablauf": 1}}
-DIAGRAMS = {("rho", "ablauf"), ("transpara", "report"), ("transpara", "ablauf")}
+          "rho": {"report": 3, "ablauf": 1}}
+DIAGRAMS = {("rho", "ablauf")}
 HOTSPOTS = {"squirrel": 4, "panda": 4}
 FORBIDDEN = ["Goldstandard", "100 %", "strahlungsfrei", "revolution", "modernste", "auf Expertenniveau",
              "ExpertInnen-Niveau", "15,8 Sekunden", "ICC 0,97", "300 %", "ersetzt die Radiologin nicht nur"]
@@ -76,17 +76,17 @@ def check(cond, msg):
 
 
 # --- 0. Daten ---
-check(len(MODS) == 8 and [m["id"] for m in MODS] == ["lama", "hippo", "koala", "squirrel", "frog", "panda", "rho", "transpara"], "8 Module in Auftragsreihenfolge")
+check(len(MODS) == 7 and [m["id"] for m in MODS] == ["lama", "hippo", "koala", "squirrel", "frog", "panda", "rho"], "7 Module in Auftragsreihenfolge (Transpara entfernt, Peter 30.10.2026)")
 check(S["seo"] == "Künstliche Intelligenz in der Radiologie | Graz" and S["title"] == "Röntgen am K[AI]: Wie KI unsere Radiologie unterstützt", "Übersicht: SEO-Titel und H1 laut Auftrag")
 check(145 <= len(S["desc"]) <= 160, f"Übersicht: Description {len(S['desc'])} Zeichen (145–160)")
 check(500 <= S["words"] <= 700, f"Übersicht: {S['words']} Wörter (500–700)")
 check(S["can"] >= 3 and S["cannot"] >= 3, "Übersicht: Listen „Was KI kann“ / „was nicht“")
 GEORG = {"lama", "hippo", "koala", "squirrel", "frog"}   # CE-Hinweis im Artikelkopf (Georg 23.10.2026)
 # Kein Prüfvermerk „Medizinisch geprüft“ auf keiner Seite (Georg 23.10.2026 für seine fünf, Peter 23.10.2026 für alle)
-IN_USE = ["lama", "hippo", "koala", "squirrel", "frog", "panda", "rho", "transpara"]   # Praxis: Rho 26.09., IB Lab 21.10., Transpara 21.10.2026 abends
-check(sorted(m["id"] for m in MODS if m["inUse"]) == sorted(IN_USE), "„bei uns im Einsatz“ nur für bestätigten Einsatz (Rho, IB Lab, Transpara)")
+IN_USE = ["lama", "hippo", "koala", "squirrel", "frog", "panda", "rho"]   # Praxis: Rho 26.09., IB Lab 21.10., Transpara 21.10.2026 abends
+check(sorted(m["id"] for m in MODS if m["inUse"]) == sorted(IN_USE), "„bei uns im Einsatz“ nur für bestätigten Einsatz (Rho, IB Lab)")
 AUTHOR = "Priv.-Doz. Dr. Peter Kalmar"
-AUTHORED = {"uebersicht", "rho", "panda", "transpara"}   # Peter = Autor seiner Artikel; Georgs fünf: Praxis als Herausgeberin
+AUTHORED = {"uebersicht", "rho", "panda"}   # Peter = Autor seiner Artikel; Georgs fünf: Praxis als Herausgeberin
 check("report" in next(m for m in MODS if m["id"] == "rho")["markers"], "rho: Beispielberichte (KI-RHO-02) im Text")
 for m in MODS:
     lo, hi = WORDS[m["id"]]
@@ -107,7 +107,7 @@ for m in MODS:
                   f"{m['id']}/{key}: Hochformat fürs Handy + Bildunterschrift „Schematische Darstellung …“")
     alls = [a for v in m["media"].values() for a in v.get("alts", [])]
     check(len(set(alls)) == len(alls), f"{m['id']}: Alt-Texte über alle Bildblöcke eindeutig")
-check(len({m["seo"] for m in MODS}) == 8 and len({m["desc"] for m in MODS}) == 8, "SEO-Titel und Descriptions eindeutig")
+check(len({m["seo"] for m in MODS}) == 7 and len({m["desc"] for m in MODS}) == 7, "SEO-Titel und Descriptions eindeutig")
 
 # --- 1. statisches HTML, Sitemap, Weiterleitung ---
 def get(path):
@@ -158,14 +158,15 @@ with sync_playwright() as pw:
     check(crumbs() == ["Startseite", "Ratgeber", "Röntgen am K[AI]"], f"Übersicht: BreadcrumbList {crumbs()}")
     cp = [s for s in schemas() if s.get("@type") == "CollectionPage"]
     items = cp[0]["mainEntity"]["itemListElement"] if cp else []
-    check(len(cp) == 1 and cp[0]["mainEntity"]["@type"] == "ItemList" and len(items) == 8
-          and all(i["url"].startswith(SITE + "/ratgeber/") for i in items), "Übersicht: CollectionPage + ItemList (8)")
+    check(len(cp) == 1 and cp[0]["mainEntity"]["@type"] == "ItemList" and len(items) == 7
+          and all(i["url"].startswith(SITE + "/ratgeber/") for i in items), "Übersicht: CollectionPage + ItemList (7)")
     check(pg.locator("[data-reviewed]").count() == 0 and "Medizinisch geprüft" not in pg.inner_text("main"), "Übersicht: kein Prüfvermerk (Peter 23.10.2026)")
     check(f"Von {AUTHOR}" in pg.locator("main header").first.inner_text(), "Übersicht: Autor sichtbar")
     cps = [s for s in schemas() if s.get("@type") == "CollectionPage"]
     check(cps and cps[0].get("author") == {"@type": "Person", "name": AUTHOR}, "Übersicht: CollectionPage author = Person")
     tiles = pg.locator("[data-ki-tile]")
-    check(tiles.count() == 8, f"Übersicht: {tiles.count()} Kacheln")
+    check(tiles.count() == 7, f"Übersicht: {tiles.count()} Kacheln")
+    check("transpara" not in pg.content().lower(), "Übersicht: Transpara nicht erwähnt (Peter 30.10.2026)")
     check(pg.locator("[data-ki-tile] [data-in-use]").count() == len(IN_USE) and all(pg.locator(f'[data-ki-tile="{i}"] [data-in-use]').count() == 1 for i in IN_USE), "Kachel-Hinweis „bei uns im Einsatz“ nur bei bestätigten Modulen")
     hrefs = pg.eval_on_selector_all("main a[href]", "els => els.map(a => a.getAttribute('href'))")
     for need in ["/roentgen-graz", "/mammographie-graz", "/knochendichtemessung-graz"]:
@@ -296,7 +297,7 @@ with sync_playwright() as pw:
                 p2.wait_for_timeout(400)
                 src = g2.evaluate("i => i.complete && i.naturalWidth > 0 ? i.currentSrc : ''")
                 check("-mobil-" in src and g2.evaluate("i => i.naturalHeight > i.naturalWidth"), f"360 px {scheme}: {p['id']}/{key} lädt die Hochformat-Fassung ({src.rsplit('/', 1)[-1]})")
-            if p["id"] in ("uebersicht", "squirrel", "lama", "rho", "transpara") and scheme == "light":
+            if p["id"] in ("uebersicht", "squirrel", "lama", "rho") and scheme == "light":
                 p2.screenshot(path=f"{SHOTS}/ki-{p['id']}-360.png", full_page=True)
         c2.close()
     br.close()

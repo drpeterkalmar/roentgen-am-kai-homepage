@@ -1,11 +1,11 @@
 // Übersichtsseite der KI-Artikelserie „Röntgen am K[AI] – Künstliche Intelligenz, ärztlich verantwortet“.
 // URL: /ratgeber/kuenstliche-intelligenz-radiologie · SEO-Titel: „Künstliche Intelligenz in der Radiologie | Graz“
 // Stand: 21.10.2026
-// Quellen: Herstellerseiten imagebiopsy.com (IB Lab ZOO, Module LAMA/HIPPO/KOALA/SQUIRREL/FROG/PANDA), 16bit.ai (Rho),
-// screenpoint-medical.com (Transpara); Funktionsumfang laut PUCmed-Produktbeschreibung – ohne Werbezahlen.
+// Quellen: Herstellerseiten imagebiopsy.com (IB Lab ZOO, Module LAMA/HIPPO/KOALA/SQUIRREL/FROG/PANDA), 16bit.ai (Rho);
+// Funktionsumfang laut PUCmed-Produktbeschreibung – ohne Werbezahlen.
 // Leitplanken: KI misst, markiert, dokumentiert; keine Diagnose, keine Therapieentscheidung; jede Messung wird ärztlich
-// geprüft. Im Einsatz (Praxis bestätigt): IB-Lab-Module seit Oktober 2026 (nicht „seit Jahren“), Rho, Transpara (Peter
-// 21.10.2026 abends). KI-Auswertung läuft lokal in der Praxis, keine Übertragung an Hersteller/Dritte. Geschlechtergerecht
+// geprüft. Im Einsatz (Praxis bestätigt): IB-Lab-Module seit Oktober 2026 (nicht „seit Jahren“), Rho. Transpara nicht auf der Website (Peter
+// 30.10.2026). KI-Auswertung läuft lokal in der Praxis, keine Übertragung an Hersteller/Dritte. Geschlechtergerecht
 // („Fachärztin oder Facharzt“ – Praxis hat auch Vertretungsärztinnen). Keine Tomosynthese/3D-Mammographie.
 // „[AI]“ im Titel/Seriennamen wird vom Code typografisch hervorgehoben; im HTML-Fließtext steht der Serienname bewusst nicht.
 // [geteilt] Metadaten; Text und Bildtexte: ki-uebersicht.content.js
@@ -26,11 +26,11 @@ export const CANNOT = [
   "KI kann sich irren – deshalb wird jede Messung ärztlich geprüft."
 ];
 
-export const DESCRIPTION = "Künstliche Intelligenz in der Radiologie in Graz: wie KI beim Röntgen und in der Mammographie hilft und warum die ärztliche Beurteilung entscheidend bleibt.";
+export const DESCRIPTION = "Künstliche Intelligenz in der Radiologie in Graz: wie KI beim Röntgen misst und markiert, wo die Grenzen liegen und warum die ärztliche Beurteilung entscheidet.";
 
 export const EXCERPT = "KI kann Röntgenbilder vermessen und auffällige Bereiche markieren. Wie wir sie einsetzen, wo ihre Grenzen liegen und warum die ärztliche Beurteilung entscheidend bleibt.";
 
-export const REVIEW = "BEANTWORTET (Peter, 21.10.2026 abends): IB-Lab-Module seit Oktober 2026 im Einsatz; Transpara im Einsatz (Kachel „bei uns im Einsatz“, Name „Transpara – Mammographie“ bleibt, Quelle screenpoint-medical.com bleibt); keine zusätzlichen Aufnahmen für die KI; Knie im Stehen; Rho-Hinweis steht im Befund, wenn auffällig; Knochenalter-Aufnahmen bei Kindern ja; KI-Auswertung läuft lokal in der Praxis (Satz auch in der Datenschutzerklärung); geschlechtergerecht formuliert (Vertretungsärztinnen); Serienname K[AI] ok; Autor und Prüfvermerk Priv.-Doz. Dr. Peter Kalmar. Text entsprechend angepasst.\nOffen:\n1. CE-Kennzeichnung auf der Seite erwähnen? – Georg fragen.\n2. Herstellerunterlagen (IFU, Version, CE) angefragt: IB Lab (Module, Rho) bzw. über Siemens (Transpara).";
+export const REVIEW = "BEANTWORTET (Peter, 21.10.2026 abends): IB-Lab-Module seit Oktober 2026 im Einsatz; keine zusätzlichen Aufnahmen für die KI; Knie im Stehen; Rho-Hinweis steht im Befund, wenn auffällig; Knochenalter-Aufnahmen bei Kindern ja; KI-Auswertung läuft lokal in der Praxis (Satz auch in der Datenschutzerklärung); geschlechtergerecht formuliert (Vertretungsärztinnen); Serienname K[AI] ok; Autor und Prüfvermerk Priv.-Doz. Dr. Peter Kalmar. Text entsprechend angepasst.\nOffen:\n1. CE-Kennzeichnung auf der Seite erwähnen? – Georg fragen.\n2. Herstellerunterlagen (IFU, Version, CE) angefragt: IB Lab (Module, Rho).";
 
 export const SERIES_NAME = "Röntgen am K[AI] – Künstliche Intelligenz, ärztlich verantwortet";
 
@@ -63,10 +63,6 @@ export const TILES = {
   "rho": {
     "title": "Rho – Knochengesundheit",
     "text": "Rho prüft geeignete Röntgenaufnahmen von Personen ab 50 Jahren zusätzlich auf Hinweise für eine möglicherweise niedrige Knochendichte. Ob eine Knochendichtemessung sinnvoll ist, klärt die ärztliche Beurteilung."
-  },
-  "transpara": {
-    "title": "Transpara – Mammographie",
-    "text": "Bei der Mammographie wertet Transpara die Bilder zusätzlich aus und markiert Bereiche, die genauer angesehen werden sollten. Jede Aufnahme beurteilt die Radiologin oder der Radiologe selbst."
   }
 };
 
